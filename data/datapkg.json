@@ -1,0 +1,135 @@
+{
+  "work": [
+    {
+      "id": 1,
+      "name": "test",
+      "kuvaus": "atk-hommia"
+    },
+    {
+      "nimi": "The man",
+      "kuvaus": "test",
+      "id": 2
+    },
+    {
+      "nimi": "Coding",
+      "kuvaus": "Funktio liittyy aina vain yhteen asiaan.",
+      "id": 3
+    },
+    {
+      "subject": "dev",
+      "name": "Coding",
+      "kuvaus": "Ensure that function handles only one thing.",
+      "id": 4
+    },
+    {
+      "subject": "issue",
+      "name": "Kommunikaatio",
+      "kuvaus": "Ei toimi, ei vastauksia maileihin eikä chatteihin.",
+      "id": 5
+    },
+    {
+      "subject": "issue",
+      "name": "Tuotehallinta & specsaus",
+      "kuvaus": "Undefined",
+      "id": 6
+    },
+    {
+      "subject": "dev",
+      "name": "Kuvaavat nimet",
+      "kuvaus": "Funktiot ja muuttujat on hyvä määritellä kuvaavasti. Tämä helpottaa katselmointia ja luettavuutta.",
+      "id": 7
+    },
+    {
+      "subject": "dev",
+      "name": "Tyylitiedostot",
+      "kuvaus": "Käytä useita css tiedostoja etenkin jos tiedosto kasvaa, on selkeästi useita määrityksiä jotka voi kohdentaa. Näin luettavuus paranee.",
+      "id": 8
+    },
+    {
+      "subject": "dev",
+      "name": "Kirjastojen laaja hyödyntäminen",
+      "kuvaus": "React:ssa, expressissä jne on paljon specificiä kirjastoja joita käyttää. Näiden lisäksi mikäli applikaatiosi käyttää usein tiettyä funktiota voi olla järkevää luoda oma custom hook tai perus funktio.",
+      "id": 9
+    },
+    {
+      "subject": "project",
+      "name": "Managerointi",
+      "kuvaus": "Edistystä seurataan Kanban boardien kautta. Tarkempi päivä / pisteytys seuranta puutteellinen. Kaikki perustuu tuotehallinan kontenttiin, joka pitäisi määritellä ennenkuin voidaan nähdä edistymää ja jäljellä olevaa aikaa.",
+      "id": 11
+    },
+    {
+      "subject": "issue",
+      "name": "Cozify practical training",
+      "kuvaus": "Referenssien perusteella osaan varmaan luoda ja konfiguroida, mutta virhetilanteiden hanskaus on puutteellista.",
+      "id": 13
+    },
+    {
+      "subject": "project",
+      "name": "Vista 743",
+      "kuvaus": "Lisenssointi testi caset ym, minkä perusteella testaus tehdään. Test plan ?",
+      "id": 14
+    },
+    {
+      "subject": "issue",
+      "name": "Mednet vpn",
+      "kuvaus": "Ei toimi, luultavasti salasana on expiroitunut ja tästä ei ole tullut mitään notificaatiota.",
+      "id": 15
+    },
+    {
+      "subject": "tasks",
+      "name": "Visma - zendesk integration.",
+      "kuvaus": "Esim olisi hyvä jos sopimustyyppi ja sen kuvaus + vastuumyyjä näkyisi suoraan maagisesti zendeskistä. \n\nMikäli asiakkaan organsaatio on sama kuin Visman organisaatio niin sitten ks vastuumyyjän saisi automaattisesti.",
+      "id": 16
+    },
+    {
+      "subject": "project",
+      "name": "Hyväksyntä testaus",
+      "kuvaus": "Ulkopuolisille releaseille tulisi olla hyväksyntä testaus jolle testi pläni + raportti. ",
+      "id": 17
+    },
+    {
+      "subject": "dev",
+      "name": "Käyttöliittymä",
+      "kuvaus": "Material ui - componenttien käyttö esim confirmaatio dialogeihin ym on suositeltavaa.",
+      "id": 18
+    },
+    {
+      "subject": "issue",
+      "name": "Hiihtoloma",
+      "kuvaus": "Accountoriin luotu lomapyyntö.",
+      "id": 19
+    },
+    {
+      "subject": "dev",
+      "name": "Funktiot",
+      "kuvaus": "Funktioiden tarkoitus on hoitaa yksi dedikoitu asia eli funktion ei tule hoitaa useita asioita. Funtion kokoa ei myöskään tule paisuttaa, mitä pienempi sen parempi. ",
+      "id": 20
+    },
+    {
+      "subject": "project",
+      "name": "Työnohjaus",
+      "kuvaus": "Ohjatessa ihmisiä ei tarvitse liikaa ymmärtää ja kaveerata.",
+      "id": 21
+    }
+  ],
+  "personal": [
+    {
+      "subject": "tasks",
+      "name": "Ajo-opetus",
+      "kuvaus": "- Hallintalaitteisiin tutustuminen ja eteenpäin ajoa.",
+      "id": 1
+    },
+    {
+      "subject": "tasks",
+      "name": "Lisää varallisuutta",
+      "kuvaus": "Ei kaikkia nakkeja samaan koriin, hae osa-aikatyötä muualta. Tarkkaile rahan käyttöä, käytä kirppareita, lopeta alkoholinkäyttö kun se ei ole sinua varten.",
+      "id": 2
+    },
+    {
+      "subject": "tasks",
+      "name": "Uusi elämä",
+      "kuvaus": "- Mässyt pois\n- Sokerit pois \n- Liiallinen hiilihydraatti pois\n- Alkoholi pois\n- Kävelylenkit taas peliin.",
+      "id": 3
+    }
+  ]
+}
