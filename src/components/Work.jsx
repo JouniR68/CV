@@ -11,7 +11,7 @@ export default function Education() {
 
   return (
     <table key={i++} className="taulu">
-      {issuesData?.map((t) => (
+      {issueData?.map((t) => (
         <div key={i++} className="row">
           <div key={i++} className="cell">
             {t?.name}: {t?.kuvaus}
