@@ -208,14 +208,18 @@ header a:hover {
   row-gap:10px;
 }
 
-.taulu {
-  display: table;
-  margin-bottom:30px;
+.profile--table {
+  display:table;  
+  margin-top:30px;;
 }
 
 .row {
   display: table-row;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: medium;
+  text-align: left;
+  justify-content: center;
+  
 }
 
 .cell {
@@ -232,7 +236,7 @@ header a:hover {
 .profile--container{
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top:6%;
   height: 100vh; /* Adjust as needed */
 }
 
@@ -246,6 +250,24 @@ header a:hover {
   * {
     box-sizing: border-box;
   }
+
+  .profile--taulu {
+    display: table;
+    margin-bottom:30px;
+  }
+
+  .profile--container{
+    display: flex;
+    justify-content: center;
+    margin-top:6%;
+    height: 100vh; /* Adjust as needed */
+  }
+  
+  .profile--card{
+    font-size:24px;
+    font-family: bold;  
+  }
+  
 
   html,
   body {

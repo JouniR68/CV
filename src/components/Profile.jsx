@@ -11,7 +11,7 @@ export default function Education() {
       {profileData.map((profile) => (
         <div key={i++} className="profile--card">          
           <img key={i++} src={profile.Photo} alt="Jouni Riimala" />
-          <table className = "taulu">
+          <table className = "profile--table">
           <td className="row">{profile.Name}</td>
             <td className="row">{profile.BirthPlace}</td>
             <td className="row">{profile.Profession}</td>
