@@ -1,50 +1,77 @@
 {
-  "work": [
+  "work": {
+    "id": 1,
+    "General": "In recent years been working with the web - development and project management",
+    "Web-programming": ["JS", "React", "Node", "CSS", "Material UI", "PHP"],
+    "Database": ["Postgress (sql and sequalize)", "sqlite", "mysql"],
+    "Sw tools": "Atlassian products (JIRA & Confluence) )with JQL- scripting",
+    "Version control": ["Git", "SVN"]
+  },
+
+  "intrests": ["Motorcycling", "Movies", "Sport"],
+
+  "workhistory": [
     {
       "id": 1,
-      "current": "test",
-      "kuvaus": "atk-hommia",
-      "kesto": "1.3.2022 -"
+      "Company": "Nokia Mobile Phones",
+      "Duration": "1997-2012",
+      "Roles": [
+        "sw trainee",
+        "sw developer",
+        "project manager",
+        "test manager",
+        "R&D-manager"
+      ],
+      "Locations": ["Oulu", "Helsinki", "Copenhagen"]
     },
     {
       "id": 2,
-      "previous": "KavoKerr",
-      "kuvaus" : "atk-hommia",
-      "kesto": ""
-    }
-  ],
-  "intrest": [
+      "Company": "KavoKerr",
+      "Duration": "2012-2020",
+      "Roles": ["project manager", "Tech specialist"],
+      "Locations": ["Tuusula"]
+    },
     {
-      "id": 1,
-      "intrest1": "test",
-      "intrest2": "test",
-      "intrest3": "test",
-      "intrest4": "test",
-      "intrest5": "test"
+      "id": 3,
+      "Company": "Vivago",
+      "Duration": "1.3.2022-curremt",
+      "Roles": ["R&D - development manager (worked with the web software development and management)"],
+      "Locations": ["Tuusula"]
     }
   ],
 
-  "Education": [
+  "education": [
     {
       "id": 1,
-      "item": "test",
-      "when": "test",
-      "topics": "test"
-    }
+      "Item": "Aalto Pro - SoftwarePoint & Vivago Web - Developper Training Program",
+      "When": "9/2021 - 3/2022",
+      "Topics": "Six month program with Helsinki Aalto University PRO - progaram where key was to learn web -technologies and Java programming. University level training consisted from 17 face to face learning days and from 19 remote days. Java training with Helsinki University Mooc courses and on work training",
+      "Degree":"Web-developer"
+    },
+    {
+      "id": 2,
+      "Item": "Saranen - Integrata",
+      "When": "2020",
+      "Topics": "Six month program where key was to learn Uipath. Within program used also Robot Framework, Python and C-sharp.",
+      "Degree": "-"
+    },
+  {
+    "id": 3,
+    "Item": "Kemi-Tornio University of Applied Sciences Bachelor of Engineering Automatic Data Processing",
+    "When":"1994-1997",
+    "Topics": "ADP -tradenomi schooling",
+    "Degree": "Tradenomi (ADP- line)"
+  }
   ],
 
-  "Profile": [
+  "profile": [
     {
       "id": 1,
       "Photo": "./src/assets/JouniRiimala.jpg",
       "Name": "Jouni Riimala",
       "BirthPlace": "Rovaniemi, Lapland, Finland",
       "Profession": "ADP- professional",
-      "Familly" : "Wife, two kids and three cats"      
+      "Familly": "Wife, two kids and three cats"
     }
   ]
-
-
-
-
 }
