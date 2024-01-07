@@ -1,12 +1,13 @@
 {
-  "work": {
+  "tech": [
+    {
     "id": 1,
     "General": "In recent years been working with the web - development and project management",
-    "Web-programming": ["JS", "React", "Node", "CSS", "Material UI", "PHP"],
-    "Database": ["Postgress (sql and sequalize)", "sqlite", "mysql"],
-    "Sw tools": "Atlassian products (JIRA & Confluence) )with JQL- scripting",
-    "Version control": ["Git", "SVN"]
-  },
+    "Programming": ["JS, ", "React, ", ", Node", ", CSS", ", Material UI", ", PHP"],
+    "Database": ["Postgress (sql and sequalize), ", "sqlite, ", "mysql"],
+    "Tools": ["Atlassian products (JIRA & Confluence) )with JQL- scripting, ", "Git, ", "SVN"]
+  }
+  ],
 
   "intrests": ["Motorcycling", "Movies", "Sport"],
 
@@ -22,7 +23,7 @@
         "test manager",
         "R&D-manager"
       ],
-      "Locations": ["Oulu", "Helsinki", "Copenhagen"]
+      "Locations": ["Oulu, ", "Helsinki, ", "Copenhagen"]
     },
     {
       "id": 2,
@@ -36,7 +37,7 @@
       "Company": "Vivago",
       "Duration": "1.3.2022-curremt",
       "Roles": ["R&D - development manager (worked with the web software development and management)"],
-      "Locations": ["Tuusula"]
+      "Locations": ["Espoo"]
     }
   ],
 
@@ -61,7 +62,15 @@
     "When":"1994-1997",
     "Topics": "ADP -tradenomi schooling",
     "Degree": "Tradenomi (ADP- line)"
+  },
+  {
+    "id": 4,
+    "Item": "Self training (Scrimba advancded React course)",
+    "When":"2023",
+    "Topics": "Advanced react training",
+    "Degree": "-"
   }
+
   ],
 
   "profile": [

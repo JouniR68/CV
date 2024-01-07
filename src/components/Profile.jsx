@@ -2,7 +2,7 @@ import JsonData from "../../data/datapkg.json";
 
 export default function Education() {
   let i = 0;
-  const profileData = JsonData.Profile.map((j) => {
+  const profileData = JsonData.profile.map((j) => {
     return j;
   });
 

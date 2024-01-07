@@ -9,6 +9,7 @@ import Logout from "./components/Logout";
 import CVLayout from "./Layouts/CVLayout";
 import Work from "./components/Work";
 import Education from "./components/Education";
+import Tech from "./components/Tech";
 import AddItem from "./components/AddIItem";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -30,6 +31,7 @@ function App() {
           <Route path = 'cv' element={<CVLayout />}>
             <Route path="education" element={<Education />} />
             <Route path="work" element={<Work />} />
+            <Route path="tech" element={<Tech />} />
           </Route>
         </Route>
       </Routes>
