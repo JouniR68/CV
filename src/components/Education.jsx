@@ -11,12 +11,20 @@ export default function Education() {
   
 
   return (
-    <table key={i++} className="taulu">
+    <table key={i++} className="work--table">
+         <thead className="work--thead">
+          <th>Course</th>
+          <th>Schedule</th>
+          <th>Topics</th>
+          <th>Degree</th>
+        </thead>
       {issueData?.map((t) => (
-        <div key={i++} className="row">
+        <tr key={i++} className="row">
           <div key={i++} className="cell">
             {t?.Item}
           </div>
+          
+
           <div key={i++} className="cell">
             {t?.When}
           </div>
@@ -26,11 +34,11 @@ export default function Education() {
           <div key={i++} className="cell">
             {t?.Degree}
           </div>
-          <div key={i++} className="cell">
-            <button onClick={() => remover("work", t.id)}>x</button>
-          </div>
-        </div>
-      ))}
-    </table>
+          
+        </tr>
+        ))}
+        </table>
+      
+
   );
 }

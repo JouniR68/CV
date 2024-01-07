@@ -9,9 +9,9 @@ export default function Header() {
       <Link className="site-logo" to="/">#JRLA</Link>
       {!isUserLoggedIn ? <nav> 
         <Link to="/">Home</Link>
-        <Link to="/profile">Profile</Link>  
-        <Link to="/admin">Admin</Link>
+        <Link to="/profile">Profile</Link>          
         <Link to="/cv">CV</Link>          
+        <Link to="/admin">Admin</Link>
       </nav> : 
       <Login />}
     </header>
