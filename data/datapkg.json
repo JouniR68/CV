@@ -31,7 +31,19 @@
       "when": "test",
       "topics": "test"
     }
+  ],
+
+  "Profile": [
+    {
+      "id": 1,
+      "Photo": "./src/assets/JouniRiimala.jpg",
+      "Name": "Jouni Riimala",
+      "BirthPlace": "Rovaniemi, Lapland, Finland",
+      "Profession": "ADP- professional",
+      "Familly" : "Wife, two kids and three cats"      
+    }
   ]
+
 
 
 

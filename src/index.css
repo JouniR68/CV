@@ -205,20 +205,17 @@ header a:hover {
   margin-right:10%;
   width:200px;
   font-size:medium;
+  row-gap:10px;
 }
 
 .taulu {
   display: table;
-  margin-left: 10px;
-  margin-top: 20px;
-  text-align: left;
-  justify-content: left;
-  font-size: 12px;
-  font-weight: 200;
+  margin-bottom:30px;
 }
 
 .row {
   display: table-row;
+  font-weight: bold;
 }
 
 .cell {
@@ -230,6 +227,20 @@ header a:hover {
   width: 50%;
   height: 50%;
 }
+
+
+.profile--container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust as needed */
+}
+
+.profile--card{
+  font-size:24px;
+  font-family: bold;  
+}
+
 
 @media only screen and (max-width: 1080px) and (max-height: 2400px) {
   * {
