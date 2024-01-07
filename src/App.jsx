@@ -1,23 +1,17 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import "./App.css";
 import Layout from "./Layouts/Layout";
-import WorkLayout from "./Layouts/WorkLayout";
-//import PersonalLayout from "./Layouts/PersonalLayout";
+import AdminLayout from "./Layouts/AdminLayout";
 import Home from "./components/Home";
-import Project from "./components/Education";
-import WorkIssues from "./components/Work";
-//import AddItem from "./components/AddIItem";
+import Profile from "./components/Profile";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-//import PersonalTasks from "./components/Personal/Tasks";
+import CVLayout from "./Layouts/CVLayout";
+import Work from "./components/Work";
+import Education from "./components/Education";
+import AddItem from "./components/AddIItem";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-
-/*
-        <Route path="/add" element={<AddItem />} />
-  
-*/
 
 function App() {
   return (
@@ -25,12 +19,18 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/logout" element={<Logout />} />
-
-          <Route path = "/work" element={<WorkLayout />}>
+          <Route path="/profile" element={<Profile />} />
+          
+          <Route path = 'admin' element={<AdminLayout />}>
+            <Route index element={<Login />} />
+            <Route path="logout" element={<Logout />} />
+            <Route path="add" element={<AddItem />} />
           </Route>
 
+          <Route path = 'cv' element={<CVLayout />}>
+            <Route path="education" element={<Education />} />
+            <Route path="work" element={<Work />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 
-export default function PersonalLayout() {
+export default function CVLayout() {
   return (
     <>
       <nav className="host-nav">
-        <Link to="/personal/tasks">Personal tasks</Link>
+        <Link to="work">Work</Link>
+        <Link to="education">Education</Link>        
       </nav>
       <Outlet />
     </>

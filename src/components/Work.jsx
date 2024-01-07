@@ -1,15 +1,9 @@
 import JsonData from "../../data/datapkg.json";
-import remover from "../utils/common"
+//import remover from "../utils/common"
 
 export default function Education() {
-  let i = 0;
-  const issueData = JsonData.education.map((j) => {
-    return j;
-  });
 
-  
-
-  return (
+  /*
     <table key={i++} className="taulu">
       {issueData?.map((t) => (
         <div key={i++} className="row">
@@ -22,5 +16,10 @@ export default function Education() {
         </div>
       ))}
     </table>
+
+  */
+
+  return (
+    <h1>Work</h1>
   );
 }
