@@ -4,14 +4,17 @@ import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import Why from "./components/Why";
+import Intrests from "./components/Intrest"
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import CVLayout from "./Layouts/CVLayout";
+import ProfileLayout from "./Layouts/ProfileLayout";
 import Work from "./components/Work";
 import Education from "./components/Education";
 import Tech from "./components/Tech";
 import AddItem from "./components/AddIItem";
-import Looking from "./components/Looking";
+//import Looking from "./components/Looking";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -30,7 +33,12 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
+
+          <Route path="profile" element={<ProfileLayout />}>
+            <Route index element={<Profile />} />
+            <Route path="intrests" element={<Intrests />} />
+            <Route path="why" element={<Why />} />
+          </Route>
 
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Login />} />
@@ -41,7 +49,7 @@ function App() {
           <Route path="cv" element={<CVLayout />}>
             <Route path="education" element={<Education />} />
             <Route path="work" element={<Work />} />
-            <Route path='Tech' element={<Tech />} />          
+            <Route path="Tech" element={<Tech />} />
           </Route>
         </Route>
       </Routes>

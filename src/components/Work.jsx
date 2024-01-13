@@ -8,18 +8,6 @@ export default function Work() {
     return j;
   });
 
-
-/*
-      <nav className="host-nav">
-        <NavLink to="Looking">Looking</NavLink>
-
-        <NavLink to="Tech">Skills</NavLink>
-      </nav>
-
-      <Outlet />
-
-*/
-
   return (
     <>
       {issueData?.map((t) => (

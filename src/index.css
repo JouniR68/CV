@@ -234,6 +234,11 @@ header a:hover {
   height: 50%;
 }
 
+.profile--intrests{
+  margin-top:350px;
+  margin-left:-100px;
+
+}
 
 .profile--container{
   display: flex;

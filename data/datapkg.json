@@ -9,7 +9,14 @@
     }
   ],
 
-  "intrests": ["Motorcycling", "Movies", "Sport"],
+  "intrests": [{
+    "id": 1,
+    "photo": "./src/assets/ktm-lattis.jpg",
+    "int1": "Motorcycling",
+    "int2": "Sport (currently gym)",
+    "int3": "Movies",
+    "int4": "Ice swimming"
+    }],
 
   "workhistory": [
     {
@@ -43,6 +50,13 @@
 
   "education": [
     {
+      "id": 4,
+      "Item": "Self training (Scrimba advancded React course)",
+      "When": "2023",
+      "Topics": "Advanced react training",
+      "Degree": "-"
+    },
+    {
       "id": 1,
       "Item": "Aalto Pro - SoftwarePoint & Vivago Web - Developper Training Program",
       "When": "9/2021 - 3/2022",
@@ -62,13 +76,6 @@
       "When": "1994-1997",
       "Topics": "ADP -tradenomi schooling",
       "Degree": "Tradenomi (ADP- line)"
-    },
-    {
-      "id": 4,
-      "Item": "Self training (Scrimba advancded React course)",
-      "When": "2023",
-      "Topics": "Advanced react training",
-      "Degree": "-"
     }
   ],
 
