@@ -11,7 +11,6 @@ export default function Header() {
         <Link to="/">Home</Link>
         <Link to="/profile">Profile</Link>          
         <Link to="/cv">CV</Link>          
-        <Link to="/admin">Admin</Link>
       </nav> : 
       <Login />}
     </header>

@@ -6,7 +6,8 @@ export default function CVLayout() {
       <nav className="host-nav">
         <Link to="work">Work History</Link>
         <Link to="education">Education</Link>  
-        <Link to="Tech">Tech Stack</Link>  
+        <Link to="Tech">Tech Stack</Link>
+        <Link to="Contact">Contact</Link>  
       </nav>
       <Outlet />
     </>

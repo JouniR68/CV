@@ -13,10 +13,11 @@ import ProfileLayout from "./Layouts/ProfileLayout";
 import Work from "./components/Work";
 import Education from "./components/Education";
 import Tech from "./components/Tech";
-import AddItem from "./components/AddIItem";
+
 //import Looking from "./components/Looking";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Contact from "./components/Contact";
 
 /*
             <Route path="work" element={<Work />}>
@@ -43,7 +44,6 @@ function App() {
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Login />} />
             <Route path="logout" element={<Logout />} />
-            <Route path="add" element={<AddItem />} />
           </Route>
 
           <Route path="cv" element={<CVLayout />}>
@@ -51,6 +51,8 @@ function App() {
             <Route path="education" element={<Education />} />
             <Route path="work" element={<Work />} />
             <Route path="Tech" element={<Tech />} />
+            <Route path="Contact" element={<Contact />} />
+
           </Route>
         </Route>
       </Routes>
