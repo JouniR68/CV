@@ -209,9 +209,12 @@ header a:hover {
 }
 
 
-.profile--table {
+.profile--intrest {
   display:table;  
-  margin-top:30px;;
+  padding:10px;
+  width:400px;
+  font-size:24px;
+  white-space: pre-line;
 }
 
 .row {
@@ -248,9 +251,13 @@ header a:hover {
 }
 
 .profile--card{
+  border:1px solid;
+  border-radius: 10px;
   font-size:24px;
-  font-family: bold;  
+  font-family: bold;
+  height: fit-content;  
 }
+
 
 .work--general{
 text-align: left;
@@ -279,6 +286,18 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
   background-color: #e6e6e6;
+}
+
+.hire--container{
+  margin-bottom:10px;
+}
+
+.hire--motto{
+  margin-top:20px;
+  margin-bottom:20px;
+  color:red;
+  margin-left:2%;
+  font-weight: bold;
 }
 
 
@@ -476,12 +495,20 @@ tr:nth-child(odd) {
   .taulu {
     display: table;
     margin-left: 20px;
-    margin-top: 100px;
+    margin-top: 10px;
     text-align: left;
     justify-content: left;
     font-size: 12px;
     font-weight: 200;
   }
+
+.taulu > td{
+  white-space: pre-line;
+}
+
+.hire--container{
+margin-top:10px;
+}
 
   .row {
     display: table-row;

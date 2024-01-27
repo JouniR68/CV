@@ -1,25 +1,56 @@
 import JsonData from "../../data/datapkg.json";
-import remover from "../utils/common"
+import remover from "../utils/common";
 
 export default function Education() {
   let i = 0;
-  const issueData = JsonData.education.map((j) => {
+  const issueData = JsonData.hire.map((j) => {
     return j;
   });
 
-  
+  let rowCounter = 1;
 
   return (
     <table key={i++} className="taulu">
       {issueData?.map((t) => (
-        <div key={i++} className="row">
-          <div key={i++} className="cell">
-            {t?.name}: {t?.kuvaus}
+        <>
+          <div className="hire--container"></div>
+
+          <div key={i++} className="row">
+            <div key={i++} className="hire--motto">
+              Motto: {t?.["motto"] + "\n\n"}
+            </div>
           </div>
-          <div key={i++} className="cell">
-            <button onClick={() => remover("work", t.id)}>x</button>
+
+          <div key={i++} className="row">
+            <div key={i++} className="cell">
+              {rowCounter++}. {t?.["why 1"]}
+            </div>
           </div>
-        </div>
+          <p></p>
+          <div key={i++} className="row">
+            <div key={i++} className="cell">
+              {rowCounter++}. {t?.["why 2"]}
+            </div>
+          </div>
+          <p></p>
+          <div key={i++} className="row">
+            <div key={i++} className="cell">
+              {rowCounter++}. {t?.["why 3"]}
+            </div>
+          </div>
+          <p></p>
+          <div key={i++} className="row">
+            <div key={i++} className="cell">
+              {rowCounter++}. {t?.["why 4"]}
+            </div>
+          </div>
+          <p></p>
+          <div key={i++} className="row">
+            <div key={i++} className="cell">
+              {rowCounter++}. {t?.["why 5"]}
+            </div>
+          </div>
+        </>
       ))}
     </table>
   );

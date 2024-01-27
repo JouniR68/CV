@@ -12,10 +12,18 @@
   "intrests": [{
     "id": 1,
     "photo": "./src/assets/ktm-lattis.jpg",
-    "int1": "Motorcycling",
-    "int2": "Sport (currently gym)",
-    "int3": "Movies",
-    "int4": "Ice swimming"
+    "text": "Like most people I like to do sport (in the low - medium level), ride motorcycles (this likel is not for all), hang out with friends, travel and do occsionally ice - swimming. In my spear time, I also like to improve my coding skills (likely second thing what is not for common all)."
+    }],
+
+
+    "hire":[{
+      "id": 1,
+      "why 1": "Experienced (multi years practical experience from the software develoment",
+      "why 2": "Flexiple as can do more than few roles",
+      "why 3": "Pure intrest to sw development and can work with the product content also",
+      "why 4": "Open for different contract types (permanen, temporary, part time (3 days in a wk)",
+      "why 5": "Good attitude and alway willing to learn new and develop",
+      "motto": "The devil lives in the details."
     }],
 
   "workhistory": [

@@ -47,6 +47,7 @@ function App() {
           </Route>
 
           <Route path="cv" element={<CVLayout />}>
+            <Route index element={<Work/>} />
             <Route path="education" element={<Education />} />
             <Route path="work" element={<Work />} />
             <Route path="Tech" element={<Tech />} />

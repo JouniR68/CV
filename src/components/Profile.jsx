@@ -15,10 +15,12 @@ export default function Education() {
           <div key={i++} className="profile--card">
             <img key={i++} src={profile.Photo} alt="Jouni Riimala" />
             <table className="profile--table">
-              <td className="row">{profile.Name}</td>
-              <td className="row">{profile.BirthPlace}</td>
-              <td className="row">{profile.Profession}</td>
-              <td className="row">{profile.Familly}</td>
+              <td className="row">Name: 
+              {profile.Name}
+              </td>
+              <td className="row">Place of birth: {profile.BirthPlace}</td>
+              <td className="row">Work: {profile.Profession}</td>
+              <td className="row">Familly: {profile.Familly}</td>
             </table>
           </div>
         ))}

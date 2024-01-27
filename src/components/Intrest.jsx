@@ -8,20 +8,20 @@ export default function Education() {
   });
 
   console.log("intrests array:", data);
+
+
+const formattedText = data.map(d => {
+ return d.text.replace(".", "."+"\n\n")
+})
+
   return (
     <div>
       <div className="profile--container">
-        {data.map((int) => (
-          <div key={i++} className="profile--card">
-            <img key={i++} src={int.photo} alt="Moto" />
-            <table className="profile--table">
-              <td className="row">{int.int1}</td>
-              <td className="row">{int.int2}</td>
-              <td className="row">{int.int3}</td>
-              <td className="row">{int.int4}</td>
+          <>
+            <table className="profile--intrest">
+              <td className="row">{formattedText}</td>
             </table>
-          </div>
-        ))}
+          </>
       </div>
       <Outlet />
     </div>
