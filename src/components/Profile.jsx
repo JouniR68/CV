@@ -19,6 +19,7 @@ export default function Education() {
               {profile.Name}
               </td>
               <td className="row">Place of birth: {profile.BirthPlace}</td>
+              <td className="row">Current location: {profile.Location}</td>
               <td className="row">Work: {profile.Profession}</td>
               <td className="row">Familly: {profile.Familly}</td>
               <td className="row">Mail: jriimala@gmail.com</td>

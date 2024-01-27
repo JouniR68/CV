@@ -13,41 +13,49 @@ export default function Education() {
     <table key={i++} className="taulu">
       {issueData?.map((t) => (
         <>
-          <div className="hire--container"></div>
-
-          <div key={i++} className="row">
-            <div key={i++} className="hire--motto">
-              Motto: {t?.["motto"] + "\n\n"}
+          <div className="hire--container">
+            <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {t?.["why"]}
+              </div>
             </div>
           </div>
 
-          <div key={i++} className="row">
-            <div key={i++} className="cell">
-              {rowCounter++}. {t?.["why 1"]}
+          <div className="hire--whys">
+            <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {rowCounter++}. {t?.["why 1"]}
+              </div>
             </div>
-          </div>
-          <p></p>
-          <div key={i++} className="row">
-            <div key={i++} className="cell">
-              {rowCounter++}. {t?.["why 2"]}
+            <p></p>
+            <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {rowCounter++}. {t?.["why 2"]}
+              </div>
             </div>
-          </div>
-          <p></p>
-          <div key={i++} className="row">
-            <div key={i++} className="cell">
-              {rowCounter++}. {t?.["why 3"]}
+            <p></p>
+            <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {rowCounter++}. {t?.["why 3"]}
+              </div>
             </div>
-          </div>
-          <p></p>
-          <div key={i++} className="row">
-            <div key={i++} className="cell">
-              {rowCounter++}. {t?.["why 4"]}
+            <p></p>
+            <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {rowCounter++}. {t?.["why 4"]}
+              </div>
             </div>
-          </div>
-          <p></p>
-          <div key={i++} className="row">
-            <div key={i++} className="cell">
-              {rowCounter++}. {t?.["why 5"]}
+            <p></p>
+            <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {rowCounter++}. {t?.["why 5"]}
+              </div>
+            </div>
+
+            <div key={i++} className="row">
+              <div key={i++} className="hire--motto">
+                Motto: {t?.["motto"] + "\n\n"}
+              </div>
             </div>
           </div>
         </>

@@ -68,45 +68,19 @@ header a:hover {
 
 /*** HOME PAGE ***/
 .home-container {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-    url("./assets/images/home-hero.png") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 350px;
-  color: white;
+  color: black;
   padding: 45px 23px;
+  font-size:24px;
+  font-family: bold;
+  text-align: left;
+  justify-content: left;  
+ 
 }
 
 .home-container h1 {
   font-weight: 700;
   font-size: 2.25rem;
   line-height: 42px;
-}
-
-.home-container p {
-  line-height: 24px;
-}
-
-.home-container a {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  background-color: #ff8c38;
-  border: none;
-  width: 100%;
-  margin-top: 27px;
-  padding-block: 0.75rem;
-  color: white;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out;
-}
-
-.home-container a:hover {
-  transform: translate(1px, 1px);
 }
 
 .host-nav {
@@ -124,6 +98,18 @@ header a:hover {
   color: #161616;
   text-decoration: underline;
   font-weight: 600;
+}
+
+h3.cv--contact-title{
+  margin-top:30px;
+}
+
+.cv--contact-text{
+  margin-top:30px;
+  font-family: bold;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
 }
 
 .login--form{
@@ -248,14 +234,18 @@ header a:hover {
   justify-content: center;
   margin-top:6%;
   height: 100vh; /* Adjust as needed */
+  text-align: center;
+  justify-content: left;
+  line-height: 31px;  
 }
 
 .profile--card{
+  padding:10px;
   border:1px solid;
   border-radius: 10px;
   font-size:24px;
   font-family: bold;
-  height: fit-content;  
+  height: fit-content;
 }
 
 
@@ -288,8 +278,16 @@ tr:nth-child(odd) {
   background-color: #e6e6e6;
 }
 
-.hire--container{
-  margin-bottom:10px;
+.hire--container {
+  margin-bottom:30px;
+  margin-top:30px;
+  font-size:24px;
+  font-family: bold;  
+}
+
+.hire--whys{
+  font-size:24px;
+  font-family: bold;  
 }
 
 .hire--motto{
@@ -392,47 +390,20 @@ tr:nth-child(odd) {
 
   /*** HOME PAGE ***/
   .home-container {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-      url("./assets/images/home-hero.png") no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    min-height: 350px;
-    color: white;
+    color: black;
     padding: 45px 23px;
+    font-size:24px;
+    font-family: bold;
+    text-align: center;
+    justify-content: left;  
   }
-
+  
   .home-container h1 {
     font-weight: 700;
     font-size: 2.25rem;
     line-height: 42px;
   }
-
-  .home-container p {
-    line-height: 24px;
-  }
-
-  .home-container a {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    background-color: #ff8c38;
-    border: none;
-    width: 100%;
-    margin-top: 27px;
-    padding-block: 0.75rem;
-    color: white;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.1s ease-in-out;
-  }
-
-  .home-container a:hover {
-    transform: translate(1px, 1px);
-  }
-
+  
   .host-nav {
     display: flex;
   }
