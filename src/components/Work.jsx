@@ -10,6 +10,7 @@ export default function Work() {
 
   return (
     <>
+    <hr></hr>
       {issueData?.map((t) => (
         <>
           <div key={i++} className="work--general">

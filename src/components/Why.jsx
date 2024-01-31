@@ -10,6 +10,9 @@ export default function Education() {
   let rowCounter = 1;
 
   return (
+<>
+    <hr></hr>
+
     <table key={i++} className="taulu">
       {issueData?.map((t) => (
         <>
@@ -61,5 +64,6 @@ export default function Education() {
         </>
       ))}
     </table>
+    </>
   );
 }

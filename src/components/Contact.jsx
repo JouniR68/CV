@@ -25,6 +25,7 @@ export default function Contact() {
 
   return (
     <div className="contact-card">
+        <hr></hr>
       <Box
         sx={{
           display: "flex",
@@ -36,7 +37,7 @@ export default function Contact() {
           },
         }}
       >        
-        <div className = "contact-info">
+        <div className = "contact-card">
             {contactText}
         </div>
         <ButtonGroup variant="outlined" aria-label="outlined button group" className = "socialButtons">

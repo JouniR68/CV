@@ -7,12 +7,6 @@ export default function Tech() {
     return j;
   });
 
-  /*
-              <div key={i++} className="cell">
-              <button onClick={() => remover("work", t.id)}>x</button>
-            </div>
-
-  */
   return (
     <div>
       <hr></hr>

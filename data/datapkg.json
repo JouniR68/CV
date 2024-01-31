@@ -91,7 +91,7 @@
   "profile": [
     {
       "id": 1,
-      "Photo": "./src/assets/JouniRiimala.jpg",
+      "Photo": "src/assets/JouniRiimala.jpg",
       "Name": "Jouni Riimala",
       "BirthPlace": "Rovaniemi, Lapland, Finland",
       "Location": "Tuusula, Uusimaa, Finland",

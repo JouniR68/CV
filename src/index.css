@@ -74,6 +74,8 @@ header a:hover {
   font-family: bold;
   text-align: left;
   justify-content: left;  
+  font-size:24;
+  font-family: bold;
  
 }
 
@@ -102,22 +104,22 @@ header a:hover {
 
 h3.cv-contact-title{
   margin-top:40px;
-  text-align: left;
+  margin-left:0px;
 }
 
 .socialButtons{
   position: absolute;
   top: 300px;
-  left: 460px;
+  left: 670px;
   width: 200px;
   height: 100px;
 }
 .contact-card{
-  margin-top:40px;
+  margin-top:30px;
   font-family: bold;
   font-size: 18px;
   line-height: 24px;
-  text-align: left;
+  margin-left:-420px;
 }
 
 .login--form{
@@ -259,7 +261,7 @@ h3.cv-contact-title{
 
 .work--general{
 text-align: left;
-margin-top:10px;
+margin-top:40px;
 margin-left:2%;
 font-weight: bold;
 
@@ -273,7 +275,7 @@ background-color: #ff8c38;
 
 .work--table{
   display:table;
-  margin-top:2%;
+  margin-top:30px;
   margin-bottom:2%;
   margin-left:2%;
 }
@@ -320,7 +322,7 @@ tr:nth-child(odd) {
   .profile--container{
     display: flex;
     justify-content: center;
-    margin-top:6%;
+    margin-top:30px;
     height: 100vh; /* Adjust as needed */
   }
   
@@ -404,6 +406,8 @@ tr:nth-child(odd) {
     font-family: bold;
     text-align: center;
     justify-content: left;  
+    font-size:24px;
+    font-family: bold;  
   }
   
   .home-container h1 {
