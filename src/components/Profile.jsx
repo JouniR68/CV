@@ -10,6 +10,7 @@ export default function Education() {
   return (
     <>
     <div>
+      <hr></hr>
       <div className="profile--container">
         {profileData.map((profile) => (
           <div key={i++} className="profile--card">

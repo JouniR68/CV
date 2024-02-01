@@ -5,6 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import MailIcon from "@mui/icons-material/Mail"
 
 export default function Contact() {
   function linkedIn() {
@@ -20,12 +21,23 @@ export default function Contact() {
   }
 
   const contactText =
-    "Excellent, let's start with the email so send me an email to jriimala@gmail.com and lets take it from there.";
-  const socialText = "Checkout my social media pages"
+    "Excellent, let's start with the email so send me an email and lets take it from there.";
+  const socialText = "Checkout my social media pages";
 
+  const subject = "CONTACT REQUEST";
+  const recipient = "jriimala@gmail.com";
+  const body = "Hi \n\nContacting you via your web cv.\n\n";
+
+  const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+
+  
   return (
-    <div className="contact-card">
-        <hr></hr>
+    <>
+      <hr></hr>
+      <p></p>
+
       <Box
         sx={{
           display: "flex",
@@ -36,22 +48,30 @@ export default function Contact() {
             m: 1,
           },
         }}
-      >        
-        <div className = "contact-card">
-            {contactText}
+      >
+        <div className="contact-card">
+          {contactText}
+          <p></p>
+          
+          <a href = {mailtoLink}><MailIcon/></a>
+
+          <ButtonGroup
+            variant="outlined"
+            aria-label="outlined button group"
+            className="socialButtons"
+          >
+            <IconButton>
+              <FacebookIcon onClick={fb} />
+            </IconButton>
+            <IconButton>
+              <InstagramIcon onClick={insta} />
+            </IconButton>
+            <IconButton>
+              <LinkedInIcon onClick={linkedIn} />
+            </IconButton>
+          </ButtonGroup>
         </div>
-        <ButtonGroup variant="outlined" aria-label="outlined button group" className = "socialButtons">
-          <IconButton>
-            <FacebookIcon onClick={fb}/>
-          </IconButton>
-          <IconButton>
-            <InstagramIcon onClick={insta}/>
-          </IconButton>
-          <IconButton>
-            <LinkedInIcon onClick={linkedIn} />
-          </IconButton>
-        </ButtonGroup>
       </Box>
-    </div>
+    </>
   );
 }
