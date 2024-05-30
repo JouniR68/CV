@@ -40,25 +40,27 @@ export default function Contact() {
 
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          alignItems: "start",
-          "& > *": {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px',
+          alignItems: 'start',
+          '& > *': {
             m: 1,
           },
         }}
       >
-        <div className="contact-card">
+        <div className='contact-card'>
           {contactText}
           <p></p>
-          
-          <a href = {mailtoLink}><MailIcon/></a>
+
+          <a href={mailtoLink}>
+            <MailIcon sx={{ marginTop: 2, marginLeft: '2px' }} />
+          </a>
 
           <ButtonGroup
-            variant="outlined"
-            aria-label="outlined button group"
-            className="socialButtons"
+            variant='outlined'
+            aria-label='outlined button group'
+            className='socialButtons'
           >
             <IconButton>
               <FacebookIcon onClick={fb} />

@@ -110,7 +110,7 @@ h3.cv-contact-title{
 .socialButtons{
   position: absolute;
   top: 500px;
-  left: 280px;
+  left: 300px;
   width: 200px;
   height: 100px;
 }
@@ -120,6 +120,10 @@ h3.cv-contact-title{
   font-size: 18px;
   line-height: 24px;
   margin-left:0px;
+}
+
+#mailIcon {
+  margin-top: 120px;
 }
 
 .login--form{
