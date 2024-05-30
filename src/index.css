@@ -107,6 +107,8 @@ h3.cv-contact-title{
   margin-left:0px;
 }
 
+
+
 .socialButtons{
   position: absolute;
   top: 500px;
@@ -251,6 +253,31 @@ h3.cv-contact-title{
   text-align: center;
   justify-content: left;
   line-height: 31px;  
+}
+
+.looking{
+  margin-top:40px;
+  padding:10px;
+  border:1px solid;
+  border-radius: 10px;
+  font-size:14px;
+  font-family: bold;
+  align-items: left;
+  height: fit-content;
+}
+
+.looking2{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:40px;
+  padding:10px;
+  border:1px solid;
+  border-radius: 10px;
+  font-size:14px;
+  font-family: bold;  
+  height: fit-content;
+  justify-content: center;
 }
 
 .profile--card{
