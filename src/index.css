@@ -109,17 +109,17 @@ h3.cv-contact-title{
 
 .socialButtons{
   position: absolute;
-  top: 300px;
-  left: 670px;
+  top: 500px;
+  left: 280px;
   width: 200px;
   height: 100px;
 }
 .contact-card{
-  margin-top:50px;
+  margin-top:250px;
   font-family: bold;
   font-size: 18px;
   line-height: 24px;
-  margin-left:-420px;
+  margin-left:0px;
 }
 
 .login--form{

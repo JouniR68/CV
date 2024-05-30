@@ -52,7 +52,6 @@ function App() {
             <Route path="work" element={<Work />} />
             <Route path="Tech" element={<Tech />} />
             <Route path="Contact" element={<Contact />} />
-
           </Route>
         </Route>
       </Routes>

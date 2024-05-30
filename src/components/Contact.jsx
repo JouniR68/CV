@@ -6,7 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail"
-
+import "../index.css"
 export default function Contact() {
   function linkedIn() {
     window.open("https://www.linkedin.com/in/jouni-riimala-04330", "_blank");
@@ -43,7 +43,7 @@ export default function Contact() {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          alignItems: "center",
+          alignItems: "start",
           "& > *": {
             m: 1,
           },
