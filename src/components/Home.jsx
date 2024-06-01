@@ -11,8 +11,6 @@ export default function Home() {
         <p></p>
         Note that I haven't prepared pages for the mobile usage so if using
         mobile, sorry in advanced.
-        <p></p>
-        <Link to='https://github.com/JR-Portfolio'>GitHub showcase</Link>
       </div>
     </>
   );
