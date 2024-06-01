@@ -58,7 +58,6 @@ export default function Contact() {
             <MailIcon sx={{ marginTop: 2, marginLeft: '2px' }} />
           </a>
 
-          <Sos className='socialButtons' />
         </div>
       </Box>
     </>

@@ -13,7 +13,6 @@ export default function Home() {
         mobile, sorry in advanced.
         <p></p>
         <Link to='https://github.com/JR-Portfolio'>GitHub showcase</Link>
-      <Sos className='socialButtons' />
       </div>
     </>
   );
