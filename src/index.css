@@ -110,11 +110,7 @@ h3.cv-contact-title{
 
 
 .socialButtons{
-  position: absolute;
-  top: 500px;
-  left: 300px;
-  width: 200px;
-  height: 100px;
+  margin-top: 20px;
 }
 .contact-card{
   margin-top:250px;

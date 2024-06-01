@@ -1,5 +1,6 @@
 import JsonData from "../../data/datapkg.json";
 import { Outlet, Link } from "react-router-dom";
+import Sos from "./Sos"
 
 export default function Education() {
   let i = 0;
@@ -10,7 +11,6 @@ export default function Education() {
   return (
     <>
       <div>
-
         <hr></hr>
         <div className='profile--container'>
           {profileData.map((profile) => (
@@ -29,8 +29,10 @@ export default function Education() {
               </table>
             </div>
           ))}
+          <Sos className='socialButtons' />
         </div>
       </div>
+
       <Outlet />
     </>
   );

@@ -6,6 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail"
+import Sos from "./Sos"
 import "../index.css"
 export default function Contact() {
   function linkedIn() {
@@ -57,21 +58,7 @@ export default function Contact() {
             <MailIcon sx={{ marginTop: 2, marginLeft: '2px' }} />
           </a>
 
-          <ButtonGroup
-            variant='outlined'
-            aria-label='outlined button group'
-            className='socialButtons'
-          >
-            <IconButton>
-              <FacebookIcon onClick={fb} />
-            </IconButton>
-            <IconButton>
-              <InstagramIcon onClick={insta} />
-            </IconButton>
-            <IconButton>
-              <LinkedInIcon onClick={linkedIn} />
-            </IconButton>
-          </ButtonGroup>
+          <Sos className='socialButtons' />
         </div>
       </Box>
     </>
