@@ -5,7 +5,8 @@
       "General": "In recent years been working with the web - development and project management",
       "Programming": ["JS", "React", "Node", "CSS", "Material UI", "PHP"],
       "Database": ["Postgress", "Sqlite", "Mysql"],
-      "Tools": ["JIRA", "Confluence", "Git", "SVN", "Virtual envs"]
+      "Tools": ["JIRA", "Confluence", "Git", "SVN", "Virtual envs"],
+      "ProjectMethods": ["Waterfall", "Kanban", "Scrum"]
     }
   ],
 
@@ -18,7 +19,7 @@
 
     "hire":[{
       "id": 1,
-      "why":"Defenetly you want to use my services, here are five reasons + my motto.",
+      "why": "Defenetly you want to use my services, here are five reasons + my motto.",
       "why 1": "I'm experienced and have eye for the details (multiple years practical experience from the software develoment",
       "why 2": "Flexiple as can do more than few roles (coding, testing, project management mostly)",
       "why 3": "Pure intrest to sw development and can work with the product content also",
@@ -58,6 +59,13 @@
   ],
 
   "education": [
+    {
+      "id": 5,
+      "Item": "Hands on",
+      "When": "2022-24",
+      "Topics": "On work web based coding (js, react, node) with senior level subcontractor developers.",
+      "Degree": "-"
+    },
     {
       "id": 4,
       "Item": "Self training (Scrimba advancded React course)",

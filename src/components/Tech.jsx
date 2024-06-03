@@ -10,31 +10,37 @@ export default function Tech() {
   return (
     <div>
       <hr></hr>
-  
-      <div className="work--general">{issueData?.map((d) => d.General)}</div>
 
-      <table key={i++} className="work--table">
-        <thead className="work--thead">
+      <div className='work--general'>{issueData?.map((d) => d.General)}</div>
+
+      <table key={i++} className='work--table'>
+        <thead className='work--thead'>
           <th>Programming</th>
           <th>Database</th>
           <th>Tools</th>
+          <th>Programming Methods</th>
         </thead>
 
         {issueData?.map((t) => (
-          <div key={i++} className="row">
+          <div key={i++} className='row'>
             <div key={i++}>
               {t.Programming.map((p) => (
                 <tr key={i++}>{p}</tr>
               ))}
             </div>
-            <div key={i++} className="cell">
+            <div key={i++} className='cell'>
               {t?.Database.map((d) => (
                 <tr key={i++}>{d}</tr>
               ))}
             </div>
-            <div key={i++} className="cell">
+            <div key={i++} className='cell'>
               {t?.Tools.map((l) => (
                 <tr key={i++}>{l}</tr>
+              ))}
+            </div>
+            <div key={i++} className='cell'>
+              {t?.ProjectMethods.map((m) => (
+                <tr key={i++}>{m}</tr>
               ))}
             </div>
           </div>
