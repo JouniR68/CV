@@ -18,7 +18,7 @@ export default function Tech() {
           <th>Programming</th>
           <th>Database</th>
           <th>Tools</th>
-          <th>Programming Methods</th>
+          <th>Project Methods</th>
         </thead>
 
         {issueData?.map((t) => (

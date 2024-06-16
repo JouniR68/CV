@@ -29,6 +29,13 @@ export default function Contact() {
     window.open('https://www.instagram.com/jriimala/', '_blank');
   }
 
+  const subject = 'CONTACT REQUEST';
+  const recipient = 'jriimala@gmail.com';
+  const body = 'Hi \n\nContacting you via your web cv.\n\n';
+
+  const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
 
   return (
     <>
@@ -66,6 +73,9 @@ export default function Contact() {
               <Typography variant='body1' ml={1}>
                 Few coding repositories.
               </Typography>
+            </IconButton>
+            <IconButton>
+              <a href={mailtoLink}><MailIcon sx={{marginLeft: '2px' }}/></a>
             </IconButton>
           </ButtonGroup>
         </div>

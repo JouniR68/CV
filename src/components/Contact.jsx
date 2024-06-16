@@ -5,7 +5,6 @@ import IconButton from "@mui/material/IconButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailIcon from "@mui/icons-material/Mail"
 import Sos from "./Sos"
 import "../index.css"
 export default function Contact() {
@@ -22,17 +21,8 @@ export default function Contact() {
   }
 
   const contactText =
-    "Excellent, let's start with the email so send me an email and lets take it from there.";
-  const socialText = "Checkout my social media pages";
-
-  const subject = "CONTACT REQUEST";
-  const recipient = "jriimala@gmail.com";
-  const body = "Hi \n\nContacting you via your web cv.\n\n";
-
-  const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(body)}`;
-
+    "Excellent, let's start with the email so click email icon above";
+ 
   
   return (
     <>
@@ -53,10 +43,6 @@ export default function Contact() {
         <div className='contact-card'>
           {contactText}
           <p></p>
-
-          <a href={mailtoLink}>
-            <MailIcon sx={{ marginTop: 2, marginLeft: '2px' }} />
-          </a>
 
         </div>
       </Box>

@@ -16,14 +16,6 @@ export default function Education() {
     <table key={i++} className="taulu">
       {issueData?.map((t) => (
         <>
-          <div className="hire--container">
-            <div key={i++} className="row">
-              <div key={i++} className="cell">
-                {t?.["why"]}
-              </div>
-            </div>
-          </div>
-
           <div className="hire--whys">
             <div key={i++} className="row">
               <div key={i++} className="cell">

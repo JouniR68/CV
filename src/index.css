@@ -49,6 +49,11 @@ header a:hover {
   text-decoration: underline;
 }
 
+.looking--text
+{
+  text-align: left;
+  justify-content: left;
+}
 .link-button {
   display: inline-block;
   text-align: center;
@@ -212,7 +217,7 @@ h3.cv-contact-title{
 
 .row {
   display: table-row;
-  font-weight: 700;
+  font-weight: 200;
   font-size: medium;
   text-align: left;
   justify-content: left;
@@ -239,7 +244,7 @@ h3.cv-contact-title{
 .profile--container{
   display: flex;
   justify-content: center;
-  margin-top:6%;
+  margin-top:2%;
   height: 100vh; /* Adjust as needed */
   text-align: center;
   justify-content: left;
@@ -249,22 +254,18 @@ h3.cv-contact-title{
 .looking{
   margin-top:40px;
   padding:10px;
-  border:1px solid;
-  border-radius: 10px;
   font-size:14px;
   font-family: bold;
   align-items: left;
+  justify-content: left;
   height: fit-content;
 }
 
 .looking2{
   display:flex;
-  align-items: center;
-  justify-content: center;
-  margin-top:40px;
+  align-items: left;
+  margin-top:10px;
   padding:10px;
-  border:1px solid;
-  border-radius: 10px;
   font-size:14px;
   font-family: bold;  
   height: fit-content;
@@ -285,8 +286,6 @@ h3.cv-contact-title{
 text-align: left;
 margin-top:40px;
 margin-left:2%;
-font-weight: bold;
-
 }
 
 .work--thead{
@@ -424,7 +423,7 @@ tr:nth-child(odd) {
   .home-container {
     color: black;
     padding: 45px 23px;
-    font-size:24px;
+    font-size:14px; 
     font-family: bold;
     text-align: center;
     justify-content: left;  
@@ -505,6 +504,7 @@ tr:nth-child(odd) {
     justify-content: left;
     font-size: 12px;
     font-weight: 200;
+    border: 1px solid;
   }
 
 .taulu > td{
@@ -518,6 +518,7 @@ margin-top:10px;
   .row {
     display: table-row;
     border-bottom: #161616;
+    border: 1px solid;
   }
 
   .cell {
