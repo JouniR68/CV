@@ -18,8 +18,7 @@ export default function Education() {
               <img key={i++} src={profile.Photo} alt='Jouni Riimala' />
               <table className='profile--table'>
                 <td className='row'>
-                  Name:
-                  {profile.Name}
+                  Name: {profile.Name}
                 </td>
                 <td className='row'>Place of birth: {profile.BirthPlace}</td>
                 <td className='row'>Current location: {profile.Location}</td>

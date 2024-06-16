@@ -4,7 +4,7 @@ import remover from "../utils/common";
 export default function Education() {
   let i = 0;
   const issueData = JsonData.hire.map((j) => {
-    return j;
+    return j; 
   });
 
   let rowCounter = 1;
