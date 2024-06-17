@@ -76,6 +76,10 @@ export default function Contact() {
             </IconButton>
             <IconButton>
               <a href={mailtoLink}><MailIcon sx={{marginLeft: '2px' }}/></a>
+              <Typography variant='body1' ml={1}>
+                Tel. +358 2385 888.
+              </Typography>
+
             </IconButton>
           </ButtonGroup>
         </div>

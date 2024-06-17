@@ -21,9 +21,8 @@ export default function Contact() {
   }
 
   const contactText =
-    "Excellent, let's start with the email so click email icon above";
- 
-  
+    "Excellent, pls call me (+358 45 2385 888) and let's discuss or at minimum send me the email from the above mail icon.";
+   
   return (
     <>
       <hr></hr>
