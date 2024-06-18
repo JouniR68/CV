@@ -6,7 +6,8 @@ export default function Home() {
     <>
       <h1>Welcome</h1>
       <div className='home-container'>
-        Sole purpose of these pages is to act as a net based CV. The target is to open discussions how may I help you / your company.
+        Welcome to my pages, in here trying to paint a picture from myself and what I'm all about. In here you can see my work history, competences and other details. 
+        Hopefully you find time to discuss, how I can contribute with your success story.
       </div>
     </>
   );

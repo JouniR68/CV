@@ -1,11 +1,10 @@
 {
   "tech": [
     {
-      "id": 1,
-      "General": "In recent years been working with the web - development and project management",
+      "id": 1,      
       "Programming": ["JS", "React", "Node", "CSS", "Material UI", "PHP"],
       "Database": ["Postgress", "Sqlite", "Mysql"],
-      "Tools": ["JIRA", "Confluence", "Git", "SVN", "Virtual envs"],
+      "Tools": ["Admin level with the Atlassian products (JIRA, Confluense, Bitbucket)", "Git", "SVN", "Virtual envs", "CD/CD pipelines"],
       "ProjectMethods": ["Waterfall", "Kanban", "Scrum"]
     }
   ],
@@ -19,12 +18,11 @@
 
     "hire":[{
       "id": 1,
-      "why 1": "I'm experienced, proactive and competences are up to date (multiple years practical experience from the software develoment",
-      "why 2": "Flexiple as can do more than few roles (coding, testing, system expert, project management mostly)",
-      "why 3": "Pure intrest to sw development and can work with the product content also",
-      "why 4": "Open for different contract types (permanent, freelancer, remote, part time (3 days in a wk)",
-      "why 5": "Good attitude and alway willing to learn new and develop",
-      "motto": "The devil lives in the details."
+      "why 1": "I'm experienced, proactive and competences are up to date. Especially good within subcontractor interface.",
+      "why 2": "Flexiple as can do more than few roles (coding, testing, system expert, project management).",
+      "why 3": "Pure intrest to sw development and can work also within product management tasks.",
+      "why 4": "Open for different contract types (permanent, freelancer, remote, part time (3 days in a wk).",
+      "why 5": "Good attitude and alway willing to learn new and develop."
     }],
 
   "workhistory": [

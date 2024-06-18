@@ -25,6 +25,7 @@ export default function Education() {
                 <td className='row'>Work: {profile.Profession}</td>
                 <td className='row'>Familly: {profile.Familly}</td>
                 <td className='row'>Mail: jriimala@gmail.com</td>
+                <td className='row'>Tel: +358 2385 888</td>
               </table>
             </div>
           ))}
