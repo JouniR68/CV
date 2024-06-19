@@ -11,7 +11,7 @@ export default function Education() {
 
   return (
 <>
-    <hr></hr>
+    <hr></hr>    
 
     <table key={i++} className="taulu">
       {issueData?.map((t) => (
@@ -22,34 +22,28 @@ export default function Education() {
                 {rowCounter++}. {t?.["why 1"]}
               </div>
             </div>
-            <p></p>
+            
             <div key={i++} className="row">
               <div key={i++} className="cell">
                 {rowCounter++}. {t?.["why 2"]}
               </div>
             </div>
-            <p></p>
+            
             <div key={i++} className="row">
               <div key={i++} className="cell">
                 {rowCounter++}. {t?.["why 3"]}
               </div>
             </div>
-            <p></p>
+            
             <div key={i++} className="row">
               <div key={i++} className="cell">
                 {rowCounter++}. {t?.["why 4"]}
               </div>
             </div>
-            <p></p>
+            
             <div key={i++} className="row">
               <div key={i++} className="cell">
                 {rowCounter++}. {t?.["why 5"]}
-              </div>
-            </div>
-
-            <div key={i++} className="row">
-              <div key={i++} className="hire--motto">
-                Motto: {t?.["motto"] + "\n\n"}
               </div>
             </div>
           </div>

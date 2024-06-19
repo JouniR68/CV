@@ -14,20 +14,12 @@ import ProfileLayout from "./Layouts/ProfileLayout";
 import Work from "./components/Work";
 import Education from "./components/Education";
 import Tech from "./components/Tech";
+import CV from "./components/Output"
 
 //import Looking from "./components/Looking";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-
-/*
-            <Route path="work" element={<Work />}>
-              <Route index element={<Looking />} />
-              <Route path="Looking" element={<Looking />} />
-              <Route path='Tech' element={<Tech />} />
-            </Route>
-
-*/
 
 function App() {
   return (
@@ -35,7 +27,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path='/' element={<Home />} />
-
+          <Route path="output" element={<CV/>} />
           <Route path='profile' element={<ProfileLayout />}>
             <Route index element={<Profile />} />
             <Route path='intrests' element={<Intrests />} />

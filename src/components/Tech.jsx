@@ -10,7 +10,6 @@ export default function Tech() {
   return (
     <div>
       <hr></hr>
-
       <div className='work--general'>{issueData?.map((d) => d.General)}</div>
 
       <table key={i++} className='work--table'>

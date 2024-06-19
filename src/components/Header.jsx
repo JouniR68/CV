@@ -10,7 +10,8 @@ export default function Header() {
       {!isUserLoggedIn ? <nav> 
         <Link to="/">Home</Link>
         <Link to="/profile">Profile</Link>          
-        <Link to="/cv">CV</Link>          
+        <Link to="/cv">CV</Link>
+        <Link to="/output">Printable CV</Link>          
       </nav> : 
       <Login />}
     </header>

@@ -1,19 +1,23 @@
 export default function Looking() {
   return (
-    <div className='looking'>
+    
+    <div>
+      <hr></hr>
       <p className='looking--text'>
+      
         Open for the new work due to laid of situation. I'm looking for the work
         either permanent or part time ex 3 days in a wk, open for the
         discussion. Possibility to work as a freelancer with minimum 6 month
         contract.
+      
+<p></p>
+      Appealing roles
       </p>
 
-      <h3>Looking to work especially in the following roles</h3>
-
-      <table className='looking2'>
+      <table className='looking--text'>
         <tbody>
           <tr>
-            <td>Sw Development Management</td>
+            <td>Sw Development Managemer / Project Manager</td>
           </tr>
 
           <tr>
