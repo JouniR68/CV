@@ -81,15 +81,16 @@ header a:hover {
 }
 
 /*** HOME PAGE ***/
-.home-container {
-  color: black;
+.home-container {  
   padding: 45px 23px;
   font-size:24px;
   font-family: bold;
   text-align: left;
   justify-content: left;  
-  font-size:24;
+  font-size:large;
   font-family: bold;
+  text-align: left;
+  justify-content: center;
  
 }
 

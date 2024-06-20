@@ -14,7 +14,7 @@ export default function Work() {
       {issueData?.map((t) => (
         <>
           <div key={i++} className="work--general">
-            {t?.id}. {t?.Company}
+            {t?.Company}
           </div>
           <table key={i++} className="work--table">
             <div key={i++} className="row">
