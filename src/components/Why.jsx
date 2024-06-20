@@ -17,6 +17,12 @@ export default function Education() {
       {issueData?.map((t) => (
         <>
           <div className="hire--whys">
+          <div key={i++} className="row">
+              <div key={i++} className="cell">
+                {rowCounter++}. {t?.["why"]}
+              </div>
+            </div>
+
             <div key={i++} className="row">
               <div key={i++} className="cell">
                 {rowCounter++}. {t?.["why 1"]}

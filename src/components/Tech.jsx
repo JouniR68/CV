@@ -22,7 +22,7 @@ export default function Tech() {
 
         {issueData?.map((t) => (
           <div key={i++} className='row'>
-            <div key={i++}>
+            <div key={i++}>              
               {t.Programming.map((p) => (
                 <tr key={i++}>{p}</tr>
               ))}
