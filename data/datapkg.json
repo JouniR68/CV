@@ -30,16 +30,18 @@
     {
       "id": 1,
       "Company": "Vivago",
-      "Duration": "1.3.2022 - laid of from 15.6.2024 due to company economical reasons.",
-      "Roles": ["R&D - development manager"],
-      "Locations": ["Espoo"]
+      "Duration": "1.3.2022 - 15.6.2024",
+      "Roles": ["R&D - dev. manager"],
+      "Locations": ["Espoo"], 
+      "Info":"Laid of 15.6.2024 due to companyt economical situation."
     },
     {
       "id": 2,
       "Company": "KavoKerr",
       "Duration": "2012-2020",
       "Roles": ["Project manager", "Tech specialist"],
-      "Locations": ["Tuusula"]
+      "Locations": ["Tuusula"],
+      "Info":"Driver project manager, dev-ops"
     },
     {
       "id": 3,
@@ -52,7 +54,8 @@
         "Test manager",
         "R&D-manager"
       ],
-      "Locations": ["Oulu, ", "Helsinki, ", "Copenhagen"]
+      "Locations": ["Oulu, ", "Helsinki, ", "Copenhagen"],
+      "Info": "Developer, UI-cheaf, project manager, Test lead.."
     }
   ],
 

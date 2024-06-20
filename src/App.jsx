@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
@@ -18,39 +18,13 @@ import Tech from "./components/Tech";
 import CV from "./components/Output"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
+import { darkTheme, lightTheme} from "./components/Themes";
 
-export const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-    background: {
-      default: '#ffffff',
-      paper: '#f5f5f5',
-    },
-    text: {
-      primary: '#000000',
-      secondary: '#555555',
-    },
-  },
-});
-
-export const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    background: {
-      default: '#121212',
-      paper: '#1d1d1d',
-    },
-    text: {
-      primary: 'red',
-      secondary: '#bbbbbb',
-    },
-  },
-});
 
 
 function App() {

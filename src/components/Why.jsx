@@ -1,5 +1,4 @@
 import JsonData from "../../data/datapkg.json";
-import remover from "../utils/common";
 
 export default function Education() {
   let i = 0;
