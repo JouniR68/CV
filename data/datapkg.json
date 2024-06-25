@@ -1,22 +1,43 @@
 {
   "tech": [
     {
-      "id": 1,            
-      "Programming": ["JS", "React", "Node", "CSS", "Material UI", "PHP"],
-      "Database": ["Postgress", "Sqlite", "Mysql"],
-      "Tools": ["Admin level with the Atlassian products (JIRA, Confluense, Bitbucket)", "Git", "SVN", "Virtual envs", "CD/CD pipelines"],
-      "ProjectMethods": ["Waterfall", "Kanban", "Scrum"]
+      "id": 1,
+      "Programming": [
+        "JS",
+        "React",
+        "Node",
+        "CSS",
+        "Material UI",
+        "PHP"
+      ],
+      "Database": [
+        "Postgress",
+        "Sqlite",
+        "Mysql"
+      ],
+      "Tools": [
+        "Admin level with the Atlassian products (JIRA, Confluense, Bitbucket)",
+        "Git",
+        "SVN",
+        "Virtual envs",
+        "CD/CD pipelines"
+      ],
+      "ProjectMethods": [
+        "Waterfall",
+        "Kanban",
+        "Scrum"
+      ]
     }
   ],
-
-  "intrests": [{
-    "id": 1,
-    "photo": "./src/assets/ktm-lattis.jpg",
-    "text": "Like most people I like to do sport (in the low - medium level), ride motorcycle (this likely is not for all), hang out with friends, travel and do occsionally other extreme stuff like ice - swimming. Additionally, I also like to improve my coding skills (likely second thing what is not common for all)."
-    }],
-
-
-    "hire":[{
+  "intrests": [
+    {
+      "id": 1,
+      "photo": "./src/assets/ktm-lattis.jpg",
+      "text": "Like most people I like to do sport (in the low - medium level), ride motorcycle (this likely is not for all), hang out with friends, travel and do occsionally other extreme stuff like ice - swimming. Additionally, I also like to improve my coding skills (likely second thing what is not common for all)."
+    }
+  ],
+  "hire": [
+    {
       "id": 1,
       "why": "I'm a good technical project manager / sw development mgr and pretty ok on the web development.",
       "why 1": "I'm experienced, proactive and competences are up to date. Especially good within subcontractor interface.",
@@ -24,24 +45,33 @@
       "why 3": "Pure intrest to sw development and can work also within product management tasks.",
       "why 4": "Open for different contract types (permanent, freelancer, remote, part time (3 days in a wk).",
       "why 5": "Good attitude and allways willing to learn new and develop."
-    }],
-
+    }
+  ],
   "workhistory": [
     {
       "id": 1,
       "Company": "Vivago",
       "Duration": "1.3.2022 - 15.6.2024",
-      "Roles": ["R&D - dev. manager"],
-      "Locations": ["Espoo"], 
-      "Info":"Laid of 15.6.2024 due to companyt economical situation."
+      "Roles": [
+        "R&D - dev. manager"
+      ],
+      "Locations": [
+        "Espoo"
+      ],
+      "Info": "Laid of 15.6.2024 due to companyt economical situation."
     },
     {
       "id": 2,
       "Company": "KavoKerr",
       "Duration": "2012-2020",
-      "Roles": ["Project manager", "Tech specialist"],
-      "Locations": ["Tuusula"],
-      "Info":"Driver project manager, dev-ops"
+      "Roles": [
+        "Project manager",
+        "Tech specialist"
+      ],
+      "Locations": [
+        "Tuusula"
+      ],
+      "Info": "Driver project manager, dev-ops"
     },
     {
       "id": 3,
@@ -54,11 +84,14 @@
         "Test manager",
         "R&D-manager"
       ],
-      "Locations": ["Oulu, ", "Helsinki, ", "Copenhagen"],
+      "Locations": [
+        "Oulu, ",
+        "Helsinki, ",
+        "Copenhagen"
+      ],
       "Info": "Developer, UI-cheaf, project manager, Test lead.."
     }
   ],
-
   "education": [
     {
       "id": 5,
@@ -96,7 +129,6 @@
       "Degree": "Tradenomi (ADP- line)"
     }
   ],
-
   "profile": [
     {
       "id": 1,
@@ -106,6 +138,36 @@
       "Location": "Tuusula, Uusimaa, Finland",
       "Profession": "ADP- professional",
       "Familly": "Wife, two kids and three cats"
+    }
+  ],
+  "services": [
+    {
+      "id": 4,      
+      "serv1": "Coding (web (react, node, js ...), minium one full day (7.5 hours) 400 euros.",
+      "serv2": "Testing, 60 euros per hour, 300 euros full day.",
+      "serv3": "Sw installations and configurations, 70 euros hour / 2 hour minimum",
+      "serv4": "Admin work (Atlassian etc), minimum one full day (7.5 hours), 300 euros",      
+      "serv5": "Product Management / requirement work, minimum one full day (7.5 hours) 300 euros",
+      "serv6": "Custom work and prize based on needs."
+
+    }
+  ],
+  "rent": [
+    {
+      "kuvaus": "Tämä on testi",
+      "name": "jriimala@gmail.com",
+      "id": 1
+    },
+    {
+      "kuvaus": "test",
+      "name": "jriimala@gmail.com",
+      "id": 2
+    },
+    {
+      "yhtotto": "henkilo",
+      "name": "jriimala@gmail.com",
+      "kuvaus": "test",
+      "id": 3
     }
   ]
 }

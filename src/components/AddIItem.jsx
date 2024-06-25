@@ -3,6 +3,19 @@ import axios from 'axios';
 import Select from 'react-select';
 import Notificaatio from '../../NotificaatioDialog';
 
+import React, { useState } from "react";
+import {
+  Typography,
+  TextField,
+  Button,
+  Box,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
+
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 const AddItem = () => {
   let isUserLoggedIn = sessionStorage.getItem('loggedIn');
   const nameRef = useRef();
@@ -24,15 +37,14 @@ const AddItem = () => {
   }
 
   let options = [
-    { value: 'work', label: 'Work' },
-    { value: 'personal', label: 'Personal' },
+    { value: 'firma', label: 'Yritys' },
+    { value: 'henkilo', label: 'Henkilöasiakas' },
   ];
 
   const subjects = [
-    { value: 'project', label: 'Project' },
-    { value: 'issue', label: 'Issues' },
-    { value: 'tasks', label: 'Tasks' },
-    { value: 'dev', label: 'Development' },
+    { value: 'tilaus', label: 'Tilaus' },
+    { value: 'kysely', label: 'Kysely' },
+    { value: 'viesti', label: 'Viesti' },
   ];
 
   const personalSubjects = [{ value: 'tasks', label: 'Tasks' }];
@@ -41,7 +53,8 @@ const AddItem = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:3852/${type}`, data);
+      console.log("data: ", data)
+      const response = await axios.post(`http://localhost:3852/rent`, data);
       console.log('json response: ', response.data);
     } catch (err) {
       console.log('Meni aivan vituiksi, error: ', err);
@@ -53,26 +66,20 @@ const AddItem = () => {
   const handleData = (e) => {
     console.log('Value: ' + e.value);
 
-    if (e.value === 'work') {
-      setType('work');
+    if (e.value === 'work') {      
+      setData({ ...data, yhtotto: 'yritys'})
       setWork(true);
     } else {
-      setType('personal');
+      setData({ ...data, yhtotto: 'henkilo'})
       setWork(false);
     }
 
     e.target?.name === 'nimi'
-      ? setData({ ...data, name: e.target?.value })
+      ? setData({ ...data, kontakti: e.target?.value })
       : null;
     e.target?.name === 'kuvaus'
       ? setData({ ...data, kuvaus: e.target?.value })
       : null;
-    e.value === 'issue' ||
-    e.value === 'tasks' ||
-    e.value === 'dev' ||
-    e.value === 'project'
-      ? setData({ ...data, subject: e.value })
-      : '';
   };
 
   const onCloseError = () => {
@@ -89,40 +96,34 @@ const AddItem = () => {
           <Select
             id='adder--select'
             name='selector'
+            placeholder="Yritys / henkilö"
             onChange={handleData}
             options={options}
           />
 
-          {work ? (
-            <Select
-              id='adder--select'
-              name='subjects'
-              onChange={handleData}
-              options={subjects}
-            />
-          ) : (
-            <Select
-              id='adder--select'
-              name='subjects'
-              onChange={handleData}
-              options={personalSubjects}
-            />
-          )}
+          <Select
+            id='adder--select'
+            name='subjects'
+            placeholder="Aihe"
+            onChange={handleData}
+            options={subjects}
+          />
 
           <input
             id='adder--input'
             ref={nameRef}
             type='text'
             name='nimi'
+            value='jriimala@gmail.com'
             onChange={handleData}
-            placeholder='Subject'
+            placeholder='Yhteystieto'
           />
 
           <textarea
             id='adder--textarea'
             ref={kuvausRef}
             name='kuvaus'
-            placeholder='Data'
+            placeholder='Viesti, alustava kuvaus työntarpeesta'
             onChange={handleData}
           />
           <button id='adder--button' onClick={onSubmit}>

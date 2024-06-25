@@ -22,7 +22,7 @@ const lightTheme = createTheme({
         paper: '#1d1d1d',
       },
       text: {
-        primary: 'red',
+        primary: '#FFFFFF',
         secondary: '#bbbbbb',
       },
     },

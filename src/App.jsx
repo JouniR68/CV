@@ -5,6 +5,9 @@ import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import Rent from "./components/Services";
+import Customer from "./components/Customer";
+import CustomerData from "./components/ShowData";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
@@ -18,12 +21,12 @@ import Tech from "./components/Tech";
 import CV from "./components/Output"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import { ThemeProvider} from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { darkTheme, lightTheme} from "./components/Themes";
+import { darkTheme, lightTheme } from "./components/Themes";
 
 
 
@@ -46,7 +49,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home />} />
+              <Route path='/rent' element={<Rent />} />
+              <Route path='/register' element={<Customer />} />
+              <Route path='/customers' element={<CustomerData />} />              
               <Route path="output" element={<CV />} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />

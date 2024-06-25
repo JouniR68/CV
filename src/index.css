@@ -191,12 +191,13 @@ h3.cv-contact-title{
   border: 4px solid hsl(0, 0%, 90%);
   display: grid;
   grid-template-columns: auto;
+  justify-items: start;
   gap: 2rem;
   padding: 1rem;
   background-color:#817c7c;
   color:white;  
-  margin-left:20px;
-  margin-right:570px;
+  
+  
 }
 
 #adder--textarea {
