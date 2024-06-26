@@ -207,7 +207,7 @@ export default function AddData(props) {
         />
         <br />
         <Button variant="contained" color="primary" onClick={() => save()}>
-          TALLETA
+          SAVE
         </Button>
       </Box>
     </div>
