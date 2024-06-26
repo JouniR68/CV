@@ -29,6 +29,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { darkTheme, lightTheme } from "./components/Themes";
 import ThankYouPage from "./components/ThankYou";
+import ContractForm from "./components/Contract";
 
 
 
@@ -55,7 +56,8 @@ function App() {
               <Route path='/rent' element={<Rent />} />
               <Route path='/register' element={<Customer />} />
               <Route path='/customers' element={<CustomerData />} />              
-              <Route path='/thanks' element={<ThankYou />} />              
+              <Route path='/thanks' element={<ThankYou />} />  
+              <Route path='/contract' element={<ContractForm />} />  
               <Route path="output" element={<CV />} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
