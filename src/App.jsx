@@ -11,6 +11,7 @@ import CustomerData from "./components/ShowData";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
+import ThankYou from "./components/ThankYou";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import CVLayout from "./Layouts/CVLayout";
@@ -27,6 +28,7 @@ import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { darkTheme, lightTheme } from "./components/Themes";
+import ThankYouPage from "./components/ThankYou";
 
 
 
@@ -53,6 +55,7 @@ function App() {
               <Route path='/rent' element={<Rent />} />
               <Route path='/register' element={<Customer />} />
               <Route path='/customers' element={<CustomerData />} />              
+              <Route path='/thanks' element={<ThankYou />} />              
               <Route path="output" element={<CV />} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />

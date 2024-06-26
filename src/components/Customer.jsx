@@ -7,9 +7,12 @@ import {
 
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function AddData(props) {
   const { application } = props;
+  const navigate = useNavigate();
+
 
   const today = new Date().toISOString().split("T")[0]
   const [data, setData] = useState({ fName: "", lName: "", address: "", email: "", phone: "", firmId: "", description: "", pvm: today });
@@ -81,6 +84,7 @@ export default function AddData(props) {
 
           const itemRef = await addDoc(collection(db, "Firma"), data);
           console.log("document written with id: ", itemRef.id) + " with data: " + data;
+          navigate('/thanks')
         }
 
 
