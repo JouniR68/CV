@@ -119,8 +119,12 @@ const ContractForm = () => {
                 }}
             >
                 <Typography variant="h4" gutterBottom>
-                    IT Freelancer Work Contract
+                    IT Freelancer Work Contract                    
                 </Typography>
+                <Typography variant="h7" gutterBottom>
+                    The contract is valid after both parties have signed.<p></p>                    
+                </Typography>
+
                 <FormLabel sx={{ textAlign: "left" }}>Freelancer: Jouni Riimala</FormLabel>
                 <FormLabel sx={{ textAlign: "left" }}>Freelancer Company Id: 3210413-8</FormLabel>
                 <FormLabel sx={{ textAlign: "left" }}>Address: Vuohennokantie 7, 04330 Lahela</FormLabel>
