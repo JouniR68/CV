@@ -9,6 +9,23 @@ import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
+/*
+  <TextField
+          style={{ width: "500px", margin: "5px" }}
+          id="description"
+          type="text"
+          label="I need / message:"
+          variant="outlined"
+          required
+          value={data.description}
+          multiline
+          rows={6}
+          onChange={handleChange}
+        />
+        <br />
+*/
+
+
 export default function AddData(props) {
   const { application } = props;
   const navigate = useNavigate();
@@ -197,19 +214,7 @@ export default function AddData(props) {
 
 
         <br />
-        <TextField
-          style={{ width: "500px", margin: "5px" }}
-          id="description"
-          type="text"
-          label="I need / message:"
-          variant="outlined"
-          required
-          value={data.description}
-          multiline
-          rows={6}
-          onChange={handleChange}
-        />
-        <br />
+      
         <Button variant="contained" color="primary" onClick={() => save()}>
           SAVE
         </Button>

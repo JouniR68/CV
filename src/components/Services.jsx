@@ -16,7 +16,7 @@ export default function Services() {
 
 
   const register = () => {
-    navigate('/register')
+    navigate('/contract')
   }
 
 
