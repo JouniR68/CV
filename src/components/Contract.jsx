@@ -3,6 +3,7 @@ import { Container, FormLabel, FormControlLabel, Checkbox, TextField, Button, Bo
 import Undersigning from './Undersigning';
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 const ContractForm = () => {
     const [form, setForm] = useState({
@@ -20,11 +21,13 @@ const ContractForm = () => {
     });
 
     const [errors, setErrors] = useState({});
-
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
 
-        if (form.startDate || form.endDate) { setForm((prev) => ({ ...prev, duration: !prev.duration })) }
+        if (form.startDate || form.endDate) { setForm((prev) => ({ ...prev, duration: !prev.duration })) } else {
+            setForm((prev) => ({ ...prev, duration: prev.duration }))
+        }
         
 
         const { name, value } = e.target;
