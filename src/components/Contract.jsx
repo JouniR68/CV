@@ -15,7 +15,7 @@ const ContractForm = () => {
         projectDescription: '',
         startDate: '',
         endDate: '',
-        duration: false,
+        duration: true,
         rate: '',
         travelrate: ''
     });
@@ -24,13 +24,17 @@ const ContractForm = () => {
     const navigate = useNavigate()
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
 
-        if (form.startDate || form.endDate) { setForm((prev) => ({ ...prev, duration: !prev.duration })) } else {
-            setForm((prev) => ({ ...prev, duration: prev.duration }))
+        if (name === "startDate" && value != "" || name === "endDate" && value != "") { 
+            console.log("start date or end date has values")
+            setForm(form.duration = false) 
+        } else {
+            setForm(form.duration = true)
         }
         
 
-        const { name, value } = e.target;
+        
         setForm({ ...form, [name]: value });
         setErrors({ ...errors, [name]: '' });
     };
@@ -83,6 +87,10 @@ const ContractForm = () => {
         e.preventDefault();
         if (validate()) {
             // Handle form submission, e.g., send form to the server
+            if (!form.duration){
+                alert("fails")
+                return
+            }
             console.log("the form is validated")
             try {
                 if (form != undefined || form != "") {
@@ -121,6 +129,7 @@ const ContractForm = () => {
                 <TextField
                     label="Client Name"
                     name="clientName"
+                    type="text"
                     value={form.clientName}
                     onChange={handleChange}
                     error={Boolean(errors.clientName)}
@@ -140,6 +149,7 @@ const ContractForm = () => {
                 <TextField
                     label="Client Address"
                     name="address"
+                    type="text"
                     value={form.address}
                     onChange={handleChange}
                     error={Boolean(errors.address)}
@@ -148,7 +158,7 @@ const ContractForm = () => {
 
                 <TextField
                     label="Company Id"
-                    name="companyId"
+                    name="companyId"                    
                     value={form.companyId}
                     onChange={handleChange}
                     error={Boolean(errors.companyId)}
@@ -191,7 +201,7 @@ const ContractForm = () => {
                     }}
                 />
 
-                <FormControlLabel name="duration" control={<Checkbox value={form.duration} />} label="Duration Ongoing" />
+                <FormControlLabel name="duration" control={<Checkbox checked={form.duration} />} label="Duration Ongoing" />
 
 
                 <TextField
