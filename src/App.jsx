@@ -54,7 +54,7 @@ function App() {
             <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
               <Route path='/rent' element={<Rent />} />
-              <Route path='/register' element={<Customer />} />
+              <Route path='/quick' element={<Customer />} />
               <Route path='/customers' element={<CustomerData />} />              
               <Route path='/thanks' element={<ThankYou />} />  
               <Route path='/contract' element={<ContractForm />} />  

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   TextField,
   Button,
-  Box
+  Box, FormControl, InputLabel, NativeSelect
 } from "@mui/material";
 
 import { db } from "../firebase";
@@ -26,7 +26,7 @@ import { useNavigate } from "react-router-dom";
 */
 
 
-export default function AddData(props) {
+export default function Quick(props) {
   const { application } = props;
   const navigate = useNavigate();
 
@@ -43,13 +43,13 @@ export default function AddData(props) {
   };
 
   const validate = () => {
-    let tempErrors = { fName: "", lName:"", address:"", email: "", phone:"", firmId:"", description:"" };
+    let tempErrors = { fName: "", lName: "", address: "", email: "", phone: "", firmId: "", description: "" };
     let isValid = true;
 
-    if(!data.fName){
+    if (!data.fName) {
       tempErrors.email = "First name is required";
       isValid = false;
-    } 
+    }
     else if (!data.lName) {
       tempErrors.email = "Last name is required";
       isValid = false;
@@ -115,7 +115,7 @@ export default function AddData(props) {
 
   return (
     <div>
-      <div style={{ textAlign: "left" }}>Prior starting, written agreement from details to be written (especially from the work over few days).<br></br>Fill the form so that I can contact you, thx in advanced.</div>
+      <div style={{ textAlign: "left" }}>Fill your details and needs so that I can see if I can help you.</div>
       <p></p>
 
       <Box
@@ -131,7 +131,6 @@ export default function AddData(props) {
         noValidate
         autoComplete="off"
       >
-
 
         <TextField
           style={{ width: "200px", margin: "5px" }}
@@ -151,7 +150,7 @@ export default function AddData(props) {
           style={{ width: "200px", margin: "5px" }}
           id="lName"
           type="text"
-          label="Last Name"          
+          label="Last Name"
           required
           value={data.lName}
           variant="outlined"
@@ -171,10 +170,7 @@ export default function AddData(props) {
           onChange={handleChange}
           error={Boolean(error.address)}
           helperText={error.address}
-
         />
-
-
 
         <br></br>
         <TextField
@@ -204,7 +200,7 @@ export default function AddData(props) {
           style={{ width: "400px", margin: "5px", mt: "-5" }}
           id="firmId"
           type="text"
-          label="Company id (Y-tunnus for the billing)"
+          label="Company id (Y-id) / - (no company)"
           value={data.firmId}
           variant="outlined"
           onChange={handleChange}
@@ -213,8 +209,32 @@ export default function AddData(props) {
         />
 
 
+        <br></br>
+        <FormControl>
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            Interested to have work for
+          </InputLabel>
+          <NativeSelect
+            defaultValue={30}
+            inputProps={{
+              name: 'interested',
+              id: 'uncontrolled-native',
+            }}
+          >
+            <option value="web">JS (react, node, css etc) based coding (web) / webbi koodausta.</option>
+            <option value="testing">Testing / testausta</option>
+            <option value="admin">Admin work, system configuration etc / Pääkäyttäjä tehtäviä</option>
+            <option value="consulting">Consulting / neuvontaa, suositteluita</option>
+            <option value="installations">Sw installations, updates etc / Ohjelmiston asennuksia tai päivityksiä.</option>
+
+
+          </NativeSelect>
+        </FormControl>
+
+
+
         <br />
-      
+
         <Button variant="contained" color="primary" onClick={() => save()}>
           SAVE
         </Button>

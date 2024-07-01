@@ -15,10 +15,14 @@ export default function Services() {
   let rowCounter = 1;
 
 
-  const register = () => {
+  const longer = () => {
     navigate('/contract')
   }
 
+
+const quick = () => {
+  navigate('/quick')
+}
 
   return (
     <>
@@ -69,7 +73,7 @@ export default function Services() {
         ))}
       </table>
 
-      <Button onClick={register}>Interested</Button>
+      <Button onClick={longer}>+ week</Button><Button onClick={quick}> Shorter period </Button>
 
     </>
 
