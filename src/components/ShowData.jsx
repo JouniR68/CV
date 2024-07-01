@@ -25,6 +25,7 @@ const ShowCustomers = () => {
 				id: doc.id,
 				...doc.data(),
 			}))
+			console.log("Customer data: ", data)
 			setCustomer(data)
 		} catch (error) {
 			console.error("Error fetching data: ", error)
@@ -36,8 +37,6 @@ const ShowCustomers = () => {
 			}
 		}
 	}
-
-
 
 	useEffect(() => {
 		getContracts()
