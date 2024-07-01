@@ -47,11 +47,11 @@ export default function Quick(props) {
     let isValid = true;
 
     if (!data.fName) {
-      tempErrors.email = "First name is required";
+      tempErrors.fName = "First name is required";
       isValid = false;
     }
     else if (!data.lName) {
-      tempErrors.email = "Last name is required";
+      tempErrors.lName = "Last name is required";
       isValid = false;
     }
 
@@ -61,11 +61,9 @@ export default function Quick(props) {
     }
 
     else if (!data.description) {
-      tempErrors.address = "Pls, fill your message.";
+      tempErrors.description = "Pls, fill your message.";
       isValid = false;
     }
-
-
 
     if (!data.email) {
       tempErrors.email = "Email is required";
@@ -75,7 +73,7 @@ export default function Quick(props) {
       isValid = false;
     }
 
-    if (data.firmId.length != 9) {
+    if (data.firmId.length < 9) {
       tempErrors.firmId = "Company id is not valid"
       isValid = false;
     }
@@ -87,9 +85,7 @@ export default function Quick(props) {
 
     setData({ ...data, [id]: "" })
   }
-
-
-  //https://firebase.google.com/docs/firestore/quickstart
+  
   const save = async () => {
 
     if (validate()) {
@@ -133,7 +129,7 @@ export default function Quick(props) {
       >
 
         <TextField
-          style={{ width: "200px", margin: "5px" }}
+          style={{ width: "300px", margin: "5px" }}
           id="fName"
           type="text"
           label="First Name"
@@ -147,7 +143,7 @@ export default function Quick(props) {
         />
 
         <TextField
-          style={{ width: "200px", margin: "5px" }}
+          style={{ width: "300px", margin: "5px" }}
           id="lName"
           type="text"
           label="Last Name"
@@ -172,7 +168,6 @@ export default function Quick(props) {
           helperText={error.address}
         />
 
-        <br></br>
         <TextField
           style={{ width: "300px", margin: "5px", mt: "-5" }}
           id="email"
@@ -207,9 +202,7 @@ export default function Quick(props) {
           error={Boolean(error.firmId)}
           helperText={error.firmId}
         />
-
-
-        <br></br>
+        <p></p>
         <FormControl>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Interested to have work for
@@ -231,6 +224,20 @@ export default function Quick(props) {
           </NativeSelect>
         </FormControl>
 
+        <TextField
+          style={{ width: "300px", margin: "5px", mt: "-5" }}
+          id="description"
+          type="text"
+          label="The message"
+          required
+          value={data.description}
+          variant="outlined"
+          onChange={handleChange}
+          error={Boolean(error.description)}
+          helperText={error.description}
+          multiline
+          rows={4}
+        />
 
 
         <br />
