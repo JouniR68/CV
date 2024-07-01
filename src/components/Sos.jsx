@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 export default function Contact() {
 
    function gitHub() {
-     window.open('https://github.com/JR-Portfolio', '_blank');
+     window.open('https://github.com/JouniR68', '_blank');
    } 
 
   function linkedIn() {
