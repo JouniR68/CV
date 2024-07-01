@@ -17,7 +17,7 @@ const ShowCustomers = () => {
 	const [customer, setCustomer] = useState([])
 	const [error, setError] = useState("")
 
-	const getCustomers = async () => {
+	const getContracts = async () => {
 		try {
 			const customerRef = collection(db, "Firma")
 			const querySnapshot = await getDocs(customerRef)
@@ -28,6 +28,7 @@ const ShowCustomers = () => {
 			setCustomer(data)
 		} catch (error) {
 			console.error("Error fetching data: ", error)
+			setError("Errir fetching data, pls contact site admin.")
 			throw {
 				message: "Datan haku epäonnistui",
 				statusText: "Failas",
@@ -36,8 +37,10 @@ const ShowCustomers = () => {
 		}
 	}
 
+
+
 	useEffect(() => {
-		getCustomers()
+		getContracts()
 	}, [])
 
 	return (

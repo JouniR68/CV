@@ -6,6 +6,9 @@ import {
 } from "@mui/material";
 
 export default function Services() {
+
+  //<Button onClick={longer}>+ week</Button><Button onClick={quick}> Shorter period </Button>
+
   const navigate = useNavigate()
   let i = 0;
   const issueData = JsonData.services.map((j) => {
@@ -20,8 +23,8 @@ export default function Services() {
   }
 
 
-const quick = () => {
-  navigate('/quick')
+const getCustomerData = () => {
+  navigate('/getCustomerData')
 }
 
   return (
@@ -73,7 +76,7 @@ const quick = () => {
         ))}
       </table>
 
-      <Button onClick={longer}>+ week</Button><Button onClick={quick}> Shorter period </Button>
+      <Button onClick={getCustomerData}>Interested</Button>
 
     </>
 

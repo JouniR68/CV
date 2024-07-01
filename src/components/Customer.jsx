@@ -73,18 +73,9 @@ export default function Quick(props) {
       isValid = false;
     }
 
-    if (data.firmId.length < 9) {
-      tempErrors.firmId = "Company id is not valid"
-      isValid = false;
-    }
-
     setError(tempErrors);
     return isValid;
   };
-  const resetFields = () => {
-
-    setData({ ...data, [id]: "" })
-  }
   
   const save = async () => {
 
@@ -92,8 +83,8 @@ export default function Quick(props) {
       console.log("data: ", data);
       try {
         if (data != undefined || data != "") {
-          let emailValid = data.email
-          !emailValid.includes('@') ? "Invalid email" : ""
+          //let emailValid = data.email
+          //!emailValid.includes('@') ? "Invalid email" : ""
 
           const itemRef = await addDoc(collection(db, "Firma"), data);
           console.log("document written with id: ", itemRef.id) + " with data: " + data;
@@ -191,17 +182,6 @@ export default function Quick(props) {
           onChange={handleChange}
         />
 
-        <TextField
-          style={{ width: "400px", margin: "5px", mt: "-5" }}
-          id="firmId"
-          type="text"
-          label="Company id (Y-id) / - (no company)"
-          value={data.firmId}
-          variant="outlined"
-          onChange={handleChange}
-          error={Boolean(error.firmId)}
-          helperText={error.firmId}
-        />
         <p></p>
         <FormControl>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
