@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
+import axios from 'axios'
 
 function MyLocation() {
   const [location, setLocation] = useState([])
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-
-
+  const [city, setCity] = useState('')
+  const [error, setError] = useState('')
 
 
   const getStoredLocations = async () => {
@@ -36,9 +37,11 @@ function MyLocation() {
 
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
+        const city = getCityName(position.coords.latitude, position.coords.longitude)
         setPosition({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+          longitude: position.coords.longitude, 
+          city: city
         });
 
       });
@@ -46,6 +49,23 @@ function MyLocation() {
       console.log('Geolocation is not available in your browser.');
     }
   }, [position]);
+
+
+  const getCityName = async (lat, lon) => {
+    const apiKey = 'AIzaSyD6OwCTIX6FoZkSgugGJiHj9dw2e4gmVg4'; 
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
+    console.log(url)
+    
+    try {
+      const response = await axios.get(url);
+      const result = response.data.results[0];
+      const city = result.components.city || result.components.town || result.components.village;
+      setCity(city);
+    } catch (error) {
+      setError('Unable to fetch city name.');
+    }
+  };
+
 
   if (position.latitude != null && position.latitude != "60.3848704" && !location.includes(position.latitude) && position.longitude != null && position.longitude != "25.001984" && !location.includes(position.longitude)) {
     addDoc(collection(db, "Locations"), position);
