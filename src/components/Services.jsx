@@ -24,7 +24,7 @@ export default function Services() {
 
 
 const getCustomerData = () => {
-  navigate('/getCustomerData')
+  navigate('/addCustomerData')
 }
 
   return (

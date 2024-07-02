@@ -3,10 +3,11 @@ import { useState } from "react";
 import "./App.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
+import RentalLayout from "./Layouts/RentalLayout";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Rent from "./components/Services";
-import Customer from "./components/Customer";
+import Customer from "./components/AddCustomer";
 import CustomerData from "./components/ShowData";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
@@ -29,7 +30,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { darkTheme, lightTheme } from "./components/Themes";
 import ThankYouPage from "./components/ThankYou";
-import ContractForm from "./components/Contract";
+import ContractForm from "./components/AddContract";
 
 
 
@@ -52,12 +53,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-            <Route path='/' element={<Home />} />
-              <Route path='/rent' element={<Rent />} />
-              <Route path='/getCustomerData' element={<Customer />} />
-              <Route path='/customers' element={<CustomerData />} />              
-              <Route path='/thanks' element={<ThankYou />} />  
-              <Route path='/contract' element={<ContractForm />} />  
+              <Route path='/' element={<Home />} />
               <Route path="output" element={<CV />} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
@@ -71,6 +67,14 @@ function App() {
                 <Route path='logout' element={<Logout />} />
               </Route>
 
+              <Route element={<RentalLayout />}>
+                <Route path='rent' index element={<Rent />} />
+                <Route path='addCustomerData' element={<Customer />} />
+                <Route path='customers' element={<CustomerData />} />
+                <Route path='thanks' element={<ThankYou />} />
+                <Route path='contract' element={<ContractForm />} />
+              </Route>
+
               <Route path='cv' element={<CVLayout />}>
                 <Route index element={<Work />} />
                 <Route path='education' element={<Education />} />
@@ -81,7 +85,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </ThemeProvider>
+      </ThemeProvider >
     </>
   );
 }

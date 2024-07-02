@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 
 const ShowCustomers = () => {
+	//<TableCell>{t.firmId}</TableCell>
 	const [customer, setCustomer] = useState([])
 	const [error, setError] = useState("")
 
@@ -60,15 +61,14 @@ const ShowCustomers = () => {
 				</TableHead>
 
 				
-				{customer.length === 1 && customer.map((t) => (
-
+				{customer.map((t) => (
 						<TableBody key={nanoid()}>
 							<TableRow key={nanoid()}>
 								<TableCell>{t.fName}</TableCell>
 								<TableCell>{t.lName}</TableCell>
+								<TableCell>{t.address}</TableCell>
 								<TableCell>{t.email}</TableCell>
-								<TableCell>{t.phone}</TableCell>
-								<TableCell>{t.firmId}</TableCell>
+								<TableCell>{t.phone}</TableCell>								
 								<TableCell>{t.description}</TableCell>
 								<TableCell>{t.pvm}</TableCell>
 							</TableRow>
