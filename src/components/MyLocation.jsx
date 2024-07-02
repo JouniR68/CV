@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import axios from 'axios'
+const apiKey = import.meta.env.VITE_MAPS_APIKEY
 
 function MyLocation() {
   const [location, setLocation] = useState([])
@@ -51,8 +52,7 @@ function MyLocation() {
   }, [position]);
 
 
-  const getCityName = async (lat, lon) => {
-    const apiKey = 'AIzaSyD6OwCTIX6FoZkSgugGJiHj9dw2e4gmVg4'; 
+  const getCityName = async (lat, lon) => {    
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
     console.log(url)
     
@@ -67,7 +67,7 @@ function MyLocation() {
   };
 
 
-  if (position.latitude != null && position.latitude != "60.3848704" && !location.includes(position.latitude) && position.longitude != null && position.longitude != "25.001984" && !location.includes(position.longitude)) {
+  if (position.latitude != null && !location.includes(position.latitude) && position.longitude != null && !location.includes(position.longitude)) {
     addDoc(collection(db, "Locations"), position);
   }
 
