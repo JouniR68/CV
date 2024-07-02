@@ -38,13 +38,11 @@ function MyLocation() {
 
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        const city = getCityName(position.coords.latitude, position.coords.longitude)
         setPosition({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude, 
-          city
+          longitude: position.coords.longitude
         });
-
+        getCityName(position.coords.latitude, position.coords.longitude)
       });
     } else {
       console.log('Geolocation is not available in your browser.');
@@ -52,9 +50,9 @@ function MyLocation() {
   }, [position]);
 
 
-  const getCityName = async (lat, lon) => {    
+  const getCityName = async (lat, lon) => {
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
-    
+
     try {
       const response = await axios.get(url);
       const result = response.data.results[0];
@@ -67,6 +65,7 @@ function MyLocation() {
 
 
   if (position.latitude != null && !location.includes(position.latitude) && position.longitude != null && !location.includes(position.longitude)) {
+    position.city = city;
     addDoc(collection(db, "Locations"), position);
   }
 
