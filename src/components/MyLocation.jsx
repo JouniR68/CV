@@ -64,7 +64,7 @@ function MyLocation() {
   };
 
 
-  if (position.latitude != null && !location.includes(position.latitude) && position.longitude != null && !location.includes(position.longitude)) {
+  if ((position.latitude != null && position.latitude != '60.3848704' && !location.includes(position.latitude)) && (position.longitude != null && position.longitude != '25.001984' && !location.includes(position.longitude))) {
     position.city = city;
     addDoc(collection(db, "Locations"), position);
   }
