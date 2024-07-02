@@ -59,17 +59,17 @@ export default function Contact() {
             aria-label='outlined button group'
             className='socialButtons'
           >
-            <IconButton>
-              <FacebookIcon onClick={fb} />
+            <IconButton onClick={fb}>
+              <FacebookIcon  />
             </IconButton>
-            <IconButton>
-              <InstagramIcon onClick={insta} />
+            <IconButton onClick={insta}>
+              <InstagramIcon />
             </IconButton>
-            <IconButton>
-              <LinkedInIcon onClick={linkedIn} />
+            <IconButton onClick={linkedIn}>
+              <LinkedInIcon  />
             </IconButton>
-            <IconButton>
-              <GitHub onClick={gitHub} />
+            <IconButton onClick={gitHub}>
+              <GitHub />
               <Typography variant='body1' ml={1}>
                 Few coding repositories.
               </Typography>

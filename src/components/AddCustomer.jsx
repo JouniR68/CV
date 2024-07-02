@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   TextField,
   Button,
@@ -26,8 +26,7 @@ import { useNavigate } from "react-router-dom";
 */
 
 
-export default function Quick(props) {
-  const { application } = props;
+export default function Quick() {
   const navigate = useNavigate();
 
 
@@ -101,7 +100,7 @@ export default function Quick(props) {
 
 
   return (
-    <div>
+    <div>      
       <div style={{ textAlign: "left" }}>Fill your details and needs so that I can see if I can help you.</div>
       <p></p>
 

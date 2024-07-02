@@ -2,7 +2,7 @@ import JsonData from "../../data/datapkg.json";
 import { Outlet } from "react-router-dom";
 
 export default function Education() {
-  let i = 0;
+
   const data = JsonData.intrests.map((j) => {
     return j;
   });

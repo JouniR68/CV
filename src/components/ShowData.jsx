@@ -30,7 +30,7 @@ const ShowCustomers = () => {
 			setCustomer(data)
 		} catch (error) {
 			console.error("Error fetching data: ", error)
-			setError("Errir fetching data, pls contact site admin.")
+			setError("Error fetching data, pls contact site admin.")
 			throw {
 				message: "Datan haku epäonnistui",
 				statusText: "Failas",
@@ -44,8 +44,9 @@ const ShowCustomers = () => {
 	}, [])
 
 	return (
+		
 		<TableContainer component={Paper}>
-
+			{error.length > 1 && <h3>{error}</h3>}
 			<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
 
 				<TableHead>

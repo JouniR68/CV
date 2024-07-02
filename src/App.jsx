@@ -12,7 +12,6 @@ import CustomerData from "./components/ShowData";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
-import ThankYou from "./components/ThankYou";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import CVLayout from "./Layouts/CVLayout";
@@ -71,7 +70,7 @@ function App() {
                 <Route path='rent' index element={<Rent />} />
                 <Route path='addCustomerData' element={<Customer />} />
                 <Route path='customers' element={<CustomerData />} />
-                <Route path='thanks' element={<ThankYou />} />
+                <Route path='thanks' element={<ThankYouPage />} />
                 <Route path='contract' element={<ContractForm />} />
               </Route>
 
