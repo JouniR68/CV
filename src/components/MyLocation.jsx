@@ -42,7 +42,7 @@ function MyLocation() {
         setPosition({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude, 
-          city: city
+          city
         });
 
       });
@@ -54,7 +54,6 @@ function MyLocation() {
 
   const getCityName = async (lat, lon) => {    
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
-    console.log(url)
     
     try {
       const response = await axios.get(url);
