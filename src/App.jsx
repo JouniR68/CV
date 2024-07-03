@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useState } from "react";
-import "./App.css";
+import "./index.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
 import RentalLayout from "./Layouts/RentalLayout";
@@ -41,11 +41,11 @@ function App() {
   }
 
   return (
-    <>
+    <div className = "app-container">
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <CssBaseline />
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Typography>Ligth</Typography>
+        <Stack direction="row" ml={1} mt={2} spacing={1} alignItems="center">
+          <Typography>Light</Typography>
           <Switch checked={isDarkMode} onChange={toggleTheme} />
           <Typography>Dark</Typography>
         </Stack>
@@ -85,7 +85,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </ThemeProvider >
-    </>
+    </div>
   );
 }
 
