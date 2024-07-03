@@ -383,6 +383,7 @@ tr:nth-child(odd) {
     height: 110px;
     display: flex;
     align-items: center;
+    justify-content: start;
     padding-block: 10px;
   }
 
@@ -430,7 +431,7 @@ tr:nth-child(odd) {
     font-family: bold;
     text-align: center;
     justify-content: left;  
-    font-size:18px;
+    font-size:14px;
     font-family: bold;  
   }
   
