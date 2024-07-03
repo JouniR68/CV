@@ -1,4 +1,5 @@
 import MyLocation from './MyLocation';
+import "../index.css"
 export default function Home() {
   return (
     <>

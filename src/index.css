@@ -5,7 +5,7 @@
 html,
 body {
   margin-left: 10%;
-  margin-right: 10%;
+  margin-right: 2%;
   margin-top:0.2%;
   margin-bottom:0.2%;
   padding: 0;
@@ -347,8 +347,8 @@ tr:nth-child(odd) {
 
   html,
   body {
-    margin: 10;
-    padding: 0;
+    margin: 10px;
+    padding: 2;
     background-color:lightgray;
     font-family: "Inter", sans-serif;
   }
@@ -365,7 +365,7 @@ tr:nth-child(odd) {
 
   .profile--table {
     display: table;
-    margin-bottom:30px;
+    margin-bottom:10px;
   }
 
   .profile--container{
@@ -380,11 +380,11 @@ tr:nth-child(odd) {
   }
 
   header {
-    height: 110px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: start;
-    padding-block: 10px;
+    padding-block: 5px;
   }
 
   header .site-logo {
@@ -392,14 +392,14 @@ tr:nth-child(odd) {
     margin-right: auto;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 25px;
+    font-size: 16px;
   }
 
   header a {
     text-decoration: none;
     color: #4d4d4d;
     font-weight: 600;
-    padding: 5px 20px;
+    padding: 5px 10px;
   }
 
   header a:hover {
@@ -427,9 +427,9 @@ tr:nth-child(odd) {
   /*** HOME PAGE ***/
   .home-container {
     color: black;
-    padding: 45px 23px;
+    padding: 5px 2px;
     font-family: bold;
-    text-align: center;
+    text-align: left;
     justify-content: left;  
     font-size:14px;
     font-family: bold;  
@@ -437,7 +437,7 @@ tr:nth-child(odd) {
   
   .home-container h1 {
     font-weight: 700;
-    font-size: 24px;
+    font-size: 16px;
     line-height: 32px;
   }
   
@@ -464,12 +464,12 @@ tr:nth-child(odd) {
     justify-content: left;
     align-items: center;
     grid-row: 10px;
-    padding: 20px;
+    padding: 10px;
   }
 
   .adder--form > input {
     width: 250px;
-    padding: 20px;
+    padding: 10px;
   }
 
   .adder--form > select {
@@ -480,7 +480,7 @@ tr:nth-child(odd) {
   textArea {
     width: 400px;
     height: 200px;
-    padding: 20px;
+    padding: 10px;
     font-size: larger;
   }
 
