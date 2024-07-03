@@ -333,26 +333,21 @@ tr:nth-child(odd) {
 }
 
 
-@media only screen and (max-width: 1080px) and (max-height: 2400px) {
-  * {
+@media only screen 
+  and (min-device-width: 1080px) 
+  and (max-device-width: 1080px) 
+  and (min-device-height: 2400px) 
+  and (max-device-height: 2400px) 
+  and (-webkit-min-device-pixel-ratio: 3) 
+  and (min-resolution: 393dpi) {
+    
+*{
     box-sizing: border-box;
   }
 
-  .profile--table {
-    display: table;
-    margin-bottom:30px;
-  }
-
-  .profile--container{
-    display: flex;
-    justify-content: center;
-    margin-top:10px; 
-  }
-    
-
   html,
   body {
-    margin: 100;
+    margin: 10;
     padding: 0;
     background-color:lightgray;
     font-family: "Inter", sans-serif;
@@ -367,6 +362,18 @@ tr:nth-child(odd) {
     scrollbar-width: none;
   }
 
+
+  .profile--table {
+    display: table;
+    margin-bottom:30px;
+  }
+
+  .profile--container{
+    display: flex;
+    justify-content: center;
+    margin-top:10px; 
+  }
+    
   .logout-text {
     width: 50%;
     height: 50%;
@@ -420,18 +427,17 @@ tr:nth-child(odd) {
   .home-container {
     color: black;
     padding: 45px 23px;
-    font-size:14px; 
     font-family: bold;
     text-align: center;
     justify-content: left;  
-    font-size:24px;
+    font-size:18px;
     font-family: bold;  
   }
   
   .home-container h1 {
     font-weight: 700;
-    font-size: 2.25rem;
-    line-height: 42px;
+    font-size: 24px;
+    line-height: 32px;
   }
   
   .host-nav {
@@ -470,7 +476,6 @@ tr:nth-child(odd) {
     padding: 10px;
   }
   
-
   textArea {
     width: 400px;
     height: 200px;

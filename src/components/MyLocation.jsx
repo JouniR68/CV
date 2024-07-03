@@ -47,7 +47,7 @@ function MyLocation() {
     } else {
       console.log('Geolocation is not available in your browser.');
     }
-  }, [position]);
+  }, []);
 
 
   const getCityName = async (lat, lon) => {
