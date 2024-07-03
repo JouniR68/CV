@@ -101,7 +101,7 @@ export default function Quick() {
 
   return (
     <div>      
-      <div style={{ textAlign: "left" }}>Fill your details and needs so that I can see if I can help you.</div>
+      <div style={{ textAlign: "left" }}>Fill it up.</div>
       <p></p>
 
       <Box
@@ -193,11 +193,13 @@ export default function Quick() {
               id: 'uncontrolled-native',
             }}
           >
+            <option value="message">The message / viesti</option>
             <option value="web">JS (react, node, css etc) based coding (web) / webbi koodausta.</option>
             <option value="testing">Testing / testausta</option>
             <option value="admin">Admin work, system configuration etc / Pääkäyttäjä tehtäviä</option>
             <option value="consulting">Consulting / neuvontaa, suositteluita</option>
             <option value="installations">Sw installations, updates etc / Ohjelmiston asennuksia tai päivityksiä.</option>
+            
 
 
           </NativeSelect>

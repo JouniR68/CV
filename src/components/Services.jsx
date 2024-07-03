@@ -67,7 +67,7 @@ export default function Services() {
         ))}
       </table>
 
-      <Button onClick={getCustomerData}>Interested</Button>
+      <Button onClick={getCustomerData}>Work offer / message ?</Button>
 
     </>
 
