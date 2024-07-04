@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { useState } from "react";
+//import { useState } from "react";
 import "./index.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
@@ -22,23 +22,24 @@ import Tech from "./components/Tech";
 import CV from "./components/Output"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Switch from '@mui/material/Switch';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import { darkTheme, lightTheme } from "./components/Themes";
+//import { ThemeProvider } from "@mui/material/styles";
+//import CssBaseline from "@mui/material/CssBaseline";
+//import Switch from '@mui/material/Switch';
+//import Typography from '@mui/material/Typography';
+//import Stack from '@mui/material/Stack';
+//import { darkTheme, lightTheme } from "./components/Themes";
 import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
 
 
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  //const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const toggleTheme = () => {
+  /*const toggleTheme = () => {
     setIsDarkMode(!isDarkMode)
   }
+  */
 
 /*
         <Stack direction="row" ml={1} mt={2} spacing={1} alignItems="center">
@@ -51,8 +52,6 @@ function App() {
 
   return (
     <div className = "app-container">
-      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-        <CssBaseline />
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
@@ -88,7 +87,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </ThemeProvider >
+
     </div>
   );
 }

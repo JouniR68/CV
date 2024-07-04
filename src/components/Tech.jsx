@@ -1,5 +1,14 @@
 import JsonData from "../../data/datapkg.json";
-import remover from "../utils/common";
+//import remover from "../utils/common";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
 
 export default function Tech() {
   let i = 0;
@@ -8,43 +17,55 @@ export default function Tech() {
   });
 
   return (
-    <div>
+    <>
       <hr></hr>
-      <div className='work--general'>{issueData?.map((d) => d.General)}</div>
+      <TableContainer component={Paper}>
 
-      <table key={i++} className='work--table'>
-        <thead className='work--thead'>
-          <th>Programming</th>
-          <th>Database</th>
-          <th>Tools</th>
-          <th>Project Methods</th>
-        </thead>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
 
-        {issueData?.map((t) => (
-          <div key={i++} className='row'>
-            <div key={i++}>              
-              {t.Programming.map((p) => (
-                <tr key={i++}>{p}</tr>
-              ))}
-            </div>
-            <div key={i++} className='cell'>
-              {t?.Database.map((d) => (
-                <tr key={i++}>{d}</tr>
-              ))}
-            </div>
-            <div key={i++} className='cell'>
-              {t?.Tools.map((l) => (
-                <tr key={i++}>{l}</tr>
-              ))}
-            </div>
-            <div key={i++} className='cell'>
-              {t?.ProjectMethods.map((m) => (
-                <tr key={i++}>{m}</tr>
-              ))}
-            </div>
-          </div>
-        ))}
-      </table>
-    </div>
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Programming</TableCell>
+              <TableCell align="left">Database</TableCell>
+              <TableCell align="left">Tools</TableCell>
+              <TableCell align="left">Project Methods</TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {issueData?.map((d) => d.General)}
+
+
+            {issueData?.map((t) => (
+              <TableRow key={i++} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell align="left" key={i++} className="row">
+                  {t.Programming.map((p) => (
+                    <TableRow key={i++}>{p}</TableRow>
+                  ))}
+                </TableCell>
+                <TableCell key={i++} className='cell'>
+                  {t?.Database.map((d) => (
+                    <TableRow key={i++}>{d}</TableRow>
+                  ))}
+                </TableCell>
+                <TableCell key={i++} className='cell'>
+                  {t?.Tools.map((l) => (
+                    <TableRow key={i++}>{l}</TableRow>
+                  ))}
+                </TableCell>
+                <TableCell key={i++} className='cell'>
+                  {t?.ProjectMethods.map((m) => (
+                    <TableRow key={i++}>{m}</TableRow>
+                  ))}
+                </TableCell>
+
+
+
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

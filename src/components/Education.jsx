@@ -1,5 +1,13 @@
 import JsonData from "../../data/datapkg.json";
-import remover from "../utils/common";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
 
 export default function Education() {
   let i = 0;
@@ -10,31 +18,41 @@ export default function Education() {
   return (
     <>
       <hr></hr>
-      <table key={i++} className="work--table">
-        <thead className="work--thead">
-          <th>Course</th>
-          <th>Schedule</th>
-          <th>Topics</th>
-          <th>Degree</th>
-        </thead>
-        {issueData?.map((t) => (
-          <tr key={i++} className="row">
-            <div key={i++} className="cell">
-              {t?.Item}
-            </div>
+      <TableContainer component={Paper}>
 
-            <div key={i++} className="cell">
-              {t?.When}
-            </div>
-            <div key={i++} className="cell">
-              {t?.Topics}
-            </div>
-            <div key={i++} className="cell">
-              {t?.Degree}
-            </div>
-          </tr>
-        ))}
-      </table>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
+          <TableHead className="education--thead">
+            <TableRow>
+              <TableCell align="left">Course</TableCell>
+              <TableCell align="left">Schedule</TableCell>
+              <TableCell align="left">Topics</TableCell>
+              <TableCell align="left">Degree</TableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {issueData?.map((t) => (
+              <TableRow key={i++} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+
+                <TableCell align="right" key={i++} className="cell">
+                  {t?.Item}
+                </TableCell>
+
+                <TableCell align="right" key={i++} className="cell">
+                  {t?.When}
+                </TableCell>
+                <TableCell align="right" key={i++} className="cell">
+                  {t?.Topics}
+                </TableCell>
+                <TableCell align="right" key={i++} className="cell">
+                  {t?.Degree}
+                </TableCell>
+              </TableRow>
+            ))}
+
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }
