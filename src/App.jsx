@@ -40,15 +40,19 @@ function App() {
     setIsDarkMode(!isDarkMode)
   }
 
-  return (
-    <div className = "app-container">
-      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-        <CssBaseline />
+/*
         <Stack direction="row" ml={1} mt={2} spacing={1} alignItems="center">
           <Typography>Light</Typography>
           <Switch checked={isDarkMode} onChange={toggleTheme} />
           <Typography>Dark</Typography>
         </Stack>
+
+*/
+
+  return (
+    <div className = "app-container">
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+        <CssBaseline />
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>

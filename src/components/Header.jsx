@@ -3,9 +3,9 @@ import Login from "./Login"
 export default function Header() {
   let isUserLoggedIn = sessionStorage.getItem("loggedIn")
   isUserLoggedIn === "true" ? isUserLoggedIn = true : isUserLoggedIn = false
-  //{isUserLoggedIn ? <Link to="/logout">Logout</Link> : <Link to="/login">Login</Link> } 
+  
   return (
-    <header>
+    <header className="app-header">
       <Link className="site-logo" to="/">#JRLA</Link>
       {!isUserLoggedIn ? <nav> 
         <Link to="/">Home</Link>

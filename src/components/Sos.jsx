@@ -11,6 +11,7 @@ import '../index.css';
 import { GitHub } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 
+
 export default function Contact() {
 
    function gitHub() {
@@ -44,7 +45,7 @@ export default function Contact() {
 
       <Box
         sx={{
-          display: 'flex',
+          display: 'flex',          
           flexDirection: 'column',
           gap: '10px',
           alignItems: 'start',
@@ -53,12 +54,12 @@ export default function Contact() {
           },
         }}
       >
-        <div className='contact-card'>
+        
           <ButtonGroup
             variant='outlined'
-            aria-label='outlined button group'
-            className='socialButtons'
+            aria-label='outlined button group'            
           >
+            <div className='sos'>
             <IconButton onClick={fb}>
               <FacebookIcon  />
             </IconButton>
@@ -81,8 +82,9 @@ export default function Contact() {
               </Typography>
 
             </IconButton>
+            </div>
           </ButtonGroup>
-        </div>
+
       </Box>
     </>
   );

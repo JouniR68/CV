@@ -13,59 +13,12 @@ body {
   color: #333;
   background-color: #f8f9fa;
   font-family: "Inter", sans-serif;
-}
-
-
-/* Container Styling */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Full viewport height */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-.app-header {
-  padding: 20px;
-  background-color: #007bff;
-  color: #ffffff;
-  text-align: center;
-  border-radius: 10px 10px 0 0;
-}
-
-
-#root {
-  max-width: 2400px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-
-.profile--intrest,
-.profile--table {
-  display: table;
-  margin-left: 20px;
-}
-
-.profile--container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
   display: true;
-}
-
-
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 .logo {
@@ -81,6 +34,47 @@ body {
 
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+#root {
+  max-width: 2400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* Full viewport height */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.app-header {
+  padding: 20px;
+  
+  color: #ffffff;
+  text-align: center;
+}
+
+.profile--intrest,
+.profile--table {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.profile--container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 
@@ -146,7 +140,7 @@ header a:hover {
 .home-container {
   padding: 15px 13px;
   text-align: left;
-  justify-content: left;  
+  justify-content: left;
   font-size: 16px;
   font-family: bold;
   text-align: left;
@@ -182,11 +176,12 @@ h3.cv-contact-title {
   margin-left: 0px;
 }
 
-.contact-card {
-  margin-top: 250px;
+.sos {  
   font-family: bold;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   margin-left: 0px;
 }
 
@@ -312,7 +307,7 @@ h3.cv-contact-title {
   font-size: 14px;
   font-family: bold;
   height: fit-content;
-  border:1px solid;
+  border: 1px solid;
   border-radius: 5px;
 }
 
@@ -413,6 +408,14 @@ tr:nth-child(odd) {
     text-align: center;
   }
 
+  .sos {
+    margin-top: 200px;
+    font-family: bold;
+    font-size: 16px;
+    line-height: 20px;
+    align-items: left;
+    margin-left: 0px;
+  }
 
   .profile--table {
     display: table;
@@ -430,11 +433,11 @@ tr:nth-child(odd) {
     height: 50%;
   }
 
-  header {
-    height: 60px;
+  .app-header {    
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: start;
+    height: 20px;
     padding-block: 5px;
   }
 
@@ -443,7 +446,7 @@ tr:nth-child(odd) {
     margin-right: auto;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   header a {
@@ -456,6 +459,17 @@ tr:nth-child(odd) {
   header a:hover {
     color: #161616;
     text-decoration: underline;
+  }
+
+  .sos {
+    margin-top: 100px;
+    font-family: bold;
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: 0px;
+    align-items: left;
+    justify-content: left;
+    margin-bottom:50px;
   }
 
   .link-button {

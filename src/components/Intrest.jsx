@@ -19,9 +19,9 @@ const formattedText = data.map(d => {
       <hr></hr>
       <div className="profile--container">
           <>
-            <table className="profile--intrest">
-              <td className="row">{formattedText}</td>
-            </table>
+            <div className="profile--intrest">
+              {formattedText}
+            </div>
           </>
       </div>
       <Outlet />

@@ -8,8 +8,7 @@ import Looking from './Looking';
 
 const CV = () => {
     return (
-        <>  
-            <h3 className = "output--text">Me</h3>                      
+        <div>              
             <Profile />        
             <h3 className = "output--text">My intrests</h3>                      
             <Intrests />     
@@ -21,9 +20,9 @@ const CV = () => {
             <Education />
             <h3 className = "output--text">Tech skills</h3>
             <Tech />
-            <h3 className = "output--text">Work Tracker</h3>
+            <h3 className = "output--text">Work History</h3>
             <Work />
-        </>
+        </div>
     );
 }
 

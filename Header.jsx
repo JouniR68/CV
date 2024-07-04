@@ -7,7 +7,7 @@ export default function Header() {
   
   return (
     <header className="app-header">
-      <Link className="site-logo" to="/">#JRLA</Link>
+      <Link to="/">#JRLA</Link>
       {isUserLoggedIn ? <nav> 
         <Link to="/">Home</Link>
         <Link to="/add">Add</Link>  

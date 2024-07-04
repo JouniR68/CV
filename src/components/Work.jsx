@@ -52,7 +52,7 @@ export default function Work() {
                     <TableRow key={i++}>{l}</TableRow>
                   ))}
                 </TableCell>
-                <TableCell align = "rigth" key={i++}>
+                <TableCell align = "right" key={i++}>
                   {t?.Info}
                 </TableCell>
 
