@@ -10,13 +10,13 @@ export default function Education() {
 
   return (
     <>
-      <div>
+      
         <hr></hr>
-        <div className='profile--container'>
+        <div>
           {profileData.map((profile) => (
-            <div key={i++} className='profile--card'>
-              <img key={i++} src={profile.Photo} alt='Jouni Riimala' />
-              <table className='profile--table'>
+            <div key={i++} className='profile--table'>
+              <img key={i++} src={profile.Photo} style={{width:'100px', borderRadius:'5px', marginBottom:'3px'}}alt='Jouni Riimala' />
+              <table className="profile--card">
                 <td className='row'>
                   Name: {profile.Name}
                 </td>
@@ -32,7 +32,7 @@ export default function Education() {
           
         </div>
   
-      </div>
+      
 
       <Outlet />
     </>

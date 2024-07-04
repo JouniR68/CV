@@ -22,7 +22,6 @@
     display: true;
   }
 
-
   .logo {
     height: 6em;
     padding: 1.5em;
@@ -50,7 +49,6 @@
     flex-direction: column;
     height: 100vh;
     /* Full viewport height */
-    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -68,21 +66,7 @@
     text-align: center;
   }
 
-  § .profile--intrest,
-  .profile--table {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-left: 20px;
-  }
-
-  .profile--container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-
+  
   header .site-logo {
     color: black;
     margin-right: auto;
@@ -134,7 +118,6 @@
     transform: translate(1px, 1px);
   }
 
-  /*** HOME PAGE ***/
   .home-container {
     padding: 15px 13px;
     text-align: left;
@@ -266,7 +249,6 @@
     margin-left: 2%;
     margin-right: 10%;
     width: 200px;
-
     row-gap: 10px;
   }
 
@@ -290,23 +272,33 @@
     height: 50%;
   }
 
-
   .profile--container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     margin-top: 2%;
-    text-align: center;
+    text-align: left;
     justify-content: left;
     line-height: 31px;
+  }
+
+  .profile--intrest,
+  .profile--table {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 20px;
+    justify-content: start;
   }
 
   .profile--card {
     padding: 10px;
     font-size: 14px;
-    font-family: bold;
-    height: fit-content;
+    font-family: bold;    
     border: 1px solid;
     border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom:10px;
   }
 
   .looking {
@@ -368,7 +360,7 @@
 
 }
 
-@media only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 393dpi) {
+@media only screen and (max-width: 1080px) {
 
   * {
     box-sizing: border-box;
@@ -380,7 +372,7 @@
     padding: 10px;
     font-size: 16px;
     color: #0c0c0c;
-    background-color: #65696d;
+    background-color: #eaeef1;
     font-family: "Inter", sans-serif;
   }
 
@@ -408,36 +400,61 @@
     margin-left: 0px;
   }
 
-  .profile--table {
-    display: table;
-    margin-bottom: 10px;
-  }
-
   .profile--container {
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: start;
+    margin-top: 2%;
+    text-align: left;
+    line-height: 31px;
+    height:fit-content;
   }
 
+  .profile--intrest,
+  .profile--table {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 20px;
+    justify-content: start;
+  }
+
+  .profile--card {
+    padding: 10px;
+    font-size: 14px;
+    font-family: bold;    
+    border: 1px solid;
+    border-radius: 5px;
+    width:fit-content;
+    height: fit-content;
+    margin-bottom:10px;
+  }
+  
   .logout-text {
     width: 50%;
     height: 50%;
   }
 
-  .app-header {
+
+  .app-container {
     display: flex;
-    align-items: start;
-    justify-content: start;
-    height: 20px;
-    padding-block: 5px;
+    flex-direction: column;
+    height: fit-content;
+    /* Full viewport height */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
   }
 
-  header .site-logo {
-    color: black;
-    margin-right: auto;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 12px;
+  .app-header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0.1rem;
+    color: #ffffff;
+    text-align: center;
   }
 
   header a {
@@ -450,6 +467,23 @@
   header a:hover {
     color: #161616;
     text-decoration: underline;
+  }
+
+  .host-nav {
+    display: flex;
+  }
+
+  .host-nav a {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-weight: 500;
+    padding: 5px 10px;
+  }
+
+  .host-nav a:hover {
+    color: #161616;
+    text-decoration: underline;
+    font-weight: 600;
   }
 
   .sos {
@@ -480,7 +514,6 @@
     transform: translate(1px, 1px);
   }
 
-  /*** HOME PAGE ***/
   .home-container {
     color: black;
     padding: 5px 2px;
@@ -495,23 +528,6 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 32px;
-  }
-
-  .host-nav {
-    display: flex;
-  }
-
-  .host-nav a {
-    text-decoration: none;
-    color: #4d4d4d;
-    font-weight: 500;
-    padding: 5px 20px;
-  }
-
-  .host-nav a:hover {
-    color: #161616;
-    text-decoration: underline;
-    font-weight: 600;
   }
 
   .adder--header {
