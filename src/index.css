@@ -381,7 +381,7 @@ tr:nth-child(odd) {
   font-weight: bold;
 }
 
-@media only screen and (min-device-width: 1080px) and (max-device-width: 1080px) and (min-device-height: 2400px) and (max-device-height: 2400px) and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 393dpi) {
+@media only screen and (min-width: 1080px) and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 393dpi) {
 
   * {
     box-sizing: border-box;
@@ -392,8 +392,8 @@ tr:nth-child(odd) {
     margin: 10px;
     padding: 10px;
     font-size: 16px;
-    color: #333;
-    background-color: #f8f9fa;
+    color: #0c0c0c;
+    background-color: #65696d;
     font-family: "Inter", sans-serif;
   }
 
