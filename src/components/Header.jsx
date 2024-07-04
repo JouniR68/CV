@@ -6,13 +6,12 @@ export default function Header() {
   
   return (
     <header className="app-header">
-      <Link className="site-logo" to="/">#JRLA</Link>
+      <Link className="" to="/">#JRLA</Link>
       {!isUserLoggedIn ? <nav> 
         <Link to="/">Home</Link>
-        <Link to="/profile">Profile</Link>          
-        <Link to="/cv">CV</Link>
-        <Link to="/output">Printable CV</Link>
-        <Link to="/rent">Rent Work</Link>
+        <Link to="/profile">Profile</Link>                  
+        <Link to="/output">CV</Link>
+        <Link to="/rent">Freelancing</Link>
       </nav> : 
       <Login />}
     </header>
