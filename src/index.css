@@ -5,8 +5,8 @@
 
   html,
   body {
-    margin-left: 10%;
-    margin-right: 2%;
+    margin-left: 4rem;
+    margin-right: 5rem;
     margin-top: 0.2%;
     margin-bottom: 0.2%;
     padding: 0;
@@ -38,8 +38,8 @@
   }
 
   #root {
-    margin-left: 1%;
-    margin-top: 1%;
+    margin-left: 1rem;
+    margin-top: 1rem;
     padding: 2rem;
     text-align: center;
   }
@@ -49,8 +49,8 @@
     flex-direction: column;
     height: 100vh;
     /* Full viewport height */
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -62,7 +62,7 @@
     flex-direction: column;
     align-items: start;
     padding: 20px;
-    color: #ffffff;
+    color: #57771c;
     text-align: center;
   }
 
@@ -135,7 +135,7 @@
 
   .host-nav a {
     text-decoration: none;
-    color: #4d4d4d;
+    color: #5a18d3;
     font-weight: 700;
     padding: 5px 20px;
   }
@@ -268,7 +268,8 @@
 
   html,
   body {
-    margin: 10px;
+    margin-left: 1rem;
+    margin-right: 1rem;
     padding: 10px;
     font-size: 14px;
     color: #0c0c0c;
@@ -286,19 +287,12 @@
   }
 
   #root {
-    margin: 0 auto;
-    padding: 2rem;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    padding: 1rem;
     text-align: center;
   }
 
-  .sos {
-    margin-top: -4rem;
-    font-family: bold;
-    font-size: 14px;
-    line-height: 20px;
-    align-items: left;
-    margin-left: 0px;
-  }
 
   .profile--table {
     display: flex;
@@ -337,13 +331,22 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
   }
+  .sos {
+    margin-top: -4rem;
+    font-family: bold;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: left;
+    margin-left: 0px;
+  }
 
   .app-header {
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding: 0.1rem;
-    color: #ffffff;
+    padding: 1rem;
+    flex-wrap: wrap;
+    color: #131212;
     text-align: center;
   }
 
@@ -365,7 +368,7 @@
 
   .host-nav a {
     text-decoration: none;
-    color: #4d4d4d;
+    color: #bd2222;
     font-weight: 500;
     padding: 5px 10px;
   }

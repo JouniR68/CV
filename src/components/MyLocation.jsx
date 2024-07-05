@@ -55,30 +55,30 @@ function MyLocation() {
 
 
   const getCityName = async (lat, lon) => {
-    console.log("latitude: " + lat +  ", longitude: ", lon)
+    console.log("latitude: " + lat + ", longitude: ", lon)
     //const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
     console.log(url)
-
+    let locs = []
     try {
       console.log("try..")
       const response = await axios.get(url);
       const result = response.data.results[0];
       console.log("result: ", result)
-      const address = result.address_components[1].long_name || result.components.town || result.components.village;
-      console.log("address:", address)
-      setCity(city);
+
+      //Assign found home bases to the addr and copy array to the state array.
+      const addr = result.address_components.map((a) => (a.formatted_address.map(f => f)))
+      console.log("address:", addr.at(-1))
+      setCity(addr.at(-1));
     } catch (error) {
       setError('Unable to fetch city name.');
     }
   };
 
-
-  //if ((position.latitude != null && position.latitude != '60.3848704' && !location.includes(position.latitude)) && (position.longitude != null && position.longitude != '25.001984' && !location.includes(position.longitude))) {
+  if ((position.latitude != null && position.latitude != '60.3848704' && !location.includes(position.latitude)) && (position.longitude != null && position.longitude != '25.001984' && !location.includes(position.longitude))) {
     position.city = city;
     addDoc(collection(db, "Locations"), position);
-  //}
-
+  }
 
 }
 

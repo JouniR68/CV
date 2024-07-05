@@ -143,13 +143,18 @@
   "services": [
     {
       "id": 4,      
-      "serv1": "Coding (web (react, node, js ...), minium one full day (7.5 hours) 400 euros.",
-      "serv2": "Testing, 60 euros per hour, 300 euros full day.",
-      "serv3": "Sw installations and configurations, 70 euros hour / 2 hour minimum",
-      "serv4": "Admin work (Atlassian etc), minimum one full day (7.5 hours), 300 euros",      
-      "serv5": "Product Management / requirement work, minimum one full day (7.5 hours) 300 euros",
-      "serv6": "Custom work and prize based on needs."
-
+      "serv1": "Coding (web (react, node, js ...)",
+      "serv1-prize": "60 euros / hour. Minimum full day (7.5 h) => 450 euros.",
+      "serv2": "Testing (test plan, report, cases, test executions ..",
+      "serv2-prize": "50 euros / hour. Minimum full day (7.5 h) => 350 euros.",      
+      "serv3": "Sw installations and configurations.",
+      "serv3-prize": "60 euros hour / 3 hour minimum => 180 euros.",
+      "serv4": "Admin work (Atlassian etc), jira - confluence admin, jql etc",      
+      "serv4-prize": "60 euros hour / 3 hour minimum => 180 euros",
+      "serv5": "Product Management / requirement & roadmapping work.",
+      "serv5-prize": "60 euros hour, minimum full day (7.5 h) => 400 euros.",
+      "serv6": "Custom work and prize based on needs.",
+      "serv6-prize": "60 euros / hour. Minimum two days (15 h) => 900 euros"
     }
   ],
   "rent": [
