@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import axios from 'axios'
+import { CoPresentOutlined } from '@mui/icons-material';
 
 
 function MyLocation() {
@@ -60,9 +61,12 @@ function MyLocation() {
     console.log(url)
 
     try {
+      console.log("try..")
       const response = await axios.get(url);
       const result = response.data.results[0];
-      const city = result.components.city || result.components.town || result.components.village;
+      console.log("result: ", result)
+      const address = result.address_components[1].long_name || result.components.town || result.components.village;
+      console.log("address:", address)
       setCity(city);
     } catch (error) {
       setError('Unable to fetch city name.');
