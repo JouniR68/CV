@@ -2,14 +2,17 @@ import { useState, useEffect } from 'react';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import axios from 'axios'
-const apiKey = import.meta.env.VITE_MAPS_APIKEY
+
 
 function MyLocation() {
+  const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [location, setLocation] = useState([])
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [city, setCity] = useState('')
   const [error, setError] = useState('')
 
+
+  console.log("api key = ", apiKey)
 
   const getStoredLocations = async () => {
     try {
@@ -51,7 +54,9 @@ function MyLocation() {
 
 
   const getCityName = async (lat, lon) => {
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
+    console.log("latitude: " + lat +  ", longitude: ", lon)
+    //const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
     console.log(url)
 
     try {
@@ -65,10 +70,10 @@ function MyLocation() {
   };
 
 
-  if ((position.latitude != null && position.latitude != '60.3848704' && !location.includes(position.latitude)) && (position.longitude != null && position.longitude != '25.001984' && !location.includes(position.longitude))) {
+  //if ((position.latitude != null && position.latitude != '60.3848704' && !location.includes(position.latitude)) && (position.longitude != null && position.longitude != '25.001984' && !location.includes(position.longitude))) {
     position.city = city;
     addDoc(collection(db, "Locations"), position);
-  }
+  //}
 
 
 }
