@@ -117,7 +117,7 @@ export default function Quick() {
       >
 
         <TextField
-          style={{ width: "100px", margin: "5px" }}
+          style={{ width: "180px", margin: "5px" }}
           id="fName"
           type="text"
           label="First Name"
@@ -131,7 +131,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "100px", margin: "5px" }}
+          style={{ width: "180px", margin: "5px" }}
           id="lName"
           type="text"
           label="Last Name"
@@ -144,7 +144,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "200px", margin: "5px" }}
+          style={{ width: "180px", margin: "5px" }}
           id="address"
           type="text"
           label="Address"
@@ -157,7 +157,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "100px", margin: "5px", mt: "-5" }}
+          style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="email"
           type="text"
           label="Email"
@@ -170,7 +170,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "100px", margin: "5px", mt: "-5" }}
+          style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="phone"
           type="number"
           label="Phonenumber"
@@ -182,7 +182,7 @@ export default function Quick() {
         <p></p>
         <FormControl>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
-            Interested to have work for
+            Pick one
           </InputLabel>
           <NativeSelect
             defaultValue={30}
