@@ -292,7 +292,7 @@
   }
 
   .sos {
-    margin-top: 200px;
+    margin-top: -4rem;
     font-family: bold;
     font-size: 14px;
     line-height: 20px;
@@ -374,17 +374,6 @@
     color: #161616;
     text-decoration: underline;
     font-weight: 600;
-  }
-
-  .sos {
-    margin-top: 100px;
-    font-family: bold;
-    font-size: 12px;
-    line-height: 16px;
-    margin-left: 0px;
-    align-items: left;
-    justify-content: left;
-    margin-bottom: 50px;
   }
 
   .link-button {
