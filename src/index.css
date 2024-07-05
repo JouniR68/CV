@@ -89,6 +89,7 @@
 
   .output--text {
     margin-left:1rem;
+    margin-right:2rem;
     margin-top: 1rem;
     text-align: left;
     justify-content: left;
@@ -429,6 +430,7 @@
   .output--text {
     margin-top: 1rem;
     margin-left: 1rem;
+    margin-right: 2rem;
     text-align: left;
     justify-content: left;
   }
