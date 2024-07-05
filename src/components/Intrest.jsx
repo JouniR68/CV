@@ -17,12 +17,8 @@ const formattedText = data.map(d => {
   return (
     <div>
       <hr></hr>
-      <div className="profile--container">
-          <>
-            <div className="profile--intrest">
-              {formattedText}
-            </div>
-          </>
+      <div className="output--text">
+        {formattedText}          
       </div>
       <Outlet />
     </div>

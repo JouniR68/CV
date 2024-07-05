@@ -1,9 +1,9 @@
 export default function Looking() {
   return (
     
-    <div>
+    <div className='output--text'>
       <hr></hr>
-      <p className='looking--text'>
+      <p>
       
         Open for the new work due to laid of situation. I'm looking for the work
         either permanent or part time ex 3 days in a wk, open for the
@@ -14,7 +14,7 @@ export default function Looking() {
       Appealing roles
       </p>
 
-      <table className='looking--text'>
+      <table className="taulu">
         <tbody>
           <tr>
             <td>Sw Development Managemer / Project Manager</td>

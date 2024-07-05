@@ -34,17 +34,17 @@ export default function Education() {
             {issueData?.map((t) => (
               <TableRow key={i++} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 
-                <TableCell align="right" key={i++} className="cell">
+                <TableCell align="left" key={i++} className="cell">
                   {t?.Item}
                 </TableCell>
 
-                <TableCell align="right" key={i++} className="cell">
+                <TableCell align="left" key={i++} className="cell">
                   {t?.When}
                 </TableCell>
-                <TableCell align="right" key={i++} className="cell">
+                <TableCell align="left" key={i++} className="cell">
                   {t?.Topics}
                 </TableCell>
-                <TableCell align="right" key={i++} className="cell">
+                <TableCell align="left" key={i++} className="cell">
                   {t?.Degree}
                 </TableCell>
               </TableRow>
