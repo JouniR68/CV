@@ -40,17 +40,6 @@ export default function Services() {
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
 
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Company</TableCell>
-              <TableCell align="left">Duration</TableCell>
-              <TableCell align="left">Role(s)</TableCell>
-              <TableCell align="left">Location(s)</TableCell>
-              <TableCell align="left">Info</TableCell>
-            </TableRow>
-          </TableHead>
-
-
           {issueData?.map((t) => (
             <TableBody key={nanoid()}>
               <TableRow>

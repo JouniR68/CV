@@ -330,8 +330,8 @@
     flex-direction: column;
     height: fit-content;
     /* Full viewport height */
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
     padding: 2px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
