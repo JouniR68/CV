@@ -100,9 +100,7 @@ export default function Quick() {
 
 
   return (
-    <div>      
-      <div style={{ textAlign: "left" }}>Fill it up.</div>
-      <p></p>
+    <div className="adder">            
 
       <Box
         component="form"
@@ -119,7 +117,7 @@ export default function Quick() {
       >
 
         <TextField
-          style={{ width: "300px", margin: "5px" }}
+          style={{ width: "100px", margin: "5px" }}
           id="fName"
           type="text"
           label="First Name"
@@ -133,7 +131,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "300px", margin: "5px" }}
+          style={{ width: "100px", margin: "5px" }}
           id="lName"
           type="text"
           label="Last Name"
@@ -146,7 +144,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "400px", margin: "5px" }}
+          style={{ width: "200px", margin: "5px" }}
           id="address"
           type="text"
           label="Address"
@@ -159,7 +157,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "300px", margin: "5px", mt: "-5" }}
+          style={{ width: "100px", margin: "5px", mt: "-5" }}
           id="email"
           type="text"
           label="Email"
@@ -172,7 +170,7 @@ export default function Quick() {
         />
 
         <TextField
-          style={{ width: "200px", margin: "5px", mt: "-5" }}
+          style={{ width: "100px", margin: "5px", mt: "-5" }}
           id="phone"
           type="number"
           label="Phonenumber"
@@ -206,7 +204,7 @@ export default function Quick() {
         </FormControl>
 
         <TextField
-          style={{ width: "300px", margin: "5px", mt: "-5" }}
+          style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="description"
           type="text"
           label="The message"
