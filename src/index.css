@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1081px) and (max-width: 2400px) {
+@media only screen and (max-resolution: 249dpi) {
   * {
     box-sizing: border-box;
   }
@@ -260,7 +260,7 @@
 
 }
 
-@media only screen and (min-resolution: 510dpi) {
+@media only screen and (min-resolution: 250dpi) {
 
   * {
     box-sizing: border-box;
