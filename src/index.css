@@ -260,7 +260,7 @@
 
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 340px) and (max-width: 768px) {
 
   * {
     box-sizing: border-box;
@@ -268,8 +268,8 @@
 
   html,
   body {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
     padding: 10px;
     font-size: 14px;
     color: #0c0c0c;
@@ -324,9 +324,9 @@
     flex-direction: column;
     height: fit-content;
     /* Full viewport height */
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
-    padding: 2px;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    padding: 1px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
