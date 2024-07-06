@@ -16,9 +16,7 @@ export default function Home() {
 
   return (
     <>
-
-
-      <MyLocation />
+      
       <div className='home-container'>
         <h1>Welcome</h1>
         {isMobileDpi ? welcomeText : mobileText}
