@@ -1,6 +1,5 @@
 import JsonData from "../../data/datapkg.json";
 import { Outlet } from "react-router-dom";
-//import MyLocation from "./MyLocation";
 
 export default function Education() {
   let i = 0;
