@@ -11,7 +11,7 @@ export default function Header() {
         <Link to="/">Home</Link>
         <Link to="/profile">Profile</Link>                  
         <Link to="/output">CV</Link>
-        <Link to="/rent">Freelancing</Link>
+        <Link to="/rent">Services</Link>
       </nav> : 
       <Login />}
     </header>

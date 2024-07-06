@@ -34,21 +34,7 @@ import ContractForm from "./components/AddContract";
 
 
 function App() {
-  //const [isDarkMode, setIsDarkMode] = useState(false);
-
-  /*const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode)
-  }
-  */
-
-/*
-        <Stack direction="row" ml={1} mt={2} spacing={1} alignItems="center">
-          <Typography>Light</Typography>
-          <Switch checked={isDarkMode} onChange={toggleTheme} />
-          <Typography>Dark</Typography>
-        </Stack>
-
-*/
+  
 
   return (
     <div className = "app-container">
