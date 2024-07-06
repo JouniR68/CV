@@ -30,7 +30,7 @@ export default function Services() {
 
       <div className="output--text">
         In case you are not looking for to fullfill permanent job, hire me for the temporary one.<br></br>
-        Below services and prizes alv 0% included (company rates).<br></br>Standard prizes added with alv tax.
+        Below services and prizes alv 0% (company rates).<br></br>.
       </div>
       <p></p>
       <TableContainer component={Paper}>
