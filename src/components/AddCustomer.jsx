@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -6,17 +6,37 @@ import {
 } from "@mui/material";
 
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 export default function Quick() {
   const navigate = useNavigate();
 
-
   const today = new Date().toISOString().split("T")[0]
   const [data, setData] = useState({ fName: "", lName: "", address: "", email: "", phone: "", firmId: "", description: "", pvm: today });
   const [error, setError] = useState({ error: "" })
-  const [conn, setConn] = useState('Some technical (cloud) issues, pls call / send mail')
+  const [conn, setConn] = useState('')
+
+  const getData = async () => {
+    try {
+      const customerRef = collection(db, "Firma")
+      const querySnapshot = await getDocs(customerRef)
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      console.log("Customer data: ", data)
+    } catch (error) {
+      console.error("Error fetching data: ", error)
+      throw {
+        message: "Datan haku epäonnistui",
+        statusText: "Failas",
+        status: 403,
+      }
+    }
+  }
+
+  useEffect(() => { getData() }, [])
 
   const handleChange = (event) => {
     console.log("handleChange")
@@ -59,23 +79,16 @@ export default function Quick() {
     setError(tempErrors);
     return isValid;
   };
-  
+
   const save = async () => {
 
     if (validate()) {
       console.log("data: ", data);
       try {
-        if (data != undefined || data != "") {
-          //let emailValid = data.email
-          //!emailValid.includes('@') ? "Invalid email" : ""
-
-          const itemRef = await addDoc(collection(db, "Firma"), data);
-          alert(itemRef.id)
-          console.log("document written with id: ", itemRef.id) + " with data: " + data;
-          navigate('/thanks')
-        }
-
-
+        const itemRef = await addDoc(collection(db, "Firma"), data);
+        alert(itemRef.id)
+        console.log("document written with id: ", itemRef.id) + " with data: " + data;
+        navigate('/thanks')
       } catch (e) {
         console.error("Error adding document ", e.code);
         setConn(e.code)
@@ -83,10 +96,8 @@ export default function Quick() {
     }
   };
 
-
-
   return (
-    <div className="adder">            
+    <div className="adder">
       {conn != "" && conn}
       {conn === "" && <Box
         component="form"
@@ -183,7 +194,7 @@ export default function Quick() {
             <option value="admin">Admin work, system configuration etc / Pääkäyttäjä tehtäviä</option>
             <option value="consulting">Consulting / neuvontaa, suositteluita</option>
             <option value="installations">Sw installations, updates etc / Ohjelmiston asennuksia tai päivityksiä.</option>
-            
+
 
 
           </NativeSelect>
