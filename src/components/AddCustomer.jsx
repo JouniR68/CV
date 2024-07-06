@@ -9,23 +9,6 @@ import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-/*
-  <TextField
-          style={{ width: "500px", margin: "5px" }}
-          id="description"
-          type="text"
-          label="I need / message:"
-          variant="outlined"
-          required
-          value={data.description}
-          multiline
-          rows={6}
-          onChange={handleChange}
-        />
-        <br />
-*/
-
-
 export default function Quick() {
   const navigate = useNavigate();
 
@@ -33,6 +16,7 @@ export default function Quick() {
   const today = new Date().toISOString().split("T")[0]
   const [data, setData] = useState({ fName: "", lName: "", address: "", email: "", phone: "", firmId: "", description: "", pvm: today });
   const [error, setError] = useState({ error: "" })
+  const [conn, setConn] = useState('Some technical (cloud) issues, pls call / send mail')
 
   const handleChange = (event) => {
     console.log("handleChange")
@@ -86,13 +70,15 @@ export default function Quick() {
           //!emailValid.includes('@') ? "Invalid email" : ""
 
           const itemRef = await addDoc(collection(db, "Firma"), data);
+          alert(itemRef.id)
           console.log("document written with id: ", itemRef.id) + " with data: " + data;
           navigate('/thanks')
         }
 
 
       } catch (e) {
-        console.error("Error adding document ", e);
+        console.error("Error adding document ", e.code);
+        setConn(e.code)
       }
     }
   };
@@ -101,8 +87,8 @@ export default function Quick() {
 
   return (
     <div className="adder">            
-
-      <Box
+      {conn != "" && conn}
+      {conn === "" && <Box
         component="form"
         display="flex"
         flexDirection="column"
@@ -224,7 +210,7 @@ export default function Quick() {
         <Button variant="contained" color="primary" onClick={() => save()}>
           SAVE
         </Button>
-      </Box>
+      </Box>}
     </div>
   );
 }

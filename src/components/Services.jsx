@@ -22,8 +22,6 @@ export default function Services() {
     return j;
   });
 
-  let rowCounter = 1;
-
   const getCustomerData = () => {
     navigate('/addCustomerData')
   }
