@@ -324,12 +324,12 @@
     flex-direction: column;
     height: fit-content;
     /* Full viewport height */
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
     padding: 2px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .sos {
     margin-top: -4rem;
