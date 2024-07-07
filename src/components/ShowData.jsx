@@ -105,7 +105,7 @@ const ShowCustomers = () => {
 			<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
 				<TableHead>
 					<TableRow>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">City</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Location</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Latitude</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Longitude</TableCell>
 					</TableRow>
@@ -114,7 +114,7 @@ const ShowCustomers = () => {
 				{locations.map((l) => (
 					<TableBody key={nanoid()}>
 						<TableRow key={nanoid()}>
-							<TableCell>{l.city}</TableCell>
+							<TableCell>{l.address}</TableCell>
 							<TableCell>{l.latitude}</TableCell>
 							<TableCell>{l.longitude}</TableCell>
 						</TableRow>
