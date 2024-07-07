@@ -145,7 +145,6 @@ export default function Quick() {
           id="address"
           type="text"
           label="Address"
-          required
           value={data.address}
           variant="outlined"
           onChange={handleChange}
@@ -169,6 +168,7 @@ export default function Quick() {
         <TextField
           style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="phone"
+          required
           type="number"
           label="Phonenumber"
           value={data.phone}
@@ -178,11 +178,8 @@ export default function Quick() {
 
         <p></p>
         <FormControl>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
-            Pick one
-          </InputLabel>
           <NativeSelect
-            defaultValue={30}
+            defaultValue={30}            
             inputProps={{
               name: 'interested',
               id: 'uncontrolled-native',
