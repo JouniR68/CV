@@ -62,14 +62,14 @@ function MyLocation() {
       const response = await axios.get(url);
       const result = response.data.results[0];
       console.log("result: ", result)
-      console.log("location: ", result.formatted_address)      
+      console.log("location: ", result.formatted_address)
       setCity(result.formatted_address);
     } catch (error) {
       setError('Unable to fetch city name.');
     }
   };
 
-  if ((position.latitude != null && position.latitude != '60.3848704' && !location.includes(position.latitude)) && (position.longitude != null && position.longitude != '25.001984' && !location.includes(position.longitude))) {
+  if ((position.latitude != null && position.latitude != '60.3848704') && (position.longitude != null && position.longitude != '25.001984')) {
     position.city = city;
     addDoc(collection(db, "Locations"), position);
   }
