@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   TextField,
   Button,
-  Box, FormControl, InputLabel, NativeSelect
+  Box, FormControl, NativeSelect
 } from "@mui/material";
 
 import { db } from "../firebase";

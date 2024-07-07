@@ -1,21 +1,24 @@
-import { useState, useEffect } from 'reac
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-returnoc, getDocs } from "firebase/firestore";
-
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 function MyLocation() {
-  const apiKey = import.meta.env.VITE_MAPS_APIK    
+  const apiKey = import.meta.env.VITE_MAPS_APIKEY    
   const [position, setPosition] = useState({ latitude: null, longitude: null });
+  const [location, setLocation] = useState([]);
+  const [address, setAddress] = useState('')
   const [error, setError] = useState('')
 
 
-  const getAddress = (lat, lon) => {    
+  const getAddress = async (lat, lon) => {    
     console.log("Checking address")
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
+    console.log(url)
     try {      
       const response = await axios.get(url);
-      const result = response.data.results[0];            
-      return result.formatted_address;
+      const result = response.data.results[1];            
+      setAddress(result.formatted_address);
     } catch (error) {
       setError('Unable to fetch city name.');
     }
@@ -41,15 +44,14 @@ function MyLocation() {
     }
   }
 
-  const getPosition = async () => {
+  const getPosition = () => {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const userLocation = getAddress(position.coords.latitude, position.coords.longitude)
+      navigator.geolocation.getCurrentPosition(function (position) {        
         setPosition({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          address: userLocation
-        });        
+          longitude: position.coords.longitude,          
+        });  
+            
       });
     } else {
       console.log('Geolocation is not available in your browser.');
@@ -57,13 +59,15 @@ function MyLocation() {
   };
 
   useEffect(() => { getStoredLocations() }, [])
-  useEffect(() => {getPosition()}, [])
-  const address = useEffect(() => {getCardHeaderUtilityClass(position.coords.latitude, position.coords.longitude)(position.latitude, position.longitude)},[])
+  useEffect(() => {getPosition(); getAddress(position.latitude, position.longitude)}, [])
+  
 
   //Send data to firebase
-  if ((!position.latitude && position.latitude != '60.3848704') && (!position.longitude && position.longitude != '25.001984')) {    
-    console.log("position", position)
+  //if ((position.latitude != null && position.latitude != '60.3848704') && (position.longitude != null && position.longitude != '25.001984')) {                
+  if (position.address != "" || position.address != null){
+    position.address = address  
     addDoc(collection(db, "Locations"), position);
+    console.log("Location stored, data: ", position)    
   }
 }
 
