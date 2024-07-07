@@ -12,8 +12,6 @@ function MyLocation() {
   const [error, setError] = useState('')
 
 
-  console.log("api key = ", apiKey)
-
   const getStoredLocations = async () => {
     try {
       const locationRef = collection(db, "Locations")
@@ -34,31 +32,28 @@ function MyLocation() {
     }
   }
 
-
-  useEffect(() => { getStoredLocations() }, [])
-
-  useEffect(() => {
-
+  const getPosition = async () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
         setPosition({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        });
-        getCityName(position.coords.latitude, position.coords.longitude)
+          longitude: position.coords.longitude,
+        });        
       });
     } else {
       console.log('Geolocation is not available in your browser.');
     }
-  }, [city]);
+  };
 
+  useEffect(() => { getStoredLocations() }, [])
+  useEffect(() => {getPosition()}, [])
+  useEffect(() => {getCityName(position.latitude, position.longitude)},[])
 
-  const getCityName = async (lat, lon) => {
-    //https://maps.googleapis.com/maps/api/geocode/json?latlng=60.858812,22.4348716,7.96&key=AIzaSyCkhlysVOEcD_Wfn4hQwDXgXc1LQde0ne0
+  const getCityName = async (lat, lon) => {    
+    console.log("Checking city name")
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
     console.log(url)
-    try {
-      console.log("try..")
+    try {      
       const response = await axios.get(url);
       const result = response.data.results[0];
       console.log("result: ", result)
@@ -69,8 +64,13 @@ function MyLocation() {
     }
   };
 
+  
+
+  //Send data to firebase
   if ((position.latitude != null && position.latitude != '60.3848704') && (position.longitude != null && position.longitude != '25.001984')) {
     position.city = city;
+    console.log("position", position)
+
     addDoc(collection(db, "Locations"), position);
   }
 

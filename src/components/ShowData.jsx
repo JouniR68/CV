@@ -43,13 +43,13 @@ const ShowCustomers = () => {
 
 	const getLocations = async () => {
 		try {
-			const customerRef = collection(db, "Locations")
-			const querySnapshot = await getDocs(customerRef)
+			const locationRef = collection(db, "Locations")
+			const querySnapshot = await getDocs(locationRef)
 			const data = querySnapshot.docs.map((doc) => ({
 				id: doc.id,
 				...doc.data(),
 			}))
-			console.log("Customer data: ", data)
+			console.log("Location data: ", data)
 			setLocations(data)
 		} catch (error) {
 			console.error("Error fetching data: ", error)
@@ -64,7 +64,8 @@ const ShowCustomers = () => {
 
 
 	useEffect(() => {
-		getContracts()
+		getContracts();
+		getLocations();
 	}, [])
 
 	return (
@@ -104,7 +105,9 @@ const ShowCustomers = () => {
 			<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
 				<TableHead>
 					<TableRow>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Locations (all)</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">City</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Latitude</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Longitude</TableCell>
 					</TableRow>
 				</TableHead>
 
