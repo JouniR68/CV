@@ -10,15 +10,19 @@ export default function Education() {
   console.log("intrests array:", data);
 
 
-const formattedText = data.map(d => {
- return d.text.replace(".", "."+"\n\n")
-})
+  const formattedText = data.map(d => {
+    return d.text.replace(".", "." + "\n\n")
+  })
 
   return (
     <div>
       <hr></hr>
       <div className="output--text">
-        {formattedText}          
+        {formattedText}
+      </div>
+      <div className="photo-grid">
+        <img src="/Images/Scout.jpg" />
+        <img src="/Images/Ktm.jpg" />
       </div>
       <Outlet />
     </div>
