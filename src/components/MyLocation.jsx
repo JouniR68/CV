@@ -38,13 +38,12 @@ function MyLocation() {
     }
   };
 
-  useEffect(() => { getStoredLocations() }, [])
   useEffect(() => {getPosition(); 
     getAddress(position.latitude, position.longitude)}, [])
   
 
   //Send data to firebase
-  if (position.address != "" || position.address != null && (!location.includes(position.address))){
+  if (position.address != "" || position.address != null ){
     position.address = address  
     addDoc(collection(db, "Locations"), position);
     console.log("Location stored, data: ", position)    
