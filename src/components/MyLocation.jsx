@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import axios from 'axios'
-import { CoPresentOutlined } from '@mui/icons-material';
 
 
 function MyLocation() {
@@ -51,25 +50,20 @@ function MyLocation() {
     } else {
       console.log('Geolocation is not available in your browser.');
     }
-  }, []);
+  }, [city]);
 
 
   const getCityName = async (lat, lon) => {
-    console.log("latitude: " + lat + ", longitude: ", lon)
-    //const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
+    //https://maps.googleapis.com/maps/api/geocode/json?latlng=60.858812,22.4348716,7.96&key=AIzaSyCkhlysVOEcD_Wfn4hQwDXgXc1LQde0ne0
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
     console.log(url)
-    let locs = []
     try {
       console.log("try..")
       const response = await axios.get(url);
       const result = response.data.results[0];
       console.log("result: ", result)
-
-      //Assign found home bases to the addr and copy array to the state array.
-      const addr = result.address_components.map((a) => (a.formatted_address.map(f => f)))
-      console.log("address:", addr.at(-1))
-      setCity(addr.at(-1));
+      console.log("location: ", result.formatted_address)      
+      setCity(result.formatted_address);
     } catch (error) {
       setError('Unable to fetch city name.');
     }
