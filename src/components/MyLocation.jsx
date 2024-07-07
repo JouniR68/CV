@@ -6,7 +6,6 @@ import { db } from "../firebase";
 function MyLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY    
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-  const [location, setLocation] = useState([]);
   const [address, setAddress] = useState('')
   const [error, setError] = useState('')
 
@@ -24,26 +23,7 @@ function MyLocation() {
     }
   };
 
-  const getStoredLocations = async () => {
-    try {
-      const locationRef = collection(db, "Locations")
-      const querySnapshot = await getDocs(locationRef)
-      const data = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-
-      setLocation(data)
-    } catch (error) {
-      console.error("Error fetching data: ", error)
-      throw {
-        message: "Datan haku epäonnistui",
-        statusText: "Failas",
-        status: 403,
-      }
-    }
-  }
-
+  
   const getPosition = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {        
@@ -59,12 +39,12 @@ function MyLocation() {
   };
 
   useEffect(() => { getStoredLocations() }, [])
-  useEffect(() => {getPosition(); getAddress(position.latitude, position.longitude)}, [])
+  useEffect(() => {getPosition(); 
+    getAddress(position.latitude, position.longitude)}, [])
   
 
   //Send data to firebase
-  //if ((position.latitude != null && position.latitude != '60.3848704') && (position.longitude != null && position.longitude != '25.001984')) {                
-  if (position.address != "" || position.address != null){
+  if (position.address != "" || position.address != null && (!location.includes(position.address))){
     position.address = address  
     addDoc(collection(db, "Locations"), position);
     console.log("Location stored, data: ", position)    
