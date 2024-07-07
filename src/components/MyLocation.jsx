@@ -4,49 +4,53 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
 function MyLocation() {
-  const apiKey = import.meta.env.VITE_MAPS_APIKEY    
+  const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState('')
   const [error, setError] = useState('')
 
 
-  const getAddress = async (lat, lon) => {    
+  const getAddress = async (lat, lon) => {
     console.log("Checking address")
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
     console.log(url)
-    try {      
+    try {
       const response = await axios.get(url);
-      const result = response.data.results[1];            
-      setAddress(result.formatted_address);
+      const result = response.data.results[0];
+      if (result.formatted_address != "") {
+        setAddress(result.address_components[0].long_name);
+      } else { setAddress(result.formatted_addres) }
     } catch (error) {
       setError('Unable to fetch city name.');
     }
   };
 
-  
+
   const getPosition = () => {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {        
+      navigator.geolocation.getCurrentPosition(function (position) {
         setPosition({
           latitude: position.coords.latitude,
-          longitude: position.coords.longitude,          
-        });  
-            
+          longitude: position.coords.longitude,
+        });
+
       });
     } else {
       console.log('Geolocation is not available in your browser.');
     }
   };
 
-  useEffect(() => {getPosition(); 
-    getAddress(position.latitude, position.longitude)}, [])
-  
+  useEffect(() => {
+    getPosition();
+    getAddress(position.latitude, position.longitude)
+  }, [])
+
 
   //Send data to firebase
-  if (position.address != "" || position.address != null ){
-    position.address = address  
+  if (position.address != "" || position.address != null) {
+    position.address = address
     addDoc(collection(db, "Locations"), position);
-    console.log("Location stored, data: ", position)    
+    console.log("Location stored, data: ", position)
   }
 }
 
