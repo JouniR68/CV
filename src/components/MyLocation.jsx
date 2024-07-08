@@ -12,19 +12,23 @@ function MyLocation() {
 
   const getAddress = async (lat, lon) => {
     console.log("Checking address")
-    if (lat != null || lon != null){
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
-    console.log(url)
-    try {
-      const response = await axios.get(url);
-      const result = response.data.results[0];
-      if (result.formatted_address != "") {
-        setAddress(result.formatted_address);
-      } 
-    } catch (error) {
-      setError('Unable to get location.');
+    if (lat != null || lon != null) {
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
+      console.log(url)
+      try {
+        const response = await axios.get(url);
+        const result = response.data.results[0];
+        if (result.formatted_address != "") {
+          setAddress(result.formatted_address);
+          console.log("formatted address: ", result.formatted_address)
+        } else{
+          setAddress(result.address_components);
+          console.log("address_components: ", result.address_components)
+        }
+      } catch (error) {
+        setError('Unable to get location.');
+      }
     }
-  }
   };
 
 
@@ -48,12 +52,16 @@ function MyLocation() {
   }, [])
 
 
-  //Send data to firebase
-  if (position.latitude != '60.3848704' && position.longitude != '25.001984') {
+  //Send data to firebase if latitude and longitude are not null and those are not from your home address.
+  if ((position.latitude != '60.3887088' && position.latitude != null) && (position.longitude != '24.984038' && position.longitude != null)) {
     position.address = address
     position.pvm = new Date().getTime()
-    addDoc(collection(db, "Locations"), position);
-    console.log("Location stored, data: ", position)
+    console.log("Location data: ", position)
+    //In case address (formatted.address) is known then update Location collection
+    if (position.address != '') {
+      addDoc(collection(db, "Locations"), position);
+    }
+
   }
 }
 
