@@ -38,10 +38,13 @@
   }
 
   #root {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    padding: 2rem;
+    display:flex;
+    padding: 1rem;
     text-align: center;
+    height: 100%;
+    width:100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .photo-grid {
@@ -64,15 +67,13 @@
   .app-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    /* Full viewport height */
-    margin-left: 1rem;
-    margin-right: 1rem;
+    height: fit-content;
     padding: 20px;
     background-color: #F9F9F9;    
     color:#0c0c0c;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    width: fit-content;
   }
 
   .app-header {
@@ -132,14 +133,13 @@
   }
 
   .home-container {
-    padding: 15px 13px;
-    text-align: left;
-    justify-content: left;
+    padding: 1rem;
+    margin: 0 auto;
     font-size: 14px;
     font-family: bold;
-    text-align: left;
     justify-content: center;
-
+    align-items: center;
+    width:fit-content;   
   }
 
   .home-container h1 {

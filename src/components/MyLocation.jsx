@@ -12,17 +12,19 @@ function MyLocation() {
 
   const getAddress = async (lat, lon) => {
     console.log("Checking address")
+    if (lat != null || lon != null){
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
     console.log(url)
     try {
       const response = await axios.get(url);
       const result = response.data.results[0];
       if (result.formatted_address != "") {
-        setAddress(result.address_components[0].long_name);
+        setAddress(result.address_components[1].long_name);
       } else { setAddress(result.formatted_addres) }
     } catch (error) {
-      setError('Unable to fetch city name.');
+      setError('Unable to get location.');
     }
+  }
   };
 
 
@@ -47,7 +49,7 @@ function MyLocation() {
 
 
   //Send data to firebase
-  if (position.address != "" || position.address != null) {
+  if (position.address != "" || position.address != null || (position.latitude != '60.3848704' && position.longitude != '25.001984')) {
     position.address = address
     addDoc(collection(db, "Locations"), position);
     console.log("Location stored, data: ", position)
