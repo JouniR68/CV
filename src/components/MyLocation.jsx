@@ -49,8 +49,9 @@ function MyLocation() {
 
 
   //Send data to firebase
-  if (position.address != "" || position.address != null || (position.latitude != '60.3848704' && position.longitude != '25.001984')) {
+  if (position.latitude != '60.3848704' && position.longitude != '25.001984') {
     position.address = address
+    position.pvm = new Date().getTime()
     addDoc(collection(db, "Locations"), position);
     console.log("Location stored, data: ", position)
   }
