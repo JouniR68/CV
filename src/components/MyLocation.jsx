@@ -19,8 +19,8 @@ function MyLocation() {
       const response = await axios.get(url);
       const result = response.data.results[0];
       if (result.formatted_address != "") {
-        setAddress(result.address_components[1].long_name);
-      } else { setAddress(result.formatted_addres) }
+        setAddress(result.formatted_address);
+      } 
     } catch (error) {
       setError('Unable to get location.');
     }
