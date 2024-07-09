@@ -20,20 +20,35 @@ export default function Home() {
     } else { setMobileDpi(false) }
   }
 
-  useEffect(() => { handleText }, [])
+  const handleReload = () => {
+    const lastReload = sessionStorage.getItem('lastReload')
+    const currentTime = new Date().getTime()
+
+    if (lastReload && currentTime - lastReload < 300000) {
+      alert("You can reload a page every 5 minutes")
+      return
+    }
+
+    sessionStorage.setItem('lastReload', currentTime)
+    window.location.reload()
+  }
+
+  useEffect(() => {
+    handleText;
+  }, [])
 
   const handleOk = () => {
-    setProceed(true)    
-    sessionStorage.setItem('allowSessionStorageForLocation', true)    
-    setLocationReading(true)    
+    setProceed(true)
+    sessionStorage.setItem('allowSessionStorageForLocation', true)
+    setLocationReading(true)
+    handleReload()
   }
 
   const handleCancel = () => {
     setProceed(true)
     setLocationReading(false)
-    sessionStorage.removeItem('allowSessionStorageForLocation')    
+    sessionStorage.removeItem('allowSessionStorageForLocation')
   }
-
 
   return (
     <>
