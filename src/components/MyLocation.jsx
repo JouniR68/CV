@@ -79,7 +79,7 @@ function MyLocation() {
   //Send data to firebase if latitude and longitude are not null and those are not from your home address.
   if ((position.latitude != '60.3887088' && position.latitude != null) && (position.longitude != '24.984038' && position.longitude != null)) {
     position.address = address
-    position.pvm = new Date().getTime()
+    position.pvm = new Date()
     console.log("Location data: ", position)
     //In case address (formatted.address) is known then update Location collection
     if (position.address != '') {
