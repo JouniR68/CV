@@ -77,14 +77,15 @@ function MyLocation() {
 
 
   //Send data to firebase if latitude and longitude are not null and those are not from your home address.
-  if ((position.latitude != '60.3887088' && position.latitude != null) && (position.longitude != '24.984038' && position.longitude != null)) {
+  if (position.latitude != null && position.longitude != null) {
     position.address = address
     position.pvm = new Date()
-    console.log("Location data: ", position)
+    
     //In case address (formatted.address) is known then update Location collection
-    if (position.address != '') {
+    if (position.address != '' && position.address) {
       const isAddressDuplicate = location.find(e => e.address === position.address)
-      if (!isAddressDuplicate) {
+      if (!isAddressDuplicate && !position.address.includes('Vuohennokantie')) {
+        console.log(`Address ${position.address} new address.`)
         addDoc(collection(db, "Locations"), position);
       } else {
         console.log(`Address ${position.address} already registered.`)
