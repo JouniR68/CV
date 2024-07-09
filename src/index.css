@@ -22,6 +22,33 @@
     display: true;
   }
 
+  .confirmation-container{
+    display:flex;
+    border:1px solid;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width:fit-content;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .confirmation-content button{        
+    margin: 1rem;
+    width:4rem;    
+  }
+
+  #ok{
+    padding:0.5rem;
+    background-color: green;
+    font-weight: bold;
+  }
+
+  #nok{
+    padding:0.5rem;
+    background-color: red;
+    font-weight: bold;
+  }
+
   .logo {
     height: 6em;
     padding: 1.5em;
@@ -468,6 +495,33 @@
   .cell {
     display: table-cell;
     padding: 1px;
+  }
+
+  .confirmation-container{
+    display:flex;
+    border:1px solid;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width:fit-content;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  .confirmation-content button{        
+    margin: 1rem;
+    width:4rem;    
+  }
+
+  #ok{
+    padding:0.5rem;
+    background-color: green;
+    font-weight: bold;
+  }
+
+  #nok{
+    padding:0.5rem;
+    background-color: red;
+    font-weight: bold;
   }
 
   .photo-grid {
