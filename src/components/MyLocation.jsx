@@ -8,11 +8,34 @@ function MyLocation() {
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState('')
   const [error, setError] = useState('')
+  const [location, setLocations] = useState(null)
 
+  const getLocations = async () => {
+    try {
+      const locationRef = collection(db, "Locations")
+      const querySnapshot = await getDocs(locationRef)
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+      console.log("Location data: ", data)
+      setLocations(data)
+    } catch (error) {
+      console.error("Error fetching data: ", error)
+      setError("Error fetching data, pls contact site admin.")
+      throw {
+        message: "Datan haku epäonnistui",
+        statusText: "Failas",
+        status: 403,
+      }
+    }
+  }
 
   const getAddress = async (lat, lon) => {
+    const fetchingLocation = sessionStorage.getItem('allowSessionStorageForLocation')
+    console.log("Retrieving location: ", fetchingLocation)
     console.log("Checking address")
-    if (lat != null || lon != null) {
+    if ((lat != null || lon != null) && fetchingLocation) {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
       console.log(url)
       try {
@@ -21,7 +44,7 @@ function MyLocation() {
         if (result.formatted_address != "") {
           setAddress(result.formatted_address);
           console.log("formatted address: ", result.formatted_address)
-        } else{
+        } else {
           setAddress(result.address_components);
           console.log("address_components: ", result.address_components)
         }
@@ -49,6 +72,7 @@ function MyLocation() {
   useEffect(() => {
     getPosition();
     getAddress(position.latitude, position.longitude)
+    getLocations()
   }, [])
 
 
@@ -59,7 +83,12 @@ function MyLocation() {
     console.log("Location data: ", position)
     //In case address (formatted.address) is known then update Location collection
     if (position.address != '') {
-      addDoc(collection(db, "Locations"), position);
+      const isAddressDuplicate = location.find(e => e.address === position.address)
+      if (!isAddressDuplicate) {
+        addDoc(collection(db, "Locations"), position);
+      } else {
+        console.log(`Address ${position.address} already registered.`)
+      }
     }
 
   }

@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-//import { useState } from "react";
 import "./index.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
@@ -35,7 +34,6 @@ import ContractForm from "./components/AddContract";
 
 function App() {
   
-
   return (
     <div className = "app-container">
         <BrowserRouter>

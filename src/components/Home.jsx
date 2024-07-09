@@ -23,13 +23,15 @@ export default function Home() {
   useEffect(() => { handleText }, [])
 
   const handleOk = () => {
-    setProceed(true)
-    setLocationReading(true)
+    setProceed(true)    
+    sessionStorage.setItem('allowSessionStorageForLocation', true)    
+    setLocationReading(true)    
   }
 
   const handleCancel = () => {
     setProceed(true)
     setLocationReading(false)
+    sessionStorage.removeItem('allowSessionStorageForLocation')    
   }
 
 
