@@ -43,7 +43,7 @@ let reloadCount = 0
     setProceed(true)
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
-    reloadCount === 0 ? handleReload() : reloadCount = 0 
+    reloadCount > 0 ? "" : handleReload()
   }
 
   const handleCancel = () => {
