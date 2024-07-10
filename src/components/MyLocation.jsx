@@ -37,16 +37,24 @@ function MyLocation() {
     console.log("Checking address")
     if ((lat != null || lon != null) && fetchingLocation) {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
-      console.log(url)
+      console.log("url: ", url)
       try {
         const response = await axios.get(url);
+
+        const addressComponents = response.data.results[0].address_components;
+      
+        // Extract city from address components
+        const cityComponent = addressComponents.find(component => 
+          component.types.includes('locality')
+        );
+  
         const result = response.data.results[0];
         if (result.formatted_address != "") {
           setAddress(result.formatted_address);
           console.log("formatted address: ", result.formatted_address)
         } else {
-          setAddress(result.address_components);
-          console.log("address_components: ", result.address_components)
+          setAddress(cityComponent.long_name);          
+          console.log("City: ", cityComponent.long_name)
         }
       } catch (error) {
         setError('Unable to get location.');
