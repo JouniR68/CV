@@ -21,12 +21,6 @@ import Tech from "./components/Tech";
 import CV from "./components/Output"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-//import { ThemeProvider } from "@mui/material/styles";
-//import CssBaseline from "@mui/material/CssBaseline";
-//import Switch from '@mui/material/Switch';
-//import Typography from '@mui/material/Typography';
-//import Stack from '@mui/material/Stack';
-//import { darkTheme, lightTheme } from "./components/Themes";
 import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
 

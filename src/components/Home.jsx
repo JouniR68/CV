@@ -10,6 +10,7 @@ export default function Home() {
   const welcomeText = "Welcome to my pages, check out my services and resumes."
   const mobileText = "Welcome to my page, feel free to browse through and post me the message."
 
+let reloadCount = 0
 
   const handleText = () => {
     const mediaQuery = console.log(window.matchMedia())
@@ -21,11 +22,12 @@ export default function Home() {
   }
 
   const handleReload = () => {
+    reloadCount++
     const lastReload = sessionStorage.getItem('lastReload')
     const currentTime = new Date().getTime()
 
     if (lastReload && currentTime - lastReload < 300000) {
-      alert("You can reload a page every 5 minutes")
+      //alert("You can reload a page every 5 minutes")
       return
     }
 
@@ -41,7 +43,7 @@ export default function Home() {
     setProceed(true)
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
-    handleReload()
+    reloadCount === 0 ? handleReload() : reloadCount = 0 
   }
 
   const handleCancel = () => {
