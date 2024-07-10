@@ -92,7 +92,7 @@ function MyLocation() {
     //In case address (formatted.address) is known then update Location collection
     if (position.address != '' && position.address) {
       const isAddressDuplicate = location.find(e => e.address === position.address)
-      if (!isAddressDuplicate && !position.address.includes('Vuohennokantie')) {
+      if (!isAddressDuplicate || !position.address.includes('Vuohennokantie')) {
         console.log(`Address ${position.address} new address.`)
         addDoc(collection(db, "Locations"), position);
       } else {
