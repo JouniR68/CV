@@ -14,7 +14,7 @@ export default function Education() {
       <div>
         {profileData.map((profile) => (
           <div key={i++} className='profile--table'>
-            <img key={i++} src={profile.Photo} style={{ width: '100px', borderRadius: '5px', marginBottom: '3px' }} alt='Jouni Riimala' />
+            <img key={i++} src={profile.Photo} style={{ width: '100px', borderRadius: '5px', marginTop: '1rem', marginBottom: '1rem' }} alt='Jouni Riimala' />
             <table className="profile--card">
               <tbody>
                 <td className='row'>

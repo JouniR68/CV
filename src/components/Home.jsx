@@ -17,6 +17,7 @@ let reloadCount = 0
     console.log(`Media query matches: ${mediaQuery.matches}`);
 
     if (window.matchMedia('(min-resolution: 250dpi)')) {
+      console.log("min-resolution 250dpi")
       setMobileDpi(true)
     } else { setMobileDpi(false) }
   }
