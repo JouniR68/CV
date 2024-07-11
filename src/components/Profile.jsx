@@ -9,13 +9,14 @@ export default function Education() {
 
   return (
     <>
-      
-        <hr></hr>
-        <div>
-          {profileData.map((profile) => (
-            <div key={i++} className='profile--table'>
-              <img key={i++} src={profile.Photo} style={{width:'100px', borderRadius:'5px', marginBottom:'3px'}}alt='Jouni Riimala' />
-              <table className="profile--card">
+
+      <hr></hr>
+      <div>
+        {profileData.map((profile) => (
+          <div key={i++} className='profile--table'>
+            <img key={i++} src={profile.Photo} style={{ width: '100px', borderRadius: '5px', marginBottom: '3px' }} alt='Jouni Riimala' />
+            <table className="profile--card">
+              <tbody>
                 <td className='row'>
                   Name: {profile.Name}
                 </td>
@@ -25,13 +26,14 @@ export default function Education() {
                 <td className='row'>Familly: {profile.Familly}</td>
                 <td className='row'>Mail: jriimala@gmail.com</td>
                 <td className='row'>Tel: +358 2385 888</td>
-              </table>
-            </div>
-          ))}
-          
-        </div>
-  
-      
+              </tbody>
+            </table>
+          </div>
+        ))}
+
+      </div>
+
+
 
       <Outlet />
     </>
