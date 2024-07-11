@@ -57,7 +57,7 @@ let reloadCount = 0
       {!proceed && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
       {proceed &&
         <>
-          {locationReading && <MyLocation />}
+          {locationReading && reloadCount === 0 && <MyLocation />}
           <div className='home-container'>
             <h1>Welcome</h1>
             <p></p>
