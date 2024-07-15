@@ -9,5 +9,22 @@
   "Confirmation-text": "Onko ok, lukea mistä sivujani kontaktoidaan?",
   "Confirmation-expl": "Mahdollinen sijainti on epätarkkaaa, mutta olisi vaan mielenkiintoista tietää.",
   "Yes": "Kyllä",
-  "No": "Ei"
+  "No": "Ei",
+  "ProfileBirth": "Syntymäpaikka",
+  "ProfileLocation": "Sijainti",
+  "ProfileProfession":"Työ",
+  "ProfileFamilly": "Perhe",
+  "ProfileMail": "Sähköposti",
+  "ProfileTel": "Puhelin",
+  "Intrest":"Peruspäivääni kulluu sporttia n. tunti päivässä, koodausta (omaksi iloksi / töihin liittyvää), moottoripyöräilyä, leffoja ja yleistä puuhailua.",
+  "Looking":"Avoin eri ICT - rooleille etenkin ohjelmistokehitykseen liittyen joko management / koodauspuolella. Myös mahdollista harkita pysyvää / + puolen vuoden kontrakteja. Mielummin hybridi / remote kuin 100 %:a toimistopäiviä.", 
+  "Appealing": "Innostavia rooleja",
+  "why1":"Erittäin ok sw development manager / teknillinen projekti manager.",
+  "why2":"Omaan paljon kokemusta alihankkija interfacestä ja ymmärrän kehityksen nyansseja.",
+  "why3":"Joustava eli mahdollisa työskennellä eri rooleissa.",
+  "why4":"Valmis harkitsemaan väliaikaisia komennuksia min 6 kk (freelancer pohjalta) / pysyvämpiä rooleja.",
+  "why5":"Kehityskykyinen ja pidän työskennellystä tiimeissä.",
+  "intrest-header": "Kiinnostuksen kohteet",
+  "Why-header":"Töihin?",
+  "Open-header": "Avoin"
 }

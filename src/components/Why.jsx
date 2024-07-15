@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import JsonData from "../../data/datapkg.json";
 
 export default function Education() {
@@ -8,52 +9,49 @@ export default function Education() {
 
   let rowCounter = 1;
 
+
+  const {t} = useTranslation()
+
   return (
 <>
     <hr></hr>    
 
     <table key={i++} className="taulu">
-      {issueData?.map((t) => (
+      
         <>
           <div className="hire--whys">
-          <div key={i++} className="row">
-              <div key={i++} className="cell">
-                {rowCounter++}. {t?.["why"]}
-              </div>
-            </div>
 
             <div key={i++} className="row">
               <div key={i++} className="cell">
-                {rowCounter++}. {t?.["why 1"]}
+                {rowCounter++}. {t('why1')}
               </div>
             </div>
             
             <div key={i++} className="row">
               <div key={i++} className="cell">
-                {rowCounter++}. {t?.["why 2"]}
+                {rowCounter++}. {t('why2')}
               </div>
             </div>
             
             <div key={i++} className="row">
               <div key={i++} className="cell">
-                {rowCounter++}. {t?.["why 3"]}
+                {rowCounter++}. {t('why3')}
               </div>
             </div>
             
             <div key={i++} className="row">
               <div key={i++} className="cell">
-                {rowCounter++}. {t?.["why 4"]}
+                {rowCounter++}. {t('why4')}
               </div>
             </div>
             
             <div key={i++} className="row">
               <div key={i++} className="cell">
-                {rowCounter++}. {t?.["why 5"]}
+                {rowCounter++}. {t('why5')}
               </div>
             </div>
           </div>
         </>
-      ))}
     </table>
     </>
   );

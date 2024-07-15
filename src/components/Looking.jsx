@@ -1,17 +1,20 @@
+import { useTranslation } from "react-i18next";
+
+
 export default function Looking() {
+
+  const {t} = useTranslation();
+
   return (
     
     <div className='output--text'>
       <hr></hr>
       <p>
-      
-        Open for the new work due to laid of situation. I'm looking for the work
-        either permanent or part time ex 3 days in a wk, open for the
-        discussion. Possibility to work as a freelancer with minimum 6 month
-        contract.
+      {t('Looking')}
+        
       
 <p></p>
-      Appealing roles
+      {t('Appealing')}
       </p>
 
       <table className="taulu">
