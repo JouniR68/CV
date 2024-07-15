@@ -1,0 +1,11 @@
+{
+  "test": "test (en)",
+  "welcome": "Welcome",
+  "welcomText": "Pls, browse through and contact me (anyway you like). In case intrested from the services, check out the services tab.",  
+  "mobileWelcomeText" : "Pls, browse through and contact me (anyway you like).",
+  "Home": "Home",
+  "Confirmation-text": "Is it to read the location data ? ",
+  "Confirmation-expl": "At most it's not accurate at all, but intresting to me.",
+  "Yes":"Yes",
+  "No":"No"
+}

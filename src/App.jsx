@@ -23,48 +23,49 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
 import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
-
-
+import '../i18n'; // Import the i18n configuration
 
 function App() {
-  
+
+
   return (
-    <div className = "app-container">
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />
-              <Route path="output" element={<CV />} />
-              <Route path='profile' element={<ProfileLayout />}>
-                <Route index element={<Profile />} />
-                <Route path='intrests' element={<Intrests />} />
-                <Route path='why' element={<Why />} />
-                <Route path='looking' element={<Looking />} />
-              </Route>
+    <div className="app-container">
 
-              <Route path='admin' element={<AdminLayout />}>
-                <Route index element={<Login />} />
-                <Route path='logout' element={<Logout />} />
-              </Route>
-
-              <Route element={<RentalLayout />}>
-                <Route path='rent' index element={<Rent />} />
-                <Route path='addCustomerData' element={<Customer />} />
-                <Route path='customers' element={<CustomerData />} />
-                <Route path='thanks' element={<ThankYouPage />} />
-                <Route path='contract' element={<ContractForm />} />
-              </Route>
-
-              <Route path='cv' element={<CVLayout />}>
-                <Route index element={<Work />} />
-                <Route path='education' element={<Education />} />
-                <Route path='work' element={<Work />} />
-                <Route path='Tech' element={<Tech />} />
-                <Route path='Contact' element={<Contact />} />
-              </Route>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path='/' element={<Home />} />
+            <Route path="output" element={<CV />} />
+            <Route path='profile' element={<ProfileLayout />}>
+              <Route index element={<Profile />} />
+              <Route path='intrests' element={<Intrests />} />
+              <Route path='why' element={<Why />} />
+              <Route path='looking' element={<Looking />} />
             </Route>
-          </Routes>
-        </BrowserRouter>
+
+            <Route path='admin' element={<AdminLayout />}>
+              <Route index element={<Login />} />
+              <Route path='logout' element={<Logout />} />
+            </Route>
+
+            <Route element={<RentalLayout />}>
+              <Route path='rent' index element={<Rent />} />
+              <Route path='addCustomerData' element={<Customer />} />
+              <Route path='customers' element={<CustomerData />} />
+              <Route path='thanks' element={<ThankYouPage />} />
+              <Route path='contract' element={<ContractForm />} />
+            </Route>
+
+            <Route path='cv' element={<CVLayout />}>
+              <Route index element={<Work />} />
+              <Route path='education' element={<Education />} />
+              <Route path='work' element={<Work />} />
+              <Route path='Tech' element={<Tech />} />
+              <Route path='Contact' element={<Contact />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
 
     </div>
   );

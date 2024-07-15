@@ -3,14 +3,20 @@ import { useEffect, useState } from 'react'
 import "../index.css"
 import MyLocation from './MyLocation';
 import Confirmation from './Confirmation';
+import { useTranslation } from 'react-i18next';
+
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
   const [proceed, setProceed] = useState(false)
   const [locationReading, setLocationReading] = useState(false)
-  const welcomeText = "Welcome to my pages, check out my services and resumes."
-  const mobileText = "Welcome to my page, feel free to browse through and post me the message."
 
-let reloadCount = 0
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  let reloadCount = 0
 
   const handleText = () => {
     const mediaQuery = console.log(window.matchMedia())
@@ -55,14 +61,19 @@ let reloadCount = 0
 
   return (
     <>
+      <div className="flags">
+        <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
+        <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
+      </div>
+
       {!proceed && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
       {proceed &&
         <>
           {locationReading && reloadCount === 0 && <MyLocation />}
           <div className='home-container'>
-            <h1>Welcome</h1>
+            <h1>{t('welcome')}</h1>
             <p></p>
-            {isMobileDpi ? welcomeText : mobileText}
+            {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
           </div>
         </>
       }

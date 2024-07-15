@@ -32,6 +32,14 @@
     margin: 0 auto;
   }
 
+
+  .flags{
+    width:'48px';
+    height: '48px';
+    align-items: center;
+    justify-content: space-around;
+  }
+
   .confirmation-content button{        
     margin: 1rem;
     width:4rem;    
@@ -77,10 +85,10 @@
   .photo-grid {
     display:grid;
     grid-template-columns: auto auto;
-    gap: 20px; /* Space between photos */
+    gap: 1rem;
     margin-top:2rem;
     margin-left: 1rem;
-    width:200px;
+    width:20%;
   }
 
   .photo-grid img {

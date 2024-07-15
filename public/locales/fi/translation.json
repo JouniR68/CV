@@ -1,0 +1,13 @@
+{
+  "test": "Testi",
+  "welcome": "Tervetuloa",
+  "welcomText": "Hienoa, selaile rauhassa sivujani ja laita rohkeasti yhteydenotto pyyntö vaikka et heti olisi ostamassa palveluitani.",
+  "mobileWelcomeText": "Tervetuloa sivustolleni, katsele rauhassa ja ota yhteyttä.",
+  "Home": "Koti",
+  "Profile": "Profiili",
+  "Services": "Palvelut",
+  "Confirmation-text": "Onko ok, lukea mistä sivujani kontaktoidaan?",
+  "Confirmation-expl": "Mahdollinen sijainti on epätarkkaaa, mutta olisi vaan mielenkiintoista tietää.",
+  "Yes": "Kyllä",
+  "No": "Ei"
+}
