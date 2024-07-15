@@ -26,5 +26,24 @@
   "why5":"Kehityskykyinen ja pidän työskennellystä tiimeissä.",
   "Intrest-header": "Kiinnostuksen kohteet",
   "Why-header":"Töihin?",
-  "Open-header": "Avoin"
+  "Open-header": "Avoin",
+  "Services-main": "Palvelut hintoineen. Henkilöasiakkaiden palvelut ja hinnat neuvotellaan erikseen.",
+  "Services-coding": "Koodausta (React, Node, JS, CSS , HTML).",
+  "Services-admin": "Asennukset, päivitykset, Systeemi konfaukset",
+  "Services-pm": "Tuotehallint, vaatimukset, roadmappays",
+  "Services-testing": "Testaus",
+  "Services-travel":"euro / km",
+  "Service-header": "Palvelut",
+  "Service-company-header": "Yritys hinta",
+  "Service-individual-header": "Henkilöasiakkaiden hinnat",
+  "Service-Custom": "Sovittavissa",
+  "Service-forward": "Työtarjous / viesti",
+  "Save": "Talleta",
+  "Firstname-required": "Etunimi puuttuu",
+  "Lastname-required": "Sukunimi puuttuu",
+  "Address-required": "Osoite puuttuu",
+  "Description-required":"Viesti puuttuu",
+  "Email-required": "Sähköposti puuttuu",
+  "Email-NotValid": "Sähköposti väärä"
+
 }

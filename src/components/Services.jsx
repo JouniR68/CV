@@ -11,26 +11,26 @@ import {
   Paper,
   Button
 } from "@mui/material";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 export default function Services() {
 
   const navigate = useNavigate()
+  const { t } = useTranslation();
 
   let i = 0;
-  const issueData = JsonData.services.map((j) => {
-    return j;
-  });
 
   const getCustomerData = () => {
     navigate('/addCustomerData')
   }
+
 
   return (
     <>
       <hr></hr>
 
       <div className="output--text">
-        In case you are not looking for to fullfill permanent job, hire me for the temporary one.<br></br>
-        Below services and prizes alv 0% (company rates).<br></br>.
+        {t('Services-main')}<br></br>.
       </div>
       <p></p>
       <TableContainer component={Paper}>
@@ -41,56 +41,48 @@ export default function Services() {
 
           <TableHead>
             <TableRow>
-              <TableCell align="left">Service</TableCell>
-              <TableCell align="left">Company Prize</TableCell>
-              <TableCell align="left">Individual Prize</TableCell>
+              <TableCell align="left">{t('Services-main')}</TableCell>
+              <TableCell align="left">{t('Service-company-header')}</TableCell>
+              <TableCell align="left">{t('Service-individual-header')}</TableCell>
             </TableRow>
           </TableHead>
 
 
-          {issueData?.map((t) => (
-            <TableBody key={nanoid()}>
-              <TableRow>
-                <TableCell align="left">{t?.["serv1"]}</TableCell>
-                <TableCell>{t?.["serv1-prize"]}</TableCell>
-                <TableCell>Custom</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left">{t?.["serv2"]}</TableCell>
-                <TableCell>{t?.["serv2-prize"]}</TableCell>
-                <TableCell>Custom</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left">{t?.["serv3"]}</TableCell>
-                <TableCell>{t?.["serv3-prize"]}</TableCell>
-                <TableCell>Custom</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left">{t?.["serv4"]}</TableCell>
-                <TableCell>{t?.["serv4-prize"]}</TableCell>
-                <TableCell>Custom</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left">{t?.["serv5"]}</TableCell>
-                <TableCell>{t?.["serv3-prize"]}</TableCell>
-                <TableCell>Custom</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell align="left">{t?.["serv6"]}</TableCell>
-                <TableCell>{t?.["serv6-prize"]}</TableCell>
-                <TableCell>Custom</TableCell>
-              </TableRow>
 
-              <TableRow>
-                <TableCell align="left">travelling one euros / km, remote work preferred.</TableCell>
-              </TableRow>
-            </TableBody>
-          ))}
+          <TableBody key={nanoid()}>
+            <TableRow>
+              <TableCell align="left">{t('Services-coding')}</TableCell>
+              <TableCell>60 euro/h</TableCell>
+              <TableCell>{t('Service-Custom')}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="left">{t('Services-testing')}</TableCell>
+              <TableCell>50 euro/h</TableCell>
+              <TableCell>{t('Service-Custom')}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="left">{t('Services-admin')}</TableCell>
+              <TableCell>50 euro/h</TableCell>
+              <TableCell>{t('Service-Custom')}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align="left">{t('Services-pm')}</TableCell>
+              <TableCell>60 euro/h</TableCell>
+              <TableCell>{t('Service-Custom')}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell align="left">{t('Services-travel')}</TableCell>
+            </TableRow>
+          </TableBody>
+
 
         </Table>
       </TableContainer>
 
-      <Button onClick={getCustomerData}>Work offer / message ?</Button>
+      <Button onClick={getCustomerData}>{t('Service-forward')}</Button>
+
+
     </>
   )
 }

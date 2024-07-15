@@ -8,9 +8,12 @@ import {
 import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Quick() {
   const navigate = useNavigate();
+
+  const {t} = useTranslation();
 
   const today = new Date().toISOString().split("T")[0]
   const [data, setData] = useState({ fName: "", lName: "", address: "", email: "", phone: "", firmId: "", description: "", pvm: today });
@@ -50,29 +53,29 @@ export default function Quick() {
     let isValid = true;
 
     if (!data.fName) {
-      tempErrors.fName = "First name is required";
+      tempErrors.fName = t('Firstname-required');
       isValid = false;
     }
     else if (!data.lName) {
-      tempErrors.lName = "Last name is required";
+      tempErrors.lName = t('Lastname-required');
       isValid = false;
     }
 
     else if (!data.address) {
-      tempErrors.address = "Address is required";
+      tempErrors.address = t('Address-required');
       isValid = false;
     }
 
     else if (!data.description) {
-      tempErrors.description = "Pls, fill your message.";
+      tempErrors.description = t('Email-required');
       isValid = false;
     }
 
     if (!data.email) {
-      tempErrors.email = "Email is required";
+      tempErrors.email = t('Email-required');
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-      tempErrors.email = "Email is not valid";
+      tempErrors.email = t('Email-NotValid');
       isValid = false;
     }
 
@@ -117,7 +120,7 @@ export default function Quick() {
           style={{ width: "180px", margin: "5px" }}
           id="fName"
           type="text"
-          label="First Name"
+          label="Firstname / etunimi"
           required
           value={data.fName}
           variant="outlined"
@@ -131,7 +134,7 @@ export default function Quick() {
           style={{ width: "180px", margin: "5px" }}
           id="lName"
           type="text"
-          label="Last Name"
+          label="Lastname / sukunimi"
           required
           value={data.lName}
           variant="outlined"
@@ -144,7 +147,7 @@ export default function Quick() {
           style={{ width: "180px", margin: "5px" }}
           id="address"
           type="text"
-          label="Address"
+          label="Address / osoite"
           value={data.address}
           variant="outlined"
           onChange={handleChange}
@@ -156,7 +159,7 @@ export default function Quick() {
           style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="email"
           type="text"
-          label="Email"
+          label="Email / s-posti"
           required
           value={data.email}
           variant="outlined"
@@ -170,7 +173,7 @@ export default function Quick() {
           id="phone"
           required
           type="number"
-          label="Phonenumber"
+          label="Phone / puhelin"
           value={data.phone}
           variant="outlined"
           onChange={handleChange}
@@ -201,7 +204,7 @@ export default function Quick() {
           style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="description"
           type="text"
-          label="The message"
+          label=""
           required
           value={data.description}
           variant="outlined"
@@ -216,7 +219,7 @@ export default function Quick() {
         <br />
 
         <Button variant="contained" color="primary" onClick={() => save()}>
-          SAVE
+          {t('Save')}
         </Button>
       </Box>}
     </div>
