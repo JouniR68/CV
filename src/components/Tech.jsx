@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import JsonData from "../../data/datapkg.json";
 //import remover from "../utils/common";
 import {
@@ -16,6 +17,8 @@ export default function Tech() {
     return j;
   });
 
+  const {t} = useTranslation()
+
   return (
     <>
       <hr></hr>
@@ -25,10 +28,11 @@ export default function Tech() {
 
           <TableHead>
             <TableRow>
-              <TableCell align="left">Programming</TableCell>
-              <TableCell align="left">Database</TableCell>
-              <TableCell align="left">Tools</TableCell>
-              <TableCell align="left">Project Methods</TableCell>
+              <TableCell align="left">{t('Techs-header')}</TableCell>
+              <TableCell align="left">{t('Techs-schedule-header')}</TableCell>
+              <TableCell align="left">{t('Techs-role-header')}</TableCell>
+              <TableCell align="left">{t('Techs-location-header')}</TableCell>
+              
             </TableRow>
           </TableHead>
 

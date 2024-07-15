@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import JsonData from "../../data/datapkg.json";
 //import remover from "../utils/common";
 //import { Outlet, NavLink } from "react-router-dom";
@@ -17,6 +18,9 @@ export default function Work() {
     return j;
   });
 
+
+  const {t} = useTranslation()
+
   return (
     <>
       <hr></hr>
@@ -27,11 +31,11 @@ export default function Work() {
 
           <TableHead>
             <TableRow>
-              <TableCell align="left">Company</TableCell>
-              <TableCell align="left">Duration</TableCell>
-              <TableCell align="left">Role(s)</TableCell>
-              <TableCell align="left">Location(s)</TableCell>
-              <TableCell align="left">Info</TableCell>
+              <TableCell align="left">{t('Work-company-header')}</TableCell>
+              <TableCell align="left">{t('Work-schedule-header')}</TableCell>
+              <TableCell align="left">{t('Work-role-header')}</TableCell>
+              <TableCell align="left">{t('Work-location-header')}</TableCell>
+              <TableCell align="left">{t('Work-info-header')}</TableCell>
             </TableRow>
           </TableHead>
 

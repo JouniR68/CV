@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import JsonData from "../../data/datapkg.json";
 import {
   Table,
@@ -15,6 +16,8 @@ export default function Education() {
     return j;
   });
 
+  const {t} = useTranslation()
+
   return (
     <>
       <hr></hr>
@@ -23,10 +26,10 @@ export default function Education() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
           <TableHead className="education--thead">
             <TableRow>
-              <TableCell align="left">Course</TableCell>
-              <TableCell align="left">Schedule</TableCell>
-              <TableCell align="left">Topics</TableCell>
-              <TableCell align="left">Degree</TableCell>
+              <TableCell align="left">{t('Education-course-header')}</TableCell>
+              <TableCell align="left">{t('Education-schedule-header')}</TableCell>
+              <TableCell align="left">{t('Education-topics-header')}</TableCell>
+              <TableCell align="left">{t('Education-degree-header')}</TableCell>
             </TableRow>
           </TableHead>
 

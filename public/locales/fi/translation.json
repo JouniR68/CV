@@ -44,6 +44,27 @@
   "Address-required": "Osoite puuttuu",
   "Description-required":"Viesti puuttuu",
   "Email-required": "Sähköposti puuttuu",
-  "Email-NotValid": "Sähköposti väärä"
+  "Email-NotValid": "Sähköposti väärä",
+  "Output-profile": "Profiili",
+  "Output-intrest": "Kiinostuksen kohteet",
+  "Output-looking": "Haen",
+  "Output-why": "Miksi palkata",
+  "Output-techs": "Tekniset kompetenssit",
+  "Output-work": "Työ historia",
+  "Output-education":"Koulutus",
+  "Education-course-header": "Kurssi",
+  "Education-schedule-header": "Aikataulu",
+  "Education-topics-header": "Aihe",
+  "Education-degree-header": "Tutkinto",
+  "Techs-header":"Aihe",
+  "Techs-schedule-header":"Aika",
+  "Techs-role-header":"Rooli",
+  "Techs-location-header":"Sijainti",
+  "Techs-info-header":"Info",
+  "Work-company-header":"Yritys",
+  "Work-schedule-header":"Aika",
+  "Work-role-header":"Rooli",
+  "Work-location-header":"Sijainti",
+  "Work-info-header":"Info"
 
 }

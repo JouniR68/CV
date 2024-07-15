@@ -44,6 +44,25 @@
   "Address-required": "Address required",
   "Description-required":"Message required",
   "Email-required": "Email required",
-  "Email-NotValid": "Email incorrect"
+  "Email-NotValid": "Email incorrect",
+  "Output-intrest": "My Intrests",
+  "Output-looking": "Looking",
+  "Output-value": "Additional value",
+  "Output-techs": "Tech skilss",
+  "Output-work": "Work History",
+  "Education-course-header": "Subject",
+  "Education-schedule-header": "Duration",
+  "Education-topics-header": "Topic",
+  "Education-degree-header": "Degree",
+  "Techs-header":"Subject",
+  "Techs-schedule-header":"Duration",
+  "Techs-role-header":"Role",
+  "Techs-location-header":"Location",
+  "Techs-info-header":"Info",
+  "Work-company-header":"The company",
+  "Work-schedule-header":"Duration",
+  "Work-role-header":"Role",
+  "Work-location-header":"Location",
+  "Work-info-header":"Info"
 
 }
