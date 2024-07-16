@@ -12,6 +12,7 @@ import {
 	TableRow,
 	Paper,
 } from '@mui/material';
+import { useTranslation } from "react-i18next";
 
 const ShowCustomers = () => {
 	const [locations, setLocations] = useState([])
@@ -68,6 +69,9 @@ const ShowCustomers = () => {
 		getLocations();
 	}, [])
 
+
+	const {t} = useTranslation()
+
 	return (
 
 		<TableContainer component={Paper}>
@@ -76,13 +80,13 @@ const ShowCustomers = () => {
 
 				<TableHead>
 					<TableRow>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">First Name</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="right">Last Name</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Email</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Phone</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Firm Id</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Description</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Created</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firstname')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="right">{t('Lastname')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Email')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Phone')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firm Id')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Description')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Created')}</TableCell>
 					</TableRow>
 				</TableHead>
 
@@ -105,9 +109,9 @@ const ShowCustomers = () => {
 			<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
 				<TableHead>
 					<TableRow>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Location</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Latitude</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">Longitude</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Location')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Latitude')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Longitude')}</TableCell>
 					</TableRow>
 				</TableHead>
 

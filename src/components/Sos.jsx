@@ -10,6 +10,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import '../index.css';
 import { GitHub } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Contact() {
@@ -37,6 +38,9 @@ export default function Contact() {
   const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(body)}`;
+
+
+  const {t} = useTranslation()
 
   return (
     <>
@@ -72,13 +76,13 @@ export default function Contact() {
             <IconButton onClick={gitHub}>
               <GitHub />
               <Typography variant='body1' ml={1}>
-                Few coding repositories.
+                {t('Repositories')}
               </Typography>
             </IconButton>
             <IconButton>
               <a href={mailtoLink}><MailIcon sx={{marginLeft: '2px' }}/></a>
               <Typography variant='body1' ml={1}>
-                Tel. +358 2385 888.
+                {t('Phone')} +358 2385 888.
               </Typography>
 
             </IconButton>

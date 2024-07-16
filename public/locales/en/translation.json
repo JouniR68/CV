@@ -63,6 +63,18 @@
   "Work-schedule-header":"Duration",
   "Work-role-header":"Role",
   "Work-location-header":"Location",
-  "Work-info-header":"Info"
+  "Work-info-header":"Info",
+  "Firstname": "Firsname",
+  "Lastname": "Lastname",
+  "Address": "Address",
+  "Phone": "Tel.",
+  "Email": "Email",
+  "Firm Id": "Company Id (Y-id)",
+  "Description": "Description",
+  "Created": "Created",
+  "Location": "Location",
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Repositories": "Few coding repositories"
 
 }

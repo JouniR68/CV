@@ -65,6 +65,18 @@
   "Work-schedule-header":"Aika",
   "Work-role-header":"Rooli",
   "Work-location-header":"Sijainti",
-  "Work-info-header":"Info"
+  "Work-info-header":"Info",
+  "Firstname": "Etunimi",
+  "Lastname": "Sukunimi",
+  "Address": "Osoite",
+  "Phone": "Puhelin",
+  "Email": "Sähköposti",
+  "Firm Id": "Y-tunnus",
+  "Description": "Kuvaus",
+  "Created": "Luotu",
+  "Location": "Sijainti",
+  "Latitude": "Leveysaste",
+  "Longitude": "Pituusaste",
+  "Repositories": "Few github repos"
 
 }
