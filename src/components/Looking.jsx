@@ -30,7 +30,7 @@ export default function Looking() {
             <td>System expert</td>
           </tr>
           <tr>
-            <td>+ I'm open for the discussions</td>
+            <td>{t('OpenFor')}</td>
           </tr>
         </tbody>
       </table>
