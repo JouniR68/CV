@@ -350,6 +350,17 @@
     text-align: center;
   }
 
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    /* Full viewport height */    
+    margin:2rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
 
   .profile--table {
     display: flex;
@@ -375,19 +386,6 @@
     height: 50%;
   }
 
-
-  .app-container {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    /* Full viewport height */
-    margin-left: 0rem;
-    margin-right: 0rem;
-    padding: 1px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-  }
   .sos {
     margin-top: -4rem;
     font-family: bold;
