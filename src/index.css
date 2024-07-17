@@ -8,8 +8,8 @@
     margin-left: 4rem;
     margin-right: 5rem;
     margin-top: 0.2%;
-    margin-bottom: 0.2%;
-    padding: 0;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
     font-size: 14px;
     color: #ffffff;
     background-color: lightgray;
@@ -326,9 +326,8 @@
 
   html,
   body {
-    margin-left: 0.1rem;
-    margin-right: 0.1rem;
-    padding: 10px;
+    margin: 1rem;
+    padding: 1rem;
     font-size: 14px;
     color: #0c0c0c;
     background-color: #eaeef1;
