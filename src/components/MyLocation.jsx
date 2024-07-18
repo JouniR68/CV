@@ -94,7 +94,7 @@ function MyLocation() {
     if (position.address != '' && position.address) {
       const isAddressDuplicate = location.find(e => e?.address === position.address)
       console.log("isAddressDuplicate: " + isAddressDuplicate +  ", position.address: " + position.address)
-      if (!isAddressDuplicate || !position.address.includes('Vuohennokantie')) {
+      if (!isAddressDuplicate) {
         console.log(`Address ${position.address} new address.`)
         addDoc(collection(db, "Locations"), position);
       } else {
