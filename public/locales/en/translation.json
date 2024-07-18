@@ -76,6 +76,10 @@
   "Latitude": "Latitude",
   "Longitude": "Longitude",
   "Repositories": "Few coding repositories",
-  "OpenFor": "Open for the discussions"
+  "OpenFor": "Open for the discussions",
+  "ThankYou": "Thank You",
+  "ThankYouText": "We appreciate your feedback. If you have any questions, feel free to contact.",
+  "ReturntoHome" : "Return to Home",
+  "SubmissionReceived": "Your submission has been received."
 
 }

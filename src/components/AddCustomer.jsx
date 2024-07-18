@@ -89,7 +89,6 @@ export default function Quick() {
       console.log("data: ", data);
       try {
         const itemRef = await addDoc(collection(db, "Firma"), data);
-        alert(itemRef.id)
         console.log("document written with id: ", itemRef.id) + " with data: " + data;
         navigate('/thanks')
       } catch (e) {

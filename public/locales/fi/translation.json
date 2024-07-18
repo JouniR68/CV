@@ -78,6 +78,10 @@
   "Latitude": "Leveysaste",
   "Longitude": "Pituusaste",
   "Repositories": "Koodi varasto",
-  "OpenFor": "Avoin ehdotuksille."
+  "OpenFor": "Avoin ehdotuksille.",
+  "ThankYou": "Kiitos",
+  "ThankYouText": "Kiitos vierailusta, toivottavasti olemme yhteyksissä.",
+  "ReturntoHome" : "Paluu koti sivulle",
+  "SubmissionReceived": "Viestisi saapui perille."
 
 }

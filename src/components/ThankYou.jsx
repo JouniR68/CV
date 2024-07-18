@@ -1,9 +1,12 @@
 import { Box, Typography, Button, Container } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ThankYouPage = () => {
   const handleReturnHome = () => {    
     window.location.href = '/'; // Redirect to the homepage
   };
+
+  const {t} = useTranslation()
 
   return (
     <Container maxWidth="sm">
@@ -22,16 +25,16 @@ const ThankYouPage = () => {
         }}
       >
         <Typography variant="h3" component="h1" gutterBottom>
-          Thank You!
+          {t('ThankYou')}
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          Your submission has been received.
+          {t('SubmissionReceived')}
         </Typography>
         <Typography variant="body1" component="p" gutterBottom>
-          We appreciate your feedback. If you have any questions, feel free to contact.
+          {t('ThankYouText')}
         </Typography>
         <Button variant="contained" color="primary" onClick={handleReturnHome}>
-          Return to Home
+          {t('ReturnToHome')}
         </Button>
       </Box>
     </Container>

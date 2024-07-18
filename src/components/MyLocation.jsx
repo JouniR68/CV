@@ -36,24 +36,25 @@ function MyLocation() {
     console.log("Retrieving location: ", fetchingLocation)
     console.log("Checking address")
     if ((lat != null || lon != null) && fetchingLocation) {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
-      console.log("url: ", url)
       try {
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
+        console.log("url: ", url)
+
         const response = await axios.get(url);
 
         const addressComponents = response.data.results[0].address_components;
-      
+
         // Extract city from address components
-        const cityComponent = addressComponents.find(component => 
+        const cityComponent = addressComponents.find(component =>
           component.types.includes('locality')
         );
-  
+
         const result = response.data.results[0];
         if (result.formatted_address != "") {
           setAddress(result.formatted_address);
           console.log("formatted address: ", result.formatted_address)
         } else {
-          setAddress(cityComponent.long_name);          
+          setAddress("No details address, city (if found) = ", cityComponent.long_name);
           console.log("City: ", cityComponent.long_name)
         }
       } catch (error) {
@@ -88,10 +89,11 @@ function MyLocation() {
   if (position.latitude != null && position.longitude != null) {
     position.address = address
     position.pvm = new Date()
-    
+
     //In case address (formatted.address) is known then update Location collection
     if (position.address != '' && position.address) {
-      const isAddressDuplicate = location.find(e => e.address === position.address)
+      const isAddressDuplicate = location.find(e => e?.address === position.address)
+      console.log("isAddressDuplicate: " + isAddressDuplicate +  ", position.address: " + position.address)
       if (!isAddressDuplicate || !position.address.includes('Vuohennokantie')) {
         console.log(`Address ${position.address} new address.`)
         addDoc(collection(db, "Locations"), position);
