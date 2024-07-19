@@ -66,7 +66,7 @@ export default function Home() {
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
       </div>
 
-      {!proceed && <Confirmation onConfirm={() => handleOk} onCancel={() => handleCancel} />}
+      {!proceed && <Confirmation onConfirm={() => handleOk()} onCancel={() => handleCancel()} />}
       {proceed &&
         <>
           {locationReading && reloadCount === 0 && <MyLocation />}
