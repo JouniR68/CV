@@ -29,6 +29,7 @@ export default function Home() {
   }
 
   const handleReload = () => {
+    console.log("Reload activated")
     reloadCount++
     const lastReload = sessionStorage.getItem('lastReload')
     const currentTime = new Date().getTime()
@@ -39,7 +40,7 @@ export default function Home() {
     }
 
     sessionStorage.setItem('lastReload', currentTime)
-    window.location.reload()
+    window.location.reload()    
   }
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export default function Home() {
     setProceed(true)
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
-    reloadCount > 0 ? "" : handleReload()
+    reloadCount > 0 ? "" : handleReload()    
   }
 
   const handleCancel = () => {
@@ -66,7 +67,7 @@ export default function Home() {
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
       </div>
 
-      {!proceed && <Confirmation onConfirm={() => handleOk()} onCancel={() => handleCancel()} />}
+      {!proceed && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
       {proceed &&
         <>
           {locationReading && reloadCount === 0 && <MyLocation />}

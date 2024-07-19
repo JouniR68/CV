@@ -7,9 +7,16 @@ function MyLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState('')
-  const [error, setError] = useState('')
   const [location, setLocations] = useState(null)
 
+  useEffect(() => {
+    getUserPosition();
+    getAddress(position.latitude, position.longitude)
+    getLocations()
+  }, [])
+
+
+  //Retrieve existing location data from the firebase db.
   const getLocations = async () => {
     try {
       const locationRef = collection(db, "Locations")
@@ -22,7 +29,6 @@ function MyLocation() {
       setLocations(data)
     } catch (error) {
       console.error("Error fetching data: ", error)
-      setError("Error fetching data, pls contact site admin.")
       throw {
         message: "Datan haku epäonnistui",
         statusText: "Failas",
@@ -31,10 +37,49 @@ function MyLocation() {
     }
   }
 
+  const getUserPosition = () => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(success, error)
+    }
+    else {
+      console.log('Geolocation is not available in your browser.');
+    }
+  };
+
+  const success = (position) => {
+    setPosition({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    });
+
+    if (position.latitude && position.longitude) {
+      getAddress(position.latitude, position.longitude) //Check home address / town.
+      updateDatabase() //Update location to the database
+    }
+
+  }
+
+  const error = (err) => {
+    switch (err.code) {
+      case err.PERMISSION_DENIED:
+        alert("User denied the request for Geolocation.");
+        break;
+      case err.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable.");
+        break;
+      case err.TIMEOUT:
+        alert("The request to get user location timed out.");
+        break;
+      case err.UNKNOWN_ERROR:
+        alert("An unknown error occurred.");
+        break;
+    }
+  }
+
+
   const getAddress = async (lat, lon) => {
     const fetchingLocation = sessionStorage.getItem('allowSessionStorageForLocation')
     console.log("Retrieving location: ", fetchingLocation)
-    console.log("Checking address")
     if ((lat != null || lon != null) && fetchingLocation) {
       try {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
@@ -58,52 +103,36 @@ function MyLocation() {
           console.log("City: ", cityComponent.long_name)
         }
       } catch (error) {
-        setError('Unable to get location.');
+        console.error('Unable to get location.');
       }
     }
   };
 
 
-  const getPosition = () => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setPosition({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-
-      });
-    } else {
-      console.log('Geolocation is not available in your browser.');
-    }
-  };
-
-  useEffect(() => {
-    getPosition();
-    getAddress(position.latitude, position.longitude)
-    getLocations()
-  }, [])
 
 
-  //Send data to firebase if latitude and longitude are not null and those are not from your home address.
-  if (position.latitude != null && position.longitude != null) {
-    position.address = address
-    position.pvm = new Date()
+  console.log("Locations: ", location)
 
-    //In case address (formatted.address) is known then update Location collection
-    if (position.address != '' && position.address) {
-      const isAddressDuplicate = location.find(e => e?.address === position.address)
-      console.log("isAddressDuplicate: " + isAddressDuplicate +  ", position.address: " + position.address)
-      if (!isAddressDuplicate) {
-        console.log(`Address ${position.address} new address.`)
-        addDoc(collection(db, "Locations"), position);
-      } else {
-        console.log(`Address ${position.address} already registered.`)
+  const updateDatabase = () => {
+    if (position.latitude != null && position.longitude != null) {
+      position.address = address
+      position.pvm = new Date()
+
+      //In case address (formatted.address) is known then update Location collection
+      if (position.address != '' && position.address) {
+        const isAddressDuplicate = location.find(e => e?.address === address)
+        console.log("isAddressDuplicate: " + isAddressDuplicate + ", position.address: " + position.address)
+        if (!isAddressDuplicate) {
+          console.log(`Address ${position.address} new address.`)
+          addDoc(collection(db, "Locations"), position);
+        } else {
+          console.log(`Address ${position.address} already registered.`)
+        }
       }
-    }
 
+    }
   }
-  
+
 }
 
 export default MyLocation;

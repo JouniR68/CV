@@ -1,7 +1,13 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-function ConfirmationModal({ onConfirm, onCancel }) {
-  const { t } = useTranslation();
+
+function ConfirmationModal({onConfirm, onCancel}) {
+  const {t} = useTranslation()
+
+  if (!onConfirm || !onCancel){
+    console.log("onConfirm or onCancel prop funcs have issues")
+    return
+  }
 
   return (
     <div className="confirmation-container">
