@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 function ErrorMessage() {
   
   const {t} = useTranslation()
-
   const navigate = useNavigate()
+  
   const ok = () => {
-    navigate('/')
+    navigate('/', {state: {locationError: "No location"}})
   }
 
   return (

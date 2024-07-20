@@ -27,7 +27,7 @@ function MyLocation({message}) {
     getAddress(position.latitude, position.longitude)
   } else {
     console.error("Latitude and longitude missing")    
-    navigate('error')
+    navigate('error', {state: {location_error: "locationError"}})
   }
   }, [])
 

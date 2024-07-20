@@ -4,13 +4,25 @@ import "../index.css"
 import MyLocation from './MyLocation';
 import Confirmation from './Confirmation';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
   const [proceed, setProceed] = useState(false)
   const [locationReading, setLocationReading] = useState(false)
+  const [error, setError] = useState(null)
+  
   const navigate = useNavigate()
+  const location = useLocation()
+  const { state } = location;
+  if (state) {
+    const { locationError } = state;
+    if (locationError != null && !error){
+      console.log(locationError)
+      setError(locationError)
+    }
+  }
+
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
@@ -41,7 +53,7 @@ export default function Home() {
     }
 
     sessionStorage.setItem('lastReload', currentTime)
-    window.location.reload()    
+    window.location.reload()
   }
 
   useEffect(() => {
@@ -52,7 +64,7 @@ export default function Home() {
     setProceed(true)
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
-    reloadCount > 0 ? "" : handleReload()    
+    reloadCount > 0 ? "" : handleReload()
   }
 
   const handleCancel = () => {
@@ -71,7 +83,7 @@ export default function Home() {
       {!proceed && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
       {proceed &&
         <>
-          {locationReading && reloadCount === 0 && <MyLocation />}
+          {locationReading && reloadCount === 0 && !error && <MyLocation />}
           <div className='home-container'>
             <h1>{t('welcome')}</h1>
             <p></p>
