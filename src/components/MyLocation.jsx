@@ -2,24 +2,39 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
-function MyLocation() {
+function MyLocation({message}) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState('')
   const [location, setLocations] = useState(null)
 
+  const navigate = useNavigate()
+  const {t} = useTranslation()
+
   useEffect(() => {
-    getUserPosition();
-    getAddress(position.latitude, position.longitude)
     getLocations()
   }, [])
 
+  useEffect(() => {
+    getUserPosition();
+  }, [])
+
+  useEffect(() => {
+    if (position.latitude != null && position.longitude != null){
+    getAddress(position.latitude, position.longitude)
+  } else {
+    console.error("Latitude and longitude missing")    
+    navigate('error')
+  }
+  }, [])
 
   //Retrieve existing location data from the firebase db.
   const getLocations = async () => {
     try {
-      const locationRef = collection(db, "Locations")
+      const locationRef = collection(db, "locations")
       const querySnapshot = await getDocs(locationRef)
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -54,7 +69,7 @@ function MyLocation() {
 
     if (position.latitude && position.longitude) {
       getAddress(position.latitude, position.longitude) //Check home address / town.
-      updateDatabase() //Update location to the database
+      addAddress() //Update location to the database
     }
 
   }
@@ -102,6 +117,7 @@ function MyLocation() {
           setAddress("No details address, city (if found) = ", cityComponent.long_name);
           console.log("City: ", cityComponent.long_name)
         }
+        addAddress()
       } catch (error) {
         console.error('Unable to get location.');
       }
@@ -109,27 +125,16 @@ function MyLocation() {
   };
 
 
-
-
   console.log("Locations: ", location)
 
-  const updateDatabase = () => {
-    if (position.latitude != null && position.longitude != null) {
-      position.address = address
-      position.pvm = new Date()
-
-      //In case address (formatted.address) is known then update Location collection
-      if (position.address != '' && position.address) {
-        const isAddressDuplicate = location.find(e => e?.address === address)
-        console.log("isAddressDuplicate: " + isAddressDuplicate + ", position.address: " + position.address)
-        if (!isAddressDuplicate) {
-          console.log(`Address ${position.address} new address.`)
-          addDoc(collection(db, "Locations"), position);
-        } else {
-          console.log(`Address ${position.address} already registered.`)
-        }
-      }
-
+  const addAddress = () => {
+    const isAddressDuplicate = location.find(e => e?.address === address)
+    console.log("isAddressDuplicate: " + isAddressDuplicate + ", address: " + address)
+    if (!isAddressDuplicate) {
+      console.log(`Address ${address} new address.`)
+      //addDoc(collection(db, "locations"), address);
+    } else {
+      console.log(`Address ${address} already registered.`)
     }
   }
 

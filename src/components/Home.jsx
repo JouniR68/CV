@@ -4,12 +4,13 @@ import "../index.css"
 import MyLocation from './MyLocation';
 import Confirmation from './Confirmation';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
   const [proceed, setProceed] = useState(false)
   const [locationReading, setLocationReading] = useState(false)
-
+  const navigate = useNavigate()
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {

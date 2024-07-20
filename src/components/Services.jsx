@@ -71,15 +71,12 @@ export default function Services() {
               <TableCell>{t('Service-Custom')}</TableCell>
             </TableRow>
 
-            <TableRow>
-              <TableCell align="left">{t('Services-travel')}</TableCell>
-            </TableRow>
           </TableBody>
 
 
         </Table>
       </TableContainer>
-
+  <p></p>
       <Button onClick={getCustomerData}>{t('Service-forward')}</Button>
 
 

@@ -27,7 +27,7 @@
   "Intrest-header":"Intrests",
   "Why-header":"Why to hire?",
   "Open-header": "Looking for",
-  "Services-main": "Services with prices (company rates), individuals with custom prices.",
+  "Services-main": "Services with prices (travel expensives euro/km)",
   "Services-coding": "Coding (React, Node, JS, CSS , HTML).",
   "Services-admin": "Installation, updates, system configurations.",
   "Services-pm": "Product Mgmt, requirement, roadmapping.",
@@ -80,6 +80,7 @@
   "ThankYou": "Thank You",
   "ThankYouText": "We appreciate your feedback. If you have any questions, feel free to contact.",
   "ReturntoHome" : "Return to Home",
-  "SubmissionReceived": "Your submission has been received."
+  "SubmissionReceived": "Your submission has been received.",
+  "retrieving_position_failed": "Fetching position failed"
 
 }
