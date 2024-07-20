@@ -9,7 +9,7 @@ function ErrorMessage() {
   const navigate = useNavigate()
   
   const ok = () => {
-    navigate('/', {state: {locationError: "No location"}})
+    navigate('/', {state: {locationError: t('retrieving_position_failed')}})
   }
 
   return (

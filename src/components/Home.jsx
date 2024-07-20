@@ -65,12 +65,14 @@ export default function Home() {
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
     reloadCount > 0 ? "" : handleReload()
+    setError(null)
   }
 
   const handleCancel = () => {
     setProceed(true)
     setLocationReading(false)
     sessionStorage.removeItem('allowSessionStorageForLocation')
+    setError(null)
   }
 
   return (
@@ -80,10 +82,11 @@ export default function Home() {
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
       </div>
 
-      {!proceed && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
+      {!proceed && reloadCount === 0 && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
       {proceed &&
         <>
-          {locationReading && reloadCount === 0 && !error && <MyLocation />}
+          {locationReading && !error && <MyLocation />}
+          {error}
           <div className='home-container'>
             <h1>{t('welcome')}</h1>
             <p></p>
