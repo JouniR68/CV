@@ -48,7 +48,7 @@ export default function Home() {
     const currentTime = new Date().getTime()
 
     if (lastReload && currentTime - lastReload < 300000) {
-      //alert("You can reload a page every 5 minutes")
+      
       return
     }
 

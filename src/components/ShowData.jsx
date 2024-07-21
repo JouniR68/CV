@@ -22,7 +22,7 @@ const ShowCustomers = () => {
 
 	const getContracts = async () => {
 		try {
-			const customerRef = collection(db, "Firma")
+			const customerRef = collection(db, "messages")
 			const querySnapshot = await getDocs(customerRef)
 			const data = querySnapshot.docs.map((doc) => ({
 				id: doc.id,
@@ -44,7 +44,7 @@ const ShowCustomers = () => {
 
 	const getLocations = async () => {
 		try {
-			const locationRef = collection(db, "Locations")
+			const locationRef = collection(db, "locations")
 			const querySnapshot = await getDocs(locationRef)
 			const data = querySnapshot.docs.map((doc) => ({
 				id: doc.id,

@@ -4,31 +4,20 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import ErrorMessage from './ErrorMessage';
 
-function MyLocation({message}) {
+function MyLocation({ message }) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-  const [address, setAddress] = useState('')
-  const [location, setLocations] = useState(null)
+  const [address, setAddress] = useState({detail:''})
+  const [location, setLocations] = useState([])
 
   const navigate = useNavigate()
-  const {t} = useTranslation()
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     getLocations()
-  }, [])
-
-  useEffect(() => {
-    getUserPosition();
-  }, [])
-
-  useEffect(() => {
-    if (position.latitude != null && position.longitude != null){
-    getAddress(position.latitude, position.longitude)
-  } else {
-    console.error("Latitude and longitude missing")    
-    navigate('error', {state: {location_error: "locationError"}})
-  }
   }, [])
 
   //Retrieve existing location data from the firebase db.
@@ -41,7 +30,15 @@ function MyLocation({message}) {
         ...doc.data(),
       }))
       console.log("Location data: ", data)
-      setLocations(data)
+      const isPreviousAddress = data.find((l) => l.address != null)
+      if (!isPreviousAddress) {
+        console.log("No location data on the database")
+        setAddress({detail: "No previous data"})
+      } else {
+        console.log("Existing db data:")
+        setLocations(isPreviousAddress.address)
+      }
+      getUserPosition()
     } catch (error) {
       console.error("Error fetching data: ", error)
       throw {
@@ -51,6 +48,8 @@ function MyLocation({message}) {
       }
     }
   }
+
+  console.log("Locations: ", location)
 
   const getUserPosition = () => {
     if ('geolocation' in navigator) {
@@ -67,9 +66,8 @@ function MyLocation({message}) {
       longitude: position.coords.longitude,
     });
 
-    if (position.latitude && position.longitude) {
-      getAddress(position.latitude, position.longitude) //Check home address / town.
-      addAddress() //Update location to the database
+    if (position.coords.latitude && position.coords.longitude) {
+      getAddress(position.coords.latitude, position.coords.longitude) //Check home address / town.
     }
 
   }
@@ -91,7 +89,6 @@ function MyLocation({message}) {
     }
   }
 
-
   const getAddress = async (lat, lon) => {
     const fetchingLocation = sessionStorage.getItem('allowSessionStorageForLocation')
     console.log("Retrieving location: ", fetchingLocation)
@@ -111,13 +108,12 @@ function MyLocation({message}) {
 
         const result = response.data.results[0];
         if (result.formatted_address != "") {
-          setAddress(result.formatted_address);
+          setAddress({detail: result.formatted_address});
           console.log("formatted address: ", result.formatted_address)
         } else {
-          setAddress("No details address, city (if found) = ", cityComponent.long_name);
+          setAddress({detail: cityComponent.long_name});
           console.log("City: ", cityComponent.long_name)
         }
-        addAddress()
       } catch (error) {
         console.error('Unable to get location.');
       }
@@ -125,18 +121,27 @@ function MyLocation({message}) {
   };
 
 
-  console.log("Locations: ", location)
 
-  const addAddress = () => {
-    const isAddressDuplicate = location.find(e => e?.address === address)
-    console.log("isAddressDuplicate: " + isAddressDuplicate + ", address: " + address)
-    if (!isAddressDuplicate) {
-      console.log(`Address ${address} new address.`)
-      //addDoc(collection(db, "locations"), address);
-    } else {
-      console.log(`Address ${address} already registered.`)
+  if (!address.detail) {
+    console.log("address not found")
+    return
+  } else {
+    const isAddressDuplicate = location.includes(address.detail)
+
+    if (isAddressDuplicate) {
+      console.log(`${isAddressDuplicate} address already stored`)
+      return
     }
+
+    if (isAddressDuplicate === false && address.detail != "No previous data") {
+      console.log(`Address ${address.detail} new address.`)
+      addDoc(collection(db, "locations"), address);      
+    } else {
+      console.log(`Address ${address.detail} already registered.`)
+    }
+    return
   }
+
 
 }
 

@@ -83,6 +83,7 @@
   "ThankYouText": "Kiitos vierailusta, toivottavasti olemme yhteyksissä.",
   "ReturntoHome" : "Paluu koti sivulle",
   "SubmissionReceived": "Viestisi saapui perille.",
-  "retrieving_position_failed": "Sijainnin haku epäonnistui"
+  "retrieving_position_failed": "Sijainnin haku epäonnistui",
+  "NoAddressAvailable": "Osoitetta ei saatavilla"
 
 }

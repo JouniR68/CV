@@ -81,6 +81,7 @@
   "ThankYouText": "We appreciate your feedback. If you have any questions, feel free to contact.",
   "ReturntoHome" : "Return to Home",
   "SubmissionReceived": "Your submission has been received.",
-  "retrieving_position_failed": "Fetching position failed"
+  "retrieving_position_failed": "Fetching position failed",
+  "NoAddressAvailable": "No address available"
 
 }

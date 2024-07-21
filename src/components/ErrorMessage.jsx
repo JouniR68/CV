@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 
@@ -7,16 +8,26 @@ function ErrorMessage() {
   
   const {t} = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
+  const [close, setClose] = useState(false)
+  const [text, setText] = useState(null)
   
+  const {state} = location;
+  const {locationError} = state;
+  if (locationError != null ){
+    setText(locationError)
+  }
+
   const ok = () => {
-    navigate('/', {state: {locationError: t('retrieving_position_failed')}})
+    setClose(true)
+    navigate('/')
   }
 
   return (
     <div className="confirmation-container">
       <div className="confirmation-content">        
         <h2>{t('Error')}</h2> 
-        <h4>{t('retrieving_position_failed')}</h4>
+        <h4>{text}</h4>
         <button id="ok" onClick={ok}>{t('Ok')}</button>                
       </div>
     </div>
