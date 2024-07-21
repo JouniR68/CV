@@ -74,7 +74,7 @@
   "Firm Id": "Y-tunnus",
   "Description": "Kuvaus",
   "Created": "Luotu",
-  "Location": "Sijainti",
+  "Location": "Sijainti historia",
   "Latitude": "Leveysaste",
   "Longitude": "Pituusaste",
   "Repositories": "Koodi varasto",

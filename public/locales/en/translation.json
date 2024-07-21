@@ -72,7 +72,7 @@
   "Firm Id": "Company Id (Y-id)",
   "Description": "Description",
   "Created": "Created",
-  "Location": "Location",
+  "Location": "Location history",
   "Latitude": "Latitude",
   "Longitude": "Longitude",
   "Repositories": "Few coding repositories",
