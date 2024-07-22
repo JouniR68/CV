@@ -26,7 +26,9 @@ export default function Education() {
       <div>
         {profileData.map((profile) => (
           <div key={i++} className='profile--table'>
-            <img key={i++} src={profile.Photo} style={{ width: '20rem', borderRadius: '5px', marginTop: '1rem', marginBottom: '1rem' }} alt='Jouni Riimala' />
+            <div className = ".photo-grid">
+              <img key={i++}  src={profile.Photo} alt='Jouni Riimala' />
+            </div>
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
               <TableBody>

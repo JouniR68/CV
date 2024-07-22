@@ -25,6 +25,7 @@ import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
 import '../i18n'; // Import the i18n configuration
 import ErrorMessage from "./components/ErrorMessage";
+import Address from "./components/Address";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path="output" element={<CV />} />
+            <Route path="address" element={<Address />} />
             <Route path="error" element={<ErrorMessage />} />
             <Route path='profile' element={<ProfileLayout />}>
               <Route index element={<Profile />} />
