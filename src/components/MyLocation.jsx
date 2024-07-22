@@ -10,7 +10,7 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 function MyLocation({ message }) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-  const [address, setAddress] = useState(null)
+  const [address, setAddress] = useState({detail:''})
   const [location, setLocations] = useState([])
 
   const navigate = useNavigate()
@@ -107,20 +107,17 @@ function MyLocation({ message }) {
         );
 
         const result = response.data.results[0];
-        if (result.formatted_address != "") {
-          let newAddress = result.formatted_address
-
-          setAddress({ detail: newAddress });
-          console.log("formatted address: ", result.formatted_address)
-          console.log("address after update is ", address.detail)
+        
+        if (result.formatted_address != "") {          
+          setAddress((prevAddress) => ({...prevAddress, detail: result.formatted_address, }));
+          
         } else {
           setAddress({ detail: cityComponent.long_name });
           console.log("City: ", cityComponent.long_name)
         }
-        addAddress()
+        addAddress(result.formatted_address);        
       } catch (error) {
-        console.error(t('UnableToGetLocation'));
-        let info = "";
+        console.error(t('UnableToGetLocation'));        
         //{isMobile ? info = "Request was made from " + mobileModel : info = "The request was made from PC"}
         navigate('error', { state: { locationError: t('UnableToGetLocation') } })
       }
@@ -128,23 +125,23 @@ function MyLocation({ message }) {
   };
 
 
-  const addAddress = () => {
-
-    if (!address.detail) {
+  const addAddress = (addr) => {    
+    if (!addr) {
       console.log("address not found")
       return
     } else {
-      const isAddressDuplicate = location.includes(address.detail)
+      const isAddressDuplicate = location.includes(addr)
 
       if (isAddressDuplicate) {
         console.log(`${isAddressDuplicate} address already stored`)
         return
       }
 
-      isMobile ? address.target = mobileModel : address.target = "PC"
+      isMobile ? address.target = isMobile : address.target = "PC";
 
-      if (isAddressDuplicate === false) {
-        console.log(`Address ${address.detail} new address.`)
+      address.detail = addr;
+      console.log("address: ", address)
+      if (isAddressDuplicate === false) {        
         addDoc(collection(db, "locations"), address);
       } else {
         console.log(`Address ${address.detail} already registered.`)
