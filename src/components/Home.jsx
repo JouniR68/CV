@@ -8,16 +8,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
-  const [proceed, setProceed] = useState(false)
+  const [confirmation, setConfirmation] = useState(true)
   const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
-  
+
   const navigate = useNavigate()
   const location = useLocation()
   const { state } = location;
   if (state) {
     const { locationError } = state;
-    if (locationError != null && !error){
+    if (locationError != null && !error) {
       console.log(locationError)
       setError(locationError)
     }
@@ -48,7 +48,7 @@ export default function Home() {
     const currentTime = new Date().getTime()
 
     if (lastReload && currentTime - lastReload < 300000) {
-      
+
       return
     }
 
@@ -60,21 +60,21 @@ export default function Home() {
     handleText;
   }, [])
 
-  const handleOk = () => {
-    setProceed(true)
+  const handleOk = () => {    
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
-    reloadCount > 0 ? "" : handleReload()
-    setError(null)
+    setConfirmation(false)
+    //reloadCount > 0 ? "" : handleReload()    
   }
 
-  const handleCancel = () => {
-    setProceed(true)
+  const handleCancel = () => {    
     setLocationReading(false)
+    setConfirmation(false)
     sessionStorage.removeItem('allowSessionStorageForLocation')
     setError(null)
   }
 
+  
   return (
     <>
       <div className="flags">
@@ -82,18 +82,16 @@ export default function Home() {
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
       </div>
 
-      {!proceed && reloadCount === 0 && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
-      {proceed &&
-        <>
-          {locationReading && !error && <MyLocation />}
-          {error}
-          <div className='home-container'>
-            <h1>{t('welcome')}</h1>
-            <p></p>
-            {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
-          </div>
-        </>
-      }
+      
+      {confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
+      {locationReading === true && <MyLocation />}
+
+      <div className='home-container'>
+        <h1>{t('welcome')}</h1>
+        <p></p>
+        {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
+      </div>
+
     </>
   );
 }

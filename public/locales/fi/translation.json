@@ -84,6 +84,7 @@
   "ReturntoHome" : "Paluu koti sivulle",
   "SubmissionReceived": "Viestisi saapui perille.",
   "retrieving_position_failed": "Sijainnin haku epäonnistui",
-  "NoAddressAvailable": "Osoitetta ei saatavilla"
+  "NoAddressAvailable": "Osoitetta ei saatavilla",
+  "UnableToGetLocation": "Osoitteen haku epäonnistui"
 
 }

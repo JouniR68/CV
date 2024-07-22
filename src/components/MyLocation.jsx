@@ -9,7 +9,7 @@ import ErrorMessage from './ErrorMessage';
 function MyLocation({ message }) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-  const [address, setAddress] = useState({detail:''})
+  const [address, setAddress] = useState(null)
   const [location, setLocations] = useState([])
 
   const navigate = useNavigate()
@@ -30,13 +30,12 @@ function MyLocation({ message }) {
         ...doc.data(),
       }))
       console.log("Location data: ", data)
-      const isPreviousAddress = data.find((l) => l.address != null)
+      const isPreviousAddress = data.find((l) => l.detail != null)
       if (!isPreviousAddress) {
-        console.log("No location data on the database")
-        setAddress({detail: "No previous data"})
+        console.log("No location data on the database")        
       } else {
         console.log("Existing db data:")
-        setLocations(isPreviousAddress.address)
+        setLocations(isPreviousAddress.detail)
       }
       getUserPosition()
     } catch (error) {
@@ -108,20 +107,25 @@ function MyLocation({ message }) {
 
         const result = response.data.results[0];
         if (result.formatted_address != "") {
-          setAddress({detail: result.formatted_address});
+          let newAddress = result.formatted_address
+          
+          setAddress({detail: newAddress});
           console.log("formatted address: ", result.formatted_address)
+          console.log("address after update is ", address.detail)
         } else {
           setAddress({detail: cityComponent.long_name});
           console.log("City: ", cityComponent.long_name)
         }
+        addAddress()
       } catch (error) {
-        console.error('Unable to get location.');
+        console.error(t('UnableToGetLocation'));
+        navigate('error', {state: {locationError: t('UnableToGetLocation')}})
       }
     }
   };
 
 
-
+const addAddress = () => {
   if (!address.detail) {
     console.log("address not found")
     return
@@ -133,7 +137,7 @@ function MyLocation({ message }) {
       return
     }
 
-    if (isAddressDuplicate === false && address.detail != "No previous data") {
+    if (isAddressDuplicate === false) {
       console.log(`Address ${address.detail} new address.`)
       addDoc(collection(db, "locations"), address);      
     } else {
@@ -141,7 +145,7 @@ function MyLocation({ message }) {
     }
     return
   }
-
+}
 
 }
 

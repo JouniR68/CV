@@ -14,10 +14,7 @@ function ErrorMessage() {
   
   const {state} = location;
   const {locationError} = state;
-  if (locationError != null ){
-    setText(locationError)
-  }
-
+  
   const ok = () => {
     setClose(true)
     navigate('/')
@@ -27,7 +24,7 @@ function ErrorMessage() {
     <div className="confirmation-container">
       <div className="confirmation-content">        
         <h2>{t('Error')}</h2> 
-        <h4>{text}</h4>
+        <h4>{locationError}</h4>
         <button id="ok" onClick={ok}>{t('Ok')}</button>                
       </div>
     </div>

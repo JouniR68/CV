@@ -82,6 +82,7 @@
   "ReturntoHome" : "Return to Home",
   "SubmissionReceived": "Your submission has been received.",
   "retrieving_position_failed": "Fetching position failed",
-  "NoAddressAvailable": "No address available"
+  "NoAddressAvailable": "No address available",
+  "UnableToGetLocation": "Unable to get location."
 
 }
