@@ -549,7 +549,7 @@
   }
 
   .photo-grid img {
-    width: 100%;
+    width: 60%;
     height:auto;
     display: block;
     border-radius: 5px;
