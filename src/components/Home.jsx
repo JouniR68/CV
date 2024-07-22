@@ -6,6 +6,8 @@ import Confirmation from './Confirmation';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+
+
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
   const [confirmation, setConfirmation] = useState(true)
@@ -81,7 +83,7 @@ export default function Home() {
         <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
       </div>
-
+      
       
       {confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
       {locationReading === true && <MyLocation />}

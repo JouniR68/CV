@@ -5,6 +5,7 @@ import { db } from "../firebase";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
+import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 
 function MyLocation({ message }) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
@@ -32,7 +33,7 @@ function MyLocation({ message }) {
       console.log("Location data: ", data)
       const isPreviousAddress = data.find((l) => l.detail != null)
       if (!isPreviousAddress) {
-        console.log("No location data on the database")        
+        console.log("No location data on the database")
       } else {
         console.log("Existing db data:")
         setLocations(isPreviousAddress.detail)
@@ -108,44 +109,47 @@ function MyLocation({ message }) {
         const result = response.data.results[0];
         if (result.formatted_address != "") {
           let newAddress = result.formatted_address
-          
-          setAddress({detail: newAddress});
+
+          setAddress({ detail: newAddress });
           console.log("formatted address: ", result.formatted_address)
           console.log("address after update is ", address.detail)
         } else {
-          setAddress({detail: cityComponent.long_name});
+          setAddress({ detail: cityComponent.long_name });
           console.log("City: ", cityComponent.long_name)
         }
         addAddress()
       } catch (error) {
         console.error(t('UnableToGetLocation'));
-        navigate('error', {state: {locationError: t('UnableToGetLocation')}})
+        navigate('error', { state: { locationError: t('UnableToGetLocation') } })
       }
     }
   };
 
 
-const addAddress = () => {
-  if (!address.detail) {
-    console.log("address not found")
-    return
-  } else {
-    const isAddressDuplicate = location.includes(address.detail)
+  const addAddress = () => {
 
-    if (isAddressDuplicate) {
-      console.log(`${isAddressDuplicate} address already stored`)
+    if (!address.detail) {
+      console.log("address not found")
+      return
+    } else {
+      const isAddressDuplicate = location.includes(address.detail)
+
+      if (isAddressDuplicate) {
+        console.log(`${isAddressDuplicate} address already stored`)
+        return
+      }
+
+      isMobile ? address.target = mobileModel : address.target = "PC"
+
+      if (isAddressDuplicate === false) {
+        console.log(`Address ${address.detail} new address.`)
+        addDoc(collection(db, "locations"), address);
+      } else {
+        console.log(`Address ${address.detail} already registered.`)
+      }
       return
     }
-
-    if (isAddressDuplicate === false) {
-      console.log(`Address ${address.detail} new address.`)
-      addDoc(collection(db, "locations"), address);      
-    } else {
-      console.log(`Address ${address.detail} already registered.`)
-    }
-    return
   }
-}
 
 }
 
