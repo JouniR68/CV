@@ -120,7 +120,9 @@ function MyLocation({ message }) {
         addAddress()
       } catch (error) {
         console.error(t('UnableToGetLocation'));
-        navigate('error', { state: { locationError: t('UnableToGetLocation') } })
+        let info = "";
+        {isMobile ? info = "Request was made from " + mobileModel : info = "The request was made from PC"}
+        navigate('error', { state: { locationError: t('UnableToGetLocation') + ', info: ' + info } })
       }
     }
   };
