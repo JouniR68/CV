@@ -5,8 +5,8 @@ import MyLocation from './MyLocation';
 import Confirmation from './Confirmation';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
+import CheckLocation from './CheckLocation';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
@@ -24,6 +24,8 @@ export default function Home() {
       setError(locationError)
     }
   }
+
+  
 
   const { t, i18n } = useTranslation();
 
@@ -76,6 +78,7 @@ export default function Home() {
     setError(null)
   }
 
+  console.log("isMobile: ", isMobile)
   
   return (
     <>
@@ -85,8 +88,8 @@ export default function Home() {
       </div>
       
       
-      {confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
-      {locationReading === true && <MyLocation />}
+      {!isMobile && confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
+      {!isMobile && locationReading === true && <MyLocation />}
 
       <div className='home-container'>
         <h1>{t('welcome')}</h1>

@@ -16,6 +16,9 @@ export default function Header() {
         <Link to="/profile">{t('Profile')}</Link>                  
         <Link to="/output">CV</Link>
         <Link to="/rent">{t('Services')}</Link>
+        <p>
+        </p>
+        <Link to="/checkLocation">Check Location</Link>
       </nav> : 
       <Login />}
     </header>
