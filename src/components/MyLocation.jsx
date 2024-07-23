@@ -137,11 +137,11 @@ function MyLocation({ message }) {
         return
       }
 
-      isMobile ? address.target = mobileModel : address.target = "PC";
+      isMobile ? address.target = "mobile" : address.target = "PC";
 
       address.detail = addr;
       console.log("address: ", address)
-      if (isAddressDuplicate === false) {        
+      if (isAddressDuplicate === false && (address.target != "mobile" || address.taget != "PC")) {        
         addDoc(collection(db, "locations"), address);
       } else {
         console.log(`Address ${address.detail} already registered.`)

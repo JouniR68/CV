@@ -116,7 +116,8 @@ const ShowCustomers = () => {
 				{locations.map((l) => (
 					<TableBody key={nanoid()}>
 						<TableRow key={nanoid()}>
-							<TableCell>{l.detail}</TableCell>							
+							<TableCell>{l.detail}</TableCell>
+							<TableCell>{l.target}</TableCell>							
 						</TableRow>
 					</TableBody>
 				))}
