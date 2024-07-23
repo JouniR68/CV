@@ -140,6 +140,7 @@ function MyLocation({ message }) {
       isMobile ? address.target = "mobile" : address.target = "PC";
 
       address.detail = addr;
+      address.pvm = new Date().toLocaleDateString()
       console.log("address: ", address)
       if (isAddressDuplicate === false && (address.target != "mobile" || address.taget != "PC")) {        
         addDoc(collection(db, "locations"), address);

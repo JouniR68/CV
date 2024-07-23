@@ -86,6 +86,7 @@
   "retrieving_position_failed": "Sijainnin haku epäonnistui",
   "NoAddressAvailable": "Osoitetta ei saatavilla",
   "UnableToGetLocation": "Osoitteen haku epäonnistui",
-  "target": "Mobiili laite/Tietokone"
+  "target": "Mobiili laite/Tietokone",
+  "pvm": "Päivä"
 
 }

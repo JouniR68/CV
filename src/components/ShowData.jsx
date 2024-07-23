@@ -110,7 +110,8 @@ const ShowCustomers = () => {
 				<TableHead>
 					<TableRow>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Location')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('target')}</TableCell>						
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('target')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('pvm')}</TableCell>						
 					</TableRow>
 				</TableHead>
 
@@ -118,7 +119,8 @@ const ShowCustomers = () => {
 					<TableBody key={nanoid()}>
 						<TableRow key={nanoid()}>
 							<TableCell>{l.detail}</TableCell>
-							<TableCell>{l.target}</TableCell>							
+							<TableCell>{l.target}</TableCell>
+							<TableCell>{l.pvm}</TableCell>							
 						</TableRow>
 					</TableBody>
 				))}
