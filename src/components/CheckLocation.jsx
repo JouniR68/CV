@@ -12,6 +12,7 @@ function CheckLocation() {
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState({ detail: '' })
   const [location, setLocations] = useState([])
+  const [homebase, setHomeBase] = useState()
 
   const navigate = useNavigate()
 
@@ -36,7 +37,7 @@ function CheckLocation() {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     });
-
+    getAddress(position.coords.latitude, position.coords.longitude)
   }
 
   const error = (err) => {
@@ -56,13 +57,50 @@ function CheckLocation() {
     }
   }
 
+  const getAddress = async (lat, lon) => {
+    //const fetchingLocation = sessionStorage.getItem('allowSessionStorageForLocation')
+    
+    if (lat != null || lon != null) {
+      try {
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
+        console.log("url: ", url)
+
+        const response = await axios.get(url);
+
+        const addressComponents = response.data.results[0].address_components;
+
+        // Extract city from address components
+        const cityComponent = addressComponents.find(component =>
+          component.types.includes('locality')
+        );
+
+        const result = response.data.results[0];
+
+        if (result.formatted_address != "") {
+          setAddress((prevAddress) => ({ ...prevAddress, detail: result.formatted_address, }));
+          setHomeBase(result.formatted_address)
+        } else {
+          setAddress({ detail: cityComponent.long_name });
+          setHomeBase(cityComponent.long_name)
+          console.log("City: ", cityComponent.long_name)
+        }
+      } catch (error) {
+        console.error(t('UnableToGetLocation'));
+        //{isMobile ? info = "Request was made from " + mobileModel : info = "The request was made from PC"}
+        navigate('error', { state: { locationError: t('UnableToGetLocation') } })
+      }
+    }
+  };
+
+
   return (
     <div>
       <h2>Position details:</h2>
-      
+
       <h3>Latitude: {position.latitude}</h3>
       <p></p>
       <h3>Longitude: {position.longitude}</h3>
+      <h3>The address: {homebase}</h3>
     </div>
   )
 
