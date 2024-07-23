@@ -109,7 +109,8 @@ const ShowCustomers = () => {
 			<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
 				<TableHead>
 					<TableRow>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Location')}</TableCell>						
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Location')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('target')}</TableCell>						
 					</TableRow>
 				</TableHead>
 

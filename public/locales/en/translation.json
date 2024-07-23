@@ -83,6 +83,6 @@
   "SubmissionReceived": "Your submission has been received.",
   "retrieving_position_failed": "Fetching position failed",
   "NoAddressAvailable": "No address available",
-  "UnableToGetLocation": "The location is unavailable."
-
+  "UnableToGetLocation": "The location is unavailable.",
+  "target": "Mobile/PC"
 }
