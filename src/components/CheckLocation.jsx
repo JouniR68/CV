@@ -81,8 +81,8 @@ function CheckLocation() {
           setHomeBase(result.formatted_address)
         } else {
           //setAddress({ detail: cityComponent.long_name });
-          setHomeBase(cityComponent.long_name)
-          console.log("City: ", cityComponent.long_name)
+          setHomeBase(`Retrieving the address based on ${lat} + ${lon} from failed`)
+          
         }
       } catch (error) {
         console.error(t('UnableToGetLocation'));
