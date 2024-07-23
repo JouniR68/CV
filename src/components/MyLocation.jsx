@@ -94,7 +94,7 @@ function MyLocation({ message }) {
     console.log("Retrieving location: ", fetchingLocation)
     if ((lat != null || lon != null) && fetchingLocation) {
       try {
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyCkhlysVOEcD_Wfn4hQwDXgXc1LQde0ne0`
         console.log("url: ", url)
 
         const response = await axios.get(url);
@@ -137,7 +137,7 @@ function MyLocation({ message }) {
         return
       }
 
-      isMobile ? address.target = isMobile : address.target = "PC";
+      isMobile ? address.target = mobileModel : address.target = "PC";
 
       address.detail = addr;
       console.log("address: ", address)

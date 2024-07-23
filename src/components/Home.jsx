@@ -88,8 +88,8 @@ export default function Home() {
       </div>
       
       
-      {!isMobile && confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
-      {!isMobile && locationReading === true && <MyLocation />}
+      {confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
+      {locationReading === true && <MyLocation />}
 
       <div className='home-container'>
         <h1>{t('welcome')}</h1>
