@@ -10,9 +10,9 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 function CheckLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-  const [address, setAddress] = useState({ detail: '' })
-  const [location, setLocations] = useState([])
-  const [homebase, setHomeBase] = useState()
+  //const [address, setAddress] = useState({ detail: '' })
+  //const [location, setLocations] = useState([])
+  const [homebase, setHomeBase] = useState('')
 
   const navigate = useNavigate()
 
@@ -77,10 +77,10 @@ function CheckLocation() {
         const result = response.data.results[0];
 
         if (result.formatted_address != "") {
-          setAddress((prevAddress) => ({ ...prevAddress, detail: result.formatted_address, }));
+          //setAddress((prevAddress) => ({ ...prevAddress, detail: result.formatted_address, }));
           setHomeBase(result.formatted_address)
         } else {
-          setAddress({ detail: cityComponent.long_name });
+          //setAddress({ detail: cityComponent.long_name });
           setHomeBase(cityComponent.long_name)
           console.log("City: ", cityComponent.long_name)
         }
