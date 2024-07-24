@@ -10,7 +10,7 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 function CheckLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const trimmedApi = apiKey.replace(/'/g, "");
-  console.log("api: ", apiKey)
+  
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   //const [address, setAddress] = useState({ detail: '' })
   //const [location, setLocations] = useState([])

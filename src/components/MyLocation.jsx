@@ -9,6 +9,7 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 
 function MyLocation({ message }) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
+  const trimmedApi = apiKey.replace(/'/g, "");
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState({detail:''})
   const [location, setLocations] = useState([])
@@ -94,7 +95,7 @@ function MyLocation({ message }) {
     console.log("Retrieving location: ", fetchingLocation)
     if ((lat != null || lon != null) && fetchingLocation) {
       try {
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyCkhlysVOEcD_Wfn4hQwDXgXc1LQde0ne0`
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${trimmedApi}`
         console.log("url: ", url)
 
         const response = await axios.get(url);
