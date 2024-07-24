@@ -63,7 +63,7 @@ function CheckLocation() {
     
     if (lat != null || lon != null) {
       try {
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=AIzaSyCkhlysVOEcD_Wfn4hQwDXgXc1LQde0ne0`
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`
         console.log("url: ", url)
 
         const response = await axios.get(url);
@@ -97,7 +97,7 @@ function CheckLocation() {
   return (
     <div>
       <h2>Position details:</h2>
-{apiKey}
+
       <h3>Latitude: {position.latitude}</h3>
       <p></p>
       <h3>Longitude: {position.longitude}</h3>
