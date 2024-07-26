@@ -32,6 +32,12 @@
     margin: 0 auto;
   }
 
+  .mail{
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+    gap:1rem;
+  }
 
   .flags{
     width:'48px';
