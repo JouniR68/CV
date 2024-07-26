@@ -129,11 +129,11 @@ function MyLocation({ message }) {
 
 
   const fetchNearbyPlaces = async (lat, lon) => {
-    
+
     const radius = 1500; // 1500 meters (1.5 km) is a reasonable search radius
     const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&key=${trimmedApi}`;
     console.log("place url: ", url)
-    try{    
+    try {
       const response = await axios.get(url);
       if (response.data.status === 200) {
         console.log("places response: ", response.data.results)
@@ -167,8 +167,10 @@ function MyLocation({ message }) {
         return
       }
 
-      address.place = places.map(place => (place.name - place.vicinity))
-      console.log(address.place)
+      if (places.length > 0) {
+        address.place = places.map(place => (place.name - place.vicinity))
+        console.log(address.place)
+      }
 
       const date = new Date()
       address.detail = addr;

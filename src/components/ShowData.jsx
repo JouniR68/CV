@@ -128,7 +128,7 @@ const ShowCustomers = () => {
 							<TableCell>{l.target}</TableCell>
 							{l.pvm != null && <TableCell>{l.pvm}</TableCell>}
 							{l.time != null && <TableCell>{l.time}</TableCell>}
-							<TableCell>{l.place}</TableCell>	
+							{l.place != null && <TableCell>{l.place}</TableCell>}
 						</TableRow>}
 					</TableBody>
 				))}
