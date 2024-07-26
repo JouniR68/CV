@@ -11,7 +11,7 @@ function MyLocation({ message }) {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const trimmedApi = apiKey.replace(/'/g, "");
   const [position, setPosition] = useState({ latitude: null, longitude: null });
-  const [address, setAddress] = useState({detail:''})
+  const [address, setAddress] = useState({ detail: '' })
   const [location, setLocations] = useState([])
 
   const navigate = useNavigate()
@@ -108,17 +108,17 @@ function MyLocation({ message }) {
         );
 
         const result = response.data.results[0];
-        
-        if (result.formatted_address != "") {          
-          setAddress((prevAddress) => ({...prevAddress, detail: result.formatted_address, }));
-          
+
+        if (result.formatted_address != "") {
+          setAddress((prevAddress) => ({ ...prevAddress, detail: result.formatted_address, }));
+
         } else {
           setAddress({ detail: cityComponent.long_name });
           console.log("City: ", cityComponent.long_name)
         }
-        addAddress(result.formatted_address);        
+        addAddress(result.formatted_address);
       } catch (error) {
-        console.error(t('UnableToGetLocation'));        
+        console.error(t('UnableToGetLocation'));
         //{isMobile ? info = "Request was made from " + mobileModel : info = "The request was made from PC"}
         navigate('error', { state: { locationError: t('UnableToGetLocation') } })
       }
@@ -126,7 +126,7 @@ function MyLocation({ message }) {
   };
 
 
-  const addAddress = (addr) => {    
+  const addAddress = (addr) => {
     if (!addr) {
       console.log("address not found")
       return
@@ -140,10 +140,18 @@ function MyLocation({ message }) {
 
       isMobile ? address.target = "mobile" : address.target = "PC";
 
+      //blacklist
+      if (addr.includes("Kattila" || addr.includes('Vuohennokantie 7'))) {
+        console.error("Bot addresses and homebase is not saved to the firebase")
+        return
+      }
+new Date.now()
+      const date = new Date()
       address.detail = addr;
-      address.pvm = new Date().toLocaleDateString()
+      address.pvm = date.toLocaleDateString()
+      address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)
-      if (isAddressDuplicate === false && (address.target != "mobile" || address.taget != "PC")) {        
+      if (isAddressDuplicate === false && (address.target != "mobile" || address.taget != "PC")) {
         addDoc(collection(db, "locations"), address);
       } else {
         console.log(`Address ${address.detail} already registered.`)

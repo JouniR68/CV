@@ -100,7 +100,7 @@ const ShowCustomers = () => {
 							<TableCell>{t.email}</TableCell>
 							<TableCell>{t.phone}</TableCell>
 							<TableCell>{t.description}</TableCell>
-							<TableCell>{t.pvm}</TableCell>
+							<TableCell>{t.pvm}</TableCell>							
 						</TableRow>
 					</TableBody>
 				))}
@@ -111,17 +111,19 @@ const ShowCustomers = () => {
 					<TableRow>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Location')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('target')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('pvm')}</TableCell>						
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('pvm')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('time')}</TableCell>						
 					</TableRow>
 				</TableHead>
 
 				{locations.map((l) => (
 					<TableBody key={nanoid()}>
-						<TableRow key={nanoid()}>
+						{(!l.detail.includes('Vuohennokantie 7') && !l.detail.includes('Katila')) && <TableRow key={nanoid()}>
 							<TableCell>{l.detail}</TableCell>
 							<TableCell>{l.target}</TableCell>
 							<TableCell>{l.pvm}</TableCell>							
-						</TableRow>
+							<TableCell>{l.time}</TableCell>
+						</TableRow>}
 					</TableBody>
 				))}
 			</Table>

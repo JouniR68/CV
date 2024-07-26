@@ -87,6 +87,6 @@
   "NoAddressAvailable": "Osoitetta ei saatavilla",
   "UnableToGetLocation": "Osoitteen haku epäonnistui",
   "target": "Mobiili laite/Tietokone",
-  "pvm": "Päivä"
-
+  "pvm": "Päivä",
+  "time": "Aika"
 }

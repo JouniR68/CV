@@ -85,5 +85,6 @@
   "NoAddressAvailable": "No address available",
   "UnableToGetLocation": "The location is unavailable.",
   "target": "Mobile/PC",
-  "pvm": "Date"
+  "pvm": "Date",
+  "time": "Time"
 }
