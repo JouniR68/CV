@@ -13,6 +13,7 @@ function MyLocation({ message }) {
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState({ detail: '' })
   const [location, setLocations] = useState([])
+  const [places, setPlaces] = useState([])
 
   const navigate = useNavigate()
 
@@ -69,6 +70,7 @@ function MyLocation({ message }) {
 
     if (position.coords.latitude && position.coords.longitude) {
       getAddress(position.coords.latitude, position.coords.longitude) //Check home address / town.
+      fetchNearbyPlaces(position.coords.latitude, position.coords.longitude)
     }
 
   }
@@ -126,6 +128,25 @@ function MyLocation({ message }) {
   };
 
 
+  const fetchNearbyPlaces = async (lat, lon) => {
+    
+    const radius = 1500; // 1500 meters (1.5 km) is a reasonable search radius
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&key=${trimmedApi}`;
+    console.log("place url: ", url)
+    try{    
+      const response = await axios.get(url);
+      if (response.data.status === 200) {
+        console.log("places response: ", response.data.results)
+        setPlaces(response.data.results);
+      } else {
+        console.error('No places found or an error occurred: ' + response.data.status);
+      }
+    } catch (error) {
+      console.error('Unable to fetch places: ' + error.message);
+    }
+  };
+
+
   const addAddress = (addr) => {
     if (!addr) {
       console.log("address not found")
@@ -145,7 +166,10 @@ function MyLocation({ message }) {
         console.error("Bot addresses and homebase is not saved to the firebase")
         return
       }
-new Date.now()
+
+      address.place = places.map(place => (place.name - place.vicinity))
+      console.log(address.place)
+
       const date = new Date()
       address.detail = addr;
       address.pvm = date.toLocaleDateString()

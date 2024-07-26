@@ -75,6 +75,7 @@ const ShowCustomers = () => {
 		return new Date(b.detail).toLocaleDateString() - new Date(b.detail).toLocaleTimeString()
 	})
 
+	
 	return (
 
 		<TableContainer component={Paper}>
@@ -89,7 +90,7 @@ const ShowCustomers = () => {
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Phone')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firm Id')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Description')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Created')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Created')}</TableCell>						
 					</TableRow>
 				</TableHead>
 
@@ -115,7 +116,8 @@ const ShowCustomers = () => {
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Location')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('target')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('pvm')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('time')}</TableCell>						
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('time')}</TableCell>	
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('place')}</TableCell>						
 					</TableRow>
 				</TableHead>
 
@@ -126,6 +128,7 @@ const ShowCustomers = () => {
 							<TableCell>{l.target}</TableCell>
 							{l.pvm != null && <TableCell>{l.pvm}</TableCell>}
 							{l.time != null && <TableCell>{l.time}</TableCell>}
+							<TableCell>{l.place}</TableCell>	
 						</TableRow>}
 					</TableBody>
 				))}
