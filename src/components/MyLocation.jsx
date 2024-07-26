@@ -130,11 +130,13 @@ function MyLocation({ message }) {
 
   const fetchNearbyPlaces = async (lat, lon) => {
 
-    const radius = 1500; // 1500 meters (1.5 km) is a reasonable search radius
-    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&key=${trimmedApi}`;
-    console.log("place url: ", url)
     try {
+      const radius = 1500; // 1500 meters (1.5 km) is a reasonable search radius
+      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&key=${trimmedApi}`;
+      console.log("place url: ", url)
+
       const response = await axios.get(url);
+      console.log("places response: ", response)
       if (response.data.status === 200) {
         console.log("places response: ", response.data.results)
         setPlaces(response.data.results);

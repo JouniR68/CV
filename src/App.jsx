@@ -28,6 +28,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import Address from "./components/Address";
 import CheckLocation from "./components/CheckLocation";
 import Mail from "./components/Mail"
+import TestLocation from "./components/TestPlaces"
 function App() {
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path='/mail' element={<Mail />} />
+            <Route path='/tl' element={<TestLocation />} />
             <Route path='/checkLocation' element={<CheckLocation />} />
             <Route path="output" element={<CV />} />
             <Route path="address" element={<Address />} />
