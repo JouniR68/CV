@@ -49,8 +49,7 @@ const ShowCustomers = () => {
 			const data = querySnapshot.docs.map((doc) => ({
 				id: doc.id,
 				...doc.data(),
-			}))
-			console.log("Location data: ", data)
+			}))									
 			setLocations(data)
 		} catch (error) {
 			console.error("Error fetching data: ", error)
@@ -71,6 +70,10 @@ const ShowCustomers = () => {
 
 
 	const {t} = useTranslation()
+	console.log(locations)
+	const sortedLocations = [...locations].sort((a, b) => { 		
+		return new Date(b.detail).toLocaleDateString() - new Date(b.detail).toLocaleTimeString()
+	})
 
 	return (
 
@@ -116,13 +119,13 @@ const ShowCustomers = () => {
 					</TableRow>
 				</TableHead>
 
-				{locations.map((l) => (
+				{sortedLocations.map((l) => (
 					<TableBody key={nanoid()}>
 						{(!l.detail.includes('Vuohennokantie 7') && !l.detail.includes('Katila')) && <TableRow key={nanoid()}>
 							<TableCell>{l.detail}</TableCell>
 							<TableCell>{l.target}</TableCell>
-							<TableCell>{l.pvm}</TableCell>							
-							<TableCell>{l.time}</TableCell>
+							{l.pvm != null && <TableCell>{l.pvm}</TableCell>}
+							{l.time != null && <TableCell>{l.time}</TableCell>}
 						</TableRow>}
 					</TableBody>
 				))}
