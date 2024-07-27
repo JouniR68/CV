@@ -128,7 +128,7 @@ const ShowCustomers = () => {
 					</TableRow>
 				</TableHead>
 
-				{!cro && <Button onClick = {handleCro}>Croatia</Button>}
+				{!cro && <Button onClick = {handleCro}>{t('croatia')}</Button>}
 				{cro && locations.map((l) => (
 					l.detail.includes('Croatia') && <TableBody key={nanoid()}>
 						{(!l.detail.includes('Vuohennokantie 7') && !l.detail.includes('Katila')) && <TableRow key={nanoid()}>
@@ -141,7 +141,7 @@ const ShowCustomers = () => {
 					</TableBody>
 				))}
 
-				{cro && <Button onClick = {handleCro}>Finland</Button>}
+				{cro && <Button onClick = {handleCro}>{t('finland')}</Button>}
 				{!cro && locations.map((l) => (
 					l.detail.includes('Finland') && <TableBody key={nanoid()}>
 						{(!l.detail.includes('Vuohennokantie 7') && !l.detail.includes('Katila')) && <TableRow key={nanoid()}>

@@ -88,5 +88,7 @@
   "UnableToGetLocation": "Osoitteen haku epäonnistui",
   "target": "Mobiili laite/Tietokone",
   "pvm": "Päivä",
-  "time": "Aika"
+  "time": "Aika",
+  "croatia": "Kroatia",
+  "finland": "Suomi"
 }
