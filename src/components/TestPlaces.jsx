@@ -27,10 +27,17 @@ const NearbyPlaces = () => {
 
     const fetchNearbyPlaces = async (lat, lon) => {        
         const radius = 1500; // 1500 meters is a common search radius
-        const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.3848811,24.841420&radius=${radius}&key=${trimmedApi}`;
+        //const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=60.3848811,24.841420&radius=${radius}&key=${trimmedApi}`;
 
-        try {
-            const response = await axios.get(url);
+        try{
+        const response = await axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json', {
+            params: {
+              location: `${lat},${lon}`,
+              radius,
+              key: apiKey,
+            },
+          });
+    
             if (response.data.status === 'OK') {
                 setPlaces(response.data.results);
             } else {

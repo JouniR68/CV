@@ -4,6 +4,7 @@ import { db } from "../firebase"
 import { nanoid } from 'nanoid'
 
 import {
+	Button,
 	Table,
 	TableBody,
 	TableCell,
@@ -18,6 +19,7 @@ const ShowCustomers = () => {
 	const [locations, setLocations] = useState([])
 	const [customer, setCustomer] = useState([])
 	const [error, setError] = useState("")
+	const [cro, setCro] = useState(false)
 
 
 	const getContracts = async () => {
@@ -71,6 +73,11 @@ const ShowCustomers = () => {
 
 	const {t} = useTranslation()
 	console.log(locations)
+
+	const handleCro = () => {
+		setCro(!cro)
+	}
+
 	const sortedLocations = [...locations].sort((a, b) => { 		
 		return new Date(b.detail).toLocaleDateString() - new Date(b.detail).toLocaleTimeString()
 	})
@@ -121,8 +128,9 @@ const ShowCustomers = () => {
 					</TableRow>
 				</TableHead>
 
-				{sortedLocations.map((l) => (
-					<TableBody key={nanoid()}>
+				{!cro && <Button onClick = {handleCro}>Croatia</Button>}
+				{cro && locations.map((l) => (
+					l.detail.includes('Croatia') && <TableBody key={nanoid()}>
 						{(!l.detail.includes('Vuohennokantie 7') && !l.detail.includes('Katila')) && <TableRow key={nanoid()}>
 							<TableCell>{l.detail}</TableCell>
 							<TableCell>{l.target}</TableCell>
@@ -132,6 +140,20 @@ const ShowCustomers = () => {
 						</TableRow>}
 					</TableBody>
 				))}
+
+				{cro && <Button onClick = {handleCro}>Finland</Button>}
+				{!cro && locations.map((l) => (
+					l.detail.includes('Finland') && <TableBody key={nanoid()}>
+						{(!l.detail.includes('Vuohennokantie 7') && !l.detail.includes('Katila')) && <TableRow key={nanoid()}>
+							<TableCell>{l.detail}</TableCell>
+							<TableCell>{l.target}</TableCell>
+							{l.pvm != null && <TableCell>{l.pvm}</TableCell>}
+							{l.time != null && <TableCell>{l.time}</TableCell>}
+							{l.place != null && <TableCell>{l.place}</TableCell>}
+						</TableRow>}
+					</TableBody>
+				))}
+
 			</Table>
 
 
