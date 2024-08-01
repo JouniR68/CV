@@ -14,7 +14,9 @@ function MyLocation({ message }) {
   const [address, setAddress] = useState({ detail: '' })
   const [location, setLocations] = useState([])
   const [places, setPlaces] = useState([])
-
+  const [errorMes, setErrorMes] = useState(null)
+  const [loading, setLoading] = useState(null)
+  const reach = 200
   const navigate = useNavigate()
 
   const { t } = useTranslation()
@@ -70,7 +72,7 @@ function MyLocation({ message }) {
 
     if (position.coords.latitude && position.coords.longitude) {
       getAddress(position.coords.latitude, position.coords.longitude) //Check home address / town.
-      fetchNearbyPlaces(position.coords.latitude, position.coords.longitude)
+      getPlace(position.coords.latitude, position.coords.longitude)
     }
 
   }
@@ -128,26 +130,21 @@ function MyLocation({ message }) {
   };
 
 
-  const fetchNearbyPlaces = async (lat, lon) => {
-
+  const getPlace = async (lat, lon) => {
     try {
-      const radius = 1500; // 1500 meters (1.5 km) is a reasonable search radius
-      const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}&key=${trimmedApi}`;
-      console.log("place url: ", url)
-
-      const response = await axios.get(url);
-      console.log("places response: ", response)
-      if (response.data.status === 200) {
-        console.log("places response: ", response.data.results)
-        setPlaces(response.data.results);
-      } else {
-        console.error('No places found or an error occurred: ' + response.data.status);
-      }
+      console.log("getPlaces")
+      const response = await fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`);
+      console.log("response: ", response)
+      const data = await response.json();
+      console.log("Response from the server ", data.results)
+      setPlaces(data.results);
     } catch (error) {
-      console.error('Unable to fetch places: ' + error.message);
+      console.log('Axios error:', error);
+      setErrorMes("Unable to get places")
+    } finally {
+      setLoading(false);
     }
-  };
-
+  }
 
   const addAddress = (addr) => {
     if (!addr) {
@@ -176,6 +173,7 @@ function MyLocation({ message }) {
 
       const date = new Date()
       address.detail = addr;
+      address.places = places.map(m => m.name)
       address.pvm = date.toLocaleDateString()
       address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)

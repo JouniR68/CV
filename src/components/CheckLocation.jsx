@@ -18,7 +18,7 @@ function CheckLocation() {
   const [places, setPlaces] = useState([])
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
-  const reach = 30000
+  const reach = 200
   const navigate = useNavigate()
 
   const { t } = useTranslation()
@@ -68,7 +68,7 @@ function CheckLocation() {
     
       try {
         console.log("getPlaces")
-        const response = await fetch(`https://jriimala.netlify.app:5000/api/places?location=${lat},${lon}&radius=${reach}&type=restaurant`);
+        const response = await fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`);
         console.log("response: ", response)
         const data = await response.json();
         console.log("Response from the server ", data.results)
@@ -119,10 +119,10 @@ function CheckLocation() {
 
 
 console.log(places)
-
+let k = 0;
 let locatedPlaces = []
 if (places.length > 0){
-  locatedPlaces = places.map(f => f.name)
+  locatedPlaces = places.map((f) => <li key ={k++}>{f.name}</li>)
 }
 
   return (
@@ -134,7 +134,7 @@ if (places.length > 0){
       <p></p>
       <h3>Longitude: {position.longitude}</h3>
       <h3>The address: {homebase}</h3>
-      {locatedPlaces.length > 0 && <h3>Place(s) within {reach}: {locatedPlaces}</h3>}
+      {locatedPlaces.length > 0 && <h3>Place(s) within {reach} meters: {locatedPlaces}</h3>}
       {errorMes && <h3>{errorMes}</h3>}
     </div>
   )

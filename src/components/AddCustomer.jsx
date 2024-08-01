@@ -84,7 +84,6 @@ export default function Quick() {
   };
 
   const save = async () => {
-
     if (validate()) {
       console.log("data: ", data);
       try {
