@@ -82,11 +82,6 @@ const ShowCustomers = () => {
 		return new Date(b.detail).toLocaleDateString() - new Date(b.detail).toLocaleTimeString()
 	})
 
-
-const findPlace = () => {
-
-}
-
 		
 	return (
 

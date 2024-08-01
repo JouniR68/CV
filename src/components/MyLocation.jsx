@@ -168,16 +168,16 @@ function MyLocation({ message }) {
 
       if (places.length > 0) {
         address.place = places.map(place => (place.name - place.vicinity))
-        console.log(address.place)
+        console.log("Address place: ", address.place)
       }
 
       const date = new Date()
       address.detail = addr;
-      address.places = places.map(m => m.name)
       address.pvm = date.toLocaleDateString()
       address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)
-      if (isAddressDuplicate === false && (address.target != "mobile" || address.taget != "PC")) {
+      if (isAddressDuplicate === false && places.length > 0) {
+        console.log("Demo address: ", address)
         addDoc(collection(db, "locations"), address);
       } else {
         console.log(`Address ${address.detail} already registered.`)
