@@ -135,7 +135,7 @@ if (places.length > 0){
       <h3>Longitude: {position.longitude}</h3>
       <h3>The address: {homebase}</h3>
       {locatedPlaces.length > 0 && <h3>Place(s) within {reach}: {locatedPlaces}</h3>}
-      {errorMes.length > 0 && <h3>{errorMes}</h3>}
+      {errorMes && <h3>{errorMes}</h3>}
     </div>
   )
 
