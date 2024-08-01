@@ -72,7 +72,7 @@ const ShowCustomers = () => {
 
 
 	const {t} = useTranslation()
-	console.log(locations)
+	console.log("location data: ", locations)
 
 	const handleCro = () => {
 		setCro(!cro)
@@ -82,7 +82,12 @@ const ShowCustomers = () => {
 		return new Date(b.detail).toLocaleDateString() - new Date(b.detail).toLocaleTimeString()
 	})
 
-	
+
+const findPlace = () => {
+
+}
+
+		
 	return (
 
 		<TableContainer component={Paper}>
