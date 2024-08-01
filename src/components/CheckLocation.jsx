@@ -75,6 +75,7 @@ function CheckLocation() {
         setPlaces(data.results);
       } catch (error) {
         console.log('Axios error:', error);
+        setErrorMes("Unable to get places")
       } finally {
         setLoading(false);
       }
@@ -126,7 +127,7 @@ if (places.length > 0){
 
   return (
     <div>
-      {loading && <h3>Loading...</h3>}
+      
       <h2>Position details:</h2>
 
       <h3>Latitude: {position.latitude}</h3>
@@ -134,6 +135,7 @@ if (places.length > 0){
       <h3>Longitude: {position.longitude}</h3>
       <h3>The address: {homebase}</h3>
       {locatedPlaces.length > 0 && <h3>Nearby place(s): {locatedPlaces}</h3>}
+      {errorMes.length > 0 && <h3>{errorMes}</h3>}
     </div>
   )
 
