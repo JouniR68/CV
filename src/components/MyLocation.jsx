@@ -131,13 +131,14 @@ function MyLocation({ message }) {
 
 
   let placeChecked = false
-  const getPlace = (lat, lon) => {
+  const getPlace = async (lat, lon) => {
     try {
-      placeChecked = true
+      
       console.log("getPlaces")
-      fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`)
-      .then(response => response.json())
-      .then(data => data.results[0].name)
+      const response = await axios.get(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`)
+      const data = response.json()
+      setPlaces(data.results[0].name)
+      placeChecked = true
     } catch (error) {
       console.log('Axios error:', error);
       setErrorMes("Unable to get places")
