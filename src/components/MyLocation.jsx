@@ -13,7 +13,7 @@ function MyLocation({ message }) {
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState({ detail: '' })
   const [location, setLocations] = useState([])
-  const [places, setPlaces] = useState([])
+  const [places, setPlaces] = useState("Place not found")
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
   const reach = 200
@@ -130,14 +130,14 @@ function MyLocation({ message }) {
   };
 
 
-  const getPlace = async (lat, lon) => {
+  let placeChecked = false
+  const getPlace = (lat, lon) => {
     try {
+      placeChecked = true
       console.log("getPlaces")
-      const response = await fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`);
-      console.log("response: ", response)
-      const data = await response.json();
-      console.log("Response from the server ", data.results)
-      setPlaces(data.results);
+      fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`)
+      .then(response => response.json())
+      .then(data => data.results[0].name)
     } catch (error) {
       console.log('Axios error:', error);
       setErrorMes("Unable to get places")
@@ -166,23 +166,33 @@ function MyLocation({ message }) {
         return
       }
 
-      if (places.length > 0) {
-        address.place = places.map(place => (place.name - place.vicinity))
-        console.log("Address place: ", address.place)
+      /*
+      if (!places){
+        console.log("No places..")
+        return
       }
-
+      else if (places.length > 0) {
+        const foundPlaces = places.map(place => (place.name - place.vicinity))
+        console.log("Address place: ", foundPlaces)
+        address.push(foundPlaces)
+      }
+      */
       const date = new Date()
       address.detail = addr;
+      console.log("Place to be logged: ", places)
+      address.place = places;
       address.pvm = date.toLocaleDateString()
       address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)
-      if (isAddressDuplicate === false && places.length > 0) {
+      if (isAddressDuplicate === false && placeChecked === true) {
         console.log("Demo address: ", address)
         addDoc(collection(db, "locations"), address);
       } else {
         console.log(`Address ${address.detail} already registered.`)
+        navigate('error', { state: { locationError: "address already registered" } })
+        return
       }
-      return
+      
     }
   }
 
