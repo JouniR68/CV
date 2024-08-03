@@ -152,6 +152,7 @@ function MyLocation({ message }) {
       console.log("address not found")
       return
     } else {
+      console.log(`Looking is ${addr} duplicate`)
       const isAddressDuplicate = location.includes(addr)
 
       if (isAddressDuplicate) {
@@ -163,7 +164,7 @@ function MyLocation({ message }) {
 
       //blacklist
       if (addr.includes("Kattila" || addr.includes('Vuohennokantie 7'))) {
-        console.error("Bot addresses and homebase is not saved to the firebase")
+        console.error("Both addresses and homebase is not saved to the firebase")
         return
       }
 
@@ -185,10 +186,10 @@ function MyLocation({ message }) {
       address.pvm = date.toLocaleDateString()
       address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)
-      if (isAddressDuplicate === false && placeChecked === true) {
-        console.log("Demo address: ", address)
+      if (isAddressDuplicate === false) {
+        console.log("Address is : ", address + ', place : ', address.place)
         addDoc(collection(db, "locations"), address);
-      } else {
+      } else if (isAddressDuplicate){
         console.log(`Address ${address.detail} already registered.`)
         navigate('error', { state: { locationError: "address already registered" } })
         return
