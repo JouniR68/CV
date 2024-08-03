@@ -16,7 +16,7 @@ function MyLocation({ message }) {
   const [places, setPlaces] = useState("Place not found")
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
-  const reach = 200
+  const reach = 300
   const navigate = useNavigate()
 
   const { t } = useTranslation()
@@ -149,14 +149,14 @@ function MyLocation({ message }) {
 
   const addAddress = (addr) => {
     if (!addr) {
-      console.log("address not found")
+      console.log("No address")
       return
     } else {
       console.log(`Looking is ${addr} duplicate`)
       const isAddressDuplicate = location.includes(addr)
 
       if (isAddressDuplicate) {
-        console.log(`${isAddressDuplicate} address already stored`)
+        console.log(`${addr} address already stored`)
         return
       }
 
@@ -164,7 +164,8 @@ function MyLocation({ message }) {
 
       //blacklist
       if (addr.includes("Kattila" || addr.includes('Vuohennokantie 7'))) {
-        console.error("Both addresses and homebase is not saved to the firebase")
+        console.error("Blacklist addresses")
+        navigate('error', { state: { locationError: "The address is blacklisted." } })
         return
       }
 
@@ -187,11 +188,11 @@ function MyLocation({ message }) {
       address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)
       if (isAddressDuplicate === false) {
-        console.log("Address is : ", address + ', place : ', address.place)
+        console.log("Address is : ", address.detail + ', place : ', address.place)
         addDoc(collection(db, "locations"), address);
       } else if (isAddressDuplicate){
         console.log(`Address ${address.detail} already registered.`)
-        navigate('error', { state: { locationError: "address already registered" } })
+        navigate('error', { state: { locationError: "The address already registered" } })
         return
       }
       
