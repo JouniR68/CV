@@ -68,7 +68,7 @@ function CheckLocation() {
     
       try {
         console.log("getPlaces")
-        const response = await fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`);
+        const response = await fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}&type=supermarket`);
         console.log("response: ", response)
         const data = await response.json();
         console.log("Response from the server ", data.results)
