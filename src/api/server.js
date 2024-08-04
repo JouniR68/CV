@@ -32,7 +32,7 @@ app.get('/api/places', async (req, res) => {
             headers:{'Access-Control-Allow-Origin':'*'}
         });
         console.log("server - response.data: ", response.data)
-        res.json(response.data);
+        res.json(response.data.results);
     } catch (err) {
         console.error("Error to get places, ", err)
     }

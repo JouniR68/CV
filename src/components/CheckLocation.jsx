@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import  axios from 'axios'
+import axios from 'axios'
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,7 @@ function CheckLocation() {
   const [places, setPlaces] = useState([])
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
-  const reach = 200
+  const reach = 50000
   const navigate = useNavigate()
 
   const { t } = useTranslation()
@@ -63,22 +63,47 @@ function CheckLocation() {
     }
   }
 
+
+
   //const place = await axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-lat%lon&radius=200&type=restaurant&key=trimmedApi")
   const getPlace = async (lat, lon) => {
-    
-      try {
-        console.log("getPlaces")
-        const response = await fetch(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}&type=supermarket`);
-        console.log("response: ", response)
-        const data = await response.json();
-        console.log("Response from the server ", data.results)
-        setPlaces(data.results);
-      } catch (error) {
-        console.log('Axios error:', error);
-        setErrorMes("Unable to get places")
-      } finally {
-        setLoading(false);
+
+    const placeData = {
+      "includedTypes": [
+        "restaurant"
+      ],
+      "maxResultCount": 10,
+      "locationRestriction": {
+        "circle": {
+          "center": {            
+            "latitude": 40.748817,
+            "longitude": -73.985428
+          },
+          "radius": 500
+        }
       }
+    }
+
+
+
+    try {
+      console.log("getPlaces")
+      const placeUrl = `http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`
+      console.log("Place url: ", placeUrl)
+      //const response = await fetch(placeUrl);
+      const response = await fetch(placeUrl)
+      console.log("response: ", response)
+      const data = await response.json();
+      console.log("Place api response ", data)
+      if (data.results.length > 0) {
+        setPlaces(data.results);
+      }
+    } catch (error) {
+      console.log('Axios error:', error);
+      setErrorMes("Unable to get places")
+    } finally {
+      setLoading(false);
+    }
   }
 
 
@@ -118,16 +143,16 @@ function CheckLocation() {
   };
 
 
-console.log(places)
-let k = 0;
-let locatedPlaces = []
-if (places.length > 0){
-  locatedPlaces = places.map((f) => <li key ={k++}>{f.name}</li>)
-}
+  console.log(places)
+  let k = 0;
+  let locatedPlaces = []
+  if (places.length > 0) {
+    locatedPlaces = places.map((f) => <li key={k++}>{f.name}</li>)
+  }
 
   return (
     <div>
-      
+
       <h2>Position details:</h2>
 
       <h3>Latitude: {position.latitude}</h3>
