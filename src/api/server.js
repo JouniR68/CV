@@ -13,9 +13,9 @@ app.use(json());
 //cors handler
 app.use(cors());
 
-app.get('/api/places', async (req, res) => {
+app.post('/api/places', async (req, res) => {
     console.log("/api/places endpoint")
-    const { location, radius, type } = req.query;
+    const { location, radius, type } = req.body;
     console.log("location: ", location)
     console.log("radius: ", radius)
     console.log("type: ", type)
@@ -29,12 +29,12 @@ app.get('/api/places', async (req, res) => {
                 'type': type,
                 'key': 'AIzaSyCkhlysVOEcD_Wfn4hQwDXgXc1LQde0ne0'
             },
-            headers:{'Access-Control-Allow-Origin':'*'}
+            headers:{'Access-Control-Allow-Origin':'*','Content-Type':'application/json'}
         });
         console.log("server - response.data: ", response.data)
         res.json(response.data.results);
-    } catch (err) {
-        console.error("Error to get places, ", err)
+    } catch (error) {
+        console.error('Error fetching data from Google Places API:', error.response ? error.response.data : error.message);
     }
 })
 

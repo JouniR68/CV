@@ -69,7 +69,6 @@ function CheckLocation() {
 
     const data = {
       "location": `${lat},${lon}`,
-      //"location":"51.5287398,-0.266403",
       "radius": 1500,
     }
 
