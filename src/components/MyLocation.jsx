@@ -12,20 +12,16 @@ function MyLocation({ message }) {
   const trimmedApi = apiKey.replace(/'/g, "");
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [address, setAddress] = useState({ detail: '' })
-  const [location, setLocations] = useState([])
-  const [places, setPlaces] = useState("Place not found")
+  const [locations, setLocations] = useState([])
+  const [places, setPlaces] = useState([])
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
+  const [area, setArea] = useState(null)
   const reach = 300
   const navigate = useNavigate()
 
   const { t } = useTranslation()
 
-  useEffect(() => {
-    getLocations()
-  }, [])
-
-  //Retrieve existing location data from the firebase db.
   const getLocations = async () => {
     try {
       const locationRef = collection(db, "locations")
@@ -34,14 +30,10 @@ function MyLocation({ message }) {
         id: doc.id,
         ...doc.data(),
       }))
-      console.log("Location data: ", data)
-      const isPreviousAddress = data.find((l) => l.detail != null)
-      if (!isPreviousAddress) {
-        console.log("No location data on the database")
-      } else {
-        console.log("Existing db data:")
-        setLocations(isPreviousAddress.detail)
-      }
+      const tempArray = [...data]
+      const newLocations = tempArray.map(d => d.detail).filter(detail => detail != null) 
+      console.log("newlocations", newLocations)    
+      setLocations(newLocations)              
       getUserPosition()
     } catch (error) {
       console.error("Error fetching data: ", error)
@@ -53,7 +45,9 @@ function MyLocation({ message }) {
     }
   }
 
-  console.log("Locations: ", location)
+  useEffect(() => {
+    getLocations()
+  }, [locations])
 
   const getUserPosition = () => {
     if ('geolocation' in navigator) {
@@ -131,17 +125,37 @@ function MyLocation({ message }) {
 
 
   let placeChecked = false
-  const getPlace = async (lat, lon) => {
+  const getPlace = (lat, lon) => {
+    const data = {
+      "location": `${lat},${lon}`,
+      //"location": "51.5287398,-0.266403",
+      "radius": 1500,
+    }
+
+    setArea(data.radius)
+
     try {
-      
       console.log("getPlaces")
-      const response = await axios.get(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`)
-      const data = response.json()
-      setPlaces(data.results[0].name)
-      placeChecked = true
-    } catch (error) {
-      console.log('Axios error:', error);
-      setErrorMes("Unable to get places")
+      const url = `http://localhost:5000/api/places`
+      console.log("app data: ", data)
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).then(response => {
+        console.log(response)
+        return response.json()
+      })
+        .then(data2 => {
+          console.log("Data: ", data2)
+          if (Array.isArray(data2) && data2.length > 0) {
+            return data2.forEach(place => setPlaces(prev => [...prev, place.name]));
+          }
+        })
+        .catch(error =>
+          console.log('Error:', error));
     } finally {
       setLoading(false);
     }
@@ -151,9 +165,10 @@ function MyLocation({ message }) {
     if (!addr) {
       console.log("No address")
       return
-    } else {
-      console.log(`Looking is ${addr} duplicate`)
-      const isAddressDuplicate = location.includes(addr)
+    } else {      
+      console.log(`Checking if ${addr} is duplicate.`)
+      console.log("location array: ", locations)
+      const isAddressDuplicate = locations.includes(addr)
 
       if (isAddressDuplicate) {
         console.log(`${addr} address already stored`)
@@ -169,33 +184,25 @@ function MyLocation({ message }) {
         return
       }
 
-      /*
-      if (!places){
-        console.log("No places..")
-        return
+      if (places.length > 0) {
+        address.push(places)
       }
-      else if (places.length > 0) {
-        const foundPlaces = places.map(place => (place.name - place.vicinity))
-        console.log("Address place: ", foundPlaces)
-        address.push(foundPlaces)
-      }
-      */
+
       const date = new Date()
       address.detail = addr;
       console.log("Place to be logged: ", places)
-      address.place = places;
       address.pvm = date.toLocaleDateString()
       address.time = date.toLocaleTimeString('fi-FI')
       console.log("address: ", address)
       if (isAddressDuplicate === false) {
-        console.log("Address is : ", address.detail + ', place : ', address.place)
+        console.log("Address is : ", address)
         addDoc(collection(db, "locations"), address);
-      } else if (isAddressDuplicate){
+      } else if (isAddressDuplicate) {
         console.log(`Address ${address.detail} already registered.`)
         navigate('error', { state: { locationError: "The address already registered" } })
         return
       }
-      
+
     }
   }
 

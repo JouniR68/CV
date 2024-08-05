@@ -21,7 +21,6 @@ const ShowCustomers = () => {
 	const [error, setError] = useState("")
 	const [cro, setCro] = useState(false)
 
-
 	const getContracts = async () => {
 		try {
 			const customerRef = collection(db, "messages")
@@ -42,7 +41,6 @@ const ShowCustomers = () => {
 			}
 		}
 	}
-
 
 	const getLocations = async () => {
 		try {
@@ -83,6 +81,8 @@ const ShowCustomers = () => {
 	})
 
 		
+	let keyCounter = 0;
+
 	return (
 
 		<TableContainer component={Paper}>
@@ -136,7 +136,7 @@ const ShowCustomers = () => {
 							<TableCell>{l.target}</TableCell>
 							{l.pvm != null && <TableCell>{l.pvm}</TableCell>}
 							{l.time != null && <TableCell>{l.time}</TableCell>}
-							{l.place != null && <TableCell>{l.place}</TableCell>}
+							{l.place.map(p => p!=null && <TableCell key={keyCounter++}>{p}</TableCell>)}
 						</TableRow>}
 					</TableBody>
 				))}
@@ -149,7 +149,7 @@ const ShowCustomers = () => {
 							<TableCell>{l.target}</TableCell>
 							{l.pvm != null && <TableCell>{l.pvm}</TableCell>}
 							{l.time != null && <TableCell>{l.time}</TableCell>}
-							{l.place != null && <TableCell>{l.place}</TableCell>}
+							{l.place.map(p => p!=null && <TableCell key={keyCounter++}>{p}</TableCell>)}
 						</TableRow>}
 					</TableBody>
 				))}
