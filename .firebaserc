@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "default": "firma-ed35a"
+  }
+}

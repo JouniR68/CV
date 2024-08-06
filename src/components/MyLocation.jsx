@@ -19,21 +19,44 @@ function MyLocation({ message }) {
   const [area, setArea] = useState(null)
   const reach = 300
   const navigate = useNavigate()
-
+  let filteredLocations = []
   const { t } = useTranslation()
 
-  const getLocations = async () => {
+
+
+  
+  const removeLocationDocs = async () => {
+    const locationRef = collection(db, "locations")
     try {
-      const locationRef = collection(db, "locations")
+      const querySnapshot = await locationRef.get();
+      const batch = db.batch()
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref)
+      })
+      await batch.commit();
+      alert("Location quota cleared")
+    } catch (err) {
+      console.error("Removings docs failed, err: ", err)
+    }
+  }
+
+  const getLocations = async () => {
+    const locationRef = collection(db, "locations")
+    try {
+
       const querySnapshot = await getDocs(locationRef)
       const data = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }))
       const tempArray = [...data]
-      const newLocations = tempArray.map(d => d.detail).filter(detail => detail != null) 
-      console.log("newlocations", newLocations)    
-      setLocations(newLocations)              
+      filteredLocations = tempArray.filter((loc, index) => {
+        return locations.indexOf(loc) === index;
+      })
+      console.log("filteredLocations: ", filteredLocations)
+      const newLocations = filteredLocations.map(d => d.detail)
+      console.log("newlocations", newLocations)
+      setLocations(newLocations)
       getUserPosition()
     } catch (error) {
       console.error("Error fetching data: ", error)
@@ -48,6 +71,7 @@ function MyLocation({ message }) {
   useEffect(() => {
     getLocations()
   }, [locations])
+
 
   const getUserPosition = () => {
     if ('geolocation' in navigator) {
@@ -137,21 +161,18 @@ function MyLocation({ message }) {
     try {
       console.log("getPlaces")
       const url = `http://localhost:5000/api/places`
-      console.log("app data: ", data)
+      console.log("Place request payload: ", data)
       fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-      }).then(response => {
-        console.log(response)
-        return response.json()
-      })
+      }).then(response => response.json())
         .then(data2 => {
-          console.log("Data: ", data2)
+          console.log("Data: ", data2.results)
           if (Array.isArray(data2) && data2.length > 0) {
-            return data2.forEach(place => setPlaces(prev => [...prev, place.name]));
+            return data2.forEach(place => setPlaces(prev => [...prev, place.name + '-' + place.vicinity]));
           }
         })
         .catch(error =>
@@ -165,14 +186,13 @@ function MyLocation({ message }) {
     if (!addr) {
       console.log("No address")
       return
-    } else {      
+    } else {
       console.log(`Checking if ${addr} is duplicate.`)
-      console.log("location array: ", locations)
+      console.log("Filtered location array: ", filteredLocations)
       const isAddressDuplicate = locations.includes(addr)
 
       if (isAddressDuplicate) {
         console.log(`${addr} address already stored`)
-        return
       }
 
       isMobile ? address.target = "mobile" : address.target = "PC";
@@ -196,7 +216,7 @@ function MyLocation({ message }) {
       console.log("address: ", address)
       if (isAddressDuplicate === false) {
         console.log("Address is : ", address)
-        addDoc(collection(db, "locations"), address);
+        //addDoc(collection(db, "locations"), address);
       } else if (isAddressDuplicate) {
         console.log(`Address ${address.detail} already registered.`)
         navigate('error', { state: { locationError: "The address already registered" } })
@@ -206,6 +226,9 @@ function MyLocation({ message }) {
     }
   }
 
+  return (<>
+    <button onClick={removeLocationDocs}>Remove all locations (be sure before clicking)</button>
+  </>)
 }
 
 export default MyLocation;
