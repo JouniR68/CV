@@ -13,6 +13,12 @@ app.use(json());
 //cors handler
 app.use(cors());
 
+
+app.delete('/api/deleteDocs', async (req, res) => {
+    console.log("Freeing firebase quota")
+    
+})
+
 app.post('/api/places', async (req, res) => {
     console.log("/api/places endpoint")
     const { location, radius, type } = req.body;
@@ -32,7 +38,7 @@ app.post('/api/places', async (req, res) => {
             headers:{'Access-Control-Allow-Origin':'*','Content-Type':'application/json'}
         });
         console.log("server - response.data: ", response.data)
-        res.json(response.data.results);
+        res.json(response.data);
     } catch (error) {
         console.error('Error fetching data from Google Places API:', error.response ? error.response.data : error.message);
     }
