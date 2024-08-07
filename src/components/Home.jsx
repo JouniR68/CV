@@ -78,6 +78,8 @@ export default function Home() {
     setError(null)
   }
 
+  //{confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
+  //{locationReading === true && <MyLocation />}
   console.log("isMobile: ", isMobile)
   
   return (
@@ -87,10 +89,6 @@ export default function Home() {
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
       </div>
       
-      
-      {confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
-      {locationReading === true && <MyLocation />}
-
       <div className='home-container'>
         <h1>{t('welcome')}</h1>
         <p></p>
