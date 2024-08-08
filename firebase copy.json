@@ -23,26 +23,32 @@
     "ui": {
       "enabled": true
     },
+    "singleProjectMode": true,
     "functions": {
-      "port": 7011
-    },
-    "singleProjectMode": true
+      "port": 7007
+    }
   },
   "functions": {
     "source": "functions",
-    "runtime": "nodejs20",
-    "codebase": "default",
+    "runtime": "nodejs14",
     "endpoints": {
       "getPlaces": {
         "entryPoint": "getPlaces",
         "concurrency": 80,
         "memory": "512MB",
-        "cpu": 2,
+        "cpu": "2",
         "vpcConnector": "default",
         "minInstances": 1,
         "maxInstances": 5,
         "region": "us-central1"
       }
     }
-  }
+  },
+  "ignore": [
+    "node_modules",
+    ".git",
+    "firebase-debug.log",
+    "firebase-debug.*.log",
+    "*.local"
+  ]
 }

@@ -21,19 +21,22 @@ function MyLocation({ message }) {
   const navigate = useNavigate()
   let filteredLocations = []
   const { t } = useTranslation()
-
-
-
   
   const removeLocationDocs = async () => {
     const locationRef = collection(db, "locations")
     try {
-      const querySnapshot = await locationRef.get();
+      const querySnapshot = await getDocs(locationRef)
+      const batch = db.batch()
+      querySnapshot.docs.map((doc) => (
+        batch.delete(doc.ref)
+      ))
+
+      /*const querySnapshot = await locationRef.get();
       const batch = db.batch()
       querySnapshot.forEach((doc) => {
         batch.delete(doc.ref)
       })
-      await batch.commit();
+      await batch.commit();*/
       alert("Location quota cleared")
     } catch (err) {
       console.error("Removings docs failed, err: ", err)

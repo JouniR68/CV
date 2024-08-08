@@ -7,27 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 
-/*
-    /*try {
-      
-      console.log("getPlaces")
-      const response = await axios.get(`http://localhost:5000/api/places?location=${lat},${lon}&radius=${reach}`)
-      const data = response.json()
-      setPlaces(data.results[0].name)
-      placeChecked = true
-    } catch (error) {
-      console.log('Axios error:', error);
-      setErrorMes("Unable to get places")
-    } finally {
-      setLoading(false);
-    }*/
-
-*/
-
 function CheckLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
   const trimmedApi = apiKey.replace(/'/g, "");
-
+  let reach = 0;
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   //const [address, setAddress] = useState({ detail: '' })
   //const [location, setLocations] = useState([])
@@ -35,7 +18,8 @@ function CheckLocation() {
   const [places, setPlaces] = useState([])
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
-  const reach = 300
+const [area, setArea] = useState(null)
+  
   const navigate = useNavigate()
 
   const { t } = useTranslation()
@@ -82,30 +66,30 @@ function CheckLocation() {
 
 
   //const place = await axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-lat%lon&radius=200&type=restaurant&key=trimmedApi")
+  const url = 'https://localhost:5001/firma-ed35a/us-central1/getPlaces'
+  //const url = https://us-central1-firma-ed35a.cloudfunctions.net/getPlaces
   const getPlace = async (lat, lon) => {
-
     const data = {
-      "location": `${lat},${lon}`,
+      //"location": `${lat},${lon}`,
+      "location":"51.5287398,-0.266403",
       "radius": 1500,
     }
 
+    setArea(data.radius)
 
     try {
-
       console.log("getPlaces")
       const url = `http://localhost:5000/api/places`
       console.log("app data: ", data)
-      //const placeUrl = `/api/places?location=${lat},${lon}&radius=${reach}`
-      //console.log("Place url: ", placeUrl)
       const response = await fetch(url, {
         method: 'post',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(data),
       });
-      
+
       const data2 = await response.json();
       console.log("Place api response ", data2)
-      if (data2 != null || data2 != undefined) {
+      if (data2 && null || data2 && undefined || data2.length > 0) {
         setPlaces(data2);
       }
     } catch (error) {
@@ -168,7 +152,7 @@ function CheckLocation() {
       <p></p>
       <h3>Longitude: {position.longitude}</h3>
       <h3>The address: {homebase}</h3>
-      {locatedPlaces.length > 0 && <h3>Place(s) within {reach} meters: {locatedPlaces}</h3>}
+      {locatedPlaces.length > 0 && <h3>Place(s) within {area} meters: {locatedPlaces}</h3>}
       {errorMes && <h3>{errorMes}</h3>}
     </div>
   )

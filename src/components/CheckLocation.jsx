@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
+import qs from 'qs'
 
 function CheckLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
@@ -18,8 +19,8 @@ function CheckLocation() {
   const [places, setPlaces] = useState([])
   const [errorMes, setErrorMes] = useState(null)
   const [loading, setLoading] = useState(null)
-const [area, setArea] = useState(null)
-  
+  const [area, setArea] = useState(null)
+
   const navigate = useNavigate()
 
   const { t } = useTranslation()
@@ -67,34 +68,28 @@ const [area, setArea] = useState(null)
 
   //const place = await axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-lat%lon&radius=200&type=restaurant&key=trimmedApi")
   const getPlace = async (lat, lon) => {
-    const data = {
-      //"location": `${lat},${lon}`,
-      "location":"51.5287398,-0.266403",
-      "radius": 1500,
+    const params = {
+      "location": `${lat},${lon}`,
+      //location:"51.5287398,-0.266403",
+      radius: 1500,
     }
 
-    setArea(data.radius)
 
-    try {
-      console.log("getPlaces")
-      const url = `http://localhost:5000/api/places`
-      console.log("app data: ", data)
-      const response = await fetch(url, {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify(data),
-      });
+    setArea(params.radius)
 
-      const data2 = await response.json();
-      console.log("Place api response ", data2)
-      if (data2 && null || data2 && undefined || data2.length > 0) {
-        setPlaces(data2);
-      }
+    //const url = "https://firma-ed35a.web.app.cloudfunctions.net/getPlaces"
+    //const url = "https://us-central1-firma-ed35a.cloudfunctions.net/getPlaces?key='AIzaSyDeBnDCtHTEiO9RXwWauj_w9QtjXkfBjz0'"
+    const url = `http://localhost:5001/firma-ed35a/us-central1/getPlaces`
+
+    const fullUrl = `${url}?${qs.stringify(params)}`;
+    console.log("full url: ", fullUrl)
+
+    try {      
+      const response = await axios.get(url, {params});
+      setPlaces(response.data);
     } catch (error) {
-      console.log('Request error: ', error);
-    } finally {
-      setLoading(false);
-    }
+      console.log('Error sending request to Cloud function: ', error.message);
+    } 
   }
 
 
