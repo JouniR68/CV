@@ -27,7 +27,6 @@ import '../i18n'; // Import the i18n configuration
 import ErrorMessage from "./components/ErrorMessage";
 import Address from "./components/Address";
 import CheckLocation from "./components/CheckLocation";
-import Mail from "./components/Mail"
 import TestLocation from "./components/TestPlaces"
 import TestArray from "./components/TestArray";
 
@@ -40,8 +39,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/mail' element={<Mail />} />
+            <Route path='/' element={<Home />} />            
             <Route path='/t' element={<TestArray />} />
             <Route path='/tl' element={<TestLocation />} />
             <Route path='/checkLocation' element={<CheckLocation />} />

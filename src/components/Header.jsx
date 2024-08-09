@@ -18,7 +18,7 @@ export default function Header() {
         <Link to="/rent">{t('Services')}</Link>
         <p>
         </p>
-        <Link to="/checkLocation">Check Location</Link>
+        <Link to="/checkLocation">{t('CheckLocation')}</Link>
       </nav> : 
       <Login />}
     </header>

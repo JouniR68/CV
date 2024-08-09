@@ -12,7 +12,15 @@ import { GitHub } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
+/*
+            <IconButton onClick={gitHub}>
+              <GitHub />
+              <Typography variant='body1' ml={1}>
+                {t('Repositories')}
+              </Typography>
+            </IconButton>
 
+*/
 export default function Contact() {
 
    function gitHub() {
@@ -72,12 +80,6 @@ export default function Contact() {
             </IconButton>
             <IconButton onClick={linkedIn}>
               <LinkedInIcon  />
-            </IconButton>
-            <IconButton onClick={gitHub}>
-              <GitHub />
-              <Typography variant='body1' ml={1}>
-                {t('Repositories')}
-              </Typography>
             </IconButton>
             <IconButton>
               <a href={mailtoLink}><MailIcon sx={{marginLeft: '2px' }}/></a>

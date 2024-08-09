@@ -88,5 +88,6 @@
   "pvm": "Date",
   "time": "Time",
   "crotia":"Croatia",
-  "finland": "Finland"
+  "finland": "Finland",
+  "checkLocation": "Check your address"
 }

@@ -14,9 +14,10 @@ import {
 	Paper,
 } from '@mui/material';
 import { useTranslation } from "react-i18next";
-const {t} = useTranslation()
+
 
 const ShowCustomers = () => {
+	const {t} = useTranslation();
 	const [locations, setLocations] = useState([])
 	const [customer, setCustomer] = useState([])
 	const [error, setError] = useState("")
