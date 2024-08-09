@@ -37,7 +37,7 @@ export default function Education() {
                 <TableRow><TableCell className='row'>{t('ProfileLocation')}: {profile.Location}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileProfession')}: {profile.Profession}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileFamilly')}: {profile.Familly}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileMail')}: jriimala@gmail.com</TableCell></TableRow>
+                <TableRow><TableCell className='row'>{t('ProfileMail')}: jr@softa-apu.fi</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileTel')}: +358 2385 888</TableCell></TableRow>
               </TableBody>
             </Table>

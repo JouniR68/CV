@@ -32,7 +32,7 @@ export default function Contact() {
   }
 
   const subject = 'CONTACT REQUEST';
-  const recipient = 'jriimala@gmail.com';
+  const recipient = 'jr@softa-apu.fi';
   const body = 'Hi \n\nContacting you via your web cv.\n\n';
 
   const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(

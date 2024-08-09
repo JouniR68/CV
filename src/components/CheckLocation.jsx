@@ -64,34 +64,49 @@ function CheckLocation() {
     }
   }
 
-
-
-  //const place = await axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-lat%lon&radius=200&type=restaurant&key=trimmedApi")
   const getPlace = async (lat, lon) => {
     const params = {
-      "location": `${lat},${lon}`,
+      location: `${lat},${lon}`,
       //location:"51.5287398,-0.266403",
-      radius: 1500,
+      radius: 300,
+      rankby: 'distance'
     }
 
 
     setArea(params.radius)
 
-    //const url = "https://firma-ed35a.web.app.cloudfunctions.net/getPlaces"
-    //const url = "https://us-central1-firma-ed35a.cloudfunctions.net/getPlaces?key='AIzaSyDeBnDCtHTEiO9RXwWauj_w9QtjXkfBjz0'"
     const url = `http://localhost:5001/firma-ed35a/us-central1/getPlaces`
 
     const fullUrl = `${url}?${qs.stringify(params)}`;
     console.log("full url: ", fullUrl)
 
-    try {      
-      const response = await axios.get(url, {params});
+    try {
+      const response = await axios.get(url, { params });
       setPlaces(response.data);
     } catch (error) {
       console.log('Error sending request to Cloud function: ', error.message);
-    } 
+    }
   }
 
+
+  const validateAddress = async (formatted_address) => {
+
+    const data = 
+    {
+      "address": {
+        postalAddress: {
+          regionCode: 'FI',
+          addressLines: [formatted_address], // e.g., ["1600 Amphitheatre Parkway"]
+      }
+      },
+      "enableUspsCass": true,
+    }
+
+    const resp = axios.get('http://localhost:5001/firma-ed35a/us-central1/validateAddress', {data})
+
+    console.log("resp: ", resp)
+    return resp
+  }
 
   const getAddress = async (lat, lon) => {
     //const fetchingLocation = sessionStorage.getItem('allowSessionStorageForLocation')
@@ -114,6 +129,9 @@ function CheckLocation() {
 
         if (result.formatted_address != "") {
           //setAddress((prevAddress) => ({ ...prevAddress, detail: result.formatted_address, }));
+          const validationResponse = validateAddress(result.formatted_address)
+          console.log("Adress validation = ", validationResponse.verdict)
+
           setHomeBase(result.formatted_address)
         } else {
           //setAddress({ detail: cityComponent.long_name });
@@ -133,7 +151,8 @@ function CheckLocation() {
   let k = 0;
   let locatedPlaces = []
   if (places?.length > 0) {
-    locatedPlaces = places.map((f) => <li key={k++}>{f.name}</li>)
+    // eslint-disable-next-line react/jsx-key
+    locatedPlaces = places.map((f) => <div style={{ marginLeft: 100, marginRight: 0, textAlign: 'left' }}> <li key={k++}>{f.name}</li></div>)
   }
 
   return (
@@ -145,7 +164,7 @@ function CheckLocation() {
       <p></p>
       <h3>Longitude: {position.longitude}</h3>
       <h3>The address: {homebase}</h3>
-      {locatedPlaces.length > 0 && <h3>Place(s) within {area} meters: {locatedPlaces}</h3>}
+      {locatedPlaces.length > 0 && <h3 key = {k++}>Place(s) within {area} meters: {locatedPlaces}</h3>}
       {errorMes && <h3>{errorMes}</h3>}
     </div>
   )

@@ -9,6 +9,21 @@ import cors from "cors";
 cors({origin: true});
 config();
 
+export const validateAddress = functions.https.onRequest(async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "application/json");
+  const apiKey = process.env.FBAPI;
+  console.log("apiKey: ", apiKey);
+  const {data} = req.body;
+  console.log("data body: ", data);
+  console.log("data params: ", req.params);
+  console.log("validationAddress data from the req.body: ", data);
+  const validateApiUrl = "https://addressvalidation.googleapis.com/v1:validateAddress?key=${apiKey}";
+  const resp = axios.post(`${validateApiUrl}, ${data}`);
+  res.send(resp.data);
+});
+
+
 export const getPlaces = functions.https.onRequest(async (req, res) => {
   // return cors(req, res, async () => {
   console.log("data: ", req.query);
@@ -24,7 +39,7 @@ export const getPlaces = functions.https.onRequest(async (req, res) => {
   }
 
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&key=${apiKey}`;
-  // const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${apiKey}`;
+
   logger.info("place req url: ", {url});
   try {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -35,8 +50,6 @@ export const getPlaces = functions.https.onRequest(async (req, res) => {
     console.error("Error fetching places data:", error);
     res.status(500).send("Error fetching places data");
   }
-  // },
-  // );
 });
 
 
