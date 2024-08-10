@@ -10,15 +10,14 @@ export default function Header() {
 
   return (
     <header className="app-header">
-      <Link to="/">#JRLA</Link>
+      <Link to="/">Softa-Apu</Link>
       {!isUserLoggedIn ? <nav> 
-        <Link to="/">{t('Home')}</Link>
-        <Link to="/profile">{t('Profile')}</Link>                  
-        <Link to="/output">CV</Link>
+        <Link to="/home">{t('Home')}</Link>
+        <Link to="/profile">{t('Profile')}</Link>                          
         <Link to="/rent">{t('Services')}</Link>
         <p>
         </p>
-        <Link to="/checkLocation">{t('CheckLocation')}</Link>
+        <Link to="/checkLocation">{t('checkLocation')}</Link>
       </nav> : 
       <Login />}
     </header>

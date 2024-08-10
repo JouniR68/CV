@@ -84,10 +84,12 @@ export default function Home() {
   
   return (
     <>
-      <div className="flags">
+      <div className="flags">        
         <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
-      </div>
+        </div>
+        <img id = "softaapu-logo" src="/Images/softaapu.png" onClick={() => changeLanguage('en')} />
+      
       
       <div className='home-container'>
         <h1>{t('welcome')}</h1>

@@ -1,7 +1,7 @@
 {
   "test": "test (en)",
   "welcome": "Welcome",
-  "welcomText": "Pls, browse through and contact me. In case intrested from the services, check out the services tab.",
+  "welcomText": "Pls, browse through and contact me (click Services). In case intrested from the services, check out the services tab.",
   "mobileWelcomeText": "Pls, browse through and contact me (anyway you like).",
   "Home": "Home",
   "Profile": "Profile",
@@ -27,7 +27,7 @@
   "Intrest-header":"Intrests",
   "Why-header":"Why to hire?",
   "Open-header": "Looking for",
-  "Services-main": "Services with prices (travel expensives euro/km)",
+  "Services-main": "Services with prices (travel expensives euro/km), mobile user scroll to the right..",
   "Services-coding": "Coding (React, Node, JS, CSS , HTML).",
   "Services-admin": "Installation, updates, system configurations.",
   "Services-pm": "Product Mgmt, requirement, roadmapping.",
@@ -69,6 +69,7 @@
   "Address": "Address",
   "Phone": "Tel.",
   "Email": "Email",
+  "Message": "The message",
   "Firm Id": "Company Id (Y-id)",
   "Description": "Description",
   "Created": "Created",
@@ -89,5 +90,7 @@
   "time": "Time",
   "crotia":"Croatia",
   "finland": "Finland",
-  "checkLocation": "Check your address"
+  "checkLocation": "Check your address",
+  "birthPlace":"Place of birth: Rovaniemi, Lapland, Finland",
+  "cv": "History"
 }

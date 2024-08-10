@@ -9,11 +9,12 @@ import { db } from "../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import '../index.css'
 
 export default function Quick() {
   const navigate = useNavigate();
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const today = new Date().toISOString().split("T")[0]
   const [data, setData] = useState({ fName: "", lName: "", address: "", email: "", phone: "", firmId: "", description: "", pvm: today });
@@ -98,7 +99,7 @@ export default function Quick() {
   };
 
   return (
-    <div className="adder">
+    <div>
       {conn != "" && conn}
       {conn === "" && <Box
         component="form"
@@ -108,101 +109,91 @@ export default function Quick() {
         justifyContent="center"
 
         sx={{
-          "& .MuiTextField-root": { mb: -5, width: "25ch" },
+          "& .MuiTextField-root": { mb: -5, width: "30ch", height:"12ch" },
         }}
         noValidate
         autoComplete="off"
       >
 
         <TextField
-          style={{ width: "180px", margin: "5px" }}
           id="fName"
           type="text"
-          label="Firstname / etunimi"
+          label={t('Firstname')}
           required
           value={data.fName}
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.fName)}
-          helperText={error.fName}
-
+          helperText={error.fName}          
         />
 
         <TextField
-          style={{ width: "180px", margin: "5px" }}
           id="lName"
           type="text"
-          label="Lastname / sukunimi"
+          label={t('Lastname')}
           required
           value={data.lName}
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.lName)}
-          helperText={error.lName}
+          helperText={error.lName}          
         />
 
         <TextField
-          style={{ width: "180px", margin: "5px" }}
           id="address"
           type="text"
-          label="Address / osoite"
+          label={t('Address')}
           value={data.address}
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.address)}
-          helperText={error.address}
+          helperText={error.address}          
         />
 
         <TextField
-          style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="email"
           type="text"
-          label="Email / s-posti"
+          label={t('Email')}
           required
           value={data.email}
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.email)}
-          helperText={error.email}
+          helperText={error.email}          
         />
 
         <TextField
-          style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="phone"
           required
           type="number"
-          label="Phone / puhelin"
+          label={t('Phone')}
           value={data.phone}
           variant="outlined"
-          onChange={handleChange}
+          onChange={handleChange}          
         />
 
         <p></p>
         <FormControl>
           <NativeSelect
-            defaultValue={30}            
+            defaultValue={30}
             inputProps={{
               name: 'interested',
               id: 'uncontrolled-native',
             }}
           >
-            <option value="message">The message / viesti</option>
+            <option value="message">{t('Message')}</option>
             <option value="web">JS (react, node, css etc) based coding (web) / webbi koodausta.</option>
             <option value="testing">Testing / testausta</option>
             <option value="admin">Admin work, system configuration etc / Pääkäyttäjä tehtäviä</option>
             <option value="consulting">Consulting / neuvontaa, suositteluita</option>
             <option value="installations">Sw installations, updates etc / Ohjelmiston asennuksia tai päivityksiä.</option>
-
-
-
           </NativeSelect>
         </FormControl>
 
         <TextField
-          style={{ width: "180px", margin: "5px", mt: "-5" }}
           id="description"
           type="text"
-          label=""
+          label={t('Message')}
           required
           value={data.description}
           variant="outlined"
@@ -210,15 +201,16 @@ export default function Quick() {
           error={Boolean(error.description)}
           helperText={error.description}
           multiline
-          rows={4}
+          rows={4}          
         />
 
+        <p />
+        <p></p>
 
-        <br />
-
-        <Button variant="contained" color="primary" onClick={() => save()}>
+        <Button variant="contained" color="primary" style={{ mt: 5 }} onClick={() => save()}>
           {t('Save')}
         </Button>
+
       </Box>}
     </div>
   );

@@ -1,8 +1,8 @@
 {
   "test": "Testi",
   "welcome": "Tervetuloa",
-  "welcomText": "Hienoa, selaile rauhassa sivujani ja laita rohkeasti yhteydenotto pyyntö vaikka et heti olisi ostamassa palveluitani.",
-  "mobileWelcomeText": "Tervetuloa sivustolleni, katsele rauhassa ja ota yhteyttä.",
+  "welcomText": "Hienoa, selaile rauhassa sivujani ja laita rohkeasti viestiä (klikkaa Palvelut) vaikka et heti olisi ostamassa palveluitani.",
+  "mobileWelcomeText": "Tervetuloa sivustolleni, laitahan pienellä kynnyksellä viestiä jos voin auttaa missään atk/ohjelmisto asiassa.",
   "Home": "Koti",
   "Profile": "Profiili",
   "Services": "Palvelut",
@@ -27,7 +27,7 @@
   "Intrest-header": "Kiinnostuksen kohteet",
   "Why-header":"Töihin?",
   "Open-header": "Avoin",
-  "Services-main": "Palvelut hintoineen (matkakulut euro/km).",
+  "Services-main": "Palvelut hintoineen (matkakulut euro/km). Mobiili käyttäjä skrollaa oikealle..",
   "Services-coding": "Koodausta (React, Node, JS, CSS , HTML).",
   "Services-admin": "Asennukset, päivitykset, Systeemi konfaukset",
   "Services-pm": "Tuotehallint, vaatimukset, roadmappays",
@@ -71,6 +71,7 @@
   "Address": "Osoite",
   "Phone": "Puhelin",
   "Email": "Sähköposti",
+  "Message": "Viesti",
   "Firm Id": "Y-tunnus",
   "Description": "Kuvaus",
   "Created": "Luotu",
@@ -91,5 +92,7 @@
   "time": "Aika",
   "croatia": "Kroatia",
   "finland": "Suomi",
-  "checkLocation": "Sijaintisi"
+  "checkLocation": "Sijaintisi",
+  "birthPlace":"Place of birth: Rovaniemi, Lapin lääni, Finland",
+  "cv":"Historia"
 }

@@ -19,7 +19,7 @@ import Work from "./components/Work";
 import Education from "./components/Education";
 import Tech from "./components/Tech";
 import CV from "./components/Output"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Contact from "./components/Contact";
 import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
@@ -37,9 +37,10 @@ function App() {
     <div className="app-container">
 
       <BrowserRouter>
-        <Routes>
+        <Routes>        
           <Route element={<Layout />}>
-            <Route path='/' element={<Home />} />            
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
             <Route path='/t' element={<TestArray />} />
             <Route path='/tl' element={<TestLocation />} />
             <Route path='/checkLocation' element={<CheckLocation />} />
@@ -48,6 +49,13 @@ function App() {
             <Route path="error" element={<ErrorMessage />} />
             <Route path='profile' element={<ProfileLayout />}>
               <Route index element={<Profile />} />
+              <Route path='cv' element={<CVLayout />}>
+                <Route index element={<Work />} />
+                <Route path='education' element={<Education />} />
+                <Route path='work' element={<Work />} />
+                <Route path='Tech' element={<Tech />} />
+                <Route path='Contact' element={<Contact />} />
+              </Route>
               <Route path='intrests' element={<Intrests />} />
               <Route path='why' element={<Why />} />
               <Route path='looking' element={<Looking />} />
@@ -66,13 +74,6 @@ function App() {
               <Route path='contract' element={<ContractForm />} />
             </Route>
 
-            <Route path='cv' element={<CVLayout />}>
-              <Route index element={<Work />} />
-              <Route path='education' element={<Education />} />
-              <Route path='work' element={<Work />} />
-              <Route path='Tech' element={<Tech />} />
-              <Route path='Contact' element={<Contact />} />
-            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
