@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { nanoid } from 'nanoid'
 
@@ -14,10 +14,11 @@ import {
 	Paper,
 } from '@mui/material';
 import { useTranslation } from "react-i18next";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 
 const ShowCustomers = () => {
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const [locations, setLocations] = useState([])
 	const [customer, setCustomer] = useState([])
 	const [error, setError] = useState("")
@@ -48,6 +49,24 @@ const ShowCustomers = () => {
 		getContracts();
 	}, [])
 
+
+	const deletor = async (id) => {
+		// Get a reference to the document		
+		console.log("Deletor with id:", id);
+		const collectionRef = collection(db, "messages");
+		const docRef = doc(collectionRef, id);
+
+		console.log("docRef: ", docRef)
+		deleteDoc(docRef)
+			.then(() => {
+				console.log("The document successfully deleted")
+			})
+			.catch(((error) => {
+				console.error("Error removing document: ", error)
+			}))
+
+	}
+
 	return (
 
 		<TableContainer component={Paper}>
@@ -63,6 +82,7 @@ const ShowCustomers = () => {
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firm Id')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Description')}</TableCell>
 						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Created')}</TableCell>
+						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Action')}</TableCell>
 					</TableRow>
 				</TableHead>
 
@@ -77,6 +97,7 @@ const ShowCustomers = () => {
 							<TableCell>{t.phone}</TableCell>
 							<TableCell>{t.description}</TableCell>
 							<TableCell>{t.pvm}</TableCell>
+							<Button onClick={() => deletor(t.id)}>Delete</Button>
 						</TableRow>
 					</TableBody>
 				))}
