@@ -1,44 +1,48 @@
-import React from "react";
+import React, {useContext} from "react";
 import axios from "axios";
 import NotificaatioDialog from "./NotificaatioDialog";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./LoginContext";
 const servUrl = import.meta.env.VITE_SERVER
 
 export default function Login() {
   const [userPwd, setUserPwd] = React.useState(null);
   const [close, setClose] = React.useState(true)
+  const navigate = useNavigate();
+  const { isLoggedIn, login, logout, setIsLoggedIn } = useContext(AuthContext);
+
+  console.log("isLoggedIn: ", isLoggedIn)
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log("target server:", servUrl)
-      const response = await axios.post(`${servUrl}/api/login`, { userPwd },{
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      } );
-      
-      if (response.status === 200) {
-        sessionStorage.setItem("loggedIn", true);
-        <NotificaatioDialog message = "Hey, olette kirjautunut" onClose = {onCloseDialog} />        
-        window.open(`/`, "_self")  
-      } else if (response.status === 204) {
-        window.alert("Kirjautumis yritys hylätty !");
-      }
-    } catch (err) {
-      console.log("Meni aivan vituiksi, error: ", err);
-    }
-  };
+    const url = `http://localhost:5001/firma-ed35a/us-central1/login`
 
+    try {
+      const params = { userPwd: userPwd }
+      const response = await axios.get(url, { params });
+      console.log("login response: ", response.status + ', ' + response.data)
+      if (response.status === 200) {
+        setIsLoggedIn(true)
+        sessionStorage.setItem("loggedIn", true);    
+        navigate('/')   
+      }
+      else {
+        navigate('error', { state: { locationError: 'Invalid password' } })
+      }
+    } catch (error) {
+      console.log('Error sending request to Cloud function: ', error.message);
+    }
+  }
   const onCloseDialog = () => {
-    setClose(!close) 
+    setClose(!close)
   }
 
   return (
     <div className="main">
-      {close && <form className="login--form">
+      <form className="login--form">
         <label>Password</label>
         <input type="password" name="pwd" onChange={(event) => setUserPwd(event.target.value)} />
-        <button onClick={onSubmit}>Tarkista</button>        
-      </form>}
+        <button onClick={onSubmit}>Tarkista</button>
+      </form>
     </div>
   );
 }

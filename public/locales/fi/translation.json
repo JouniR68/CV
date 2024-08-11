@@ -27,7 +27,7 @@
   "Intrest-header": "Kiinnostuksen kohteet",
   "Why-header":"Töihin?",
   "Open-header": "Avoin",
-  "Services-main": "Palvelut hintoineen (matkakulut euro/km). Mobiili käyttäjä skrollaa oikealle..",
+  "Services-main": "Palvelut hintoineen (matkakulut euro/km), kysy paketti hintaa. Mobiili käyttäjä skrollaa oikealle..",
   "Services-coding": "Koodausta (React, Node, JS, CSS , HTML).",
   "Services-admin": "Asennukset, päivitykset, Systeemi konfaukset",
   "Services-pm": "Tuotehallint, vaatimukset, roadmappays",
@@ -82,7 +82,7 @@
   "OpenFor": "Avoin ehdotuksille.",
   "ThankYou": "Kiitos",
   "ThankYouText": "Kiitos vierailusta, toivottavasti olemme yhteyksissä.",
-  "ReturntoHome" : "Paluu koti sivulle",
+  "ReturnToHome" : "Paluu koti sivulle",
   "SubmissionReceived": "Viestisi saapui perille.",
   "retrieving_position_failed": "Sijainnin haku epäonnistui",
   "NoAddressAvailable": "Osoitetta ei saatavilla",
@@ -94,5 +94,6 @@
   "finland": "Suomi",
   "checkLocation": "Sijaintisi",
   "birthPlace":"Place of birth: Rovaniemi, Lapin lääni, Finland",
-  "cv":"Historia"
+  "cv":"Historia",
+  "Confirmation":"Vahvistus"
 }

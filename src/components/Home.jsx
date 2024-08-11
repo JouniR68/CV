@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 //import MyLocation from './MyLocation';
 import "../index.css"
 import MyLocation from './MyLocation';
@@ -7,12 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import CheckLocation from './CheckLocation';
+import { AuthContext } from './LoginContext';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
   const [confirmation, setConfirmation] = useState(true)
   const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -23,10 +25,8 @@ export default function Home() {
       console.log(locationError)
       setError(locationError)
     }
+
   }
-
-  
-
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {

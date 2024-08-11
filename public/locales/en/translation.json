@@ -27,7 +27,7 @@
   "Intrest-header":"Intrests",
   "Why-header":"Why to hire?",
   "Open-header": "Looking for",
-  "Services-main": "Services with prices (travel expensives euro/km), mobile user scroll to the right..",
+  "Services-main": "Services with prices (travel expensives euro/km), ask packet price. Mobile user scroll to the right..",
   "Services-coding": "Coding (React, Node, JS, CSS , HTML).",
   "Services-admin": "Installation, updates, system configurations.",
   "Services-pm": "Product Mgmt, requirement, roadmapping.",
@@ -80,7 +80,7 @@
   "OpenFor": "Open for the discussions",
   "ThankYou": "Thank You",
   "ThankYouText": "I appreciate your feedback. If you have any questions, feel free to contact.",
-  "ReturntoHome" : "Return to Home",
+  "ReturnToHome" : "Return to Home",
   "SubmissionReceived": "Your submission has been received.",
   "retrieving_position_failed": "Fetching position failed",
   "NoAddressAvailable": "No address available",
@@ -92,5 +92,6 @@
   "finland": "Finland",
   "checkLocation": "Location",
   "birthPlace":"Place of birth: Rovaniemi, Lapland, Finland",
-  "cv": "History"
+  "cv": "History",
+  "Confirmation":"Action Confirmation"
 }

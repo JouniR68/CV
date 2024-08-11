@@ -15,14 +15,20 @@ import {
 } from '@mui/material';
 import { useTranslation } from "react-i18next";
 import { ConstructionOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 
 const ShowCustomers = () => {
+	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const [locations, setLocations] = useState([])
 	const [customer, setCustomer] = useState([])
 	const [error, setError] = useState("")
 	const [cro, setCro] = useState(false)
+
+	if (!sessionStorage.getItem('loggedIn')){
+		navigate('login');
+	}
 
 	const getContracts = async () => {
 		try {
@@ -51,6 +57,7 @@ const ShowCustomers = () => {
 
 
 	const deletor = async (id) => {
+		
 		// Get a reference to the document		
 		console.log("Deletor with id:", id);
 		const collectionRef = collection(db, "messages");
@@ -60,9 +67,11 @@ const ShowCustomers = () => {
 		deleteDoc(docRef)
 			.then(() => {
 				console.log("The document successfully deleted")
+				navigate('confirmation', {state: {description: `${id} deleted`}})
 			})
 			.catch(((error) => {
 				console.error("Error removing document: ", error)
+				navigate('error', {state: {locationError: `${id} deleting failed.`}})
 			}))
 
 	}

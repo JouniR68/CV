@@ -2,19 +2,34 @@ import * as v2 from "firebase-functions/v2";
 import functions from "firebase-functions";
 import logger from "firebase-functions/logger";
 import axios from "axios";
-import {config} from "dotenv";
+import { config } from "dotenv";
 import cors from "cors";
 
 
-cors({origin: true});
+cors({ origin: true });
 config();
+
+export const login = functions.https.onRequest(async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "application/json");
+
+  const {userPwd} = req.query;
+  console.log("userPwd: ", userPwd);
+  const dayPwd = new Date().getDate() + ("1512");
+  if (userPwd === dayPwd) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(403);
+  }
+});
+
 
 export const validateAddress = functions.https.onRequest(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   const apiKey = process.env.FBAPI;
   console.log("apiKey: ", apiKey);
-  const {data} = req.body;
+  const { data } = req.body;
   console.log("data body: ", data);
   console.log("data params: ", req.params);
   console.log("validationAddress data from the req.body: ", data);
@@ -30,17 +45,17 @@ export const getPlaces = functions.https.onRequest(async (req, res) => {
   const location = req.query.location;
   const radius = req.query.radius;
   const apiKey = process.env.FBAPI;// functions.config().google.apiKey;
-  logger.info("Api: ", {api: apiKey});
+  logger.info("Api: ", { api: apiKey });
 
   if (!apiKey) {
-    logger.error("Google API Key not found", {api: apiKey});
+    logger.error("Google API Key not found", { api: apiKey });
     res.status(500).send("Google API key not found");
     return;
   }
 
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&key=${apiKey}`;
 
-  logger.info("place req url: ", {url});
+  logger.info("place req url: ", { url });
   try {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Content-Type", "application/json");
