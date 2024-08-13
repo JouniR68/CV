@@ -9,12 +9,49 @@ import cors from "cors";
 cors({ origin: true });
 //config();
 
-export const access = functions.https.onRequest(async (req, res) => {
+/*
+const {google} = require('googleapis');
+const container = google.container('v1beta1');
+
+
+exports.cleanupGCR = async (req, res) => {
+  try {
+    const projectId = 'firma-ed35a';
+    const repository = 'your-repository';
+    const cutoffDate = new Date();
+    cutoffDate.setMonths(cutoffDate.getMonth() - 3); // e.g., images older than 3 months
+
+    // List images
+    const listResponse = await google.container.images.list({
+      parent: `projects/${projectId}/locations/global/repositories/${repository}`,
+    });
+
+    // Delete old images
+    const deletePromises = listResponse.data.images
+      .filter(image => new Date(image.updateTime) < cutoffDate)
+      .map(image => google.container.images.delete({
+        name: image.name,
+      }));
+
+    await Promise.all(deletePromises);
+
+    res.status(200).send('Old images cleaned up.');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error during image cleanup.');
+  }
+};
+*/
+
+
+export const access = functions
+.region('europe-west2')
+.https.onRequest(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
   logger.info("FB index.js, access:", {userPwd : req.query.userPwd})
   const {userPwd} = req.query;
-  console.log("userPwd: ", userPwd);
+  logger.info("userPwd: ", {pwd: userPwd});
   const dayPwd = new Date().getDate() + ("1512");
   if (userPwd === dayPwd) {
     res.sendStatus(200);
@@ -24,12 +61,12 @@ export const access = functions.https.onRequest(async (req, res) => {
 });
 
 
-export const fetchPlaces = functions.https.onRequest(async (req, res) => {
-  // return cors(req, res, async () => {
-  console.log("data: ", req.query);
+export const fetchPlaces = functions.region('europe-west2')
+.https.onRequest(async (req, res) => {
+  logger.info("fetchPlaces query: ", {query_data: req.query.data});
   const location = req.query.location;
   const radius = req.query.radius;
-  const apiKey = process.env.FBAPI;// functions.config().google.apiKey;
+  const apiKey = process.env.FBAPI;
   logger.info("Api: ", { api: apiKey });
 
   if (!apiKey) {
@@ -40,26 +77,15 @@ export const fetchPlaces = functions.https.onRequest(async (req, res) => {
 
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&key=${apiKey}`;
 
-  logger.info("place req url: ", { url });
+  logger.info("place req url: ", { location: url });
   try {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Content-Type", "application/json");
     const response = await axios.get(url);
+    logger.info("place resp: ", { resp: response.data });
     res.status(response.status).json(response.data.results);
   } catch (error) {
     console.error("Error fetching places data:", error);
     res.status(500).send("Error fetching places data");
   }
 });
-
-
-/*
-export const helloWorld = onRequest((request, response) => {
-  debugger;
-  logger.info("Hello logs!", { structuredData: true });
-  const name = request.params[0];
-  const items = { lamp: "This is a lamp", chair: "Good chair" };
-  const message = items[name];
-  response.send(`<h1>${message}</h1>`);
-});
-*/

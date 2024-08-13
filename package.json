@@ -23,7 +23,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "firebase": "^10.12.2",
-    "firebase-admin": "^12.3.0",
+    "firebase-admin": "^12.3.1",
     "firebase-functions": "^5.0.1",
     "gloud": "^0.0.0",
     "i18next": "^23.12.1",

@@ -42,7 +42,7 @@
           "vpcConnector": "default",
           "minInstances": 1,
           "maxInstances": 5,
-          "region": "europe-west2"
+          "region": "europe-north1"
         }
       }
     },

@@ -3,15 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./LoginContext";
 
-
-
 function Done() {
   const {setIsLoggedIn} = useContext(AuthContext)
   const {t} = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const [close, setClose] = useState(false)
-  const [text, setText] = useState(null)
   
   const {state} = location;
   const {description} = state;
