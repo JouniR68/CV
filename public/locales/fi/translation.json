@@ -2,7 +2,7 @@
   "test": "Testi",
   "welcome": "Tervetuloa",
   "welcomText": "Hienoa, selaile rauhassa sivujani ja laita rohkeasti viestiä (klikkaa Palvelut) vaikka et heti olisi ostamassa palveluitani.",
-  "mobileWelcomeText": "Tervetuloa sivustolleni, laitahan pienellä kynnyksellä viestiä jos voin auttaa missään atk/ohjelmisto asiassa.",
+  "mobileWelcomeText": "Tervetuloa sivustolleni, laitahan viestiä (palvelut->viesti, sähköposti / soitto).",
   "Home": "Koti",
   "Profile": "Profiili",
   "Services": "Palvelut",
@@ -95,5 +95,7 @@
   "checkLocation": "Sijaintisi",
   "birthPlace":"Place of birth: Rovaniemi, Lapin lääni, Finland",
   "cv":"Historia",
-  "Confirmation":"Vahvistus"
+  "Confirmation":"Vahvistus",
+  "check": "Tarkista",
+  "password":"Salasana"
 }

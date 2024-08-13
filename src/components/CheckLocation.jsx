@@ -74,7 +74,7 @@ function CheckLocation() {
     setArea(params.radius)
 
     const url = 'https://firma-ed35a.web.app/fetchPlaces'
-
+    //const url = "http://localhost:5001/firma-ed35a/europe-west2/fetchPlaces"
     try {
       const response = await axios.get(url, { params });
       setPlaces(response.data);
@@ -104,9 +104,6 @@ function CheckLocation() {
 
         if (result.formatted_address != "") {
           //setAddress((prevAddress) => ({ ...prevAddress, detail: result.formatted_address, }));
-          const validationResponse = validateAddress(result.formatted_address)
-          console.log("Adress validation = ", validationResponse.verdict)
-
           setHomeBase(result.formatted_address)
         } else {
           //setAddress({ detail: cityComponent.long_name });
@@ -116,7 +113,7 @@ function CheckLocation() {
       } catch (error) {
         console.error(t('UnableToGetLocation'));
         //{isMobile ? info = "Request was made from " + mobileModel : info = "The request was made from PC"}
-        navigate('error', { state: { locationError: t('UnableToGetLocation') } })
+        navigate('/error', { state: { locationError: t('UnableToGetLocation') } })
       }
     }
   };

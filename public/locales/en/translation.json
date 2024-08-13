@@ -1,8 +1,8 @@
 {
   "test": "test (en)",
   "welcome": "Welcome",
-  "welcomText": "Pls, browse through and contact me (click Services). In case intrested from the services, check out the services tab.",
-  "mobileWelcomeText": "Pls, browse through and contact me (anyway you like).",
+  "welcomText": "Pls, browse through and contact me (via services, mail link / call).",
+  "mobileWelcomeText": "Pls, browse through and contact me (via services->message, mail/call).",
   "Home": "Home",
   "Profile": "Profile",
   "Services": "Services",
@@ -26,7 +26,7 @@
   "why5": "Good attitude and allways willing to learn new and develop.",
   "Intrest-header":"Intrests",
   "Why-header":"Why to hire?",
-  "Open-header": "Looking for",
+  "Open-header": "Open",
   "Services-main": "Services with prices (travel expensives euro/km), ask packet price. Mobile user scroll to the right..",
   "Services-coding": "Coding (React, Node, JS, CSS , HTML).",
   "Services-admin": "Installation, updates, system configurations.",
@@ -93,5 +93,8 @@
   "checkLocation": "Location",
   "birthPlace":"Place of birth: Rovaniemi, Lapland, Finland",
   "cv": "History",
-  "Confirmation":"Action Confirmation"
+  "Confirmation":"Action Confirmation",
+  "check":"Check",
+  "password":"Password"
+
 }

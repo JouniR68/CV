@@ -3,6 +3,9 @@ import axios from "axios";
 import NotificaatioDialog from "./NotificaatioDialog";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./LoginContext";
+import { useTranslation } from "react-i18next";
+import "../index.css";
+
 const servUrl = import.meta.env.VITE_SERVER
 
 export default function Login() {
@@ -10,7 +13,7 @@ export default function Login() {
   const [close, setClose] = React.useState(true)
   const navigate = useNavigate();
   const { isLoggedIn, login, logout, setIsLoggedIn } = useContext(AuthContext);
-
+  const {t} = useTranslation()
   console.log("isLoggedIn: ", isLoggedIn)
   
   
@@ -43,9 +46,9 @@ export default function Login() {
   return (
     <div className="main">
       <form className="login--form">
-        <label>Password</label>
+        <label>{t('password')}</label>
         <input type="password" name="pwd" onChange={(event) => setUserPwd(event.target.value)} />
-        <button onClick={onSubmit}>Tarkista</button>
+        <button onClick={onSubmit}>{t('check')}</button>
       </form>
     </div>
   );

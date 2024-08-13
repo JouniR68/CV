@@ -1,6 +1,6 @@
 import * as v2 from "firebase-functions/v2";
 import functions from "firebase-functions";
-import logger from "firebase-functions/logger";
+import {logger} from "firebase-functions";
 import axios from "axios";
 //import { config } from "dotenv";
 import cors from "cors";
@@ -8,41 +8,6 @@ import cors from "cors";
 
 cors({ origin: true });
 //config();
-
-/*
-const {google} = require('googleapis');
-const container = google.container('v1beta1');
-
-
-exports.cleanupGCR = async (req, res) => {
-  try {
-    const projectId = 'firma-ed35a';
-    const repository = 'your-repository';
-    const cutoffDate = new Date();
-    cutoffDate.setMonths(cutoffDate.getMonth() - 3); // e.g., images older than 3 months
-
-    // List images
-    const listResponse = await google.container.images.list({
-      parent: `projects/${projectId}/locations/global/repositories/${repository}`,
-    });
-
-    // Delete old images
-    const deletePromises = listResponse.data.images
-      .filter(image => new Date(image.updateTime) < cutoffDate)
-      .map(image => google.container.images.delete({
-        name: image.name,
-      }));
-
-    await Promise.all(deletePromises);
-
-    res.status(200).send('Old images cleaned up.');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error during image cleanup.');
-  }
-};
-*/
-
 
 export const access = functions
 .region('europe-west2')
@@ -63,10 +28,12 @@ export const access = functions
 
 export const fetchPlaces = functions.region('europe-west2')
 .https.onRequest(async (req, res) => {
-  logger.info("fetchPlaces query: ", {query_data: req.query.data});
+  console.log("fetchPlaces console.log")
+  logger.info("fetchPlaces query: ");
   const location = req.query.location;
   const radius = req.query.radius;
   const apiKey = process.env.FBAPI;
+  console.log("api: ", apiKey)
   logger.info("Api: ", { api: apiKey });
 
   if (!apiKey) {

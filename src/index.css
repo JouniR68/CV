@@ -234,23 +234,36 @@
   .login--form {
     display: grid;
     grid-template-columns: auto;
-    margin-left: 100px;
+    margin-left: 2rem;
     gap: 3px;
     text-align: left;
     border: 1px solid;
     border-radius: 5px;
     padding: 3px;
-    background-color: yellow;
+    background-color: rgb(182, 207, 219);
     font-size: 14px;
     font-weight: bold;
+    width:fit-content;
   }
 
   .login--form input {
-    padding: 2px;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: fit-content;
+  }
+
+  .login--form label{
+    margin: 1rem;
   }
 
   .login--form button {
+    margin: 1rem;
     border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: fit-content;
   }
 
 
