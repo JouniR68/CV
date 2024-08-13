@@ -2,17 +2,17 @@ import * as v2 from "firebase-functions/v2";
 import functions from "firebase-functions";
 import logger from "firebase-functions/logger";
 import axios from "axios";
-import { config } from "dotenv";
+//import { config } from "dotenv";
 import cors from "cors";
 
 
 cors({ origin: true });
-config();
+//config();
 
-export const login = functions.https.onRequest(async (req, res) => {
+export const access = functions.https.onRequest(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");
-
+  logger.info("FB index.js, access:", {userPwd : req.query.userPwd})
   const {userPwd} = req.query;
   console.log("userPwd: ", userPwd);
   const dayPwd = new Date().getDate() + ("1512");
@@ -24,22 +24,7 @@ export const login = functions.https.onRequest(async (req, res) => {
 });
 
 
-export const validateAddress = functions.https.onRequest(async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Content-Type", "application/json");
-  const apiKey = process.env.FBAPI;
-  console.log("apiKey: ", apiKey);
-  const { data } = req.body;
-  console.log("data body: ", data);
-  console.log("data params: ", req.params);
-  console.log("validationAddress data from the req.body: ", data);
-  const validateApiUrl = "https://addressvalidation.googleapis.com/v1:validateAddress?key=${apiKey}";
-  const resp = axios.post(`${validateApiUrl}, ${data}`);
-  res.send(resp.data);
-});
-
-
-export const getPlaces = functions.https.onRequest(async (req, res) => {
+export const fetchPlaces = functions.https.onRequest(async (req, res) => {
   // return cors(req, res, async () => {
   console.log("data: ", req.query);
   const location = req.query.location;

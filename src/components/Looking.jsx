@@ -20,7 +20,7 @@ export default function Looking() {
       <table className="taulu">
         <tbody>
           <tr>
-            <td>Sw Development Managemer / Project Manager</td>
+            <td>Sw Development Manager / Project Manager</td>
           </tr>
 
           <tr>

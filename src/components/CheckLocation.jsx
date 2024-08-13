@@ -71,14 +71,9 @@ function CheckLocation() {
       radius: 300,
       rankby: 'distance'
     }
-
-
     setArea(params.radius)
 
-    const url = `http://localhost:5001/firma-ed35a/us-central1/getPlaces`
-
-    const fullUrl = `${url}?${qs.stringify(params)}`;
-    console.log("full url: ", fullUrl)
+    const url = 'https://firma-ed35a.web.app/fetchPlaces'
 
     try {
       const response = await axios.get(url, { params });
@@ -86,26 +81,6 @@ function CheckLocation() {
     } catch (error) {
       console.log('Error sending request to Cloud function: ', error.message);
     }
-  }
-
-
-  const validateAddress = async (formatted_address) => {
-
-    const data = 
-    {
-      "address": {
-        postalAddress: {
-          regionCode: 'FI',
-          addressLines: [formatted_address], // e.g., ["1600 Amphitheatre Parkway"]
-      }
-      },
-      "enableUspsCass": true,
-    }
-
-    const resp = axios.get('http://localhost:5001/firma-ed35a/us-central1/validateAddress', {data})
-
-    console.log("resp: ", resp)
-    return resp
   }
 
   const getAddress = async (lat, lon) => {

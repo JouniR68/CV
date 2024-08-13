@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "./LoginContext";
 
 
 
 function Done() {
-  
+  const {setIsLoggedIn} = useContext(AuthContext)
   const {t} = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -17,6 +18,11 @@ function Done() {
   
   const ok = () => {
     setClose(true)
+    setTimeout(() => {
+      setIsLoggedIn(false)
+      window.open("/", "_self");  
+    }, [2000])
+    
     navigate('/')
   }
 

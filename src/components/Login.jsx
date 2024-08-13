@@ -12,9 +12,12 @@ export default function Login() {
   const { isLoggedIn, login, logout, setIsLoggedIn } = useContext(AuthContext);
 
   console.log("isLoggedIn: ", isLoggedIn)
+  
+  
+  
   const onSubmit = async (e) => {
     e.preventDefault();
-    const url = `http://localhost:5001/firma-ed35a/us-central1/login`
+    const url = 'https://firma-ed35a.web.app/fetchPlaces/access'
 
     try {
       const params = { userPwd: userPwd }
@@ -29,6 +32,7 @@ export default function Login() {
         navigate('error', { state: { locationError: 'Invalid password' } })
       }
     } catch (error) {
+      
       console.log('Error sending request to Cloud function: ', error.message);
     }
   }
