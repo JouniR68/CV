@@ -84,6 +84,7 @@ export default function Home() {
   
   return (
     <>
+      <h1>jriimala.netlify.app is more dev site, pls check https://softa-apu.fi</h1>
       <div className="flags">        
         <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
