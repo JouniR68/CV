@@ -81,10 +81,11 @@ export default function Home() {
   //{confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
   //{locationReading === true && <MyLocation />}
   console.log("isMobile: ", isMobile)
+
   
   return (
     <>
-      <h1>jriimala.netlify.app is more dev site, pls check https://softa-apu.fi</h1>
+      <h1>jriimala.netlify.app is more dev site, pls click <a href = "https://softa-apu.fi">softa-apu.fi</a>
       <div className="flags">        
         <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
