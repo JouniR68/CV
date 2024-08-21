@@ -97,5 +97,7 @@
   "cv":"Historia",
   "Confirmation":"Vahvistus",
   "check": "Tarkista",
-  "password":"Salasana"
+  "password":"Salasana",
+  "Calendar":"Kalenteri",
+  "Remove": "Poista"
 }

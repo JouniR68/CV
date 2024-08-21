@@ -69,7 +69,7 @@ function CheckLocation() {
       location: `${lat},${lon}`,
       //location:"51.5287398,-0.266403",
       radius: 300,
-      rankby: 'distance'
+      //rankby: 'distance'
     }
     setArea(params.radius)
 
@@ -77,6 +77,7 @@ function CheckLocation() {
     //const url = "http://localhost:5001/firma-ed35a/europe-west2/fetchPlaces"
     try {
       const response = await axios.get(url, { params });
+      if (!response){console.log("No place reponses")}
       setPlaces(response.data);
     } catch (error) {
       console.log('Error sending request to Cloud function: ', error.message);

@@ -62,11 +62,12 @@ export default function Quick() {
       isValid = false;
     }
 
+    /*
     else if (!data.address) {
       tempErrors.address = t('Address-required');
       isValid = false;
     }
-
+*/
     else if (!data.description) {
       tempErrors.description = t('Email-required');
       isValid = false;
@@ -109,7 +110,7 @@ export default function Quick() {
         justifyContent="center"
 
         sx={{
-          "& .MuiTextField-root": { mb: -5, width: "30ch", height:"12ch" },
+          "& .MuiTextField-root": { mb: -5, width: "30ch", height: "12ch" },
         }}
         noValidate
         autoComplete="off"
@@ -124,7 +125,7 @@ export default function Quick() {
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.fName)}
-          helperText={error.fName}          
+          helperText={error.fName}
         />
 
         <TextField
@@ -136,7 +137,7 @@ export default function Quick() {
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.lName)}
-          helperText={error.lName}          
+          helperText={error.lName}
         />
 
         <TextField
@@ -147,7 +148,7 @@ export default function Quick() {
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.address)}
-          helperText={error.address}          
+          helperText={error.address}
         />
 
         <TextField
@@ -159,17 +160,16 @@ export default function Quick() {
           variant="outlined"
           onChange={handleChange}
           error={Boolean(error.email)}
-          helperText={error.email}          
+          helperText={error.email}
         />
 
         <TextField
           id="phone"
-          required
           type="number"
           label={t('Phone')}
           value={data.phone}
           variant="outlined"
-          onChange={handleChange}          
+          onChange={handleChange}
         />
 
         <p></p>
@@ -201,15 +201,15 @@ export default function Quick() {
           error={Boolean(error.description)}
           helperText={error.description}
           multiline
-          rows={4}          
+          rows={4}
         />
 
-        <p />
-        <p></p>
 
-        <Button variant="contained" color="primary" style={{ mt: 5 }} onClick={() => save()}>
-          {t('Save')}
-        </Button>
+        <div id="saveButton">
+          <Button variant="contained" color="primary" style={{ mt: 5 }} onClick={() => save()}>
+            {t('Save')}
+          </Button>
+        </div>
 
       </Box>}
     </div>

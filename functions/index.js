@@ -30,8 +30,7 @@ export const fetchPlaces = functions.region('europe-west2')
 .https.onRequest(async (req, res) => {
   console.log("fetchPlaces console.log")
   logger.info("fetchPlaces query: ");
-  const location = req.query.location;
-  const radius = req.query.radius;
+  const {location, radius} = req.query;
   const apiKey = process.env.FBAPI;
   console.log("api: ", apiKey)
   logger.info("Api: ", { api: apiKey });

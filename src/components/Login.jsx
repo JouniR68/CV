@@ -20,11 +20,12 @@ export default function Login() {
   
   const onSubmit = async (e) => {
     e.preventDefault();
-    const url = 'https://firma-ed35a.web.app/fetchPlaces/access'
+    //const url = 'https://firma-ed35a.web.app/fetchPlaces/access'
+    const url2 = "https://softa-apu.fi/access"
 
     try {
       const params = { userPwd: userPwd }
-      const response = await axios.get(url, { params });
+      const response = await axios.get(url2, { params });
       console.log("login response: ", response.status + ', ' + response.data)
       if (response.status === 200) {
         setIsLoggedIn(true)

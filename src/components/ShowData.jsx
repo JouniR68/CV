@@ -16,6 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { ConstructionOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import Calendar from "./Calendar";
 
 
 const ShowCustomers = () => {
@@ -26,7 +27,7 @@ const ShowCustomers = () => {
 	const [error, setError] = useState("")
 	const [cro, setCro] = useState(false)
 
-	if (!sessionStorage.getItem('loggedIn')){
+	if (!sessionStorage.getItem('loggedIn')) {
 		navigate('login');
 	}
 
@@ -57,7 +58,7 @@ const ShowCustomers = () => {
 
 
 	const deletor = async (id) => {
-		
+
 		// Get a reference to the document		
 		console.log("Deletor with id:", id);
 		const collectionRef = collection(db, "messages");
@@ -67,51 +68,53 @@ const ShowCustomers = () => {
 		deleteDoc(docRef)
 			.then(() => {
 				console.log("The document successfully deleted")
-				navigate('confirmation', {state: {description: `${id} deleted`}})
+				navigate('/done', { state: { description: `${id} deleted` } })
 			})
 			.catch(((error) => {
 				console.error("Error removing document: ", error)
-				navigate('error', {state: {locationError: `${id} deleting failed.`}})
+				navigate('/error', { state: { locationError: `${id} deleting failed.` } })
 			}))
 
 	}
 
 	return (
+		<>
+			<TableContainer component={Paper}>
+				{error.length > 1 && <h3>{error}</h3>}
+				<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
 
-		<TableContainer component={Paper}>
-			{error.length > 1 && <h3>{error}</h3>}
-			<Table sx={{ minWidth: 650 }} aria-label="simple table" key={nanoid()}>
-
-				<TableHead>
-					<TableRow>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firstname')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="right">{t('Lastname')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Email')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Phone')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firm Id')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Description')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Created')}</TableCell>
-						<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Action')}</TableCell>
-					</TableRow>
-				</TableHead>
-
-
-				{customer.map((t) => (
-					<TableBody key={nanoid()}>
-						<TableRow key={nanoid()}>
-							<TableCell>{t.fName}</TableCell>
-							<TableCell>{t.lName}</TableCell>
-							<TableCell>{t.address}</TableCell>
-							<TableCell>{t.email}</TableCell>
-							<TableCell>{t.phone}</TableCell>
-							<TableCell>{t.description}</TableCell>
-							<TableCell>{t.pvm}</TableCell>
-							<Button onClick={() => deletor(t.id)}>Delete</Button>
+					<TableHead>
+						<TableRow>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firstname')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="right">{t('Lastname')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Email')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Phone')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Firm Id')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Description')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Created')}</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">{t('Action')}</TableCell>
 						</TableRow>
-					</TableBody>
-				))}
-			</Table>
-		</TableContainer>
+					</TableHead>
+
+
+					{customer.map((t) => (
+						<TableBody key={nanoid()}>
+							<TableRow key={nanoid()}>
+								<TableCell>{t.fName}</TableCell>
+								<TableCell>{t.lName}</TableCell>
+								<TableCell>{t.address}</TableCell>
+								<TableCell>{t.email}</TableCell>
+								<TableCell>{t.phone}</TableCell>
+								<TableCell>{t.description}</TableCell>
+								<TableCell>{t.pvm}</TableCell>
+								<Button onClick={() => deletor(t.id)}>Delete</Button>
+							</TableRow>
+						</TableBody>
+					))}
+				</Table>
+			</TableContainer>
+			<Calendar />
+		</>
 
 	)
 }

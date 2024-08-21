@@ -5,6 +5,7 @@
   "mobileWelcomeText": "Pls, browse through and contact me (via services->message, mail/call).",
   "Home": "Home",
   "Profile": "Profile",
+  "Output-profile": "Profile",
   "Services": "Services",
   "Confirmation-text": "Is it Ok read the location data? ",
   "Confirmation-expl": "At most it's not accurate at all, but intresting to me.",
@@ -25,7 +26,8 @@
   "why4": "Open for different contract types (permanent, freelancer, remote, part time (3 days in a wk).",
   "why5": "Good attitude and allways willing to learn new and develop.",
   "Intrest-header":"Intrests",
-  "Why-header":"Why to hire?",
+  "Why-header":"To hire?",
+  "Output-why": "Hirable?",
   "Open-header": "Open",
   "Services-main": "Services with prices (travel expensives euro/km), ask packet price. Mobile user scroll to the right..",
   "Services-coding": "Coding (React, Node, JS, CSS , HTML).",
@@ -95,6 +97,8 @@
   "cv": "History",
   "Confirmation":"Action Confirmation",
   "check":"Check",
-  "password":"Password"
-
+  "password":"Password",
+  "addEvent":"Add Event",
+  "Calendar":"Calendar",
+  "Remove": "Delete"
 }
