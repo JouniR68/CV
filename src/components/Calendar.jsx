@@ -2,13 +2,14 @@
 import { useState, useEffect, useTransition } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
-import { useNavigation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Calendar = () => {
-    const { t } = useTransition();
+    const { t } = useTranslation();
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState({ title: '', date: '' });
-    const navigate = useNavigation()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -35,7 +36,7 @@ const Calendar = () => {
 
         // Get a reference to the document		
         console.log("Deletor with id:", id);
-        const collectionRef = collection(db, "event");
+        const collectionRef = collection(db, "events");
         const docRef = doc(collectionRef, id);
 
         console.log("docRef: ", docRef)
@@ -66,12 +67,12 @@ const Calendar = () => {
                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
             />
             <button onClick={addEvent}>{t('addEvent')}</button>
-            <button onClick={deletor}>{t('Remove')}</button>
 
             <ul>
                 {events.map(event => (
                     <li key={event.id}>
                         {event.title} on {event.date}
+                        <button id="calRemover" onClick={() => deletor(event.id)}>{t('Remove')}</button>
                     </li>
                 ))}
             </ul>

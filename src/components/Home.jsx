@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import CheckLocation from './CheckLocation';
 import { AuthContext } from './LoginContext';
+import Calendar from './Calendar';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
@@ -84,8 +85,7 @@ export default function Home() {
 
   
   return (
-    <>
-      <h1>jriimala.netlify.app is more dev site, pls click <a href = "https://softa-apu.fi">softa-apu.fi</a></h1>
+    <>      
       <div className="flags">        
         <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
@@ -93,7 +93,7 @@ export default function Home() {
         <img id = "softaapu-logo" src="/Images/softaapu.png" onClick={() => changeLanguage('en')} />
       
       
-      <div className='home-container'>
+      <div className='home-container'>        
         <h1>{t('welcome')}</h1>
         <p></p>
         {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}

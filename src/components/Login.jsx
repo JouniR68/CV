@@ -20,7 +20,7 @@ export default function Login() {
   
   const onSubmit = async (e) => {
     e.preventDefault();
-    //const url = 'https://firma-ed35a.web.app/fetchPlaces/access'
+
     const url2 = "https://softa-apu.fi/access"
 
     try {

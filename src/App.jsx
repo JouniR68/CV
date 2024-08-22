@@ -31,6 +31,7 @@ import TestLocation from "./components/TestPlaces"
 import TestArray from "./components/TestArray";
 import { AuthProvider } from "./components/LoginContext";
 import Done from "./components/Done";
+import Calendar from "./components/Calendar";
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
                 <Route path='rent' index element={<Rent />} />
                 <Route path='addCustomerData' element={<Customer />} />
                 <Route path='c' element={<CustomerData />} />
+                <Route path='calendar' element={<Calendar />} />
                 <Route path='thanks' element={<ThankYouPage />} />
                 <Route path='contract' element={<ContractForm />} />
               </Route>

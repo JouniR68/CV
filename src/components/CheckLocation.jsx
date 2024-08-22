@@ -68,17 +68,23 @@ function CheckLocation() {
     const params = {
       location: `${lat},${lon}`,
       //location:"51.5287398,-0.266403",
-      radius: 300,
+      radius: 500,
       //rankby: 'distance'
     }
     setArea(params.radius)
 
-    const url = 'https://firma-ed35a.web.app/fetchPlaces'
-    //const url = "http://localhost:5001/firma-ed35a/europe-west2/fetchPlaces"
+    //const url = 'https://firma-ed35a.web.app/fetchPlaces'
+                   
+    const url = "http://localhost:5001/firma-ed35a/europe-west2/fetchPlaces"
     try {
+      console.log(`Sending place ${url} to functions`)
       const response = await axios.get(url, { params });
-      if (!response){console.log("No place reponses")}
-      setPlaces(response.data);
+      console.log("places resp: ", response)
+      if (!response || response.data.status === 'ZERO_RESULTS'){
+        console.log("No place reponses")
+        return;
+      }
+      setPlaces(response.data.results);
     } catch (error) {
       console.log('Error sending request to Cloud function: ', error.message);
     }
@@ -91,9 +97,7 @@ function CheckLocation() {
       try {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${trimmedApi}`
         console.log("url: ", url)
-
         const response = await axios.get(url);
-
         const addressComponents = response.data.results[0].address_components;
 
         // Extract city from address components
@@ -108,8 +112,7 @@ function CheckLocation() {
           setHomeBase(result.formatted_address)
         } else {
           //setAddress({ detail: cityComponent.long_name });
-          setHomeBase(`Retrieving the address based on ${lat} + ${lon} from failed`)
-
+          setHomeBase(`Retrieving the address based on ${lat} + ${lon} failed`)
         }
       } catch (error) {
         console.error(t('UnableToGetLocation'));
@@ -120,10 +123,11 @@ function CheckLocation() {
   };
 
 
-  console.log("places: ", places)
+  
   let k = 0;
   let locatedPlaces = []
   if (places?.length > 0) {
+    console.log("locatedPlaces: ", places)
     // eslint-disable-next-line react/jsx-key
     locatedPlaces = places.map((f) => <div style={{ marginLeft: 100, marginRight: 0, textAlign: 'left' }}> <li key={k++}>{f.name}</li></div>)
   }
@@ -138,6 +142,7 @@ function CheckLocation() {
       <h3>Longitude: {position.longitude}</h3>
       <h3>The address: {homebase}</h3>
       {locatedPlaces.length > 0 && <h3 key = {k++}>Place(s) within {area} meters: {locatedPlaces}</h3>}
+      {!locatedPlaces && <h3>No places found</h3>}
       {errorMes && <h3>{errorMes}</h3>}
     </div>
   )

@@ -24,16 +24,25 @@
 
   .calendar{
     display:flex;
+    flex-direction: column;
   }
   .calendar input{
     padding:1rem;
     column-gap: 1rem;
+    margin-top:0.3rem;
   }
 .calendar button{
   margin-top:1rem;
   padding:0.5rem
 }
 
+.calendar li{
+  padding-right: 1rem;
+}
+
+#calRemover{
+  margin-left:1rem;
+}
 
   .confirmation-container {
     display: flex;

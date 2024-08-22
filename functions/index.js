@@ -28,7 +28,6 @@ export const access = functions
 
 export const fetchPlaces = functions.region('europe-west2')
 .https.onRequest(async (req, res) => {
-  console.log("fetchPlaces console.log")
   logger.info("fetchPlaces query: ");
   const {location, radius} = req.query;
   const apiKey = process.env.FBAPI;
@@ -41,17 +40,24 @@ export const fetchPlaces = functions.region('europe-west2')
     return;
   }
 
+  
   const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&key=${apiKey}`;
 
-  logger.info("place req url: ", { location: url });
+  functions.logger.info("place req url: ", { location: url });
   try {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    //res.setHeader("Content-Type", "application/json");  
     const response = await axios.get(url);
+    if (!response || !response.data){
+      logger.error("No place data returned from Google API");
+        res.status(500).json({ error: "No place data returned from Google API" });
+      return;
+    }
     logger.info("place resp: ", { resp: response.data });
-    res.status(response.status).json(response.data.results);
+    res.status(response.status).json(response.data);
   } catch (error) {
-    console.error("Error fetching places data:", error);
-    res.status(500).send("Error fetching places data");
+    logger.error("Error fetching places from Google API", { error: error.message });
+      res.status(500).json({ error: "Error fetching places from Google API", details: error.message });
   }
 });
