@@ -15,6 +15,7 @@ export default function Home() {
   const [confirmation, setConfirmation] = useState(true)
   const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
+  const [unreadMessages, setUnreadMessages] = useState(false)
   const { isLoggedIn, login, logout } = useContext(AuthContext);
 
   const navigate = useNavigate()
@@ -64,6 +65,8 @@ export default function Home() {
   useEffect(() => {
     handleText;
   }, [])
+
+
 
   const handleOk = () => {    
     sessionStorage.setItem('allowSessionStorageForLocation', true)

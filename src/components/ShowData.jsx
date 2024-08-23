@@ -16,7 +16,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { ConstructionOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import Calendar from "./Calendar";
 
 
 const ShowCustomers = () => {
@@ -113,7 +112,6 @@ const ShowCustomers = () => {
 					))}
 				</Table>
 			</TableContainer>
-			<Calendar />
 		</>
 
 	)
