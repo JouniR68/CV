@@ -74,8 +74,8 @@ function CheckLocation() {
     setArea(params.radius)
 
     //const url = 'https://firma-ed35a.web.app/fetchPlaces'
-                   
-    const url = "http://localhost:5001/firma-ed35a/europe-west2/fetchPlaces"
+      const url = 'https://europe-west2-firma-ed35a.cloudfunctions.net/fetchPlaces'             
+    //const url = "http://localhost:5001/firma-ed35a/europe-west2/fetchPlaces"
     try {
       console.log(`Sending place ${url} to functions`)
       const response = await axios.get(url, { params });

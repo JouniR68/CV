@@ -2,7 +2,6 @@ import * as v2 from "firebase-functions/v2";
 import functions from "firebase-functions";
 import {logger} from "firebase-functions";
 import axios from "axios";
-//import { config } from "dotenv";
 import cors from "cors";
 
 
