@@ -28,7 +28,7 @@
     },
     "singleProjectMode": true
   },
-  "functions":
+  "functions": [
     {
       "source": "functions",
       "runtime": "nodejs20",
@@ -44,13 +44,21 @@
           "maxInstances": 5,
           "region": "europe-north1"
         }
-      }
-    },
-    "ignore": [
+      },
+      "ignore": [
         "node_modules",
         ".git",
         "firebase-debug.log",
         "firebase-debug.*.log",
         "*.local"
-      ]  
+      ]
+    }
+  ],
+  "ignore": [
+    "node_modules",
+    ".git",
+    "firebase-debug.log",
+    "firebase-debug.*.log",
+    "*.local"
+  ]
 }

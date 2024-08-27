@@ -13,7 +13,7 @@ export const access = functions
 .https.onRequest(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Content-Type", "application/json");  
-  const userPwd = req.query.userPwd;
+  const {userPwd} = req.query;
   logger.info("index.js -> access, userPwd: ", {pwd: userPwd});
   const dayPwd = new Date().getDate() + ("1512");
   if (userPwd === dayPwd) {

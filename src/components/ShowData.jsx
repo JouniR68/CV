@@ -26,10 +26,6 @@ const ShowCustomers = () => {
 	const [error, setError] = useState("")
 	const [cro, setCro] = useState(false)
 
-	if (!sessionStorage.getItem('loggedIn')) {
-		navigate('login');
-	}
-
 	const getContracts = async () => {
 		try {
 			const customerRef = collection(db, "messages")
@@ -38,8 +34,14 @@ const ShowCustomers = () => {
 				id: doc.id,
 				...doc.data(),
 			}))
-			console.log("Customer data: ", data)
-			setCustomer(data)
+			console.log("Messages: ", data)
+			if (!data) {
+				navigate('/error', { state: { locationError: "No data" } })
+				return
+			} else {
+				console.log("Adding data to customer")
+				setCustomer(data)				
+			}
 		} catch (error) {
 			console.error("Error fetching data: ", error)
 			setError("Error fetching data, pls contact site admin.")
@@ -76,6 +78,8 @@ const ShowCustomers = () => {
 
 	}
 
+	console.log("customer: ", customer)
+
 	return (
 		<>
 			<TableContainer component={Paper}>
@@ -96,7 +100,7 @@ const ShowCustomers = () => {
 					</TableHead>
 
 
-					{customer.map((t) => (
+					{customer.map((t) => (								
 						<TableBody key={nanoid()}>
 							<TableRow key={nanoid()}>
 								<TableCell>{t.fName}</TableCell>

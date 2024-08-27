@@ -1,5 +1,5 @@
 // Calendar.js
-import { useState, useEffect, useTransition } from 'react';
+import { useState, useEffect} from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -20,20 +20,19 @@ const Calendar = () => {
     }, []);
 
     const addEvent = async () => {
-        const isDateTaken = events.some(event => event.date === newEvent.date);
+        /*const isDateTaken = events.some(event => event.date === newEvent.date);
 
         if (isDateTaken) {
             alert('This date is already booked.');
         } else {
-            await addDoc(collection(db, 'events'), newEvent);
-            setEvents([...events, newEvent]);
-            setNewEvent({ title: '', date: '' });
-        }
+         */
+        await addDoc(collection(db, 'events'), newEvent);
+        setEvents([...events, newEvent]);
+        setNewEvent({ title: '', date: '' });
+        //}
     };
 
-
     const deletor = async (id) => {
-
         // Get a reference to the document		
         console.log("Deletor with id:", id);
         const collectionRef = collection(db, "events");

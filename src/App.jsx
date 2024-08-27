@@ -72,10 +72,11 @@ function App() {
                 <Route path='logout' element={<Logout />} />
               </Route>
 
+              <Route path='c' element={<CustomerData />} />
+              
               <Route element={<RentalLayout />}>
                 <Route path='rent' index element={<Rent />} />
-                <Route path='addCustomerData' element={<Customer />} />
-                <Route path='c' element={<CustomerData />} />
+                <Route path='addCustomerData' element={<Customer />} />                
                 <Route path='calendar' element={<Calendar />} />
                 <Route path='thanks' element={<ThankYouPage />} />
                 <Route path='contract' element={<ContractForm />} />
