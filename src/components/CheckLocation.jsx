@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CheckLocation() {
   const apiKey = import.meta.env.VITE_MAPS_APIKEY
-  const trimmedApi = apiKey.replace(/'/g, "");  
+  const trimmedApi = apiKey.replace(/'/g, "");
   const [position, setPosition] = useState({ latitude: null, longitude: null });
   const [homebase, setHomeBase] = useState('')
   const [places, setPlaces] = useState([])
@@ -58,6 +58,34 @@ function CheckLocation() {
     }
   }
 
+
+  const fetchPlaceDetails = async (placeId) => {
+    const params = {
+      placeId: `${placeId}`,
+    }
+    try {
+      console.log("placeId:", placeId)
+      const url = 'https://europe-west2-firma-ed35a.cloudfunctions.net/fetchPlaceDetails'
+      const response = await axios.get(url, { params });
+      console.log('fetchPlaceDetails: ', response)
+      if (!response || !response.data) {
+        console.log("No place reponses")
+        return;
+      }
+      if (response.data.status === 200 || response.data.status === "OK"){
+        console.log("place details resp: ", response)
+      return response.data
+      } else {
+        console.log("status not ok:", response.data.status)
+        return null;
+      }
+    } catch (error) {
+      console.log('Error sending request to Cloud function: ', error.message);
+    }
+
+  }
+
+
   const getPlace = async (lat, lon) => {
     const params = {
       location: `${lat},${lon}`,
@@ -76,9 +104,26 @@ function CheckLocation() {
         console.log("No place reponses")
         return;
       }
-      setPlaces(response.data.results);
-    } catch (error) {
+
+      // Fetch details for each place using place_id
+      const detailsPromises = response.data.results.map(d => fetchPlaceDetails(d.place_id));
+      console.log("checkLocation, detailsPromises: ", detailsPromises)
+      const details = await Promise.all(detailsPromises); // Wait for all details to be fetched
+      console.log("checkLocation, details: ", details)
+
+      // Combine the original place data with their corresponding details
+      const supplementedPlaces = response.data.results.map((place, index) => ({
+        ...place, // Original place data
+        details: details[index] // Corresponding place details
+      }));
+
+      // Update state with the supplemented places
+      console.log("supplemented places: ", supplementedPlaces)
+      setPlaces(supplementedPlaces); // Assuming setPlaces is a state update function    } catch (error) {
       console.log('Error sending request to Cloud function: ', error.message);
+    }
+    catch(error){
+      console.error('Error fetching places: ', error)
     }
   }
 
@@ -112,25 +157,25 @@ function CheckLocation() {
     }
   };
 
+  const checkThis = (url) =>{
+    console.log(url)
+    window.open(url, '_blank')
+  }
 
   let k = 0;
-  let locatedPlaces = []
+  let locatedPlaces = [
+  ]
   if (places?.length > 0) {
-    console.log("locatedPlaces: ", places)
+    console.log("places: ", places)
     // eslint-disable-next-line react/jsx-key
-    locatedPlaces = places.map((f) => <div className="places"> <li key={k++}>{f.name}</li></div>)
+    locatedPlaces = places.map((f) => <li key={k++} onClick = {() => checkThis(f.details.result.url)}>{f.name + ', ' + f.vicinity } mappi </li>)
+    console.log("located places:", locatedPlaces)
   }
 
   return (
-    <div>
-
-      <h2>Position details:</h2>
-
-      <h3>Latitude: {position.latitude}</h3>
-      <p></p>
-      <h3>Longitude: {position.longitude}</h3>
-      <h3>The address: {homebase}</h3>
-      {locatedPlaces.length > 0 && <h3 key={k++}>Place(s) within {area} meters: {locatedPlaces}</h3>}
+    <div className="places">
+      <h3 style={{ marginLeft: '0rem' }}>{homebase}</h3>
+      {locatedPlaces.length > 0 && <><h3>Place(s) nearby:</h3> {locatedPlaces}.slice(0,4)</>}
       {!locatedPlaces && <h3>No places found</h3>}
       {errorMes && <h3>{errorMes}</h3>}
     </div>

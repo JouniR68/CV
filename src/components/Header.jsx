@@ -13,19 +13,21 @@ export default function Header() {
   const { t } = useTranslation();
   const { isLoggedIn, login, logout } = useContext(AuthContext);
   console.log(isLoggedIn)
+
   
   useEffect(() => {
+    
     const fetchMessages = async () => {
+      try{
         const eventsCollection = await getDocs(collection(db, 'messages'));
-        const docs = eventsCollection.map(doc => doc.id)
-        if (!docs){
-          console.log("No messages")
-          return
-        } else {
-          setUnreadMessages(true)
-        }
-    };
-    fetchMessages();
+        setUnreadMessages(!eventsCollection)
+      
+    }
+    catch (error){
+      console.error("Error checking documents: ", error)
+    }  
+  }
+    fetchMessages()
 }, []);
 
   return (

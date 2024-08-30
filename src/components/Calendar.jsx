@@ -1,5 +1,5 @@
 // Calendar.js
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +8,22 @@ import { useTranslation } from 'react-i18next';
 const Calendar = () => {
     const { t } = useTranslation();
     const [events, setEvents] = useState([]);
-    const [newEvent, setNewEvent] = useState({ title: '', date: '' });
+    const [newEvent, setNewEvent] = useState({ title: '', date: Date() });
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            // Prevent the default action if F5 is pressed
+            if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
+                event.preventDefault();
+                console.log('Refresh is disabled!');
+            }
+        };
+
+        // Attach the event listener to the window
+        window.addEventListener('keydown', handleKeyDown);
+    }, [])
+
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -20,16 +34,9 @@ const Calendar = () => {
     }, []);
 
     const addEvent = async () => {
-        /*const isDateTaken = events.some(event => event.date === newEvent.date);
-
-        if (isDateTaken) {
-            alert('This date is already booked.');
-        } else {
-         */
         await addDoc(collection(db, 'events'), newEvent);
         setEvents([...events, newEvent]);
-        setNewEvent({ title: '', date: '' });
-        //}
+        setNewEvent({ title: '', date: Date() });
     };
 
     const deletor = async (id) => {
@@ -42,7 +49,7 @@ const Calendar = () => {
         deleteDoc(docRef)
             .then(() => {
                 console.log("The document successfully deleted")
-                navigate('/done', { state: { description: `${id} deleted` } })
+                navigate(0)
             })
             .catch(((error) => {
                 console.error("Error removing document: ", error)
@@ -67,14 +74,14 @@ const Calendar = () => {
             />
             <button onClick={addEvent}>{t('addEvent')}</button>
 
-            <ul>
+      
                 {events.map(event => (
                     <li key={event.id}>
-                        {event.title} on {event.date}
-                        <button id="calRemover" onClick={() => deletor(event.id)}>{t('Remove')}</button>
+                        {event.title}, {event.date}
+                        <button id="calRemover" onClick={() => deletor(event.id)}>P</button>
                     </li>
                 ))}
-            </ul>
+            
         </div>
     );
 };

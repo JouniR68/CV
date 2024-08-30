@@ -50,7 +50,7 @@ function App() {
               <Route path="address" element={<Address />} />
               <Route path="error" element={<ErrorMessage />} />
               <Route path="login" element={<Login />} />
-              <Route path="logout" element={<Logout />} />
+              <Route path="/logout" element={<Logout />} />
               <Route path="done" element={<Done />} />
               <Route path="c" element={<CustomerData />} />
               <Route path='profile' element={<ProfileLayout />}>
@@ -73,7 +73,7 @@ function App() {
               </Route>
 
               <Route path='c' element={<CustomerData />} />
-              
+
               <Route element={<RentalLayout />}>
                 <Route path='rent' index element={<Rent />} />
                 <Route path='addCustomerData' element={<Customer />} />                

@@ -22,27 +22,29 @@
     display: true;
   }
 
-  .calendar{
-    display:flex;
+  .calendar {
+    display: flex;
     flex-direction: column;
   }
-  .calendar input{
-    padding:1rem;
+
+  .calendar input {
+    padding: 1rem;
     column-gap: 1rem;
-    margin-top:0.3rem;
+    margin-top: 0.3rem;
   }
-.calendar button{
-  margin-top:1rem;
-  padding:0.5rem
-}
 
-.calendar li{
-  padding-right: 1rem;
-}
+  .calendar button {
+    margin-top: 1rem;
+    padding: 0.5rem
+  }
 
-#calRemover{
-  margin-left:1rem;
-}
+  .calendar li {
+    padding-right: 1rem;
+  }
+
+  #calRemover {
+    margin-right: 5px;
+  }
 
   .confirmation-container {
     display: flex;
@@ -367,9 +369,13 @@
     margin-top: 10px;
   }
 
-  .places{
-    margin-left: 1rem;
-    text-align: 'left';
+  .places li{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    justify-content: flex-start;
+    font-size: 1rem;
+    color: green;
   }
 
 }
@@ -628,61 +634,83 @@
     margin-top: 4.5rem;
   }
 
-  .calendar{
-    display:flex;
-    flex-direction: column;
+  .calendar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
-  .calendar input{
-    padding:1rem;
+
+  .calendar input {
+    padding: 1rem;
     column-gap: 1rem;
-    margin-top:0.3rem;
+    margin-top: 0.3rem;
   }
-.calendar button{
-  margin-top:1rem;
-  padding:0.5rem
-}
 
-.calendar li{
-  padding-right: 1rem;
-}
+  .calendar li {
+    background-color: gray;
+    padding: 5px 10px;
+    margin-top: 0.5rem;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: black;
+    display: flex;
+    align-items: left;
+    transition: background-color 0.3s;
+  }
 
-.login--form {
-  display: grid;
-  grid-template-columns: auto;
-  margin-left: 0rem;
-  gap: 3px;
-  text-align: left;
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 3px;
-  background-color: rgb(182, 207, 219);
-  font-size: 14px;
-  font-weight: bold;
-}
+  #calRemover {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+  }
 
-.login--form input {
-  margin: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  width: 6rem;
-}
 
-.login--form label {
-  margin: 0.5rem;
-}
+  .login--form {
+    display: grid;
+    grid-template-columns: auto;
+    margin-left: 0rem;
+    gap: 3px;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgb(182, 207, 219);
+    font-size: 14px;
+    font-weight: bold;
+  }
 
-.login--form button {
-  margin: 0.5rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.5rem;
-  width: fit-content;
-}
+  .login--form input {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: 6rem;
+  }
 
-.places{
-  margin-left: 1rem;
-  text-align: 'left';
-}
+  .login--form label {
+    margin: 0.5rem;
+  }
+
+  .login--form button {
+    margin: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: fit-content;
+  }
+
+  .places {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 0.5rem;
+    text-align: left;    
+    font-size: 1rem;
+    color: red;
+  }
 
 }

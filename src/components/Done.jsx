@@ -19,8 +19,6 @@ function Done() {
       setIsLoggedIn(false)
       window.open("/", "_self");  
     }, [2000])
-    
-    navigate('/')
   }
 
   return (
