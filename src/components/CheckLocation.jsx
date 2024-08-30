@@ -163,20 +163,22 @@ function CheckLocation() {
   }
 
   let k = 0;
+  let filteredPlaces = []
   let locatedPlaces = [
   ]
   if (places?.length > 0) {
     console.log("places: ", places)
     // eslint-disable-next-line react/jsx-key
-    locatedPlaces = places.map((f) => <li key={k++} onClick = {() => checkThis(f.details.result.url)}>{f.name + ', ' + f.vicinity } mappi </li>)
-    console.log("located places:", locatedPlaces)
+    filteredPlaces = places.filter(f => f.business_status === 'OPERATIONAL')
+    // eslint-disable-next-line no-unused-vars
+    locatedPlaces = filteredPlaces.map((f) => <li key={k++} onClick = {() => checkThis(f.details.result.url)}>{f.name + ', ' + f.vicinity }<span style={{color:'black', fontWeight:700}}>, {t('show')}</span> </li>)    
   }
 
   return (
     <div className="places">
       <h3 style={{ marginLeft: '0rem' }}>{homebase}</h3>
-      {locatedPlaces.length > 0 && <><h3>Place(s) nearby:</h3> {locatedPlaces}.slice(0,4)</>}
-      {!locatedPlaces && <h3>No places found</h3>}
+      {locatedPlaces.length > 0 && <><h3>Place(s) nearby:</h3> {locatedPlaces.slice(0, 4)}</>}
+      
       {errorMes && <h3>{errorMes}</h3>}
     </div>
   )

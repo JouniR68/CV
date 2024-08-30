@@ -100,5 +100,6 @@
   "password":"Password",
   "addEvent":"Add Event",
   "Calendar":"Calendar",
-  "Remove": "Delete"
+  "Remove": "Delete",
+  "Show": "Show"
 }

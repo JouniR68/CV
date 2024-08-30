@@ -99,5 +99,6 @@
   "check": "Tarkista",
   "password":"Salasana",
   "Calendar":"Kalenteri",
-  "Remove": "Poista"
+  "Remove": "Poista",
+  "Show":"Näytä"
 }
