@@ -14,11 +14,12 @@ import {
 	Paper,
 } from '@mui/material';
 import { useTranslation } from "react-i18next";
-import { ConstructionOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "./LoginContext";
 
 const ShowCustomers = () => {
+	const {currentUser} = useAuth();
+
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const [locations, setLocations] = useState([])

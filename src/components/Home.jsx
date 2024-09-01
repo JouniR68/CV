@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import CheckLocation from './CheckLocation';
-import { AuthContext } from './LoginContext';
+import { AuthContext, useAuth } from './LoginContext';
 import Calendar from './Calendar';
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
   const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
   const [unreadMessages, setUnreadMessages] = useState(false)
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn, currentUser } = useAuth();
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -54,7 +54,6 @@ export default function Home() {
     const currentTime = new Date().getTime()
 
     if (lastReload && currentTime - lastReload < 300000) {
-
       return
     }
 
@@ -65,8 +64,6 @@ export default function Home() {
   useEffect(() => {
     handleText;
   }, [])
-
-
 
   const handleOk = () => {    
     sessionStorage.setItem('allowSessionStorageForLocation', true)
@@ -97,7 +94,7 @@ export default function Home() {
       
       
       <div className='home-container'>        
-        <h1>{t('welcome')}</h1>
+        <h1>{t('welcome')} {currentUser ? currentUser : ""} </h1>
         <p></p>
         {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
       </div>

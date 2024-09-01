@@ -1,4 +1,5 @@
 //import Button from '@mui/material/Button';
+import { useState } from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -11,7 +12,8 @@ import '../index.css';
 import { GitHub } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
-
+import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
+import Tooltip from '@mui/material/Tooltip';
 /*
             <IconButton onClick={gitHub}>
               <GitHub />
@@ -23,9 +25,11 @@ import { useTranslation } from 'react-i18next';
 */
 export default function Contact() {
 
-   function gitHub() {
-     window.open('https://github.com/JouniR68', '_blank');
-   } 
+  const [phoneNumber, setShowPhoneNumber] = useState(false)
+
+  function gitHub() {
+    window.open('https://github.com/JouniR68', '_blank');
+  }
 
   function linkedIn() {
     window.open('https://www.linkedin.com/in/jouni-riimala-04330', '_blank');
@@ -48,7 +52,13 @@ export default function Contact() {
   )}&body=${encodeURIComponent(body)}`;
 
 
-  const {t} = useTranslation()
+  const { t } = useTranslation()
+
+
+  const showPhoneNumber = () => {
+    console.log("Setting phoneNumber visible")
+    setShowPhoneNumber(true)
+  }
 
   return (
     <>
@@ -57,7 +67,7 @@ export default function Contact() {
 
       <Box
         sx={{
-          display: 'flex',          
+          display: 'flex',
           flexDirection: 'column',
           gap: '10px',
           alignItems: 'start',
@@ -66,32 +76,38 @@ export default function Contact() {
           },
         }}
       >
-        
-          <ButtonGroup
-            variant='outlined'
-            aria-label='outlined button group'            
-          >
-            <div className='sos'>
+
+        <ButtonGroup
+          variant='outlined'
+          aria-label='outlined button group'
+        >
+          <div className='sos'>
             <IconButton onClick={fb}>
-              <FacebookIcon  />
+              <FacebookIcon />
             </IconButton>
             <IconButton onClick={insta}>
               <InstagramIcon />
             </IconButton>
             <IconButton onClick={linkedIn}>
-              <LinkedInIcon  />
+              <LinkedInIcon />
             </IconButton>
-            <IconButton>
-              <a href={mailtoLink}><MailIcon sx={{marginLeft: '2px' }}/></a>
-              <Typography variant='body1' ml={1}>
-                {t('Phone')} +358 2385 888.
-              </Typography>
+            <Tooltip title="jr@softa-apu.fi" placement="bottom">
+              <IconButton>
+                <a href={mailtoLink}><MailIcon sx={{ marginLeft: '2px' }} /></a>
+              </IconButton>
+            </Tooltip>
 
-            </IconButton>
-            </div>
-          </ButtonGroup>
+            <Tooltip title="+358 2385 888" placement="bottom">
+              <IconButton>
+                <LocalPhoneSharpIcon />
+              </IconButton>
+            </Tooltip>
 
-      </Box>
+
+          </div>
+        </ButtonGroup>
+
+      </Box >
     </>
   );
 }

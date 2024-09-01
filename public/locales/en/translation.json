@@ -101,5 +101,6 @@
   "addEvent":"Add Event",
   "Calendar":"Calendar",
   "Remove": "Delete",
-  "Show": "Show"
+  "Show": "Show",
+  "Places": "Nearby (click):"
 }

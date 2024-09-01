@@ -171,13 +171,13 @@ function CheckLocation() {
     // eslint-disable-next-line react/jsx-key
     filteredPlaces = places.filter(f => f.business_status === 'OPERATIONAL')
     // eslint-disable-next-line no-unused-vars
-    locatedPlaces = filteredPlaces.map((f) => <li key={k++} onClick = {() => checkThis(f.details.result.url)}>{f.name + ', ' + f.vicinity }<span style={{color:'black', fontWeight:700}}>, {t('show')}</span> </li>)    
+    locatedPlaces = filteredPlaces.map((f) => <li style={{marginBottom:'1rem'}} key={k++} onClick = {() => checkThis(f.details.result.url)}>{f.name + ' - ' + f.vicinity }</li>)    
   }
 
   return (
     <div className="places">
-      <h3 style={{ marginLeft: '0rem' }}>{homebase}</h3>
-      {locatedPlaces.length > 0 && <><h3>Place(s) nearby:</h3> {locatedPlaces.slice(0, 4)}</>}
+      <h3 style={{ marginLeft: '0rem', fontSize:'1rem' }}>{homebase} </h3>
+      {locatedPlaces.length > 0 && <><h3 style={{fontSize:'1rem'}}>{t('Places')}</h3> {locatedPlaces.slice(0, 4)}</>}
       
       {errorMes && <h3>{errorMes}</h3>}
     </div>

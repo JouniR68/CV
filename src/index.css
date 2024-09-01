@@ -148,11 +148,9 @@
 
   .app-header {
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 20px;
+    flex-direction: column;    
     color: #57771c;
-    text-align: center;
+    text-align: left;
   }
 
   #softaapu-logo {
@@ -160,19 +158,11 @@
     height: "34rem";
   }
 
-  header .site-logo {
-    color: black;
-    margin-right: auto;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 22px;
-  }
-
   header a {
     text-decoration: none;
     color: #4d4d4d;
     font-weight: 600;
-    padding: 5px 20px;
+    padding: 0px 20px;
   }
 
   header a:hover {
@@ -247,12 +237,13 @@
   }
 
   .sos {
+    display:flex;
     font-family: bold;
     font-size: 14px;
     line-height: 18px;
     margin-top: -4rem;
     margin-bottom: 1rem;
-    margin-left: 1rem;
+    margin-left: 0rem;
   }
 
   #mailIcon {
@@ -369,15 +360,18 @@
     margin-top: 10px;
   }
 
-  .places li{
+  .places {
     display: flex;
     flex-direction: column;
-    list-style-type: none;
     justify-content: flex-start;
+    margin-left: 0.5rem;
+    text-align: left;    
     font-size: 1rem;
-    color: green;
+    font-weight: bold;
+    color: rgb(68, 14, 14);
   }
 
+  
 }
 
 @media only screen and (min-resolution: 250dpi) {
@@ -459,6 +453,7 @@
   }
 
   .sos {
+    display:flex;
     margin-top: -4rem;
     font-family: bold;
     font-size: 14px;
@@ -469,14 +464,11 @@
 
   .app-header {
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 1rem;
-    flex-wrap: wrap;
-    color: #131212;
-    text-align: center;
+    flex-direction: column;    
+    color: #191b16;
+    text-align: left;
   }
-
+  
   header a {
     text-decoration: none;
     color: #4d4d4d;
@@ -710,7 +702,10 @@
     margin-left: 0.5rem;
     text-align: left;    
     font-size: 1rem;
-    color: red;
+    font-weight: bold;
+    color: rgb(27, 26, 26);
   }
+
+
 
 }

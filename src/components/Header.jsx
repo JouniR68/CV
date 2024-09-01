@@ -4,46 +4,58 @@ import Login from "./Login"
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { AuthContext } from "./LoginContext";
+import { AuthContext, useAuth } from "./LoginContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
+import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import DesignServicesSharpIcon from '@mui/icons-material/DesignServicesSharp';
+import LoginSharpIcon from '@mui/icons-material/AdminPanelSettingsSharp';
+import DraftsSharpIcon from '@mui/icons-material/DraftsSharp';
+import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 
 export default function Header() {
-  const [unreadMessages, setUnreadMessages] = useState(false)
+  //const [unreadMessages, setUnreadMessages] = useState(false)
   const { t } = useTranslation();
-  const { isLoggedIn, login, logout } = useContext(AuthContext);
+  const { isLoggedIn } = useAuth();
   console.log(isLoggedIn)
 
+
   
-  useEffect(() => {
-    
-    const fetchMessages = async () => {
-      try{
-        const eventsCollection = await getDocs(collection(db, 'messages'));
-        setUnreadMessages(!eventsCollection)
-      
+  /*
+  const fetchMessages = async () => {
+    try {
+      const eventsCollection = await getDocs(collection(db, 'messages'));
+      setUnreadMessages(!eventsCollection)
     }
-    catch (error){
+    catch (error) {
       console.error("Error checking documents: ", error)
-    }  
+    }
   }
-    fetchMessages()
-}, []);
+
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchMessages()
+    }
+  }, []);
+*/
 
   return (
     <header className="app-header">
       <nav>
-        <Link to="/home">{t('Home')}</Link>
-        <Link to="/profile">{t('Profile')}</Link>
-        <Link to="/rent">{t('Services')}</Link>
-        <Link to="/checkLocation"><IconButton><LocationOnIcon /></IconButton></Link>
-        {unreadMessages && isLoggedIn === false && <Link style={{color:'red'}} to="/login">A</Link>}
-        {!unreadMessages && isLoggedIn === false && <Link style={{color:'black'}} to="/login">A</Link>}
+        <Link to="/home"><HomeWorkIcon /></Link>
+        <Link to="/profile"><PersonSharpIcon /></Link>
+        <Link to="/rent"><DesignServicesSharpIcon /></Link>
+        <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+        {!isLoggedIn && <Link to="/login"><LoginSharpIcon /></Link>}
+        
         {isLoggedIn &&
           <>
-            <Link to="/c">V</Link>
-            <Link to="/calendar">K</Link>
-            <Link to="/logout">L</Link>
+            <Link to="/c"><DraftsSharpIcon /></Link>
+            <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+            {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
           </>}
 
 

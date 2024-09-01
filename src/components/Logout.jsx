@@ -1,11 +1,14 @@
-import { useContext } from "react";
-import { AuthContext } from "./LoginContext";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Description, SettingsOutlined } from "@mui/icons-material";
+import { doSignOut } from "./auth";
+import { useAuth } from "./LoginContext";
 
 export default function Logout() {
-  const { isLoggedIn, login, logout, setIsLoggedIn } = useContext(AuthContext);  
+  const {setIsLoggedIn} = useAuth();
   const navigate = useNavigate()
-  navigate('/done', {state: {description: "You have been kicked off"}})
+  useEffect(() => {navigate('/done', { state: { description: "You have been kicked off" } })},[])
   setIsLoggedIn(false)
+  doSignOut()
+  
+  
 }

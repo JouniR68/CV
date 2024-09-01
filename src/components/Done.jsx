@@ -5,8 +5,7 @@ import { AuthContext } from "./LoginContext";
 
 function Done() {
   const {setIsLoggedIn} = useContext(AuthContext)
-  const {t} = useTranslation()
-  const navigate = useNavigate()
+  const {t} = useTranslation()  
   const location = useLocation()
   const [close, setClose] = useState(false)
   
@@ -17,7 +16,7 @@ function Done() {
     setClose(true)
     setTimeout(() => {
       setIsLoggedIn(false)
-      window.open("/", "_self");  
+      window.open("/home", "_self");  
     }, [2000])
   }
 
