@@ -22,6 +22,37 @@
     display: true;
   }
 
+.catalog{
+  display:flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-top:1rem;
+}
+
+.catalog--card{
+  border:1px solid;
+  padding:1rem;
+  margin-bottom:0.2rem;
+  justify-content: center;
+  text-align: left;
+  width:40%;
+}
+
+.catalog--card input {
+  width:5rem;
+  margin-right:10px;  
+  line-height: 2rem;
+  padding: 0.5rem;
+}
+
+.catalog--card button{
+  margin-top: 1rem;;
+}
+
+#kpl {
+  margin-left:1rem;
+}
+
   .calendar {
     display: flex;
     flex-direction: column;

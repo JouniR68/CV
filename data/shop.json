@@ -1,0 +1,37 @@
+{
+    "catalog": [
+        {
+            "id": 1,
+            "title": "Web-ohjelmointia",
+            "description": [
+                "Web - koodausta, katsemointeineen",
+                "konsultaatiota / tukea ongelmanratkaisuihin"
+            ],
+            "price-h": 70,
+            "price-d": 450
+        },
+        {
+            "id": 2,
+            "title": "Ohjelmisto testaus",
+            "description": ["Automaatio / manual testausta", "Testisuunnitelmia, testien tekemistä ja suorittamiseta."],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 3,
+            "title": "Järjelmien / työkalujen konfigurointia.",
+            "description": ["Esim JIRA & Confluense konfiguroinnit", "Ohjelmistojen asennukset ja päivitykset"],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 4,
+            "title": "Tuotehallinta",
+            "description": ["Vaatimusten, epic, storien hallintaa"],
+            "price-h": 60,
+            "price-d": 400
+        }
+
+
+    ]
+}

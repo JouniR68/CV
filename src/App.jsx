@@ -2,6 +2,7 @@
 import "./index.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
+import ShopLayout from "./Layouts/ShopLayout";
 import RentalLayout from "./Layouts/RentalLayout";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
@@ -32,6 +33,7 @@ import TestArray from "./components/TestArray";
 import { AuthProvider } from "./components/LoginContext";
 import Done from "./components/Done";
 import Calendar from "./components/Calendar";
+import Catalog from "./components/services/AddShopItem"
 
 function App() {
   return (
@@ -81,6 +83,13 @@ function App() {
                 <Route path='thanks' element={<ThankYouPage />} />
                 <Route path='contract' element={<ContractForm />} />
               </Route>
+
+              <Route element={<ShopLayout />}>
+                <Route path='catalog' index element={<Catalog />} />
+              </Route>
+
+
+
 
             </Route>
 
