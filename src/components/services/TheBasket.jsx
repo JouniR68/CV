@@ -12,7 +12,8 @@ import { useEffect, useState } from "react";
 import { Save } from "@mui/icons-material";
 import { db } from "../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
-
+import Contact from "./Contact.jsx";
+import { v4 as uuidv4 } from 'uuid';
 
 const TheBasket = () => {
     const navigate = useNavigate();
@@ -20,13 +21,16 @@ const TheBasket = () => {
     const { state } = location
     let { data } = state;
     const [filteredData, setFilteredData] = useState(data.filter(row => Object.keys(row).length !== 0));
+    const [contactDetails, setContactDetails] = useState({})
 
+    const uuid = uuidv4()
+    console.log("tilausnro: ", uuid)
     const SaveOrder = async () => {
         try {
             if (Array.isArray(filteredData) && filteredData.length > 0) {
+                filteredData.push({tilausnro: uuid})
                 // Firestore expects a single document object, not an array
                 const orderData = { items: filteredData };
-
                 const itemRef = await addDoc(collection(db, "orders"), orderData);
                 console.log("Document written with ID: ", itemRef.id);
                 console.log("Data: ", orderData);
@@ -44,6 +48,11 @@ const TheBasket = () => {
         setFilteredData(afterRemoval)
     }
 
+    const handleContactChange = (newContactDetails) => {
+        setContactDetails(newContactDetails);
+      };
+    
+
     //Purchase sum
     const totalsum = filteredData.reduce((accumulator, item) => {
         return accumulator + (item.priceh * item.kpl)
@@ -52,7 +61,7 @@ const TheBasket = () => {
 
     return (
         <>
-            <h1>Tilauskorisi</h1>
+            <h1>Tilauskorisi </h1>            
             <h4>Maksu työn valmistuttua, laskulla</h4>
 
 
@@ -78,15 +87,17 @@ const TheBasket = () => {
                         </TableRow>
                     )}
                     <TableRow>
-                        <TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}>Yhteissumma</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell sx={{ mt: 2, fontWeight: 'bold' }}>{totalsum}</TableCell>
+                        <TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}>Yhteissumma</TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}></TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}></TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}>{totalsum}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
-
+            <p></p>
+            <Contact contactDetails={contactDetails} onContactChange={handleContactChange}/>
+            <p></p>
             <Button variant="contained" onClick={() => SaveOrder()} sx={{ mt: 2, mb: 1 }}>Vahvista</Button>
             <Button variant="contained" onClick={() => navigate(-1)}>Ostoksille</Button>
-
-
+                               
+                    
         </>
     );
 

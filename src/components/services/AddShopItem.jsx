@@ -5,7 +5,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Box, Badge, IconButton, Typography, Button } from '@mui/material';
 import { AddShoppingCart, Height } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import kori from '../../../public/Images/kori.gif'
 
 const AddShopItem = () => {
     const [itemCount, setItemCount] = useState(0);
@@ -68,7 +67,7 @@ const AddShopItem = () => {
         <>
             <IconButton aria-label="cart" onClick={showTheBasket}>
                 <Badge badgeContent={itemCount} color="secondary">
-                    <img src = {`../../../public/Images/kori.gif`} style = {{width:'100px', height:'80px'}}/>
+                    <AddShoppingCart sx={{width:'80px', height:'60px'}} />
                 </Badge>
             </IconButton>
             <h1>Tervetuloa verkkokauppaan</h1>
