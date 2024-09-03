@@ -9,10 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 const AddShopItem = () => {
     const [itemCount, setItemCount] = useState(0);
-    const [total, setTotal] = useState({})
-    const [basket, setTheBasket] = useState(false)
-    const [inputValues, setInputValues] = useState({})
-    const [order, setOrder] = useState({})
+    const [total, setTotal] = useState({})    
+    const [inputValues, setInputValues] = useState([{}])
+    const [order, setOrder] = useState([{}])
     const navigate = useNavigate();
 
     const products = shop.catalog.map((j) => {
@@ -44,19 +43,23 @@ const AddShopItem = () => {
     const addItemToCart = (item) => {
         console.log("id: ", item.id + ', title: ' + item.title + ',price hour: ' + item['price-h'] + ', kpl: ' + inputValues.key)
         setItemCount(itemCount + 1);
-        setOrder(order => ({
+        setOrder(order => ([
             ...order,
+            {
+            id: item.id,
             title: item.title,
             description: item.description,
             priceh: item['price-h'],
-            kpl: inputValues.key
-        }))
+            kpl: parseInt(inputValues.key)
+        }
+    ]))
 
     };
 
     //, total[item.id]
 
     const showTheBasket = () => {
+        console.log(order)
         navigate('/basket', {state: {data: order}})    
     }
 
