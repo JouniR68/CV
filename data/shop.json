@@ -30,7 +30,22 @@
             "description": ["Vaatimusten, epic, storien hallintaa"],
             "price-h": 60,
             "price-d": 400
+        },
+        {
+            "id": 5,
+            "title": "Yleis atk, koodauksen perusteita jne",
+            "description": ["Apuja ohjelmistojen käyttöön", "Koodaus perusteiden opettamista"],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 6,
+            "title": "IT Help Desk / ATK-ihimisten sijaistamista",
+            "description": ["Sijaistamaan ATK-ihmistä", "Etätukea IT-asioihin"],
+            "price-h": 60,
+            "price-d": 400
         }
+
 
 
     ]

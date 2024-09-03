@@ -22,36 +22,51 @@
     display: true;
   }
 
-.catalog{
-  display:flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  margin-top:1rem;
-}
+  #shoppingCart {
+    margin-left: auto;
+    color: red
+    
+  }
 
-.catalog--card{
-  border:1px solid;
-  padding:1rem;
-  margin-bottom:0.2rem;
-  justify-content: center;
-  text-align: left;
-  width:40%;
-}
+  .catalog {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
 
-.catalog--card input {
-  width:5rem;
-  margin-right:10px;  
-  line-height: 2rem;
-  padding: 0.5rem;
-}
+  .catalog--card {
+    flex: 1 1 20%;
+    border: 1px solid;
+    padding: 1rem;
+    margin-bottom: 0.2rem;
+    justify-content: center;
+    text-align: left;
+    width: 40%;
+  }
 
-.catalog--card button{
-  margin-top: 1rem;;
-}
+  .catalog--card h3 {
+    padding: 0.5rem;
+    background: lightblue
+  }
 
-#kpl {
-  margin-left:1rem;
-}
+  .catalog--card input {
+    width: 5rem;
+    margin-right: 10px;
+    line-height: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .catalog--card button {
+    margin-top: 1rem;
+    ;
+  }
+
+  #kpl {
+    margin-left: 1rem;
+  }
 
   .calendar {
     display: flex;
@@ -179,7 +194,7 @@
 
   .app-header {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     color: #57771c;
     text-align: left;
   }
@@ -268,7 +283,7 @@
   }
 
   .sos {
-    display:flex;
+    display: flex;
     font-family: bold;
     font-size: 14px;
     line-height: 18px;
@@ -396,13 +411,13 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-left: 0.5rem;
-    text-align: left;    
+    text-align: left;
     font-size: 1rem;
     font-weight: bold;
     color: rgb(68, 14, 14);
   }
 
-  
+
 }
 
 @media only screen and (min-resolution: 250dpi) {
@@ -484,7 +499,7 @@
   }
 
   .sos {
-    display:flex;
+    display: flex;
     margin-top: -4rem;
     font-family: bold;
     font-size: 14px;
@@ -495,11 +510,11 @@
 
   .app-header {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     color: #191b16;
     text-align: left;
   }
-  
+
   header a {
     text-decoration: none;
     color: #4d4d4d;
@@ -731,7 +746,7 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-left: 0.5rem;
-    text-align: left;    
+    text-align: left;
     font-size: 1rem;
     font-weight: bold;
     color: rgb(27, 26, 26);

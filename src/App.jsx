@@ -34,6 +34,7 @@ import { AuthProvider } from "./components/LoginContext";
 import Done from "./components/Done";
 import Calendar from "./components/Calendar";
 import Catalog from "./components/services/AddShopItem"
+import Basket from "./components/services/TheBasket";
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
 
               <Route element={<ShopLayout />}>
                 <Route path='catalog' index element={<Catalog />} />
+                <Route path='basket' element={<Basket />} />
               </Route>
 
 
