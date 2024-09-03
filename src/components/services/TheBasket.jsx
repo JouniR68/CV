@@ -5,7 +5,7 @@ const TheBasket = () => {
     const location = useLocation();
 
     const { state } = location
-    const { data } = state;
+    let { data } = state;
     const { title, description, kpl, priceh } = data
 
     console.log("TheBasket ", title)
@@ -14,6 +14,12 @@ const TheBasket = () => {
     let withoutTax = totalPrice * 25.5 / 100
     let taxed = totalPrice - withoutTax;
 
+    const removeFromTheBasket = () => {
+
+        data = null;
+        console.log(data)
+    }
+
     return (
         <>
             <h1>Tilauskorisi</h1>
@@ -21,11 +27,10 @@ const TheBasket = () => {
 
 
             <table className="">
-                <tr><th>Tuote</th><th>Määrä</th><th>Summa</th></tr>
-                <tr><td>{title}</td><td>{kpl}</td><td>{totalPrice}</td></tr>
-                <tr><td></td><td>Veroton hinta</td><td>{withoutTax}</td></tr>
-                <tr><td></td><td>Vero 25.5%</td><td>{taxed}</td></tr>
-                <tr><td></td><td>Yhteensä</td><td>{taxed + withoutTax}</td></tr>
+                <tr><th>Tuote</th><th>Määrä</th><th>Summa</th><th>Veroton</th><th>Vero 25.5%</th><th>Yhteensä</th><th>Poista</th></tr>
+                <td>{data.title}</td><td>{kpl}</td><td>{totalPrice}</td>
+                <td>{taxed}</td><td>{withoutTax}</td><td>{taxed + withoutTax}</td>
+                <td><Button onClick={() => removeFromTheBasket()}>X</Button></td><td></td><td></td>
             </table>
             <Button variant="contained">Vahvista</Button>
 
