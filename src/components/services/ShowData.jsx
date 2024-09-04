@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"
+import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore"
 import { db } from "../../firebase"
 
 import {
@@ -24,6 +24,7 @@ const ShowOrders = () => {
 	const [locations, setLocations] = useState([])
 	const [orders, setOrders] = useState([])
 	const [error, setError] = useState("")
+	const [done, setDone] = useState("Kesken/ei aloitettu")
 	const [cro, setCro] = useState(false)
 
 	const getOrders = async () => {
@@ -32,6 +33,7 @@ const ShowOrders = () => {
 			const querySnapshot = await getDocs(orderRef)
 			const data = querySnapshot.docs.map((doc) => ({
 				id: doc.id,
+				ref:doc.ref,
 				...doc.data(),
 			}))
 			console.log("Tilaukset getOrder: ", data)
@@ -57,35 +59,42 @@ const ShowOrders = () => {
 		getOrders();
 	}, [])
 
-
-	const deletor = async (id) => {
-
-		// Get a reference to the document		
-		console.log("Deletor with id:", id);
-		const collectionRef = collection(db, "orders");
-		const docRef = doc(collectionRef, id);
-
-		console.log("docRef: ", docRef)
-		deleteDoc(docRef)
-			.then(() => {
-				console.log("The document successfully deleted")
-				navigate('/done', { state: { description: `${id} deleted` } })
+	const markCompleted = async (ref, id) => {
+		try {
+			console.log("ref: " + ref + ", job id:", id);
+			const orderRef = collection(db, "orders");
+			const docRef = doc(orderRef);
+			await updateDoc(docRef, {
+				items: arrayUnion({completed: done})
 			})
-			.catch(((error) => {
-				console.error("Error removing document: ", error)
-				navigate('/error', { state: { locationError: `${id} deleting failed.` } })
-			}))
-
+			setDone("Laskutettu")
+			alert("Merkitty tehdyksi")
+		} catch (error) {
+			console.error("Error updating field: ", error)
+		}
 	}
 
-	console.log("Tilaukset: ", orders)
-
-	const tilausNro = orders.map(ord => ord.items.map(t => t.tilausnro))
-
-
-	const orderData = orders.map(s => s.items.filter(e => e.id != ""))
-	orderData.forEach((order) => console.log(order.map(r => console.log(r.id))))
+	console.log("orders: ", orders)
+	//<h4>Tilausnro: <span style={{ color: 'red' }}>{tilausNro}</span></h4>
+	const orderData = orders.map(s => s.items?.filter(e => Object.keys(e).length > 0))
+	console.log("orderData: ", orderData)
+	//const tilausNro = orderData.map(ord => ord.tilausnro)
+	//console.log("tilausNro: ", tilausNro)
+	console.log("Tilaukset: ", orderData)
+	const descriptions = orderData.map(ord => ord?.map(o => o.description))
+	console.log("descrips: ", descriptions)
 	
+	/*orderData.forEach(order => {
+		console.log("orderData, order: ", order)
+
+		if (Array.isArray(order.description)) {
+			console.log("description is an array..")
+		} else {
+			console.warn("Description is not an array or is undefined for order:", order);
+		}
+	});
+*/
+
 
 
 	let counter = 0;
@@ -93,7 +102,7 @@ const ShowOrders = () => {
 		<>
 			<TableContainer component={Paper}>
 				{error.length > 1 && <h3>{error}</h3>}
-				<h4>Tilausnro: <span style={{color:'red'}}>{tilausNro}</span></h4>
+				
 				<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
 
 					<TableHead>
@@ -108,22 +117,24 @@ const ShowOrders = () => {
 					</TableHead>
 
 
-					{orderData.map(i => i.map(order => 
+					{orderData.map(order => (
+						order?.map((o) => (
+							
 						<TableBody key={counter++}>
 							<TableRow>
-								<TableCell>{order.id}</TableCell>
-								<TableCell>{order.title}</TableCell>
-								<TableCell>{order.description}</TableCell>
-								<TableCell>{order.kpl}</TableCell>
-								<TableCell>{order.priceh}</TableCell>
-								<Button onClick={() => deletor(i.id)}>Delete</Button>
+								<TableCell>{o.id}</TableCell>
+								<TableCell>{o.title}</TableCell>
+								<TableCell>{descriptions}</TableCell>
+								<TableCell>{o.kpl}</TableCell>
+								<TableCell>{o.priceh}</TableCell>
+								<Button onClick={() => markCompleted(o.ref, o.id)}>{done}</Button>
 							</TableRow>
 						</TableBody>
-					))}
+					))))}
 				</Table>
-				</TableContainer>
-				
-				<TableContainer component={Paper}>
+			</TableContainer>
+
+			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
 					<TableHead>
 						<TableRow>
@@ -132,11 +143,11 @@ const ShowOrders = () => {
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Osoite</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Puhelin</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Sähköposti</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Viesti</TableCell>							
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Viesti</TableCell>
 						</TableRow>
 					</TableHead>
 
-					{orderData.map(i => i.map(contact => 
+					{orderData.map(i => i?.map(contact =>
 						<TableBody key={counter++}>
 							<TableRow>
 								<TableCell>{contact.Etunimi}</TableCell>
@@ -144,7 +155,7 @@ const ShowOrders = () => {
 								<TableCell>{contact.Osoite}</TableCell>
 								<TableCell>{contact.Puhelin}</TableCell>
 								<TableCell>{contact.Sähköposti}</TableCell>
-								<TableCell>{contact.Viesti}</TableCell>								
+								<TableCell>{contact.Viesti}</TableCell>
 							</TableRow>
 						</TableBody>
 					))}
