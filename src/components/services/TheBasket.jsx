@@ -22,18 +22,18 @@ const TheBasket = () => {
     let { data } = state;
     const [filteredData, setFilteredData] = useState(data.filter(row => Object.keys(row).length !== 0));
     const [contactDetails, setContactDetails] = useState({})
-
     const uuid = uuidv4()
     console.log("tilausnro: ", uuid)
     const SaveOrder = async () => {
         try {
             if (Array.isArray(filteredData) && filteredData.length > 0) {
                 filteredData.push({tilausnro: uuid})
+                console.log("contactDetails: ", contactDetails)
+                filteredData.push(contactDetails)
                 // Firestore expects a single document object, not an array
                 const orderData = { items: filteredData };
                 const itemRef = await addDoc(collection(db, "orders"), orderData);
-                console.log("Document written with ID: ", itemRef.id);
-                console.log("Data: ", orderData);
+                console.log("Document written with ID: ", itemRef.id);                
                 navigate('/thanks');
             }
 

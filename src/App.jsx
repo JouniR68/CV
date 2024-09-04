@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Rent from "./components/Services";
 import Customer from "./components/AddCustomer";
-import CustomerData from "./components/ShowData";
+import CustomerData from "./components/services/ShowData";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';

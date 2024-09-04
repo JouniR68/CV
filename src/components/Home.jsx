@@ -94,7 +94,7 @@ export default function Home() {
       
       
       <div className='home-container'>        
-        <h1>{t('welcome')} {currentUser ? currentUser : ""} </h1>
+        <h1>{t('welcome')} </h1>
         <p></p>
         {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
       </div>
