@@ -102,5 +102,11 @@
   "Calendar":"Calendar",
   "Remove": "Delete",
   "Show": "Show",
-  "Places": "Nearby (click):"
+  "Places": "Nearby (click):",  
+  "RegisterationForm": "Registration Form",
+  "RegisterationInfo": "After save, you will get the password for your personal use. Save it as not possible to alter it. In case lost then new password will be generated.",
+  "Register": "Register",
+  "Login": "Login",
+  "Admin": "Admin Login"
+
 }

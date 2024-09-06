@@ -101,5 +101,10 @@
   "Calendar":"Kalenteri",
   "Remove": "Poista",
   "Show":"Näytä",
-  "Places":"Lähellä (klik):"
+  "Places":"Lähellä (klik):",
+  "RegisterationForm": "Tilin luonti lomake",
+  "RegisterationInfo": "Saatte tallennuksen jälkeen salasanan joka on vain teidän käytössä, salasanaa ei voida muuttaa vaan tarvittaessa salasana luodaan uusiksi. Tallettakaa salasana itsellenne.",
+  "Register": "Rekisteröinti",
+  "Login": "Kirjaudu",
+  "Admin": "Asetukset"
 }

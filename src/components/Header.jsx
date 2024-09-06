@@ -22,7 +22,7 @@ export default function Header() {
   console.log(isLoggedIn)
 
 
-  
+
   /*
   const fetchMessages = async () => {
     try {
@@ -48,9 +48,16 @@ export default function Header() {
         <Link to="/home"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
         <Link to="/catalog"><DesignServicesSharpIcon /></Link>
-        <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
-        {!isLoggedIn && <Link to="/login"><LoginSharpIcon /></Link>}
         
+        <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+        {!isLoggedIn &&
+          <>            
+            <Link to="/userLogin">{t('Login')}</Link>
+            <Link to="/register">{t('Register')}</Link>
+            <Link to="/login">{t('Admin')}</Link>            
+          </>
+        }
+
         {isLoggedIn &&
           <>
             <Link to="/c"><DraftsSharpIcon /></Link>

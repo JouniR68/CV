@@ -35,14 +35,6 @@ export default function Contact() {
     window.open('https://www.linkedin.com/in/jouni-riimala-04330', '_blank');
   }
 
-  function fb() {
-    window.open('https://www.facebook.com/jriimala', '_blank');
-  }
-
-  function insta() {
-    window.open('https://www.instagram.com/jriimala/', '_blank');
-  }
-
   const subject = 'CONTACT REQUEST';
   const recipient = 'jr@softa-apu.fi';
   const body = 'Hi \n\nContacting you via your web cv.\n\n';
@@ -82,12 +74,6 @@ export default function Contact() {
           aria-label='outlined button group'
         >
           <div className='sos'>
-            <IconButton onClick={fb}>
-              <FacebookIcon />
-            </IconButton>
-            <IconButton onClick={insta}>
-              <InstagramIcon />
-            </IconButton>
             <IconButton onClick={linkedIn}>
               <LinkedInIcon />
             </IconButton>

@@ -33,7 +33,7 @@ const ShowOrders = () => {
 			const querySnapshot = await getDocs(orderRef)
 			const data = querySnapshot.docs.map((doc) => ({
 				id: doc.id,
-				ref:doc.ref,
+				ref: doc.ref,
 				...doc.data(),
 			}))
 			console.log("Tilaukset getOrder: ", data)
@@ -59,13 +59,14 @@ const ShowOrders = () => {
 		getOrders();
 	}, [])
 
-	const markCompleted = async (ref, id) => {
+	const markCompleted = async (id) => {
 		try {
-			console.log("ref: " + ref + ", job id:", id);
+			console.log("firebase doc id:", id);
 			const orderRef = collection(db, "orders");
-			const docRef = doc(orderRef);
+			const docRef = doc(orderRef, id);
+
 			await updateDoc(docRef, {
-				items: arrayUnion({completed: done})
+				completed: arrayUnion("done")
 			})
 			setDone("Laskutettu")
 			alert("Merkitty tehdyksi")
@@ -75,6 +76,7 @@ const ShowOrders = () => {
 	}
 
 	console.log("orders: ", orders)
+
 	//<h4>Tilausnro: <span style={{ color: 'red' }}>{tilausNro}</span></h4>
 	const orderData = orders.map(s => s.items?.filter(e => Object.keys(e).length > 0))
 	console.log("orderData: ", orderData)
@@ -82,8 +84,7 @@ const ShowOrders = () => {
 	//console.log("tilausNro: ", tilausNro)
 	console.log("Tilaukset: ", orderData)
 	const descriptions = orderData.map(ord => ord?.map(o => o.description))
-	console.log("descrips: ", descriptions)
-	
+
 	/*orderData.forEach(order => {
 		console.log("orderData, order: ", order)
 
@@ -102,7 +103,7 @@ const ShowOrders = () => {
 		<>
 			<TableContainer component={Paper}>
 				{error.length > 1 && <h3>{error}</h3>}
-				
+
 				<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
 
 					<TableHead>
@@ -119,18 +120,23 @@ const ShowOrders = () => {
 
 					{orderData.map(order => (
 						order?.map((o) => (
-							
-						<TableBody key={counter++}>
-							<TableRow>
-								<TableCell>{o.id}</TableCell>
-								<TableCell>{o.title}</TableCell>
-								<TableCell>{descriptions}</TableCell>
-								<TableCell>{o.kpl}</TableCell>
-								<TableCell>{o.priceh}</TableCell>
-								<Button onClick={() => markCompleted(o.ref, o.id)}>{done}</Button>
-							</TableRow>
-						</TableBody>
-					))))}
+
+							<TableBody key={counter++}>
+								<TableRow>
+									<TableCell>{o.id}</TableCell>
+									<TableCell>{o.title}</TableCell>
+									<TableCell>{o.description}</TableCell>
+									<TableCell>{o.kpl}</TableCell>
+									<TableCell>{o.priceh}</TableCell>
+
+									<TableCell key={counter++}>
+										<Button key={o.id} onClick={() => markCompleted(orders[0].firebaseId.id)}>{done}</Button>
+									</TableCell>
+
+								</TableRow>
+							</TableBody>
+						))))}
+
 				</Table>
 			</TableContainer>
 

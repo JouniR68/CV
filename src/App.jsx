@@ -35,7 +35,9 @@ import Done from "./components/Done";
 import Calendar from "./components/Calendar";
 import Catalog from "./components/services/AddShopItem"
 import Basket from "./components/services/TheBasket";
+import Register from "./components/Register";
 import Contacts from "./components/services/Contact";
+import {UserLogin} from "./components/UserLogin"
 
 function App() {
   return (
@@ -54,6 +56,8 @@ function App() {
               <Route path="address" element={<Address />} />
               <Route path="error" element={<ErrorMessage />} />
               <Route path="login" element={<Login />} />
+              <Route path="userLogin" element={<UserLogin />} />
+              <Route path="register" element={<Register />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="done" element={<Done />} />
               <Route path="c" element={<CustomerData />} />
