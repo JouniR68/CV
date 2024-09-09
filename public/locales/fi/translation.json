@@ -103,8 +103,11 @@
   "Show":"Näytä",
   "Places":"Lähellä (klik):",
   "RegisterationForm": "Tilin luonti lomake",
-  "RegisterationInfo": "Saatte tallennuksen jälkeen salasanan joka on vain teidän käytössä, salasanaa ei voida muuttaa vaan tarvittaessa salasana luodaan uusiksi. Tallettakaa salasana itsellenne.",
+  "RegisterationInfo": "Salasanan vaihtoa ei tueta tietoturvasyistä, talleta salasanasi.",
   "Register": "Rekisteröinti",
   "Login": "Kirjaudu",
-  "Admin": "Asetukset"
+  "Admin": "Asetukset",
+  "username": "Sähköposti",
+  "ActionCompleted": "Toimenpide suoritettu!",
+  "OperationFailed": "Toimenpide epäonnistui!"
 }

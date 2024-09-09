@@ -6,6 +6,7 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './LoginContext';
+import { useTranslation } from 'react-i18next';
 
 
 export const UserLogin = () => {
@@ -15,6 +16,7 @@ export const UserLogin = () => {
     const [data, setData] = useState([])
     const [error, setError] = useState("")
     const { setIsLoggedIn } = useAuth();
+    const {t} = useTranslation();
 
     const navigate = useNavigate()
 
@@ -29,14 +31,14 @@ export const UserLogin = () => {
             }))
             console.log("Contacts: ", data)
             if (!data) {
-                navigate('/error', { state: { locationError: "No data" } })
+                navigate('/error', { state: { locationError: "Minor technical issue, pls contact admin" } })
                 return
             } else {
                 setData(data)
             }
         } catch (error) {
             console.error("Error fetching data: ", error)
-            setError("Error fetching data, pls contact site admin.")
+            navigate('/error', { state: { locationError: "The cloud is broken" } })
             throw {
                 message: "Datan haku epäonnistui",
                 statusText: "Failas",
@@ -53,19 +55,27 @@ export const UserLogin = () => {
 
     const checkUser = async () => {
         console.log("checkUser")
-        let isMatch = false
-        const userExist = data.find(e => e.username === username)
-        const pwdList = data.map(d => d.password)        
-        pwdList.forEach(pwd => {
-            isMatch = bcrypt.compare(userPwd, pwd.password);
-        })
+        const user = data.find(e => e.email === username)
+        console.log("user found:  ", user)
 
-        if (userExist && isMatch){
-            console.log("both ok, username and pwd")
+        if (!user) { return false }
+
+        console.log("userPwd: ", userPwd)
+        console.log("hasedPwd: ", user.password)
+        console.log("userPwd length:", userPwd.length);
+        console.log("hashedPwd length:", user.password.length);
+
+        const isPwdValid = await bcrypt.compare(userPwd, user.password)
+        if (isPwdValid) {
+            console.log("pwd validated")
             return true
         }
-
-        
+        else {
+            console.log("pwd invalid")
+            navigate("/error", { state: { locationError: 'Invalid pwd' } })
+            setUserPwd("")
+            return false
+        }
     }
 
     const handleLogin = async (e) => {
@@ -73,14 +83,14 @@ export const UserLogin = () => {
 
         try {
             // Check if the entered password matches the stored hashed password
-            const isAccountValid = checkUser()            
+            const isAccountValid = await checkUser()
             if (isAccountValid) {
                 setIsLoggedIn(true)
                 setTimeout(() => {
                     navigate('/home')
                 }, [1000])
             } else {
-                console.log("Ivalid account")                
+                console.log("Ivalid account")
                 setIsLoggedIn(false)
             }
         } catch (error) {
@@ -101,35 +111,42 @@ export const UserLogin = () => {
                 gap: 2,
                 width: 300,
                 margin: 'auto',
-                paddingTop: 4
+                paddingTop: 4,
+                '@media (max-width: 600px)': { // Media query for screens 600px and below
+                    width: '70%',  // Adjust width for mobile devices
+                  }
             }}
         >
-            <Typography variant="h5" gutterBottom>
-                Login
-            </Typography>
-            <TextField
-                label="Username"
-                variant="outlined"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-            />
-            <TextField
-                label="Password"
-                variant="outlined"
-                type="password"
-                value={userPwd}
-                onChange={(e) => setUserPwd(e.target.value)}
-                required
-            />
-            <Button variant="contained" color="primary" type="submit">
-                Login
-            </Button>
+
+            
+                <Typography variant="h5" gutterBottom>
+                    {t("Login")}
+                </Typography>
+                <TextField
+                    label={t('username')}
+                    variant="outlined"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <TextField
+                    label={t('password')}
+                    variant="outlined"
+                    type="password"
+                    value={userPwd}
+                    onChange={(e) => setUserPwd(e.target.value)}
+                    required
+                />
+                <Button variant="contained" color="primary" type="submit">
+                    {t('Login')}
+                </Button>
+            
             {message && (
                 <Typography variant="body2" color="error">
                     {message}
                 </Typography>
             )}
+
         </Box>
     );
 };   

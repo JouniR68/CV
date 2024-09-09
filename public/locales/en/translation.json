@@ -95,7 +95,7 @@
   "checkLocation": "Location",
   "birthPlace":"Place of birth: Rovaniemi, Lapland, Finland",
   "cv": "History",
-  "Confirmation":"Action Confirmation",
+  "Confirmation":"Confirmation",
   "check":"Check",
   "password":"Password",
   "addEvent":"Add Event",
@@ -103,10 +103,11 @@
   "Remove": "Delete",
   "Show": "Show",
   "Places": "Nearby (click):",  
-  "RegisterationForm": "Registration Form",
-  "RegisterationInfo": "After save, you will get the password for your personal use. Save it as not possible to alter it. In case lost then new password will be generated.",
   "Register": "Register",
   "Login": "Login",
-  "Admin": "Admin Login"
-
+  "Admin": "Admin Login",
+  "ActionCompleted": "Operation completed!",
+  "OperationFailed": "Operation failed!",
+  "RegisterationForm": "Registration Form",  
+  "RegisterationInfo": "Your plain password cannot be remeeded, save it locally"
 }

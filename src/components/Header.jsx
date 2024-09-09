@@ -14,6 +14,7 @@ import LoginSharpIcon from '@mui/icons-material/AdminPanelSettingsSharp';
 import DraftsSharpIcon from '@mui/icons-material/DraftsSharp';
 import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
@@ -54,7 +55,7 @@ export default function Header() {
           <>            
             <Link to="/userLogin">{t('Login')}</Link>
             <Link to="/register">{t('Register')}</Link>
-            <Link to="/login">{t('Admin')}</Link>            
+            <Link to="/login"><SettingsIcon /></Link>            
           </>
         }
 

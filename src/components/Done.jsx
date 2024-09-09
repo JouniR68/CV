@@ -11,12 +11,12 @@ function Done() {
   
   const {state} = location;
   const {description} = state;
-  
+
   const ok = () => {
-    setClose(true)
+    setClose(true)    
     setTimeout(() => {
       setIsLoggedIn(false)
-      window.open("/home", "_self");  
+      window.open("/userLogin", "_self");  
     }, [2000])
   }
 
@@ -24,7 +24,7 @@ function Done() {
     <div className="confirmation-container">
       <div className="confirmation-content">        
         <h2>{t('Confirmation')}</h2> 
-        <h4>{description}</h4>
+        {description }
         <button id="ok" onClick={ok}>{t('Ok')}</button>                
       </div>
     </div>

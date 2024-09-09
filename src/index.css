@@ -93,14 +93,28 @@
   }
 
   .confirmation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
     display: flex;
-    border: 1px solid;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: fit-content;
-    padding: 1rem;
-    margin: 0 auto;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    z-index: 1000; /* Ensure it sits above all other content */ 
   }
+
+  .confirmation-content{
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+
 
   .mail {
     display: flex;
@@ -616,22 +630,34 @@
     display: table-cell;
     padding: 1px;
     margin-left: 2rem;
-
   }
 
   .confirmation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
     display: flex;
-    border: 1px solid;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: fit-content;
-    padding: 1rem;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: left;
+    z-index: 1000; /* Ensure it sits above all other content */ 
+  }
+
+  .confirmation-content{
+    background: white;
+    padding: 3px;
+    border-radius: 8px;
+    text-align: left;
+    max-width: 10rem;
+    width: 100%;
   }
 
   .confirmation-content button {
-    margin: 1rem;
-    width: 4rem;
+    margin-top: 0.5rem;
+    width: fit-content;
+    text-align: start;    
   }
 
   #ok {

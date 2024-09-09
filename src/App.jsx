@@ -35,6 +35,7 @@ import Done from "./components/Done";
 import Calendar from "./components/Calendar";
 import Catalog from "./components/services/AddShopItem"
 import Basket from "./components/services/TheBasket";
+import TarjousLomake from "./components/services/Tarjous";
 import Register from "./components/Register";
 import Contacts from "./components/services/Contact";
 import {UserLogin} from "./components/UserLogin"
@@ -61,6 +62,7 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="done" element={<Done />} />
               <Route path="c" element={<CustomerData />} />
+              <Route path="tarjous" element={<TarjousLomake />} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path='cv' element={<CVLayout />}>
