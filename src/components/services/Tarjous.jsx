@@ -5,6 +5,15 @@ import { db } from '../../firebase';
 
 // Komponentti tarjouksen tekemiseen
 const TarjousLomake = () => {
+    // Laskentaparametrit
+    const TUNTIHINTA = 49; // Tuntihinta euroissa
+    const ALV_PERCENTAGE = 25.5; // Arvonlisävero
+    const KOTITALOUSVAHENNYS_PERCENTAGE = 40; // Kotitalousvähennysprosentti
+    const MAX_KOTITALOUSVAHENNYS = 3500 - 100; // Maksimivähennys
+    const KILOMETRIKUSTANNUS = 0.57
+    //const TARJOUS_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
+
+
     const [tarjoaja, setTarjoaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '', ytunnus: '' });
     const [saaja, setSaaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '' });
     const [tehtava, setTehtava] = useState('');
@@ -12,6 +21,8 @@ const TarjousLomake = () => {
     const [tuntiarvio, setTuntiarvio] = useState('');
     const [tehtavat, setTehtavat] = useState([]);
     const [muutHuomiot, setMuutHuomiot] = useState('');
+    const [matkakulut, setMatkakulut] = useState({ lahto: '', maaranpaa: '', kmhinta: KILOMETRIKUSTANNUS, km: 0, maara: 0, kmkustannus: 0 });
+
     const [sisaltyy, setSisaltyy] = useState('')
     const [suositukset, setSuositukset] = useState('');
     const [naytaYhteystiedot, setNaytaYhteystiedot] = useState(false);
@@ -20,33 +31,20 @@ const TarjousLomake = () => {
     const today = new Date()
     const twoweeksLaters = new Date(today);
 
-    const tarjous = [{
-        tarjoaja,saaja, tehtavat, kuvaus, tuntiarvio,muutHuomiot, sisaltyy, suositukset}
-    ]
-
-
-
-    // Laskentaparametrit
-    const TUNTIHINTA = 49; // Tuntihinta euroissa
-    const ALV_PERCENTAGE = 25.5; // Arvonlisävero
-    const KOTITALOUSVAHENNYS_PERCENTAGE = 40; // Kotitalousvähennysprosentti
-    const MAX_KOTITALOUSVAHENNYS = 3500 - 100; // Maksimivähennys
-    //const TARJOUS_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
-
+    const tarjous = {
+        tarjoaja, saaja, tehtavat, kuvaus: kuvaus, tuntiarvio, muutHuomiot, sisaltyy, suositukset, matkakulut
+    }
 
     const tarjousRef = collection(db, 'tarjoukset')
 
     const save = async () => {
         //Talleta firebaseeen
-    try{
-        for (const obj of tarjous) {
-            console.log("obj: ", obj)
-            await (addDoc(tarjousRef, obj))
+        try {
+            await (addDoc(tarjousRef, tarjous))
             console.log("Tarjous talletettu")
+        } catch (error) {
+            console.error("Talletus firebaseen epäonnistui: ", error)
         }
-    } catch (error){
-        console.error("Talletus firebaseen epäonnistui")
-    }
     }
 
     // Käsittelee tehtävän lisäämisen
@@ -111,9 +109,10 @@ const TarjousLomake = () => {
                         {naytaYhteystiedot ? 'Piilota Yhteystiedot' : 'Näytä Yhteystiedot'}
                     </button>
                     {naytaYhteystiedot && (
-                        <div>
-                            <h3>Tarjoajan Tiedot</h3>
+                        <div className="tarjous">
+
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
+                                <h3>Tarjoaja</h3>
                                 <input
                                     type="text"
                                     placeholder="Nimi"
@@ -138,7 +137,7 @@ const TarjousLomake = () => {
                                     value={tarjoaja.sahkoposti}
                                     onChange={(e) => setTarjoaja({ ...tarjoaja, sahkoposti: e.target.value })}
                                 />
-                                                                <input
+                                <input
                                     type="text"
                                     placeholder="Y-tunnus"
                                     value={tarjoaja.ytunnus}
@@ -147,8 +146,9 @@ const TarjousLomake = () => {
 
                             </div>
 
-                            <h3>Tarjouksen Saajan Tiedot</h3>
+
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
+                                <h3>Asiakas</h3>
                                 <input
                                     type="text"
                                     placeholder="Nimi"
@@ -173,17 +173,47 @@ const TarjousLomake = () => {
                                     value={saaja.sahkoposti}
                                     onChange={(e) => setSaaja({ ...saaja, sahkoposti: e.target.value })}
                                 />
-                                <input
-                                    type="ytunus"
-                                    placeholder="Y-tunnus"
-                                    value={saaja.ytunnus}
-                                    onChange={(e) => setSaaja({ ...saaja, ytunnus: e.target.value })}
-                                />
 
                             </div>
                         </div>
                     )}
 
+
+                    <div className="tarjous--matkakulut">
+                        <h3>Matkakulut</h3>
+                        <input
+                            type="text"
+                            placeholder="Lähtö"
+                            value={matkakulut.lahto}
+                            onChange={(e) => setMatkakulut({ lahto: e.target.value })}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Määränpää"
+                            value={matkakulut.maaranpaa}
+                            onChange={(e) => setMatkakulut({ maaranpaa: e.target.value })}
+                        />
+                        <input
+                            type="number"
+                            placeholder="km"
+                            value={matkakulut.km}
+                            onChange={(e) => setMatkakulut({ km: e.target.value })}
+                        />
+
+                        <input
+                            type="number"
+                            placeholder="Määrä"
+                            value={matkakulut.maara}
+                            onChange={(e) => setMatkakulut({ maara: e.target.value })}
+                        />
+                        <label
+                            type="number"
+                            placeholder="Kilometri kustannukset"
+                            value={matkakulut.kmkustannus}
+
+                        />
+
+                    </div>
 
 
 
@@ -371,9 +401,10 @@ const TarjousLomake = () => {
                                 <td>{yhteenveto.kokonaissumma} €</td>
                                 <td> {yhteenveto.alv} €</td>
                                 <td>{yhteenveto.kotitalousvahennys} €</td>
-                                <td>{yhteenveto.maksettava} €</td>
+                                <td onClick={() => { save() }}>{yhteenveto.maksettava} €</td>
                             </tr></tbody>
                     </table>
+
                 </div>
 
 
@@ -382,7 +413,7 @@ const TarjousLomake = () => {
             )
             }
 
-            <button onClick={() => save()}>Talleta</button>
+
         </div >
 
     );

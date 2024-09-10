@@ -28,6 +28,18 @@
     
   }
 
+  .tarjous {
+    display:flex;
+    margin-top:1rem;
+    gap:10rem;
+    justify-content: flex-start;
+  }
+
+  .tarjous input{        
+    padding: 0.5rem;
+    width: 20rem;
+  }
+
   .tarjous--tehtavat{
     display:table;
     border: 1px solid;
