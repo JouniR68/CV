@@ -100,6 +100,11 @@ const TarjousLomake = () => {
     };
 
 
+    const laskeMatka = (maara, km) => {
+        console.log("maara: ", maara + ", km: ", km + ", km korvaus: ", KILOMETRIKUSTANNUS)
+        setMatkakulut({ maara: maara, kmkustannus: maara * (km * KILOMETRIKUSTANNUS) })
+    }
+
     return (
         <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
             {!naytaYhteenveto ? (
@@ -178,40 +183,53 @@ const TarjousLomake = () => {
                         </div>
                     )}
 
+                    <h3>Matkakulut</h3>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        gap: '10px',
+                        marginBottom: '10px',
+                        alignItems: 'center',
+                    }}>
 
-                    <div className="tarjous--matkakulut">
-                        <h3>Matkakulut</h3>
-                        <input
-                            type="text"
-                            placeholder="Lähtö"
-                            value={matkakulut.lahto}
-                            onChange={(e) => setMatkakulut({ lahto: e.target.value })}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Määränpää"
-                            value={matkakulut.maaranpaa}
-                            onChange={(e) => setMatkakulut({ maaranpaa: e.target.value })}
-                        />
-                        <input
-                            type="number"
-                            placeholder="km"
-                            value={matkakulut.km}
-                            onChange={(e) => setMatkakulut({ km: e.target.value })}
-                        />
+                        <label>
+                            <input
+                                type="text"
+                                placeholder="Lähtö"
+                                value={matkakulut.lahto}
+                                onChange={(e) => setMatkakulut({ lahto: e.target.value })}
+                            />
+                            Lähtö</label>
+                        <label>
+                            <input
+                                type="text"
+                                placeholder="Määränpää"
+                                value={matkakulut.maaranpaa}
+                                onChange={(e) => setMatkakulut({ maaranpaa: e.target.value })}
+                            />
+                            Kohde</label>
+                        <label>
+                            <input
+                                type="number"
+                                placeholder="km"
+                                value={matkakulut.km}
+                                onChange={(e) => setMatkakulut({ km: e.target.value })}
+                            />
+                            km</label>
 
-                        <input
-                            type="number"
-                            placeholder="Määrä"
-                            value={matkakulut.maara}
-                            onChange={(e) => setMatkakulut({ maara: e.target.value })}
-                        />
+                        <label>
+                            <input
+                                type="number"
+                                placeholder="Määrä"
+                                value={matkakulut.maara}
+                                onChange={(e) => (
+                                    laskeMatka(e.target.value, matkakulut.km)
+                                )}
+                            />
+                            Määrä</label>
                         <label
-                            type="number"
-                            placeholder="Kilometri kustannukset"
-                            value={matkakulut.kmkustannus}
-
-                        />
+                            placeholder="ajo kustannukset"
+                        >Kustannus: {matkakulut.kmkustannus}</label>
 
                     </div>
 

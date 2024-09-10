@@ -22,6 +22,11 @@
     display: true;
   }
 
+
+  h3{
+    text-align: left;
+  }
+
   #shoppingCart {
     margin-left: auto;
     color: red
@@ -40,6 +45,7 @@
     width: 20rem;
   }
 
+  .tarjous--matkakulut, 
   .tarjous--tehtavat{
     display:table;
     border: 1px solid;
