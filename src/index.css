@@ -23,46 +23,71 @@
   }
 
 
-  h3{
+  h3 {
     text-align: left;
   }
 
   #shoppingCart {
     margin-left: auto;
     color: red
-    
   }
 
   .tarjous {
-    display:flex;
-    margin-top:1rem;
-    gap:10rem;
+    display: flex;
+    margin-top: 1rem;
+    gap: 10rem;
     justify-content: flex-start;
   }
 
-  .tarjous input{        
+  .tarjous input {
     padding: 0.5rem;
     width: 20rem;
   }
 
-  .tarjous--matkakulut, 
-  .tarjous--tehtavat{
-    display:table;
+  .tarjous--matkakulut,
+  .tarjous--tehtavat {
+    display: table;
     border: 1px solid;
-    padding: 0.2rem;
+    padding: 0.1rem;
   }
 
-  .tarjous--tehtavat th{
+  .tarjous--tehtavat th {
     background-color: gray;
   }
 
-  .tarjous--tehtavat td{
-    padding:0.2rem;
+  .tarjous--tehtavat {
+    padding: 0.4rem;
     font-weight: 500;
   }
 
+  .tarjous--tehtavat,
+  .tarjous--matkakulut {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+    padding: 0.5rem
+  }
 
+  .tarjous--matkakulut label{
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.1rem;
+    padding: 0.5rem
+  }
 
+  .tarjous--matkakulut input[type="text"],
+  .tarjous--tehtavat input[type="text"]{
+    padding:1rem;
+    width:14rem
+  }
+
+  .tarjous--tehtavat input[type='number'], 
+  .tarjous--matkakulut input[type='number'] {
+    padding: 0.5rem;
+    width: 3rem;
+  }
 
   .catalog {
     display: flex;
@@ -134,15 +159,17 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.8);
+    /* Semi-transparent background */
     display: flex;
     justify-content: left;
     align-items: left;
     text-align: left;
-    z-index: 1000; /* Ensure it sits above all other content */ 
+    z-index: 1000;
+    /* Ensure it sits above all other content */
   }
 
-  .confirmation-content{
+  .confirmation-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -674,14 +701,16 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.8);
+    /* Semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: left;
-    z-index: 1000; /* Ensure it sits above all other content */ 
+    z-index: 1000;
+    /* Ensure it sits above all other content */
   }
 
-  .confirmation-content{
+  .confirmation-content {
     background: white;
     padding: 3px;
     border-radius: 8px;
@@ -693,7 +722,7 @@
   .confirmation-content button {
     margin-top: 0.5rem;
     width: fit-content;
-    text-align: start;    
+    text-align: start;
   }
 
   #ok {

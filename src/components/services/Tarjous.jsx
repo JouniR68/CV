@@ -2,6 +2,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../../firebase';
+import Button from '@mui/material/Button';
 
 // Komponentti tarjouksen tekemiseen
 const TarjousLomake = () => {
@@ -110,9 +111,9 @@ const TarjousLomake = () => {
             {!naytaYhteenveto ? (
                 <div>
                     <h2>Tarjouslomake</h2>
-                    <button onClick={() => setNaytaYhteystiedot(!naytaYhteystiedot)}>
+                    <Button onClick={() => setNaytaYhteystiedot(!naytaYhteystiedot)}>
                         {naytaYhteystiedot ? 'Piilota Yhteystiedot' : 'Näytä Yhteystiedot'}
-                    </button>
+                    </Button>
                     {naytaYhteystiedot && (
                         <div className="tarjous">
 
@@ -184,30 +185,23 @@ const TarjousLomake = () => {
                     )}
 
                     <h3>Matkakulut</h3>
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        gap: '10px',
-                        marginBottom: '10px',
-                        alignItems: 'center',
-                    }}>
-
-                        <label>
+                    <div className="tarjous--matkakulut">
+                        
                             <input
                                 type="text"
                                 placeholder="Lähtö"
                                 value={matkakulut.lahto}
                                 onChange={(e) => setMatkakulut({ lahto: e.target.value })}
                             />
-                            Lähtö</label>
-                        <label>
+                        
+                        
                             <input
                                 type="text"
                                 placeholder="Määränpää"
                                 value={matkakulut.maaranpaa}
                                 onChange={(e) => setMatkakulut({ maaranpaa: e.target.value })}
                             />
-                            Kohde</label>
+                        
                         <label>
                             <input
                                 type="number"
@@ -229,7 +223,7 @@ const TarjousLomake = () => {
                             Määrä</label>
                         <label
                             placeholder="ajo kustannukset"
-                        >Kustannus: {matkakulut.kmkustannus}</label>
+                        >Kustannus:<br></br>{matkakulut.kmkustannus}</label>
 
                     </div>
 
@@ -238,15 +232,7 @@ const TarjousLomake = () => {
 
                     <h3>Tehtävät</h3>
                     <form>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'flex-start',
-                                gap: '10px',
-                                marginBottom: '10px',
-                                alignItems: 'center',
-                            }}
-                        >
+                        <div className = "tarjous--tehtavat">
                             <input
                                 type="text"
                                 placeholder="Tehtävä"
@@ -268,17 +254,11 @@ const TarjousLomake = () => {
                                 onChange={(e) => setTuntiarvio(e.target.value)}
                                 style={{ flex: 1 }}
                             />
-                            <input
-                                type="text"
-                                value={(tuntiarvio * TUNTIHINTA).toFixed(2)}
-                                readOnly
-                                placeholder="Kuluarvio (€)"
-                                style={{ flex: 1, backgroundColor: '#f0f0f0' }}
-                            />
+                            <label>Kustannus: <br></br>{(tuntiarvio * TUNTIHINTA).toFixed(2)}</label>
                         </div>
-                        <button type="button" onClick={lisaaTehtava} style={{ marginRight: '10px' }}>
+                        <Button type="Button" onClick={lisaaTehtava} style={{ marginRight: '10px' }}>
                             +
-                        </button>
+                        </Button>
 
                     </form>
 
@@ -288,7 +268,7 @@ const TarjousLomake = () => {
                             placeholder="Asiakkaan kanssa sovitut tehtävät."
                             value={sisaltyy}
                             onChange={(e) => setSisaltyy(e.target.value)}
-                            style={{ width: '100%', height: '60px', marginBottom: '10px' }}
+                            style={{ width: '100%', height: '60px', marginBottom: '10px', padding:'1rem' }}
                         />
 
                         <h3>Tarjoukseen Kuulumattomat Asiat</h3>
@@ -296,19 +276,19 @@ const TarjousLomake = () => {
                             placeholder="Esim. matkakulut eivät sisälly tarjoukseen"
                             value={muutHuomiot}
                             onChange={(e) => setMuutHuomiot(e.target.value)}
-                            style={{ width: '100%', height: '60px', marginBottom: '10px' }}
+                            style={{ width: '100%', height: '60px', marginBottom: '10px', padding:'1rem' }}
                         />
                         <h3>Suositukset Asiakkaalle</h3>
                         <textarea
                             placeholder="Esim. suosittelemme lisäpalveluita..."
                             value={suositukset}
                             onChange={(e) => setSuositukset(e.target.value)}
-                            style={{ width: '100%', height: '60px' }}
+                            style={{ width: '100%', height: '60px',padding:'1rem' }}
                         />
                     </div>
-                    <button type="button" onClick={naytaYhteenvetoNappiaPainettu}>
-                        Valmis
-                    </button>
+                    <Button type="Button" onClick={naytaYhteenvetoNappiaPainettu}>
+                        Yhteenvetoon
+                    </Button>
 
                 </div>
             ) : (
