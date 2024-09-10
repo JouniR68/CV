@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 // Komponentti tarjouksen tekemiseen
 const TarjousLomake = () => {
-    const [tarjoaja, setTarjoaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '' });
+    const [tarjoaja, setTarjoaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '', ytunnus: '' });
     const [saaja, setSaaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '' });
     const [tehtava, setTehtava] = useState('');
     const [kuvaus, setKuvaus] = useState('');
     const [tuntiarvio, setTuntiarvio] = useState('');
     const [tehtavat, setTehtavat] = useState([]);
     const [muutHuomiot, setMuutHuomiot] = useState('');
+    const [sisaltyy, setSisaltyy] = useState('')
     const [suositukset, setSuositukset] = useState('');
     const [naytaYhteystiedot, setNaytaYhteystiedot] = useState(false);
     const [naytaYhteenveto, setNaytaYhteenveto] = useState(false);
+    const uuid = uuidv4()
+    const today = new Date()
+    const twoweeksLaters = new Date(today);
 
     // Laskentaparametrit
     const TUNTIHINTA = 49; // Tuntihinta euroissa
     const ALV_PERCENTAGE = 25.5; // Arvonlisävero
     const KOTITALOUSVAHENNYS_PERCENTAGE = 40; // Kotitalousvähennysprosentti
     const MAX_KOTITALOUSVAHENNYS = 3500 - 100; // Maksimivähennys
+    const TARJOUS_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
 
     // Käsittelee tehtävän lisäämisen
     const lisaaTehtava = () => {
@@ -135,9 +141,20 @@ const TarjousLomake = () => {
                                     value={saaja.sahkoposti}
                                     onChange={(e) => setSaaja({ ...saaja, sahkoposti: e.target.value })}
                                 />
+                                <input
+                                    type="ytunus"
+                                    placeholder="Y-tunnus"
+                                    value={saaja.ytunnus}
+                                    onChange={(e) => setSaaja({ ...saaja, ytunnus: e.target.value })}
+                                />
+
                             </div>
                         </div>
                     )}
+
+
+
+
 
                     <h3>Tehtävät</h3>
                     <form>
@@ -186,6 +203,14 @@ const TarjousLomake = () => {
                     </form>
 
                     <div style={{ marginTop: '20px' }}>
+                        <h3>Tarjous sisältää</h3>
+                        <textarea
+                            placeholder="Asiakkaan kanssa sovitut tehtävät."
+                            value={sisaltyy}
+                            onChange={(e) => setSisaltyy(e.target.value)}
+                            style={{ width: '100%', height: '60px', marginBottom: '10px' }}
+                        />
+
                         <h3>Tarjoukseen Kuulumattomat Asiat</h3>
                         <textarea
                             placeholder="Esim. matkakulut eivät sisälly tarjoukseen"
@@ -201,9 +226,9 @@ const TarjousLomake = () => {
                             style={{ width: '100%', height: '60px' }}
                         />
                     </div>
-                        <button type="button" onClick={naytaYhteenvetoNappiaPainettu}>
-                            Valmis
-                        </button>
+                    <button type="button" onClick={naytaYhteenvetoNappiaPainettu}>
+                        Valmis
+                    </button>
 
                 </div>
             ) : (
@@ -211,20 +236,59 @@ const TarjousLomake = () => {
                 <div style={{ padding: '20px', textAlign: 'left', border: '1px solid #ddd', borderRadius: '5px' }}>
                     <h2>Tarjous</h2>
 
-                    <h3>Tarjoajan Yhteystiedot</h3>
-                    <p><strong>Nimi:</strong> {tarjoaja.nimi}</p>
-                    <p><strong>Osoite:</strong> {tarjoaja.osoite}</p>
-                    <p><strong>Puhelin:</strong> {tarjoaja.puhelin}</p>
-                    <p><strong>Sähköposti:</strong> {tarjoaja.sahkoposti}</p>
+                    <div className="tarjousDetails">
+                        Numero: {uuid}<p />
+                        Päiväys: {new Date().toLocaleDateString()}<p />
+                        Tarjous voimassa: {tarjousVoimassa()}
+                    </div>
 
-                    <h3>Tarjouksen Saajan Yhteystiedot</h3>
-                    <p><strong>Nimi:</strong> {saaja.nimi}</p>
-                    <p><strong>Osoite:</strong> {saaja.osoite}</p>
-                    <p><strong>Puhelin:</strong> {saaja.puhelin}</p>
-                    <p><strong>Sähköposti:</strong> {saaja.sahkoposti}</p>
 
+                    <h3>Tarjoaja</h3>
+                    <table className="tarjous--tarjoaja">
+                        <thead>
+                            <th>Nimi</th>
+                            <th>Osoite</th>
+                            <th>Puhelin</th>
+                            <th>Sähköposti</th>
+                            <th>Y-tunnus</th>
+                        </thead>
+
+                        <tbody>
+                            <td>{tarjoaja.nimi}</td>
+                            <td>{tarjoaja.osoite}</td>
+                            <td>{tarjoaja.puhelin}</td>
+                            <td>{tarjoaja.sahkoposti}</td>
+                            <td>{tarjoaja.ytunnus}</td>
+                        </tbody>
+
+                    </table>
+
+
+                    <h3>Asiakas</h3>
+
+                    <table className="tarjous--asiakas">
+                        <thead>
+                            <tr>
+                            <th>Nimi</th>
+                            <th>Osoite</th>
+                            <th>Puhelin</th>
+                            <th>Sähköposti</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                            <td>{saaja.nimi}</td>
+                            <td>{saaja.osoite}</td>
+                            <td>{saaja.puhelin}</td>
+                            <td>{saaja.sahkoposti}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr />
                     <h3>Tehtävät</h3>
-                    <table>
+                    <table className="tarjous--tehtavat">
                         <thead>
                             <th>Tehtävä</th>
                             <th>Kuvaus</th>
@@ -234,12 +298,12 @@ const TarjousLomake = () => {
 
                         <tbody>
                             {tehtavat.map((item) => (
-                                <div key={item.id}>
+                                <tr key={item.id}>
                                     <td>{item.tehtava}</td>
                                     <td>{item.kuvaus}</td>
                                     <td>{item.tuntiarvio}</td>
                                     <td>{item.kuluarvio}</td>
-                                </div>
+                                </tr>
                             ))}
                         </tbody>
 
@@ -247,20 +311,40 @@ const TarjousLomake = () => {
                     </table>
 
                     <h3>Yhteenveto</h3>
-                    <p><strong>Kokonaissumma:</strong> {yhteenveto.kokonaissumma} €</p>
-                    <p><strong>ALV (25.5%):</strong> {yhteenveto.alv} €</p>
-                    <p><strong>Kotitalousvähennys (40%):</strong> {yhteenveto.kotitalousvahennys} €</p>
-                    <p><strong>Kotitalousvähennyksen jälkeen:</strong> {yhteenveto.maksettava} €</p>
-                    <p><strong>Tarjous voimassa:</strong> {tarjousVoimassa()}</p>
 
-                    <h4>Muut Huomiot</h4>
+
+                    <hr />
+                    <h4>Lisätiedot ja ehdot</h4>
                     <p>{muutHuomiot}</p>
+                    {suositukset}
 
-                    <h4>Suositukset</h4>
-                    <p>{suositukset}</p>
+                    <hr />
+                    <table className="tarjous--yhteenvetosummat">
+                        <thead>
+                            <th>Kokonaissumma</th>
+                            <th>ALV (25.5%)</th>
+                            <th>Kotitalousvähennys 40%</th>
+                            <th>Maksettavaa kotitalousvähennyksen jälkeen</th>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                            <td>{yhteenveto.kokonaissumma} €</td>
+                    <td> {yhteenveto.alv} €</td>
+                    <td>{yhteenveto.kotitalousvahennys} €</td>
+                    <td>{yhteenveto.maksettava} €</td>
+                    </tr></tbody>
+                    </table>
                 </div>
-            )}
-        </div>
+                    
+
+
+
+    )
+}
+        
+        </div >
+        
     );
 };
 

@@ -28,6 +28,24 @@
     
   }
 
+  .tarjous--tehtavat{
+    display:table;
+    border: 1px solid;
+    padding: 0.2rem;
+  }
+
+  .tarjous--tehtavat th{
+    background-color: gray;
+  }
+
+  .tarjous--tehtavat td{
+    padding:0.2rem;
+    font-weight: 500;
+  }
+
+
+
+
   .catalog {
     display: flex;
     flex-direction: row;
