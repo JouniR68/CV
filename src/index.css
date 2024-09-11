@@ -34,6 +34,7 @@
 
   .tarjous {
     display: flex;
+    flex: wrap;
     margin-top: 1rem;
     gap: 10rem;
     justify-content: flex-start;
@@ -62,7 +63,6 @@
 
   .tarjous--tehtavat,
   .tarjous--matkakulut {
-    display: flex;
     justify-content: flex-start;
     gap: 0.4rem;
     margin-bottom: 0.1rem;
@@ -70,7 +70,6 @@
   }
 
   .tarjous--matkakulut label{
-    display: flex;
     justify-content: flex-start;
     gap: 0.5rem;
     margin-bottom: 0.1rem;
@@ -843,6 +842,54 @@
     color: rgb(27, 26, 26);
   }
 
+  .tarjous {
+    display: flex;
+    flex: wrap;
+    margin-top: 1rem;
+    gap: 2rem;
+    justify-content: flex-start;
+  }
+
+  .tarjous input {
+    padding: 0.5rem;
+    width: 10rem;
+  }
+
+  .tarjous--tehtavat th {
+    background-color: gray;
+  }
+
+  .tarjous--tehtavat {
+    padding: 0.4rem;
+    font-weight: 500;
+  }
+
+  .tarjous--tehtavat,
+  .tarjous--matkakulut {
+    justify-content: flex-start;    
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+    padding: 0.5rem
+  }
+
+  .tarjous--matkakulut label{
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.1rem;
+    padding: 0.5rem
+  }
+
+  .tarjous--matkakulut input[type="text"],
+  .tarjous--tehtavat input[type="text"]{
+    padding:1rem;
+    width:8rem
+  }
+
+  .tarjous--tehtavat input[type='number'], 
+  .tarjous--matkakulut input[type='number'] {
+    padding: 0.5rem;
+    width: 3rem;
+  }
 
 
 }

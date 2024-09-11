@@ -15,7 +15,7 @@ function Yhteenveto() {
     const TUNTIHINTA = 15
 
     useEffect(() => {
-        const q = query(collection(db, 'Tuntikirjanpito'));
+        const q = query(collection(db, 'tuntikirjanpito'));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const updatedEntries = snapshot.docs.map((doc) => ({
                 id: doc.id,
@@ -35,7 +35,7 @@ function Yhteenveto() {
 
     const handlePaidChange = async (id, currentPaidStatus) => {
         try {
-            const entryRef = doc(db, 'Tuntikirjanpito', id);
+            const entryRef = doc(db, 'tuntikirjanpito', id);
             await updateDoc(entryRef, { isPaid: !currentPaidStatus });
         } catch (error) {
             console.error('Error updating payment status:', error);
@@ -55,11 +55,13 @@ function Yhteenveto() {
 
     const sum = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
+    let counter = 0;
+
     return (
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
-                    <TableRow>
+                    <TableRow key = {counter++}>
                         <TableCell>
                             <TableSortLabel
                                 active={orderBy === 'day'}
@@ -109,7 +111,11 @@ function Yhteenveto() {
                         </TableRow>
                     ))}
                     <TableRow>
-                        <TableCell>Tunnit <b style={{ color: 'red' }}>{sum * TUNTIHINTA + 108}</b> euroa (108 euroa ajokilometreistä))</TableCell>
+                        <TableCell style={{fontWeight: '700'}}>Tilanne</TableCell> 
+                        <TableCell></TableCell>
+                        <TableCell style={{fontWeight: '700'}}>{sum}</TableCell> 
+                        <TableCell style={{fontWeight: '700'}}>Saamatta {sum * TUNTIHINTA + 108} euroa (108 euroa ajokilometreistä)</TableCell>                         
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableBody>
             </Table>:

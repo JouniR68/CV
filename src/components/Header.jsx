@@ -49,6 +49,7 @@ export default function Header() {
         <Link to="/home"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
         <Link to="/catalog"><DesignServicesSharpIcon /></Link>
+    
         
         <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
         {!isLoggedIn &&

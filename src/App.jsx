@@ -41,6 +41,7 @@ import Contacts from "./components/services/Contact";
 import {UserLogin} from "./components/UserLogin"
 import Tunterointi from "./components/services/Tunterointi"
 import Yhteenveto from "./components/services/Yhteenveto"
+import Report from "./components/services/Report"
 
 function App() {
   return (
@@ -67,7 +68,8 @@ function App() {
               <Route path="tarjous" element={<TarjousLomake />} />
               <Route path="tunterointi" element={<Tunterointi />} />
               <Route path="yhteenveto" element={<Yhteenveto />} />
-              <Route path='profile' element={<ProfileLayout />}>
+              <Route path='lasku' element={<Report />} />
+              <Route path='profile' element={<ProfileLayout />}>              
                 <Route index element={<Profile />} />
                 <Route path='cv' element={<CVLayout />}>
                   <Route index element={<Work />} />
