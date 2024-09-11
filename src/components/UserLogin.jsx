@@ -16,8 +16,8 @@ export const UserLogin = () => {
     const [data, setData] = useState([])
     const [error, setError] = useState("")
     const { setIsLoggedIn } = useAuth();
-    const {t} = useTranslation();
-
+    const { t } = useTranslation();
+    
     const navigate = useNavigate()
 
     const getData = async () => {
@@ -114,33 +114,32 @@ export const UserLogin = () => {
                 paddingTop: 4,
                 '@media (max-width: 600px)': { // Media query for screens 600px and below
                     width: '70%',  // Adjust width for mobile devices
-                  }
+                }
             }}
         >
 
-            
-                <Typography variant="h5" gutterBottom>
-                    {t("Login")}
-                </Typography>
-                <TextField
-                    label={t('username')}
-                    variant="outlined"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <TextField
-                    label={t('password')}
-                    variant="outlined"
-                    type="password"
-                    value={userPwd}
-                    onChange={(e) => setUserPwd(e.target.value)}
-                    required
-                />
-                <Button variant="contained" color="primary" type="submit">
-                    {t('Login')}
-                </Button>
-            
+            <Typography variant="h5" gutterBottom>
+                {t("Login")}
+            </Typography>
+            <TextField
+                label={t('username')}
+                variant="outlined"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+            />
+            <TextField
+                label={t('password')}
+                variant="outlined"
+                type="password"
+                value={userPwd}
+                onChange={(e) => setUserPwd(e.target.value)}
+                required
+            />
+            <Button variant="contained" color="primary" type="submit">
+                {t('Login')}
+            </Button>
+
             {message && (
                 <Typography variant="body2" color="error">
                     {message}

@@ -8,6 +8,7 @@ export default function Logout() {
   const navigate = useNavigate()
   useEffect(() => {navigate('/done', { state: { description: "You have been kicked off" } })},[])
   setIsLoggedIn(false)
+  sessionStorage.removeItem("adminlevel")
   doSignOut()
   
   

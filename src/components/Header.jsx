@@ -63,6 +63,7 @@ export default function Header() {
           <>
             <Link to="/c"><DraftsSharpIcon /></Link>
             <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+            <Link to="/tunterointi">Tunterointi</Link>
             {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
           </>}
 

@@ -1,19 +1,31 @@
 // src/Tunterointi.js
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, TextField, Checkbox, FormControlLabel } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import { useAuth } from "../LoginContext";
 
 function Tunterointi() {
     const [day, setDay] = useState(new Date().toISOString().substr(0, 10));
     const [client, setClient] = useState('');
     const [hours, setHours] = useState(0);
+    const [access, setAccess] = useState(false);
     const [description, setDescription] = useState('');
     const [isPaid, setIsPaid] = useState(false);
     const [entries, setEntries] = useState([]);
     const navigate = useNavigate();
-  
+    const {isLoggedIn} = useAuth()
+    
+    const isAccess = sessionStorage.getItem("adminlevel")
+    console.log("isAccess: ", isAccess)
+    
+    useEffect(() => {
+        if (isAccess === "valid"){
+            setAccess(true)
+        } 
+    },[])
+
     const handleAddEntry = () => {
       const newEntry = {
         day,
@@ -30,6 +42,9 @@ function Tunterointi() {
       setIsPaid(false);
     };
   
+
+    console.log("isLoggedIn: ", isLoggedIn)
+
     const handleNavigateToSummary = async () => {
       try {
         // Save all entries to Firebase
@@ -45,6 +60,9 @@ function Tunterointi() {
   
     return (
       <div style={{ padding: 20 }}>
+        {!access && <div><h1>Teillä ei ole pääsyä tuntikirjaukseen</h1></div>}
+        {access && 
+        <>
         <h1>Tuntilaskuri</h1>
         <TextField
           label="Päivä"
@@ -88,7 +106,11 @@ function Tunterointi() {
         </Button>
         <Button variant="outlined" onClick={handleNavigateToSummary}>
           Yhteenveto
-        </Button>
+        </Button>        
+        </>
+        }    
+
+    
       </div>
     );
 }
