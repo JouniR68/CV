@@ -1,5 +1,5 @@
 // src/Yhteenveto.js
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Checkbox, TableSortLabel } from '@mui/material';
 import { collection, updateDoc, doc, onSnapshot, query } from 'firebase/firestore';

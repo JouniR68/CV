@@ -1,8 +1,9 @@
 // src/Report.js
 import { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase';  // Your Firebase setup file
+import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { db, storage } from '../../firebase';  // Your Firebase setup file
 import { jsPDF } from 'jspdf';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import 'jspdf-autotable';  // Import autoTable plugin after jsPDF
 import { Button } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,55 +21,92 @@ const Report = () => {
     fetchData()
 }, []);
 
+
+
   const generatePDF = () => {
     const doc = new jsPDF();
-    const uuid = uuidv4()
-    // Add title to the PDF
-    doc.text('Lasku', 100, 10);
+    
+    const uuid = Math.floor(Math.random() * 1000000);  // Random invoice number for example purposes
 
-    // Add headers
-    const headers = [['Päivä', 'Tilaaja', 'Tunnit', 'Selite', 'Maksettu']];
-
-    const values = data.map(payment => payment.hours)
+    const values = data.map(payment => Number(payment.hours) || 0)
     const sum = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    
-    let rows = []
-    
-    // Add table to the PDF
-    const billDetails = ['Päivämäärä',`${new Date().toLocaleDateString()}`,'','']
+    console.log("sum: ", sum)
+    // Add title
+    doc.text('Lasku', 15, 10);
+    doc.setFontSize(12);
 
-    const billNro = [`Laskun numero`,`${uuid}`,'','']
+    // Add Bill details
+    // doc.text(`Laskun numero: ${uuid}`, 120, 40);
+    doc.text(`Päivämäärä: ${new Date().toLocaleDateString()}`, 120, 30);
+    doc.text(`Eräpäivä: Sovittavissa / joka perjantai.`, 120, 40);    
+    doc.text(`Asiakas: ${data[0]?.client || "Timo Vuori"}`, 15, 50)
+    doc.text('Lisätiedot: Työtuntien ja ajokilometrien laskutusta', 15, 70);
     
-    const billContains = [`Sisältää: `,'Työtuntien ja ajokilometrien laskutusta','','']
+    // To be deleted
+    // entry.client || 'N/A',
     
-    const emptyRow = []
-    
-    rows.push(['Yhteenveto:', `Tunteja ${new Date().toLocaleDateString()} mennessä ${sum} ja sovitut ajokilometrikustannukset 110 euroa`, ` ${sum * 15 + 110} euroa`, 'Toivottu maksutapa: Mobile Pay (045 2385 888) / tilille FI71 1470 3500 2922 74']);    
-    rows.push(['Maksu projektin loppuessa / erissä, mikäli maksatte erissä niin ilmoittakaa maksettu päivä / päiväkohtainen summa.','',''])
-    
-    const tasks = data.map(entry => [
-      entry.day,
-      entry.client,
-      entry.hours,
-      entry.description,
+    // Table Headers
+    const headers = [['Päivä', 'Tunnit', 'Selite', 'Maksettu']];
+
+    // Table Rows
+    const rows = data
+    .filter((_, index) => index !== 0)
+    .map((entry) => [
+      entry.day || 'N/A',      
+      entry.hours || 0,
+      entry.description || 'N/A',
       entry.isPaid ? 'Kyllä' : 'Ei'
-    ]);
+    ]).filter((row) => !row.includes('N/A'));
 
-    rows.push(billDetails)
-    rows.push(billNro)
-    rows.push(billContains)
-    rows.push(emptyRow)
-    rows.push(tasks)
-
+    // Add table with autoTable
     doc.autoTable({
       head: headers,
       body: rows,
-      startY: 20,
+      startY: 80,  // Adjust start position
+      theme: 'grid',
     });
+
+    // Summary Section
+    doc.text(`Yhteenveto: Tunteja ${new Date().toLocaleDateString()} mennessä ${sum} ja sovitut ajokilometrikustannukset 110 euroa`, 15, doc.lastAutoTable.finalY + 20);
+    doc.text(`Yhteensä: ${sum * 15 + 110} euroa`, 15, doc.lastAutoTable.finalY + 30);
+    doc.text('Toivottu maksutapa: Mobile Pay (045 2385 888) / tilille FI71 1470 3500 2922 74', 15, doc.lastAutoTable.finalY + 40);
+    doc.text('Maksu projektin loppuessa / erissä, mikäli maksatte erissä (minimi 100 euroa) niin ilmoittakaa ' + '\n' + 'maksettu päivä / päiväkohtainen summa.', 15, doc.lastAutoTable.finalY + 50);
 
     // Save the PDF
     doc.save('Aitaprojekti-Espoo.pdf');
+
+    savePdfToStorage(doc, uuid)
   };
+
+  const savePdfToStorage = async (doc, uuid) => {
+    // Convert the PDF to Blob
+    const pdfBlob = doc.output('blob');
+
+    // Create a storage reference
+    const storageRef = ref(storage, `laskut/lasku-${uuid}.pdf`);
+
+    try {
+      // Upload the PDF to Firebase Storage
+      await uploadBytes(storageRef, pdfBlob);
+
+      // Get the download URL
+      //const downloadURL = await getDownloadURL(snapshot.ref);
+
+      /* Save the download URL and metadata to Firestore (optional)
+      await addDoc(collection(db, 'tuntikirjanpito'), {
+        downloadURL,
+        createdAt: new Date(),
+        invoiceNumber: uuid,
+        total: sum * 15 + 110,
+      });
+
+      alert('PDF uploaded successfully!');
+      */
+    } catch (error) {
+      console.error('Error uploading PDF:', error);
+      alert('Failed to upload PDF. Please try again.');
+    }
+  }
 
   return (
     <div style={{ padding: 20 }}>
