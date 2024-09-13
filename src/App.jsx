@@ -12,7 +12,7 @@ import CustomerData from "./components/services/NaytaPyynnot";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
-import Login from "./components/Login";
+import Admin from "./components/AdminLogin";
 import Logout from "./components/Logout";
 import CVLayout from "./Layouts/CVLayout";
 import ProfileLayout from "./Layouts/ProfileLayout";
@@ -56,15 +56,16 @@ function App() {
               <Route path="output" element={<CV />} />
               <Route path="address" element={<Address />} />
               <Route path="error" element={<ErrorMessage />} />
-              <Route path="login" element={<Login />} />
+              <Route path="admin" element={<Admin />} />
+
+              
+              <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
+              <Route path='logout' element={<Logout />} />
               <Route path="userLogin" element={<UserLogin />} />
               <Route path="register" element={<Register />} />
-              <Route path="/logout" element={<Logout />} />
               <Route path="done" element={<Done />} />
-              <Route path="c" element={<CustomerData />} />
-              <Route path="tarjous" element={<TarjousLomake />} />
-              <Route path="tunterointi" element={<Tunterointi />} />
               <Route path='lasku' element={<Report />} />
+              
               <Route path='profile' element={<ProfileLayout />}>              
                 <Route index element={<Profile />} />
                 <Route path='cv' element={<CVLayout />}>
@@ -79,20 +80,19 @@ function App() {
                 <Route path='looking' element={<Looking />} />
               </Route>
 
-              <Route path='admin' element={<Login />}>
-                <Route index element={<Login />} />
-                <Route path='logout' element={<Logout />} />
-              </Route>
-
-              <Route path='c' element={<CustomerData />} />
+              <Route path='adminLayout' element={<AdminLayout />}>
+                <Route path="tunterointi" index element={<Tunterointi />} />
+                <Route path='naytaPyynnot' element={<CustomerData />} />
+                <Route path="tarjous" element={<TarjousLomake />} />
+                <Route path="lasku" element={<Report />} />                
+              </Route>              
 
               <Route element={<RentalLayout />}>
                 <Route path='rent' index element={<Rent />} />
                 <Route path='addCustomerData' element={<Customer />} />                
                 <Route path='calendar' element={<Calendar />} />
                 <Route path='thanks' element={<ThankYouPage />} />
-                <Route path='contract' element={<ContractForm />} />
-                <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
+                <Route path='contract' element={<ContractForm />} />                
                 
               </Route>
 
@@ -100,12 +100,8 @@ function App() {
                 <Route path='catalog' index element={<Catalog />} />
                 <Route path='basket' element={<Basket />} />
                 <Route path='customers' element={<Contacts />} />
-              </Route>
-              
+              </Route>              
               <Route path="*" element={<NotFound />} />
-
-
-
             </Route>
 
           </Routes>

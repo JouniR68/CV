@@ -7,8 +7,12 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import 'jspdf-autotable';  // Import autoTable plugin after jsPDF
 import { Button } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
+import { useAuth } from '../LoginContext';
+import { useNavigate } from 'react-router-dom';
 
 const Report = () => {
+  const {isLoggedIn} = useAuth();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
@@ -110,11 +114,20 @@ const Report = () => {
 
   return (
     <div style={{ padding: 20 }}>
-      <div><h1>Lasku</h1></div>      
+      {isLoggedIn ? 
+        <div><h1>Lasku</h1>      
       <Button variant="contained" onClick={generatePDF}>
         Lataa PDF
       </Button>
+      </div>
+    : 
+    <div>
+      <h2><Button style = {{fontWeight:700, fontSize:16}} onClick = {() => navigate('/userLogin')}>Kirjautumien</Button> / <Button style = {{fontWeight:700, fontSize:16}} onClick = {() => navigate('/register')}>rekisteröinti</Button> vaaditaan</h2>  
+      
     </div>
+    }
+    </div>
+   
   );
 }
 

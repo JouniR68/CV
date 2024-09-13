@@ -60,7 +60,12 @@ function Tunterointi() {
   
     return (
       <div style={{ padding: 20 }}>
-        {!access && <div><h1>Teillä ei ole pääsyä tuntikirjaukseen</h1></div>}
+        {!access && <div>
+      
+            <h1>Teillä ei ole pääsyä tuntikirjaukseen</h1>
+            <Button onClick = {()=> navigate('/admin')}>Admin login</Button>     
+                
+          </div>}
         {access && 
         <>
         <h1>Tuntilaskuri</h1>
@@ -104,7 +109,7 @@ function Tunterointi() {
         <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
           +
         </Button>
-        <Button variant="outlined" onClick={() => handleInvoice()}>          
+        <Button variant="outlined" onClick={() => handleInvoice()}>Pilvitä          
         </Button>        
         </>
         }    

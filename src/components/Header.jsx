@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom";
-import Login from "./Login"
+import Login from "./AdminLogin"
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -55,8 +55,7 @@ export default function Header() {
         {!isLoggedIn &&
           <>            
             <Link to="/userLogin">{t('Login')}</Link>
-            <Link to="/register">{t('Register')}</Link>
-            <Link to="/login"><SettingsIcon /></Link>            
+            <Link to="/register">{t('Register')}</Link>            
           </>
         }
 
@@ -64,7 +63,7 @@ export default function Header() {
           <>
             <Link to="/c"><DraftsSharpIcon /></Link>
             <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-            <Link to="/tunterointi">Tunterointi</Link>
+            <Link to="/adminLayout"><SettingsIcon/> </Link>
             {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
           </>}
 

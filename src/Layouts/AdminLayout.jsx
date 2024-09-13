@@ -4,7 +4,10 @@ export default function AdminLayout() {
   return (
     <>
       <nav className="host-nav">
-        <Link to="/add">Add data</Link>        
+        <Link to="tunterointi">Tuntien kirjaus</Link>
+        <Link to="naytaPyynnot">Näytä työpyynnöt</Link>        
+        <Link to="tarjous">Tarjouslomake</Link>                
+        <Link to="lasku">Tuntiraportti</Link>              
       </nav>
       <Outlet />
     </>

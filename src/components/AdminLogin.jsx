@@ -15,6 +15,7 @@ export default function Login() {
 
   const googleLogin = async () => {
     try {
+      console.log("Google login")
       const user = await doSignInWithGoogle()
       if (!user) {
         console.error("Signing failed")        
@@ -25,6 +26,7 @@ export default function Login() {
         setCurrentUser(user)
         setIsLoggedIn(true)
         sessionStorage.setItem("adminlevel", "valid")
+        console.log("sessio recorded")
       }
     } catch (err) {
       console.error("google signing failed: ", err)

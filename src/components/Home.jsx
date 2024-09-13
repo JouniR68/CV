@@ -85,6 +85,8 @@ export default function Home() {
 
   let name = ""
   const fname = sessionStorage.getItem("firstname")
+  console.log("fname: ", fname)
+  !fname ? name = "Jouni" : name = fname 
   
 
   return (
@@ -97,7 +99,7 @@ export default function Home() {
       
       
       <div className='home-container'>        
-        <h1>{t('welcome') + ' ' + fname
+        <h1>{t('welcome') + ' ' + name
           } </h1>
         <p></p>
         {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
