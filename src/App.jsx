@@ -20,7 +20,7 @@ import Work from "./components/Work";
 import Education from "./components/Education";
 import Tech from "./components/Tech";
 import CV from "./components/Output"
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
 import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
@@ -28,8 +28,6 @@ import '../i18n'; // Import the i18n configuration
 import ErrorMessage from "./components/ErrorMessage";
 import Address from "./components/Address";
 import CheckLocation from "./components/CheckLocation";
-import TestLocation from "./components/TestPlaces"
-import TestArray from "./components/TestArray";
 import { AuthProvider } from "./components/LoginContext";
 import Done from "./components/Done";
 import Calendar from "./components/Calendar";
@@ -40,8 +38,8 @@ import Register from "./components/Register";
 import Contacts from "./components/services/Contact";
 import {UserLogin} from "./components/UserLogin"
 import Tunterointi from "./components/services/Tunterointi"
-import Yhteenveto from "./components/services/Yhteenveto"
 import Report from "./components/services/Report"
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -53,8 +51,6 @@ function App() {
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />
               <Route path='/home' element={<Home />} />
-              <Route path='/t' element={<TestArray />} />
-              <Route path='/tl' element={<TestLocation />} />
               <Route path='/checkLocation' element={<CheckLocation />} />
               <Route path="output" element={<CV />} />
               <Route path="address" element={<Address />} />
@@ -67,7 +63,6 @@ function App() {
               <Route path="c" element={<CustomerData />} />
               <Route path="tarjous" element={<TarjousLomake />} />
               <Route path="tunterointi" element={<Tunterointi />} />
-              <Route path="yhteenveto" element={<Yhteenveto />} />
               <Route path='lasku' element={<Report />} />
               <Route path='profile' element={<ProfileLayout />}>              
                 <Route index element={<Profile />} />
@@ -103,7 +98,8 @@ function App() {
                 <Route path='basket' element={<Basket />} />
                 <Route path='customers' element={<Contacts />} />
               </Route>
-
+              
+              <Route path="*" element={<NotFound />} />
 
 
 

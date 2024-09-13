@@ -109,5 +109,7 @@
   "Admin": "Asetukset",
   "username": "Sähköposti",
   "ActionCompleted": "Toimenpide suoritettu!",
-  "OperationFailed": "Toimenpide epäonnistui!"
+  "OperationFailed": "Toimenpide epäonnistui!",
+  "PageNotFound": "404 - Sivua Ei Löydy",
+  "PageNotFoundInfo": "Pahoittelut, antamasi sivua ei löydy"
 }

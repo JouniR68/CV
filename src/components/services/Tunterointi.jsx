@@ -45,14 +45,14 @@ function Tunterointi() {
 
     console.log("isLoggedIn: ", isLoggedIn)
 
-    const goHome = async () => {
+    const handleInvoice = async () => {
       try {
         // Save all entries to Firebase
         for (const entry of entries) {
           await addDoc(collection(db, 'tuntikirjanpito'), entry);
         }
         // Navigate to summary component
-        navigate('/thanks');
+        navigate('/lasku');
       } catch (error) {
         console.error('Error saving to Firebase:', error);
       }
@@ -104,8 +104,7 @@ function Tunterointi() {
         <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
           +
         </Button>
-        <Button variant="outlined" onClick={() => goHome()}>
-          Yhteenveto
+        <Button variant="outlined" onClick={() => handleInvoice()}>          
         </Button>        
         </>
         }    

@@ -5,6 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Box, Badge, IconButton, Typography, Button } from '@mui/material';
 import { AddShoppingCart, Height } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../LoginContext';
 
 const AddShopItem = () => {
     const [itemCount, setItemCount] = useState(0);
@@ -12,6 +13,7 @@ const AddShopItem = () => {
     const [inputValues, setInputValues] = useState([{}])
     const [order, setOrder] = useState([{}])
     const navigate = useNavigate();
+    const {isLoggedIn} = useAuth()
 
     const products = shop.catalog.map((j) => {
         return j;
@@ -65,7 +67,7 @@ const AddShopItem = () => {
 
     return (
         <>
-            <IconButton aria-label="cart" onClick={showTheBasket}>
+            {isLoggedIn ? <div><IconButton aria-label="cart" onClick={showTheBasket}>
                 <Badge badgeContent={itemCount} color="secondary">
                     <AddShoppingCart sx={{width:'80px', height:'60px'}} />
                 </Badge>
@@ -88,7 +90,8 @@ const AddShopItem = () => {
 
                 ))}
                 
-            </div>
+            </div> 
+            </div>: <h1>Kirjaantuminen vaaditaan</h1>}
         </>
     );
 }

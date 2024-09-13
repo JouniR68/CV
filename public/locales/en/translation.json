@@ -109,5 +109,7 @@
   "ActionCompleted": "Operation completed!",
   "OperationFailed": "Operation failed!",
   "RegisterationForm": "Registration Form",  
-  "RegisterationInfo": "Your plain password cannot be remeeded, save it locally"
+  "RegisterationInfo": "Your plain password cannot be remeeded, save it locally",
+  "PageNotFound": "404 - Page Not Found",
+  "PageNotFoundInfo": "Sorry, your address is not valid"
 }
