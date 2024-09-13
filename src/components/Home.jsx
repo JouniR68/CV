@@ -83,7 +83,10 @@ export default function Home() {
   //{locationReading === true && <MyLocation />}
   console.log("isMobile: ", isMobile)
 
+  let name = ""
+  const fname = sessionStorage.getItem("firstname")
   
+
   return (
     <>      
       <div className="flags">        
@@ -94,7 +97,8 @@ export default function Home() {
       
       
       <div className='home-container'>        
-        <h1>{t('welcome')} </h1>
+        <h1>{t('welcome') + ' ' + fname
+          } </h1>
         <p></p>
         {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
       </div>

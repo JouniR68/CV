@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Rent from "./components/Services";
 import Customer from "./components/AddCustomer";
-import CustomerData from "./components/services/ShowData";
+import CustomerData from "./components/services/NaytaPyynnot";
 import Why from "./components/Why";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
@@ -39,6 +39,7 @@ import Contacts from "./components/services/Contact";
 import {UserLogin} from "./components/UserLogin"
 import Tunterointi from "./components/services/Tunterointi"
 import Report from "./components/services/Report"
+import TarjouspyyntoForm from "./components/services/PyydaTarjous";
 import NotFound from "./components/NotFound";
 
 function App() {
@@ -91,6 +92,8 @@ function App() {
                 <Route path='calendar' element={<Calendar />} />
                 <Route path='thanks' element={<ThankYouPage />} />
                 <Route path='contract' element={<ContractForm />} />
+                <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
+                
               </Route>
 
               <Route element={<ShopLayout />}>

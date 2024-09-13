@@ -57,7 +57,8 @@ export const UserLogin = () => {
         console.log("checkUser")
         const user = data.find(e => e.email === username)
         console.log("user found:  ", user)
-
+        console.log("Firstname: ", user.firstName)
+        sessionStorage.setItem("firstname", user.firstName)
         if (!user) { return false }
 
         console.log("userPwd: ", userPwd)
