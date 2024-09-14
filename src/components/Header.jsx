@@ -4,7 +4,7 @@ import Login from "./AdminLogin"
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { AuthContext, useAuth } from "./LoginContext";
+import { useAuth } from "./LoginContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
@@ -19,8 +19,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
   const { t } = useTranslation();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
   console.log("Header isLoggedIn: ", isLoggedIn)
+  
+  const storedLoggedIn = sessionStorage.getItem("loggedIn")
+  if (storedLoggedIn === "true")
+  {
+    setIsLoggedIn(true)
+  }
 
   return (
     <header className="app-header">

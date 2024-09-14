@@ -4,11 +4,12 @@ import { TextField, Checkbox, FormControlLabel, Button, Grid, Typography } from 
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { db, storage } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useAuth } from "../LoginContext";
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -26,10 +27,13 @@ const VisuallyHiddenInput = styled('input')({
 
 function TarjouspyyntoForm() {
   const { handleSubmit, control, watch, reset } = useForm();
-  const [file, setFile] = useState(null);
+  const [success, setSuccess] = useState(false)
+  const [file, setFile] = useState([]);
   const isCompany = watch("isCompany");
-
-  const {t} = useTranslation();
+  const [progress, setProgress] = useState(0); // Track upload progress
+  const [urls, setUrls] = useState([]); // Track uploaded file URLs
+  const navigate = useNavigate()
+  const { t } = useTranslation();
 
   const getSessionStorageValues = () => {
     const filteredData = {}
@@ -60,8 +64,8 @@ function TarjouspyyntoForm() {
       // Tallenna lomaketiedot Firestoreen
       const docRef = await addDoc(collection(db, "tarjouspyynto"), {
         arrived: new Date().toLocaleDateString(),
-        firstname: data.firstname || "",
-        lastname: data.lastname || "",
+        firstname: data.firstName || "",
+        lastname: data.lastName || "",
         address: data.address || "",
         phone: data.phoneNumber || "",
         email: data.email || "",
@@ -72,26 +76,48 @@ function TarjouspyyntoForm() {
         files: file ? "Sisältää tiedostoja" : "ei tiedostoja"
       });
 
-      // Jos kuva on ladattu, tallenna se Firebase Storageen
-      if (file) {
-        const storageRef = ref(storage, `Tarjouspyynto/${docRef.id}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        alert("Tarjouspyyntö ja kuva tallennettu onnistuneesti!");
-      } else {
-        alert("Tarjouspyyntö tallennettu onnistuneesti!");
-      }
-
       reset(); // Tyhjennä lomake
       setFile(null); // Tyhjennä tiedosto
+      navigate('/thanks')
     } catch (error) {
       console.error("Virhe tallennuksessa: ", error);
       alert("Tarjouspyynnön tallennuksessa tapahtui virhe.");
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  const handleFileUpload = async (event) => {
+    const files = event.target.files;
+    if (!files) return;
+
+    // Iterate over files and upload each one
+    Array.from(files).forEach((file) => {
+      const storageRef = ref(storage, `uploads/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Track the upload progress (percentage)
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setProgress(progress);
+          if (progress === 100){
+            setSuccess(true)
+          } // Update the progress state if needed
+        },
+        (error) => {
+          console.error("Upload failed:", error);
+        },
+        async () => {
+          // Get the download URL once the upload is complete
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          setUrls((prevUrls) => [...prevUrls, downloadURL]); // Add URL to state
+          console.log("File available at", downloadURL);
+        }
+      );
+    });
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -130,7 +156,7 @@ function TarjouspyyntoForm() {
         )}
         <Grid item xs={12}>
           <Controller
-            name="firstname"
+            name="firstName"
             control={control}
             render={({ field }) => (
               <TextField {...field} fullWidth label="Etunimi" required />
@@ -140,7 +166,7 @@ function TarjouspyyntoForm() {
 
         <Grid item xs={12}>
           <Controller
-            name="lastname"
+            name="lastName"
             control={control}
             render={({ field }) => (
               <TextField {...field} fullWidth label="Sukunimi" required />
@@ -190,22 +216,24 @@ function TarjouspyyntoForm() {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button
+        <Button
             component="label"
             role={undefined}
             variant="contained"
             tabIndex={-1}
             startIcon={<CloudUploadIcon />}
+            color={success ? "success" : "primary"} // Change to success color when upload completes
+            disabled={progress > 0 && progress < 100} // Disable button during upload
           >
             {t('files')}
             <VisuallyHiddenInput
               type="file"
-              onChange={handleFileChange}
+              onChange={handleFileUpload}
               multiple
             />
-          </Button>          
+          </Button>
         </Grid>
-
+            
         <Grid item xs={12}>
           <Button type="submit" variant="contained" color="primary">
             Tallenna

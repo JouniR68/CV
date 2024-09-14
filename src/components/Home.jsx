@@ -88,8 +88,7 @@ export default function Home() {
   console.log("isMobile: ", isMobile)
 
   let name = ""
-  const fname = sessionStorage.getItem("firstname")
-  console.log("fname: ", fname)
+  const fname = sessionStorage.getItem("firstName")  
   !fname ? name = "" : name = fname
 
   const splittedText = t('mobileWelcomeText').split('.').filter(virke => virke.trim())
@@ -110,7 +109,7 @@ export default function Home() {
           <p key={index}>{text.trim()}</p>
         )
         )}
-        <Button onClick={() => tarjouspyyntoon()}>Haluan tarjouspyynnöön</Button>
+        <Button variant = "contained" onClick={() => tarjouspyyntoon()}>Haluan tarjouspyynnöön</Button>
       </div>
 
     </>

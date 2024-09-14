@@ -17,7 +17,7 @@ export const UserLogin = () => {
     const [error, setError] = useState("")
     const { setIsLoggedIn } = useAuth();
     const { t } = useTranslation();
-    
+
     const navigate = useNavigate()
 
     const getData = async () => {
@@ -55,13 +55,15 @@ export const UserLogin = () => {
     const checkUser = async () => {
         console.log("checkUser")
         const user = data.find(e => e.email === username)
-        console.log("user found:  ", user.firstName)
-        console.log("Firstname: ", user.phoneNumber)
-        sessionStorage.setItem("firstname", user.firstName)
-        sessionStorage.setItem("lastname", user.lastName)
-        sessionStorage.setItem("address", user.address)
-        sessionStorage.setItem("email", user.email)
-        sessionStorage.setItem("phoneNumber", user.phoneNumber)
+        if (user) {
+            console.log("user found", user)
+            sessionStorage.setItem("firstName", user.firstName)
+            sessionStorage.setItem("lastName", user.lastName)
+            sessionStorage.setItem("address", user.address)
+            sessionStorage.setItem("email", user.email)
+            sessionStorage.setItem("phoneNumber", user.phoneNumber)
+            sessionStorage.setItem("loggedIn", "true")
+        }
         if (!user) { return false }
 
         console.log("userPwd: ", userPwd)
