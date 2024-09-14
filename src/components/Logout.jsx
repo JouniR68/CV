@@ -9,6 +9,11 @@ export default function Logout() {
   useEffect(() => {navigate('/done', { state: { description: "You have been kicked off" } })},[])
   setIsLoggedIn(false)
   sessionStorage.removeItem("adminlevel")
+  sessionStorage.removeItem("firstname")
+  sessionStorage.removeItem("lastname")
+  sessionStorage.removeItem("email")
+  sessionStorage.removeItem("address")
+  sessionStorage.removeItem("phonenumber")
   doSignOut()
   
   

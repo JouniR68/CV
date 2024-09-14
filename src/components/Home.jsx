@@ -9,6 +9,7 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 import CheckLocation from './CheckLocation';
 import { AuthContext, useAuth } from './LoginContext';
 import Calendar from './Calendar';
+import { Button } from '@mui/material';
 
 export default function Home() {
   const [isMobileDpi, setMobileDpi] = useState(false);
@@ -65,44 +66,51 @@ export default function Home() {
     handleText;
   }, [])
 
-  const handleOk = () => {    
+  const handleOk = () => {
     sessionStorage.setItem('allowSessionStorageForLocation', true)
     setLocationReading(true)
     setConfirmation(false)
     //reloadCount > 0 ? "" : handleReload()    
   }
 
-  const handleCancel = () => {    
+  const handleCancel = () => {
     setLocationReading(false)
     setConfirmation(false)
     sessionStorage.removeItem('allowSessionStorageForLocation')
     setError(null)
   }
 
-  //{confirmation && <Confirmation onConfirm={handleOk} onCancel={handleCancel} />}
-  //{locationReading === true && <MyLocation />}
+
+  const tarjouspyyntoon = () => {
+    navigate('/tarjouspyynto')
+  }
+
   console.log("isMobile: ", isMobile)
 
   let name = ""
   const fname = sessionStorage.getItem("firstname")
   console.log("fname: ", fname)
-  !fname ? name = "Jouni" : name = fname 
-  
+  !fname ? name = "Jouni" : name = fname
 
+  const splittedText = t('mobileWelcomeText').split('.').filter(virke => virke.trim())
+
+  // {isMobileDpi ? t('welcomeText') : splittedText.forEach(text => text)}
   return (
-    <>      
-      <div className="flags">        
+    <>
+      <div className="flags">
         <img src="/Images/eng-flag.png" width="48" height="48" onClick={() => changeLanguage('en')} />
         <img src="/Images/fin-flag.png" width="48" height="48" onClick={() => changeLanguage('fi')} />
-        </div>
-        <img id = "softaapu-logo" src="/Images/softaapu.png" onClick={() => changeLanguage('en')} />
-      
-      
-      <div className='home-container'>        
+      </div>
+
+      <div className='home-container'>
         <h1>{t('welcome') + ' ' + name
-          } </h1>
+        } </h1>
         <p></p>
-        {isMobileDpi ? t('welcomeText') : t('mobileWelcomeText')}
+        {splittedText.map((text, index) => (
+          <p key={index}>{text.trim()}</p>
+        )
+        )}
+        <Button onClick={() => tarjouspyyntoon()}>Haluan tarjouspyynnöön</Button>
       </div>
 
     </>

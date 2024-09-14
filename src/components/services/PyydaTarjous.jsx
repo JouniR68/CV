@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Checkbox, FormControlLabel, Button, Grid, Typography } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -11,13 +11,36 @@ function TarjouspyyntoForm() {
   const [file, setFile] = useState(null);
   const isCompany = watch("isCompany");
 
+
+  const getSessionStorageValues = () => {
+    const filteredData = {}
+    
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      const value = sessionStorage.getItem(key);
+  
+      // Filter out null or undefined values
+      if (value !== null && value !== undefined) {
+        filteredData[key] = value;
+      }
+    }
+    return filteredData
+  };
+
+  let storedValues = []
+  // Prefill the form when the component mounts
+  useEffect(() => {
+    storedValues = getSessionStorageValues();
+    reset(storedValues); // Prefill the form with the stored values
+  }, [reset]);
+
   const onSubmit = async (data) => {
     try {
       // Tallenna lomaketiedot Firestoreen
       const docRef = await addDoc(collection(db, "tarjouspyynto"), {
-        name: data.name,
-        address: data.address,
-        phone: data.phone,
+        name: data.name || "",
+        address: data.address || "",
+        phone: data.phone || "",
         email: data.email || "",
         message: data.message || "",
         isCompany: data.isCompany,
@@ -71,7 +94,7 @@ function TarjouspyyntoForm() {
               name="yTunnus"
               control={control}
               render={({ field }) => (
-                <TextField
+                <TextField                  
                   {...field}
                   fullWidth
                   label="Y-tunnus"
@@ -84,7 +107,11 @@ function TarjouspyyntoForm() {
         <Grid item xs={12}>
           <Controller
             name="name"
-            control={control}
+            control={control} 
+            value = {storedValues.name}     
+            InputLabelProps={{
+              shrink: storedValues.name !== "", // Forces label to shrink if there's a value
+            }}                
             render={({ field }) => (
               <TextField {...field} fullWidth label="Nimi" required />
             )}
@@ -93,6 +120,11 @@ function TarjouspyyntoForm() {
         <Grid item xs={12}>
           <Controller
             name="address"
+            value = {storedValues.address}
+            InputLabelProps={{
+              shrink: storedValues.address !== "", // Forces label to shrink if there's a value
+            }}      
+
             control={control}
             render={({ field }) => (
               <TextField {...field} fullWidth label="Osoite" required />
@@ -103,6 +135,11 @@ function TarjouspyyntoForm() {
           <Controller
             name="phone"
             control={control}
+            value = {storedValues.phone}
+            InputLabelProps={{
+              shrink: storedValues.phone !== "", // Forces label to shrink if there's a value
+            }}      
+
             render={({ field }) => (
               <TextField {...field} fullWidth label="Puhelinnumero" required />
             )}
@@ -112,6 +149,11 @@ function TarjouspyyntoForm() {
           <Controller
             name="email"
             control={control}
+            value = {storedValues.email}
+            InputLabelProps={{
+              shrink: storedValues.email !== "", // Forces label to shrink if there's a value
+            }}      
+
             render={({ field }) => (
               <TextField {...field} fullWidth label="Sähköposti" />
             )}
