@@ -111,5 +111,6 @@
   "ActionCompleted": "Toimenpide suoritettu!",
   "OperationFailed": "Toimenpide epäonnistui!",
   "PageNotFound": "404 - Sivua Ei Löydy",
-  "PageNotFoundInfo": "Pahoittelut, antamasi sivua ei löydy"
+  "PageNotFoundInfo": "Pahoittelut, antamasi sivua ei löydy",
+  "files": "Lataa kuvia selventämään työkohdetta."
 }

@@ -6,20 +6,38 @@ import { db, storage } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { useAuth } from "../LoginContext";
+import { styled } from '@mui/material/styles';
+import CloudUploadIcon from "@mui/icons-material/CloudUpload"
+import { useTranslation } from "react-i18next";
+
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
+
 
 function TarjouspyyntoForm() {
   const { handleSubmit, control, watch, reset } = useForm();
   const [file, setFile] = useState(null);
   const isCompany = watch("isCompany");
-  const {name} = useAuth();
+
+  const {t} = useTranslation();
 
   const getSessionStorageValues = () => {
     const filteredData = {}
-    
+
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
       const value = sessionStorage.getItem(key);
-  
+
       // Filter out null or undefined values
       if (value !== null && value !== undefined) {
         filteredData[key] = value;
@@ -41,6 +59,7 @@ function TarjouspyyntoForm() {
     try {
       // Tallenna lomaketiedot Firestoreen
       const docRef = await addDoc(collection(db, "tarjouspyynto"), {
+        arrived: new Date().toLocaleDateString(),
         firstname: data.firstname || "",
         lastname: data.lastname || "",
         address: data.address || "",
@@ -50,6 +69,7 @@ function TarjouspyyntoForm() {
         isCompany: data.isCompany,
         yTunnus: data.yTunnus || "",
         status: false,
+        files: file ? "Sisältää tiedostoja" : "ei tiedostoja"
       });
 
       // Jos kuva on ladattu, tallenna se Firebase Storageen
@@ -98,7 +118,7 @@ function TarjouspyyntoForm() {
               name="yTunnus"
               control={control}
               render={({ field }) => (
-                <TextField                  
+                <TextField
                   {...field}
                   fullWidth
                   label="Y-tunnus"
@@ -110,18 +130,18 @@ function TarjouspyyntoForm() {
         )}
         <Grid item xs={12}>
           <Controller
-            name="firstname"            
-            control={control}             
+            name="firstname"
+            control={control}
             render={({ field }) => (
               <TextField {...field} fullWidth label="Etunimi" required />
             )}
           />
         </Grid>
-        
+
         <Grid item xs={12}>
           <Controller
-            name="lastname"            
-            control={control}             
+            name="lastname"
+            control={control}
             render={({ field }) => (
               <TextField {...field} fullWidth label="Sukunimi" required />
             )}
@@ -163,15 +183,29 @@ function TarjouspyyntoForm() {
               <TextareaAutosize
                 {...field}
                 minRows={4}
-                placeholder="Viesti"
+                placeholder="Määrittele tähän mahdollisimman tarkasti työ, tilaatko materiaalit itse (suositus), aikataulutoiveesi jne"
                 style={{ width: "100%", padding: "8px" }}
               />
             )}
           />
         </Grid>
         <Grid item xs={12}>
-          <input type="file" onChange={handleFileChange} />
+          <Button
+            component="label"
+            role={undefined}
+            variant="contained"
+            tabIndex={-1}
+            startIcon={<CloudUploadIcon />}
+          >
+            {t('files')}
+            <VisuallyHiddenInput
+              type="file"
+              onChange={handleFileChange}
+              multiple
+            />
+          </Button>          
         </Grid>
+
         <Grid item xs={12}>
           <Button type="submit" variant="contained" color="primary">
             Tallenna

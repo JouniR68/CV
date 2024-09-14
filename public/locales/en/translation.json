@@ -111,5 +111,6 @@
   "RegisterationForm": "Registration Form",  
   "RegisterationInfo": "Your plain password cannot be remeeded, save it locally",
   "PageNotFound": "404 - Page Not Found",
-  "PageNotFoundInfo": "Sorry, your address is not valid"
+  "PageNotFoundInfo": "Sorry, your address is not valid",
+  "files": "Files, images etc to clarify the target."
 }
