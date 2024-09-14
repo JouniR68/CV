@@ -5,12 +5,13 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { db, storage } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
+import { useAuth } from "../LoginContext";
 
 function TarjouspyyntoForm() {
   const { handleSubmit, control, watch, reset } = useForm();
   const [file, setFile] = useState(null);
   const isCompany = watch("isCompany");
-
+  const {name} = useAuth();
 
   const getSessionStorageValues = () => {
     const filteredData = {}
@@ -24,6 +25,8 @@ function TarjouspyyntoForm() {
         filteredData[key] = value;
       }
     }
+
+    console.log("filteredData: ", filteredData)
     return filteredData
   };
 
@@ -38,9 +41,10 @@ function TarjouspyyntoForm() {
     try {
       // Tallenna lomaketiedot Firestoreen
       const docRef = await addDoc(collection(db, "tarjouspyynto"), {
-        name: data.name || "",
+        firstname: data.firstname || "",
+        lastname: data.lastname || "",
         address: data.address || "",
-        phone: data.phone || "",
+        phone: data.phoneNumber || "",
         email: data.email || "",
         message: data.message || "",
         isCompany: data.isCompany,
@@ -106,25 +110,27 @@ function TarjouspyyntoForm() {
         )}
         <Grid item xs={12}>
           <Controller
-            name="name"
-            control={control} 
-            value = {storedValues.name}     
-            InputLabelProps={{
-              shrink: storedValues.name !== "", // Forces label to shrink if there's a value
-            }}                
+            name="firstname"            
+            control={control}             
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Nimi" required />
+              <TextField {...field} fullWidth label="Etunimi" required />
             )}
           />
         </Grid>
+        
+        <Grid item xs={12}>
+          <Controller
+            name="lastname"            
+            control={control}             
+            render={({ field }) => (
+              <TextField {...field} fullWidth label="Sukunimi" required />
+            )}
+          />
+        </Grid>
+
         <Grid item xs={12}>
           <Controller
             name="address"
-            value = {storedValues.address}
-            InputLabelProps={{
-              shrink: storedValues.address !== "", // Forces label to shrink if there's a value
-            }}      
-
             control={control}
             render={({ field }) => (
               <TextField {...field} fullWidth label="Osoite" required />
@@ -133,13 +139,8 @@ function TarjouspyyntoForm() {
         </Grid>
         <Grid item xs={12}>
           <Controller
-            name="phone"
+            name="phoneNumber"
             control={control}
-            value = {storedValues.phone}
-            InputLabelProps={{
-              shrink: storedValues.phone !== "", // Forces label to shrink if there's a value
-            }}      
-
             render={({ field }) => (
               <TextField {...field} fullWidth label="Puhelinnumero" required />
             )}
@@ -149,11 +150,6 @@ function TarjouspyyntoForm() {
           <Controller
             name="email"
             control={control}
-            value = {storedValues.email}
-            InputLabelProps={{
-              shrink: storedValues.email !== "", // Forces label to shrink if there's a value
-            }}      
-
             render={({ field }) => (
               <TextField {...field} fullWidth label="Sähköposti" />
             )}

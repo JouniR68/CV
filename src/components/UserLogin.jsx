@@ -55,13 +55,13 @@ export const UserLogin = () => {
     const checkUser = async () => {
         console.log("checkUser")
         const user = data.find(e => e.email === username)
-        console.log("user found:  ", user)
-        console.log("Firstname: ", user.firstName)
+        console.log("user found:  ", user.firstName)
+        console.log("Firstname: ", user.phoneNumber)
         sessionStorage.setItem("firstname", user.firstName)
         sessionStorage.setItem("lastname", user.lastName)
         sessionStorage.setItem("address", user.address)
         sessionStorage.setItem("email", user.email)
-        sessionStorage.setItem("phoneNumber", user.phonenumber)
+        sessionStorage.setItem("phoneNumber", user.phoneNumber)
         if (!user) { return false }
 
         console.log("userPwd: ", userPwd)

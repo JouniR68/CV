@@ -90,7 +90,7 @@ export default function Home() {
   let name = ""
   const fname = sessionStorage.getItem("firstname")
   console.log("fname: ", fname)
-  !fname ? name = "Jouni" : name = fname
+  !fname ? name = "" : name = fname
 
   const splittedText = t('mobileWelcomeText').split('.').filter(virke => virke.trim())
 

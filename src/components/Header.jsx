@@ -20,28 +20,7 @@ export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn)
-
-
-
-  /*
-  const fetchMessages = async () => {
-    try {
-      const eventsCollection = await getDocs(collection(db, 'messages'));
-      setUnreadMessages(!eventsCollection)
-    }
-    catch (error) {
-      console.error("Error checking documents: ", error)
-    }
-  }
-
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      fetchMessages()
-    }
-  }, []);
-*/
+  console.log("Header isLoggedIn: ", isLoggedIn)
 
   return (
     <header className="app-header">

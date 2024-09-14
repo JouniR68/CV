@@ -12,6 +12,7 @@ export function useAuth(){
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [name, setName] = useState(sessionStorage.getItem("firstName") + ' ' + sessionStorage.getItem("lastName"))
   const [currentUser, setCurrentUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -35,6 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
+    name,
     setIsLoggedIn,
     setCurrentUser,
     isLoggedIn,
