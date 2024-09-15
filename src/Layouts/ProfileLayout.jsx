@@ -10,7 +10,7 @@ export default function ProfileLayout() {
       <nav className='host-nav'>
         <Link to="/output">{t('cv')}</Link>
         <Link to='why'>{t('Why-header')}</Link>
-        <Link to='looking'>{t('Open-header')}</Link>
+        <Link to='looking'>{t('Open-header')}</Link>        
       </nav>
       <Outlet />
     </>

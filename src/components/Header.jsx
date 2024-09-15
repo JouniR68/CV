@@ -15,6 +15,7 @@ import DraftsSharpIcon from '@mui/icons-material/DraftsSharp';
 import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Tooltip } from "@mui/material";
 
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
@@ -33,9 +34,8 @@ export default function Header() {
       <nav>
         <Link to="/home"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
-        <Link to="/catalog"><DesignServicesSharpIcon /></Link>
-    
-        
+        <Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
+           
         <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
         {!isLoggedIn &&
           <>            
@@ -45,7 +45,7 @@ export default function Header() {
         }
 
         {isLoggedIn &&
-          <>
+          <>            
             <Link to="/c"><DraftsSharpIcon /></Link>
             <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
             <Link to="/adminLayout"><SettingsIcon/> </Link>

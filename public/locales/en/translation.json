@@ -112,5 +112,6 @@
   "RegisterationInfo": "Your plain password cannot be remeeded, save it locally",
   "PageNotFound": "404 - Page Not Found",
   "PageNotFoundInfo": "Sorry, your address is not valid",
-  "files": "Files, images etc to clarify the target."
+  "files": "Files, images etc to clarify the target.",
+  "software": "Software work, mainly targetted for the firms."
 }

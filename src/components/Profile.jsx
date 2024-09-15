@@ -1,12 +1,12 @@
 import JsonData from "../../data/datapkg.json";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
 } from '@mui/material';
@@ -27,7 +27,7 @@ export default function Education() {
         {profileData.map((profile) => (
           <div key={i++} className='profile--table'>
             <div className = ".photo-grid">
-              <img key={i++}  src={profile.Photo} alt='Jouni Riimala' />
+            <Link to = "kohde"><img key={i++}  src={profile.Photo} alt='Jouni Riimala' /></Link>
             </div>
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>

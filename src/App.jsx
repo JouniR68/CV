@@ -41,6 +41,8 @@ import Tunterointi from "./components/services/Tunterointi"
 import Report from "./components/services/Report"
 import TarjouspyyntoForm from "./components/services/PyydaTarjous";
 import NotFound from "./components/NotFound";
+import KohteenKuvat from "./components/KohteenKuvat"
+import Poistatunnus from "./components/Poistatunnus"
 
 function App() {
   return (
@@ -78,13 +80,15 @@ function App() {
                 <Route path='intrests' element={<Intrests />} />
                 <Route path='why' element={<Why />} />
                 <Route path='looking' element={<Looking />} />
+                <Route path="kohde" element={<KohteenKuvat />} />
               </Route>
 
               <Route path='adminLayout' element={<AdminLayout />}>
                 <Route path="tunterointi" index element={<Tunterointi />} />
+                <Route path="poistatunnus" index element={<Poistatunnus />} />
                 <Route path='naytaPyynnot' element={<CustomerData />} />
                 <Route path="tarjous" element={<TarjousLomake />} />
-                <Route path="lasku" element={<Report />} />                
+                <Route path="lasku" element={<Report />} />                                                
               </Route>              
 
               <Route element={<RentalLayout />}>

@@ -6,7 +6,8 @@ export default function AdminLayout() {
       <nav className="host-nav">
         <Link to="tunterointi">Tuntien kirjaus</Link>
         <Link to="naytaPyynnot">Näytä työpyynnöt</Link>        
-        <Link to="tarjous">Tarjouslomake</Link>                
+        <Link to="tarjous">Tarjouslomake</Link>
+        <Link to="poistatunnus">Poista tunnus</Link>                        
         <Link to="lasku">Tuntiraportti</Link>              
       </nav>
       <Outlet />
