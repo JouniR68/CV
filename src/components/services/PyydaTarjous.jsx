@@ -235,7 +235,7 @@ function TarjouspyyntoForm() {
               <TextareaAutosize
                 {...field}
                 minRows={4}
-                placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi jne. Mikäli pyyntö liittyy kiinteistönhuoltoon ja tarviaan materiaalia "
+                placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
                 style={{ width: "100%", padding: "8px" }}
               />
             )}

@@ -10,13 +10,13 @@ import './css/tarjouslomake.css'
 // Komponentti tarjouksen tekemiseen
 const TarjousLomake = () => {
     // Laskentaparametrit
-    //const OlDTUwTIHINTA = 49; // Tuntihinta euroissa
     const ALV_PERCENTAGE = 25.5; // Arvonlisävero
     const KOTITALOUSVAHENNYS_PERCENTAGE = 40; // Kotitalousvähennysprosentti
     const MAX_KOTITALOUSVAHENNYS = 3500 - 100; // Maksimivähennys
     const KILOMETRIKUSTANNUS = 0.57
     //const TARJOUS_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
 
+    const [valinekustannus, setValineKustannus] = useState(30)
     const [tuntihinta, setTuntihinta] = useState(49)
     const [tarjoaja, setTarjoaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '', ytunnus: '' });
     const [saaja, setSaaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '', ytunnus: '' });
@@ -71,7 +71,7 @@ const TarjousLomake = () => {
     const laskeYhteenveto = () => {
         const yhteiskulut = tehtavat.reduce((summa, item) => summa + parseFloat(item.kuluarvio), 0);
         const alv = yhteiskulut * (ALV_PERCENTAGE / 100);
-        const kokonaissumma = yhteiskulut + alv;
+        const kokonaissumma = yhteiskulut + alv + valinekustannus;
         const kotitalousvahennys = Math.min(
             yhteiskulut * (KOTITALOUSVAHENNYS_PERCENTAGE / 100),
             MAX_KOTITALOUSVAHENNYS
@@ -96,12 +96,6 @@ const TarjousLomake = () => {
         return voimassa.toLocaleDateString();
     };
 
-
-    const laskeMatka = () => {
-        console.log("maara: ", matkakulut.maara + ", km: ", matkakulut.km + ", km korvaus: ", KILOMETRIKUSTANNUS)
-        setMatkakulut({ maara: matkakulut.maara, kmkustannus: Number(matkakulut.maara * (matkakulut.km * KILOMETRIKUSTANNUS)).toFixed(2) })
-    }
-
     const generatePDF = () => {
         const doc = new jsPDF();
 
@@ -116,9 +110,9 @@ const TarjousLomake = () => {
         doc.text(`Tarjous voimassa: ${new Date().toLocaleDateString()}`, 14, 42);
 
         // Tarjoajan tiedot
-        doc.text('Tarjoaja:', 14, 50);
+        doc.text('Tarjoaja:', 14, 60);
         doc.autoTable({
-            startY: 55,
+            startY: 70,
             head: [['Nimi', 'Osoite', 'Puhelin', 'Sähköposti', 'Y-tunnus']],
             body: [[tarjoaja.nimi, tarjoaja.osoite, tarjoaja.puhelin, tarjoaja.sahkoposti, tarjoaja.ytunnus]],
         });
@@ -131,16 +125,18 @@ const TarjousLomake = () => {
             body: [[saaja.nimi, saaja.osoite, saaja.puhelin, saaja.sahkoposti, saaja.ytunnus]],
         });
 
+        doc.text(`Työvälinekustannusarvio: ${valinekustannus} €`, 14, 123)
+
         // Tehtävät
-        doc.text('Tehtävät:', 14, doc.lastAutoTable.finalY + 10);
+        doc.text('Tehtävät:', 14, doc.lastAutoTable.finalY + 25);
         doc.autoTable({
             startY: doc.lastAutoTable.finalY + 15,
-            head: [['Tehtävä', 'Kuvaus', 'Tuntiarvio', 'Kulukorvaus']],
-            body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio} €`]),
+            head: [['Tehtävä', 'Kuvaus', 'Tuntiarvio', 'Yhteensä', 'Alv 25.5%']],
+            body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio} €`, `${item.kuluarvio * 0.255} €`]),
         });
 
         // Yhteenveto
-        doc.text('Yhteenveto:', 14, doc.lastAutoTable.finalY + 10);
+        doc.text('Yhteenveto:', 14, doc.lastAutoTable.finalY + 20);
         doc.autoTable({
             startY: doc.lastAutoTable.finalY + 15,
             head: [['Kokonaissumma', 'ALV (25.5%)', 'Kotitalousvähennys (40%)', 'Maksettavaa']],
@@ -149,6 +145,7 @@ const TarjousLomake = () => {
 
         // PDF:n tallennus
         doc.save(`Tarjous_${uuid}.pdf`);
+        save()
     };
 
     return (
@@ -266,7 +263,7 @@ const TarjousLomake = () => {
                             type="number"
                             placeholder="km"
                             value={matkakulut.km}
-                            onChange={(e) => setMatkakulut({...matkakulut, km: e.target.value })}
+                            onChange={(e) => setMatkakulut({ ...matkakulut, km: e.target.value })}
                         />
                         km</label>
 
@@ -275,12 +272,10 @@ const TarjousLomake = () => {
                             type="number"
                             placeholder="Määrä"
                             value={matkakulut.maara}
-                            onChange={(e) => setMatkakulut({maara: e.target.value })}
+                            onChange={(e) => setMatkakulut({ maara: e.target.value })}
                         />
                         Määrä</label>
-                    <label
-                        placeholder="ajo kustannukset"
-                    >Kustannus:<br></br>{Number(matkakulut.maara * (matkakulut.km * KILOMETRIKUSTANNUS)).toFixed(2)}</label>
+                    <label>Kustannus:<br></br>{Number(matkakulut.maara * (matkakulut.km * KILOMETRIKUSTANNUS)).toFixed(2)}</label>
 
                 </div>
 
@@ -313,8 +308,17 @@ const TarjousLomake = () => {
                     <Button type="Button" onClick={lisaaTehtava} style={{ marginRight: '10px' }}>
                         +
                     </Button>
-
                 </form>
+
+                
+                    <h3>Työväline kustannukset</h3>
+                    <input
+                        type="number"
+                        value={valinekustannus}
+                        onChange={(e) => setValineKustannus(e.target.value)}                        
+                        style={{width: '2rem', marginLeft:'-43rem'}}
+                    />
+                
 
                 <div style={{ marginTop: '20px' }}>
                     <h3>Tarjous sisältää</h3>
