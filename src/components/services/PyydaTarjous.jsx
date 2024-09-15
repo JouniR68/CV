@@ -73,7 +73,7 @@ function TarjouspyyntoForm() {
         isCompany: data.isCompany,
         yTunnus: data.yTunnus || "",
         status: false,
-        files: file ? "Sisältää tiedostoja" : "ei tiedostoja"
+        files: urls
       });
 
       reset(); // Tyhjennä lomake

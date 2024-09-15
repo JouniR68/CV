@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { collection, getDocs, doc, updateDoc, arrayUnion } from "firebase/firestore"
 import { db } from "../../firebase"
+import { Link } from "react-router-dom";
 
 import {
 	Button,
@@ -25,7 +26,7 @@ const ShowOrders = () => {
 
 	const [orderReqs, setorderReqs] = useState([])
 	const [error, setError] = useState("")
-	
+
 	const getOrderReqs = async () => {
 		try {
 			const orderReqsRef = collection(db, "tarjouspyynto")
@@ -54,8 +55,8 @@ const ShowOrders = () => {
 		}
 	}
 
-	useEffect(() => {		
-		getOrderReqs()		
+	useEffect(() => {
+		getOrderReqs()
 	}, [])
 
 	const markCompleted = async (id, status) => {
@@ -65,8 +66,8 @@ const ShowOrders = () => {
 			const docRef = doc(orderRef, id);
 
 			await updateDoc(docRef, {
-				status:!status
-			})			
+				status: !status
+			})
 			getOrderReqs()
 		} catch (error) {
 			console.error("Error updating field: ", error)
@@ -74,7 +75,7 @@ const ShowOrders = () => {
 	}
 
 
-	let counter = 0;
+	let counter = 1;
 
 	console.log("reqs: ", orderReqs)
 
@@ -93,6 +94,7 @@ const ShowOrders = () => {
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Puhelin</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Y-tunnus</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Viesti</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Tiedostot</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Hoidettu</TableCell>
 						</TableRow>
 					</TableHead>
@@ -106,6 +108,19 @@ const ShowOrders = () => {
 								<TableCell>{o.phone}</TableCell>
 								<TableCell>{o.yTunnus}</TableCell>
 								<TableCell>{o.message}</TableCell>
+
+								<TableCell>
+									{Array.isArray(o.files) && o.files.length > 0 ? (
+										o.files.map((file, index) => (
+											<Link key={index++} to={file}>
+												<li>näytä</li>
+											</Link>
+										))
+									) : (
+										<span> Ei tiedostoja</span>
+									)}
+								</TableCell>
+
 								<TableCell key={counter++}>
 									<Button key={o.id} onClick={() => markCompleted(o.id, o.status)}>{o.status ? "kuitattu" : "ei huomioitu"}</Button>
 								</TableCell>
