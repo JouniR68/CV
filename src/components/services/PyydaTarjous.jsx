@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { TextField, Checkbox, FormControlLabel, Button, Grid, Typography } from "@mui/material";
+import { TextField, Checkbox, FormControlLabel, Button, Grid, Typography, Select, InputLabel, FormControl, MenuItem } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { db, storage } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
@@ -71,6 +71,7 @@ function TarjouspyyntoForm() {
         email: data.email || "",
         message: data.message || "",
         isCompany: data.isCompany,
+        area: data.ala || "",
         yTunnus: data.yTunnus || "",
         status: false,
         files: urls
@@ -102,7 +103,7 @@ function TarjouspyyntoForm() {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
           setProgress(progress);
-          if (progress === 100){
+          if (progress === 100) {
             setSuccess(true)
           } // Update the progress state if needed
         },
@@ -138,6 +139,28 @@ function TarjouspyyntoForm() {
             )}
           />
         </Grid>
+
+        <Grid item xs={12}>
+      <Controller
+        name="ala"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <FormControl fullWidth>
+            <InputLabel id="ala-label">Kiinteistö vai ohjelmisto</InputLabel>
+            <Select
+              labelId="ala-label"
+              {...field}
+              label="Kiinteistö vai ohjelmisto"
+            >
+              <MenuItem value="kiinteisto">Kiinteistö</MenuItem>
+              <MenuItem value="ohjelmisto">Ohjelmisto</MenuItem>
+            </Select>
+          </FormControl>
+        )}
+      />
+    </Grid>
+
         {isCompany && (
           <Grid item xs={12}>
             <Controller
@@ -154,6 +177,9 @@ function TarjouspyyntoForm() {
             />
           </Grid>
         )}
+
+
+
         <Grid item xs={12}>
           <Controller
             name="firstName"
@@ -209,14 +235,14 @@ function TarjouspyyntoForm() {
               <TextareaAutosize
                 {...field}
                 minRows={4}
-                placeholder="Määrittele tähän mahdollisimman tarkasti työ, tilaatko materiaalit itse (suositus), aikataulutoiveesi jne"
+                placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi jne. Mikäli pyyntö liittyy kiinteistönhuoltoon ja tarviaan materiaalia "
                 style={{ width: "100%", padding: "8px" }}
               />
             )}
           />
         </Grid>
         <Grid item xs={12}>
-        <Button
+          <Button
             component="label"
             role={undefined}
             variant="contained"
@@ -233,7 +259,7 @@ function TarjouspyyntoForm() {
             />
           </Button>
         </Grid>
-            
+
         <Grid item xs={12}>
           <Button type="submit" variant="contained" color="primary">
             Tallenna

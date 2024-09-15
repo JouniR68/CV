@@ -88,6 +88,8 @@ const ShowOrders = () => {
 
 					<TableHead>
 						<TableRow>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Pyydetty</TableCell>
+							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Alue</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Nimi</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="right">Osoite</TableCell>
 							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Sähköposti</TableCell>
@@ -102,6 +104,8 @@ const ShowOrders = () => {
 					{orderReqs.map(o => (
 						<TableBody key={counter++}>
 							<TableRow>
+								<TableCell>{o.arrived}</TableCell>
+								<TableCell>{o.alue}</TableCell>
 								<TableCell>{o.name}</TableCell>
 								<TableCell>{o.address}</TableCell>
 								<TableCell>{o.email}</TableCell>
