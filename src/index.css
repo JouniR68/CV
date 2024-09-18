@@ -631,8 +631,7 @@ tr:nth-child(odd) {
   }
 
   .sos {
-    display: flex;
-    flex-direction: row;
+    display: flex;    
     justify-content: flex-start;
     align-items: flex-start;
     text-align: center;
@@ -640,7 +639,14 @@ tr:nth-child(odd) {
     background-color: orange;
   }
 
-  .sos img {
+  .footer-items {
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;    
+    gap: 50px;    
+  }
+
+  .footer-items img {
     width: '16px';
     height: '16px';
     align-items: flex-end;
@@ -649,7 +655,8 @@ tr:nth-child(odd) {
 
   .header-row {
     display: flex;
-    padding: 0.5rem;
+    flex-direction: column;
+    padding: 0.2rem;
     background-color: orange;
   }
 
@@ -657,7 +664,7 @@ tr:nth-child(odd) {
     justify-content: flex-start;
     align-items: flex-start;
     /* Display icons in a row */
-    margin-right: 0.5rem;
+    margin-right: 0.2rem;
     /* Space between icons */
   }
 
