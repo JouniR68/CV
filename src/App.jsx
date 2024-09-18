@@ -58,15 +58,14 @@ function App() {
               <Route path="output" element={<CV />} />
               <Route path="address" element={<Address />} />
               <Route path="error" element={<ErrorMessage />} />
-              <Route path="admin" element={<Admin />} />
-
-              
+              <Route path="tarjous" element={<TarjousLomake />} />              
               <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
               <Route path='logout' element={<Logout />} />
               <Route path="userLogin" element={<UserLogin />} />
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
               <Route path='lasku' element={<Report />} />
+              <Route path="admin" index element={<Admin />} />
               
               <Route path='profile' element={<ProfileLayout />}>              
                 <Route index element={<Profile />} />
@@ -84,10 +83,10 @@ function App() {
               </Route>
 
               <Route path='adminLayout' element={<AdminLayout />}>
+                
                 <Route path="tunterointi" index element={<Tunterointi />} />
                 <Route path="poistatunnus" index element={<Poistatunnus />} />
-                <Route path='naytaPyynnot' element={<CustomerData />} />
-                <Route path="tarjous" element={<TarjousLomake />} />
+                <Route path='naytaPyynnot' element={<CustomerData />} />                
                 <Route path="lasku" element={<Report />} />                                                
               </Route>              
 

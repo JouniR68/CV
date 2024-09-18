@@ -143,6 +143,8 @@ const TarjousLomake = () => {
             body: [[`${yhteenveto.kokonaissumma} €`, `${yhteenveto.alv} €`, `${yhteenveto.kotitalousvahennys} €`, `${yhteenveto.maksettava} €`]],
         });
 
+        doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 15% välillä.', 14, 200)
+
         // PDF:n tallennus
         doc.save(`Tarjous_${uuid}.pdf`);
         save()

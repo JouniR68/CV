@@ -1,4 +1,5 @@
 //import Button from '@mui/material/Button';
+import i18n from 'i18next';
 import { useState } from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
@@ -26,6 +27,10 @@ import Tooltip from '@mui/material/Tooltip';
 export default function Contact() {
 
   const [phoneNumber, setShowPhoneNumber] = useState(false)
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   function gitHub() {
     window.open('https://github.com/JouniR68', '_blank');
@@ -70,10 +75,11 @@ export default function Contact() {
       >
 
         <ButtonGroup
-          variant='outlined'
+          variant=''
           aria-label='outlined button group'
+          className="sos"
         >
-          <div className='sos'>
+          <div className="footer-items">
             <IconButton onClick={linkedIn}>
               <LinkedInIcon />
             </IconButton>
@@ -88,10 +94,14 @@ export default function Contact() {
                 <LocalPhoneSharpIcon />
               </IconButton>
             </Tooltip>
-
-
+            <IconButton>
+              <img src="/Images/eng-flag.png" onClick={() => changeLanguage('en')} />
+              <img src="/Images/fin-flag.png" onClick={() => changeLanguage('fi')} />
+            </IconButton>
           </div>
+
         </ButtonGroup>
+
 
       </Box >
     </>

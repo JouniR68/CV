@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom";
+
 import Login from "./AdminLogin"
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
@@ -22,39 +23,40 @@ export default function Header() {
   const { t } = useTranslation();
   const { isLoggedIn, setIsLoggedIn } = useAuth();
   console.log("Header isLoggedIn: ", isLoggedIn)
-  
+
   const storedLoggedIn = sessionStorage.getItem("loggedIn")
-  if (storedLoggedIn === "true")
-  {
+  if (storedLoggedIn === "true") {
     setIsLoggedIn(true)
   }
 
+  
   return (
-    <header className="app-header">
-      <nav>
-        <Link to="/home"><HomeWorkIcon /></Link>
-        <Link to="/profile"><PersonSharpIcon /></Link>
-        <Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
-           
-        <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+
+      <header className="header-row">
+        <div className="header-row-left">
+          <Link to="/home"><HomeWorkIcon /></Link>
+          <Link to="/profile"><PersonSharpIcon /></Link>
+          <Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
+          <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+        </div>
+        
         {!isLoggedIn &&
-          <>            
+          <div className="header-row-right">
             <Link to="/userLogin">{t('Login')}</Link>
-            <Link to="/register">{t('Register')}</Link>            
-          </>
+            <Link to="/register">{t('Register')}</Link>
+          </div>
         }
 
         {isLoggedIn &&
-          <>            
+          <>
             <Link to="/c"><DraftsSharpIcon /></Link>
             <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-            <Link to="/adminLayout"><SettingsIcon/> </Link>
+            <Link to="/adminLayout"><SettingsIcon /> </Link>
             {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
           </>}
+      </header>
+    
 
 
-      </nav>
-
-    </header>
   );
 }
