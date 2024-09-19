@@ -86,7 +86,6 @@ export const UserLogin = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
         try {
             // Check if the entered password matches the stored hashed password
             const isAccountValid = await checkUser()
@@ -104,8 +103,6 @@ export const UserLogin = () => {
             setMessage('An error occurred. Please try again.');
         }
     };
-
-
 
     return (
         <Box

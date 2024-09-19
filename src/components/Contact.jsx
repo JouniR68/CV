@@ -5,8 +5,9 @@ import IconButton from "@mui/material/IconButton";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Sos from "./Sos"
 import "../index.css"
+
+
 export default function Contact() {
   function linkedIn() {
     window.open("https://www.linkedin.com/in/jouni-riimala-04330", "_blank");

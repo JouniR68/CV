@@ -7,116 +7,116 @@ import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from "../LoginContext";
 
 function Tunterointi() {
-    const [day, setDay] = useState(new Date().toISOString().substr(0, 10));
-    const [client, setClient] = useState('');
-    const [hours, setHours] = useState(0);
-    const [access, setAccess] = useState(false);
-    const [description, setDescription] = useState('');
-    const [isPaid, setIsPaid] = useState(false);
-    const [entries, setEntries] = useState([]);
-    const navigate = useNavigate();
-    const {isLoggedIn} = useAuth()
-    
-    const isAccess = sessionStorage.getItem("adminlevel")
-    console.log("isAccess: ", isAccess)
-    
-    useEffect(() => {
-        if (isAccess === "valid"){
-            setAccess(true)
-        } 
-    },[])
+  const [day, setDay] = useState(new Date().toISOString().substr(0, 10));
+  const [client, setClient] = useState('');
+  const [hours, setHours] = useState(0);
+  const [access, setAccess] = useState(false);
+  const [description, setDescription] = useState('');
+  const [isPaid, setIsPaid] = useState(false);
+  const [entries, setEntries] = useState([]);
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth()
 
-    const handleAddEntry = () => {
-      const newEntry = {
-        day,
-        client,
-        hours: parseFloat(hours),
-        description,
-        isPaid,
-      };
-      setEntries([...entries, newEntry]);
-      // Reset inputs
-      setClient('');
-      setHours(0);
-      setDescription('');
-      setIsPaid(false);
+
+  const isAccess = sessionStorage.getItem("adminLevel")
+  console.log("isAccess: ", isAccess)
+
+  useEffect(() => {
+    if (isAccess === "valid") {
+      setAccess(true)
+    }
+  }, [])
+
+  const handleAddEntry = () => {
+    const newEntry = {
+      day,
+      client,
+      hours: parseFloat(hours),
+      description,
+      isPaid,
     };
-  
+    setEntries([...entries, newEntry]);
+    // Reset inputs
+    setClient('');
+    setHours(0);
+    setDescription('');
+    setIsPaid(false);
+  };
 
-    console.log("isLoggedIn: ", isLoggedIn)
 
-    const handleInvoice = async () => {
-      try {
-        // Save all entries to Firebase
-        for (const entry of entries) {
-          await addDoc(collection(db, 'tuntikirjanpito'), entry);
-        }
-        // Navigate to summary component
-        navigate('/lasku');
-      } catch (error) {
-        console.error('Error saving to Firebase:', error);
+  console.log("isLoggedIn: ", isLoggedIn)
+
+  const handleInvoice = async () => {
+    try {
+      // Save all entries to Firebase
+      for (const entry of entries) {
+        await addDoc(collection(db, 'tuntikirjanpito'), entry);
       }
-    };
-  
-    return (
-      <div style={{ padding: 20 }}>
-        {!access && <div>
-      
-            <h1>Teillä ei ole pääsyä tuntikirjaukseen</h1>
-            <Button onClick = {()=> navigate('/admin')}>Admin login</Button>     
-                
-          </div>}
-        {access && 
-        <>
-        <h1>Tuntilaskuri</h1>
-        <TextField
-          label="Päivä"
-          type="date"
-          value={day}
-          onChange={(e) => setDay(e.target.value)}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
-          label="Tilaaja"
-          value={client}
-          onChange={(e) => setClient(e.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Työtunnit"
-          type="number"
-          value={hours}
-          onChange={(e) => setHours(e.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <TextField
-          label="Selite"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <FormControlLabel
-          control={<Checkbox checked={isPaid} onChange={(e) => setIsPaid(e.target.checked)} />}
-          label="Maksettu"
-        />
-        <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
-          +
-        </Button>
-        <Button variant="outlined" onClick={() => handleInvoice()}>Pilvitä          
-        </Button>        
-        </>
-        }    
+      // Navigate to summary component
+      navigate('/lasku');
+    } catch (error) {
+      console.error('Error saving to Firebase:', error);
+    }
+  };
 
-    
-      </div>
-    );
+  return (
+    <div style={{ padding: 20 }}>
+      {!access && <div>
+
+        <h1>Teillä ei ole pääsyä tuntikirjaukseen</h1>
+
+      </div>}
+      {access &&
+        <div className="tuntikirjaus">
+          <h1>Tuntikirjaus</h1>
+          <TextField
+            label="Päivä"
+            type="date"
+            value={day}
+            onChange={(e) => setDay(e.target.value)}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            label="Tilaaja"
+            value={client}
+            onChange={(e) => setClient(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Työtunnit"
+            type="number"
+            value={hours}
+            onChange={(e) => setHours(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Selite"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={isPaid} onChange={(e) => setIsPaid(e.target.checked)} />}
+            label="Maksettu"
+          />
+          <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
+            +
+          </Button>
+          <Button variant="outlined" onClick={() => handleInvoice()}>Pilvitä
+          </Button>
+        </div>
+      }
+
+
+    </div>
+  );
 }
 
 export default Tunterointi;

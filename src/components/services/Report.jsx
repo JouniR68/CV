@@ -9,11 +9,22 @@ import { Button } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../LoginContext';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 
 const Report = () => {
-  const {isLoggedIn} = useAuth();
+  const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [access, setAccess] = useState(false)
+
+
+  let firstName = sessionStorage.getItem(firstName)
+  let lastName = sessionStorage.getItem(lastName)
+  let sessionName = firstName + " " + lastName
+
+  if (data.includes(sessionName)) {
+    setAccess(true)
+  }
 
   const fetchData = async () => {
     const querySnapshot = await getDocs(collection(db, 'tuntikirjanpito'));
@@ -23,13 +34,11 @@ const Report = () => {
 
   useEffect(() => {
     fetchData()
-}, []);
-
-
+  }, []);
 
   const generatePDF = () => {
     const doc = new jsPDF();
-    
+
     const uuid = Math.floor(Math.random() * 1000000);  // Random invoice number for example purposes
 
     const values = data.map(payment => Number(payment.hours) || 0)
@@ -42,25 +51,25 @@ const Report = () => {
     // Add Bill details
     // doc.text(`Laskun numero: ${uuid}`, 120, 40);
     doc.text(`Päivämäärä: ${new Date().toLocaleDateString()}`, 120, 30);
-    doc.text(`Eräpäivä: Sovittavissa / joka perjantai.`, 120, 40);    
+    doc.text(`Eräpäivä: Sovittavissa / joka perjantai.`, 120, 40);
     doc.text(`Asiakas: ${data[0]?.client || "Timo Vuori"}`, 15, 50)
     doc.text('Lisätiedot: Työtuntien ja ajokilometrien laskutusta', 15, 70);
-    
+
     // To be deleted
     // entry.client || 'N/A',
-    
+
     // Table Headers
     const headers = [['Päivä', 'Tunnit', 'Selite', 'Maksettu']];
 
     // Table Rows
     const rows = data
-    .filter((_, index) => index !== 0)
-    .map((entry) => [
-      entry.day || 'N/A',      
-      entry.hours || 0,
-      entry.description || 'N/A',
-      entry.isPaid ? 'Kyllä' : 'Ei'
-    ]).filter((row) => !row.includes('N/A'));
+      .filter((_, index) => index !== 0)
+      .map((entry) => [
+        entry.day || 'N/A',
+        entry.hours || 0,
+        entry.description || 'N/A',
+        entry.isPaid ? 'Kyllä' : 'Ei'
+      ]).filter((row) => !row.includes('N/A'));
 
     // Add table with autoTable
     doc.autoTable({
@@ -114,20 +123,27 @@ const Report = () => {
 
   return (
     <div style={{ padding: 20 }}>
-      {isLoggedIn ? 
-        <div><h1>Lasku</h1>      
-      <Button variant="contained" onClick={generatePDF}>
-        Lataa PDF
-      </Button>
-      </div>
-    : 
-    <div>
-      <h2><Button style = {{fontWeight:700, fontSize:16}} onClick = {() => navigate('/userLogin')}>Kirjautumien</Button> / <Button style = {{fontWeight:700, fontSize:16}} onClick = {() => navigate('/register')}>rekisteröinti</Button> vaaditaan</h2>  
-      
+      {isLoggedIn ?
+        <div className="lasku">
+          <h1>Lasku</h1>
+        
+          {access ? <Button style={{marginTop:50}} variant="contained" onClick={generatePDF}>
+            Lataa PDF
+          </Button>
+          : 
+          <h1>{t('NoAccess')}</h1>
+          }
+        </div>
+        :
+        <div>
+          <h2><Button style={{ marginTop:200, fontWeight: 700, fontSize: 16 }} onClick={() => navigate('/userLogin')}>Kirjautumien</Button> 
+          <br></br>
+          <Button style={{ fontWeight: 700, fontSize: 16 }} onClick={() => navigate('/register')}>rekisteröinti</Button> vaaditaan</h2>
+
+        </div>
+      }
     </div>
-    }
-    </div>
-   
+
   );
 }
 

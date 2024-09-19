@@ -131,10 +131,10 @@ export default function Home() {
       <h1 style={{marginTop:'6rem'}}>{t('welcome') + ' ' + name}</h1>
       <div className="home-container">
         <TextWrapper className='home-container' text={t('mobileWelcomeText')} maxLength={50} />
-        <p></p>                
+        <p></p>  
+        <p></p>              
       </div>
-      <Button variant = 'contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntö</Button>
-
+      <Button variant = 'contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>      
     </>
   );
 }

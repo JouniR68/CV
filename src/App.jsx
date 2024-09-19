@@ -82,9 +82,9 @@ function App() {
                 <Route path="kohde" element={<KohteenKuvat />} />
               </Route>
 
-              <Route path='adminLayout' element={<AdminLayout />}>
-                
-                <Route path="tunterointi" index element={<Tunterointi />} />
+              <Route path="tunterointi" element={<Tunterointi />} />
+
+              <Route path='admin' element={<AdminLayout />}>
                 <Route path="poistatunnus" index element={<Poistatunnus />} />
                 <Route path='naytaPyynnot' element={<CustomerData />} />                
                 <Route path="lasku" element={<Report />} />                                                

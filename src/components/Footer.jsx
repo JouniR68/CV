@@ -15,16 +15,8 @@ import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
 import Tooltip from '@mui/material/Tooltip';
-/*
-            <IconButton onClick={gitHub}>
-              <GitHub />
-              <Typography variant='body1' ml={1}>
-                {t('Repositories')}
-              </Typography>
-            </IconButton>
 
-*/
-export default function Contact() {
+export default function Footer() {
 
   const [phoneNumber, setShowPhoneNumber] = useState(false)
 
@@ -77,7 +69,7 @@ export default function Contact() {
         <ButtonGroup
           variant=''
           aria-label='outlined button group'
-          className="sos"
+          className="footer"
         >
           <div className="footer-items">
             <IconButton onClick={linkedIn}>

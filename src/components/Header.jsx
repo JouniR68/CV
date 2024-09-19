@@ -22,6 +22,7 @@ export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
   const { t } = useTranslation();
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const isAuthenticated = sessionStorage.getItem("adminLevel")
   console.log("Header isLoggedIn: ", isLoggedIn)
 
   const storedLoggedIn = sessionStorage.getItem("loggedIn")
@@ -29,14 +30,13 @@ export default function Header() {
     setIsLoggedIn(true)
   }
 
-  
+  //<Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
   return (
 
       <header className="header-row">
         <div className="header-row-left">
           <Link to="/home"><HomeWorkIcon /></Link>
-          <Link to="/profile"><PersonSharpIcon /></Link>
-          <Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
+          <Link to="/profile"><PersonSharpIcon /></Link>          
           <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
         </div>
         
@@ -51,7 +51,8 @@ export default function Header() {
           <>
             <Link to="/c"><DraftsSharpIcon /></Link>
             <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-            <Link to="/adminLayout"><SettingsIcon /> </Link>
+            <Link to="/admin"><SettingsIcon /> </Link>
+            {isAuthenticated && <Link to="/tunterointi">JR</Link>}
             {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
           </>}
       </header>

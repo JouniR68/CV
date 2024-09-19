@@ -27,6 +27,14 @@
     text-align: left;
   }
 
+
+  .accessrequest{    
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top:4 rem;
+  }
+
   #shoppingCart {
     margin-left: auto;
     color: red
@@ -257,23 +265,32 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  .lasku{
+    margin-top:200px;
+    margin-bottom:200px;
+  }
   .app-container {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background-color:#F9F9F9;
+    background-color: #F9F9F9;
     color: #0c0c0c;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;    
+    width: 100vh;
   }
 
   #offer-button {
-    display: flex;
+    display: flex;    
     justify-content: center;
     align-items: center;
     color: white;
-    width:fit-content;
-    margin:0 auto;
+    font-weight: 700;
+    width: 100vh/2;    
+    margin-left: 100/2;
+    margin-right: 100/2;
+    margin-top:2rem;
+    margin-bottom:10rem;
   }
 
   #softaapu-logo {
@@ -282,12 +299,17 @@
   }
 
   .header-row {
-    display:flex;
-    position: absolute;  /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
-    top: 50;           /* Position at the bottom of the container */
-    left: 50%;           /* Center horizontally */
-    transform: translateX(-50%);  /* Offset it to truly center horizontally */
-    width: 42%;         /* Optional: to stretch it full width */    
+    display: flex;
+    position: absolute;
+    /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
+    top: 50;
+    /* Position at the bottom of the container */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Offset it to truly center horizontally */
+    width: 42%;
+    /* Optional: to stretch it full width */
   }
 
   .header-row-left {
@@ -296,11 +318,11 @@
 
   }
 
-  
+
   .header-row-right {
-    display:flex;
+    display: flex;
     flex-direction: row;
-    padding-top: 0.5rem;    
+    padding-top: 0.5rem;
     border-radius: 5px;
     width: 1rem;
     margin: 0 auto;
@@ -325,27 +347,34 @@
     text-decoration: underline;
   }
 
-  .sos {
+  .footer {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    position: absolute;  /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
-    bottom: 10rem;           /* Position at the bottom of the container */
-    left: 50%;           /* Center horizontally */
-    transform: translateX(-50%);  /* Offset it to truly center horizontally */
-    width: 41%;         /* Optional: to stretch it full width */
-    justify-content: center;  /* Centers items horizontally */
+    position:relative;
+    
+
+    /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
+    /* Position at the bottom of the container */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Offset it to truly center horizontally */
+    width: 41%;
+    /* Optional: to stretch it full width */
+    justify-content: center;
+    /* Centers items horizontally */
   }
 
   .footer-items {
-    display:flex;
-    justify-content: center;    
-    align-items: center;    
-    gap: 50px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
   }
 
-  .footer-items img {    
-    margin-right:20px;
+  .footer-items img {
+    margin-right: 20px;
     width: 36px;
     height: 36px;
   }
@@ -396,7 +425,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    margin: 0 auto;    
+    margin: 0 auto;
     font-size: 18px;
     font-family: bold;
     text-align: left;
@@ -413,6 +442,8 @@
 
   .host-nav {
     display: flex;
+    margin-top:10rem;
+    margin-bottom: 10rem;
   }
 
   .host-nav a {
@@ -592,7 +623,6 @@ tr:nth-child(odd) {
 
   .app-container {
     display: flex;
-    width: 100%;
     flex-direction: column;
     padding: 0.5rem;
     background-color: #ffffff;
@@ -630,8 +660,8 @@ tr:nth-child(odd) {
     height: 50%;
   }
 
-  .sos {
-    display: flex;    
+  .footer {
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     text-align: center;
@@ -641,9 +671,9 @@ tr:nth-child(odd) {
 
   .footer-items {
     flex-direction: column;
-    justify-content: center;    
-    align-items: center;    
-    gap: 50px;    
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
   }
 
   .footer-items img {
@@ -694,6 +724,9 @@ tr:nth-child(odd) {
 
   .host-nav {
     display: flex;
+    margin-top:10rem;
+    margin-bottom: 10rem;
+
   }
 
   .host-nav a {
@@ -731,15 +764,16 @@ tr:nth-child(odd) {
     color: black;
     padding: 0.5rem 0.3rem;
     text-align: flex-start;
+    font-size: 16px;
     align-items: flex-start;
     justify-content: flex-start;
     font-family: bold;
   }
 
-  #offer-button {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    font-size: small;
+  #offer-button {   
+    justify-content: center;    
+    align-items: center; 
+    padding: 0.5rem;    
     font-weight: 700;
     border: 2px solid;
     border-radius: 5px;
@@ -990,4 +1024,11 @@ tr:nth-child(odd) {
     width: 3rem;
   }
 
+  .tuntikirjaus{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.5rem;
+  }
 }

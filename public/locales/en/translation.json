@@ -113,5 +113,7 @@
   "PageNotFound": "404 - Page Not Found",
   "PageNotFoundInfo": "Sorry, your address is not valid",
   "files": "Files, images etc to clarify the target.",
-  "software": "Software work, mainly targetted for the firms."
+  "software": "Software work, mainly targetted for the firms.",
+  "NoAccess": "Sorry, but you have no bills to see."
+
 }
