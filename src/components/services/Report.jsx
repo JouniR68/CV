@@ -18,13 +18,18 @@ const Report = () => {
   const [access, setAccess] = useState(false)
 
 
-  let firstName = sessionStorage.getItem(firstName)
-  let lastName = sessionStorage.getItem(lastName)
-  let sessionName = firstName + " " + lastName
+  let firstName = ""
+  let lastName = ""
+  let sessionUser = ""
 
-  if (data.includes(sessionName)) {
-    setAccess(true)
-  }
+
+  firstName = sessionStorage.getItem("firstName")
+  lastName = sessionStorage.getItem("lastName")
+  sessionUser = firstName + " " + lastName
+
+
+
+  console.log("sessionUser: ", sessionUser)
 
   const fetchData = async () => {
     const querySnapshot = await getDocs(collection(db, 'tuntikirjanpito'));
@@ -35,6 +40,14 @@ const Report = () => {
   useEffect(() => {
     fetchData()
   }, []);
+
+  if (data.length > 0) {
+    const found = data.some(item => item.client === sessionUser);
+    if (found) {
+      setAccess(true)
+    }
+  }
+
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -126,19 +139,19 @@ const Report = () => {
       {isLoggedIn ?
         <div className="lasku">
           <h1>Lasku</h1>
-        
-          {access ? <Button style={{marginTop:50}} variant="contained" onClick={generatePDF}>
+
+          {access ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
             Lataa PDF
           </Button>
-          : 
-          <h1>{t('NoAccess')}</h1>
+            :
+            <h1>{t('NoAccess')}</h1>
           }
         </div>
         :
         <div>
-          <h2><Button style={{ marginTop:200, fontWeight: 700, fontSize: 16 }} onClick={() => navigate('/userLogin')}>Kirjautumien</Button> 
-          <br></br>
-          <Button style={{ fontWeight: 700, fontSize: 16 }} onClick={() => navigate('/register')}>rekisteröinti</Button> vaaditaan</h2>
+          <h2><Button style={{ marginTop: 200, fontWeight: 700, fontSize: 16 }} onClick={() => navigate('/userLogin')}>Kirjautumien</Button>
+            <br></br>
+            <Button style={{ fontWeight: 700, fontSize: 16 }} onClick={() => navigate('/register')}>rekisteröinti</Button> vaaditaan</h2>
 
         </div>
       }
