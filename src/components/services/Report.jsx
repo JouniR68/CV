@@ -1,5 +1,5 @@
 // src/Report.js
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { db, storage } from '../../firebase';  // Your Firebase setup file
 import { jsPDF } from 'jspdf';
@@ -17,36 +17,29 @@ const Report = () => {
   const [data, setData] = useState([]);
   const [access, setAccess] = useState(false)
 
-
-  let firstName = ""
-  let lastName = ""
+  const fNameRef = useRef(sessionStorage.getItem("firstName"))
+  const lNameRef = useRef(sessionStorage.getItem("lastName"))
   let sessionUser = ""
 
 
-  firstName = sessionStorage.getItem("firstName")
-  lastName = sessionStorage.getItem("lastName")
-  sessionUser = firstName + " " + lastName
-
-
+  sessionUser = fNameRef.current + " " + lNameRef.current
 
   console.log("sessionUser: ", sessionUser)
 
   const fetchData = async () => {
     const querySnapshot = await getDocs(collection(db, 'tuntikirjanpito'));
-    const fetchedData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setData(fetchedData);
+    const fetchedData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(lasku => lasku.client === sessionUser);
+    const found = fetchedData.some(item => item.client === "Timo Vuori");
+    if (found) {
+      setAccess(true)
+      setData(fetchedData);
+    }
+
   };
 
   useEffect(() => {
     fetchData()
   }, []);
-
-  if (data.length > 0) {
-    const found = data.some(item => item.client === sessionUser);
-    if (found) {
-      setAccess(true)
-    }
-  }
 
 
   const generatePDF = () => {
@@ -138,9 +131,9 @@ const Report = () => {
     <div style={{ padding: 20 }}>
       {isLoggedIn ?
         <div className="lasku">
-          <h1>Lasku</h1>
+          <h1>Lasku sinulle {fNameRef.current}</h1>
 
-          {access ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
+          {access === true ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
             Lataa PDF
           </Button>
             :

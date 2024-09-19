@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
 import Tooltip from '@mui/material/Tooltip';
+import { Button } from '@mui/material';
 
 export default function Footer() {
 
@@ -87,8 +88,8 @@ export default function Footer() {
               </IconButton>
             </Tooltip>
             <IconButton>
-              <img src="/Images/eng-flag.png" onClick={() => changeLanguage('en')} />
-              <img src="/Images/fin-flag.png" onClick={() => changeLanguage('fi')} />
+              <Button onClick={() => changeLanguage('en')}><img src="/Images/eng-flag.png" /></Button>
+              <Button onClick={() => changeLanguage('fi')}><img src="/Images/fin-flag.png"/></Button>
             </IconButton>
           </div>
 
