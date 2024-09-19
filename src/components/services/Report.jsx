@@ -131,13 +131,13 @@ const Report = () => {
     <div style={{ padding: 20 }}>
       {isLoggedIn ?
         <div className="lasku">
-          <h1>Lasku sinulle {fNameRef.current}</h1>
+          {data.length > 0 && <h1>Lasku {fNameRef.current}</h1>}
 
           {access === true ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
             Lataa PDF
           </Button>
             :
-            <h1>{t('NoAccess')}</h1>
+            <h1>{t('Nobills')}</h1>
           }
         </div>
         :
