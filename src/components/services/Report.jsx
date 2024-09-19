@@ -28,7 +28,7 @@ const Report = () => {
 
   const fetchData = async () => {
     const querySnapshot = await getDocs(collection(db, 'tuntikirjanpito'));
-    const fetchedData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(lasku => lasku.client === sessionUser);
+    const fetchedData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(lasku => lasku.client === (sessionUser && lasku.isPaid === false));
     const found = fetchedData.some(item => item.client === "Timo Vuori");
     if (found) {
       setAccess(true)
@@ -131,10 +131,10 @@ const Report = () => {
     <div style={{ padding: 20 }}>
       {isLoggedIn ?
         <div className="lasku">
-          {data.length > 0 && <h1>Lasku {fNameRef.current}</h1>}
+          {data.length > 0 && <h1>Moi {fNameRef.current}!<p></p>Lataa avoimet laskusi alla olevasta napista.</h1>}
 
           {access === true ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
-            Lataa PDF
+            Erääntyvät
           </Button>
             :
             <h1>{t('Nobills')}</h1>
