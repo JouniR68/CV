@@ -262,7 +262,7 @@ function TarjouspyyntoForm() {
 
         <Grid item xs={12}>
           <Button type="submit" variant="contained" color="primary">
-            Tallenna
+            {t('lahetaTarjous')}
           </Button>
         </Grid>
       </Grid>

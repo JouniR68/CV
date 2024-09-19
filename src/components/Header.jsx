@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Login from "./AdminLogin"
 import { useTranslation } from 'react-i18next';
@@ -25,6 +25,10 @@ export default function Header() {
   const isAuthenticated = sessionStorage.getItem("adminLevel")
   console.log("Header isLoggedIn: ", isLoggedIn)
 
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const storedLoggedIn = sessionStorage.getItem("loggedIn")
   if (storedLoggedIn === "true") {
     setIsLoggedIn(true)
@@ -33,30 +37,25 @@ export default function Header() {
   //<Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
   return (
 
-      <header className="header-row">
-        <div className="header-row-left">
-          <Link to="/home"><HomeWorkIcon /></Link>
-          <Link to="/profile"><PersonSharpIcon /></Link>          
-          <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
-        </div>
-        
-        {!isLoggedIn &&
-          <div className="header-row-right">
-            <Link to="/userLogin">{t('Login')}</Link>
-            <Link to="/register">{t('Register')}</Link>
-          </div>
-        }
+    <header className="header-row">
+      <div className="header-row-left">
+        <Link to="/home"><HomeWorkIcon /></Link>
+        <Link to="/profile"><PersonSharpIcon /></Link>
+        <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+        {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
+        <Link to="/register">{t('Register')}</Link>
+      </div>
 
-        {isLoggedIn &&
-          <>
-            <Link to="/c"><DraftsSharpIcon /></Link>
-            <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-            <Link to="/admin"><SettingsIcon /> </Link>
-            {isAuthenticated && <Link to="/tunterointi">JR</Link>}
-            {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
-          </>}
-      </header>
-    
+      {isLoggedIn &&
+        <>
+          <Link to="/c"><DraftsSharpIcon /></Link>
+          <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+          <Link to="/admin"><SettingsIcon /> </Link>
+          {isAuthenticated && <Link to="/tunterointi">JR</Link>}
+          {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
+        </>}
+    </header>
+
 
 
   );

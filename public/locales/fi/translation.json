@@ -1,6 +1,6 @@
 {
   "test": "Testi",
-  "welcome": "Hei, kiva kun saavuit sivustolle",
+  "welcome": "tervetuloa sivustolle!",
   "welcomText": "Selaile rauhassa sivujani ja laita rohkeasti viestiä (klikkaa Palvelut) vaikka et heti olisi ostamassa palveluitani.",
   "mobileWelcomeText": "Tervetuloa sivustolleni, voin auttaa talon/tontin kunnossapito asioissa ja tietokone/ohjelmistojen suhteen. Ei muuta kuin pienellä kynnyksellä tekemään pyyntöä niin nähdään voinko auttaa. Pyytäisin tarjouspyynnön ja tilin rekisteröinnin (voit aloittaa vain tarjouspyynnölläkin).",
   "Home": "Koti",
@@ -114,5 +114,7 @@
   "PageNotFoundInfo": "Pahoittelut, antamasi sivua ei löydy",
   "files": "Lataa kuvia selventämään työkohdetta.",
   "software": "Ohjelmistoihin liittyviä töitä, lähinä firmoille ajateltu.",
-  "Nobills": "Näyttää siltä, että teidän nimellä ei löydy laskuja."
+  "Nobills": "Näyttää siltä, että teidän nimellä ei löydy laskuja.",
+  "Hi": "Moi",
+  "lahetaTarjous": "Lähetä pyyntö"
 }

@@ -1,21 +1,33 @@
 @media only screen and (min-width: 361px) {
+
+  :root {
+    --primary-color: #ff5733;
+    --secondary-color: ;
+    --accent-color: #00aaff;
+    --background-color:var(--secondary-color);
+    --text-color: #0c0c0c;
+  }
+  
   * {
     box-sizing: border-box;
   }
 
   html,
+
   body {
-    margin-left: 4rem;
-    margin-right: 5rem;
-    margin-top: 0.2%;
-    margin-bottom: 2rem;
-    padding: 0.5rem;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: lightorange;
-    font-family: "Inter", sans-serif;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0 auto;
+    
+    /* Remove default margin */
+    background-color: #e0e0e0;
+    font-size: 0.8rem;
+    font-family: bold;
+    background-color: var(--background-color);
+    color: var(--text-color);
+
   }
 
   body::-webkit-scrollbar {
@@ -30,7 +42,6 @@
     margin-bottom: 2rem;
     text-align: left;
   }
-
 
   .accessrequest {
     display: flex;
@@ -277,12 +288,15 @@
   .app-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     padding: 1rem;
     background-color: #F9F9F9;
     color: #0c0c0c;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    width: 100vh;
+    width: fit-content;
+    height: auto;
   }
 
   #offer-button {
@@ -304,33 +318,34 @@
   }
 
   .header-row {
-    display: flex;
-    position: absolute;
-    /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
-    top: 50;
-
-    /* Position at the bottom of the container */
-    left: 50%;
-    /* Center horizontally */
-    transform: translateX(-50%);
-    /* Offset it to truly center horizontally */
-    width: 42%;
-    /* Optional: to stretch it full width */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Ensure it spans the full width of the viewport */
+    z-index: 1000;
+    /* A high z-index value to ensure it stays on top of other elements */
+    background-color: #ffffff;
+    /* Optional: To give it a background color */
+    padding: 1rem;
+    /* Optional: Adjust padding as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow for better visual separation */
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 5px;
   }
 
   .header-row-left {
+    text-align: left;
     justify-content: flex-start;
     align-items: flex-start;
-
   }
 
 
   .header-row-right {
     display: flex;
-    flex-direction: row;
-    padding-top: 0.5rem;
-    border-radius: 5px;
-    width: 1rem;
+    flex-direction: row;        
+    width: 0.3rem;
     margin: 0 auto;
   }
 
@@ -356,9 +371,10 @@
   .footer {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 1rem;
     position: relative;
-
+    background-color: var(--primary-color);
+    color: var(--text-color);
 
     /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
     /* Position at the bottom of the container */
@@ -366,23 +382,25 @@
     /* Center horizontally */
     transform: translateX(-50%);
     /* Offset it to truly center horizontally */
-    width: 41%;
+    width: 100%;
     /* Optional: to stretch it full width */
     justify-content: center;
     /* Centers items horizontally */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow for better visual separation */
   }
 
   .footer-items {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 0.1rem;
   }
 
   .footer-items img {
     margin-right: 20px;
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
   }
 
   .sos a {
@@ -431,16 +449,14 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    margin: 0 auto;
-    font-size: 18px;
-    font-family: bold;
     text-align: left;
     justify-content: flex-start;
-    align-items: f;
-    width: fit-content;
+    align-items: flex-start;    
   }
 
   .home-container h1 {
+    margin: 0 auto;
+    width: auto;
     font-weight: 700;
     font-size: 2rem;
     line-height: 32px;
@@ -641,11 +657,12 @@ tr:nth-child(odd) {
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
+    margin:5px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     height: auto;
-    width: auto;
+    width:auto;
   }
 
   .add-customer-textFieldGroup {

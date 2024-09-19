@@ -1,6 +1,6 @@
 {
   "test": "test (en)",
-  "welcome": "Hey, thx from the visit",
+  "welcome": "great to have you here!",
   "welcomText": "Pls, browse through and contact me (via services, mail link / call).",
   "mobileWelcomeText": "I can help you with your house / lot maintenance and with your computer related stuff including web pages etc. In case you accept my offer, I kindly request you to register an account.",
   "Home": "Home",
@@ -114,6 +114,8 @@
   "PageNotFoundInfo": "Sorry, your address is not valid",
   "files": "Files, images etc to clarify the target.",
   "software": "Software work, mainly targetted for the firms.",
-  "Nobills": "Seems, that there are no bills for you."
+  "Nobills": "Seems, that there are no bills for you.",
+  "Hi": "Hey",
+  "lahetaTarjous": "Send request"
 
 }
