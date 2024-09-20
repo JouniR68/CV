@@ -116,5 +116,6 @@
   "software": "Ohjelmistoihin liittyviä töitä, lähinä firmoille ajateltu.",
   "Nobills": "Näyttää siltä, että teidän nimellä ei löydy laskuja.",
   "Hi": "Moi",
-  "lahetaTarjous": "Lähetä pyyntö"
+  "lahetaTarjous": "Lähetä pyyntö",
+  "LogoutText": "Olette nyt kirjautuneet ulos"
 }

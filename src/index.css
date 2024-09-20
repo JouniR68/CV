@@ -31,6 +31,15 @@
     display: true;
   }
 
+  .app-container {    
+    padding: 1rem;
+    background-color: #F9F9F9;
+    color: #0c0c0c;
+    width: 100%;
+    height: auto;
+  }
+
+
   h1 {
     margin-top: 5rem;
   }
@@ -271,14 +280,6 @@
   .lasku {
     margin-top: 200px;
     margin-bottom: 200px;
-  }
-
-  .app-container {    
-    padding: 1rem;
-    background-color: #F9F9F9;
-    color: #0c0c0c;
-    width: fit-content;
-    height: auto;
   }
 
   #offer-button {
@@ -590,7 +591,7 @@ tr:nth-child(odd) {
   color: rgb(68, 14, 14);
 }
 
-@media only screen and (max-width: 360px) and (orientation: portrait) {
+@media only screen and (max-width: 768px) and (orientation: portrait) {
   
   :root {
     --primary-color: #ff5733;
@@ -609,14 +610,17 @@ tr:nth-child(odd) {
   body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 90vh;
+    align-items: center;    
     margin: 0 auto;
     background-color: #e0e0e0;
     font-size: 0.8rem;
     font-family: bold;
     background-color: var(--background-color);
     color: var(--text-color);
+    -ms-overflow-style: none;
+    scrollbar-width: none;    
+    transform: scale(2); /* Scales content to 200% */
+    transform-origin: top left; /* Ensures the scaling starts from the top-left corner */      
   }
 
   body::-webkit-scrollbar {
@@ -632,12 +636,6 @@ tr:nth-child(odd) {
     text-align: left;
   }
 
-
-  body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
   #root {
     margin-left: 0 auto;
     margin-right: 0 auto;
@@ -646,15 +644,13 @@ tr:nth-child(odd) {
   }
 
   .app-container {
-    display: flex;
+    display:flex;
     flex-direction: column;
     padding: 0.5rem;
     margin:5px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    height: auto;
-    width:auto;
   }
 
   .add-customer-textFieldGroup {

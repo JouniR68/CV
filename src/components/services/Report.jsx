@@ -28,8 +28,8 @@ const Report = () => {
 
   const fetchData = async () => {
     const querySnapshot = await getDocs(collection(db, 'tuntikirjanpito'));
-    const fetchedData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(lasku => lasku.client === (sessionUser && lasku.isPaid === false));
-    const found = fetchedData.some(item => item.client === "Timo Vuori");
+    const fetchedData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const found = fetchedData.some(item => item.client === sessionUser);
     if (found) {
       setAccess(true)
       setData(fetchedData);

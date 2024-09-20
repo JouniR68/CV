@@ -2,11 +2,15 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { doSignOut } from "./auth";
 import { useAuth } from "./LoginContext";
+import { useTranslation } from "react-i18next";
+
+
 
 export default function Logout() {
   const {setIsLoggedIn} = useAuth();
+  const {t} = useTranslation()
   const navigate = useNavigate()
-  useEffect(() => {navigate('/done', { state: { description: "You have been kicked off" } })},[])
+  useEffect(() => {navigate('/done', { state: { description: t('LogoutText') }})},[])
   setIsLoggedIn(false)
   sessionStorage.removeItem("adminlevel")
   sessionStorage.removeItem("firstName")
