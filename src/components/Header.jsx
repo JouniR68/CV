@@ -43,17 +43,17 @@ export default function Header() {
         <Link to="/profile"><PersonSharpIcon /></Link>
         <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
         {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
-        <Link to="/register">{t('Register')}</Link>
+        {!isLoggedIn && currentPath != '/userLogin' && <Link to="/register">{t('Register')}</Link>}
       </div>
 
       {isLoggedIn &&
-        <>
+        <div className="header-row-rigth">
           <Link to="/c"><DraftsSharpIcon /></Link>
           <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
           <Link to="/admin"><SettingsIcon /> </Link>
           {isAuthenticated && <Link to="/tunterointi">JR</Link>}
           {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
-        </>}
+        </div>}
     </header>
 
 

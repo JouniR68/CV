@@ -127,15 +127,15 @@ export default function Home() {
 
   // {isMobileDpi ? t('welcomeText') : splittedText.forEach(text => text)}
   return (
-    <>
-      <p></p>
-      <h1 style = {{margin:'1rem'}}>{t('Hi') + " " + name}<p></p></h1>
+    <div className="home">
+
+      <h1>{t('Hi') + " " + name}<p></p></h1>
       <div className="home-container">
-        <TextWrapper className='home-container' text={t('mobileWelcomeText')} maxLength={50} />
-        <p></p>          
-        <Button variant = 'contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
+        <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
+        <p></p>
+        <Button variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
       </div>
-            
-    </>
+
+    </div>
   );
 }
