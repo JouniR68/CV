@@ -354,10 +354,10 @@ const TarjousLomake = () => {
                         <Typography variant="h6">Työväline kustannukset</Typography>
                         <TextField
                             type="number"
+                            style={{width:'5rem'}}
                             value={valinekustannus}
-                            onChange={(e) => setValineKustannus(e.target.value)}
-                            variant="outlined"
-                            fullWidth
+                            onChange={(e) => setValineKustannus(e.target.value === '' ? '' : Number(e.target.value))}
+                            variant="outlined"                                                        
                         />
                     </Box>
                     <hr />
