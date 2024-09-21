@@ -33,7 +33,7 @@ import Done from "./components/Done";
 import Calendar from "./components/Calendar";
 import Catalog from "./components/services/AddShopItem"
 import Basket from "./components/services/TheBasket";
-import TarjousLomake from "./components/services/Tarjous";
+import TarjousLomake from "./components/services/Tarjouslomake";
 import Register from "./components/Register";
 import Contacts from "./components/services/Contact";
 import {UserLogin} from "./components/UserLogin"

@@ -58,8 +58,8 @@ export default function Footer() {
           flexDirection: 'column',
           gap: '10px',
           alignItems: 'start',
-          marginTop:'1rem',          
-          
+          marginTop: '1rem',
+
           '& > *': {
             m: 1,
           },
@@ -86,9 +86,10 @@ export default function Footer() {
                 <LocalPhoneSharpIcon />
               </IconButton>
             </Tooltip>
-            <IconButton>
-              <Button onClick={() => changeLanguage('en')}><img src="/Images/eng-flag.png" /></Button>
-              <Button onClick={() => changeLanguage('fi')}><img src="/Images/fin-flag.png"/></Button>
+            <IconButton onClick={() => changeLanguage('en')}>
+              <Button><img src="/Images/eng-flag.png" /></Button></IconButton>
+            <IconButton onClick={() => changeLanguage('fi')}>
+              <Button ><img src="/Images/fin-flag.png" /></Button>
             </IconButton>
           </div>
 

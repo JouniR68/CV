@@ -31,6 +31,10 @@
     display: true;
   }
 
+  hr {
+    margin-top:2rem;
+    margin-bottom:2rem;    
+  }
   .app-container {
     padding: 1rem;
     background-color: #F9F9F9;
@@ -82,59 +86,10 @@
   }
 
   .tarjous {
-    display: flex;
-    flex: wrap;
-    margin-top: 1rem;
-    gap: 10rem;
-    justify-content: flex-start;
-  }
-
-  .tarjous input {
-    padding: 0.5rem;
-    width: 20rem;
-  }
-
-  .tarjous--matkakulut,
-  .tarjous--tehtavat {
-    display: table;
-    border: 1px solid;
-    padding: 0.1rem;
-  }
-
-  .tarjous--tehtavat th {
-    background-color: orange;
-  }
-
-  .tarjous--tehtavat {
-    padding: 0.4rem;
-    font-weight: 500;
-  }
-
-  .tarjous--tehtavat,
-  .tarjous--matkakulut {
-    justify-content: flex-start;
-    gap: 0.4rem;
-    margin-bottom: 0.1rem;
-    padding: 0.5rem
-  }
-
-  .tarjous--matkakulut label {
-    justify-content: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.1rem;
-    padding: 0.5rem
-  }
-
-  .tarjous--matkakulut input[type="text"],
-  .tarjous--tehtavat input[type="text"] {
-    padding: 1rem;
-    width: 14rem
-  }
-
-  .tarjous--tehtavat input[type='number'],
-  .tarjous--matkakulut input[type='number'] {
-    padding: 0.5rem;
-    width: 3rem;
+    max-width: 80%; /* Max width is 80% of the viewport */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding around the content */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's width and height */
   }
 
   .catalog {
@@ -1050,10 +1005,12 @@ tr:nth-child(odd) {
   }
   
   .tarjouspyynto .MuiGrid-container {
-    max-width: 70%;               /* Set a max width for the form */
-    width: 40%;   
+    max-width: 80%;               /* Set a max width for the form */
+    width: 70%;   
     max-height: 60%;
-    height: 40%;                     /* Ensure the form takes up the full width up to the max-width */
+    line-height: 2rem;
+    font-size: large;
+    height: 40%;
     background-color: #fff;         /* Set a white background for the form */
     padding: 2rem;                  /* Add padding inside the form */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
@@ -1066,47 +1023,6 @@ tr:nth-child(odd) {
     margin-top: 1rem;
     gap: 2rem;
     justify-content: flex-start;
-  }
-
-  .tarjous input {
-    padding: 0.5rem;
-    width: 10rem;
-  }
-
-  .tarjous--tehtavat th {
-    background-color: orange;
-  }
-
-  .tarjous--tehtavat {
-    padding: 0.4rem;
-    font-weight: 500;
-  }
-
-  .tarjous--tehtavat,
-  .tarjous--matkakulut {
-    justify-content: flex-start;
-    gap: 0.4rem;
-    margin-bottom: 0.1rem;
-    padding: 0.5rem
-  }
-
-  .tarjous--matkakulut label {
-    justify-content: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.1rem;
-    padding: 0.5rem
-  }
-
-  .tarjous--matkakulut input[type="text"],
-  .tarjous--tehtavat input[type="text"] {
-    padding: 1rem;
-    width: 8rem
-  }
-
-  .tarjous--tehtavat input[type='number'],
-  .tarjous--matkakulut input[type='number'] {
-    padding: 0.5rem;
-    width: 3rem;
   }
 
   .tuntikirjaus {

@@ -124,10 +124,10 @@ function TarjouspyyntoForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="tarjouspyynto">
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Typography variant="h5">Tarjouspyyntölomake</Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="isCompany"
             control={control}
@@ -141,7 +141,7 @@ function TarjouspyyntoForm() {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item md={12}>
       <Controller
         name="ala"
         control={control}
@@ -163,7 +163,7 @@ function TarjouspyyntoForm() {
     </Grid>
 
         {isCompany && (
-          <Grid item xs={12}>
+          <Grid item md={12}>
             <Controller
               name="yTunnus"
               control={control}
@@ -179,7 +179,7 @@ function TarjouspyyntoForm() {
           </Grid>
         )}
 
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="firstName"
             control={control}
@@ -189,7 +189,7 @@ function TarjouspyyntoForm() {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="lastName"
             control={control}
@@ -199,7 +199,7 @@ function TarjouspyyntoForm() {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="address"
             control={control}
@@ -208,7 +208,7 @@ function TarjouspyyntoForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="phoneNumber"
             control={control}
@@ -217,7 +217,7 @@ function TarjouspyyntoForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="email"
             control={control}
@@ -226,7 +226,7 @@ function TarjouspyyntoForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Controller
             name="message"
             control={control}
@@ -240,7 +240,7 @@ function TarjouspyyntoForm() {
             )}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Button
             component="label"
             role={undefined}
@@ -259,7 +259,7 @@ function TarjouspyyntoForm() {
           </Button>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item md={12}>
           <Button type="submit" variant="contained" color="primary">
             {t('lahetaTarjous')}
           </Button>
