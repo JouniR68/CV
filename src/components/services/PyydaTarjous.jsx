@@ -122,6 +122,7 @@ function TarjouspyyntoForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="tarjouspyynto">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h5">Tarjouspyyntölomake</Typography>
@@ -177,8 +178,6 @@ function TarjouspyyntoForm() {
             />
           </Grid>
         )}
-
-
 
         <Grid item xs={12}>
           <Controller
@@ -266,6 +265,7 @@ function TarjouspyyntoForm() {
           </Button>
         </Grid>
       </Grid>
+      </div>
     </form>
   );
 }

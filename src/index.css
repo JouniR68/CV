@@ -1,13 +1,13 @@
-@media only screen and (min-width: 361px) {
+@media only screen and (min-width: 1024px) and (max-height:700px) {
 
   :root {
     --primary-color: #ff5733;
     --secondary-color: ;
     --accent-color: #00aaff;
-    --background-color:var(--secondary-color);
+    --background-color: var(--secondary-color);
     --text-color: #0c0c0c;
   }
-  
+
   * {
     box-sizing: border-box;
   }
@@ -31,12 +31,13 @@
     display: true;
   }
 
-  .app-container {    
+  .app-container {
     padding: 1rem;
     background-color: #F9F9F9;
     color: #0c0c0c;
     width: 100%;
     height: auto;
+    margin:1rem auto;
   }
 
 
@@ -59,6 +60,25 @@
   #shoppingCart {
     margin-left: auto;
     color: red
+  }
+
+  .tarjouspyynto {
+    display: flex;                  /* Use flexbox for centering */
+    justify-content: center;        /* Horizontally center the form */
+    align-items: center;            /* Vertically center the form */
+    padding: 2rem;                  /* Add some padding around the form */
+    background-color: #f9f9f9;      /* Optional: Set a background color */
+  }
+  
+  .tarjouspyynto .MuiGrid-container {
+    max-width: 70%;               /* Set a max width for the form */
+    width: 40%;   
+    max-height: 60%;
+    height: 40%;                     /* Ensure the form takes up the full width up to the max-width */
+    background-color: #fff;         /* Set a white background for the form */
+    padding: 2rem;                  /* Add padding inside the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    border-radius: 8px;             /* Round the corners slightly */
   }
 
   .tarjous {
@@ -249,16 +269,6 @@
     filter: drop-shadow(0 0 2em #61dafbaa);
   }
 
-  #root {
-    display: flex;
-    padding: 1rem;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-
   .photo-grid {
     display: grid;
     grid-template-columns: auto auto;
@@ -302,24 +312,29 @@
 
   .header-row {
     display: flex;
-    justify-content: space-between; /* Ensures space between left and right content */
-    align-items: center; /* Aligns items vertically in the center */
-    width: 100%; /* Ensures the row takes up the full width */
-    padding: 0.5rem; /* Optional: Adds padding on the sides */
-    position: relative; /* Allows the right content to be positioned relative to this container */
+    justify-content: space-between;
+    /* Ensures space between left and right content */
+    align-items: center;
+    /* Aligns items vertically in the center */
+    width: 100%;
+    /* Ensures the row takes up the full width */
+    padding: 0.5rem;
+    /* Optional: Adds padding on the sides */
+    position: relative;
+    /* Allows the right content to be positioned relative to this container */
     background-color: var(--primary-color);
   }
-  
+
 
   .header-row-left {
-    display:flex;    
+    display: flex;
     align-items: center;
   }
 
 
   .header-row-right {
-    display:flex;        
-    align-items: center;          
+    display: flex;
+    align-items: center;
     margin-left: auto;
   }
 
@@ -361,7 +376,7 @@
     justify-content: center;
     align-items: center;
     /* Centers items horizontally */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     /* Optional: Add a shadow for better visual separation */
   }
 
@@ -421,15 +436,15 @@
   }
 
 
-  .home{
+  .home {
     display: flex;
     flex-direction: column;
     text-align: left;
     justify-content: flex-start;
-    align-items: flex-start;    
+    align-items: flex-start;
   }
 
-  .home-welcome {        
+  .home-welcome {
     padding: 1rem;
   }
 
@@ -437,7 +452,7 @@
     margin: 0 auto;
     width: auto;
     font-weight: 700;
-    font-size: 2rem;    
+    font-size: 2rem;
   }
 
   .host-nav {
@@ -591,36 +606,32 @@ tr:nth-child(odd) {
   color: rgb(68, 14, 14);
 }
 
-@media only screen and (max-width: 768px) and (orientation: portrait) {
+@media only screen and (max-width: 980px) and (max-height: 1900px) and (orientation: portrait) {
   
   :root {
     --primary-color: #ff5733;
     --secondary-color: ;
     --accent-color: #00aaff;
-    --background-color:var(--secondary-color);
+    --background-color: var(--secondary-color);
     --text-color: #0c0c0c;
   }
-  
+
   * {
     box-sizing: border-box;
   }
 
-  html,
-
-  body {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;    
-    margin: 0 auto;
+    align-items: center;
     background-color: #e0e0e0;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     font-family: bold;
     background-color: var(--background-color);
     color: var(--text-color);
-    -ms-overflow-style: none;
-    scrollbar-width: none;    
-    transform: scale(2); /* Scales content to 200% */
-    transform-origin: top left; /* Ensures the scaling starts from the top-left corner */      
   }
 
   body::-webkit-scrollbar {
@@ -628,7 +639,7 @@ tr:nth-child(odd) {
   }
 
   h1 {
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
 
   h3 {
@@ -636,21 +647,20 @@ tr:nth-child(odd) {
     text-align: left;
   }
 
-  #root {
-    margin-left: 0 auto;
-    margin-right: 0 auto;
-    padding: 1rem;
-    text-align: center;
-  }
-
   .app-container {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    padding: 0.5rem;
-    margin:5px;
+    padding: 1rem;
+    margin: 1rem; /* Margin around the container */
+    width: 100%; /* Take full width */
+    max-width: calc(100% - 1rem); /* Subtracting margin from full width */
+    height: 150%; /* Take full height */
+    max-height: calc(150% - 1rem); /* Subtracting margin from full height */
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    font-size: medium;
+    overflow: auto; /* Ensures content inside can scroll if it overflows */
   }
 
   .add-customer-textFieldGroup {
@@ -685,10 +695,25 @@ tr:nth-child(odd) {
 
   .footer {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: center;    
-    background-color: orange;
+    flex-direction: row;
+    gap: 1rem;
+    position: relative;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+
+    /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
+    /* Position at the bottom of the container */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Offset it to truly center horizontally */
+    width: 100%;
+    /* Optional: to stretch it full width */
+    justify-content: center;
+    align-items: center;
+    /* Centers items horizontally */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Add a shadow for better visual separation */
   }
 
   .footer-items {
@@ -706,34 +731,36 @@ tr:nth-child(odd) {
 
   .header-row {
     display: flex;
-    justify-content: space-between; /* Ensures space between left and right content */
-    align-items: center; /* Aligns items vertically in the center */
-    width: 100%; /* Ensures the row takes up the full width */
-    padding: 0.5rem; /* Optional: Adds padding on the sides */
-    position: relative; /* Allows the right content to be positioned relative to this container */
+    justify-content: space-between;
+    /* Ensures space between left and right content */
+    align-items: center;
+    /* Aligns items vertically in the center */
+    width: 100%;
+    /* Ensures the row takes up the full width */
+    padding: 0.5rem;
+    /* Optional: Adds padding on the sides */
+    position: relative;
+    /* Allows the right content to be positioned relative to this container */
     background-color: var(--primary-color);
   }
-  
+
 
   .header-row-left {
-    text-align: left;
-    justify-content: flex-start;
+    display: flex;
     align-items: center;
   }
 
 
   .header-row-right {
-    text-align: right;
-    justify-content: flex-end;
-    align-items: center;          
+    display: flex;
+    align-items: center;
+    margin-left: auto;
   }
-
 
   .header-row-left Link {
     justify-content: flex-start;
     align-items: flex-start;
   }
-
 
   header a {
     text-decoration: none;
@@ -784,40 +811,45 @@ tr:nth-child(odd) {
     transform: translate(1px, 1px);
   }
 
-  .home{
+  .home {
     display: flex;
     flex-direction: column;
     text-align: left;
     justify-content: flex-start;
-    align-items: flex-start;    
+    align-items: flex-start;
   }
 
-.home-welcome {
-  padding: 1rem;
-}
+  .home-welcome {
+    padding: 1rem;
+  }
 
-.home-welcome h1 {
-  margin: 0 auto;
-  width: auto;
-  font-weight: 700;
-  font-size: 2rem;  
-}
+  .home-welcome h1 {
+    margin: 0 auto;
+    width: auto;
+    font-weight: 700;
+    font-size: 2rem;
+  }
 
-.host-nav {
-  display: flex;
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-}
-  
+  .host-nav {
+    display: flex;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+  }
+
   #offer-button {
     justify-content: center;
     align-items: center;
-    padding: 0.5rem;
+    width:fit-content;
+    padding: 1rem;
     font-weight: 700;
     border: 2px solid;
     border-radius: 5px;
     background-color: darkblue;
     color: white;
+    margin-left: 100/2;
+    margin-right: 100/2;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
   }
 
   textArea {
@@ -1007,6 +1039,25 @@ tr:nth-child(odd) {
     font-size: 1rem;
     font-weight: bold;
     color: rgb(27, 26, 26);
+  }
+
+  .tarjouspyynto {
+    display: flex;                  /* Use flexbox for centering */
+    justify-content: center;        /* Horizontally center the form */
+    align-items: center;            /* Vertically center the form */
+    padding: 2rem;                  /* Add some padding around the form */
+    background-color: #f9f9f9;      /* Optional: Set a background color */
+  }
+  
+  .tarjouspyynto .MuiGrid-container {
+    max-width: 70%;               /* Set a max width for the form */
+    width: 40%;   
+    max-height: 60%;
+    height: 40%;                     /* Ensure the form takes up the full width up to the max-width */
+    background-color: #fff;         /* Set a white background for the form */
+    padding: 2rem;                  /* Add padding inside the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    border-radius: 8px;             /* Round the corners slightly */
   }
 
   .tarjous {

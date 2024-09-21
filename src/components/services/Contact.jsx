@@ -33,14 +33,8 @@ export default function Contacts({ contactDetails, onContactChange }) {
                 component="form"
                 display="grid"
                 gridTemplateColumns="auto auto auto"
-                flexDirection="column"
-                alignItems="start"
-                justifyContent="center"
-                gap={1}
-
-                sx={{
-                    "& .MuiTextField-root": { mb: -4, width: "30ch", height: "12ch" },
-                }}
+                flexDirection="column"                                                
+                gap={1}                
                 noValidate
                 autoComplete="off"
             >

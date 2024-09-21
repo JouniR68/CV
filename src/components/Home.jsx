@@ -56,6 +56,8 @@ export default function Home() {
   const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
   const { isLoggedIn, currentUser } = useAuth();
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -66,8 +68,21 @@ export default function Home() {
       console.log(locationError)
       setError(locationError)
     }
-
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+      setViewportHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+
   const { t, i18n } = useTranslation();
 
   let reloadCount = 0
@@ -124,10 +139,17 @@ export default function Home() {
   const fname = sessionStorage.getItem("firstName")
   !fname ? name = "" : name = fname
 
+  /*
+        <div>
+      <p>Viewport width: {viewportWidth}px</p>
+      <p>Viewport height: {viewportHeight}px</p>
+    </div>
+  */
 
   // {isMobileDpi ? t('welcomeText') : splittedText.forEach(text => text)}
   return (
     <div className="home">
+
 
       <h1>{t('Hi') + " " + name}<p></p></h1>
       <div className="home-container">
