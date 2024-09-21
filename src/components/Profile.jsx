@@ -21,8 +21,7 @@ export default function Education() {
   
   return (
     <>
-
-      <hr></hr>
+      
       <div>
         {profileData.map((profile) => (
           <div key={i++} className='profile--table'>
@@ -30,7 +29,7 @@ export default function Education() {
             <Link to = "kohde"><img key={i++}  src={profile.Photo} alt='Jouni Riimala' /></Link>
             </div>
             <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
+            <Table aria-label="simple table" key={i++}>
               <TableBody>
                 <TableRow><TableCell className='row'>Name: {profile.Name}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>

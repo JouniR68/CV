@@ -42,6 +42,8 @@ export default function Header() {
         <Link to="/home"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
         <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+      </div>
+      <div className="header-row-right">
         {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
         {!isLoggedIn && currentPath != '/userLogin' && <Link to="/register">{t('Register')}</Link>}
       </div>

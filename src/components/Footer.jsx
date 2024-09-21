@@ -58,6 +58,8 @@ export default function Footer() {
           flexDirection: 'column',
           gap: '10px',
           alignItems: 'start',
+          marginTop:'1rem',          
+          
           '& > *': {
             m: 1,
           },
