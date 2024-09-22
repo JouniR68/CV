@@ -37,13 +37,13 @@ export default function Header() {
   //<Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
   return (
 
-    <header className="header-row">
-      <div className="header-row-left">
+    <header className="header">
+      <div className="header-left">
         <Link to="/home"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
         <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
       </div>
-      <div className="header-row-right">
+      <div className="header-right">
         {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
         {!isLoggedIn && currentPath != '/userLogin' && <Link to="/register">{t('Register')}</Link>}
       </div>

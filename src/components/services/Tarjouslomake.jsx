@@ -7,9 +7,12 @@ import { db } from '../../firebase';
 
 import { Container, Button, TextField, Typography, Box, Grid } from '@mui/material';
 import { useAuth } from "../LoginContext";
+import { useLocation } from "react-router-dom";
 
 // Komponentti tarjouksen tekemiseen
 const TarjousLomake = () => {
+    const location = useLocation();
+    const currentPath = location.pathname;
     const { isLoggedIn } = useAuth()
     const [isAccess, setIsAccess] = useState(false)
     const accessValid = useRef(sessionStorage.getItem("adminLevel"))

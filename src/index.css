@@ -1,11 +1,12 @@
 @media only screen and (min-width: 1023px) {
 
   :root {
-    --primary-color: #ff5733;
-    --secondary-color: ;
-    --accent-color: #00aaff;
-    --background-color: var(--secondary-color);
-    --text-color: #0c0c0c;
+    --primary-color:#961b00;
+    --secondary-color: #490db9;
+    --accent-color: #af9bd4;
+    --background-color: #f9f9f9;
+    --text-color: black;
+    --background-text-color:rgb(151, 141, 141);
   }
 
   * {
@@ -19,11 +20,11 @@
     margin-bottom: 5rem;    
     padding: 0;    
     box-sizing: border-box;    
-    min-height: 100vh;
+    min-height: 80vh;
   }
 
   body::-webkit-scrollbar {
-    display: true;
+    display: false;
   }
 
   hr {
@@ -32,11 +33,17 @@
   }
 
   .app-container {
-
-    position: relative;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    height: calc(100vh - 2rem);
+    display: flex;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    height: 80vh;
+    flex: 1; /* Allow the content area to grow and fill the space */
+    padding: 3rem 2rem 2rem; /* Add top padding to avoid overlap with header */
+    overflow-y: auto; /* Enable vertical scrolling */
+    justify-content: center;
+    align-items: center;
+    background-color: #d5dede;
+    border-radius: 5px;
     /* Full viewport height minus 2rem (1rem top + 1rem bottom) */
   }
 
@@ -316,14 +323,8 @@
 }
 
 #offer-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
   font-weight: 700;
-  width: 100vh/2;
-  margin-left: 100/2;
-  margin-right: 100/2;
   margin-top: 4rem;
   margin-bottom: 10rem;
 }
@@ -333,31 +334,31 @@
   height: "34rem";
 }
 
-.header-row {
+.header {
   display: flex;
-  width: 90%;
-  /* Ensures the row takes up the full width */
-  padding: 0.5rem;
-  /* Optional: Adds padding on the sides */  
-  /* Allows the right content to be positioned relative to this container */
-  background-color: var(--primary-color);
+  position: fixed;
+  top:0;
+  left: 1;
+  z-index: 10;
+  width: 85%; 
+  background-color: #0c0c0c; 
+  color:white;
 }
 
-
-.header-row-left {
+.header-left {
   display: flex;
-  align-items: center;
+  align-items: center;  
 }
 
-
-.header-row-right {
+.header-right {
   display: flex;
   align-items: center;
   margin-left: auto;
+  color: var(--background-text-color)
 }
 
 
-.header-row-left Link {
+.header-left Link {
   justify-content: flex-start;
   align-items: flex-start;
 }
@@ -375,29 +376,19 @@ header a:hover {
   text-decoration: underline;
 }
 
-.footer {
+.footer {  
   position:fixed;
   height:auto;
   bottom: 0;
-  width: 90%;
-  margin-bottom: 2rem;
-  padding: 1rem;  
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for emphasis */
-
-  /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
-  /* Position at the bottom of the container */
-
-  left: 50%;
-  /* Center horizontally */
-  transform: translateX(-50%);
-  /* Offset it to truly center horizontally */
   width: 100%;
-  /* Optional: to stretch it full width */
+  margin-bottom: 2rem;
+  padding: 1rem;    
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   justify-content: center;
   align-items: center;
-  /* Centers items horizontally */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  /* Optional: Add a shadow for better visual separation */
+  z-index: 10;
 }
 
 .footer-items {
@@ -443,14 +434,14 @@ header a:hover {
   transform: translate(1px, 1px);
 }
 
-
-.home-container,
 .home {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin-top:4rem;
+  align-items: flex-start; 
+  margin-top:4rem; 
+  font-size:large;
+  height:100vh;
 }
 
 .home-welcome {
@@ -659,16 +650,14 @@ tr:nth-child(odd) {
   .app-container {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 4rem 1rem 3rem;
     margin: 1rem;
-    /* Margin around the container */
     width: 100%;
-    /* Take full width */
     max-width: calc(100% - 1rem);
     /* Subtracting margin from full width */
-    height: 150%;
+    height: 80%;
     /* Take full height */
-    max-height: calc(150% - 1rem);
+    max-height: calc(90% - 1rem);
     /* Subtracting margin from full height */
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -709,70 +698,58 @@ tr:nth-child(odd) {
   }
 
   .footer {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    position: relative;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-
-    /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
-    /* Position at the bottom of the container */
+    position:fixed;
+    height:auto;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 2rem;
+    padding: 1rem;    
     left: 50%;
-    /* Center horizontally */
     transform: translateX(-50%);
-    /* Offset it to truly center horizontally */
     width: 100%;
-    /* Optional: to stretch it full width */
     justify-content: center;
     align-items: center;
-    /* Centers items horizontally */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Optional: Add a shadow for better visual separation */
   }
-
+  
   .footer-items {
-    flex-direction: row;
+    display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.1rem;
+    justify-content: space-between;
   }
-
+  
   .footer-items img {
-    width: '16px';
-    height: '16px';
-    align-items: flex-end;
-    justify-content: space-between;
+    width: 24px;
+    height: 24px;    
   }
-
-  .header-row {
-    display: flex;
+  
+  .header {
+    position: fixed;
+    top:0;
+    left:0;
     justify-content: space-between;
-    /* Ensures space between left and right content */
     align-items: center;
-    /* Aligns items vertically in the center */
     width: 100%;
-    /* Ensures the row takes up the full width */
-    padding: 0.5rem;
-    /* Optional: Adds padding on the sides */
-    position: relative;
-    /* Allows the right content to be positioned relative to this container */
+    padding: 1rem;
     background-color: var(--primary-color);
+    z-index: 10;
   }
 
 
-  .header-row-left {
+  .header-left {
     display: flex;
     align-items: center;
   }
 
 
-  .header-row-right {
+  .header-right {
     display: flex;
     align-items: center;
     margin-left: auto;
   }
 
-  .header-row-left Link {
+  .header-left Link {
     justify-content: flex-start;
     align-items: flex-start;
   }
@@ -1052,16 +1029,11 @@ tr:nth-child(odd) {
   }
 
   .tarjouspyynto {
-    display: flex;
-    /* Use flexbox for centering */
-    justify-content: center;
-    /* Horizontally center the form */
+    display: flex;    
+    justify-content: center;    
     align-items: center;
-    /* Vertically center the form */
-    padding: 2rem;
-    /* Add some padding around the form */
-    background-color: #f9f9f9;
-    /* Optional: Set a background color */
+    padding: 2rem;    
+    background-color: var(--background-color);    
   }
 
   .tarjouspyynto .MuiGrid-container {
