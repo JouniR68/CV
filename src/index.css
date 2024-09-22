@@ -319,9 +319,10 @@
 
 #offer-button {
   color: white;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 4rem;
   margin-bottom: 10rem;
+  font-size:12px;
 }
 
 #softaapu-logo {
@@ -434,8 +435,10 @@ header a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start; 
-  margin-top:4rem; 
-  font-size:large;
+  margin-top:4rem;
+  margin-bottom:3rem; 
+  font-size:small;
+  font-weight: 550;
   height:100vh;
 }
 
@@ -471,8 +474,6 @@ header a:hover {
 h3.cv-contact-title {
   margin-top: 40px;
   margin-left: 0px;
-}
-
 }
 
 #mailIcon {

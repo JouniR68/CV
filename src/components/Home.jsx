@@ -149,6 +149,7 @@ export default function Home() {
   // {isMobileDpi ? t('welcomeText') : splittedText.forEach(text => text)}
   return (
     <div className="home">      
+    <h1>{t('homehi')}</h1>
         <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
         <p></p>
         <Button variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
