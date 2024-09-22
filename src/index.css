@@ -94,12 +94,32 @@
     border-radius: 8px;             /* Round the corners slightly */
   }
 
-  .tunnus
-  .tarjous {
+  .tunnus {
     max-width: 80%; /* Max width is 80% of the viewport */
     margin: 0 auto; /* Center the container */
     padding: 20px; /* Add padding around the content */
     box-sizing: border-box; /* Ensure padding and border are included in the element's width and height */
+  }
+  
+  .tarjous {
+    max-width: 80%; /* Max width is 80% of the viewport */
+    width: 50%;
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding around the content */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's width and height */    
+  }
+
+  .tarjous-osapuolet{
+    display: flex;
+    gap: 1rem
+  }
+
+  .tarjous-osapuoli {
+   flex: 1;
+   padding: 1rem;
+   background-color: #f0f0f0;  /* Optional: Sets a background color for visibility */
+  border: 1px solid #ccc;      /* Optional: Adds a border around each section */
+}
   }
 
   .catalog {

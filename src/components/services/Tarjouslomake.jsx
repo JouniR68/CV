@@ -132,7 +132,7 @@ const TarjousLomake = () => {
         doc.autoTable({
             startY: doc.lastAutoTable.finalY + 22,
             head: [['Tehtävä', 'Kuvaus', 'Tuntiarvio', 'Tuntiarvio * tuntihinta', 'Alv 25.5%', 'Alvillinen summa']],
-            body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio} €`, `${item.kuluarvio * 0.255} €` , `${(Number(item.kuluarvio) + Number(item.kuluarvio) * 0.255).toFixed(2)} €`]),
+            body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio} €`, `${item.kuluarvio * 0.255} €`, `${(Number(item.kuluarvio) + Number(item.kuluarvio) * 0.255).toFixed(2)} €`]),
         });
 
         // Yhteenveto
@@ -152,7 +152,7 @@ const TarjousLomake = () => {
 
     return (
         <div>
-            <Container maxWidth="md" className = "tarjous">
+            <Container maxWidth="md" className="tarjous">
                 <Box>
                     <Typography variant="h4">Tarjouslomake</Typography>
                     <Box mt={2} mb={4}>
@@ -167,94 +167,102 @@ const TarjousLomake = () => {
                             />
                         </Box>
                         <hr />
-                        <Box mb={4}>
-                            <Typography variant="h6">Tarjoaja</Typography>
-                            <TextField
-                                type="text"
-                                label="Nimi"
-                                value={tarjoaja.nimi}
-                                onChange={(e) => setTarjoaja({ ...tarjoaja, nimi: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="text"
-                                label="Osoite"
-                                value={tarjoaja.osoite}
-                                onChange={(e) => setTarjoaja({ ...tarjoaja, osoite: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="text"
-                                label="Puhelinnumero"
-                                value={tarjoaja.puhelin}
-                                onChange={(e) => setTarjoaja({ ...tarjoaja, puhelin: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="email"
-                                label="Sähköposti"
-                                value={tarjoaja.sahkoposti}
-                                onChange={(e) => setTarjoaja({ ...tarjoaja, sahkoposti: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="text"
-                                label="Y-tunnus"
-                                value={tarjoaja.ytunnus}
-                                onChange={(e) => setTarjoaja({ ...tarjoaja, ytunnus: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                        </Box>
-                        <hr />
-                        <Box mb={4}>
-                            <Typography variant="h6">Asiakas</Typography>
-                            <TextField
-                                type="text"
-                                label="Nimi"
-                                value={saaja.nimi}
-                                onChange={(e) => setSaaja({ ...saaja, nimi: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="text"
-                                label="Osoite"
-                                value={saaja.osoite}
-                                onChange={(e) => setSaaja({ ...saaja, osoite: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="text"
-                                label="Puhelinnumero"
-                                value={saaja.puhelin}
-                                onChange={(e) => setSaaja({ ...saaja, puhelin: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="email"
-                                label="Sähköposti"
-                                value={saaja.sahkoposti}
-                                onChange={(e) => setSaaja({ ...saaja, sahkoposti: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                            <TextField
-                                type="text"
-                                label="Y-tunnus"
-                                value={saaja.ytunnus}
-                                onChange={(e) => setSaaja({ ...saaja, ytunnus: e.target.value })}
-                                variant="outlined"
-                                fullWidth
-                            />
-                        </Box>
+                        <div className="tarjous-osapuolet">
+                            <Box mb={4}>
+                                <div className="tarjous-osapuoli">
+                                    <Typography variant="h6">Tarjoaja</Typography>
+                                    <TextField
+                                        type="text"
+                                        label="Nimi"
+                                        value={tarjoaja.nimi}
+                                        onChange={(e) => setTarjoaja({ ...tarjoaja, nimi: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Osoite"
+                                        value={tarjoaja.osoite}
+                                        onChange={(e) => setTarjoaja({ ...tarjoaja, osoite: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Puhelinnumero"
+                                        value={tarjoaja.puhelin}
+                                        onChange={(e) => setTarjoaja({ ...tarjoaja, puhelin: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="email"
+                                        label="Sähköposti"
+                                        value={tarjoaja.sahkoposti}
+                                        onChange={(e) => setTarjoaja({ ...tarjoaja, sahkoposti: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Y-tunnus"
+                                        value={tarjoaja.ytunnus}
+                                        onChange={(e) => setTarjoaja({ ...tarjoaja, ytunnus: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                </div>
+                            </Box>
+
+                            <hr />
+                            <Box mb={4}>
+                                <div className="tarjous-osapuoli">
+                                    <Typography variant="h6">Asiakas</Typography>
+                                    <TextField
+                                        type="text"
+                                        label="Nimi"
+                                        value={saaja.nimi}
+                                        onChange={(e) => setSaaja({ ...saaja, nimi: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Osoite"
+                                        value={saaja.osoite}
+                                        onChange={(e) => setSaaja({ ...saaja, osoite: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Puhelinnumero"
+                                        value={saaja.puhelin}
+                                        onChange={(e) => setSaaja({ ...saaja, puhelin: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="email"
+                                        label="Sähköposti"
+                                        value={saaja.sahkoposti}
+                                        onChange={(e) => setSaaja({ ...saaja, sahkoposti: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                    <TextField
+                                        type="text"
+                                        label="Y-tunnus"
+                                        value={saaja.ytunnus}
+                                        onChange={(e) => setSaaja({ ...saaja, ytunnus: e.target.value })}
+                                        variant="outlined"
+                                        fullWidth
+                                    />
+                                </div>
+                            </Box>
+                        </div>
                     </Box>
+
 
                     <hr />
                     <Typography variant="h6">Matkakulut</Typography>
@@ -274,7 +282,7 @@ const TarjousLomake = () => {
                                 type="text"
                                 label="Määränpää"
                                 value={matkakulut.maaranpaa}
-                                onChange={(e) => setMatkakulut({ maaranpaa: e.target.value })}
+                                onChange={(e) => setMatkakulut({maaranpaa: e.target.value})}
                                 variant="outlined"
                                 fullWidth
                             />
@@ -294,13 +302,13 @@ const TarjousLomake = () => {
                                 type="number"
                                 label="Määrä"
                                 value={matkakulut.maara}
-                                onChange={(e) => setMatkakulut({ maara: e.target.value })}
+                                onChange={(e) => setMatkakulut({ maara: Number(e.target.value) })}
                                 variant="outlined"
                                 fullWidth
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography>Kustannus: {Number(matkakulut.maara * (matkakulut.km * KILOMETRIKUSTANNUS)).toFixed(2)}</Typography>
+                            <Typography>Kustannus: {Number(matkakulut.maara * (matkakulut.km * KILOMETRIKUSTANNUS)).toFixed(2) || 0}</Typography>
                         </Grid>
                     </Grid>
 
@@ -354,10 +362,10 @@ const TarjousLomake = () => {
                         <Typography variant="h6">Työväline kustannukset</Typography>
                         <TextField
                             type="number"
-                            style={{width:'5rem'}}
+                            style={{ width: '5rem' }}
                             value={valinekustannus}
                             onChange={(e) => setValineKustannus(e.target.value === '' ? '' : Number(e.target.value))}
-                            variant="outlined"                                                        
+                            variant="outlined"
                         />
                     </Box>
                     <hr />

@@ -57,8 +57,7 @@ function App() {
               <Route path='/checkLocation' element={<CheckLocation />} />
               <Route path="output" element={<CV />} />
               <Route path="address" element={<Address />} />
-              <Route path="error" element={<ErrorMessage />} />
-              <Route path="tarjous" element={<TarjousLomake />} />              
+              <Route path="error" element={<ErrorMessage />} />                            
               <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
               <Route path='logout' element={<Logout />} />
               <Route path="userLogin" element={<UserLogin />} />
@@ -85,7 +84,8 @@ function App() {
               <Route path="tunterointi" element={<Tunterointi />} />
                 <Route path="poistatunnus" index element={<Poistatunnus />} />
                 <Route path='naytaPyynnot' element={<CustomerData />} />                
-                <Route path="lasku" element={<Report />} />                                                
+                <Route path="lasku" element={<Report />} />    
+                <Route path="tarjous" element={<TarjousLomake />} />                                            
               </Route>              
 
               <Route element={<RentalLayout />}>
