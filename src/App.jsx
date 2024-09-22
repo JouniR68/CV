@@ -64,8 +64,7 @@ function App() {
               <Route path="userLogin" element={<UserLogin />} />
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
-              <Route path='lasku' element={<Report />} />
-              <Route path="admin" index element={<Admin />} />
+              <Route path='lasku' element={<Report />} />              
               
               <Route path='profile' element={<ProfileLayout />}>              
                 <Route index element={<Profile />} />
@@ -82,9 +81,8 @@ function App() {
                 <Route path="kohde" element={<KohteenKuvat />} />
               </Route>
 
-              <Route path="tunterointi" element={<Tunterointi />} />
-
               <Route path='admin' element={<AdminLayout />}>
+              <Route path="tunterointi" element={<Tunterointi />} />
                 <Route path="poistatunnus" index element={<Poistatunnus />} />
                 <Route path='naytaPyynnot' element={<CustomerData />} />                
                 <Route path="lasku" element={<Report />} />                                                

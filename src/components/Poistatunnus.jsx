@@ -44,7 +44,7 @@ const Poistatunnus = () => {
     };
   
     return (
-      <div>
+      <div className = "tunnus">
         <Typography variant="h4" style={{marginTop:'2rem', marginBottom:'1rem'}}>Tunnuslista</Typography>
         <List>
           {contacts.map(contact => (

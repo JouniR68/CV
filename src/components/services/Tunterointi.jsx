@@ -48,6 +48,7 @@ function Tunterointi() {
 
   const handleInvoice = async () => {
     try {
+      handleAddEntry()
       // Save all entries to Firebase
       for (const entry of entries) {
         await addDoc(collection(db, 'tuntikirjanpito'), entry);
@@ -109,7 +110,7 @@ function Tunterointi() {
           <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
             +
           </Button>
-          <Button variant="outlined" onClick={() => handleInvoice()}>Pilvitä
+          <Button style={{marginTop:'1rem'}} variant="outlined" onClick={() => handleInvoice()}>Talleta
           </Button>
         </div>
       }
