@@ -51,15 +51,10 @@ export default function Footer() {
   }
 
   return (
-    <>
+    <div className = "app-container">
       <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-          alignItems: 'start',
-          marginTop: '1rem',
-
+      className="footer"
+        sx={{          
           '& > *': {
             m: 1,
           },
@@ -97,6 +92,6 @@ export default function Footer() {
 
 
       </Box >
-    </>
+    </div>
   );
 }

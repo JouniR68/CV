@@ -15,16 +15,11 @@
   html,
 
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0 auto;
-    background-color: #e0e0e0;
-    font-size: 0.9rem;
-    font-family: bold;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    margin-left: 5rem;
+    margin-bottom: 5rem;    
+    padding: 0;    
+    box-sizing: border-box;    
+    min-height: 100vh;
   }
 
   body::-webkit-scrollbar {
@@ -37,26 +32,27 @@
   }
 
   .app-container {
-    padding: 1rem;
-    background-color: #F9F9F9;
-    color: #0c0c0c;
-    width: 100%;
-    height: auto;
-    margin: 1rem auto;
+
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: calc(100vh - 2rem);
+    /* Full viewport height minus 2rem (1rem top + 1rem bottom) */
   }
 
   .output {
-    display: flex;    
-    flex-direction: column;    
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* or use space-between */
+    justify-content: flex-start;
+    /* or use space-between */
     margin: 1rem auto;
     width: 60vw;
-    height: auto;     
+    height: auto;
   }
 
-  .output-two{
-    display:flex;
+  .output-two {
+    display: flex;
     gap: 1rem;
     flex: 1 1 calc(50% - 1rem);
   }
@@ -328,7 +324,7 @@
   width: 100vh/2;
   margin-left: 100/2;
   margin-right: 100/2;
-  margin-top: 2rem;
+  margin-top: 4rem;
   margin-bottom: 10rem;
 }
 
@@ -339,15 +335,10 @@
 
 .header-row {
   display: flex;
-  justify-content: space-between;
-  /* Ensures space between left and right content */
-  align-items: center;
-  /* Aligns items vertically in the center */
-  width: 100%;
+  width: 90%;
   /* Ensures the row takes up the full width */
   padding: 0.5rem;
-  /* Optional: Adds padding on the sides */
-  position: relative;
+  /* Optional: Adds padding on the sides */  
   /* Allows the right content to be positioned relative to this container */
   background-color: var(--primary-color);
 }
@@ -385,13 +376,13 @@ header a:hover {
 }
 
 .footer {
-  display: flex;
-  flex-direction: row;
-  top: 0rem;
-  gap: 1rem;
-  position: relative;
-  background-color: var(--primary-color);
-  color: var(--text-color);
+  position:fixed;
+  height:auto;
+  bottom: 0;
+  width: 90%;
+  margin-bottom: 2rem;
+  padding: 1rem;  
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for emphasis */
 
   /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
   /* Position at the bottom of the container */
@@ -459,14 +450,14 @@ header a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top:4rem;
 }
 
 .home-welcome {
   padding: 1rem;
 }
 
-.home-welcome h1 {
-  margin: 0 auto;
+.home-welcome h1 {  
   width: auto;
   font-weight: 700;
   font-size: 2rem;
@@ -639,12 +630,12 @@ tr:nth-child(odd) {
 
   html,
   body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     background-color: #e0e0e0;
     font-size: 1.5rem;
     font-family: bold;
@@ -741,7 +732,7 @@ tr:nth-child(odd) {
   }
 
   .footer-items {
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
@@ -884,9 +875,7 @@ tr:nth-child(odd) {
     font-size: larger;
   }
 
-  .output--text {
-
-  }
+  .output--text {}
 
   .taulu {
     display: table;
