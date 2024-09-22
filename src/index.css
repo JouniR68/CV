@@ -36,7 +36,7 @@
     display: flex;
     margin-top: 4rem;
     margin-bottom: 4rem;
-    height: 80vh;
+    height: 100vh;
     flex: 1; /* Allow the content area to grow and fill the space */
     padding: 3rem 2rem 2rem; /* Add top padding to avoid overlap with header */
     overflow-y: auto; /* Enable vertical scrolling */
@@ -102,13 +102,13 @@
   .tarjouspyynto {
     display: flex;
     justify-content: center;    
-    align-items: center;
-    padding: 0.5rem;    
-    background-color: #f9f9f9;    
+    align-items: center;    
+    padding: 0.1rem; 
+    margin-top:-5rem;       
   }
 
   .tarjouspyynto .MuiGrid-container {
-    max-width: 70%;
+    max-width: 100%;
     /* Set a max width for the form */
     width: 40%;
     max-height: 60%;

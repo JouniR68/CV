@@ -123,7 +123,7 @@ function TarjouspyyntoForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="tarjouspyynto">
-      <Grid container spacing={0.5}>
+      <Grid container spacing={0.1}>
         <Grid item xs={12}>
           <Typography variant="h5">Tarjouspyyntölomake</Typography>
         </Grid>
@@ -153,6 +153,7 @@ function TarjouspyyntoForm() {
               labelId="ala-label"
               {...field}
               label="Kiinteistö vai ohjelmisto"
+              size="small"
             >
               <MenuItem value="kiinteisto">Kiinteistö</MenuItem>
               <MenuItem value="ohjelmisto">Ohjelmisto</MenuItem>
@@ -173,6 +174,7 @@ function TarjouspyyntoForm() {
                   fullWidth
                   label="Y-tunnus"
                   required={isCompany}
+                  size="small"
                 />
               )}
             />
@@ -184,7 +186,7 @@ function TarjouspyyntoForm() {
             name="firstName"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Etunimi" required />
+              <TextField {...field} fullWidth label="Etunimi" required size="small"/>
             )}
           />
         </Grid>
@@ -194,7 +196,7 @@ function TarjouspyyntoForm() {
             name="lastName"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Sukunimi" required />
+              <TextField {...field} fullWidth label="Sukunimi" required size="small"/>
             )}
           />
         </Grid>
@@ -204,7 +206,7 @@ function TarjouspyyntoForm() {
             name="address"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Osoite" required />
+              <TextField {...field} fullWidth label="Osoite" required size="small"/>
             )}
           />
         </Grid>
@@ -213,7 +215,7 @@ function TarjouspyyntoForm() {
             name="phoneNumber"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Puhelinnumero" required />
+              <TextField {...field} fullWidth label="Puhelinnumero" required size="small" />
             )}
           />
         </Grid>
@@ -222,7 +224,7 @@ function TarjouspyyntoForm() {
             name="email"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Sähköposti" />
+              <TextField {...field} fullWidth label="Sähköposti" size="small"/>
             )}
           />
         </Grid>
@@ -235,7 +237,8 @@ function TarjouspyyntoForm() {
                 {...field}
                 minRows={4}
                 placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                style={{ width: "100%", padding: "8px" }}
+                style={{ width: "100%", padding: "5px" }}
+                size="small"
               />
             )}
           />
@@ -249,6 +252,7 @@ function TarjouspyyntoForm() {
             startIcon={<CloudUploadIcon />}
             color={success ? "success" : "primary"} // Change to success color when upload completes
             disabled={progress > 0 && progress < 100} // Disable button during upload
+            size="small"
           >
             {t('files')}
             <VisuallyHiddenInput
@@ -260,7 +264,7 @@ function TarjouspyyntoForm() {
         </Grid>
 
         <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" size="small">
             {t('lahetaTarjous')}
           </Button>
         </Grid>
