@@ -32,18 +32,39 @@
   }
 
   hr {
-    margin-top:2rem;
-    margin-bottom:2rem;    
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
+
   .app-container {
     padding: 1rem;
     background-color: #F9F9F9;
     color: #0c0c0c;
     width: 100%;
     height: auto;
-    margin:1rem auto;
+    margin: 1rem auto;
   }
 
+  .output {
+    display: flex;    
+    flex-direction: column;    
+    align-items: center;
+    justify-content: flex-start; /* or use space-between */
+    margin: 1rem auto;
+    width: 60vw;
+    height: auto;     
+  }
+
+  .output-two{
+    display:flex;
+    gap: 1rem;
+    flex: 1 1 calc(50% - 1rem);
+  }
+
+  .output h3 {
+    margin-bottom: 1px;
+    justify-content: left
+  }
 
   h1 {
     margin-top: 2rem;
@@ -72,397 +93,408 @@
     align-items: flex-start;
     justify-content: flex-start;
     padding: 0.5rem;
-    width:50vw;
+    width: 50vw;
   }
 
   .tarjouspyynto {
-    display: flex;                  /* Use flexbox for centering */
-    justify-content: center;        /* Horizontally center the form */
-    align-items: center;            /* Vertically center the form */
-    padding: 2rem;                  /* Add some padding around the form */
-    background-color: #f9f9f9;      /* Optional: Set a background color */
+    display: flex;
+    /* Use flexbox for centering */
+    justify-content: center;
+    /* Horizontally center the form */
+    align-items: center;
+    /* Vertically center the form */
+    padding: 2rem;
+    /* Add some padding around the form */
+    background-color: #f9f9f9;
+    /* Optional: Set a background color */
   }
-  
+
   .tarjouspyynto .MuiGrid-container {
-    max-width: 70%;               /* Set a max width for the form */
-    width: 40%;   
+    max-width: 70%;
+    /* Set a max width for the form */
+    width: 40%;
     max-height: 60%;
-    height: 40%;                     /* Ensure the form takes up the full width up to the max-width */
-    background-color: #fff;         /* Set a white background for the form */
-    padding: 2rem;                  /* Add padding inside the form */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-    border-radius: 8px;             /* Round the corners slightly */
+    height: 40%;
+    /* Ensure the form takes up the full width up to the max-width */
+    background-color: #fff;
+    /* Set a white background for the form */
+    padding: 2rem;
+    /* Add padding inside the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow for depth */
+    border-radius: 8px;
+    /* Round the corners slightly */
   }
 
   .tunnus {
-    max-width: 80%; /* Max width is 80% of the viewport */
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Add padding around the content */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's width and height */
-  }
-  
-  .tarjous {
-    max-width: 80%; /* Max width is 80% of the viewport */
-    width: 50%;
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Add padding around the content */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's width and height */    
+    max-width: 80%;
+    /* Max width is 80% of the viewport */
+    margin: 0 auto;
+    /* Center the container */
+    padding: 20px;
+    /* Add padding around the content */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the element's width and height */
   }
 
-  .tarjous-osapuolet{
+  .tarjous {
+    max-width: 80%;
+    /* Max width is 80% of the viewport */
+    width: 50%;
+    margin: 0 auto;
+    /* Center the container */
+    padding: 20px;
+    /* Add padding around the content */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the element's width and height */
+  }
+
+  .tarjous-osapuolet {
     display: flex;
     gap: 1rem
   }
 
   .tarjous-osapuoli {
-   flex: 1;
-   padding: 1rem;
-   background-color: #f0f0f0;  /* Optional: Sets a background color for visibility */
-  border: 1px solid #ccc;      /* Optional: Adds a border around each section */
+    flex: 1;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    /* Optional: Sets a background color for visibility */
+    border: 1px solid #ccc;
+    /* Optional: Adds a border around each section */
+  }
 }
-  }
 
-  .catalog {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
+.catalog {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
 
-  .catalog--card {
-    flex: 1 1 20%;
-    border: 1px solid;
-    padding: 1rem;
-    margin-bottom: 0.2rem;
-    justify-content: center;
-    text-align: left;
-    width: 40%;
-  }
+.catalog--card {
+  flex: 1 1 20%;
+  border: 1px solid;
+  padding: 1rem;
+  margin-bottom: 0.2rem;
+  justify-content: center;
+  text-align: left;
+  width: 40%;
+}
 
-  .catalog--card h3 {
-    padding: 0.5rem;
-    background: lightblue
-  }
+.catalog--card h3 {
+  padding: 0.5rem;
+  background: lightblue
+}
 
-  .catalog--card input {
-    width: 5rem;
-    margin-right: 10px;
-    line-height: 2rem;
-    padding: 0.5rem;
-    text-align: center;
-  }
+.catalog--card input {
+  width: 5rem;
+  margin-right: 10px;
+  line-height: 2rem;
+  padding: 0.5rem;
+  text-align: center;
+}
 
-  .catalog--card button {
-    margin-top: 1rem;
-  }
+.catalog--card button {
+  margin-top: 1rem;
+}
 
-  #kpl {
-    margin-left: 1rem;
-  }
+#kpl {
+  margin-left: 1rem;
+}
 
-  .calendar {
-    display: flex;
-    flex-direction: column;
-  }
+.calendar {
+  display: flex;
+  flex-direction: column;
+}
 
-  .calendar input {
-    padding: 1rem;
-    column-gap: 1rem;
-    margin-top: 0.3rem;
-  }
+.calendar input {
+  padding: 1rem;
+  column-gap: 1rem;
+  margin-top: 0.3rem;
+}
 
-  .calendar button {
-    margin-top: 1rem;
-    padding: 0.5rem
-  }
+.calendar button {
+  margin-top: 1rem;
+  padding: 0.5rem
+}
 
-  .calendar li {
-    padding-right: 1rem;
-  }
+.calendar li {
+  padding-right: 1rem;
+}
 
-  #calRemover {
-    margin-right: 5px;
-  }
+#calRemover {
+  margin-right: 5px;
+}
 
-  .confirmation-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
-    /* Semi-transparent background */
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    text-align: left;
-    z-index: 1000;
-    /* Ensure it sits above all other content */
-  }
+.confirmation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  /* Semi-transparent background */
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+  z-index: 1000;
+  /* Ensure it sits above all other content */
+}
 
-  .confirmation-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
-  }
-
-
-  .mail {
-    display: flex;
-    flex-direction: column;
-    padding: 0.1rem;
-    gap: 1rem;
-  }
-
-  .confirmation-content button {
-    margin: 1rem;
-    width: 4rem;
-  }
-
-  #ok {
-    padding: 0.5rem;
-    background-color: green;
-    font-weight: bold;
-  }
-
-  #nok {
-    padding: 0.5rem;
-    background-color: red;
-    font-weight: bold;
-  }
-
-  #saveButton {
-    margin-top: 4rem;
-  }
-
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-
-  .photo-grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 1rem;
-    margin-top: 2rem;
-    margin-left: 1rem;
-    width: 20%;
-  }
-
-  .photo-grid img {
-    width: 100%;
-    height: auto;
-    margin-left: 1rem;
-    display: block;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .lasku {
-    margin-top: 200px;
-    margin-bottom: 200px;
-  }
-
-  #offer-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: 700;
-    width: 100vh/2;
-    margin-left: 100/2;
-    margin-right: 100/2;
-    margin-top: 2rem;
-    margin-bottom: 10rem;
-  }
-
-  #softaapu-logo {
-    width: "34rem";
-    height: "34rem";
-  }
-
-  .header-row {
-    display: flex;
-    justify-content: space-between;
-    /* Ensures space between left and right content */
-    align-items: center;
-    /* Aligns items vertically in the center */
-    width: 100%;
-    /* Ensures the row takes up the full width */
-    padding: 0.5rem;
-    /* Optional: Adds padding on the sides */
-    position: relative;
-    /* Allows the right content to be positioned relative to this container */
-    background-color: var(--primary-color);
-  }
+.confirmation-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
 
 
-  .header-row-left {
-    display: flex;
-    align-items: center;
-  }
+.mail {
+  display: flex;
+  flex-direction: column;
+  padding: 0.1rem;
+  gap: 1rem;
+}
+
+.confirmation-content button {
+  margin: 1rem;
+  width: 4rem;
+}
+
+#ok {
+  padding: 0.5rem;
+  background-color: green;
+  font-weight: bold;
+}
+
+#nok {
+  padding: 0.5rem;
+  background-color: red;
+  font-weight: bold;
+}
+
+#saveButton {
+  margin-top: 4rem;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  width: 20%;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: auto;
+  margin-left: 1rem;
+  display: block;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lasku {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+#offer-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  width: 100vh/2;
+  margin-left: 100/2;
+  margin-right: 100/2;
+  margin-top: 2rem;
+  margin-bottom: 10rem;
+}
+
+#softaapu-logo {
+  width: "34rem";
+  height: "34rem";
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  /* Ensures space between left and right content */
+  align-items: center;
+  /* Aligns items vertically in the center */
+  width: 100%;
+  /* Ensures the row takes up the full width */
+  padding: 0.5rem;
+  /* Optional: Adds padding on the sides */
+  position: relative;
+  /* Allows the right content to be positioned relative to this container */
+  background-color: var(--primary-color);
+}
 
 
-  .header-row-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+.header-row-left {
+  display: flex;
+  align-items: center;
+}
 
 
-  .header-row-left Link {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+.header-row-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
 
 
-  header a {
-    text-decoration: none;
-    color: #4d4d4d;
-    font-weight: 600;
-    padding: 5px 10px;
-  }
-
-  header a:hover {
-    color: #161616;
-    text-decoration: underline;
-  }
-
-  .footer {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    position: relative;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-
-    /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
-    /* Position at the bottom of the container */
-    left: 50%;
-    /* Center horizontally */
-    transform: translateX(-50%);
-    /* Offset it to truly center horizontally */
-    width: 100%;
-    /* Optional: to stretch it full width */
-    justify-content: center;
-    align-items: center;
-    /* Centers items horizontally */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Optional: Add a shadow for better visual separation */
-  }
-
-  .footer-items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.1rem;
-  }
-
-  .footer-items img {
-    margin-right: 20px;
-    width: 24px;
-    height: 24px;
-  }
-
-  .sos a {
-    color: #00aaff;
-    /* Link color */
-    text-decoration: none;
-    /* Remove underline */
-    font-weight: bold;
-    /* Bold link text */
-  }
-
-  .sos a:hover {
-    text-decoration: underline;
-  }
+.header-row-left Link {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 
 
+header a {
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: 600;
+  padding: 5px 10px;
+}
 
-  .output--text {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-    text-align: left;
-    width: 50rem;
-    line-height: 2rem;
-    justify-content: left;
-  }
+header a:hover {
+  color: #161616;
+  text-decoration: underline;
+}
 
-  .link-button {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    padding: 0.75rem 1.375rem;
-    color: initial;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.1s ease-in-out;
-  }
+.footer {
+  display: flex;
+  flex-direction: row;
+  top: 0rem;
+  gap: 1rem;
+  position: relative;
+  background-color: var(--primary-color);
+  color: var(--text-color);
 
-  .link-button:hover {
-    transform: translate(1px, 1px);
-  }
+  /* Or 'fixed' if you want it to always stay visible at the bottom while scrolling */
+  /* Position at the bottom of the container */
+
+  left: 50%;
+  /* Center horizontally */
+  transform: translateX(-50%);
+  /* Offset it to truly center horizontally */
+  width: 100%;
+  /* Optional: to stretch it full width */
+  justify-content: center;
+  align-items: center;
+  /* Centers items horizontally */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Optional: Add a shadow for better visual separation */
+}
+
+.footer-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.footer-items img {
+  margin-right: 20px;
+  width: 24px;
+  height: 24px;
+}
+
+.sos a {
+  color: #00aaff;
+  /* Link color */
+  text-decoration: none;
+  /* Remove underline */
+  font-weight: bold;
+  /* Bold link text */
+}
+
+.sos a:hover {
+  text-decoration: underline;
+}
+
+.link-button {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  padding: 0.75rem 1.375rem;
+  color: initial;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+.link-button:hover {
+  transform: translate(1px, 1px);
+}
 
 
-  .home {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+.home-container,
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .home-welcome {
-    padding: 1rem;
-  }
+.home-welcome {
+  padding: 1rem;
+}
 
-  .home-welcome h1 {
-    margin: 0 auto;
-    width: auto;
-    font-weight: 700;
-    font-size: 2rem;
-  }
+.home-welcome h1 {
+  margin: 0 auto;
+  width: auto;
+  font-weight: 700;
+  font-size: 2rem;
+}
 
-  .host-nav {
-    display: flex;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
+.host-nav {
+  display: flex;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
-  .host-nav a {
-    text-decoration: none;
-    color: #5a18d3;
-    font-weight: 700;
-    padding: 5px 20px;
-  }
+.host-nav a {
+  text-decoration: none;
+  color: #5a18d3;
+  font-weight: 700;
+  padding: 5px 20px;
+}
 
-  .host-nav a:hover {
-    color: #161616;
-    text-decoration: underline;
-    font-weight: 600;
-  }
+.host-nav a:hover {
+  color: #161616;
+  text-decoration: underline;
+  font-weight: 600;
+}
 
-  h3.cv-contact-title {
-    margin-top: 40px;
-    margin-left: 0px;
-  }
+h3.cv-contact-title {
+  margin-top: 40px;
+  margin-left: 0px;
+}
 
 }
 
@@ -592,7 +624,7 @@ tr:nth-child(odd) {
 }
 
 @media only screen and (max-width: 980px) and (max-height: 1900px) and (orientation: portrait) {
-  
+
   :root {
     --primary-color: #ff5733;
     --secondary-color: ;
@@ -605,7 +637,8 @@ tr:nth-child(odd) {
     box-sizing: border-box;
   }
 
-  html, body {
+  html,
+  body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -636,16 +669,22 @@ tr:nth-child(odd) {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    margin: 1rem; /* Margin around the container */
-    width: 100%; /* Take full width */
-    max-width: calc(100% - 1rem); /* Subtracting margin from full width */
-    height: 150%; /* Take full height */
-    max-height: calc(150% - 1rem); /* Subtracting margin from full height */
+    margin: 1rem;
+    /* Margin around the container */
+    width: 100%;
+    /* Take full width */
+    max-width: calc(100% - 1rem);
+    /* Subtracting margin from full width */
+    height: 150%;
+    /* Take full height */
+    max-height: calc(150% - 1rem);
+    /* Subtracting margin from full height */
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-size: medium;
-    overflow: auto; /* Ensures content inside can scroll if it overflows */
+    overflow: auto;
+    /* Ensures content inside can scroll if it overflows */
   }
 
   .add-customer-textFieldGroup {
@@ -796,6 +835,7 @@ tr:nth-child(odd) {
     transform: translate(1px, 1px);
   }
 
+  .home-container,
   .home {
     display: flex;
     flex-direction: column;
@@ -824,7 +864,7 @@ tr:nth-child(odd) {
   #offer-button {
     justify-content: center;
     align-items: center;
-    width:fit-content;
+    width: fit-content;
     padding: 1rem;
     font-weight: 700;
     border: 2px solid;
@@ -845,11 +885,7 @@ tr:nth-child(odd) {
   }
 
   .output--text {
-    margin-top: 1rem;
-    margin-left: 1rem;
-    margin-right: 2rem;
-    text-align: left;
-    justify-content: left;
+
   }
 
   .taulu {
@@ -1027,24 +1063,34 @@ tr:nth-child(odd) {
   }
 
   .tarjouspyynto {
-    display: flex;                  /* Use flexbox for centering */
-    justify-content: center;        /* Horizontally center the form */
-    align-items: center;            /* Vertically center the form */
-    padding: 2rem;                  /* Add some padding around the form */
-    background-color: #f9f9f9;      /* Optional: Set a background color */
+    display: flex;
+    /* Use flexbox for centering */
+    justify-content: center;
+    /* Horizontally center the form */
+    align-items: center;
+    /* Vertically center the form */
+    padding: 2rem;
+    /* Add some padding around the form */
+    background-color: #f9f9f9;
+    /* Optional: Set a background color */
   }
-  
+
   .tarjouspyynto .MuiGrid-container {
-    max-width: 80%;               /* Set a max width for the form */
-    width: 70%;   
+    max-width: 80%;
+    /* Set a max width for the form */
+    width: 70%;
     max-height: 60%;
     line-height: 2rem;
     font-size: large;
     height: 40%;
-    background-color: #fff;         /* Set a white background for the form */
-    padding: 2rem;                  /* Add padding inside the form */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-    border-radius: 8px;             /* Round the corners slightly */
+    background-color: #fff;
+    /* Set a white background for the form */
+    padding: 2rem;
+    /* Add padding inside the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow for depth */
+    border-radius: 8px;
+    /* Round the corners slightly */
   }
 
   .tarjous {
@@ -1061,6 +1107,6 @@ tr:nth-child(odd) {
     align-items: flex-start;
     justify-content: flex-start;
     padding: 0.5rem;
-    width:fit-content;
+    width: fit-content;
   }
 }

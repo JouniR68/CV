@@ -20,9 +20,8 @@ export default function Education() {
 
   return (
     <>
-      <hr></hr>
-      <TableContainer component={Paper}>
 
+      <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
           <TableHead className="education--thead">
             <TableRow>

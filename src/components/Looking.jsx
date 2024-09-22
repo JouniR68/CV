@@ -1,39 +1,31 @@
 import { useTranslation } from "react-i18next";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from '@mui/material';
 
 
 export default function Looking() {
 
   const {t} = useTranslation();
 
+  let i = 0;
   return (
-    
-    <div className='output--text'>
-      <hr></hr>
-      <p>
-      {t('Looking')}
-        
-      
-<p></p>
-      {t('Appealing')}
-      </p>
-
-      <table className="taulu">
-        <tbody>
-          <tr>
-            <td>Sw Development Manager / Project Manager</td>
-          </tr>
-
-          <tr>
-            <td>Sw Developer (web)</td>
-          </tr>
-          <tr>
-            <td>System expert</td>
-          </tr>
-          <tr>
-            <td>{t('OpenFor')}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div key={i++} className=''>        
+        <TableContainer component={Paper}>
+        <Table aria-label="simple table" key={i++}>
+          <TableBody>
+            <TableRow><TableCell className='row'>Sw Development Manager / Project Manager</TableCell></TableRow>
+            <TableRow><TableCell className='row'>Sw Developer (web)</TableCell></TableRow>
+            <TableRow><TableCell className='row'>System expert</TableCell></TableRow>
+            <TableRow><TableCell className='row'>{t('OpenFor')}</TableCell></TableRow>            
+          </TableBody>
+        </Table>
+        </TableContainer>  
+  </div>
   );
 }

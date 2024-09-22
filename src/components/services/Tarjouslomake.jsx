@@ -1,14 +1,25 @@
 import { jsPDF } from "jspdf";
 import 'jspdf-autotable';
 import { addDoc, collection } from 'firebase/firestore';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../../firebase';
 
 import { Container, Button, TextField, Typography, Box, Grid } from '@mui/material';
+import { useAuth } from "../LoginContext";
 
 // Komponentti tarjouksen tekemiseen
 const TarjousLomake = () => {
+    const { isLoggedIn } = useAuth()
+    const [isAccess, setIsAccess] = useState(false)
+    const accessValid = useRef(sessionStorage.getItem("adminLevel"))
+
+    useEffect(() => {
+        if (accessValid === "valid") {
+            setIsAccess(true)
+        } else { setIsAccess(false) }
+    }, [])
+
     // Laskentaparametrit
     const ALV_PERCENTAGE = 25.5; // Arvonlisävero
     const KOTITALOUSVAHENNYS_PERCENTAGE = 40; // Kotitalousvähennysprosentti
@@ -152,7 +163,7 @@ const TarjousLomake = () => {
 
     return (
         <div>
-            <Container maxWidth="md" className="tarjous">
+            {isAccess ? <Container maxWidth="md" className="tarjous">
                 <Box>
                     <Typography variant="h4">Tarjouslomake</Typography>
                     <Box mt={2} mb={4}>
@@ -282,7 +293,7 @@ const TarjousLomake = () => {
                                 type="text"
                                 label="Määränpää"
                                 value={matkakulut.maaranpaa}
-                                onChange={(e) => setMatkakulut({maaranpaa: e.target.value})}
+                                onChange={(e) => setMatkakulut({ maaranpaa: e.target.value })}
                                 variant="outlined"
                                 fullWidth
                             />
@@ -413,7 +424,8 @@ const TarjousLomake = () => {
                     </Button>
                 </Box>
             </Container>
-        </div>
+            : <h1>Teillä ei ole pääsyä, kysy adminilta pääsyä.</h1>}
+        </div> 
     );
 };
 

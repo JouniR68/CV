@@ -6,36 +6,42 @@ import Work from "./Work";
 import Tech from "./Tech";
 import Looking from './Looking';
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { Button } from "@mui/material";
 
 const CV = () => {
 
-    const {t} = useTranslation()
+    const { t } = useTranslation()
+    const [show, setShow] = useState(false)
+
+    const showContent = () => {
+        setShow(!show)
+    }
 
     return (
-        <div>              
-                    
-            <h3 className = "output--text">{t('Output-profile')}</h3>                      
-            <Profile />
-                 
-            <h3 className = "output--text">{t('Output-intrest')}</h3>
-            <Intrests />
-                        
-            <h3 className = "output--text">{t('Output-looking')}</h3>
-            <Looking />
+        <div className="output">
+            <div className="output-two">
+                <h3>{t('Output-profile')}</h3>
+                <Profile />
+                <h3>{t('Looking')}</h3>
+                <Looking />
+            </div>
 
-            
-            <h3 className = "output--text">{t('Output-why')}</h3>
-            <Why />
+            <Button style={{marginTop:'2rem'}} onClick={() => showContent()}>{t('Show')} {t('Output-education')} {t('Output-techs')}</Button>
+            {show && <div><h3>{t('Output-education')}</h3>
+                <Education />
 
-            <h3 className = "output--text">{t('Output-education')}</h3>
-            <Education />
-            
-            <h3 className = "output--text">{t('Output-techs')}</h3>
-            <Tech />
-            
-            <h3 className = "output--text">{t('Output-work')}</h3>
+                <h3>{t('Output-techs')}</h3>
+                <Tech />
+            </div>
+            }
+
+
+            <h3>{t('Output-work')}</h3>
             <Work />
-            
+
+
+
         </div>
     );
 }

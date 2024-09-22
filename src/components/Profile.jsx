@@ -31,10 +31,10 @@ export default function Education() {
             <TableContainer component={Paper}>
             <Table aria-label="simple table" key={i++}>
               <TableBody>
-                <TableRow><TableCell className='row'>Name: {profile.Name}</TableCell></TableRow>
+                <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileLocation')}: {profile.Location}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileProfession')}: {profile.Profession}</TableCell></TableRow>
+                <TableRow><TableCell className='row'>{t('ProfileProfession')}: {t('profession')}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileMail')}: jr@softa-apu.fi</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileTel')}: +358 2385 888</TableCell></TableRow>
               </TableBody>

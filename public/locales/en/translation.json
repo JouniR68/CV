@@ -18,7 +18,7 @@
   "ProfileMail": "Email",
   "ProfileTel": "Tel",
   "Intrest": "Like most people I like to do sport (in the low - medium level), ride motorcycle (this likely is not for all), hang out with friends, travel and do occsionally other extreme stuff like ice - swimming. Additionally, I also like to improve my coding skills (likely second thing what is not common for all).",
-  "Looking": "Open for the new work due to laid of situation. I'm looking for the work either permanent or part time ex 3 days in a wk, open for the discussion. Possibility to work as a freelancer with minimum 6 month contract.",
+  "Looking": "Looking",
   "Appealing": "Appealing roles",
   "why1": "I'm a good technical project manager / sw development mgr and pretty ok on the web development.",
   "why2": "I'm experienced, proactive and competences are up to date. Especially good within subcontractor interface.",
@@ -93,7 +93,7 @@
   "crotia":"Croatia",
   "finland": "Finland",
   "checkLocation": "Location",
-  "birthPlace":"Place of birth: Rovaniemi, Lapland, Finland",
+  "birthPlace":"Rovaniemi, Lapland, Finland",
   "cv": "History",
   "Confirmation":"Confirmation",
   "check":"Check",
@@ -117,6 +117,6 @@
   "Nobills": "Seems, that there are no bills for you.",
   "Hi": "Hey",
   "lahetaTarjous": "Send request",
-  "LogoutText": "You are logged out"
-
+  "LogoutText": "You are logged out",
+  "profession": "Software profession with hands on attitude."
 }
