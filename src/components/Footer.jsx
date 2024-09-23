@@ -10,7 +10,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailIcon from '@mui/icons-material/Mail';
 //import Sos from '@mui/icons-material/GitHub';
 import '../index.css';
-import { GitHub } from '@mui/icons-material';
+import { FullscreenExit, GitHub } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import LocalPhoneSharpIcon from '@mui/icons-material/LocalPhoneSharp';
@@ -51,10 +51,12 @@ export default function Footer() {
   }
 
   return (
-    <div className = "app-container">
-      <Box
-      className="footer"
+    <div className = "footer">
+      <Box        
         sx={{          
+          display:'flex',
+          justifyContent: 'center',
+          alignItems:'center',
           '& > *': {
             m: 1,
           },

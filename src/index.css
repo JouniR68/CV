@@ -1,12 +1,17 @@
 @media only screen and (min-width: 1023px) {
 
   :root {
-    --primary-color:#961b00;
+    --primary-color: #961b00;
+    --header-background-color: #2c3e50;
+    --header-text-color: #FFFFFF;
+    --footer-background-color: #2c3e50;
+    --footer-text-color: #FFFFFF;
+
     --secondary-color: #490db9;
     --accent-color: #af9bd4;
-    --background-color: #f9f9f9;
+    --main-content-background-color: #f4f4f4;
     --text-color: black;
-    --background-text-color:rgb(151, 141, 141);
+    --main-content-background-text-color: #333333;
   }
 
   * {
@@ -17,9 +22,9 @@
 
   body {
     margin-left: 5rem;
-    margin-bottom: 5rem;    
-    padding: 0;    
-    box-sizing: border-box;    
+    margin-bottom: 5rem;
+    padding: 0;
+    box-sizing: border-box;
     min-height: 80vh;
   }
 
@@ -34,17 +39,32 @@
 
   .app-container {
     display: flex;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-    height: 100vh;
-    flex: 1; /* Allow the content area to grow and fill the space */
-    padding: 3rem 2rem 2rem; /* Add top padding to avoid overlap with header */
-    overflow-y: auto; /* Enable vertical scrolling */
+    margin: 0rem;
+    height: 85vh;
+    width: fit-content;
+    flex: 1;
+    /* Allow the content area to grow and fill the space */
+    padding: 1rem 2rem 2rem;
+    /* Add top padding to avoid overlap with header */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
     justify-content: center;
     align-items: center;
-    background-color: #d5dede;
+    background-color: var(--main-content-background-color);
+    color: var(--main-content-background-text-color);
     border-radius: 5px;
-    /* Full viewport height minus 2rem (1rem top + 1rem bottom) */
+    width:100vw;
+  }
+
+  .userLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    gap:1rem;
+    width: 100%;
+    margin: auto;
+    padding: 1rem;
   }
 
   .output {
@@ -52,7 +72,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    /* or use space-between */
     margin: 1rem auto;
     width: 60vw;
     height: auto;
@@ -101,10 +120,10 @@
 
   .tarjouspyynto {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
     align-items: center;    
-    padding: 0.1rem; 
-    margin-top:-5rem;       
+    padding: 0rem;
+    margin-top: 3rem;
   }
 
   .tarjouspyynto .MuiGrid-container {
@@ -112,7 +131,7 @@
     /* Set a max width for the form */
     width: 40%;
     max-height: 60%;
-    height: 40%;    
+    height: 40%;
     /* Ensure the form takes up the full width up to the max-width */
     background-color: #fff;
     /* Set a white background for the form */
@@ -137,8 +156,7 @@
 
   .tarjous {
     max-width: 80%;
-    /* Max width is 80% of the viewport */
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     /* Center the container */
     padding: 20px;
@@ -322,7 +340,7 @@
   font-weight: 600;
   margin-top: 4rem;
   margin-bottom: 10rem;
-  font-size:12px;
+  font-size: 12px;
 }
 
 #softaapu-logo {
@@ -330,27 +348,41 @@
   height: "34rem";
 }
 
+.header,
+.header * {
+  color: var(--header-text-color) !important;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.1rem;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
 .header {
   display: flex;
   position: fixed;
-  top:0;
-  left: 1;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
-  width: 85%; 
-  background-color: #0c0c0c; 
-  color:white;
+  background-color: var(--header-background-color);
+  color: var(--header-text-color) !important;
+
+  border-radius: 0.2rem;
 }
 
 .header-left {
   display: flex;
-  align-items: center;  
+  align-items: center;
+  margin-left: 10px;
 }
 
 .header-right {
   display: flex;
   align-items: center;
   margin-left: auto;
-  color: var(--background-text-color)
+  padding-right: 10px;
 }
 
 
@@ -368,49 +400,33 @@ header a {
 }
 
 header a:hover {
-  color: #161616;
+  color: white;
   text-decoration: underline;
 }
 
-.footer {  
-  position:fixed;
-  height:auto;
+.footer {
+  display: flex;
+  position: fixed;
+  margin: 0 auto;
   bottom: 0;
-  width: 100%;
-  margin-bottom: 2rem;
-  padding: 1rem;    
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: var(--footer-background-color);
   justify-content: center;
   align-items: center;
-  z-index: 10;
 }
 
 .footer-items {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 0.1rem;
+  align-items: center;
 }
 
 .footer-items img {
   margin-right: 20px;
   width: 24px;
   height: 24px;
-}
-
-.sos a {
-  color: #00aaff;
-  /* Link color */
-  text-decoration: none;
-  /* Remove underline */
-  font-weight: bold;
-  /* Bold link text */
-}
-
-.sos a:hover {
-  text-decoration: underline;
 }
 
 .link-button {
@@ -434,19 +450,18 @@ header a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; 
-  margin-top:4rem;
-  margin-bottom:3rem; 
-  font-size:small;
+  align-items: flex-start;
+  margin: 0 auto;
+  font-size: small;
   font-weight: 550;
-  height:100vh;
+  height: 100vh;
 }
 
 .home-welcome {
   padding: 1rem;
 }
 
-.home-welcome h1 {  
+.home-welcome h1 {
   width: auto;
   font-weight: 700;
   font-size: 2rem;
@@ -624,7 +639,7 @@ tr:nth-child(odd) {
     margin: 0;
     padding: 0;
     background-color: #e0e0e0;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-family: bold;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -647,20 +662,16 @@ tr:nth-child(odd) {
     display: flex;
     flex-direction: column;
     padding: 4rem 1rem 3rem;
-    margin: 1rem;
     width: 100%;
-    max-width: calc(100% - 1rem);
-    /* Subtracting margin from full width */
-    height: 80%;
-    /* Take full height */
-    max-height: calc(90% - 1rem);
-    /* Subtracting margin from full height */
+    margin: auto;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-size: medium;
     overflow: auto;
-    /* Ensures content inside can scroll if it overflows */
   }
 
   .add-customer-textFieldGroup {
@@ -694,19 +705,19 @@ tr:nth-child(odd) {
   }
 
   .footer {
-    position:fixed;
-    height:auto;
+    position: fixed;
+    height: auto;
     bottom: 0;
     width: 100%;
     margin-bottom: 2rem;
-    padding: 1rem;    
+    padding: 1rem;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     justify-content: center;
     align-items: center;
   }
-  
+
   .footer-items {
     display: flex;
     justify-content: center;
@@ -714,30 +725,29 @@ tr:nth-child(odd) {
     gap: 0.1rem;
     justify-content: space-between;
   }
-  
+
   .footer-items img {
-    width: 24px;
-    height: 24px;    
+    width: 48px;
+    height: 48px;
   }
-  
+
   .header {
+    display: flex;
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     justify-content: space-between;
+    margin: 0 auto;
     align-items: center;
-    width: 100%;
     padding: 1rem;
     background-color: var(--primary-color);
     z-index: 10;
   }
 
-
   .header-left {
     display: flex;
     align-items: center;
   }
-
 
   .header-right {
     display: flex;
@@ -799,13 +809,24 @@ tr:nth-child(odd) {
     transform: translate(1px, 1px);
   }
 
-  .home-container,
+  .userLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    margin-top:10rem;
+  }
+
   .home {
     display: flex;
     flex-direction: column;
-    text-align: left;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding:1rem;
   }
 
   .home-welcome {
@@ -1024,12 +1045,14 @@ tr:nth-child(odd) {
     color: rgb(27, 26, 26);
   }
 
+
   .tarjouspyynto {
-    display: flex;    
-    justify-content: center;    
+    display: flex;
+    justify-content: center;
     align-items: center;
     padding: 1rem;    
-    background-color: var(--background-color);    
+    background-color: var(--background-color);
+    margin-top:3rem;
   }
 
   .tarjouspyynto .MuiGrid-container {
@@ -1048,6 +1071,7 @@ tr:nth-child(odd) {
     /* Add a subtle shadow for depth */
     border-radius: 8px;
     /* Round the corners slightly */
+    gap:1rem;
   }
 
   .tarjous {

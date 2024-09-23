@@ -43,6 +43,8 @@ import TarjouspyyntoForm from "./components/services/PyydaTarjous";
 import NotFound from "./components/NotFound";
 import KohteenKuvat from "./components/KohteenKuvat"
 import Poistatunnus from "./components/Poistatunnus"
+import InactivityTimer from "./components/InActivity";
+
 
 function App() {
   return (
@@ -50,9 +52,9 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />
+              <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/home' element={<Home />} />
               <Route path='/checkLocation' element={<CheckLocation />} />
               <Route path="output" element={<CV />} />

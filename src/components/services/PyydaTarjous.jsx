@@ -125,7 +125,7 @@ function TarjouspyyntoForm() {
       <div className="tarjouspyynto">
       <Grid container spacing={0.1}>
         <Grid item xs={12}>
-          <Typography variant="h5">Tarjouspyyntölomake</Typography>
+          <Typography variant="h6">Tarjouspyyntölomake</Typography>
         </Grid>
         <Grid item xs={12}>
           <Controller
@@ -237,7 +237,7 @@ function TarjouspyyntoForm() {
                 {...field}
                 minRows={4}
                 placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                style={{ width: "100%", padding: "5px" }}
+                style={{ width: "100%", padding: "8px" }}
                 size="small"
               />
             )}

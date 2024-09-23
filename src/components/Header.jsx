@@ -34,10 +34,9 @@ export default function Header() {
     setIsLoggedIn(true)
   }
 
-  //<Link to="/catalog"><Tooltip title={t('software')} placement="bottom"><IconButton><DesignServicesSharpIcon /></IconButton></Tooltip></Link>
   return (
 
-    <header className="header">
+    <div className="header">
       <div className="header-left">
         <Link to="/home"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
@@ -56,7 +55,7 @@ export default function Header() {
           {isAuthenticated && <Link to="/tunterointi">JR</Link>}
           {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
         </div>}
-    </header>
+    </div>
 
 
 

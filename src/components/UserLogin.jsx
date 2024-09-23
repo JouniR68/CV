@@ -105,50 +105,42 @@ export const UserLogin = () => {
     };
 
     return (
-        <Box
-            component="form"
-            onSubmit={handleLogin}
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
-                width: 300,
-                margin: 'auto',
-                paddingTop: 4,
-                '@media (max-width: 600px)': { // Media query for screens 600px and below
-                    width: '70%',  // Adjust width for mobile devices
-                }
-            }}
-        >
+        <div>
+            <Box
+                component="form"
+                onSubmit={handleLogin}
+                className="userLogin"
+            >
 
-            <Typography variant="h5" gutterBottom>
-                {t("Login")}
-            </Typography>
-            <TextField
-                label={t('username')}
-                variant="outlined"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-            />
-            <TextField
-                label={t('password')}
-                variant="outlined"
-                type="password"
-                value={userPwd}
-                onChange={(e) => setUserPwd(e.target.value)}
-                required
-            />
-            <Button variant="contained" color="primary" type="submit">
-                {t('Login')}
-            </Button>
-
-            {message && (
-                <Typography variant="body2" color="error">
-                    {message}
+                <Typography variant="h5" gutterBottom>
+                    {t("Login")}
                 </Typography>
-            )}
+                <TextField
+                    label={t('username')}
+                    variant="outlined"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <TextField
+                    label={t('password')}
+                    variant="outlined"
+                    type="password"
+                    value={userPwd}
+                    onChange={(e) => setUserPwd(e.target.value)}
+                    required
+                />
+                <Button variant="contained" color="primary" type="submit">
+                    {t('Login')}
+                </Button>
 
-        </Box>
+                {message && (
+                    <Typography variant="body2" color="error">
+                        {message}
+                    </Typography>
+                )}
+
+            </Box>
+        </div>
     );
 };   

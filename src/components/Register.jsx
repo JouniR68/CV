@@ -121,7 +121,7 @@ const RegistrationForm = () => {
 
 
       <Button variant="contained" color="primary" type="submit">
-        Save
+        {t('Save')}
       </Button>
     </Box>
   );
