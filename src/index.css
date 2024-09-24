@@ -493,11 +493,14 @@ header a:hover {
 
 .host-nav {
   display: flex;  
+  position:fixed;
+  top:10%;
+  left: 10;
   justify-content: center; /* Center nav items horizontally */
   align-items: flex-start; /* Adjust if needed */
   padding: 10px; /* Padding around the nav */
   font-weight: 700; /* Bold text */
-  margin-top: -10rem; /* Optional: Space between nav and table */
+  
 
   background-color: #f0f0f0; /* Optional: Background color for visibility */
 
