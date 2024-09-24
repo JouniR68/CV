@@ -61,8 +61,8 @@ function Tunterointi() {
   };
 
   return (
-    <div>
-      {!access && <div className="tuntikirjaus">
+    <div className="tuntikirjaus">
+      {!access && <div>
 
         <h1>Teillä ei ole pääsyä tuntikirjaukseen</h1>
 

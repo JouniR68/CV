@@ -45,6 +45,7 @@ const RegistrationForm = () => {
   };
 
   return (
+    <div className = "register">
     <Box
       component="form"
       onSubmit={handleSubmit}
@@ -124,6 +125,7 @@ const RegistrationForm = () => {
         {t('Save')}
       </Button>
     </Box>
+    </div>
   );
 };
 
