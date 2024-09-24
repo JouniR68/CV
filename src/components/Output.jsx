@@ -20,9 +20,8 @@ const CV = () => {
 
     return (
         <div className="output">
-            <div>
-                <h3>{t('Output-profile')}</h3>
-                <Profile />                
+            <div>                
+                <Profile hideButton={true}/>                                                
             </div>
             {show && <div><h3>{t('Output-education')}</h3>
                 <Education />

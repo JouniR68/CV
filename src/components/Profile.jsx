@@ -12,7 +12,7 @@ import {
   Button
 } from '@mui/material';
 
-export default function Education() {
+export default function Profile({hideButton}) {
   let i = 0;
   const profileData = JsonData.profile.map((j) => {
     return j;
@@ -28,10 +28,10 @@ export default function Education() {
 
       <div>
         {profileData.map((profile) => (
-          <>
             <div key={i++} className="profile">
               <Link to="kohde"><img key={i++} src={profile.Photo} alt='Jouni Riimala' /></Link>
-              {currentPath === '/profile/output' && <Button onClick = {() => navigate('/profile/output')}>{t('cv')}</Button>}
+              {!hideButton && <Button onClick = {() => navigate('/profile/output')}>{t('cv')}</Button>}
+              {console.log("hideButton: ", hideButton)}
               <TableContainer component={Paper}>
                 <Table aria-label="simple table" key={i++}>
                   <TableBody>
@@ -45,7 +45,6 @@ export default function Education() {
                 </Table>
               </TableContainer>
             </div>
-          </>
         ))}
 
       </div>

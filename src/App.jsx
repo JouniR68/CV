@@ -48,6 +48,15 @@ import Learnings from "./components/Learnings"
 function App() {
 
 //<Route path='looking' element={<Looking />} />
+/*
+   <Route path='cv' element={<CVLayout />}>
+                  <Route index element={<Work />} />
+                  <Route path='education' element={<Education />} />
+                  <Route path='work' element={<Work />} />
+                  <Route path='Tech' element={<Tech />} />
+                  <Route path='Contact' element={<Contact />} />
+                </Route>
+*/
   return (
     <div className="app-container">
       <AuthProvider>
@@ -71,13 +80,6 @@ function App() {
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="output" element={<CV />} />
-                <Route path='cv' element={<CVLayout />}>
-                  <Route index element={<Work />} />
-                  <Route path='education' element={<Education />} />
-                  <Route path='work' element={<Work />} />
-                  <Route path='Tech' element={<Tech />} />
-                  <Route path='Contact' element={<Contact />} />
-                </Route>
                 <Route path='intrests' element={<Intrests />} />
                 <Route path='why' element={<Why />} />
                 

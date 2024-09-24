@@ -38,7 +38,7 @@
   }
 
   .app-container {
-    margin: 32rem auto;
+    margin: 3rem auto;
     /* 2rem margin at the top and bottom, auto margins left and right */
     max-width: 100%;
     /* Ensures the container doesn't exceed the viewport width */
@@ -51,7 +51,7 @@
     /* Optional: Center content horizontally */
     align-items: center;
     /* Optional: Center content vertically */
-    background-color: whitesmoke;
+    
     border-radius: 1rem;
     zoom: 1.3;
   }
@@ -59,11 +59,10 @@
   .profile {    
     display: flex;
     flex-direction: column;
-    margin-top:-20rem;
     width:fit-content;
     justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;  
+    align-items: flex-start;
+    margin-top:-8rem;
   }
   
   .cleanpage{
@@ -95,11 +94,12 @@
   }
 
   .output {
+    position:relative;    
     display: flex;
-    flex-direction: column;
-    margin:-20px;
-    width: 110vw;
-    height: 100vh;
+    height:auto;
+    flex-direction: column;    
+    width: 100vw;
+    height: 50vh;
     background-color: white;
   }
 
@@ -350,14 +350,8 @@
   width: 20%;
 }
 
-.profile img {
-  width: 60%;
-  height: auto;
-  margin-top:0px;
-  margin-left: 1rem;
-  display: block;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.profile img {    
+  border-radius: 1rem;  
 }
 
 .lasku {
@@ -398,6 +392,7 @@
 
 .header-right {
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-left: auto;
   margin-right: 2rem;
