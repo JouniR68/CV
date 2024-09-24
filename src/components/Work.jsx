@@ -22,7 +22,7 @@ export default function Work() {
   const {t} = useTranslation()
 
   return (
-    <>
+    <div className = "history">
       <TableContainer component={Paper}>
 
         <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
@@ -64,6 +64,6 @@ export default function Work() {
         </Table>
 
       </TableContainer>
-    </>
+    </div>
   );
 }

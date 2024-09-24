@@ -38,30 +38,43 @@
   }
 
   .app-container {
+    margin: 5rem auto;
+    /* 2rem margin at the top and bottom, auto margins left and right */
+    max-width: 100%;
+    /* Ensures the container doesn't exceed the viewport width */
+    height: calc(100vh - 10rem);
+    /* Subtract 4rem (2rem top + 2rem bottom) from 100% of the viewport height */
+    margin-right: 3rem;
     display: flex;
-    margin: 0rem;
-    height: 85vh;
-    width: fit-content;
-    flex: 1;
-    /* Allow the content area to grow and fill the space */
-    padding: 1rem 2rem 2rem;
-    /* Add top padding to avoid overlap with header */
-    overflow-y: auto;
-    /* Enable vertical scrolling */
+    /* Optional: If you want to use flexbox for internal content */
+    justify-content: center;
+    /* Optional: Center content horizontally */
+    align-items: center;
+    /* Optional: Center content vertically */
+    background-color: beige;
+    border-radius: 1rem;
+    zoom: 1;
+  }
+
+  .opit {
+    display: flex;
+    position: relative;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--main-content-background-color);
-    color: var(--main-content-background-text-color);
-    border-radius: 5px;
-    width:100vw;
+    gap: 1rem;
+    width: 80%;
+    margin: auto;
+    padding: 1rem;
+
   }
 
   .userLogin {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
-    gap:1rem;
+    align-items: center;
+    gap: 1rem;
     width: 100%;
     margin: auto;
     padding: 1rem;
@@ -86,6 +99,14 @@
   .output h3 {
     margin-bottom: 1px;
     justify-content: left
+  }
+
+
+  .work {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   h1 {
@@ -121,7 +142,7 @@
   .tarjouspyynto {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     padding: 0rem;
     margin-top: 3rem;
   }
@@ -230,18 +251,13 @@
   margin-top: 0.3rem;
 }
 
-.calendar button {
-  margin-top: 1rem;
-  padding: 0.5rem
+.calendar-task-row{
+  display: flex;
+  align-items: center; /* Aligns items vertically centered in the row */
 }
 
-.calendar li {
-  padding-right: 1rem;
-}
 
-#calRemover {
-  margin-right: 5px;
-}
+
 
 .confirmation-container {
   position: fixed;
@@ -348,16 +364,6 @@
   height: "34rem";
 }
 
-.header,
-.header * {
-  color: var(--header-text-color) !important;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.1rem;
-  margin-left: 10px;
-  margin-right: 10px;
-
-}
 
 .header {
   display: flex;
@@ -366,9 +372,7 @@
   left: 0;
   right: 0;
   z-index: 10;
-  background-color: var(--header-background-color);
   color: var(--header-text-color) !important;
-
   border-radius: 0.2rem;
 }
 
@@ -382,6 +386,7 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  margin-right: 2rem;
   padding-right: 10px;
 }
 
@@ -452,7 +457,7 @@ header a:hover {
   justify-content: center;
   align-items: flex-start;
   margin: 0 auto;
-  font-size: small;
+  font-size: medium;
   font-weight: 550;
   height: 100vh;
 }
@@ -469,21 +474,34 @@ header a:hover {
 
 .host-nav {
   display: flex;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  /* Align items horizontally */
+  justify-content: center;
+  /* Space out the links */
+  align-items: center;
+  /* Center links vertically */
+  padding: 10px;
+  /* Add padding around the nav */
+  font-weight: 700;
+  margin-bottom: 30rem;
+  margin-left: -10rem;
 }
 
 .host-nav a {
   text-decoration: none;
-  color: #5a18d3;
-  font-weight: 700;
-  padding: 5px 20px;
+  /* Remove underline from links */
+  color: #333;
+  /* Dark text color */
+  font-size: 16px;
+  /* Adjust the font size */
+  padding: 8px 16px;
+  /* Space inside each link */
+  transition: color 0.3s ease;
+  /* Smooth color transition on hover */
 }
 
 .host-nav a:hover {
-  color: #161616;
-  text-decoration: underline;
-  font-weight: 600;
+  color: #007bff;
+  /* Change link color on hover */
 }
 
 h3.cv-contact-title {
@@ -661,17 +679,13 @@ tr:nth-child(odd) {
   .app-container {
     display: flex;
     flex-direction: column;
-    padding: 4rem 1rem 3rem;
-    width: 100%;
+    padding: 2rem 1rem 3rem;
     margin: auto;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-size: medium;
     overflow: auto;
+    zoom: 1.3;
   }
 
   .add-customer-textFieldGroup {
@@ -736,28 +750,25 @@ tr:nth-child(odd) {
     position: fixed;
     top: 0;
     left: 0;
-    justify-content: space-between;
-    margin: 0 auto;
-    align-items: center;
-    padding: 1rem;
-    background-color: var(--primary-color);
+    right: 0;
     z-index: 10;
+    color: var(--header-text-color) !important;
+    border-radius: 0.2rem;
+
   }
 
   .header-left {
     display: flex;
     align-items: center;
+    font-size: 14px;
   }
 
   .header-right {
     display: flex;
     align-items: center;
     margin-left: auto;
-  }
-
-  .header-left Link {
-    justify-content: flex-start;
-    align-items: flex-start;
+    margin-right: 2rem;
+    font-size: 14px;
   }
 
   header a {
@@ -774,22 +785,35 @@ tr:nth-child(odd) {
 
   .host-nav {
     display: flex;
-    margin-top: 10rem;
-    margin-bottom: 10rem;
+    /* Align items horizontally */
+    justify-content: center;
+    /* Space out the links */
+    align-items: center;
+    /* Center links vertically */
+    padding: 10px;
+    /* Add padding around the nav */
+    font-weight: 700;
+    margin-bottom: 20rem;
+    margin-left: -10rem;
 
   }
 
   .host-nav a {
     text-decoration: none;
-    color: #bd2222;
-    font-weight: 500;
-    padding: 1px 5px;
+    /* Remove underline from links */
+    color: #333;
+    /* Dark text color */
+    font-size: 16px;
+    /* Adjust the font size */
+    padding: 8px 16px;
+    /* Space inside each link */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
   }
 
   .host-nav a:hover {
-    color: #161616;
-    text-decoration: underline;
-    font-weight: 600;
+    color: #007bff;
+    /* Change link color on hover */
   }
 
   .link-button {
@@ -817,7 +841,8 @@ tr:nth-child(odd) {
     gap: 1rem;
     width: 100%;
     margin: 0 auto;
-    margin-top:10rem;
+    margin-top: 5rem;
+    font-size: 1rem;
   }
 
   .home {
@@ -826,7 +851,7 @@ tr:nth-child(odd) {
     justify-content: center;
     align-items: center;
     font-size: 1rem;
-    padding:1rem;
+    padding: 1rem;
   }
 
   .home-welcome {
@@ -842,24 +867,26 @@ tr:nth-child(odd) {
 
   .host-nav {
     display: flex;
-    margin-top: 10rem;
-    margin-bottom: 10rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   #offer-button {
     justify-content: center;
     align-items: center;
-    width: fit-content;
-    padding: 1rem;
+    padding: 1rem 1rem;
     font-weight: 700;
-    border: 2px solid;
-    border-radius: 5px;
+    font-size: 20px;
+
     background-color: darkblue;
     color: white;
     margin-left: 100/2;
     margin-right: 100/2;
     margin-top: 2rem;
     margin-bottom: 5rem;
+    border: 2px solid;
+    border-radius: 5px;
   }
 
   textArea {
@@ -868,8 +895,6 @@ tr:nth-child(odd) {
     padding: 10px;
     font-size: larger;
   }
-
-  .output--text {}
 
   .taulu {
     display: table;
@@ -966,8 +991,9 @@ tr:nth-child(odd) {
   }
 
   .calendar {
+    display: flex;
     list-style: none;
-    padding: 0;
+    gap: 1rem;
     margin: 0;
   }
 
@@ -993,10 +1019,8 @@ tr:nth-child(odd) {
 
   #calRemover {
     display: flex;
-    justify-content: flex-end;
-    padding: 0.5rem;
-    margin-left: 1rem;
-    margin-right: 0.5rem;
+    position: fixed;
+    transform: translateY(-1rem);
   }
 
 
@@ -1017,7 +1041,6 @@ tr:nth-child(odd) {
   .login--form input {
     margin: 0.5rem;
     padding: 0.5rem;
-    font-size: 1.5rem;
     width: 6rem;
   }
 
@@ -1050,9 +1073,9 @@ tr:nth-child(odd) {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;    
+    padding: 1rem;
     background-color: var(--background-color);
-    margin-top:3rem;
+    margin-top: 3rem;
   }
 
   .tarjouspyynto .MuiGrid-container {
@@ -1071,7 +1094,7 @@ tr:nth-child(odd) {
     /* Add a subtle shadow for depth */
     border-radius: 8px;
     /* Round the corners slightly */
-    gap:1rem;
+    gap: 1rem;
   }
 
   .tarjous {

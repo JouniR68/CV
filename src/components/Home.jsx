@@ -152,7 +152,7 @@ export default function Home() {
     <h1>{t('homehi')}</h1>
         <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
         <p></p>
-        <Button variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
+        <Button size = 'medium' variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
     </div>
   );
 }

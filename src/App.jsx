@@ -36,7 +36,7 @@ import Basket from "./components/services/TheBasket";
 import TarjousLomake from "./components/services/Tarjouslomake";
 import Register from "./components/Register";
 import Contacts from "./components/services/Contact";
-import {UserLogin} from "./components/UserLogin"
+import { UserLogin } from "./components/UserLogin"
 import Tunterointi from "./components/services/Tunterointi"
 import Report from "./components/services/Report"
 import TarjouspyyntoForm from "./components/services/PyydaTarjous";
@@ -58,18 +58,18 @@ function App() {
               <Route path='/opit' element={<Learnings />} />
               <Route path='/home' element={<Home />} />
               <Route path='/checkLocation' element={<CheckLocation />} />
-              <Route path="output" element={<CV />} />
               <Route path="address" element={<Address />} />
-              <Route path="error" element={<ErrorMessage />} />                            
+              <Route path="error" element={<ErrorMessage />} />
               <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
               <Route path='logout' element={<Logout />} />
               <Route path="userLogin" element={<UserLogin />} />
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
-              <Route path='lasku' element={<Report />} />              
-              
-              <Route path='profile' element={<ProfileLayout />}>              
+              <Route path='lasku' element={<Report />} />
+
+              <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
+                <Route path="output" element={<CV />} />
                 <Route path='cv' element={<CVLayout />}>
                   <Route index element={<Work />} />
                   <Route path='education' element={<Education />} />
@@ -84,27 +84,27 @@ function App() {
               </Route>
 
               <Route path='admin' element={<AdminLayout />}>
-              <Route path="tunterointi" element={<Tunterointi />} />
+                <Route path="tunterointi" element={<Tunterointi />} />
                 <Route path="poistatunnus" index element={<Poistatunnus />} />
-                <Route path='naytaPyynnot' element={<CustomerData />} />                
-                <Route path="lasku" element={<Report />} />    
-                <Route path="tarjous" element={<TarjousLomake />} />                                            
-              </Route>              
-
-              <Route element={<RentalLayout />}>
-                <Route path='rent' index element={<Rent />} />
-                <Route path='addCustomerData' element={<Customer />} />                
-                <Route path='calendar' element={<Calendar />} />
-                <Route path='thanks' element={<ThankYouPage />} />
-                <Route path='contract' element={<ContractForm />} />                
-                
+                <Route path='naytaPyynnot' element={<CustomerData />} />
+                <Route path="lasku" element={<Report />} />
+                <Route path="tarjous" element={<TarjousLomake />} />
               </Route>
+
+
+              <Route path='rent' index element={<Rent />} />
+              <Route path='addCustomerData' element={<Customer />} />
+              <Route path='calendar' element={<Calendar />} />
+              <Route path='thanks' element={<ThankYouPage />} />
+              <Route path='contract' element={<ContractForm />} />
+
+
 
               <Route element={<ShopLayout />}>
                 <Route path='catalog' index element={<Catalog />} />
                 <Route path='basket' element={<Basket />} />
                 <Route path='customers' element={<Contacts />} />
-              </Route>              
+              </Route>
               <Route path="*" element={<NotFound />} />
             </Route>
 

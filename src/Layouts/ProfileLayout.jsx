@@ -1,18 +1,17 @@
 import { useTranslation } from "react-i18next";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 export default function ProfileLayout() {
-  const {t} = useTranslation()
-
+  const { t } = useTranslation()
   //<Link to='intrests'>{t('Intrest-header')}</Link>
   return (
     <>
       <nav className='host-nav'>
-        <Link to="/output">{t('cv')}</Link>
-        <Link to='why'>{t('Why-header')}</Link>
-        <Link to='looking'>{t('Open-header')}</Link>        
+        <Link to="output">{t('cv')}</Link>
+        <Link to='looking'>{t('Open-header')}</Link>
       </nav>
       <Outlet />
     </>
+
   );
 }

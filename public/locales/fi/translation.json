@@ -118,5 +118,6 @@
   "Hi": "Moi",
   "lahetaTarjous": "Lähetä pyyntö",
   "LogoutText": "Olette nyt kirjautuneet ulos",
-  "profession": "Tietokone / ohjelmisto alan ammattilainen"
+  "profession": "Tietokone / ohjelmisto alan ammattilainen",
+  "addEvent": "Lisää tapahtuma"
 }

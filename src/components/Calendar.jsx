@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@mui/material';
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -72,14 +73,18 @@ const Calendar = () => {
                 value={newEvent.date}
                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
             />
-            <button onClick={addEvent}>{t('addEvent')}</button>
+            <Button onClick={addEvent}>{t('addEvent')}</Button>
 
       
                 {events.map(event => (
+                    <>
+                    <div className = "calendar-task-row">
                     <li key={event.id}>
                         {event.title}, {event.date}
-                        <button id="calRemover" onClick={() => deletor(event.id)}>P</button>
+                        <Button id="calRemover" onClick={() => deletor(event.id)}>Poista</Button>
                     </li>
+                    </div>
+                    </>
                 ))}
             
         </div>

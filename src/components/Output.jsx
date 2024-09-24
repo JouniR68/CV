@@ -12,8 +12,9 @@ import { Button } from "@mui/material";
 const CV = () => {
 
     const { t } = useTranslation()
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
 
+    //<Button style={{marginTop:'2rem'}} onClick={() => showContent()}>{t('Show')} {t('Output-education')} {t('Output-techs')}</Button>
     const showContent = () => {
         setShow(!show)
     }
@@ -27,7 +28,7 @@ const CV = () => {
                 <Looking />
             </div>
 
-            <Button style={{marginTop:'2rem'}} onClick={() => showContent()}>{t('Show')} {t('Output-education')} {t('Output-techs')}</Button>
+            
             {show && <div><h3>{t('Output-education')}</h3>
                 <Education />
 

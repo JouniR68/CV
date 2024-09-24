@@ -48,7 +48,7 @@ export default function Header() {
       </div>
 
       {isLoggedIn &&
-        <div className="header-row-rigth">
+        <div className="header-rigth">
           <Link to="/c"><DraftsSharpIcon /></Link>
           <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
           <Link to="/admin"><SettingsIcon /> </Link>

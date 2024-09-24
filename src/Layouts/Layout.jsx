@@ -4,13 +4,15 @@ import Footer from "../components/Footer"
 
 export default function Layout() {
   const location = useLocation();
-  const currentPath = location.pathname;
+  const currentPath = location.pathname
 
     return (
       <>
-        <Header/>                
-        <Outlet />
-        {currentPath != '/tarjouspyynto' && <Footer/>}
+      <div className='host-nav'>        
+        {currentPath != '/profile/output' && <Header/>}        
+        {currentPath != '/tarjouspyynto' && currentPath != '/profile/output' && <Footer/>}        
+      </div>
+      <Outlet />
       </>
     );
 }

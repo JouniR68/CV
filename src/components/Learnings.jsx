@@ -8,6 +8,7 @@ const LearningForm = () => {
     const [topic, setTopic] = useState('');
     const [learning, setLearning] = useState('');
     const [learnings, setLearnings] = useState([]);
+    const [firebaseLearnings, setFirebaseLearnings] = useState([]);  // Store learnings fetched from Firebase
     const navigate = useNavigate()
 
     const fetchLearnings = async () => {
@@ -19,14 +20,15 @@ const LearningForm = () => {
                 ...doc.data(),
             }))
             console.log("Learnings data: ", data)
-            //setLearnings(learnings.docs.map((doc) => ({ ...doc.learnings(), id: doc.id })));
             setLearnings(data)
+            setFirebaseLearnings(data);  // Store the fetched learnings
+            
         }
         catch (error) {
             console.error("Error when fetchings learnings: ", error)
         }
     };
-    
+
     // Hae tiedot Firebasesta
     useEffect(() => {
         fetchLearnings();
@@ -42,10 +44,19 @@ const LearningForm = () => {
     // Tallenna oppitiedot Firebasen learnings-kokoelmaan
     const handleSaveToFirebase = async () => {
         try {
-            learnings.map(learning => {
-                addDoc(collection(db, "learnings"), learning);
-            })
-            navigate('/thanks')
+            const newLearnings = learnings.filter(
+                (learning) =>
+                    !firebaseLearnings.some(
+                        (firebaseLearning) =>
+                            firebaseLearning.topic === learning.topic &&
+                            firebaseLearning.learning === learning.learning
+                    )
+            );
+
+            // Add only the new learnings to Firebase
+            for (const newLearning of newLearnings) {
+                await addDoc(collection(db, "learnings"), newLearning);
+            } navigate('/thanks')
             setTopic('');
             setLearning('');
         } catch (error) {
@@ -54,47 +65,51 @@ const LearningForm = () => {
     };
 
     return (
-        <div>
-            <TextField
-                label="Aihe"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
-            <TextField
-                label="Oppi"
-                value={learning}
-                onChange={(e) => setLearning(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
-            <Button variant="contained" color="primary" onClick={handleAddLearning}>
-                Lisää
-            </Button>
-            <Button variant="contained" color="secondary" onClick={handleSaveToFirebase} style={{ marginLeft: '10px' }}>
-                Talleta
-            </Button>
+        <div className="opit">
+            <div className="opit-input">
+                <TextField
+                    label="Aihe"
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                />
+                <TextField
+                    label="Oppi"
+                    value={learning}
+                    onChange={(e) => setLearning(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                />
+                <Button variant="contained" color="primary" onClick={handleAddLearning}>
+                    Lisää
+                </Button>
+                <Button variant="contained" color="secondary" onClick={handleSaveToFirebase} style={{ marginLeft: '10px' }}>
+                    Talleta
+                </Button>
+            </div>
 
-            {/* Taulukko Firebasesta haetuille oppitiedoille */}
-            <TableContainer component={Paper} style={{ marginTop: '20px' }}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Aihe</TableCell>
-                            <TableCell>Oppi</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {learnings.map((learning, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{learning.topic}</TableCell>
-                                <TableCell>{learning.learning}</TableCell>
+            <div className="opit-taulu">
+                {/* Taulukko Firebasesta haetuille oppitiedoille */}
+                <TableContainer component={Paper} style={{ marginTop: '20px' }}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Aihe</TableCell>
+                                <TableCell>Oppi</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {learnings.map((learning, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{learning.topic}</TableCell>
+                                    <TableCell>{learning.learning}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
         </div>
     );
 };
