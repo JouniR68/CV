@@ -94,7 +94,7 @@
   "finland": "Suomi",
   "checkLocation": "Sijaintisi",
   "birthPlace":"Rovaniemi, Lapin lääni, Finland",
-  "cv":"Historia",
+  "cv":"Näytä lisää",
   "Confirmation":"Vahvistus",
   "check": "Tarkista",
   "password":"Salasana",
@@ -119,5 +119,6 @@
   "lahetaTarjous": "Lähetä pyyntö",
   "LogoutText": "Olette nyt kirjautuneet ulos",
   "profession": "Tietokone / ohjelmisto alan ammattilainen",
-  "addEvent": "Lisää tapahtuma"
+  "addEvent": "Lisää tapahtuma",
+  "Method": "Methodi"
 }

@@ -20,7 +20,8 @@
         "Git",
         "SVN",
         "Virtual envs",
-        "CD/CD pipelines"
+        "CD/CD pipelines",
+        "Firebase (Google's mobile and web app development platform)"
       ],
       "ProjectMethods": [
         "Waterfall",

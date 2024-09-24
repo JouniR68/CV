@@ -95,7 +95,7 @@
   "finland": "Finland",
   "checkLocation": "Location",
   "birthPlace":"Rovaniemi, Lapland, Finland",
-  "cv": "History",
+  "cv": "Show more",
   "Confirmation":"Confirmation",
   "check":"Check",
   "password":"Password",
@@ -119,5 +119,6 @@
   "Hi": "Hey",
   "lahetaTarjous": "Send request",
   "LogoutText": "You are logged out",
-  "profession": "Software profession with hands on attitude."
+  "profession": "Software profession with hands on attitude.",
+  "Method": "Method"
 }

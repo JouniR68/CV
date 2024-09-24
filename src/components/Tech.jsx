@@ -22,15 +22,13 @@ export default function Tech() {
   return (
     <>      
       <TableContainer component={Paper}>
-
         <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
-
           <TableHead>
             <TableRow>
               <TableCell align="left">{t('Techs-header')}</TableCell>
-              <TableCell align="left">{t('Techs-schedule-header')}</TableCell>
-              <TableCell align="left">{t('Techs-role-header')}</TableCell>
-              <TableCell align="left">{t('Techs-location-header')}</TableCell>
+              <TableCell align="left"></TableCell>
+              <TableCell align="left"></TableCell>
+              <TableCell align="left">{t('Method')}</TableCell>
               
             </TableRow>
           </TableHead>

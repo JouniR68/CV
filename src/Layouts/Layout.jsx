@@ -9,7 +9,7 @@ export default function Layout() {
     return (
       <>
       <div className='host-nav'>        
-        {currentPath != '/profile/output' && <Header/>}        
+      <Header/>
         {currentPath != '/tarjouspyynto' && currentPath != '/profile/output' && <Footer/>}        
       </div>
       <Outlet />

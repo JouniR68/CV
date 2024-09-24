@@ -1,5 +1,5 @@
 import JsonData from "../../data/datapkg.json";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import {
@@ -9,6 +9,7 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  Button
 } from '@mui/material';
 
 export default function Education() {
@@ -17,30 +18,34 @@ export default function Education() {
     return j;
   });
 
+  const location = useLocation()
+  const currentPath = location.currentPath
   const { t } = useTranslation();
-  
+  const navigate = useNavigate();
+
   return (
     <>
-      
+
       <div>
         {profileData.map((profile) => (
-          <div key={i++} className='profile--table'>
-            <div className = ".photo-grid">
-            <Link to = "kohde"><img key={i++}  src={profile.Photo} alt='Jouni Riimala' /></Link>
+          <>
+            <div key={i++} className="profile">
+              <Link to="kohde"><img key={i++} src={profile.Photo} alt='Jouni Riimala' /></Link>
+              {currentPath === '/profile/output' && <Button onClick = {() => navigate('/profile/output')}>{t('cv')}</Button>}
+              <TableContainer component={Paper}>
+                <Table aria-label="simple table" key={i++}>
+                  <TableBody>
+                    <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>
+                    <TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
+                    <TableRow><TableCell className='row'>{t('ProfileLocation')}: {profile.Location}</TableCell></TableRow>
+                    <TableRow><TableCell className='row'>{t('ProfileProfession')}: {t('profession')}</TableCell></TableRow>
+                    <TableRow><TableCell className='row'>{t('ProfileMail')}: jr@softa-apu.fi</TableCell></TableRow>
+                    <TableRow><TableCell className='row'>{t('ProfileTel')}: +358 2385 888</TableCell></TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </div>
-            <TableContainer component={Paper}>
-            <Table aria-label="simple table" key={i++}>
-              <TableBody>
-                <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileLocation')}: {profile.Location}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileProfession')}: {t('profession')}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileMail')}: jr@softa-apu.fi</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileTel')}: +358 2385 888</TableCell></TableRow>
-              </TableBody>
-            </Table>
-            </TableContainer>
-          </div>
+          </>
         ))}
 
       </div>

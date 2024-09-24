@@ -38,7 +38,7 @@
   }
 
   .app-container {
-    margin: 5rem auto;
+    margin: 32rem auto;
     /* 2rem margin at the top and bottom, auto margins left and right */
     max-width: 100%;
     /* Ensures the container doesn't exceed the viewport width */
@@ -51,9 +51,23 @@
     /* Optional: Center content horizontally */
     align-items: center;
     /* Optional: Center content vertically */
-    background-color: beige;
+    background-color: whitesmoke;
     border-radius: 1rem;
-    zoom: 1;
+    zoom: 1.3;
+  }
+
+  .profile {    
+    display: flex;
+    flex-direction: column;
+    margin-top:-20rem;
+    width:fit-content;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;  
+  }
+  
+  .cleanpage{
+    background-color: white;
   }
 
   .opit {
@@ -83,11 +97,10 @@
   .output {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 1rem auto;
-    width: 60vw;
-    height: auto;
+    margin:-20px;
+    width: 110vw;
+    height: 100vh;
+    background-color: white;
   }
 
   .output-two {
@@ -337,12 +350,13 @@
   width: 20%;
 }
 
-.photo-grid img {
-  width: 100%;
+.profile img {
+  width: 60%;
   height: auto;
+  margin-top:0px;
   margin-left: 1rem;
   display: block;
-  border-radius: 5px;
+  border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -474,19 +488,18 @@ header a:hover {
 
 .host-nav {
   display: flex;
-  /* Align items horizontally */
-  justify-content: center;
-  /* Space out the links */
-  align-items: center;
-  /* Center links vertically */
-  padding: 10px;
-  /* Add padding around the nav */
-  font-weight: 700;
-  margin-bottom: 30rem;
-  margin-left: -10rem;
+  justify-content: center; /* Center nav items horizontally */
+  align-items: flex-start; /* Adjust if needed */
+  padding: 10px; /* Padding around the nav */
+  font-weight: 700; /* Bold text */
+  margin-bottom: 1rem; /* Optional: Space between nav and table */
+  background-color: #f0f0f0; /* Optional: Background color for visibility */
 }
 
 .host-nav a {
+  display:flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   /* Remove underline from links */
   color: #333;
@@ -569,13 +582,13 @@ h3.cv-contact-title {
   height: 50%;
 }
 
-.profile--table {
+.profile {
+  position:relative;
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  text-align: left;
-  margin-left: 2rem;
-  justify-content: start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;  
 }
 
 .profile--card {
@@ -967,17 +980,16 @@ tr:nth-child(odd) {
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 20px;
     margin-top: 2rem;
     margin-left: 1rem;
-    width: 100px;
+    width: 200px;
   }
 
   .photo-grid img {
-    width: 60%;
+    width: 50%;
     height: auto;
     display: block;
-    border-radius: 5px;
+    border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 

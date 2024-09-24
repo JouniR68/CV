@@ -10,7 +10,6 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 
 const CV = () => {
-
     const { t } = useTranslation()
     const [show, setShow] = useState(true)
 
@@ -21,14 +20,10 @@ const CV = () => {
 
     return (
         <div className="output">
-            <div className="output-two">
+            <div>
                 <h3>{t('Output-profile')}</h3>
-                <Profile />
-                <h3>{t('Looking')}</h3>
-                <Looking />
+                <Profile />                
             </div>
-
-            
             {show && <div><h3>{t('Output-education')}</h3>
                 <Education />
 
@@ -36,13 +31,8 @@ const CV = () => {
                 <Tech />
             </div>
             }
-
-
             <h3>{t('Output-work')}</h3>
             <Work />
-
-
-
         </div>
     );
 }

@@ -3,7 +3,6 @@ import "./index.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
 import ShopLayout from "./Layouts/ShopLayout";
-import RentalLayout from "./Layouts/RentalLayout";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Rent from "./components/Services";
@@ -47,6 +46,8 @@ import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
 
 function App() {
+
+//<Route path='looking' element={<Looking />} />
   return (
     <div className="app-container">
       <AuthProvider>
@@ -79,7 +80,7 @@ function App() {
                 </Route>
                 <Route path='intrests' element={<Intrests />} />
                 <Route path='why' element={<Why />} />
-                <Route path='looking' element={<Looking />} />
+                
                 <Route path="kohde" element={<KohteenKuvat />} />
               </Route>
 
