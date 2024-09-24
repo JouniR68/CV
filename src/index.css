@@ -495,7 +495,7 @@ header a:hover {
   display: flex;  
   position:fixed;
   top:10%;
-  left: 10;
+  left: 14%;
   justify-content: center; /* Center nav items horizontally */
   align-items: flex-start; /* Adjust if needed */
   padding: 10px; /* Padding around the nav */
