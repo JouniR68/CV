@@ -148,8 +148,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 0.5rem;
-    width: 50vw;
+    padding: 0rem;
+    width: 20vw;
   }
 
   .tarjouspyynto {
@@ -482,13 +482,15 @@ header a:hover {
 }
 
 .host-nav {
-  display: flex;
+  display: flex;  
   justify-content: center; /* Center nav items horizontally */
   align-items: flex-start; /* Adjust if needed */
   padding: 10px; /* Padding around the nav */
   font-weight: 700; /* Bold text */
-  margin-bottom: 1rem; /* Optional: Space between nav and table */
+  margin-top: -10rem; /* Optional: Space between nav and table */
+
   background-color: #f0f0f0; /* Optional: Background color for visibility */
+
 }
 
 .host-nav a {

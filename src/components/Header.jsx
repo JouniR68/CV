@@ -49,10 +49,8 @@ export default function Header() {
 
       {isLoggedIn &&
         <div className="header-right">
-          <Link to="/c"><DraftsSharpIcon /></Link>
           <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-          <Link to="/admin"><SettingsIcon /> </Link>
-          {isAuthenticated && <Link to="/tunterointi">JR</Link>}
+          <Link to="/admin"><SettingsIcon /> </Link>          
           {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
         </div>}
     </div>

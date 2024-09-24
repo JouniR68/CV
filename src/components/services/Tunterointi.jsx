@@ -61,14 +61,14 @@ function Tunterointi() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      {!access && <div>
+    <div>
+      {!access && <div className="tuntikirjaus">
 
         <h1>Teillä ei ole pääsyä tuntikirjaukseen</h1>
 
       </div>}
       {access &&
-        <div className="tuntikirjaus">
+        <div>
           <h1>Tuntikirjaus</h1>
           <TextField
             label="Päivä"
@@ -110,12 +110,10 @@ function Tunterointi() {
           <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
             +
           </Button>
-          <Button style={{marginTop:'1rem'}} variant="outlined" onClick={() => handleInvoice()}>Talleta
+          <Button style={{margin:'1rem'}} variant="outlined" onClick={() => handleInvoice()}>Talleta
           </Button>
         </div>
       }
-
-
     </div>
   );
 }
