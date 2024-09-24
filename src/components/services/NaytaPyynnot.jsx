@@ -80,7 +80,7 @@ const ShowOrders = () => {
 	console.log("reqs: ", orderReqs)
 
 	return (
-		<>
+		<div className = "pyynnot">
 			<TableContainer component={Paper}>
 				{error.length > 1 && <h3>{error}</h3>}
 
@@ -134,7 +134,7 @@ const ShowOrders = () => {
 
 				</Table>
 			</TableContainer>
-		</>
+			</div>	
 
 	)
 }
