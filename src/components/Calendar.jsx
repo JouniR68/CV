@@ -9,7 +9,7 @@ import { Button, TextField } from '@mui/material';
 const Calendar = () => {
     const { t } = useTranslation();
     const [events, setEvents] = useState([]);
-    const [newEvent, setNewEvent] = useState({ title: '', date: Date() });
+    const [newEvent, setNewEvent] = useState({ title: '', date: new Date().toISOString().split('T')[0] });
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -66,7 +66,7 @@ const Calendar = () => {
 
                 <div className="calendar-form">
                     <TextField
-                        placeholder="tapahtuma"
+                        placeholder="Tapahtuma"
                         value={newEvent.title}
                         onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                     />
@@ -79,11 +79,14 @@ const Calendar = () => {
 
                 <div className="calendar-task-row">
                     {events.map(event => (
-
+                        <>
+                        <div className="calendar-task">
                         <li key={event.id}>
                             {event.title}, {event.date}
                             <Button id="calRemover" onClick={() => deletor(event.id)}>Poista</Button>
                         </li>
+                        </div>
+                        </>
                     ))}
                 </div>
 

@@ -289,16 +289,18 @@
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: flex-start; /* Align items from the top */
-  height: 90vh; /* 10% decrease from the top */
+  height: 40vh; /* 10% decrease from the top */
   padding-top: 10vh; /* Push down 10% from the top */
 }
 
 .calendar-form {
-  margin-top: 0;
-  margin-left:0;
+  display:flex;
+  flex-direction: column;
+  margin-top: 20;  
   flex: 1; /* Takes up available space on the left */
-  max-width: 300px; /* Adjust width of the form */
+  max-width: 15vw; /* Adjust width of the form */
   margin-right: 2rem; /* Space between form and task rows */
+  gap:1rem;
 }
 
 .calendar-task-row {
