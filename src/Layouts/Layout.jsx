@@ -6,13 +6,12 @@ export default function Layout() {
   const location = useLocation();
   const currentPath = location.pathname
 
-    return (
-      <>
-      <div className='host-nav'>        
-      <Header/>
-        {currentPath != '/tarjouspyynto' && currentPath != '/profile/output' && <Footer/>}        
-      </div>
-      <Outlet />
-      </>
-    );
+  return (    
+      <div className='host-nav'>
+        <Header />
+        {currentPath != '/tarjouspyynto' && currentPath != '/profile/output' && <Footer />}
+
+        <Outlet />
+      </div>    
+  );
 }

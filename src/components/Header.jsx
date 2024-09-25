@@ -25,36 +25,36 @@ export default function Header() {
   const isAuthenticated = sessionStorage.getItem("adminLevel")
   console.log("Header isLoggedIn: ", isLoggedIn)
 
-
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const storedLoggedIn = sessionStorage.getItem("loggedIn")
-  if (storedLoggedIn === "true") {
-    setIsLoggedIn(true)
-  }
+  useEffect(() => {
+    const storedLoggedIn = sessionStorage.getItem("loggedIn")
+    if (storedLoggedIn === "true") {
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   return (
 
     <div className="header">
       <div className="header-left">
-        <Link to="/home"><HomeWorkIcon /></Link>
+        <Link to="/"><HomeWorkIcon /></Link>
         <Link to="/profile"><PersonSharpIcon /></Link>
         <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
       </div>
       <div className="header-right">
         {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
-        {!isLoggedIn && currentPath != '/userLogin' && <Link to="/register">{t('Register')}</Link>}
+        {!isLoggedIn && currentPath != '/register' && <Link to="/register">{t('Register')}</Link>}
+
+        {isLoggedIn &&
+          <>
+            <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+            <Link to="/admin"><SettingsIcon /> </Link>
+            {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
+          </>}
       </div>
-
-      {isLoggedIn &&
-        <div className="header-right">
-          <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-          <Link to="/admin"><SettingsIcon /> </Link>          
-          {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
-        </div>}
     </div>
-
 
 
   );

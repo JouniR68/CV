@@ -44,6 +44,7 @@ import KohteenKuvat from "./components/KohteenKuvat"
 import Poistatunnus from "./components/Poistatunnus"
 import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
+import Header from "./components/Header";
 
 function App() {
 
@@ -60,7 +61,7 @@ function App() {
   return (
     <div className="app-container">
       <AuthProvider>
-        <BrowserRouter>
+        <BrowserRouter>        
           <Routes>
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />

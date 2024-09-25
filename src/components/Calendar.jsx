@@ -4,7 +4,7 @@ import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -60,34 +60,35 @@ const Calendar = () => {
     }
 
     return (
-        <div className="calendar">
-            <h2>{t('Calendar')}</h2>
-            <input
-                type="text"
-                placeholder="Event Title"
-                value={newEvent.title}
-                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-            />
-            <input
-                type="date"
-                value={newEvent.date}
-                onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-            />
-            <Button onClick={addEvent}>{t('addEvent')}</Button>
+        <>
+            <h3>{t('Calendar')}</h3>
+            <div className="calendar">
 
-      
-                {events.map(event => (
-                    <>
-                    <div className = "calendar-task-row">
-                    <li key={event.id}>
-                        {event.title}, {event.date}
-                        <Button id="calRemover" onClick={() => deletor(event.id)}>Poista</Button>
-                    </li>
-                    </div>
-                    </>
-                ))}
-            
-        </div>
+                <div className="calendar-form">
+                    <TextField
+                        placeholder="tapahtuma"
+                        value={newEvent.title}
+                        onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                    />
+                    <TextField type="date"
+                        value={newEvent.date}
+                        onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                    />
+                    <Button onClick={addEvent}>{t('addEvent')}</Button>
+                </div>
+
+                <div className="calendar-task-row">
+                    {events.map(event => (
+
+                        <li key={event.id}>
+                            {event.title}, {event.date}
+                            <Button id="calRemover" onClick={() => deletor(event.id)}>Poista</Button>
+                        </li>
+                    ))}
+                </div>
+
+            </div>
+        </>
     );
 };
 

@@ -30,7 +30,7 @@ export default function Profile({hideButton}) {
         {profileData.map((profile) => (
             <div key={i++} className="profile">
               <Link to="kohde"><img key={i++} src={profile.Photo} alt='Jouni Riimala' /></Link>
-              {!hideButton && <Button onClick = {() => navigate('/profile/output')}>{t('cv')}</Button>}
+              {!hideButton && <Button className ="profile-button" onClick = {() => navigate('/profile/output')}>{t('cv')}</Button>}
               {console.log("hideButton: ", hideButton)}
               <TableContainer component={Paper}>
                 <Table aria-label="simple table" key={i++}>

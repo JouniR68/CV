@@ -146,7 +146,6 @@ export default function Home() {
     </div>
   */
 
-  // {isMobileDpi ? t('welcomeText') : splittedText.forEach(text => text)}
   return (
     <div className="home">      
     <h1>{t('homehi')}</h1>

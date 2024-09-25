@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function AdminLayout() {
   const [access, setAccess] = useState(false)
@@ -16,7 +17,7 @@ export default function AdminLayout() {
     <>
       {access ?
         <div>
-          <nav className="host-nav">
+          <nav className="host-nav">            
             <Link to="tunterointi">Tuntien kirjaus</Link>
             <Link to="naytaPyynnot">Näytä työpyynnöt</Link>
             <Link to="poistatunnus">Poista tunnus</Link>
