@@ -12,6 +12,7 @@ import { Button } from '@mui/material';
 
 
 const TextWrapper = ({ text, maxLength }) => {
+  console.log("text: ", text + ", length: ", maxLength )
   // Function to split the text into chunks of maxLength without breaking words
   const splitIntoChunksWithoutBreakingWords = (text, maxLength) => {
     const words = text.split('.'); // Split the text by spaces (words)
@@ -144,14 +145,19 @@ export default function Home() {
       <p>Viewport width: {viewportWidth}px</p>
       <p>Viewport height: {viewportHeight}px</p>
     </div>
+    <img src="./src/assets/aita.jpg" alt="aita" />
+          <div>        
+      <img src="./src/assets/softaapu.png" alt="koodi" />        
+      </div>
+
   */
 
   return (
-    <div className="home">      
-    <h1>{t('homehi')}</h1>
-        <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
-        <p></p>
-        <Button size = 'medium' variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
+    <div className="home">
+      <h1>ATK / IT- apuja</h1>
+      <h1>Tarjous</h1>
+      <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
+      <Button size='medium' variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
     </div>
   );
 }
