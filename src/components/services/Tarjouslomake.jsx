@@ -84,6 +84,7 @@ const Tarjouslomake = () => {
     // Laskee kokonaissummat ja vähennykset
     const laskeYhteenveto = () => {
         const yhteiskulut = tehtavat.reduce((summa, item) => summa + parseFloat(item.kuluarvio), 0);
+        console.log("yhteiskulut: ", yhteiskulut)
         const alv = yhteiskulut * (ALV_PERCENTAGE / 100);
         const kokonaissumma = yhteiskulut + alv + valinekustannus;
         const kotitalousvahennys = Math.min(
@@ -101,6 +102,7 @@ const Tarjouslomake = () => {
     };
 
     const yhteenveto = laskeYhteenveto();
+    console.log("yhteenveto: ", yhteenveto)
 
     // Laskee tarjouksen voimassaoloajan (2 viikkoa eteenpäin)
     const tarjouslomakeVoimassa = () => {
@@ -113,7 +115,8 @@ const Tarjouslomake = () => {
     const lisaaTehtava = () => {
         console.log("lisaaTehtava funkkari Tarjouslomakkeella")
         if (tehtava && kuvaus && tuntiarvio) {
-            setTehtavat([...tehtavat, { tehtava, kuvaus, tuntiarvio }]);
+            const kuluarvio = parseFloat(tuntiarvio) * tuntihinta; // Calculate kuluarvio
+            setTehtavat([...tehtavat, { tehtava, kuvaus, tuntiarvio, kuluarvio }]);
             setTehtava('');
             setKuvaus('');
             setTuntiarvio(0);
@@ -126,18 +129,18 @@ const Tarjouslomake = () => {
 
         // Otsikko
         doc.setFontSize(20);
-        doc.text('tarjouslomake', 14, 22);
+        doc.text('TARJOUSLOMAKE', 14, 22);
 
         // Yksityiskohdat
         doc.setFontSize(12);
-        doc.text(`tarjouslomakenumero: ${uuid}`, 14, 30);
+        doc.text(`Tarjouksen numero: ${uuid}`, 14, 30);
         doc.text(`Päiväys: ${new Date().toLocaleDateString()}`, 14, 36);
-        doc.text(`tarjouslomake voimassa: ${tarjouslomakeVoimassa()}`, 14, 42);
+        doc.text(`Voimassa: ${tarjouslomakeVoimassa()}`, 14, 42);
 
         // Tarjoajan tiedot
         doc.text('Tarjoaja:', 14, 60);
         doc.autoTable({
-            startY: 70,
+            startY: 65,
             head: [['Nimi', 'Osoite', 'Puhelin', 'Sähköposti', 'Y-tunnus']],
             body: [[tarjoaja.nimi, tarjoaja.osoite, tarjoaja.puhelin, tarjoaja.sahkoposti, tarjoaja.ytunnus]],
         });
@@ -150,27 +153,27 @@ const Tarjouslomake = () => {
             body: [[saaja.nimi, saaja.osoite, saaja.puhelin, saaja.sahkoposti, saaja.ytunnus]],
         });
 
-        doc.text(`Työvälinekustannusarvio: ${valinekustannus} €`, 14, 123)
+        doc.text(`Työvälinekustannusarvio: ${valinekustannus} €`, 14, 120)
 
         // Tehtävät
-        doc.text('Tehtävät:', 14, 133);
+        doc.text('Tehtävät:', 14, 130);
         doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 22,
+            startY: doc.lastAutoTable.finalY + 30,
             head: [['Tehtävä', 'Kuvaus', 'Tuntiarvio', 'Tuntiarvio * tuntihinta', 'Alv 25.5%', 'Alvillinen summa']],
-            body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio} €`, `${item.kuluarvio * 0.255} €`, `${(Number(item.kuluarvio) + Number(item.kuluarvio) * 0.255).toFixed(2)} €`]),
+            body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio.toFixed(2)} €`, `${(item.kuluarvio * 0.255).toFixed(2)} €`, `${(Number(item.kuluarvio) + Number(item.kuluarvio) * 0.255).toFixed(2)} €`]),
         });
 
         // Yhteenveto
-        doc.text('Yhteenveto:', 14, 168);
+        doc.text('Yhteenveto:', 14, 180);
         doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 14,
+            startY: doc.lastAutoTable.finalY + 10,
             head: [['Kokonaissumma', 'ALV (25.5%)', 'Kotitalousvähennys (40%)', 'Vähennyksen jälkeen']],
-            body: [[`${yhteenveto.kokonaissumma} €`, `${yhteenveto.alv} €`, `${yhteenveto.kotitalousvahennys} €`, `${yhteenveto.maksettava} €`]],
+            body: [[`${Number(yhteenveto.kokonaissumma)} €`, `${Number(yhteenveto.alv)} €`, `${yhteenveto.kotitalousvahennys} €`, `${yhteenveto.maksettava} €`]],
         });
 
-        doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 25% välillä.', 14, 200)
-        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 20% jota ei palauteta', 14, 210)
-        doc.text('mikäli asiakas peruuttaa tilauksen.', 14, 215)
+        doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 25% välillä.', 14, 220)
+        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 20% jota ei palauteta', 14, 230)
+        doc.text('mikäli asiakas peruuttaa tilauksen.', 14, 235)
 
         // PDF:n tallennus
         doc.save(`tarjouslomake_${uuid}.pdf`);
