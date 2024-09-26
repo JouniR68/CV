@@ -41,9 +41,12 @@
   .app-container {
     display: flex;
     position: fixed;
-    top: 7%; /* Offset from the top */
-    left: 50%; /* Move to the center horizontally */
-    transform: translateX(-50%); /* Center the container horizontally */    
+    top: 7%;
+    /* Offset from the top */
+    left: 50%;
+    /* Move to the center horizontally */
+    transform: translateX(-50%);
+    /* Center the container horizontally */
     justify-content: center;
     align-items: center;
     width: 60vw;
@@ -51,7 +54,7 @@
     height: calc(100vh - 12rem);
     border-radius: 1rem;
     background-color: var(--primary-color);
-    border:1px solid;
+    border: 1px solid;
     zoom: 1.1;
   }
 
@@ -60,20 +63,20 @@
     flex-direction: column;
     position: fixed;
     top: 20%;
-    left: 15%;
+    left: 0%;
     width: fit-content;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-top: 3rem;
+    margin: 1rem;
   }
 
   .profile {
-    display: flex;    
+    display: flex;
     justify-content: flex-start;
-    align-items: center;    
-    width:30vw;
-    height: 70vh;    
-  margin-left: -20rem;
+    align-items: center;
+    width: 30vw;
+    height: 70vh;
+    margin-left: -20rem;
   }
 
   .profile-button,
@@ -81,7 +84,7 @@
     border-radius: 1rem;
     margin-left: 0rem;
   }
-  
+
   .cleanpage {
     background-color: white;
   }
@@ -134,20 +137,22 @@
   .output {
     display: flex;
     flex-direction: row;
-    position:fixed;
-    top:7%;
-    left:0;
-    align-items: center;    /* Center align horizontally */
+    position: fixed;
+    top: 7%;
+    left: 0;
+    align-items: center;
+    /* Center align horizontally */
   }
-  
+
   .output-content {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    width: 100%;    
-    justify-content: flex-start;             /* Ensure it takes full width */
+    width: 100%;
+    justify-content: flex-start;
+    /* Ensure it takes full width */
     align-items: flex-start;
     overflow-y: auto;
-    margin-left:1rem;
+    margin-left: 1rem;
   }
 
   .output h3 {
@@ -203,7 +208,7 @@
     left: 12%;
     justify-content: center;
     align-items: center;
-    padding: 1rem;    
+    padding: 1rem;
     margin-top: auto;
     overflow: auto;
   }
@@ -213,29 +218,29 @@
     width: 50vw;
     max-height: 60hv;
     height: 40%;
-    background-color: #fff;    
-    padding: 0.5rem;    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);    
-    border-radius: 8px;    
-    gap:1rem;
+    background-color: #fff;
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    gap: 1rem;
   }
 
   .tunnus {
-    display:flex;
+    display: flex;
     position: fixed;
     flex-direction: column;
     top: 14%;
     left: 23%;
-    max-width: 80%;    
-    padding: 3rem;    
-    box-sizing: border-box;        
-    row-gap:1rem;
+    max-width: 80%;
+    padding: 3rem;
+    box-sizing: border-box;
+    row-gap: 1rem;
   }
 
   .tunnus-tili {
-    display: flex; 
-    align-items: center; 
-    justify-content: flex-start; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 12rem;
   }
 
@@ -246,19 +251,19 @@
   .tarjouslomake h1,
   .tarjouslomake {
     display: flex;
-    position: fixed;    
-    top:16%;
-    width:90%;
-    left: 10%;    
+    position: fixed;
+    top: 16%;
+    width: 90%;
+    left: 10%;
     justify-content: center;
-    margin: rem;    
+    margin: rem;
   }
 
   .tarjouslomake-nappi {
-    display:flex; 
+    display: flex;
     flex-direction: row;
-    width:20rem;   
-    gap:1rem;
+    width: 20rem;
+    gap: 1rem;
   }
 
   .tarjouslomake .MuiContainer-root {
@@ -267,559 +272,572 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
-  
+
+
   .tarjouslomake .MuiTypography-h4,
   .tarjouslomake .MuiTypography-h6 {
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
-  
+
   .tarjouslomake-asiakas,
-  .tarjouslomake-tarjoaja{
+  .tarjouslomake-tarjoaja {
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to the next row */
+    flex-wrap: wrap;
+    /* Allows items to wrap to the next row */
     width: 50rem;
-    gap: 1rem; /* This will now apply both row and column gaps */    
+    gap: 1rem;
+    /* This will now apply both row and column gaps */
   }
 
-  
+
   .tarjouslomake-osapuolet {
     display: flex;
     flex-direction: row;
-    gap: 2rem;       /* Sets gap between both columns and rows */    
+    gap: 2rem;
+    /* Sets gap between both columns and rows */
   }
 
-  
+
   .tarjouslomake .MuiGrid-container {
-    margin-bottom: 1.5rem;    
+    margin-bottom: 1.5rem;
   }
-  
-  .tarjouslomake-matkakulut{
-    margin-top:-3rem;
+
+  .tarjouslomake-matkakulut {
+    margin-top: -3rem;
   }
 
   .tarjouslomake .MuiGrid-item {
     display: flex;
     flex-direction: column;
   }
-  
+
   .tarjouslomake .MuiButton-contained {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     background-color: #1976d2;
     color: white;
   }
-  
+
   .tarjouslomake .MuiButton-contained:hover {
     background-color: #1565c0;
   }
-  
+
   .tarjouslomake .MuiTextField-root {
     margin-bottom: 1rem;
   }
-  
+
   .tarjouslomake .MuiTextField-root input {
     display: flex;
     justify-content: center;
-    padding: 1rem;    
+    padding: 1rem;
     align-items: flex-start;
   }
-  
+
   .tarjouslomake .MuiBox-root {
     margin-bottom: 1rem;
   }
-  
+
   .tarjouslomake .MuiTypography-body1 {
     font-size: 1rem;
     font-weight: 400;
     color: #333;
   }
-  
+
   .tarjouslomake .MuiTypography-subtitle1 {
     font-size: 1rem;
     color: #666;
   }
-  
+
   .tarjouslomake .MuiButton-root {
-    display:flex;
+    display: flex;
     margin-top: 0.1rem;
-    height:10px;
+    height: 10px;
     text-align: center;
     justify-content: center;
   }
-  
+
   .tarjouslomake .MuiButton-root {
     background-color: #2196f3;
   }
-  
+
   .tarjouslomake .MuiButton-root:hover {
     background-color: #1976d2;
   }
-  
-.catalog {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.catalog--card {
-  flex: 1 1 20%;
-  border: 1px solid;
-  padding: 1rem;
-  margin-bottom: 0.2rem;
-  justify-content: center;
-  text-align: left;
-  width: 40%;
-}
-
-.catalog--card h3 {
-  padding: 0.5rem;
-  background: lightblue
-}
-
-.catalog--card input {
-  width: 5rem;
-  margin-right: 10px;
-  line-height: 2rem;
-  padding: 0.5rem;
-  text-align: center;
-}
-
-.catalog--card button {
-  margin-top: 1rem;
-}
-
-#kpl {
-  margin-left: 1rem;
-}
-
-.calendar {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: flex-start; /* Align items from the top */
-  max-height: 70vh; /* 10% decrease from the top */
-  padding-top: 10vh; /* Push down 10% from the top */
-}
-
-.calendar-form {
-  display:flex;
-  flex-direction: column;
-  margin-top: 20;  
-  flex: 1; /* Takes up available space on the left */
-  max-width: 15vw; /* Adjust width of the form */
-  margin-right: 2rem; /* Space between form and task rows */
-  gap:1rem;
-  height: 40vh;
-}
-
-.calendar-task-row {
-  flex: 3; /* Takes up more space compared to the form */
-  display: flex;
-  flex-direction: column;
-  gap: 1rem; /* Space between each task row */
-}
-
-/* Optional: Styling for items inside calendar-task-row */
-.calendar-task {
-  padding: 1rem;
-  background-color: #f4f4f4;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-
-
-.confirmation-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  /* Semi-transparent background */
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  text-align: left;
-  z-index: 1000;
-  /* Ensure it sits above all other content */
-}
-
-.confirmation-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  max-width: 400px;
-  width: 100%;
-}
-
 
-.mail {
-  display: flex;
-  flex-direction: column;
-  padding: 0.1rem;
-  gap: 1rem;
-}
-
-.confirmation-content button {
-  margin: 1rem;
-  width: 4rem;
-}
-
-#ok {
-  padding: 0.5rem;
-  background-color: green;
-  font-weight: bold;
-}
-
-#nok {
-  padding: 0.5rem;
-  background-color: red;
-  font-weight: bold;
-}
-
-#saveButton {
-  margin-top: 4rem;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-.lasku {
-  margin-top: 200px;
-  margin-bottom: 200px;
-}
-
-
-#softaapu-logo {
-  width: "34rem";
-  height: "34rem";
-}
-
-
-.header {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  color: var(--header-text-color) !important;
-  border-radius: 0.2rem;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  font-size: 1rem;
-}
-
-.header-right {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: auto;
-  margin-right: 2rem;
-  padding-right: 10px;
-  font-size: 1rem;
-}
-
-
-.header-left Link {
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-
-header a {
-  text-decoration: none;
-  color: #4d4d4d;
-  font-weight: 600;
-  padding: 5px 10px;
-}
-
-header a:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-.footer {
-  display: flex;
-  position: fixed;
-  margin: 0 auto;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  background-color: var(--footer-background-color);
-  justify-content: center;
-  align-items: center;
-}
-
-.footer-items {
-  display: flex;
-  gap: 0.1rem;
-  align-items: center;
-}
-
-.footer-items img {
-  margin-right: 20px;
-  width: 24px;
-  height: 24px;
-}
-
-.link-button {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  padding: 0.75rem 1.375rem;
-  color: initial;
-  font-weight: 700;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out;
-}
-
-.link-button:hover {
-  transform: translate(1px, 1px);
-}
-
-.home {
-  display: flex;
-  position: fixed;
-  top: 0%;
-  left: 25%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0 auto;
-  font-size: medium;
-  font-weight: 550;
-  height: 100vh;
-  width: 70%;
-  gap:1rem;
-}
-
-#home-nappi {
-  color: white;
-  font-weight: 600;
-  margin-top: 1rem;
-  margin-bottom: 10rem;
-  font-size: 12px;
-}
-
-.home-welcome {
-  padding: 1rem;
-}
-
-.home-welcome h1 {
-  width: auto;
-  font-weight: 700;
-  font-size: 2rem;
-}
-
-
-.home img {  
-  width: 50%;  
-  height: auto;  
-  object-fit: cover;
-  overflow: hidden;
-  margin-left: 10px;
-  border-radius: 10px;
-  background-color: var(--primary-color);
-}
-
-.host-nav {
-  display: flex;
-  position: fixed;
-  top: 10%;
-  left: 25%;
-  justify-content: center;
-  /* Center nav items horizontally */
-  align-items: flex-start;
-  /* Adjust if needed */
-  padding: 10px;
-  /* Padding around the nav */
-  font-weight: 700;
-  /* Bold text */
-
-
-  background-color: #f0f0f0;
-  /* Optional: Background color for visibility */
-
-}
-
-.host-nav a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  /* Remove underline from links */
-  color: #333;
-  /* Dark text color */
-  font-size: 16px;
-  /* Adjust the font size */
-  padding: 8px 16px;
-  /* Space inside each link */
-  transition: color 0.3s ease;
-  /* Smooth color transition on hover */
-}
-
-.host-nav a:hover {
-  color: #007bff;
-  /* Change link color on hover */
-}
-
-h3.cv-contact-title {
-  margin-top: 40px;
-  margin-left: 0px;
-}
-
-#mailIcon {
-  margin-top: 120px;
-}
-
-.login--form {
-  display: grid;
-  grid-template-columns: auto;
-  margin-left: 2rem;
-  gap: 3px;
-  text-align: left;
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 3px;
-  background-color: rgb(182, 207, 219);
-  font-size: 14px;
-  font-weight: bold;
-  width: fit-content;
-}
-
-.login--form input {
-  margin: 1rem;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  width: fit-content;
-}
-
-.login--form label {
-  margin: 1rem;
-}
-
-.login--form button {
-  margin: 1rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 0.5rem;
-  width: fit-content;
-}
-
-
-.row {
-  display: table-row;
-
-  font-size: 14px;
-  text-align: left;
-  justify-content: left;
-  border-bottom: 1px solid;
-  margin-left: 2%;
-}
-
-.cell {
-  display: table-cell;
-  padding: 2rem
-}
-
-.logout-text {
-  width: 50%;
-  height: 50%;
-}
-
-.profile {  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 auto;
-  margin-top:-2rem;
-}
-
-.profile--card {
-  padding: 1rem;
-  font-size: 14px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  border: 1px solid;
-  border-radius: 5px;
-  width: fit-content;
-  height: fit-content;
-  margin-bottom: 1rem;
-  line-height: 1rem;
-}
-
-.tech--general {
-  text-align: left;
-  margin-top: 30px;
-  margin-left: 2%;
-}
-
-.tech--thead,
-.education--thead {
-  text-align: left;
-  margin-top: 6%;
-  background-color: #ff8c38;
-}
-
-.tech--table,
-.education--table {
-  display: table;
-  margin-top: 30px;
-  margin-bottom: 2%;
-  margin-left: 2%;
-}
-
-tr:nth-child(even) {
-  background-color: lightblue;
-}
-
-tr:nth-child(odd) {
-  background-color: #e6e6e6;
-}
-
-.hire--whys {
-  margin-top: 10px;
-}
-
-.places {
-  display: flex;
-  position: fixed;
-  top:15%;
-  left: 25%;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-left: 0.5rem;
-  text-align: left;
-  font-size: 1rem;
-  font-weight: bold;
-  color: rgb(68, 14, 14);
+  .catalog {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .catalog--card {
+    flex: 1 1 20%;
+    border: 1px solid;
+    padding: 1rem;
+    margin-bottom: 0.2rem;
+    justify-content: center;
+    text-align: left;
+    width: 40%;
+  }
+
+  .catalog--card h3 {
+    padding: 0.5rem;
+    background: lightblue
+  }
+
+  .catalog--card input {
+    width: 5rem;
+    margin-right: 10px;
+    line-height: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .catalog--card button {
+    margin-top: 1rem;
+  }
+
+  #kpl {
+    margin-left: 1rem;
+  }
+
+  .calendar {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: flex-start;
+    /* Align items from the top */
+    max-height: 70vh;
+    /* 10% decrease from the top */
+    padding-top: 10vh;
+    /* Push down 10% from the top */
+  }
+
+  .calendar-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20;
+    flex: 1;
+    /* Takes up available space on the left */
+    max-width: 15vw;
+    /* Adjust width of the form */
+    margin-right: 2rem;
+    /* Space between form and task rows */
+    gap: 1rem;
+    height: 40vh;
+  }
+
+  .calendar-task-row {
+    flex: 3;
+    /* Takes up more space compared to the form */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* Space between each task row */
+  }
+
+  /* Optional: Styling for items inside calendar-task-row */
+  .calendar-task {
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+
+
+  .confirmation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    /* Semi-transparent background */
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    z-index: 1000;
+    /* Ensure it sits above all other content */
+  }
+
+  .confirmation-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+
+
+  .mail {
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+    gap: 1rem;
+  }
+
+  .confirmation-content button {
+    margin: 1rem;
+    width: 4rem;
+  }
+
+  #ok {
+    padding: 0.5rem;
+    background-color: green;
+    font-weight: bold;
+  }
+
+  #nok {
+    padding: 0.5rem;
+    background-color: red;
+    font-weight: bold;
+  }
+
+  #saveButton {
+    margin-top: 4rem;
+  }
+
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+
+  .lasku {
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+
+
+  #softaapu-logo {
+    width: "34rem";
+    height: "34rem";
+  }
+
+
+  .header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    color: var(--header-text-color) !important;
+    border-radius: 0.2rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 2rem;
+    padding-right: 10px;
+    font-size: 1rem;
+  }
+
+
+  .header-left Link {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+
+  header a {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-weight: 600;
+    padding: 5px 10px;
+  }
+
+  header a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .footer {
+    display: flex;
+    position: fixed;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: var(--footer-background-color);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-items {
+    display: flex;
+    gap: 0.1rem;
+    align-items: center;
+  }
+
+  .footer-items img {
+    margin-right: 20px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .link-button {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    padding: 0.75rem 1.375rem;
+    color: initial;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  .link-button:hover {
+    transform: translate(1px, 1px);
+  }
+
+  .home {
+    display: flex;
+    position: fixed;
+    top: 0%;
+    left: 25%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+    font-size: medium;
+    font-weight: 550;
+    height: 100vh;
+    width: 70%;
+    gap: 1rem;
+  }
+
+  #home-nappi {
+    color: white;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+    font-size: 12px;
+  }
+
+  .home-welcome {
+    padding: 1rem;
+  }
+
+  .home-welcome h1 {
+    width: auto;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+
+  .home img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    overflow: hidden;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+  }
+
+  .host-nav {
+    display: flex;
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    justify-content: center;
+    /* Center nav items horizontally */
+    align-items: flex-start;
+    /* Adjust if needed */
+    padding: 10px;
+    /* Padding around the nav */
+    font-weight: 700;
+    /* Bold text */
+
+
+    background-color: #f0f0f0;
+    /* Optional: Background color for visibility */
+
+  }
+
+  .host-nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    /* Remove underline from links */
+    color: #333;
+    /* Dark text color */
+    font-size: 16px;
+    /* Adjust the font size */
+    padding: 8px 16px;
+    /* Space inside each link */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+  }
+
+  .host-nav a:hover {
+    color: #007bff;
+    /* Change link color on hover */
+  }
+
+  h3.cv-contact-title {
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+
+  #mailIcon {
+    margin-top: 120px;
+  }
+
+  .login--form {
+    display: grid;
+    grid-template-columns: auto;
+    margin-left: 2rem;
+    gap: 3px;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: rgb(182, 207, 219);
+    font-size: 14px;
+    font-weight: bold;
+    width: fit-content;
+  }
+
+  .login--form input {
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: fit-content;
+  }
+
+  .login--form label {
+    margin: 1rem;
+  }
+
+  .login--form button {
+    margin: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    width: fit-content;
+  }
+
+
+  .row {
+    display: table-row;
+
+    font-size: 14px;
+    text-align: left;
+    justify-content: left;
+    border-bottom: 1px solid;
+    margin-left: 2%;
+  }
+
+  .cell {
+    display: table-cell;
+    padding: 2rem
+  }
+
+  .logout-text {
+    width: 50%;
+    height: 50%;
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    margin-top: -2rem;
+  }
+
+  .profile--card {
+    padding: 1rem;
+    font-size: 14px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 1px solid;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 1rem;
+    line-height: 1rem;
+  }
+
+  .tech--general {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 2%;
+  }
+
+  .tech--thead,
+  .education--thead {
+    text-align: left;
+    margin-top: 6%;
+    background-color: #ff8c38;
+  }
+
+  .tech--table,
+  .education--table {
+    display: table;
+    margin-top: 30px;
+    margin-bottom: 2%;
+    margin-left: 2%;
+  }
+
+  tr:nth-child(even) {
+    background-color: lightblue;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #e6e6e6;
+  }
+
+  .hire--whys {
+    margin-top: 10px;
+  }
+
+  .places {
+    display: flex;
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 0.5rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(68, 14, 14);
+  }
 }
 
 @media only screen and (max-width: 980px) and (max-height: 1900px) and (orientation: portrait) {
@@ -982,7 +1000,6 @@ tr:nth-child(odd) {
     font-weight: 700;
     margin-bottom: 20rem;
     margin-left: -10rem;
-
   }
 
   .host-nav a {
@@ -1083,7 +1100,7 @@ tr:nth-child(odd) {
   }
 
   #home-nappi {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem 1rem;
@@ -1119,7 +1136,6 @@ tr:nth-child(odd) {
     display: table-row;
     border-bottom: #161616;
     border: 1px solid;
-
   }
 
   .cell {

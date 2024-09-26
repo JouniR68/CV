@@ -117,7 +117,7 @@ const ShowOrders = () => {
 									{Array.isArray(o.files) && o.files.length > 0 ? (
 										o.files.map((file, index) => (
 											<Link key={index++} to={file}>
-												<li>näytä</li>
+												FILE
 											</Link>
 										))
 									) : (

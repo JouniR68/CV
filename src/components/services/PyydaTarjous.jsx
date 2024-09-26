@@ -55,8 +55,7 @@ function TarjouspyyntoForm() {
   let storedValues = []
   // Prefill the form when the component mounts
   useEffect(() => {
-    storedValues = getSessionStorageValues();
-    reset(storedValues); // Prefill the form with the stored values
+    reset(); // Prefill the form with the stored values
   }, [reset]);
 
   const onSubmit = async (data) => {
@@ -148,15 +147,20 @@ function TarjouspyyntoForm() {
         defaultValue=""
         render={({ field }) => (
           <FormControl fullWidth>
-            <InputLabel id="ala-label">Kiinteistö vai ohjelmisto</InputLabel>
+            <InputLabel id="ala-label">Aihe</InputLabel>
             <Select
               labelId="ala-label"
               {...field}
-              label="Kiinteistö vai ohjelmisto"
+              label="Aihe"
               size="small"
             >
-              <MenuItem value="kiinteisto">Kiinteistö</MenuItem>
-              <MenuItem value="ohjelmisto">Ohjelmisto</MenuItem>
+              <MenuItem value="koodausta">Koodausta</MenuItem>
+              <MenuItem value="testausta">Testausta</MenuItem>
+              <MenuItem value="jarjestelma">Asennuksia/ylläpitoja/konfigurointeja</MenuItem>
+              <MenuItem value="kayttoapua">Käyttöapua</MenuItem>
+              <MenuItem value="projektimanageraus">Projektin hallintaa</MenuItem>
+              <MenuItem value="tuotehallintaa">Tuotehallintaa/backlogs</MenuItem>
+              <MenuItem value="muuta">Määrittele alimmassa laatikossa</MenuItem>
             </Select>
           </FormControl>
         )}
