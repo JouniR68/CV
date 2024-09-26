@@ -22,7 +22,7 @@ export default function AdminLayout() {
             <Link to="naytaPyynnot">Näytä työpyynnöt</Link>
             <Link to="poistatunnus">Poista tunnus</Link>
             <Link to="lasku">Tuntiraportti</Link>
-            <Link to="tarjous">Tarjouslomake</Link>
+            <Link to="tarjouslomake">Tarjouslomake</Link>
           </nav>
           <Outlet />
         </div>

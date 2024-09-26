@@ -25,7 +25,7 @@ export default function Login() {
       } else {
         setCurrentUser(user)
         setIsLoggedIn(true)
-        sessionStorage.setItem("adminlevel", "valid")
+        sessionStorage.setItem("adminLevel", "valid")
         console.log("sessio recorded")
       }
     } catch (err) {

@@ -92,7 +92,7 @@ function App() {
                 <Route path="poistatunnus" index element={<Poistatunnus />} />
                 <Route path='naytaPyynnot' element={<CustomerData />} />
                 <Route path="lasku" element={<Report />} />
-                <Route path="tarjous" element={<TarjousLomake />} />
+                <Route path="tarjouslomake" element={<TarjousLomake />} />
               </Route>
 
 

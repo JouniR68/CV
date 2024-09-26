@@ -41,14 +41,14 @@
   .app-container {
     display: flex;
     position: fixed;
-    top:7%;
+    top: 7%; /* Offset from the top */
+    left: 50%; /* Move to the center horizontally */
+    transform: translateX(-50%); /* Center the container horizontally */    
     justify-content: center;
     align-items: center;
     width: 60vw;
-    margin: 2rem auto;
-
     max-width: 100vw;
-    height: calc(100vh - 20rem);
+    height: calc(100vh - 12rem);
     border-radius: 1rem;
     background-color: var(--primary-color);
     border:1px solid;
@@ -132,13 +132,17 @@
   }
 
   .output {
-    position: relative;
+    position: fixed;
     display: flex;
+    top:7%;
     height: auto;
     flex-direction: column;
-    width: 100vw;
-    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
     background-color: white;
+    overflow-y: auto;
   }
 
   .output-two {
@@ -226,8 +230,11 @@
 
   .tarjous {
     display: flex;
+    position: fixed;
+    top:14%;
+    left: 24%;
     justify-content: center;
-    margin: 1rem;
+    margin: 1rem;    
   }
   
   .tarjous .MuiContainer-root {
@@ -237,11 +244,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .tarjous hr {
-    border: none;
-    border-top: 1px solid #e0e0e0;
-    margin: 0.1rem 0;
-  }
   
   .tarjous .MuiTypography-h4,
   .tarjous .MuiTypography-h6 {
@@ -249,22 +251,24 @@
     font-weight: 600;
   }
   
+  .tarjoaja-asiakas,
+  .tarjous-tarjoaja{
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next row */
+    width: 50rem;
+    gap: 1rem; /* This will now apply both row and column gaps */    
+  }
+
+  
   .tarjous-osapuolet {
-    display: flex;    
-    gap: 0rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;       /* Sets gap between both columns and rows */    
   }
-  
-  .tarjous-osapuoli {
-    flex: 1;  
-    margin-top:-1rem;  
-  }
-  
-  .tarjous-osapuoli .MuiTextField-root {
-    margin-bottom: 1rem;
-  }
+
   
   .tarjous .MuiGrid-container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;    
   }
   
   .tarjous-matkakulut{
@@ -278,7 +282,7 @@
   
   .tarjous .MuiButton-contained {
     display: inline-block;
-    padding: 0.5rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     background-color: #1976d2;
     color: white;
   }
@@ -292,7 +296,7 @@
   }
   
   .tarjous .MuiTextField-root input {
-    padding: 0.5rem;
+    padding: 1rem;    
   }
   
   .tarjous .MuiBox-root {
