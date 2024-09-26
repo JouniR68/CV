@@ -41,7 +41,7 @@ const TehtavatForm = ({ tehtava, setTehtava, kuvaus, setKuvaus, tuntiarvio, setT
                 </Grid>
                 <Grid item xs={12}>
                     <Button onClick={lisaaTehtava} variant="contained">
-                        +
+                        Syötä uusi
                     </Button>
                 </Grid>
             </Grid>

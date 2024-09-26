@@ -222,37 +222,62 @@
   }
 
   .tunnus {
+    display:flex;
+    position: fixed;
+    flex-direction: column;
+    top: 14%;
+    left: 23%;
     max-width: 80%;    
-    margin: 0 auto;    
-    padding: 20px;    
-    box-sizing: border-box;    
+    padding: 3rem;    
+    box-sizing: border-box;        
+    row-gap:1rem;
   }
 
-  .tarjous {
-    display: flex;
-    position: fixed;
-    top:14%;
-    left: 24%;
-    justify-content: center;
-    margin: 1rem;    
+  .tunnus-tili {
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    gap: 12rem;
   }
-  
-  .tarjous .MuiContainer-root {
-    padding: 2rem;
+
+  .tunnus List {
+    width: 12rem;
+  }
+
+  .tarjouslomake h1,
+  .tarjouslomake {
+    display: flex;
+    position: fixed;    
+    top:16%;
+    width:90%;
+    left: 10%;    
+    justify-content: center;
+    margin: rem;    
+  }
+
+  .tarjouslomake-nappi {
+    display:flex; 
+    flex-direction: row;
+    width:20rem;   
+    gap:1rem;
+  }
+
+  .tarjouslomake .MuiContainer-root {
+    padding: 1rem;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   
-  .tarjous .MuiTypography-h4,
-  .tarjous .MuiTypography-h6 {
-    margin-bottom: 1rem;
+  .tarjouslomake .MuiTypography-h4,
+  .tarjouslomake .MuiTypography-h6 {
+    margin-bottom: 0.5rem;
     font-weight: 600;
   }
   
-  .tarjoaja-asiakas,
-  .tarjous-tarjoaja{
+  .tarjouslomake-asiakas,
+  .tarjouslomake-tarjoaja{
     display: flex;
     flex-wrap: wrap; /* Allows items to wrap to the next row */
     width: 50rem;
@@ -260,69 +285,76 @@
   }
 
   
-  .tarjous-osapuolet {
+  .tarjouslomake-osapuolet {
     display: flex;
     flex-direction: row;
     gap: 2rem;       /* Sets gap between both columns and rows */    
   }
 
   
-  .tarjous .MuiGrid-container {
+  .tarjouslomake .MuiGrid-container {
     margin-bottom: 1.5rem;    
   }
   
-  .tarjous-matkakulut{
+  .tarjouslomake-matkakulut{
     margin-top:-3rem;
   }
 
-  .tarjous .MuiGrid-item {
+  .tarjouslomake .MuiGrid-item {
     display: flex;
     flex-direction: column;
   }
   
-  .tarjous .MuiButton-contained {
+  .tarjouslomake .MuiButton-contained {
     display: inline-block;
     padding: 0.8rem 1.5rem;
     background-color: #1976d2;
     color: white;
   }
   
-  .tarjous .MuiButton-contained:hover {
+  .tarjouslomake .MuiButton-contained:hover {
     background-color: #1565c0;
   }
   
-  .tarjous .MuiTextField-root {
+  .tarjouslomake .MuiTextField-root {
     margin-bottom: 1rem;
   }
   
-  .tarjous .MuiTextField-root input {
+  .tarjouslomake .MuiTextField-root input {
+    display: flex;
+    justify-content: center;
     padding: 1rem;    
+    align-items: flex-start;
   }
   
-  .tarjous .MuiBox-root {
-    margin-bottom: 2rem;
+  .tarjouslomake .MuiBox-root {
+    margin-bottom: 1rem;
   }
   
-  .tarjous .MuiTypography-body1 {
+  .tarjouslomake .MuiTypography-body1 {
     font-size: 1rem;
     font-weight: 400;
     color: #333;
   }
   
-  .tarjous .MuiTypography-subtitle1 {
+  .tarjouslomake .MuiTypography-subtitle1 {
     font-size: 1rem;
     color: #666;
   }
   
-  .tarjous .MuiButton-root {
-    margin-top: 1.5rem;
+  .tarjouslomake .MuiButton-root {
+    display:flex;
+    margin-top: 0.1rem;
+    height:10px;
+    text-align: center;
+    justify-content: center;
   }
   
-  .tarjous .MuiButton-root {
+  .tarjouslomake .MuiButton-root {
     background-color: #2196f3;
   }
   
-  .tarjous .MuiButton-root:hover {
+  .tarjouslomake .MuiButton-root:hover {
     background-color: #1976d2;
   }
   

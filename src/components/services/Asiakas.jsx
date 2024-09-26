@@ -3,7 +3,7 @@ import { TextField, Typography, Box } from '@mui/material';
 
 const AsiakasForm = ({ saaja, setSaaja }) => {
     return (
-        <div className="tarjous-asiakas">
+        <div className="tarjouslomake-asiakas">
             <Box mb={4}>
                 <Typography variant="h6">Asiakas</Typography>
                 <TextField

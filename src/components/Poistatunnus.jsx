@@ -1,15 +1,25 @@
 import { collection, doc, deleteDoc, getDocs} from "firebase/firestore"
 import { db } from "../firebase"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
+import { useAuth } from "./LoginContext";
 
 const Poistatunnus = () => {
+  const [isAccess, setIsAccess] = useState(false);
+    const accessValid = useRef(sessionStorage.getItem("adminLevel"));
     const [contacts, setContacts] = useState([]);
     const [open, setOpen] = useState(false);
     const [selectedContact, setSelectedContact] = useState(null);
     const navigate = useNavigate();
-  
+    const { isLoggedIn } = useAuth();
+
+    useEffect(() => {
+      if (accessValid.current === "valid" && isLoggedIn) {
+          setIsAccess(true);
+      }
+  }, [isLoggedIn]);
+
     // Fetch contacts from Firestore
     useEffect(() => {
       const fetchContacts = async () => {
@@ -49,12 +59,14 @@ const Poistatunnus = () => {
         <List>
           {contacts.map(contact => (
             <ListItem key={contact.id}>
-              <ListItemText primary={contact.name} secondary={contact.email} />
+              <div className = "tunnus-tili">
+              <ListItemText primary={contact.name} secondary={contact.email} secondaryTypographyProps={{ fontSize: '18px', marginRight:'10rem'}}  />              
               <ListItemSecondaryAction>
                 <Button variant="contained" color="secondary" onClick={() => handleOpenDialog(contact)}>
                   Poista
                 </Button>
               </ListItemSecondaryAction>
+              </div>
             </ListItem>
           ))}
         </List>

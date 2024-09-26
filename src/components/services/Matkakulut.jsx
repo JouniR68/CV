@@ -1,7 +1,8 @@
 
 import { TextField, Typography, Grid } from '@mui/material';
 
-const MatkakulutForm = ({ matkakulut, setMatkakulut, KILOMETRIKUSTANNUS }) => {
+const MatkakulutForm = ({ matkakulut, setMatkakulut, KILOMETRIKUSTANNUS}) => {
+    console.log("matkakulut: ", matkakulut)
     return (
         <>
             <Typography variant="h6">Matkakulut</Typography>

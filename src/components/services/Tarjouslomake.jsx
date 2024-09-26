@@ -10,16 +10,19 @@ import { useLocation } from "react-router-dom";
 import TarjoajaForm from './Tarjoaja';
 import AsiakasForm from './Asiakas';
 import MatkakulutForm from './Matkakulut';
-import TehtavatForm from './Tehtavat';
-import ExtrasForm from './ExtrasForm';
+import TarjousLomake2 from './TarjousLomake2';
+import TarjousLomake3 from './TarjousLomake3';
+import TarjousLomake4 from './TarjousLomake4';
+
 
 // Main component for generating the offer
-const TarjousLomake = () => {
+const Tarjouslomake = () => {
     const location = useLocation();
     const currentPath = location.pathname;
     const { isLoggedIn } = useAuth();
     const [isAccess, setIsAccess] = useState(false);
     const accessValid = useRef(sessionStorage.getItem("adminLevel"));
+    const fname = useRef(sessionStorage.getItem("firstName"));
     const [currentStep, setCurrentStep] = useState(1);
 
     // Function to go to the next step
@@ -31,6 +34,7 @@ const TarjousLomake = () => {
     const handlePreviousStep = () => {
         setCurrentStep((prevStep) => prevStep - 1);
     };
+
     useEffect(() => {
         if (accessValid.current === "valid" && isLoggedIn) {
             setIsAccess(true);
@@ -42,7 +46,7 @@ const TarjousLomake = () => {
     const KOTITALOUSVAHENNYS_PERCENTAGE = 40; // Kotitalousvähennysprosentti
     const MAX_KOTITALOUSVAHENNYS = 3500 - 100; // Maksimivähennys
     const KILOMETRIKUSTANNUS = 0.57
-    //const TARJOUS_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
+    //const tarjouslomake_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
 
     const [valinekustannus, setValineKustannus] = useState(30)
     const [tuntihinta, setTuntihinta] = useState(49)
@@ -52,7 +56,7 @@ const TarjousLomake = () => {
     const [kuvaus, setKuvaus] = useState('');
     const [tuntiarvio, setTuntiarvio] = useState('');
     const [tehtavat, setTehtavat] = useState([]);
-    const [muutHuomiot, setMuutHuomiot] = useState('');
+    const [eiKuulu, setEiKuulu] = useState('');
     const [matkakulut, setMatkakulut] = useState({ lahto: '', maaranpaa: '', kmhinta: KILOMETRIKUSTANNUS, km: 0, maara: 0, kmkustannus: 0 });
 
     const [sisaltyy, setSisaltyy] = useState('')
@@ -62,16 +66,16 @@ const TarjousLomake = () => {
     const today = new Date()
     const twoweeksLaters = new Date(today);
 
-    const tarjous = {
-        tarjoaja, saaja, tehtavat, kuvaus: kuvaus, tuntiarvio, muutHuomiot, sisaltyy, suositukset, matkakulut
+    const tarjouslomake = {
+        tarjoaja, saaja, tehtavat, kuvaus: kuvaus, tuntiarvio, eiKuulu, sisaltyy, suositukset, matkakulut
     }
 
-    const tarjousRef = collection(db, 'tarjoukset')
+    const tarjouslomakeRef = collection(db, 'tarjoukset')
 
     const save = async () => {
         try {
-            await (addDoc(tarjousRef, tarjous))
-            console.log("Tarjous talletettu")
+            await (addDoc(tarjouslomakeRef, tarjouslomake))
+            console.log("tarjouslomake talletettu")
         } catch (error) {
             console.error("Talletus firebaseen epäonnistui: ", error)
         }
@@ -99,7 +103,7 @@ const TarjousLomake = () => {
     const yhteenveto = laskeYhteenveto();
 
     // Laskee tarjouksen voimassaoloajan (2 viikkoa eteenpäin)
-    const tarjousVoimassa = () => {
+    const tarjouslomakeVoimassa = () => {
         const today = new Date();
         const voimassa = new Date(today);
         voimassa.setDate(today.getDate() + 14);
@@ -107,27 +111,28 @@ const TarjousLomake = () => {
     };
 
     const lisaaTehtava = () => {
+        console.log("lisaaTehtava funkkari Tarjouslomakkeella")
         if (tehtava && kuvaus && tuntiarvio) {
             setTehtavat([...tehtavat, { tehtava, kuvaus, tuntiarvio }]);
             setTehtava('');
             setKuvaus('');
-            setTuntiarvio('');
+            setTuntiarvio(0);
         }
     };
 
 
     const generatePDF = () => {
         const doc = new jsPDF();
-        
+
         // Otsikko
         doc.setFontSize(20);
-        doc.text('Tarjous', 14, 22);
+        doc.text('tarjouslomake', 14, 22);
 
         // Yksityiskohdat
         doc.setFontSize(12);
-        doc.text(`Tarjousnumero: ${uuid}`, 14, 30);
+        doc.text(`tarjouslomakenumero: ${uuid}`, 14, 30);
         doc.text(`Päiväys: ${new Date().toLocaleDateString()}`, 14, 36);
-        doc.text(`Tarjous voimassa: ${tarjousVoimassa()}`, 14, 42);
+        doc.text(`tarjouslomake voimassa: ${tarjouslomakeVoimassa()}`, 14, 42);
 
         // Tarjoajan tiedot
         doc.text('Tarjoaja:', 14, 60);
@@ -164,15 +169,13 @@ const TarjousLomake = () => {
         });
 
         doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 25% välillä.', 14, 200)
-        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 20% jota ei palauteta', 14, 210)        
+        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 20% jota ei palauteta', 14, 210)
         doc.text('mikäli asiakas peruuttaa tilauksen.', 14, 215)
 
         // PDF:n tallennus
-        doc.save(`Tarjous_${uuid}.pdf`);
+        doc.save(`tarjouslomake_${uuid}.pdf`);
         save()
     };
-
-
 
     const saveToFirestore = async () => {
         try {
@@ -190,54 +193,71 @@ const TarjousLomake = () => {
 
 
     return isAccess ? (
-        <div className="tarjous">
+        <div className="tarjouslomake">
             <Container maxWidth="md">
-                <Typography variant="h4" align="center" gutterBottom>Tarjouslomake</Typography>
+                <Typography variant="h4" align="center" gutterBottom>Tarjouslomake - sivu {currentStep}</Typography>
                 {currentStep === 1 && (
                     <>
-                        <div className="tarjous-osapuolet">
+                        <div className="tarjouslomake-osapuolet">
                             <TarjoajaForm tarjoaja={tarjoaja} setTarjoaja={setTarjoaja} />
                             <AsiakasForm saaja={saaja} setSaaja={setSaaja} />
-                        </div>
-                        <TehtavatForm
-                            tehtava={tehtava}
-                            setTehtava={setTehtava}
-                            kuvaus={kuvaus}
-                            setKuvaus={setKuvaus}
-                            tuntiarvio={tuntiarvio}
-                            setTuntiarvio={setTuntiarvio}
-                            tuntihinta={tuntihinta}
-                            lisaaTehtava={lisaaTehtava}
-                        />
-
-                        <MatkakulutForm matkakulut={matkakulut} setMatkakulut={setMatkakulut} KILOMETRIKUSTANNUS={KILOMETRIKUSTANNUS} />
-                        <Button style={{ marginTop: '1rem' }} variant="contained" onClick={() => handleNextStep()}>
+                        </div>                        
+                        <Button className="tarjouslomake-nappi" variant="contained" onClick={handleNextStep}>
                             SEURAAVA
                         </Button>
 
                     </>
                 )}
 
-
                 {/* Step 2 of the form */}
                 {currentStep === 2 && (
                     <div>
-                        <ExtrasForm valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} sisaltyy={sisaltyy} setSisaltyy={setSisaltyy} muutHuomiot={muutHuomiot} setMuutHuomiot={setMuutHuomiot} suositukset={suositukset} setSuositukset={setSuositukset} />
-                        <Button onClick={handlePreviousStep}>Back</Button>
+                        <TarjousLomake2 matkakulut={matkakulut} setMatkakulut={setMatkakulut} valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} />
+                        <div className="tarjouslomake-nappi">
+                            <Button variant="contained" onClick={handlePreviousStep}>Takaisin</Button>
+                            <Button variant="contained" onClick={() => handleNextStep()}>
+                                SEURAAVA
+                            </Button>
+                        </div>
                     </div>
                 )}
 
-                <Box mt={4}>
+                {currentStep === 3 && (
+                    <div>
+                        <TarjousLomake3 tehtava={tehtava} setTehtava={setTehtava} kuvaus={kuvaus} setKuvaus={setKuvaus} tuntiarvio={tuntiarvio} setTuntiarvio = {setTuntiarvio} tuntihinta = {tuntihinta} lisaaTehtava={lisaaTehtava} valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} />
+                        <div className="tarjouslomake-nappi">
+                            <Button variant="contained" onClick={handlePreviousStep}>Takaisin</Button>
+                            <Button variant="contained" onClick={() => handleNextStep()}>
+                                SEURAAVA
+                            </Button>
+
+                        </div>
+                    </div>
+                )}
+
+                {currentStep === 4 && (
+                    <div>
+                        <TarjousLomake4 valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} sisaltyy={sisaltyy} setSisaltyy={setSisaltyy} eiKuulu={eiKuulu} setEiKuulu={setEiKuulu} suositukset={suositukset} setSuositukset={setSuositukset} />
+                        <div className="tarjouslomake-nappi">
+                            <Button variant="contained" onClick={handlePreviousStep}>Takaisin</Button>
+                        </div>
+                    </div>
+                )}
+
+
+                {currentStep === 4 && <Box mt={2}>
+                    <div className="tarjouslomake-nappi">
                     <Button variant="contained" color="primary" onClick={generatePDF}>
-                        Generoi PDF
+                        PDF
                     </Button>
                     <Button variant="contained" color="secondary" onClick={saveToFirestore} style={{ marginLeft: '10px' }}>
-                        Tallenna Firestoreen
+                        Talleta
                     </Button>
-                </Box>
+                    </div>
+                </Box>}
             </Container>
         </div>
-    ) : <h1>Lomakkeessa ongelmia..</h1>;
+    ) : <h1 style={{ marginTop: '7rem', backgroundColor: '#FFFFFF' }}>Voihan räkä, asiaa tutkitaan..</h1>;
 };
 
-export default TarjousLomake;
+export default Tarjouslomake;

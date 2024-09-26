@@ -3,7 +3,7 @@ import { TextField, Typography, Box } from '@mui/material';
 
 const TarjoajaForm = ({ tarjoaja, setTarjoaja }) => {
     return (
-        <div className="tarjous-tarjoaja">
+        <div className="tarjouslomake-tarjoaja">
             <Box mb={4}>
                 <Typography variant="h6">Tarjoaja</Typography>
                 <TextField
