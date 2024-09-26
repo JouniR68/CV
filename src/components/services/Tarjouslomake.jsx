@@ -115,9 +115,10 @@ const TarjousLomake = () => {
         }
     };
 
+
     const generatePDF = () => {
         const doc = new jsPDF();
-
+        
         // Otsikko
         doc.setFontSize(20);
         doc.text('Tarjous', 14, 22);
@@ -126,7 +127,7 @@ const TarjousLomake = () => {
         doc.setFontSize(12);
         doc.text(`Tarjousnumero: ${uuid}`, 14, 30);
         doc.text(`Päiväys: ${new Date().toLocaleDateString()}`, 14, 36);
-        doc.text(`Tarjous voimassa: ${new Date().toLocaleDateString()}`, 14, 42);
+        doc.text(`Tarjous voimassa: ${tarjousVoimassa()}`, 14, 42);
 
         // Tarjoajan tiedot
         doc.text('Tarjoaja:', 14, 60);
@@ -163,11 +164,15 @@ const TarjousLomake = () => {
         });
 
         doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 25% välillä.', 14, 200)
+        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 20% jota ei palauteta', 14, 210)        
+        doc.text('mikäli asiakas peruuttaa tilauksen.', 14, 215)
 
         // PDF:n tallennus
         doc.save(`Tarjous_${uuid}.pdf`);
         save()
     };
+
+
 
     const saveToFirestore = async () => {
         try {
