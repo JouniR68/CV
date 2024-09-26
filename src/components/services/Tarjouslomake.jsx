@@ -20,8 +20,17 @@ const TarjousLomake = () => {
     const { isLoggedIn } = useAuth();
     const [isAccess, setIsAccess] = useState(false);
     const accessValid = useRef(sessionStorage.getItem("adminLevel"));
-    const [extras, setShowExtras] = useState(false)
+    const [currentStep, setCurrentStep] = useState(1);
 
+    // Function to go to the next step
+    const handleNextStep = () => {
+        setCurrentStep((prevStep) => prevStep + 1);
+    };
+
+    // Function to go to the previous step (optional)
+    const handlePreviousStep = () => {
+        setCurrentStep((prevStep) => prevStep - 1);
+    };
     useEffect(() => {
         if (accessValid.current === "valid" && isLoggedIn) {
             setIsAccess(true);
@@ -174,47 +183,54 @@ const TarjousLomake = () => {
         }
     };
 
-    const naytaExtrat = () => {
-        setShowExtras(!extras)
-    }
 
     return isAccess ? (
-        <div className ="tarjous">
-        <Container maxWidth="md">
-            <Typography variant="h4" align="center" gutterBottom>Tarjouslomake</Typography>
+        <div className="tarjous">
+            <Container maxWidth="md">
+                <Typography variant="h4" align="center" gutterBottom>Tarjouslomake</Typography>
+                {currentStep === 1 && (
+                    <>
+                        <div className="tarjous-osapuolet">
+                            <TarjoajaForm tarjoaja={tarjoaja} setTarjoaja={setTarjoaja} />
+                            <AsiakasForm saaja={saaja} setSaaja={setSaaja} />
+                        </div>
+                        <TehtavatForm
+                            tehtava={tehtava}
+                            setTehtava={setTehtava}
+                            kuvaus={kuvaus}
+                            setKuvaus={setKuvaus}
+                            tuntiarvio={tuntiarvio}
+                            setTuntiarvio={setTuntiarvio}
+                            tuntihinta={tuntihinta}
+                            lisaaTehtava={lisaaTehtava}
+                        />
 
-            <div className="tarjous-osapuolet">
-                <TarjoajaForm tarjoaja={tarjoaja} setTarjoaja={setTarjoaja} />
-                <AsiakasForm saaja={saaja} setSaaja={setSaaja} />
-            </div>
-            <TehtavatForm
-                tehtava={tehtava}
-                setTehtava={setTehtava}
-                kuvaus={kuvaus}
-                setKuvaus={setKuvaus}
-                tuntiarvio={tuntiarvio}
-                setTuntiarvio={setTuntiarvio}
-                tuntihinta={tuntihinta}
-                lisaaTehtava={lisaaTehtava}
-            />
+                        <MatkakulutForm matkakulut={matkakulut} setMatkakulut={setMatkakulut} KILOMETRIKUSTANNUS={KILOMETRIKUSTANNUS} />
+                        <Button style={{ marginTop: '1rem' }} variant="contained" onClick={() => handleNextStep()}>
+                            SEURAAVA
+                        </Button>
 
-            <MatkakulutForm matkakulut={matkakulut} setMatkakulut={setMatkakulut} KILOMETRIKUSTANNUS={KILOMETRIKUSTANNUS} />
+                    </>
+                )}
 
 
-            <Button style={{marginTop:'1rem'}} variant = "contained" onClick={ () => {naytaExtrat()}}>
-                {extras && <ExtrasForm valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} sisaltyy={sisaltyy} setSisaltyy={setSisaltyy} muutHuomiot={muutHuomiot} setMuutHuomiot={setMuutHuomiot} suositukset={suositukset} setSuositukset={setSuositukset} />}
-            LISÄÄ
-            </Button>
+                {/* Step 2 of the form */}
+                {currentStep === 2 && (
+                    <div>
+                        <ExtrasForm valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} sisaltyy={sisaltyy} setSisaltyy={setSisaltyy} muutHuomiot={muutHuomiot} setMuutHuomiot={setMuutHuomiot} suositukset={suositukset} setSuositukset={setSuositukset} />
+                        <Button onClick={handlePreviousStep}>Back</Button>
+                    </div>
+                )}
 
-            <Box mt={4}>
-                <Button variant="contained" color="primary" onClick={generatePDF}>
-                    Generoi PDF
-                </Button>
-                <Button variant="contained" color="secondary" onClick={saveToFirestore} style={{ marginLeft: '10px' }}>
-                    Tallenna Firestoreen
-                </Button>
-            </Box>
-        </Container>
+                <Box mt={4}>
+                    <Button variant="contained" color="primary" onClick={generatePDF}>
+                        Generoi PDF
+                    </Button>
+                    <Button variant="contained" color="secondary" onClick={saveToFirestore} style={{ marginLeft: '10px' }}>
+                        Tallenna Firestoreen
+                    </Button>
+                </Box>
+            </Container>
         </div>
     ) : <h1>Lomakkeessa ongelmia..</h1>;
 };
