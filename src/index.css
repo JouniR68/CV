@@ -132,23 +132,22 @@
   }
 
   .output {
-    position: fixed;
     display: flex;
+    flex-direction: row;
+    position:fixed;
     top:7%;
-    height: auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: auto;
-    background-color: white;
-    overflow-y: auto;
+    left:0;
+    align-items: center;    /* Center align horizontally */
   }
-
-  .output-two {
-    display: flex;
-    gap: 1rem;
-    flex: 1 1 calc(50% - 1rem);
+  
+  .output-content {
+    display:flex;
+    flex-direction: column;
+    width: 100%;    
+    justify-content: flex-start;             /* Ensure it takes full width */
+    align-items: flex-start;
+    overflow-y: auto;
+    margin-left:1rem;
   }
 
   .output h3 {
@@ -507,13 +506,6 @@
   margin-bottom: 200px;
 }
 
-#offer-button {
-  color: white;
-  font-weight: 600;
-  margin-top: 4rem;
-  margin-bottom: 10rem;
-  font-size: 12px;
-}
 
 #softaapu-logo {
   width: "34rem";
@@ -622,8 +614,16 @@ header a:hover {
   font-size: medium;
   font-weight: 550;
   height: 100vh;
-  width: 30%;
+  width: 70%;
   gap:1rem;
+}
+
+#home-nappi {
+  color: white;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
+  font-size: 12px;
 }
 
 .home-welcome {
@@ -758,8 +758,9 @@ h3.cv-contact-title {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 0 auto;
+  margin-top:-2rem;
 }
 
 .profile--card {
@@ -1081,19 +1082,15 @@ tr:nth-child(odd) {
     align-items: center;
   }
 
-  #offer-button {
+  #home-nappi {
+    display:flex;
     justify-content: center;
     align-items: center;
     padding: 1rem 1rem;
     font-weight: 700;
     font-size: 20px;
-
     background-color: darkblue;
     color: white;
-    margin-left: 100/2;
-    margin-right: 100/2;
-    margin-top: 2rem;
-    margin-bottom: 5rem;
     border: 2px solid;
     border-radius: 5px;
   }

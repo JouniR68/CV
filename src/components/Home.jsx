@@ -157,7 +157,7 @@ export default function Home() {
       <h1>ATK / IT- apuja</h1>
       <h1>Tarjous</h1>
       <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
-      <Button size='medium' variant='contained' id="offer-button" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
+      <Button size='medium' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
     </div>
   );
 }
