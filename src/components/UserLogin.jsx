@@ -70,10 +70,13 @@ export const UserLogin = () => {
         console.log("hasedPwd: ", user.password)
         console.log("userPwd length:", userPwd.length);
         console.log("hashedPwd length:", user.password.length);
-
+        const isSoftaApu = user.email.split("@")[1]?.includes("softa-apu");
         const isPwdValid = await bcrypt.compare(userPwd, user.password)
-        if (isPwdValid) {
-            console.log("pwd validated")
+        if (isPwdValid) {            
+            console.log("pwd validated")            
+            if (isSoftaApu){
+                sessionStorage.setItem("adminLevel", "valid")
+            }
             return true
         }
         else {
