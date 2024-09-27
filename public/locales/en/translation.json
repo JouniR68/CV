@@ -113,11 +113,11 @@
   "RegisterationInfo": "Your plain password cannot be remeeded, save it locally",
   "PageNotFound": "404 - Page Not Found",
   "PageNotFoundInfo": "Sorry, your address is not valid",
-  "files": "Files, images etc to clarify the target.",
+  "files": "Files, if any",
   "software": "Software work, mainly targetted for the firms.",
   "Nobills": "Seems, that there are no bills for you.",
   "Hi": "Hey",
-  "lahetaTarjous": "Send request",
+  "lahetaTarjous": "Send",
   "LogoutText": "You are logged out",
   "profession": "Software profession with hands on attitude.",
   "Method": "Method"

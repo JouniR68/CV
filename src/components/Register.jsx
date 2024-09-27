@@ -53,7 +53,7 @@ const RegistrationForm = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
-        width: 300,
+        width: 300,        
         margin: 'auto',
         paddingTop: 4,
         '@media (max-width: 600px)': { // Media query for screens 600px and below
@@ -65,7 +65,7 @@ const RegistrationForm = () => {
       <Typography variant="h5" gutterBottom>
         <div>
           <h3>{t('RegisterationForm')}</h3>
-          <h6 style={{color:'red', textAlign:'left'}}> {t('RegisterationInfo')}</h6>
+          <h3 style={{color:'red', textAlign:'left'}}> {t('RegisterationInfo')}</h3>
         </div>
 
       </Typography>
@@ -74,6 +74,11 @@ const RegistrationForm = () => {
         variant="outlined"
         name="firstName"
         value={formData.firstName}
+        inputProps={{
+          style: {
+            fontWeight: 'bold',
+          },
+        }}
         onChange={handleChange}
         required
       />
@@ -82,6 +87,11 @@ const RegistrationForm = () => {
         variant="outlined"
         name="lastName"
         value={formData.lastName}
+        inputProps={{
+          style: {
+            fontWeight: 'bold',
+          },
+        }}
         onChange={handleChange}
         required
       />
@@ -90,6 +100,11 @@ const RegistrationForm = () => {
         variant="outlined"
         name="address"
         value={formData.address}
+        inputProps={{
+          style: {
+            fontWeight: 'bold',
+          },
+        }}
         onChange={handleChange}
         required
       />
@@ -98,6 +113,11 @@ const RegistrationForm = () => {
         variant="outlined"
         name="phoneNumber"
         value={formData.phoneNumber}
+        inputProps={{
+          style: {
+            fontWeight: 'bold',
+          },
+        }}
         onChange={handleChange}
         required
       />
@@ -106,6 +126,11 @@ const RegistrationForm = () => {
         variant="outlined"
         name="email"
         value={formData.email}
+        inputProps={{
+          style: {
+            fontWeight: 'bold',
+          },
+        }}
         onChange={handleChange}
         required
         type="email"
@@ -115,6 +140,11 @@ const RegistrationForm = () => {
         variant="outlined"
         name="password"
         value={formData.password}
+        inputProps={{
+          style: {
+            fontWeight: 'bold',
+          },
+        }}
         onChange={handleChange}
         required
         type="password"

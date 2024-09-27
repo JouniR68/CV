@@ -140,24 +140,12 @@ export default function Home() {
   const fname = sessionStorage.getItem("firstName")
   !fname ? name = "" : name = fname
 
-  /*
-        <div>
-      <p>Viewport width: {viewportWidth}px</p>
-      <p>Viewport height: {viewportHeight}px</p>
-    </div>
-    <img src="./src/assets/aita.jpg" alt="aita" />
-          <div>        
-      <img src="./src/assets/softaapu.png" alt="koodi" />        
-      </div>
-
-  */
-
   return (
     <div className="home">
-      <h1>ATK / IT- apuja</h1>
-      <h1>Tarjous</h1>
-      <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={50} />
-      <Button size='medium' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
+      {viewportWidth} {viewportHeight}
+      <h1>IT- Apua Tarjolla {name} </h1>      
+      <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
+      <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
     </div>
   );
 }
