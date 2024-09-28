@@ -110,7 +110,7 @@
   "ActionCompleted": "Operation completed!",
   "OperationFailed": "Operation failed!",
   "RegisterationForm": "Registration Form",  
-  "RegisterationInfo": "Your plain password cannot be remeeded, save it locally",
+  "RegisterationInfo": "Store the password, if forgotten contact jr@softa-apu.fi",
   "PageNotFound": "404 - Page Not Found",
   "PageNotFoundInfo": "Sorry, your address is not valid",
   "files": "Files, if any",

@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../LoginContext";
 import { NoteAdd } from "@mui/icons-material";
-import "./css/tarjous.css"
+import "./css/pyynnot.css"
 
 const ShowOrders = () => {
 	const { currentUser } = useAuth();
@@ -81,61 +81,63 @@ const ShowOrders = () => {
 	console.log("reqs: ", orderReqs)
 
 	return (
-		<div className = "pyynnot">
+		<div>
 			<TableContainer component={Paper}>
 				{error.length > 1 && <h3>{error}</h3>}
 
-				<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
+				<div className="pyynnot">
+					<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
 
-					<TableHead>
-						<TableRow>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Pyydetty</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Alue</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Nimi</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="right">Osoite</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Sähköposti</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Puhelin</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Y-tunnus</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Viesti</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Tiedostot</TableCell>
-							<TableCell sx={{ fontWeigth: 'bold' }} align="left">Hoidettu</TableCell>
-						</TableRow>
-					</TableHead>
-
-					{orderReqs.map(o => (
-						<TableBody key={counter++}>
+						<TableHead>
 							<TableRow>
-								<TableCell>{o.arrived}</TableCell>
-								<TableCell>{o.alue}</TableCell>
-								<TableCell>{o.name}</TableCell>
-								<TableCell>{o.address}</TableCell>
-								<TableCell>{o.email}</TableCell>
-								<TableCell>{o.phone}</TableCell>
-								<TableCell>{o.yTunnus}</TableCell>
-								<TableCell>{o.message}</TableCell>
-
-								<TableCell>
-									{Array.isArray(o.files) && o.files.length > 0 ? (
-										o.files.map((file, index) => (
-											<Link key={index++} to={file}>
-												FILE
-											</Link>
-										))
-									) : (
-										<span> Ei tiedostoja</span>
-									)}
-								</TableCell>
-
-								<TableCell key={counter++}>
-									<Button key={o.id} onClick={() => markCompleted(o.id, o.status)}>{o.status ? "kuitattu" : "ei huomioitu"}</Button>
-								</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Pyydetty</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Alue</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Nimi</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="right">Osoite</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Sähköposti</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Puhelin</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Y-tunnus</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Viesti</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Tiedostot</TableCell>
+								<TableCell sx={{ fontWeigth: 'bold' }} align="left">Hoidettu</TableCell>
 							</TableRow>
-						</TableBody>
-					))}
+						</TableHead>
 
-				</Table>
+						{orderReqs.map(o => (
+							<TableBody key={counter++}>
+								<TableRow>
+									<TableCell>{o.arrived}</TableCell>
+									<TableCell>{o.alue}</TableCell>
+									<TableCell>{o.name}</TableCell>
+									<TableCell>{o.address}</TableCell>
+									<TableCell>{o.email}</TableCell>
+									<TableCell>{o.phone}</TableCell>
+									<TableCell>{o.yTunnus}</TableCell>
+									<TableCell>{o.message}</TableCell>
+
+									<TableCell>
+										{Array.isArray(o.files) && o.files.length > 0 ? (
+											o.files.map((file, index) => (
+												<Link key={index++} to={file}>
+													FILE
+												</Link>
+											))
+										) : (
+											<span> Ei tiedostoja</span>
+										)}
+									</TableCell>
+
+									<TableCell key={counter++}>
+										<Button key={o.id} onClick={() => markCompleted(o.id, o.status)}>{o.status ? "kuitattu" : "ei huomioitu"}</Button>
+									</TableCell>
+								</TableRow>
+							</TableBody>
+						))}
+
+					</Table>
+				</div>
 			</TableContainer>
-			</div>	
+		</div>
 
 	)
 }

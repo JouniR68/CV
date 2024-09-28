@@ -10,8 +10,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import "./css/tarjous.css"
-
+import "../../index.css"
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -122,7 +121,7 @@ function TarjouspyyntoForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="tarjouspyynto">
-        <Grid container spacing={0.1}>
+        <Grid container spacing={0.1} sx={{alignContent:'flex-start'}}>
 
           <div className="tarjouspyynto-header">
             <Typography variant="h4">Tarjouspyyntölomake</Typography>
@@ -138,7 +137,7 @@ function TarjouspyyntoForm() {
                 render={({ field }) => (
                   <FormControlLabel
                     control={<Checkbox {...field} />}
-                    label="Yritys"
+                    label="Yritys"                    
                   />
                 )}
               />
@@ -151,12 +150,13 @@ function TarjouspyyntoForm() {
                 defaultValue=""
                 render={({ field }) => (
                   <FormControl fullWidth>
+
                     <InputLabel id="ala-label">Aihe</InputLabel>
                     <Select
+                     sx={{ width: 300, fontSize: '1rem', marginLeft: '4rem' }}
                       labelId="ala-label"
                       {...field}
-                      label="Aihe"
-                      size="larger"
+                      label="Aihe"                      
                     >
                       <MenuItem value="koodausta">Koodausta</MenuItem>
                       <MenuItem value="testausta">Testausta</MenuItem>
@@ -243,10 +243,9 @@ function TarjouspyyntoForm() {
                 render={({ field }) => (
                   <TextareaAutosize
                     {...field}
-                    minRows={4}
+                    minRows={5}
                     placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                    style={{ width: "90%", padding: "1rem", marginLeft: "1rem" }}
-                    size="large"
+                    style={{ width: "90%", padding: "1rem", marginLeft:'2rem' }}                    
                   />
                 )}
               />

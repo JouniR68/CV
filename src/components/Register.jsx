@@ -79,6 +79,7 @@ const RegistrationForm = () => {
             fontWeight: 'bold',
           },
         }}
+        fullWidth
         onChange={handleChange}
         required
       />
@@ -87,6 +88,7 @@ const RegistrationForm = () => {
         variant="outlined"
         name="lastName"
         value={formData.lastName}
+        fullWidth
         inputProps={{
           style: {
             fontWeight: 'bold',
@@ -100,6 +102,7 @@ const RegistrationForm = () => {
         variant="outlined"
         name="address"
         value={formData.address}
+        fullWidth
         inputProps={{
           style: {
             fontWeight: 'bold',
@@ -113,6 +116,7 @@ const RegistrationForm = () => {
         variant="outlined"
         name="phoneNumber"
         value={formData.phoneNumber}
+        fullWidth
         inputProps={{
           style: {
             fontWeight: 'bold',
@@ -126,6 +130,7 @@ const RegistrationForm = () => {
         variant="outlined"
         name="email"
         value={formData.email}
+        fullWidth
         inputProps={{
           style: {
             fontWeight: 'bold',
@@ -140,6 +145,7 @@ const RegistrationForm = () => {
         variant="outlined"
         name="password"
         value={formData.password}
+        fullWidth
         inputProps={{
           style: {
             fontWeight: 'bold',

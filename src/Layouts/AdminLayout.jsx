@@ -16,7 +16,7 @@ export default function AdminLayout() {
   return (
     <>
       {access ?
-        <div>
+        <div style = {{marginLeft:'50%'}}>
           <nav className="host-nav">            
             <Link to="tunterointi">Tuntien kirjaus</Link>
             <Link to="naytaPyynnot">Näytä työpyynnöt</Link>

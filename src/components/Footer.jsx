@@ -52,23 +52,12 @@ export default function Footer() {
 
   return (
     <div className = "footer">
-      <Box        
-        sx={{          
-          display:'flex',
-          justifyContent: 'center',
-          alignItems:'center',
-          '& > *': {
-            m: 1,
-          },
-        }}
-      >
-
+      
+      <div className="footer-items">
         <ButtonGroup
           variant=''
-          aria-label='outlined button group'
-          className="footer"
-        >
-          <div className="footer-items">
+          aria-label='outlined button group'          
+        >          
             <IconButton onClick={linkedIn}>
               <LinkedInIcon />
             </IconButton>
@@ -88,12 +77,9 @@ export default function Footer() {
             <IconButton onClick={() => changeLanguage('fi')}>
               <Button ><img src="/Images/fin-flag.png" /></Button>
             </IconButton>
-          </div>
-
         </ButtonGroup>
-
-
-      </Box >
+        </div>
+      
     </div>
   );
 }
