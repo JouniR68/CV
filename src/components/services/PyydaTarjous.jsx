@@ -223,29 +223,29 @@ function TarjouspyyntoForm() {
                 name="phoneNumber"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Puhelinnumero" required size="large" />
+                  <TextField {...field} fullWidth label="Puhelinnumero" required  />
                 )}
               />
             </Grid>
             <Grid item xs={12}>
-              <Controller
+              <Controller                
                 name="email"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Sähköposti" size="large" />
+                  <TextField {...field} fullWidth label="Sähköposti" />
                 )}
               />
             </Grid>
             <Grid item xs={12}>
               <Controller
                 name="message"
-                control={control}
+                control={control}                
                 render={({ field }) => (
                   <TextareaAutosize
-                    {...field}
-                    minRows={5}
+                    {...field}                    
+                    minRows={5}                    
                     placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                    style={{ width: "90%", padding: "1rem", marginLeft:'2rem' }}                    
+                    style={{ marginTop:"1rem", width: "90%", padding: "1rem", marginLeft:'2rem' }}                    
                   />
                 )}
               />
@@ -260,7 +260,7 @@ function TarjouspyyntoForm() {
                   startIcon={<CloudUploadIcon />}
                   color={success ? "success" : "primary"} // Change to success color when upload completes
                   disabled={progress > 0 && progress < 100} // Disable button during upload
-                  size="large"
+                  size="small"
                 >
                   {t('files')}
                   <VisuallyHiddenInput
@@ -272,7 +272,7 @@ function TarjouspyyntoForm() {
               </Grid>
 
               <Grid item xs={12}>
-                <Button type="submit" variant="contained" color="primary" size="large">
+                <Button type="submit" variant="contained" color="primary" size="small">
                   {t('lahetaTarjous')}
                 </Button>
               </Grid>

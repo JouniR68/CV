@@ -21,11 +21,15 @@
   html,
 
   body {
-    margin-left: 5rem;
     margin-bottom: 5rem;
     padding: 0;
     box-sizing: border-box;
-    min-height: 80vh;
+    height: 100vh;
+    background-image: url("../public/Images/syksy.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
   }
 
   body::-webkit-scrollbar {
@@ -37,43 +41,37 @@
     margin-bottom: 2rem;
   }
 
-  .app-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .app-container {    
     position: fixed;
-    top: 4%;
+    top: 2%;
     left: 50%;
     bottom: 4%;
     transform: translateX(-50%);
-    width: 50vw;
+    width: 100vw;
     height: calc(100vh - 3rem);
     border-radius: 1rem;
     border: 1px solid;
-    background-image: url("../public/Images/syksy.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
+    
   }
 
   .home {
-    position: fixed;
-    top: 15%;
-    left: 17%;
+    position:fixed;
+    top:20%;
+    left:5%;
     display: flex;
+    margin-right:3rem;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding-left:1rem;
-    margin-left: 1rem;
+    padding-left:1rem;    
     font-weight: 500;
-    font-size: 12px;
-    height: 0vh;
-    width: 30vw;
+    font-size: 12px;        
     height:50vh;
     gap: 1rem;        
     z-index:1;
     background-color: rgba(214, 214, 187, 0.72);
-    border-radius:1rem;
+    border-radius:1rem;    
+    font-weight: 700;
   }
 
   #home-nappi {
@@ -108,49 +106,49 @@
     left: 0%;
     display: flex;
     flex-direction: column;
-    width: 50vw;
-    height: 60vh;
-    padding: 1rem;
+    width: 50vw;    
+    padding: 0.5rem;    
   }
 
   .tarjouspyynto-header {
     width: 100%;
     padding-bottom: 0.1rem;
-    background-color: gray;
+    background-color: rgba(214, 214, 187, 0.72);
     text-align: center;
   }
 
   .tarjouspyynto-content {
     /* The scrollable area */
-    font-size: 3rem;
-    padding: 0.2rem;
+    background-color: rgba(214, 214, 187, 0.72);
+    font-size: 1rem;
+    padding: 0.1rem;
     justify-content: flex-start;
     flex-grow: 1;
-    margin: 4rem;
-    gap: 2rem;
+    margin: 1rem;    
     overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     border: 1px solid;
-    height: 100%;
+    height: 60vh;
   }
 
   .tarjouspyynto-napit {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-left: 2rem;
     margin-top: 1rem;
-    font-size: 36px;
-    gap: 1rem;
+    font-size: 18px;
+    gap: 0.5rem;
+    margin-bottom:2rem;
 
   }
 
   .tarjouspyynto .MuiGrid-container .MuiTextField-root {
-    width: 100%;
+    width: 100%;    
     /* Make input fields take the full width */
-    font-size: 4rem;
+    font-size: 1rem;
     /* Increase font size */
-    padding: 2rem;
+    
     /* Increase padding inside the input fields */
     line-height: 2rem;
     /* Adjust line height */
@@ -693,19 +691,9 @@
     position: fixed;
     top: 10%;
     left: 25%;
-    justify-content: center;
-    /* Center nav items horizontally */
-    align-items: flex-start;
-    /* Adjust if needed */
-    padding: 10px;
-    /* Padding around the nav */
-    font-weight: 700;
-    /* Bold text */
-
-
-    background-color: #f0f0f0;
-    /* Optional: Background color for visibility */
-
+    justify-content: center;    
+    align-items: flex-start;        
+    font-weight: 700;    
   }
 
   .host-nav a {
