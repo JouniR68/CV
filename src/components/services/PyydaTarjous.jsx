@@ -119,9 +119,8 @@ function TarjouspyyntoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="tarjouspyynto">
-        <Grid container spacing={0.1} sx={{alignContent:'flex-start'}}>
+    <form onSubmit={handleSubmit(onSubmit)} className = "tarjouspyynto">      
+        <Grid container spacing={0.1}>
 
           <div className="tarjouspyynto-header">
             <Typography variant="h4">Tarjouspyyntölomake</Typography>
@@ -149,7 +148,7 @@ function TarjouspyyntoForm() {
                 control={control}
                 defaultValue=""
                 render={({ field }) => (
-                  <FormControl fullWidth>
+                  <FormControl>
 
                     <InputLabel id="ala-label">Aihe</InputLabel>
                     <Select
@@ -260,7 +259,7 @@ function TarjouspyyntoForm() {
                   startIcon={<CloudUploadIcon />}
                   color={success ? "success" : "primary"} // Change to success color when upload completes
                   disabled={progress > 0 && progress < 100} // Disable button during upload
-                  size="small"
+                  size="medium"
                 >
                   {t('files')}
                   <VisuallyHiddenInput
@@ -272,15 +271,13 @@ function TarjouspyyntoForm() {
               </Grid>
 
               <Grid item xs={12}>
-                <Button type="submit" variant="contained" color="primary" size="small">
+                <Button type="submit" variant="contained" color="primary" size="medium">
                   {t('lahetaTarjous')}
                 </Button>
               </Grid>
             </div>
           </div>
-        </Grid>
-
-      </div>
+        </Grid>      
     </form>
   );
 }

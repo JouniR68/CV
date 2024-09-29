@@ -22,7 +22,7 @@ export default function Education() {
     <>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
+        <Table sx={{ minWidth: 380 }} aria-label="simple table" key={i++}>
           <TableHead className="education--thead">
             <TableRow>
               <TableCell align="left">{t('Education-course-header')}</TableCell>

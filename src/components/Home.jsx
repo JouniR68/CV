@@ -143,7 +143,7 @@ export default function Home() {
   return (
     <div className="home">
       {/*viewportWidth*/} {/*viewportHeight*/}
-      <h1>IT- Apua Tarjolla {name} </h1>      
+      <h1>Softa Apua? {name} </h1>      
       <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
       <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön.</Button>
     </div>

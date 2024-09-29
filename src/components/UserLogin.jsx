@@ -115,13 +115,13 @@ export const UserLogin = () => {
                 className="userLogin"
             >
 
-                <Typography mt={-15}variant="h3" gutterBottom>
+                <Typography mt={-15}variant="h4" gutterBottom>
                     {t("Login")}
                 </Typography>
                 <TextField
                     label={t('username')}
                     variant="outlined"                    
-                    value={username}
+                    value=""
                     fullWidth
                     inputProps={{
                         style: {
@@ -136,7 +136,7 @@ export const UserLogin = () => {
                     variant="outlined"
                     type="password"
                     fullWidth
-                    value={userPwd}
+                    value=""
                     inputProps={{
                         style: {
                           fontWeight: 'bold',
@@ -145,7 +145,7 @@ export const UserLogin = () => {
                     onChange={(e) => setUserPwd(e.target.value)}
                     required
                 />
-                <Button variant="contained" color="primary" type="submit">
+                <Button variant="contained" color="primary" type="submit" size="small">
                     {t('Login')}
                 </Button>
 

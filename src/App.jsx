@@ -60,6 +60,7 @@ function App() {
 */
   return (
     <div className="app-container">
+      <div className = "phone-container">
       <AuthProvider>
         <BrowserRouter>        
           <Routes>
@@ -115,7 +116,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
-
+      </div>
     </div>
   );
 }

@@ -12,7 +12,7 @@ export default function Logout() {
   const navigate = useNavigate()
   useEffect(() => {navigate('/done', { state: { description: t('LogoutText') }})},[])
   setIsLoggedIn(false)
-  sessionStorage.removeItem("adminlevel")
+  sessionStorage.removeItem("adminLevel")
   sessionStorage.removeItem("firstName")
   sessionStorage.removeItem("lastName")
   sessionStorage.removeItem("email")
