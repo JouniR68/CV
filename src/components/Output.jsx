@@ -16,6 +16,12 @@ const CV = () => {
     const [showTechs, setShowTechs] = useState(false)
     const [showProfile, setShowProfile] = useState(false)
 
+
+    /*
+                <Button onClick={() => showContent('profiili')}><h3>{t('Output-profile')}</h3></Button>
+                {showProfile && <Profile hideButton = {true}/>}
+
+    */
     //<Button style={{marginTop:'2rem'}} onClick={() => showContent()}>{t('Show')} {t('Output-education')} {t('Output-techs')}</Button>
     const showContent = (section) => {
         if (section === 'koulutus') {
@@ -34,10 +40,7 @@ const CV = () => {
     return (
         <div className="output">
 
-            <div className="output-content">
-                Info: Klikkaus aukaisee ja toinen sulkee.
-                <Button onClick={() => showContent('profiili')}><h3>{t('Output-profile')}</h3></Button>
-                {showProfile && <Profile hideButton = {true}/>}
+            <div className="output-content">                
 
                 <Button onClick={() => showContent('koulutus')}><h3>{t('Output-education')}</h3></Button>
                 {showKoulutus && <Education />}

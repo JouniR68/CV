@@ -81,11 +81,9 @@ const ShowOrders = () => {
 	console.log("reqs: ", orderReqs)
 
 	return (
-		<div>
+		<div className="pyynnot">
 			<TableContainer component={Paper}>
-				{error.length > 1 && <h3>{error}</h3>}
-
-				<div className="pyynnot">
+				{error.length > 1 && <h3>{error}</h3>}	
 					<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
 
 						<TableHead>
@@ -128,14 +126,13 @@ const ShowOrders = () => {
 									</TableCell>
 
 									<TableCell key={counter++}>
-										<Button key={o.id} onClick={() => markCompleted(o.id, o.status)}>{o.status ? "kuitattu" : "ei huomioitu"}</Button>
+										<Button variant="contained" key={o.id} onClick={() => markCompleted(o.id, o.status)}>{o.status ? "kuitattu" : "ei huomioitu"}</Button>
 									</TableCell>
 								</TableRow>
 							</TableBody>
 						))}
 
-					</Table>
-				</div>
+					</Table>				
 			</TableContainer>
 		</div>
 

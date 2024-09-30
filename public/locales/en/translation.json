@@ -100,7 +100,7 @@
   "check":"Check",
   "password":"Password",
   "addEvent":"Add Event",
-  "Calendar":"Daily Tasks",
+  "Calendar-title":"Daily Tasks",
   "Remove": "Delete",
   "Show": "Show",
   "Places": "Nearby services:",  
@@ -120,5 +120,6 @@
   "lahetaTarjous": "Send",
   "LogoutText": "You are logged out",
   "profession": "Software profession with hands on attitude.",
-  "Method": "Method"
+  "Method": "Method",
+  "RegAddress": "Address"
 }

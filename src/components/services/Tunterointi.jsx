@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from "../LoginContext";
+import "./css/pyynnot.css"
 
 function Tunterointi() {
   const [day, setDay] = useState(new Date().toISOString().substr(0, 10));
@@ -62,11 +63,9 @@ function Tunterointi() {
 
   return (
     <div className="tuntikirjaus">
-      {!access && <div>
-
+      {!access &&
         <h1>Teillä ei ole pääsyä tuntikirjaukseen</h1>
-
-      </div>}
+      }
       {access &&
         <div>
           <h1>Tuntikirjaus</h1>
@@ -110,7 +109,7 @@ function Tunterointi() {
           <Button variant="contained" onClick={handleAddEntry} style={{ marginRight: 10 }}>
             +
           </Button>
-          <Button style={{margin:'1rem'}} variant="outlined" onClick={() => handleInvoice()}>Talleta
+          <Button style={{ margin: '1rem' }} variant="outlined" onClick={() => handleInvoice()}>Talleta
           </Button>
         </div>
       }

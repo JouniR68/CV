@@ -123,7 +123,7 @@ function TarjouspyyntoForm() {
         <Grid container spacing={0.1}>
 
           <div className="tarjouspyynto-header">
-            <Typography variant="h5">Tarjouspyyntölomake</Typography>
+            <Typography variant="h5">Tarjouspyyntö</Typography>
           </div>
 
           {/* Scrollable content */}
@@ -150,7 +150,7 @@ function TarjouspyyntoForm() {
                 render={({ field }) => (
                   <FormControl>
                     <Select
-                     sx={{ width: 300, fontSize: '1rem', marginLeft: 'rem' }}
+                     sx={{ width: 300, fontWeight:'bold', fontSize: '1rem', marginLeft: 'rem' }}
                       labelId="ala-label"
                       {...field}
                       label="Aihe"                      
@@ -180,6 +180,11 @@ function TarjouspyyntoForm() {
                       label="Y-tunnus"
                       required={isCompany}
                       size="small"
+                      inputProps={{
+                        style: {
+                          fontWeight: 'bold'
+                        },
+                      }}
                     />
                   )}
                 />
@@ -191,7 +196,11 @@ function TarjouspyyntoForm() {
                 name="firstName"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Etunimi" required size="small" />
+                  <TextField {...field} fullWidth label="Etunimi" required size="small"           inputProps={{
+                    style: {
+                      fontWeight: 'bold'
+                    },
+                  }} />
                 )}
               />
             </Grid>
@@ -201,7 +210,11 @@ function TarjouspyyntoForm() {
                 name="lastName"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Sukunimi" required size="small" />
+                  <TextField {...field} fullWidth label="Sukunimi" required size="small"           inputProps={{
+                    style: {
+                      fontWeight: 'bold'
+                    },
+                  }} />
                 )}
               />
             </Grid>
@@ -211,7 +224,11 @@ function TarjouspyyntoForm() {
                 name="address"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Osoite" required size="small" />
+                  <TextField {...field} fullWidth label="Osoite" required size="small"           inputProps={{
+                    style: {
+                      fontWeight: 'bold'
+                    },
+                  }} />
                 )}
               />
             </Grid>
@@ -220,7 +237,11 @@ function TarjouspyyntoForm() {
                 name="phoneNumber"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Puhelinnumero" required  />
+                  <TextField {...field} fullWidth label="Puhelinnumero" required           inputProps={{
+                    style: {
+                      fontWeight: 'bold'
+                    },
+                  }} />
                 )}
               />
             </Grid>
@@ -241,8 +262,13 @@ function TarjouspyyntoForm() {
                   <TextareaAutosize
                     {...field}                    
                     minRows={5}                    
+                    inputProps={{
+                      style: {
+                        fontWeight: 'bold'
+                      },
+                    }}
                     placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                    style={{ marginTop:"0.5rem", width: "100%", padding: "1rem" }}                    
+                    style={{ marginTop:"0.5rem", width: "80%", padding: "1rem" }}                    
                   />
                 )}
               />

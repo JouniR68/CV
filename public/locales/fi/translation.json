@@ -2,7 +2,7 @@
   "test": "Testi",
   "welcome": "tervetuloa sivustolle!",
   "welcomText": "Selaile rauhassa sivujani ja laita rohkeasti viestiä (klikkaa Palvelut) vaikka et heti olisi ostamassa palveluitani.",
-  "mobileWelcomeText": "Asiaan eli voin auttaa laajasti ohjelmistoihin liittyvissä asioissa esim web-kehityksessä, testauksessa, projekti ja tuotehallinnassa, ohjelmistojen / järjestelmien ylläpidossa ja asennuksissa myös JIRA ja Confluense taipuvat. Ehkä tarvisetkin sijaista ATK- ihmisen loman ajaksi tai käyttö ym opastusta niin sekin onnistuu. Ei muuta kuin pienellä kynnyksellä tekemään tarjouspyyntö (nappi alla) niin nähdään mitä voin tehdä hyväksesi. Yhteystietoni alla olevassa alatunnisteessa tai laita tarjouspyyntö vaan tulemaan",
+  "mobileWelcomeText": "Asiaan eli voin auttaa laajasti ohjelmistoihin liittyvissä asioissa esim web-kehityksessä, testauksessa, projekti ja tuotehallinnassa, ohjelmistojen / järjestelmien ylläpidossa ja asennuksissa myös JIRA ja Confluense taipuvat. Ehkä tarvisetkin sijaista ATK- ihmisen loman ajaksi tai käyttö ym opastusta niin sekin onnistuu. Ei muuta kuin pienellä kynnyksellä tekemään tarjouspyyntö (nappi alla) niin nähdään mitä voin tehdä hyväksesi.",
   "homehi": "Tervetuloa",
   "Home": "Koti",
   "Profile": "Profiili",
@@ -68,7 +68,7 @@
   "Work-info-header":"Info",
   "Firstname": "Etunimi",
   "Lastname": "Sukunimi",
-  "Address": "Osoite",
+  "Address": "Google väittää osoitteeksesi",
   "Phone": "Puhelin",
   "Email": "Sähköposti",
   "Message": "Viesti",
@@ -98,10 +98,10 @@
   "Confirmation":"Vahvistus",
   "check": "Tarkista",
   "password":"Salasana",
-  "Calendar":"Päivän Taskit",
+  "Calendar-title":"Päivän Taskit",
   "Remove": "Poista",
   "Show":"Näytä / Piilota",
-  "Places":"Lähellä havaitut palvelut:",
+  "Places":"Läheiset palvelut ..",
   "RegisterationForm": "Uusi tili",
   "RegisterationInfo": "Talleta salasanasi, ongelmatilanteissa jr@softa-apu.fi",
   "Register": "Rekisteröinti",
@@ -120,5 +120,6 @@
   "LogoutText": "Olette nyt kirjautuneet ulos",
   "profession": "Tietokone / ohjelmisto alan ammattilainen",
   "addEvent": "Lisää tapahtuma",
-  "Method": "Methodi"
+  "Method": "Methodi",
+  "RegAddress": "Osoite"
 }

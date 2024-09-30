@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../LoginContext';
 import { useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
+import "./css/admin.css"
 
 const Report = () => {
   const { isLoggedIn } = useAuth();
@@ -130,10 +131,9 @@ const Report = () => {
   return (
     <div style={{ padding: 20 }}>
       {isLoggedIn ?
-        <div className="lasku">
-          {data.length > 0 && <h1>Moi {fNameRef.current}!<p></p>Lataa avoimet laskusi alla olevasta napista.</h1>}
+        <div className="admin">          
 
-          {access === true ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
+          {data.length > 0 && access === true ? <Button style={{ marginTop: 50 }} variant="contained" onClick={generatePDF}>
             Erääntyvät
           </Button>
             :

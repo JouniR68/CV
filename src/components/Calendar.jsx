@@ -5,6 +5,7 @@ import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, TextField } from '@mui/material';
+import { PaddingOutlined } from '@mui/icons-material';
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -59,19 +60,22 @@ const Calendar = () => {
 
     }
 
+    let counter = 0;
     return (
         <>
-            <h3>{t('Calendar')}</h3>
+            
             <div className="calendar">
-
+            <h3>{t('Calendar-title')}</h3>
                 <div className="calendar-form">
                     <TextField
                         placeholder="Tapahtuma"
                         value={newEvent.title}
+                        fullWidth
+                        inputProps={{style:{width:"20rem"}}}
                         onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                     />
                     <TextField type="date"
-                        value={newEvent.date}
+                        value={newEvent.date}                        
                         onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
                     />
                     <Button onClick={addEvent}>{t('addEvent')}</Button>
@@ -81,9 +85,9 @@ const Calendar = () => {
                     {events.map(event => (
                         <>
                         <div className="calendar-task">
-                        <li key={event.id}>
+                        <li key={counter++}>
                             {event.title}, {event.date}
-                            <Button id="calRemover" onClick={() => deletor(event.id)}>Poista</Button>
+                            <Button variant="contained" id = "deletor" onClick={() => deletor(event.id)}>Poista</Button>
                         </li>
                         </div>
                         </>

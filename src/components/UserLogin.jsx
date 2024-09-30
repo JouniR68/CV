@@ -120,8 +120,7 @@ export const UserLogin = () => {
                 </Typography>
                 <TextField
                     label={t('username')}
-                    variant="outlined"                    
-                    value=""
+                    variant="outlined"                                        
                     fullWidth
                     inputProps={{
                         style: {
@@ -135,8 +134,7 @@ export const UserLogin = () => {
                     label={t('password')}
                     variant="outlined"
                     type="password"
-                    fullWidth
-                    value=""
+                    fullWidth                   
                     inputProps={{
                         style: {
                           fontWeight: 'bold',
