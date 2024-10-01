@@ -17,6 +17,7 @@ import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Tooltip } from "@mui/material";
+import HamburgerMenu from './Hamburger';
 
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
@@ -38,14 +39,15 @@ export default function Header() {
   return (
 
     <div className="header">
-      <div className="header-left">
-        <Link to="/"><HomeWorkIcon /></Link>
-        <Link to="/profile"><PersonSharpIcon /></Link>
-        <Link to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+      <HamburgerMenu />
+      <div className="header-left">        
+        <Link className = "home-header" to="/"><HomeWorkIcon /></Link>
+        <Link className = "profile-header" to="/profile"><PersonSharpIcon /></Link>
+        <Link className = "nearby-header" to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
       </div>
       <div className="header-right">
-        {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
-        {!isLoggedIn && currentPath != '/register' && <Link to="/register">{t('Register')}</Link>}
+        {!isLoggedIn && currentPath != '/userLogin' && <Link className="login-header" to="/userLogin">{t('Login')}</Link>}
+        {!isLoggedIn && currentPath != '/register' && <Link className="register-header" to="/register">{t('Register')}</Link>}
 
         {isLoggedIn &&
           <>

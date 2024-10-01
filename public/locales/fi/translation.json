@@ -121,5 +121,7 @@
   "profession": "Tietokone / ohjelmisto alan ammattilainen",
   "addEvent": "Lisää tapahtuma",
   "Method": "Methodi",
-  "RegAddress": "Osoite"
+  "RegAddress": "Osoite",
+  "DisclaimerTittle":"Vastuuvapauslauseke",
+  "Disclaimer": "Sivustojen toissijainen tarkoitus on myös toimia koodaus platformina itselleni, jonka takia outouksia (bugeja / käyttöliittymä virheitä) voi silloin tällöin esiintyä... Pääosin sivustot toimivat englanniksi ja suomeksi, mutta muutamia puutteita on. Toivottavasti kuitenkaan ei vaikuta käyttöön."
 }

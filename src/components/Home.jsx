@@ -12,7 +12,7 @@ import { Button } from '@mui/material';
 
 
 const TextWrapper = ({ text, maxLength }) => {
-  console.log("text: ", text + ", length: ", maxLength )
+  console.log("text: ", text + ", length: ", maxLength)
   // Function to split the text into chunks of maxLength without breaking words
   const splitIntoChunksWithoutBreakingWords = (text, maxLength) => {
     const words = text.split('.'); // Split the text by spaces (words)
@@ -59,6 +59,7 @@ export default function Home() {
   const { isLoggedIn, currentUser } = useAuth();
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [disclaimer, setShowDisclaimer] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -140,11 +141,24 @@ export default function Home() {
   const fname = sessionStorage.getItem("firstName")
   !fname ? name = "" : name = fname
 
+
+  const showDisclaimer = () => {
+    setShowDisclaimer(!disclaimer)
+  }
+
   return (
     <div className="home">
-      {/*viewportWidth*/} {/*viewportHeight*/}      
+      {/*viewportWidth*/} {/*viewportHeight*/}
       <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
       <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön</Button>
+      
+
+        <div id="disclaimer">
+          <Button onClick = {showDisclaimer}><h4>{t('DisclaimerTittle')}</h4></Button>
+          {disclaimer && <h5>{t('Disclaimer')}</h5>}
+        </div>
+
+      
     </div>
   );
 }

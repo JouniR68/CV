@@ -44,27 +44,15 @@ import KohteenKuvat from "./components/KohteenKuvat"
 import Poistatunnus from "./components/Poistatunnus"
 import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
-import Header from "./components/Header";
 
 function App() {
-
-//<Route path='looking' element={<Looking />} />
-/*
-   <Route path='cv' element={<CVLayout />}>
-                  <Route index element={<Work />} />
-                  <Route path='education' element={<Education />} />
-                  <Route path='work' element={<Work />} />
-                  <Route path='Tech' element={<Tech />} />
-                  <Route path='Contact' element={<Contact />} />
-                </Route>
-*/
   return (
     <div className="app-container">
       <AuthProvider>
         <BrowserRouter>        
           <Routes>
             <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<Home />} />              
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/opit' element={<Learnings />} />
               <Route path='/home' element={<Home />} />
