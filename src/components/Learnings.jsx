@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, FormLabel } from '@mui/material';
 import { db } from '../firebase'; // Oletus, että olet konfiguroinut Firebasen
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import "../index.css"
+import { Label } from '@mui/icons-material';
 
 const LearningForm = () => {
     const [topic, setTopic] = useState('');
@@ -22,7 +24,7 @@ const LearningForm = () => {
             console.log("Learnings data: ", data)
             setLearnings(data)
             setFirebaseLearnings(data);  // Store the fetched learnings
-            
+
         }
         catch (error) {
             console.error("Error when fetchings learnings: ", error)
@@ -67,6 +69,9 @@ const LearningForm = () => {
     return (
         <div className="opit">
             <div className="opit-input">
+                <FormLabel sx={{ color: 'red', fontWeight:700 }}>
+                    Lisää oppi
+                </FormLabel>
                 <TextField
                     label="Aihe"
                     value={topic}
@@ -89,10 +94,10 @@ const LearningForm = () => {
                 </Button>
             </div>
 
-            <div className="opit-taulu">
+            <div>
                 {/* Taulukko Firebasesta haetuille oppitiedoille */}
-                <TableContainer component={Paper} style={{ marginTop: '20px' }}>
-                    <Table>
+                <TableContainer component={Paper}>
+                    <Table className="opit-taulu">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Aihe</TableCell>
