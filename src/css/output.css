@@ -1,0 +1,76 @@
+@media only screen and (min-width: 1024px) {
+    .output {
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 10%;
+        gap: 2rem;  
+        /* Optional: Add a shadow for visual appeal */        
+    }
+
+    .output-sections {
+        position: fixed;
+        top: -10rem;
+        left:0;
+        width:100%;        
+    }
+
+    thead {
+        text-align: left;
+        background-color: #ff8c38;
+    }
+
+    tr:nth-child(even) {
+        background-color: lightblue;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e6e6e6;
+    }
+
+    .cv-table {
+        position: fixed;
+        top: 2%;
+        max-width: 1000px;
+        height: 30%;
+        max-height: 100px;        
+        overflow-y: auto;
+    }
+}
+
+@media only screen and (min-width: 380px) and (max-width: 1023px) {
+    .output {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* This centers the element */
+        width: 80%;
+        height: 10vh;
+        background-color: rgb(238, 238, 238);    
+        color:black;
+        gap: 1rem;
+        font-size: 1.5rem;        
+        font-weight: 700;
+        /* Optional: Add a shadow for visual appeal */
+        border: 5px solid orange;
+        border-radius: 10px;
+        /* Optional: Add rounded corners */
+    }
+
+    .cv-table .MuiTable-root {
+        width:100%;
+        max-width: 1000px;
+        height: 10%;
+        max-height: 20rem;;
+        font-size: 1.5rem;
+        font-weight: 600;
+        background-color: red !important;
+        color: red !important;
+        border: 5px solid blue !important;
+        overflow-y: auto;
+    }
+
+}

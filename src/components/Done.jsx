@@ -10,7 +10,14 @@ function Done() {
   const [close, setClose] = useState(false)
   
   const {state} = location;
-  const {description} = state;
+  let {description} = state;
+  let title = ""
+  let disclaimerContent = false;
+
+  if (description === "disclaimer"){
+    disclaimerContent = true
+    description = t('Disclaimer')
+  }
 
   const ok = () => {
     setClose(true)    
@@ -20,14 +27,19 @@ function Done() {
     }, [2000])
   }
 
+
+  disclaimerContent ? title = t('DisclaimerTitle') : title = t('Confirmation')  
+
   return (
     <div className="confirmation-container">
       <div className="confirmation-content">        
-        <h2>{t('Confirmation')}</h2> 
-        {description }
-        <button id="ok" onClick={ok}>{t('Ok')}</button>                
-      </div>
+        <h2>{title}</h2> 
+        {description }                        
+        <button id="ok" onClick={ok}>{t('Ok')}</button>
+      </div>      
+      
     </div>
+    
   );
 }
 

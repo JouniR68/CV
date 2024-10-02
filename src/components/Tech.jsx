@@ -20,9 +20,9 @@ export default function Tech() {
   const {t} = useTranslation()
 
   return (
-    <>      
+    <div>      
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
+      <Table className = "cv-table" stickyHeader aria-label="simple table" key={i++}>
           <TableHead>
             <TableRow>
               <TableCell align="left">{t('Techs-header')}</TableCell>
@@ -67,6 +67,6 @@ export default function Tech() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 }

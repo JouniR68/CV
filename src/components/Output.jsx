@@ -6,41 +6,51 @@ import Work from "./Work";
 import Tech from "./Tech";
 import Looking from './Looking';
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
+import "../css/output.css"
 
 const CV = () => {
     const { t } = useTranslation()
     const [showKoulutus, setShowKoulutus] = useState(false)
     const [showHistoria, setShowHistoria] = useState(false)
     const [showTechs, setShowTechs] = useState(false)
-    const [showProfile, setShowProfile] = useState(false)
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+
+    
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+      setViewportHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
-    /*
-                <Button onClick={() => showContent('profiili')}><h3>{t('Output-profile')}</h3></Button>
-                {showProfile && <Profile hideButton = {true}/>}
-
-    */
-    //<Button style={{marginTop:'2rem'}} onClick={() => showContent()}>{t('Show')} {t('Output-education')} {t('Output-techs')}</Button>
     const showContent = (section) => {
         if (section === 'koulutus') {
             setShowKoulutus(!showKoulutus);
+            setShowHistoria(false);
+            setShowTechs(false);
         } else if (section === 'taidot') {
             setShowTechs(!showTechs);
+            setShowKoulutus(false);
+            setShowHistoria(false);            
         } else if (section === 'historia') {
             setShowHistoria(!showHistoria);
+            setShowKoulutus(false);
+            setShowTechs(false);
         }
-        else if (section === 'profiili') {
-            setShowProfile(!showProfile);
-        }
-
-    };
+    }
 
     return (
         <div className="output">
-
-            <div className="output-content">                
+            <div className="output-sections">
 
                 <Button onClick={() => showContent('koulutus')}><h3>{t('Output-education')}</h3></Button>
                 {showKoulutus && <Education />}
@@ -55,4 +65,4 @@ const CV = () => {
     );
 }
 
-export default CV;
+export default CV

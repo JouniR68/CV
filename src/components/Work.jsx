@@ -22,10 +22,10 @@ export default function Work() {
   const {t} = useTranslation()
 
   return (
-    <div className = "history">
+    <div>
       <TableContainer component={Paper}>
 
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" key={i++}>
+        <Table className = "cv-table" stickyHeader aria-label="simple table" key={i++}>
 
           <TableHead>
             <TableRow>

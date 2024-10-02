@@ -2,7 +2,7 @@
   "test": "test (en)",
   "welcome": "great to have you here!",
   "welcomText": "Pls, browse through and contact me (via services, mail link / call).",
-  "mobileWelcomeText": "I can help you with your house / lot maintenance and with your computer related stuff including web pages etc. In case you accept my offer, I kindly request you to register an account.",
+  "mobileWelcomeText": "Offering my software related services, in case need for any sw / computer labor (small or bigger) drop me offer request via the button below and I'll get back to you with the offer.",  
   "homehi": "Great to see you in here!",
   "Home": "Home",
   "Profile": "Profile",
@@ -123,5 +123,8 @@
   "Method": "Method",
   "RegAddress": "Address",
   "DisclaimerTittle":"Disclaimer",
-  "Disclaimer": "Site secondary purpose is to act as a coding platform for myself & due to it there are occationally bugs and user interface issues. Additionally some translations are missing, but hoping that it doesn't impact usage ... so much."
+  "Disclaimer": "Site secondary purpose is to act as a coding platform for myself & due to it there are occationally bugs and user interface issues. Additionally some translations are missing, but hoping that it doesn't impact usage ... so much.",
+  "DisclaimerTitle": "Disclaimer",
+  "Offer": "Offer request"
+
 }

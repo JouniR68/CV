@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from "../LoginContext";
-import "./css/pyynnot.css"
+import "../../css/pyynnot.css"
 
 function Tunterointi() {
   const [day, setDay] = useState(new Date().toISOString().substr(0, 10));
@@ -17,7 +17,6 @@ function Tunterointi() {
   const [entries, setEntries] = useState([]);
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth()
-
 
   const isAccess = sessionStorage.getItem("adminLevel")
   console.log("isAccess: ", isAccess)

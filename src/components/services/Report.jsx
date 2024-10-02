@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../LoginContext';
 import { useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
-import "./css/admin.css"
+import "../../css/admin.css"
 
 const Report = () => {
   const { isLoggedIn } = useAuth();

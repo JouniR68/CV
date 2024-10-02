@@ -1,3 +1,23 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  zoom: 1.3;
+}
+
+.app-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto; /* To center the container */
+  padding: 20px; /* Optional padding */
+}
+
 @media only screen and (min-width: 380px) and (max-width: 1020px){
   ::-webkit-scrollbar {
     background-color: rgba(238, 232, 232, 0.5);
@@ -110,25 +130,6 @@
 
   .profile img {
     margin-bottom:1rem;
-  }
-
-  .profile--table {
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    margin-left: 2rem;
-    justify-content: start;
-  }
-
-  .profile--card {
-    padding: 10px;
-    font-size: 14px;
-    font-family: bold;
-    border: 1px solid;
-    border-radius: 5px;
-    width: fit-content;
-    height: fit-content;
-    margin-bottom: 10px;
   }
 
   .logout-text {
@@ -575,6 +576,8 @@
     overflow: auto;
     margin-left: 1rem;    
   }
+
+
 
   .output h3 {
     margin-bottom: 1px;
@@ -1361,39 +1364,8 @@
       height: 50%;
     }
   
-    .profile--card {
-      padding: 1rem;
-      font-size: 14px;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      border: 1px solid;
-      border-radius: 5px;
-      width: fit-content;
-      height: fit-content;
-      margin-bottom: 1rem;
-      line-height: 1rem;
-    }
-  
-    .tech--general {
-      text-align: left;
-      margin-top: 30px;
-      margin-left: 2%;
-    }
-  
-    .tech--thead,
-    .education--thead {
-      text-align: left;
-      margin-top: 6%;
-      background-color: #ff8c38;
-    }
-  
-    .tech--table,
-    .education--table {
-      display: table;
-      margin-top: 30px;
-      margin-bottom: 2%;
-      margin-left: 2%;
-    }
-  
+    
+
     tr:nth-child(even) {
       background-color: lightblue;
     }

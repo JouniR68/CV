@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../LoginContext";
 import { NoteAdd } from "@mui/icons-material";
-import "./css/pyynnot.css"
+import "../../css/pyynnot.css"
 
 const ShowOrders = () => {
 	const { currentUser } = useAuth();

@@ -10,6 +10,8 @@ import {
   Paper,
 } from '@mui/material';
 
+import "../css/output.css"
+
 export default function Education() {
   let i = 0;
   const issueData = JsonData.education.map((j) => {
@@ -19,11 +21,10 @@ export default function Education() {
   const {t} = useTranslation()
 
   return (
-    <>
-
+    <div>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 380 }} aria-label="simple table" key={i++}>
-          <TableHead className="education--thead">
+        <Table className="cv-table" aria-label="simple table" key={i++}>
+          <TableHead>
             <TableRow>
               <TableCell align="left">{t('Education-course-header')}</TableCell>
               <TableCell align="left">{t('Education-schedule-header')}</TableCell>
@@ -55,6 +56,6 @@ export default function Education() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 }

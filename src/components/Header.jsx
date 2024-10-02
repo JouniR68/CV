@@ -17,7 +17,7 @@ import CalendarMonthSharpIcon from '@mui/icons-material/CalendarMonthSharp';
 import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Tooltip } from "@mui/material";
-import HamburgerMenu from './Hamburger';
+import Hamburger from './Hamburger';
 
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
@@ -39,22 +39,24 @@ export default function Header() {
   return (
 
     <div className="header">
-      <HamburgerMenu />
-      <div className="header-left">        
-        <Link className = "home-header" to="/"><HomeWorkIcon /></Link>
-        <Link className = "profile-header" to="/profile"><PersonSharpIcon /></Link>
-        <Link className = "nearby-header" to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
-      </div>
-      <div className="header-right">
-        {!isLoggedIn && currentPath != '/userLogin' && <Link className="login-header" to="/userLogin">{t('Login')}</Link>}
-        {!isLoggedIn && currentPath != '/register' && <Link className="register-header" to="/register">{t('Register')}</Link>}
+      <div className="navbar">
+        <Hamburger />
+        <div className="header-left">
+          <Link className="home-header" to="/"><HomeWorkIcon /></Link>
+          <Link className="profile-header" to="/profile"><PersonSharpIcon /></Link>
+          <Link className="nearby-header" to="/checkLocation"><IconButton><LocationOnIcon style={{ transform: 'translateY(-5px)' }} /></IconButton></Link>
+        </div>
+        <div className="header-right">
+          {!isLoggedIn && currentPath != '/userLogin' && <Link className="login-header" to="/userLogin">{t('Login')}</Link>}
+          {!isLoggedIn && currentPath != '/register' && <Link className="register-header" to="/register">{t('Register')}</Link>}
 
-        {isLoggedIn &&
-          <>
-            <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-            <Link to="/admin"><SettingsIcon /> </Link>
-            {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
-          </>}
+          {isLoggedIn &&
+            <>
+              <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+              <Link to="/admin"><SettingsIcon /> </Link>
+              {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
+            </>}
+        </div>
       </div>
     </div>
 

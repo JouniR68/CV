@@ -44,6 +44,7 @@ import KohteenKuvat from "./components/KohteenKuvat"
 import Poistatunnus from "./components/Poistatunnus"
 import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
+import Budjetti from "./components/Budjetti"
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />              
               <Route path='/inActivity' element={<InactivityTimer />} />
+              <Route path='/budjetti' element={<Budjetti />} />
               <Route path='/opit' element={<Learnings />} />
               <Route path='/home' element={<Home />} />
               <Route path='/checkLocation' element={<CheckLocation />} />

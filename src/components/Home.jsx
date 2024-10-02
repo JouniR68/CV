@@ -1,13 +1,9 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import "../index.css"
-import MyLocation from './MyLocation';
-import Confirmation from './Confirmation';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
-import CheckLocation from './CheckLocation';
-import { AuthContext, useAuth } from './LoginContext';
-import Calendar from './Calendar';
+import { useAuth } from './LoginContext';
 import { Button } from '@mui/material';
 
 
@@ -150,12 +146,12 @@ export default function Home() {
     <div className="home">
       {/*viewportWidth*/} {/*viewportHeight*/}
       <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
-      <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>Tarjouspyyntöön</Button>
+      <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>{t('Offer')}</Button>
       
 
         <div id="disclaimer">
           <Button onClick = {showDisclaimer}><h4>{t('DisclaimerTittle')}</h4></Button>
-          {disclaimer && <h5>{t('Disclaimer')}</h5>}
+          {disclaimer && navigate('/done', {state: {description:"disclaimer"}})}
         </div>
 
       
