@@ -1,7 +1,5 @@
 import { useTranslation } from "react-i18next";
 import JsonData from "../../data/datapkg.json";
-//import remover from "../utils/common";
-//import { Outlet, NavLink } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -18,11 +16,11 @@ export default function Work() {
     return j;
   });
 
-
   const {t} = useTranslation()
 
   return (
     <div>
+
       <TableContainer component={Paper}>
 
         <Table className = "cv-table" stickyHeader aria-label="simple table" key={i++}>

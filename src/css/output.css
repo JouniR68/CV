@@ -43,34 +43,24 @@
 @media only screen and (min-width: 380px) and (max-width: 1023px) {
     .output {
         position: fixed;
-        top: 10%;
+        top:50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        /* This centers the element */
+        transform: translate(-50%, -50%); 
         width: 80%;
-        height: 10vh;
+        height: vh;
         background-color: rgb(238, 238, 238);    
-        color:black;
-        gap: 1rem;
-        font-size: 1.5rem;        
-        font-weight: 700;
-        /* Optional: Add a shadow for visual appeal */
-        border: 5px solid orange;
-        border-radius: 10px;
-        /* Optional: Add rounded corners */
+        color:black;        
+        font-size: 1.5rem;                
     }
 
-    .cv-table .MuiTable-root {
-        width:100%;
-        max-width: 1000px;
+    .cv-table {
         height: 10%;
-        max-height: 20rem;;
+        max-height: 20rem;
         font-size: 1.5rem;
         font-weight: 600;
-        background-color: red !important;
         color: red !important;
-        border: 5px solid blue !important;
-        overflow-y: auto;
+        border: 1px solid;
+        overflow-y: scroll;
     }
 
 }

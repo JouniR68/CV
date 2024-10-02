@@ -45,6 +45,7 @@ import Poistatunnus from "./components/Poistatunnus"
 import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
 import Budjetti from "./components/Budjetti"
+import CoverLetter from "./components/Letter";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
               <Route path='/' element={<Home />} />              
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
+              <Route path='/letter' element={<CoverLetter />} />
               <Route path='/opit' element={<Learnings />} />
               <Route path='/home' element={<Home />} />
               <Route path='/checkLocation' element={<CheckLocation />} />

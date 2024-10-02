@@ -1,10 +1,6 @@
 import Education from "./Education"
-import Profile from "./Profile";
-import Why from "./Why";
-import Intrests from "./Intrest"
 import Work from "./Work";
 import Tech from "./Tech";
-import Looking from './Looking';
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
@@ -15,10 +11,11 @@ const CV = () => {
     const [showKoulutus, setShowKoulutus] = useState(false)
     const [showHistoria, setShowHistoria] = useState(false)
     const [showTechs, setShowTechs] = useState(false)
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-    const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+    //const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    //const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
-    
+
+    /*
   useEffect(() => {
     const handleResize = () => {
       setViewportWidth(window.innerWidth);
@@ -30,7 +27,7 @@ const CV = () => {
     // Cleanup the event listener on component unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
+*/
 
     const showContent = (section) => {
         if (section === 'koulutus') {
@@ -40,7 +37,7 @@ const CV = () => {
         } else if (section === 'taidot') {
             setShowTechs(!showTechs);
             setShowKoulutus(false);
-            setShowHistoria(false);            
+            setShowHistoria(false);
         } else if (section === 'historia') {
             setShowHistoria(!showHistoria);
             setShowKoulutus(false);

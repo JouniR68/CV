@@ -54,14 +54,6 @@ export default function Tech() {
                     <TableRow key={i++}>{l}</TableRow>
                   ))}
                 </TableCell>
-                <TableCell key={i++} className='cell'>
-                  {t?.ProjectMethods.map((m) => (
-                    <TableRow key={i++}>{m}</TableRow>
-                  ))}
-                </TableCell>
-
-
-
               </TableRow>
             ))}
           </TableBody>
