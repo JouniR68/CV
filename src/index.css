@@ -1,3 +1,5 @@
+
+@media only screen and (min-width: 1024px) {
 #disclaimer {
   width: 100%;
   margin-top: 2rem;
@@ -703,6 +705,34 @@
     display: none !important;
   }
 
+  .opit {    
+    position: fixed;
+    top: 10%;
+    left: 6%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 20%;
+    height: 50%;    
+    padding: 1rem;        
+    gap:1rem;
+    background-color: rgba(214, 214, 187, 0.72);
+    z-index: 101
+  }
+  
+  .opit-taulu{
+    position:fixed;
+    top:10%;
+    left:30%;
+    height: 20%;
+    max-width: 30%;
+    background-color: rgba(214, 214, 187, 0.72);
+    z-index: 102;
+    overflow: auto;
+  }
+
   .app-container {
     position: fixed;
     top: 4%;
@@ -818,20 +848,6 @@
 
   .cleanpage {
     background-color: white;
-  }
-
-  .opit {
-    display: flex;
-    position: fixed;
-    top: 20%;
-    left: 15%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    width: 80%;
-    margin: auto;
-    padding: 1rem;
   }
 
   .register {
