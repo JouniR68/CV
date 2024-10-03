@@ -15,7 +15,8 @@ const RegistrationForm = () => {
     address: '',
     phoneNumber: '',
     email: '',
-    password: ''
+    password: '',
+    created: new Date().toLocaleDateString()
   });
 
   const navigate = useNavigate()
@@ -85,7 +86,7 @@ const RegistrationForm = () => {
           required
         />
         <TextField
-          label={t('Address')}
+          label={t('RegAddress')}
           variant="outlined"
           name="address"
           value={formData.address}

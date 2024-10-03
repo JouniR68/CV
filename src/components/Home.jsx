@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import { useAuth } from './LoginContext';
 import { Button } from '@mui/material';
+import InactivityTimer from './InActivity';
 
 
 const TextWrapper = ({ text, maxLength }) => {
@@ -144,6 +145,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      {isLoggedIn && <InactivityTimer />}
       {/*viewportWidth*/} {/*viewportHeight*/}
       <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
       <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>{t('Offer')}</Button>

@@ -7,9 +7,11 @@ import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './LoginContext';
 import { useTranslation } from 'react-i18next';
+import InactivityTimer from './InActivity';
 
 
 export const UserLogin = () => {
+    const [iActivityTimer, setStartIActivityTimer] = useState(false)
     const [username, setUsername] = useState('');
     const [userPwd, setUserPwd] = useState('');
     const [message, setMessage] = useState('');
@@ -55,7 +57,7 @@ export const UserLogin = () => {
     const checkUser = async () => {
         console.log("checkUser")
         const user = data.find(e => e.email === username)
-        if (user) {
+        if (user.active) {
             console.log("user found", user)
             sessionStorage.setItem("firstName", user.firstName)
             sessionStorage.setItem("lastName", user.lastName)
@@ -64,6 +66,12 @@ export const UserLogin = () => {
             sessionStorage.setItem("phoneNumber", user.phoneNumber)
             sessionStorage.setItem("loggedIn", "true")
         }
+
+        else if (user.active === false){
+            setTimeout(() => navigate('/error', {state: {locationError:'Tilissä ongelmia, ottakaa yhteyttä jr@softa-apu.fi'}}),[2000])
+        }
+
+
         if (!user) { return false }
 
         console.log("userPwd: ", userPwd)
@@ -72,10 +80,11 @@ export const UserLogin = () => {
         console.log("hashedPwd length:", user.password.length);
         const isSoftaApu = user.email.split("@")[1]?.includes("softa-apu");
         const isPwdValid = await bcrypt.compare(userPwd, user.password)
-        if (isPwdValid) {            
-            console.log("pwd validated")            
-            if (isSoftaApu){
+        if (isPwdValid) {
+            console.log("pwd validated")
+            if (isSoftaApu) {
                 sessionStorage.setItem("adminLevel", "valid")
+                setStartIActivityTimer(true)
             }
             return true
         }
@@ -108,25 +117,26 @@ export const UserLogin = () => {
     };
 
     return (
-        <div>
+        <div>            
             <Box
                 component="form"
                 onSubmit={handleLogin}
                 className="userLogin"
             >
 
-                <Typography mt={-15}variant="h4" gutterBottom>
-                    {t("Login")}
+                <Typography mt={-15} variant="h4" gutterBottom>
+                    {t("Login")}<br/>                    
                 </Typography>
+                {t("LogoutWarning")}<br/>
                 <TextField
                     label={t('username')}
-                    variant="outlined"                                        
+                    variant="outlined"
                     fullWidth
                     inputProps={{
                         style: {
-                          fontWeight: 'bold',
+                            fontWeight: 'bold',
                         },
-                      }}
+                    }}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
@@ -134,12 +144,12 @@ export const UserLogin = () => {
                     label={t('password')}
                     variant="outlined"
                     type="password"
-                    fullWidth                   
+                    fullWidth
                     inputProps={{
                         style: {
-                          fontWeight: 'bold',
+                            fontWeight: 'bold',
                         },
-                      }}
+                    }}
                     onChange={(e) => setUserPwd(e.target.value)}
                     required
                 />

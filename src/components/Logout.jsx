@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { doSignOut } from "./auth";
 import { useAuth } from "./LoginContext";
 import { useTranslation } from "react-i18next";
 
@@ -19,7 +18,7 @@ export default function Logout() {
   sessionStorage.removeItem("address")
   sessionStorage.removeItem("phoneNumber")
   sessionStorage.removeItem("loggedIn")
-  doSignOut()
+  window.location.reload()
   
   
 }
