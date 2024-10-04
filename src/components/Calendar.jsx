@@ -4,8 +4,8 @@ import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, TextField } from '@mui/material';
-import "../css/calendar.css"
+import { TextField, Button, Grid, Typography } from '@mui/material';
+
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -62,39 +62,60 @@ const Calendar = () => {
 
     let counter = 0;
     return (
-        <>
-            
-            <div className="calendar">
-            <h3>{t('Calendar-title')}</h3>
-                <div className="calendar-form">
-                    <TextField
-                        placeholder="Tapahtuma"
-                        value={newEvent.title}
-                        fullWidth                                                    
-                        onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                    /><p/>
-                    <TextField type="date"
-                        value={newEvent.date}                        
-                        onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                    />
-                    <Button onClick={addEvent}>{t('addEvent')}</Button>
-                </div>
+        <Grid container justifyContent="center" sx={{ padding: { xs: 2, sm: 4 } }}>
+            <Grid item xs={12} md={8} lg={6}>
+                <div className="calendar" style={{ padding: '1rem', zoom: '1.2' }}>
+                    <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
+                        {t('Calendar-title')}
+                    </Typography>
 
-                <div className="calendar-task-row">
-                    {events.map(event => (
-                        <>
-                        <div className="calendar-task">
-                        <li key={counter++}>
-                            {event.title}, {event.date}
-                            <Button variant="contained" id = "deletor" onClick={() => deletor(event.id)}>Poista</Button>
-                        </li>
-                        </div>
-                        </>
-                    ))}
-                </div>
+                    <Grid container spacing={2} className="calendar-form" sx={{ mt: 2 }}>
+                        <Grid item xs={12}>
+                            <TextField
+                                placeholder="Tapahtuma"
+                                value={newEvent.title}
+                                fullWidth
+                                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                                inputProps={{ style: { fontSize: '1rem' } }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                type="date"
+                                value={newEvent.date}
+                                fullWidth
+                                onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                                inputProps={{ style: { fontSize: '1rem' } }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Button onClick={addEvent} fullWidth variant="contained">
+                                {t('addEvent')}
+                            </Button>
+                        </Grid>
+                    </Grid>
 
-            </div>
-        </>
+                    <Grid container spacing={2} className="calendar-task-row" sx={{ mt: 4 }}>
+                        {events.map(event => (
+                            <Grid item xs={12} key={counter++} className="calendar-task" sx={{ p: 2, border: '1px solid #ccc', borderRadius: 2 }}>
+                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+                                    {event.title}, {event.date}
+                                </Typography>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    fullWidth
+                                    onClick={() => deletor(event.id)}
+                                    sx={{ mt: 1 }}
+                                >
+                                    {t('Poista')}
+                                </Button>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+            </Grid>
+        </Grid>
     );
 };
 

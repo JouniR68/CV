@@ -23,7 +23,7 @@
         "CD/CD pipelines",
         "Firebase (Google's mobile and web app development platform)"
       ],
-      "ProjectMethods": [
+      "Methods": [
         "Waterfall",
         "Kanban",
         "Scrum"

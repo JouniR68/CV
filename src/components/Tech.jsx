@@ -1,15 +1,7 @@
 import { useTranslation } from "react-i18next";
 import JsonData from "../../data/datapkg.json";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 //import remover from "../utils/common";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from '@mui/material';
 
 export default function Tech() {
   let i = 0;
@@ -17,48 +9,72 @@ export default function Tech() {
     return j;
   });
 
-  const {t} = useTranslation()
+  const { t } = useTranslation()
+  let counter = 0;
 
   return (
-    <div>      
-      <TableContainer component={Paper}>
-      <Table className = "cv-table" stickyHeader aria-label="simple table" key={i++}>
+    <div>
+      <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', md: 'visible' }}}>
+        <Table className="cv-table" stickyHeader aria-label="technology table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">{t('Techs-header')}</TableCell>
-              <TableCell align="left"></TableCell>
-              <TableCell align="left"></TableCell>
-              <TableCell align="left">{t('Method')}</TableCell>
-              
+              <TableCell sx={{fontWeight:900, backgroundColor:'red'}} align="left">{t('Techs-header')}</TableCell>
+              <TableCell sx={{fontWeight:900, backgroundColor:'red'}}align="left"></TableCell>
+              <TableCell sx={{fontWeight:900, backgroundColor:'red'}}align="left"></TableCell>
+              <TableCell sx={{fontWeight:900, backgroundColor:'red'}} align="left">{t('Method')}</TableCell>
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {issueData?.map((d) => d.General)}
-
-
-            {issueData?.map((t) => (
-              <TableRow key={i++} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="left" key={i++} className="row">
-                  {t.Programming.map((p) => (
-                    <TableRow key={i++}>{p}</TableRow>
+            {issueData?.map((item) => (
+              <TableRow key={counter++} sx={{
+                display: { xs: 'block', md: 'table-row' },
+                borderBottom: { xs: '1px solid #ddd', md: 'none' },
+                padding: { xs: '1rem', md: 0 },
+              }}>
+                {/* Programming */}
+                <TableCell align="left" sx={{ display: { xs: 'block', md: 'table-cell' } }}>
+                  <Typography variant="subtitle2" sx={{ display: { xs: 'block', md: 'none' } }}>
+                    {t('Techs-header')}
+                  </Typography>
+                  {item.Programming?.map((tech) => (
+                    <Typography sx={{fontWeight:800}} key={counter++}>{tech}</Typography>
                   ))}
                 </TableCell>
-                <TableCell key={i++} className='cell'>
-                  {t?.Database.map((d) => (
-                    <TableRow key={i++}>{d}</TableRow>
+
+                {/* Database */}
+                <TableCell align="left" sx={{ display: { xs: 'block', md: 'table-cell' } }}>
+                  <Typography variant="subtitle2" sx={{ display: { xs: 'block', md: 'none' } }}>
+                    {t('Database-header')}
+                  </Typography>
+                  {item.Database?.map((db) => (
+                    <Typography sx={{fontWeight:800}} key={counter++}>{db}</Typography>
                   ))}
                 </TableCell>
-                <TableCell key={i++} className='cell'>
-                  {t?.Tools.map((l) => (
-                    <TableRow key={i++}>{l}</TableRow>
+
+                {/* Tools */}
+                <TableCell align="left" sx={{ display: { xs: 'block', md: 'table-cell' } }}>
+                  <Typography variant="subtitle2" sx={{ display: { xs: 'block', md: 'none' } }}>
+                    {t('Tools-header')}
+                  </Typography>
+                  {item.Tools?.map((tool) => (
+                    <Typography sx={{fontWeight:800}} key={counter++}>{tool}</Typography>
                   ))}
+                </TableCell>
+
+                {/* Method */}
+                <TableCell align="left" sx={{ display: { xs: 'block', md: 'table-cell' } }}>
+                  <Typography variant="subtitle2" sx={{ display: { xs: 'block', md: 'none' } }}>
+                    {t('Method')}
+                  </Typography>
+                  <Typography>{item.Methods.map((method) => (
+                      <Typography sx={{fontWeight:800}} key={counter++}>{method}</Typography>
+                  ))}</Typography>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
-  );
+    </div>);
 }
