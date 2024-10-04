@@ -5,7 +5,7 @@ import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, TextField } from '@mui/material';
-import { PaddingOutlined } from '@mui/icons-material';
+import "../css/calendar.css"
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -70,10 +70,9 @@ const Calendar = () => {
                     <TextField
                         placeholder="Tapahtuma"
                         value={newEvent.title}
-                        fullWidth
-                        inputProps={{style:{width:"20rem"}}}
+                        fullWidth                                                    
                         onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                    />
+                    /><p/>
                     <TextField type="date"
                         value={newEvent.date}                        
                         onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}

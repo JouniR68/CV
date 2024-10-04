@@ -1,21 +1,19 @@
+@media only screen and (max-width: 1024px) {
 
-@media only screen and (min-width: 1024px) {
-#disclaimer {
-  width: 100%;
-  margin-top: 2rem;
-}
-
-#disclaimer h4 {
-  flex: 1 1 auto;
-  text-align: justify;
-  color: #2c3e50;
-  width: 100%;
-  margin-bottom: 1rem;
-  margin-left: 0rem;
-}
-
-
-@media (max-width: 1024px) {
+  #disclaimer {
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  #disclaimer h4 {
+    flex: 1 1 auto;
+    text-align: justify;
+    color: #2c3e50;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-left: 0rem;
+  }
+  
   .hamburger-menu-container {
     position: relative;
     display: flex;
@@ -469,55 +467,6 @@
 
   #saveButton {
     margin-top: 4.5rem;
-  }
-
-  .calendar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    gap: 1rem;
-    margin: 0;
-    zoom: 1.6;
-  }
-
-  .calendar-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-    flex: 1;
-    /* Takes up available space on the left */
-    max-width: 100%;
-    /* Adjust width of the form */
-    margin: 0rem;
-    /* Space between form and task rows */
-    gap: 1rem;
-    height: 60%;
-  }
-
-  .calendar-task-row {
-    margin-top: 1rem;
-    /* Takes up more space compared to the form */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Space between each task row */
-  }
-
-  /* Optional: Styling for items inside calendar-task-row */
-  .calendar-task {
-    padding: 1rem;
-    width: 100%;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-
-  #deletor {
-    margin-left: 2rem;
   }
 
   .login--form {
@@ -1103,58 +1052,6 @@
     margin-left: 1rem;
   }
 
-  .calendar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Center horizontally */
-    align-items: flex-start;
-    /* Align items from the top */
-    max-height: 70vh;
-    /* 10% decrease from the top */
-    padding-top: 10vh;
-    /* Push down 10% from the top */
-  }
-
-  #deletor {
-    margin-left: 2rem;
-  }
-
-  .calendar-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 2rem;
-    flex: 1;
-    /* Takes up available space on the left */
-    max-width: 100%;
-    /* Adjust width of the form */
-    margin: 0rem;
-    /* Space between form and task rows */
-    gap: 1rem;
-    height: 40vh;
-  }
-
-  .calendar-task-row {
-    margin-top: 3rem;
-    /* Takes up more space compared to the form */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    /* Space between each task row */
-  }
-
-  /* Optional: Styling for items inside calendar-task-row */
-  .calendar-task {
-    padding: 1rem;
-    width: 100%;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-
-
 
   .confirmation-container {
     background: rgba(0, 0, 0, 0.8);
@@ -1173,9 +1070,9 @@
 
   .confirmation-content {
     position: fixed;
-    top: 14%;
-    left: 10%;
-    max-width: 40%;
+    top: 30%;
+    left: 30%;
+    max-width: 50%;
     max-height: 60%;
     display: flex;
     flex-direction: column;
