@@ -8,7 +8,8 @@ import Profile from "./components/Profile";
 import Rent from "./components/Services";
 import Customer from "./components/AddCustomer";
 import CustomerData from "./components/services/NaytaPyynnot";
-import Why from "./components/Why";
+import Feedback from "./components/Feedback"
+import ShowFeedback from "./components/ShowFeedback";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
 import Admin from "./components/AdminLogin";
@@ -46,6 +47,7 @@ import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
 import Budjetti from "./components/Budjetti"
 import CoverLetter from "./components/Letter";
+import FeedbackDialog from "./components/Feedback";
 
 function App() {
   return (
@@ -69,7 +71,8 @@ function App() {
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
               <Route path='lasku' element={<Report />} />
-
+              <Route path='feedback' element={<Feedback/>} />
+              <Route path='palaute' element={<ShowFeedback/>} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="output" element={<CV />} />

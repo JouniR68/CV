@@ -6,6 +6,7 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 import { useAuth } from './LoginContext';
 import { Button } from '@mui/material';
 import InactivityTimer from './InActivity';
+import FeedbackDialog from './Feedback';
 
 
 const TextWrapper = ({ text, maxLength }) => {
@@ -57,6 +58,8 @@ export default function Home() {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   const [disclaimer, setShowDisclaimer] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false);
+
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -80,6 +83,9 @@ export default function Home() {
     // Cleanup the event listener on component unmount
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const handleOpen = () => setDialogOpen(true);
+  const handleClose = () => setDialogOpen(false);
 
 
   const { t, i18n } = useTranslation();
@@ -149,14 +155,22 @@ export default function Home() {
       {/*viewportWidth*/} {/*viewportHeight*/}
       <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
       <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>{t('Offer')}</Button>
-      
 
-        <div id="disclaimer">
-          <Button onClick = {showDisclaimer}><h4>{t('DisclaimerTittle')}</h4></Button>
-          {disclaimer && navigate('/done', {state: {description:"disclaimer"}})}
-        </div>
 
-      
+      <div id="disclaimer">
+        <Button onClick={showDisclaimer}><h4>{t('DisclaimerTittle')}</h4></Button>
+        {disclaimer && navigate('/done', { state: { description: "disclaimer" } })}
+      </div>
+
+      <div>
+        <Button variant="contained" color="primary" onClick={handleOpen}>
+          Viesti / Bugi / Idea
+        </Button>
+
+        {/* Feedback Dialog */}
+        <FeedbackDialog open={dialogOpen} handleClose={handleClose} />
+      </div>
+
     </div>
   );
 }
