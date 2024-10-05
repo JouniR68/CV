@@ -15,6 +15,7 @@ export default function Work() {
       <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', md: 'visible' } }}>
         <Table className="cv-table" stickyHeader aria-label="work experience table">
           <TableHead>
+          <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Output-work')}</TableCell></TableRow>
             <TableRow>
               <TableCell align="left">{t('Work-company-header')}</TableCell>
               <TableCell align="left">{t('Work-schedule-header')}</TableCell>

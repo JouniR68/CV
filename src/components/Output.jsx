@@ -5,12 +5,14 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import "../css/output.css"
+import Looking from "./Looking";
 
 const CV = () => {
     const { t } = useTranslation()
     const [showKoulutus, setShowKoulutus] = useState(false)
     const [showHistoria, setShowHistoria] = useState(false)
     const [showTechs, setShowTechs] = useState(false)
+    const [showEtsin, setShowEtsin] = useState(false)
     //const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     //const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
@@ -34,15 +36,24 @@ const CV = () => {
             setShowKoulutus(!showKoulutus);
             setShowHistoria(false);
             setShowTechs(false);
+            setShowEtsin(false)
         } else if (section === 'taidot') {
             setShowTechs(!showTechs);
             setShowKoulutus(false);
             setShowHistoria(false);
+            setShowEtsin(false)
         } else if (section === 'historia') {
             setShowHistoria(!showHistoria);
             setShowKoulutus(false);
             setShowTechs(false);
+            setShowEtsin(false)
+        } else if (section === 'etsin') {
+            setShowEtsin(!showEtsin);
+            setShowKoulutus(false);
+            setShowTechs(false);
+            setShowHistoria(false);
         }
+
     }
 
     return (
@@ -57,6 +68,9 @@ const CV = () => {
 
                 <Button onClick={() => showContent('historia')}><h3>{t('Output-work')}</h3></Button>
                 {showHistoria && <Work />}
+
+                <Button onClick={() => showContent('etsin')}><h3>{t('Looking')}</h3></Button>
+                {showEtsin && <Looking />}
             </div>
         </div>
     );

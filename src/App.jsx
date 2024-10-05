@@ -74,7 +74,7 @@ function App() {
                 <Route index element={<Profile />} />
                 <Route path="output" element={<CV />} />
                 <Route path='intrests' element={<Intrests />} />
-                <Route path='why' element={<Why />} />
+                <Route path='looking' element={<Looking />} />
                 
                 <Route path="kohde" element={<KohteenKuvat />} />
               </Route>

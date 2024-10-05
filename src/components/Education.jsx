@@ -11,12 +11,13 @@ export default function Education() {
 
   const {t} = useTranslation()
   let counter = 0;
-  
+
   return (
     <div>
     <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', md: 'visible' } }}>
         <Table className="cv-table" aria-label="education table">
             <TableHead>
+              <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Output-education')}</TableCell></TableRow>
                 <TableRow>
                     <TableCell align="left">{t('Education-course-header')}</TableCell>
                     <TableCell align="left">{t('Education-schedule-header')}</TableCell>
