@@ -50,7 +50,7 @@ const Tarjouslomake = () => {
 
     const [valinekustannus, setValineKustannus] = useState(30)
     const [tuntihinta, setTuntihinta] = useState(49)
-    const [tarjoaja, setTarjoaja] = useState({ nimi: 'Jouni Riimala', osoite: 'Vuohennokantie 7, 04330 Lahela', puhelin: '045-2385 888', sahkoposti: 'jr@softa-apu.fi', ytunnus: '' });
+    const [tarjoaja, setTarjoaja] = useState({ nimi: 'Jouni Riimala', osoite: 'Vuohennokantie 7, 04330 Lahela', puhelin: '045-2385 888', sahkoposti: 'jr@softa-apu.fi', ytunnus: '3210413-8' });
     const [saaja, setSaaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '', ytunnus: '' });
     const [tehtava, setTehtava] = useState('');
     const [kuvaus, setKuvaus] = useState('');
@@ -158,21 +158,21 @@ const Tarjouslomake = () => {
         // Tehtävät
         doc.text('Tehtävät:', 14, 130);
         doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 30,
+            startY: doc.lastAutoTable.finalY + 27,
             head: [['Tehtävä', 'Kuvaus', 'Tuntiarvio', 'Tuntiarvio * tuntihinta', 'Alv 25.5%', 'Alvillinen summa']],
             body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio.toFixed(2)} €`, `${(item.kuluarvio * 0.255).toFixed(2)} €`, `${(Number(item.kuluarvio) + Number(item.kuluarvio) * 0.255).toFixed(2)} €`]),
         });
 
         // Yhteenveto
-        doc.text('Yhteenveto:', 14, 180);
+        doc.text('Yhteenveto:', 14, 187);
         doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 10,
+            startY: doc.lastAutoTable.finalY + 15,
             head: [['Kokonaissumma', 'ALV (25.5%)', 'Kotitalousvähennys (40%)', 'Vähennyksen jälkeen']],
             body: [[`${Number(yhteenveto.kokonaissumma)} €`, `${Number(yhteenveto.alv)} €`, `${yhteenveto.kotitalousvahennys} €`, `${yhteenveto.maksettava} €`]],
         });
 
         doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 25% välillä.', 14, 220)
-        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 20% jota ei palauteta', 14, 230)
+        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 10% jota ei palauteta', 14, 230)
         doc.text('mikäli asiakas peruuttaa tilauksen.', 14, 235)
 
         // PDF:n tallennus
