@@ -171,13 +171,14 @@ export default function Home() {
           <h5>Koodia (WEB)</h5>
           <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-        <Typography variant="h5">
-          <h5> Viestiä</h5>
+        <Typography variant="h5">          
           <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
+          <h5> Viestiä</h5>
         </Typography>
         <Typography variant="h5">
-          <h5>Vastuuvapaus</h5>
+          
           <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
+          <h5>Vastuuvapaus</h5>
         </Typography>
 
       </div>
