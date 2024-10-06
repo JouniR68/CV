@@ -20,7 +20,7 @@ const InactivityTimer = () => {
   useEffect(() => {
     const checkInactivity = () => {
       console.log("Timer started")
-      if (Date.now() - lastActivityTime > 10 * 60 * 1000) {
+      if (Date.now() - lastActivityTime > 15 * 60 * 1000) {
         setIsLoggedIn(false)
         console.log("timer expired")
         navigate('/logout')

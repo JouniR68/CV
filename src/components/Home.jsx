@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import { useAuth } from './LoginContext';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Feedback';
 
@@ -151,25 +151,44 @@ export default function Home() {
 
   return (
     <div className="home">
+
+    <div className = "home-teksti">Alla esimerkkejä missä koen voivani auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.<p/>Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.</div>
+
+      <div className="home-kollaasi">
+        <Typography variant="h5">
+          <h5> Tuotehallintaa</h5>
+          <img alt="Tuotehallintaa" src="/Images/jrsoft/backlog.png" onClick={() => tarjouspyyntoon()} />
+        </Typography>
+        <Typography variant="h5">
+          <h5>Tukea</h5>
+          <img alt="Käyttötukea" src="/Images/jrsoft/help.jpg" onClick={() => tarjouspyyntoon()} />
+        </Typography>
+        <Typography variant="h5">
+          <h5>Projektityötä</h5>
+          <img alt="Projekti suunnitelmaa" src="/Images/jrsoft/gantt.jpg" onClick={() => tarjouspyyntoon()} />
+        </Typography>
+        <Typography variant="h5">
+          <h5>Koodia (WEB)</h5>
+          <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
+        </Typography>
+        <Typography variant="h5">
+          <h5> Viestiä</h5>
+          <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
+        </Typography>
+        <Typography variant="h5">
+          <h5>Vastuuvapaus</h5>
+          <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
+        </Typography>
+
+      </div>
+
       {isLoggedIn && <InactivityTimer />}
       {/*viewportWidth*/} {/*viewportHeight*/}
-      <TextWrapper className='home-welcome' text={t('mobileWelcomeText')} maxLength={40} />
-      <Button size='small' variant='contained' id="home-nappi" onClick={() => tarjouspyyntoon()}>{t('Offer')}</Button>
 
+      {disclaimer && navigate('/done', { state: { description: "disclaimer" } })}
+      {/* Feedback Dialog */}
+      <FeedbackDialog open={dialogOpen} handleClose={handleClose} />
 
-      <div id="disclaimer">
-        <Button onClick={showDisclaimer}><h4>{t('DisclaimerTittle')}</h4></Button>
-        {disclaimer && navigate('/done', { state: { description: "disclaimer" } })}
-      </div>
-
-      <div>
-        <Button variant="contained" color="primary" onClick={handleOpen}>
-          Viesti / Bugi / Idea
-        </Button>
-
-        {/* Feedback Dialog */}
-        <FeedbackDialog open={dialogOpen} handleClose={handleClose} />
-      </div>
 
     </div>
   );

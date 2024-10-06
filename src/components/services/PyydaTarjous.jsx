@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Checkbox, FormControlLabel, Button, Grid, Typography, Select, InputLabel, FormControl, MenuItem } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -11,6 +11,8 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import "../../index.css"
+
+
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
   clipPath: 'inset(50%)',
@@ -34,6 +36,14 @@ function TarjouspyyntoForm() {
   const navigate = useNavigate()
   const { t } = useTranslation();
 
+  const fNameRef = useRef(sessionStorage.getItem("firstName") || "");
+  const lNameRef = useRef(sessionStorage.getItem("lastName") || "");
+  const phoneRef = useRef(sessionStorage.getItem("phoneNumber") || "");
+  const emailRef = useRef(sessionStorage.getItem("email") || "");
+  const addressRef = useRef(sessionStorage.getItem("address")|| "");
+
+  console.log("fn: ", fNameRef.current)
+
   const getSessionStorageValues = () => {
     const filteredData = {}
 
@@ -50,6 +60,8 @@ function TarjouspyyntoForm() {
     console.log("filteredData: ", filteredData)
     return filteredData
   };
+
+  let firstName, lastName, phone, email;
 
   let storedValues = []
   // Prefill the form when the component mounts
@@ -119,189 +131,190 @@ function TarjouspyyntoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className = "tarjouspyynto">      
-        <Grid container spacing={0.1}>
+    <form onSubmit={handleSubmit(onSubmit)} className="tarjouspyynto">
+      <Grid container spacing={0.1}>
 
-          <div className="tarjouspyynto-header">
-            <Typography variant="h5">Tarjouspyyntö</Typography>
-          </div>
+        <div className="tarjouspyynto-header">
+          <Typography variant="h5">Tarjouspyyntö</Typography>
+        </div>
 
-          {/* Scrollable content */}
-          <div className="tarjouspyynto-content">
-            <Grid item xs={12}>
-              <Controller
-                name="isCompany"
-                control={control}
-                defaultValue={false}
-                render={({ field }) => (
-                  <FormControlLabel
-                    control={<Checkbox {...field} />}
-                    label="Yritys"                    
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Controller
-                name="ala"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <FormControl>
-                    <Select
-                     sx={{ width: 300, fontWeight:'bold', fontSize: '1rem', marginLeft: 'rem' }}
-                      labelId="ala-label"
-                      {...field}
-                      label="Aihe"                      
-                    >
-                      <MenuItem value="koodausta">Koodausta</MenuItem>
-                      <MenuItem value="testausta">Testausta</MenuItem>
-                      <MenuItem value="jarjestelma">Asennuksia/ylläpitoja/konfigurointeja</MenuItem>
-                      <MenuItem value="kayttoapua">Käyttöapua</MenuItem>
-                      <MenuItem value="projektimanageraus">Projektin hallintaa</MenuItem>
-                      <MenuItem value="tuotehallintaa">Tuotehallintaa/backlogs</MenuItem>
-                      <MenuItem value="muuta">Määrittele alimmassa laatikossa</MenuItem>
-                    </Select><InputLabel id="ala-label">Aihe</InputLabel>
-                  </FormControl>
-                )}
-              />
-            </Grid>
-
-            {isCompany && (
-              <Grid item xs={12}>
-                <Controller
-                  name="yTunnus"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Y-tunnus"
-                      required={isCompany}
-                      size="small"
-                      inputProps={{
-                        style: {
-                          fontWeight: 'bold'
-                        },
-                      }}
-                    />
-                  )}
+        {/* Scrollable content */}
+        <div className="tarjouspyynto-content">
+          <Grid item xs={12}>
+            <Controller
+              name="isCompany"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <FormControlLabel
+                  control={<Checkbox {...field} />}
+                  label="Yritys"
                 />
-              </Grid>
-            )}
+              )}
+            />
+          </Grid>
 
-            <Grid item xs={12}>
-              <Controller
-                name="firstName"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Etunimi" required size="small"           inputProps={{
-                    style: {
-                      fontWeight: 'bold'
-                    },
-                  }} />
-                )}
-              />
-            </Grid>
+          <Grid item xs={12}>
+            <Controller
+              name="ala"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <FormControl>
+                  <Select
+                    sx={{ width: 300, fontWeight: 'bold', fontSize: '1rem', marginLeft: 'rem' }}
+                    labelId="ala-label"
+                    {...field}
+                    label="Aihe"
+                  >
+                    <MenuItem value="koodausta">Koodausta</MenuItem>
+                    <MenuItem value="testausta">Testausta</MenuItem>
+                    <MenuItem value="jarjestelma">Asennuksia/ylläpitoja/konfigurointeja</MenuItem>
+                    <MenuItem value="kayttoapua">Käyttöapua</MenuItem>
+                    <MenuItem value="projektimanageraus">Projektin hallintaa</MenuItem>
+                    <MenuItem value="tuotehallintaa">Tuotehallintaa/backlogs</MenuItem>
+                    <MenuItem value="muuta">Määrittele alimmassa laatikossa</MenuItem>
+                  </Select><InputLabel id="ala-label">Aihe</InputLabel>
+                </FormControl>
+              )}
+            />
+          </Grid>
 
+          {isCompany && (
             <Grid item xs={12}>
               <Controller
-                name="lastName"
+                name="yTunnus"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} fullWidth label="Sukunimi" required size="small"           inputProps={{
-                    style: {
-                      fontWeight: 'bold'
-                    },
-                  }} />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Controller
-                name="address"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Osoite" required size="small"           inputProps={{
-                    style: {
-                      fontWeight: 'bold'
-                    },
-                  }} />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="phoneNumber"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Puhelinnumero" required           inputProps={{
-                    style: {
-                      fontWeight: 'bold'
-                    },
-                  }} />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller                
-                name="email"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Sähköposti" />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="message"
-                control={control}                
-                render={({ field }) => (
-                  <TextareaAutosize
-                    {...field}                    
-                    minRows={5}                    
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Y-tunnus"
+                    required={isCompany}
+                    size="small"
                     inputProps={{
                       style: {
                         fontWeight: 'bold'
                       },
                     }}
-                    placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                    style={{ marginTop:"0.5rem", width: "80%", padding: "1rem" }}                    
                   />
                 )}
               />
             </Grid>
-            <div className="tarjouspyynto-napit">
-              <Grid item xs={12}>
-                <Button
-                  component="label"
-                  role={undefined}
-                  variant="contained"
-                  tabIndex={-1}
-                  startIcon={<CloudUploadIcon />}
-                  color={success ? "success" : "primary"} // Change to success color when upload completes
-                  disabled={progress > 0 && progress < 100} // Disable button during upload
-                  size="small"
-                >
-                  {t('files')}
-                  <VisuallyHiddenInput
-                    type="file"
-                    onChange={handleFileUpload}
-                    multiple
-                  />
-                </Button>
-              </Grid>
+          )}
 
-              <Grid item xs={12}>
-                <Button type="submit" variant="contained" color="primary" size="medium">
-                  {t('lahetaTarjous')}
-                </Button>
-              </Grid>
-            </div>
+          <Grid item xs={12}>
+            <Controller
+              name="firstName"
+              control={control}
+              render={({ field }) => (
+                <TextField {...field} fullWidth label="Etunimi" required size="small" defaultValue={fNameRef.current} inputProps={{
+                  style: {
+                    fontWeight: 'bold'
+                  },
+                }}                  
+                />
+              )}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Controller
+              name="lastName"
+              control={control}
+              render={({ field }) => (
+                <TextField {...field} fullWidth label="Sukunimi" required size="small" defaultValue={lNameRef.current} inputProps={{
+                  style: {
+                    fontWeight: 'bold'
+                  },
+                }} />
+              )}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Controller
+              name="address"
+              control={control}
+              render={({ field }) => (
+                <TextField {...field} fullWidth label="Osoite" defaultValue = {addressRef.current} required size="small" inputProps={{
+                  style: {
+                    fontWeight: 'bold'
+                  },
+                }} />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Controller
+              name="phoneNumber"
+              control={control}
+              render={({ field }) => (
+                <TextField {...field} fullWidth label="Puhelinnumero" defaultValue={phoneRef.current} required inputProps={{
+                  style: {
+                    fontWeight: 'bold'
+                  },
+                }} />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => (
+                <TextField {...field} fullWidth defaultValue={emailRef.current} label="Sähköposti" />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Controller
+              name="message"
+              control={control}
+              render={({ field }) => (
+                <TextareaAutosize
+                  {...field}
+                  minRows={5}
+                  inputProps={{
+                    style: {
+                      fontWeight: 'bold'
+                    },
+                  }}
+                  placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
+                  style={{ marginTop: "0.5rem", width: "80%", padding: "1rem" }}
+                />
+              )}
+            />
+          </Grid>
+          <div className="tarjouspyynto-napit">
+            <Grid item xs={12}>
+              <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<CloudUploadIcon />}
+                color={success ? "success" : "primary"} // Change to success color when upload completes
+                disabled={progress > 0 && progress < 100} // Disable button during upload
+                size="small"
+              >
+                {t('files')}
+                <VisuallyHiddenInput
+                  type="file"
+                  onChange={handleFileUpload}
+                  multiple
+                />
+              </Button>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary" size="medium">
+                {t('lahetaTarjous')}
+              </Button>
+            </Grid>
           </div>
-        </Grid>      
+        </div>
+      </Grid>
     </form>
   );
 }
