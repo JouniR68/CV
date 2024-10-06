@@ -152,7 +152,7 @@ export default function Home() {
   return (
     <div className="home">
 
-    <div className = "home-teksti">Alla esimerkkejä missä koen voivani auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.<p/>Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.</div>
+    <div className = "home-teksti">Alla esimerkkejä missä koen voivani auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.<p/>Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen. <p/>CV - löytyy painamalla yllä olevaa henkilö ikonia.</div>
 
       <div className="home-kollaasi">
         <Typography variant="h5">
