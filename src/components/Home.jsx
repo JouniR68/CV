@@ -4,45 +4,62 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import { useAuth } from './LoginContext';
-import { Button, Typography, Popover, Paper } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Feedback';
 
 
+const TextWrapper = ({ text, maxLength }) => {
+  console.log("text: ", text + ", length: ", maxLength)
+  // Function to split the text into chunks of maxLength without breaking words
+  const splitIntoChunksWithoutBreakingWords = (text, maxLength) => {
+    const words = text.split('.'); // Split the text by spaces (words)
+    const chunks = [];
+    let currentChunk = '';
+
+    words.forEach((word) => {
+      // If adding the next word exceeds maxLength, push the current chunk and start a new one
+      if ((currentChunk + word).length <= maxLength) {
+        currentChunk += (currentChunk ? ' ' : '') + word;
+      } else {
+        chunks.push(currentChunk);
+        currentChunk = word;
+      }
+    });
+
+    // Add the remaining chunk
+    if (currentChunk) {
+      chunks.push(currentChunk);
+    }
+
+    return chunks;
+  };
+
+  // Split the text into chunks without breaking words
+  const chunks = splitIntoChunksWithoutBreakingWords(text, maxLength);
+
+  return (
+    <div>
+      {chunks.map((chunk, index) => (
+        <p key={index}>{chunk}
+          {index !== 0 && '.'}
+        </p> // Render each chunk as a separate <p> tag
+      ))}
+    </div>
+  );
+};
+
 export default function Home() {
   const [isMobile, setMobile] = useState(false);
+  const [confirmation, setConfirmation] = useState(true)
+  const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
   const { isLoggedIn, currentUser } = useAuth();
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   const [disclaimer, setShowDisclaimer] = useState(false)
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [mouseLeaveTimeout, setMouseLeaveTimeout] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [popupInfo, setPopupInfo] = useState('');
 
-  const handleMouseEnter = (e, infoText) => {
-    if (mouseLeaveTimeout) {
-      clearTimeout(mouseLeaveTimeout);
-    }
-    setAnchorEl(event.currentTarget);
-    setPopupInfo(infoText);
-  };
-
-  const handleMouseLeave = (e) => {
-    if (mouseLeaveTimeout) {
-      clearTimeout(mouseLeaveTimeout);
-    }
-  
-    setMouseLeaveTimeout(
-      setTimeout(() => {
-        setAnchorEl(null);
-        setPopupInfo('');
-      }, 2000) // Adjust delay as needed
-  )};
-
-  const open = Boolean(anchorEl);
-  console.log("is anchor open ?", open)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -70,13 +87,16 @@ export default function Home() {
   const handleOpen = () => setDialogOpen(true);
   const handleClose = () => setDialogOpen(false);
 
-  const { t } = useTranslation();
+
+  const { t, i18n } = useTranslation();
 
   let reloadCount = 0
 
   const handleText = () => {
-    const mediaQuery = window.matchMedia('(min-width: 1080px and (max-width:2400px))')
-    if (mediaQuery) {
+    const mediaQuery = console.log(window.matchMedia())
+    console.log(`Media query matches: ${mediaQuery.matches}`);
+
+    if (window.matchMedia('(min-width: 1080px and (max-width:2400px))')) {
       setMobile(true)
     } else { setMobile(false) }
   }
@@ -86,16 +106,33 @@ export default function Home() {
     reloadCount++
     const lastReload = sessionStorage.getItem('lastReload')
     const currentTime = new Date().getTime()
+
     if (lastReload && currentTime - lastReload < 300000) {
       return
     }
+
     sessionStorage.setItem('lastReload', currentTime)
     window.location.reload()
   }
 
   useEffect(() => {
-    handleText();
+    handleText;
   }, [])
+
+  const handleOk = () => {
+    sessionStorage.setItem('allowSessionStorageForLocation', true)
+    setLocationReading(true)
+    setConfirmation(false)
+    //reloadCount > 0 ? "" : handleReload()    
+  }
+
+  const handleCancel = () => {
+    setLocationReading(false)
+    setConfirmation(false)
+    sessionStorage.removeItem('allowSessionStorageForLocation')
+    setError(null)
+  }
+
 
   const tarjouspyyntoon = () => {
     navigate('/tarjouspyynto')
@@ -115,81 +152,35 @@ export default function Home() {
   return (
     <div className="home">
 
-      <div className="home-teksti">{t('Cando1')}<p />{t('Cando2')}<p />{t('Cando3')}</div>
-      <div className="home-kollaasi">
+    <div className = "home-teksti">{t('Cando1')}<p/>{t('Cando2')}<p/>{t('Cando3')}</div>
 
-        <Typography variant="h5"
-          onMouseOver={(e) => handleMouseEnter(e, 'Tuotehallintaa (jira & conflunse)')}
-          onMouseOut={handleMouseLeave}
-          style={{ cursor: 'pointer' }}
-        >
+      <div className="home-kollaasi">
+        <Typography variant="h5">
           <h5>{t('PM')}</h5>
           <img alt="Tuotehallintaa" src="/Images/jrsoft/backlog.png" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
-        <Typography variant="h5"
-          onMouseOver={(e) => handleMouseEnter(e, 'Yksityisille atk-tukea, help desk:a firmoille')}
-          onMouseOut={handleMouseLeave}
-          style={{ cursor: 'pointer' }}
-        >
+        <Typography variant="h5">
           <h5>{t('Support')}</h5>
           <img alt="Käyttötukea" src="/Images/jrsoft/help.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
-        <Typography variant="h5"
-          onMouseOver={(e) => handleMouseEnter(e, 'Project management/planning, roadmapping ')}
-          onMouseOut={handleMouseLeave}
-          style={{ cursor: 'pointer' }}
-        >
+        <Typography variant="h5">
           <h5>{t('Project')}</h5>
           <img alt="Projekti suunnitelmaa" src="/Images/jrsoft/gantt.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
-        <Typography variant="h5"
-          onMouseOver={(e) => handleMouseEnter(e, 'Web kehitystä (react, js, node, html, css, material ui)..')}
-          onMouseOut={handleMouseLeave}
-          style={{ cursor: 'pointer' }}
-        >
+        <Typography variant="h5">
           <h5>{t('Webdev')}</h5>
           <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
-        <Typography variant="h5"
-          onMouseOver={(e) => handleMouseEnter(e, 'Terveiset')}
-          onMouseOut={handleMouseLeave}
-          style={{ cursor: 'pointer' }}
-        >
+        <Typography variant="h5">          
           <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
           <h5>{t('Message')}</h5>
         </Typography>
-
-        <Typography variant="h5"
-          onMouseOver={(e) => handleMouseEnter(e, 'Sivustosta..')}
-          onMouseOut={handleMouseLeave}
-          style={{ cursor: 'pointer' }}
-        >
+        <Typography variant="h5">
+          
           <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
           <h5>{t('GoodToKnow')}</h5>
         </Typography>
 
-
-        <Popover
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleMouseLeave}
-          
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          style={{ zIndex: 1300, width: '200px' }}
-        >
-          {open && <Typography p={2}>{popupInfo}</Typography>}
-        </Popover>
       </div>
 
       {isLoggedIn && <InactivityTimer />}
@@ -198,6 +189,8 @@ export default function Home() {
       {disclaimer && navigate('/done', { state: { description: "disclaimer" } })}
       {/* Feedback Dialog */}
       <FeedbackDialog open={dialogOpen} handleClose={handleClose} />
+
+
     </div>
   );
 }
