@@ -127,6 +127,13 @@
   "Disclaimer": "Site secondary purpose is to act as a coding platform for myself & due to it there are occationally bugs and user interface issues. Additionally some translations are missing, but hoping that it doesn't impact usage ... so much.",
   "DisclaimerTitle": "Disclaimer",
   "Offer": "Offer request",
-  "LogoutWarning": "Logging out after 10 min inactivity"
-
+  "LogoutWarning": "Logging out after 10 min inactivity",
+  "GoodToKnow": "Be aware",
+  "Webdev": "Web- development",
+  "Project": "Project management etc",
+  "Support": "Support (any)",
+  "PM": "Product Management",
+  "Cando1": "Below areas where I can help, additionally installations/updates/configurations are in can do area. ",
+  "Cando2": "Click any images for the request offer form (same form..)",
+  "Cando3": "CV / data from me via clicking human icon above."
 }

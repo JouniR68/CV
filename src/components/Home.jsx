@@ -152,33 +152,33 @@ export default function Home() {
   return (
     <div className="home">
 
-    <div className = "home-teksti">Alla esimerkkejä missä koen voivani auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.<p/>Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen. <p/>CV - löytyy painamalla yllä olevaa henkilö ikonia.</div>
+    <div className = "home-teksti">{t('Cando1')}<p/>{t('Cando2')}<p/>{t('Cando3')}</div>
 
       <div className="home-kollaasi">
         <Typography variant="h5">
-          <h5> Tuotehallintaa</h5>
+          <h5>{t('PM')}</h5>
           <img alt="Tuotehallintaa" src="/Images/jrsoft/backlog.png" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5">
-          <h5>Tukea</h5>
+          <h5>{t('Support')}</h5>
           <img alt="Käyttötukea" src="/Images/jrsoft/help.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5">
-          <h5>Projektityötä</h5>
+          <h5>{t('Project')}</h5>
           <img alt="Projekti suunnitelmaa" src="/Images/jrsoft/gantt.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5">
-          <h5>Koodia (WEB)</h5>
+          <h5>{t('Webdev')}</h5>
           <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5">          
           <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
-          <h5> Viestiä</h5>
+          <h5>{t('Message')}</h5>
         </Typography>
         <Typography variant="h5">
           
           <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
-          <h5>Vastuuvapaus</h5>
+          <h5>{t('GoodToKnow')}</h5>
         </Typography>
 
       </div>

@@ -126,6 +126,13 @@
   "Disclaimer": "Sivustojen toissijainen tarkoitus on myös toimia koodaus platformina itselleni, jonka takia outouksia (bugeja / käyttöliittymä virheitä) voi silloin tällöin esiintyä... Pääosin sivustot toimivat englanniksi ja suomeksi, mutta muutamia puutteita on. Toivottavasti kuitenkaan ei vaikuta käyttöön.",
   "DisclaimerTitle": "Vastuuvapaus",
   "Offer": "Tarjouspyyntö",
-  "LogoutWarning": "Uloskirjautuminen automaattisesti 10 min toimettomuuden jälkeen"
-
+  "LogoutWarning": "Uloskirjautuminen automaattisesti 10 min toimettomuuden jälkeen",
+  "GoodToKnow": "Hyvä tiedostaa",
+  "Webdev": "Koodia (WEB)",
+  "Project": "Projektityötä",
+  "Support": "Tukea",
+  "PM": "Tuotehallintaa",
+  "Cando1": "Alla esimerkkejä missä koen voivani auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
+  "Cando2": "Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
+  "Cando3": "CV - löytyy painamalla yllä olevaa henkilö ikonia."
 }
