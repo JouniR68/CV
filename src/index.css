@@ -638,6 +638,10 @@
   html,
 
   body {
+    position: fixed;
+    top:0;
+    left:0;
+    
     margin-bottom: 1rem;
     box-sizing: border-box;
     width: 100vw;
@@ -734,7 +738,11 @@
     border-radius: 10px;
     padding:1rem;
     width:fit-content;
+  }
 
+  .MuiPopover-paper {
+    pointer-events: auto; /* Allow pointer events on the popover */
+    /* Additional styles */
   }
 
   .home-kollaasi h5 {
@@ -742,8 +750,9 @@
     transition: all 0.3s ease; /* Smooth any changes */
   }
   
-  .home-kollaasi h5:hover {
+  .home-kollaasi div:hover {
     /* Avoid adding padding or margin changes on hover */
+    display: block;
     color: #007BFF; /* Safe hover effect */
   }
 

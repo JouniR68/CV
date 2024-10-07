@@ -7,7 +7,6 @@ import { useAuth } from './LoginContext';
 import { Button, Typography, Popover, Paper } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Feedback';
-import { debounce } from 'lodash';
 
 
 export default function Home() {
@@ -18,22 +17,32 @@ export default function Home() {
   const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   const [disclaimer, setShowDisclaimer] = useState(false)
   const [dialogOpen, setDialogOpen] = useState(false);
-
+  const [mouseLeaveTimeout, setMouseLeaveTimeout] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [popupInfo, setPopupInfo] = useState('');
 
-  const debounceMouseEnter = debounce((event, infoText) => {
-    console.log("info: ", infoText)
+  const handleMouseEnter = (e, infoText) => {
+    if (mouseLeaveTimeout) {
+      clearTimeout(mouseLeaveTimeout);
+    }
     setAnchorEl(event.currentTarget);
     setPopupInfo(infoText);
-  }, 0);
+  };
 
-  const debounceMouseLeave = debounce(() => {
-    setAnchorEl(null);
-    setPopupInfo('');
-  }, 0);
+  const handleMouseLeave = (e) => {
+    if (mouseLeaveTimeout) {
+      clearTimeout(mouseLeaveTimeout);
+    }
+  
+    setMouseLeaveTimeout(
+      setTimeout(() => {
+        setAnchorEl(null);
+        setPopupInfo('');
+      }, 2000) // Adjust delay as needed
+  )};
 
   const open = Boolean(anchorEl);
+  console.log("is anchor open ?", open)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -61,7 +70,7 @@ export default function Home() {
   const handleOpen = () => setDialogOpen(true);
   const handleClose = () => setDialogOpen(false);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   let reloadCount = 0
 
@@ -110,8 +119,8 @@ export default function Home() {
       <div className="home-kollaasi">
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Tuotehallintaa (jira & conflunse)')}
-          onMouseOut={debounceMouseLeave}
+          onMouseOver={(e) => handleMouseEnter(e, 'Tuotehallintaa (jira & conflunse)')}
+          onMouseOut={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <h5>{t('PM')}</h5>
@@ -119,8 +128,8 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Yksityisille atk-tukea, help desk:a firmoille')}
-          onMouseOut={debounceMouseLeave}
+          onMouseOver={(e) => handleMouseEnter(e, 'Yksityisille atk-tukea, help desk:a firmoille')}
+          onMouseOut={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <h5>{t('Support')}</h5>
@@ -128,8 +137,8 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Project management/planning, roadmapping ')}
-          onMouseOut={debounceMouseLeave}
+          onMouseOver={(e) => handleMouseEnter(e, 'Project management/planning, roadmapping ')}
+          onMouseOut={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <h5>{t('Project')}</h5>
@@ -137,8 +146,8 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Web kehitystä (react, js, node, html, css, material ui)..')}
-          onMouseOut={debounceMouseLeave}
+          onMouseOver={(e) => handleMouseEnter(e, 'Web kehitystä (react, js, node, html, css, material ui)..')}
+          onMouseOut={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <h5>{t('Webdev')}</h5>
@@ -146,8 +155,8 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Terveiset')}
-          onMouseOut={() => debounceMouseLeave()}
+          onMouseOver={(e) => handleMouseEnter(e, 'Terveiset')}
+          onMouseOut={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
@@ -155,8 +164,8 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Sivustosta..')}
-          onMouseOut={() => debounceMouseLeave()}
+          onMouseOver={(e) => handleMouseEnter(e, 'Sivustosta..')}
+          onMouseOut={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
@@ -167,7 +176,8 @@ export default function Home() {
         <Popover
           open={open}
           anchorEl={anchorEl}
-          onClose={debounceMouseLeave}
+          onClose={handleMouseLeave}
+          
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
@@ -176,9 +186,9 @@ export default function Home() {
             vertical: 'top',
             horizontal: 'center',
           }}
-          style={{ zIndex: 1300, width: '200px'}}
+          style={{ zIndex: 1300, width: '200px' }}
         >
-          <Typography p={2}>{popupInfo}</Typography>
+          {open && <Typography p={2}>{popupInfo}</Typography>}
         </Popover>
       </div>
 
