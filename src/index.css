@@ -737,6 +737,16 @@
 
   }
 
+  .home-kollaasi h5 {
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth any changes */
+  }
+  
+  .home-kollaasi h5:hover {
+    /* Avoid adding padding or margin changes on hover */
+    color: #007BFF; /* Safe hover effect */
+  }
+
   .home-kollaasi {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */

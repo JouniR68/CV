@@ -4,14 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
 import { useAuth } from './LoginContext';
-import { Button, Typography, Popover, Paper } from '@mui/material';
+import { Button, Typography, Popover } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Feedback';
-import { debounce } from 'lodash';
 
 
 export default function Home() {
   const [isMobile, setMobile] = useState(false);
+  const [confirmation, setConfirmation] = useState(true)
+  const [locationReading, setLocationReading] = useState(false)
   const [error, setError] = useState(null)
   const { isLoggedIn, currentUser } = useAuth();
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
@@ -22,16 +23,15 @@ export default function Home() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [popupInfo, setPopupInfo] = useState('');
 
-  const debounceMouseEnter = debounce((event, infoText) => {
-    console.log("info: ", infoText)
+  const handleMouseEnter = (event, infoText) => {
     setAnchorEl(event.currentTarget);
     setPopupInfo(infoText);
-  }, 0);
+  };
 
-  const debounceMouseLeave = debounce(() => {
+  const handleMouseLeave = () => {
     setAnchorEl(null);
     setPopupInfo('');
-  }, 0);
+  };
 
   const open = Boolean(anchorEl);
 
@@ -61,12 +61,13 @@ export default function Home() {
   const handleOpen = () => setDialogOpen(true);
   const handleClose = () => setDialogOpen(false);
 
+
   const { t, i18n } = useTranslation();
 
   let reloadCount = 0
-
   const handleText = () => {
-    const mediaQuery = window.matchMedia('(min-width: 1080px and (max-width:2400px))')
+  const mediaQuery = window.matchMedia('(min-width: 1080px and (max-width:2400px))')
+
     if (mediaQuery) {
       setMobile(true)
     } else { setMobile(false) }
@@ -77,9 +78,11 @@ export default function Home() {
     reloadCount++
     const lastReload = sessionStorage.getItem('lastReload')
     const currentTime = new Date().getTime()
+
     if (lastReload && currentTime - lastReload < 300000) {
       return
     }
+
     sessionStorage.setItem('lastReload', currentTime)
     window.location.reload()
   }
@@ -87,6 +90,21 @@ export default function Home() {
   useEffect(() => {
     handleText();
   }, [])
+
+  const handleOk = () => {
+    sessionStorage.setItem('allowSessionStorageForLocation', true)
+    setLocationReading(true)
+    setConfirmation(false)
+    //reloadCount > 0 ? "" : handleReload()    
+  }
+
+  const handleCancel = () => {
+    setLocationReading(false)
+    setConfirmation(false)
+    sessionStorage.removeItem('allowSessionStorageForLocation')
+    setError(null)
+  }
+
 
   const tarjouspyyntoon = () => {
     navigate('/tarjouspyynto')
@@ -110,8 +128,8 @@ export default function Home() {
       <div className="home-kollaasi">
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Tuotehallintaa (jira & conflunse)')}
-          onMouseOut={debounceMouseLeave}
+          onMouseEnter={(e) => handleMouseEnter(e,'Tuotehallintaa (jira & conflunse)')}
+          onMouseLeave={handleMouseLeave}
           style={{ cursor: 'pointer' }}
         >
           <h5>{t('PM')}</h5>
@@ -119,55 +137,55 @@ export default function Home() {
         </Typography>
 
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Yksityisille atk-tukea, help desk:a firmoille')}
-          onMouseOut={debounceMouseLeave}
-          style={{ cursor: 'pointer' }}
+                  onMouseEnter={(e) => handleMouseEnter(e,'Yksityisille atk-tukea, help desk:a firmoille')}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ cursor: 'pointer' }}        
         >
           <h5>{t('Support')}</h5>
           <img alt="Käyttötukea" src="/Images/jrsoft/help.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
+        
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Project management/planning, roadmapping ')}
-          onMouseOut={debounceMouseLeave}
-          style={{ cursor: 'pointer' }}
+                  onMouseEnter={(e) => handleMouseEnter(e,'Project management/planning, roadmapping ')}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ cursor: 'pointer' }}        
         >
           <h5>{t('Project')}</h5>
           <img alt="Projekti suunnitelmaa" src="/Images/jrsoft/gantt.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
+        
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Web kehitystä (react, js, node, html, css, material ui)..')}
-          onMouseOut={debounceMouseLeave}
-          style={{ cursor: 'pointer' }}
+                  onMouseEnter={(e) => handleMouseEnter(e,'Web kehitystä (react, js, node, html, css, material ui)..')}
+                  onMouseLeave={handleMouseLeave}
+                  style={{ cursor: 'pointer' }}                
         >
           <h5>{t('Webdev')}</h5>
           <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
-
+        
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Terveiset')}
-          onMouseOut={() => debounceMouseLeave()}
-          style={{ cursor: 'pointer' }}
+                  onMouseEnter={(e) => handleMouseEnter(e,'Terveiset')}
+                  onMouseLeave={() => handleMouseLeave()}
+                  style={{ cursor: 'pointer' }}                
         >
           <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
           <h5>{t('Message')}</h5>
         </Typography>
-
+        
         <Typography variant="h5"
-          onMouseOver={(e) => debounceMouseEnter(e, 'Sivustosta..')}
-          onMouseOut={() => debounceMouseLeave()}
-          style={{ cursor: 'pointer' }}
+                  onMouseEnter={(e) => handleMouseEnter(e,'Sivustosta..')}
+                  onMouseLeave={() => handleMouseLeave()}
+                  style={{ cursor: 'pointer' }}        
         >
           <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
           <h5>{t('GoodToKnow')}</h5>
         </Typography>
-
-
+        
+        
         <Popover
           open={open}
           anchorEl={anchorEl}
-          onClose={debounceMouseLeave}
+          onClose={handleMouseLeave}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
@@ -176,7 +194,9 @@ export default function Home() {
             vertical: 'top',
             horizontal: 'center',
           }}
-          style={{ zIndex: 1300, width: '200px'}}
+          PaperProps={{
+            style: { zIndex: 1300 },
+          }}
         >
           <Typography p={2}>{popupInfo}</Typography>
         </Popover>
