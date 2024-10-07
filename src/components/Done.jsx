@@ -8,6 +8,7 @@ function Done() {
   const {t} = useTranslation()  
   const location = useLocation()
   const [close, setClose] = useState(false)
+  const navigate = useNavigate();
   
   const {state} = location;
   let {description} = state;
@@ -23,7 +24,7 @@ function Done() {
     setClose(true)    
     setTimeout(() => {
       setIsLoggedIn(false)
-      window.open("/userLogin", "_self");  
+      disclaimerContent === true ? navigate('/') : navigate("/userLogin");        
     }, [2000])
   }
 

@@ -641,7 +641,7 @@
     position: fixed;
     top:0;
     left:0;
-    
+
     margin-bottom: 1rem;
     box-sizing: border-box;
     width: 100vw;
@@ -733,11 +733,11 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size:1.5rem;
     font-weight: 550;
-    margin-bottom:2rem;
-    border: 1px solid;
+    margin-bottom:2rem;    
     border-radius: 10px;
     padding:1rem;
     width:fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .MuiPopover-paper {
@@ -761,6 +761,7 @@
     grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
     grid-template-rows: auto auto; /* 2 rows, height auto-adjusts */
     gap: 10x;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .home-kollaasi img {
