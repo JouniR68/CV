@@ -18,6 +18,7 @@ import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Tooltip } from "@mui/material";
 import Hamburger from './Hamburger';
+import FeedbackDialog from "./Feedback";
 
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
@@ -52,8 +53,12 @@ export default function Header() {
 
           {isLoggedIn &&
             <>
-              <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
-              <Link to="/admin"><SettingsIcon /> </Link>
+              {isAuthenticated === "valid" &&
+                <>
+                  <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+                  <Link to="/admin"><SettingsIcon /> </Link>
+                  <Link to="/palaute">F</Link>
+                </>}
               {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}
             </>}
         </div>
