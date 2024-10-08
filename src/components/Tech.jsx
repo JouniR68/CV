@@ -19,10 +19,10 @@ export default function Tech() {
           <TableHead>
           <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Output-techs')}</TableCell></TableRow>
             <TableRow>
-              <TableCell sx={{fontWeight:900, backgroundColor:'red'}} align="left">{t('Techs-header')}</TableCell>
-              <TableCell sx={{fontWeight:900, backgroundColor:'red'}}align="left"></TableCell>
-              <TableCell sx={{fontWeight:900, backgroundColor:'red'}}align="left"></TableCell>
-              <TableCell sx={{fontWeight:900, backgroundColor:'red'}} align="left">{t('Method')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Techs-header')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}}align="left"></TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}}align="left"></TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Method')}</TableCell>
             </TableRow>
           </TableHead>
 
@@ -39,7 +39,7 @@ export default function Tech() {
                     {t('Techs-header')}
                   </Typography>
                   {item.Programming?.map((tech) => (
-                    <Typography sx={{fontWeight:800}} key={counter++}>{tech}</Typography>
+                    <Typography sx={{fontWeight:600}} key={counter++}>{tech}</Typography>
                   ))}
                 </TableCell>
 
@@ -49,7 +49,7 @@ export default function Tech() {
                     {t('Database-header')}
                   </Typography>
                   {item.Database?.map((db) => (
-                    <Typography sx={{fontWeight:800}} key={counter++}>{db}</Typography>
+                    <Typography sx={{fontWeight:600}} key={counter++}>{db}</Typography>
                   ))}
                 </TableCell>
 
@@ -59,7 +59,7 @@ export default function Tech() {
                     {t('Tools-header')}
                   </Typography>
                   {item.Tools?.map((tool) => (
-                    <Typography sx={{fontWeight:800}} key={counter++}>{tool}</Typography>
+                    <Typography sx={{fontWeight:600}} key={counter++}>{tool}</Typography>
                   ))}
                 </TableCell>
 
@@ -69,7 +69,7 @@ export default function Tech() {
                     {t('Method')}
                   </Typography>
                   <Typography>{item.Methods.map((method) => (
-                      <Typography sx={{fontWeight:800}} key={counter++}>{method}</Typography>
+                      <Typography sx={{fontWeight:600}} key={counter++}>{method}</Typography>
                   ))}</Typography>
                 </TableCell>
               </TableRow>

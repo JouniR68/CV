@@ -38,8 +38,8 @@ export default function Header() {
 
   return (
 
-    <div className="header">
-      <div className="navbar">
+    <div className="navbar">
+      <div className="header">
         <Hamburger />
         <div className="header-left">
           <Link className="home-header" to="/"><HomeWorkIcon /></Link>

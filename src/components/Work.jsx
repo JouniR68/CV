@@ -17,11 +17,11 @@ export default function Work() {
           <TableHead>
           <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Output-work')}</TableCell></TableRow>
             <TableRow>
-              <TableCell align="left">{t('Work-company-header')}</TableCell>
-              <TableCell align="left">{t('Work-schedule-header')}</TableCell>
-              <TableCell align="left">{t('Work-role-header')}</TableCell>
-              <TableCell align="left">{t('Work-location-header')}</TableCell>
-              <TableCell align="left">{t('Work-info-header')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left" >{t('Work-company-header')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Work-schedule-header')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Work-role-header')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Work-location-header')}</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Work-info-header')}</TableCell>
             </TableRow>
           </TableHead>
 
