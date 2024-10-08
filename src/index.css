@@ -688,6 +688,30 @@ body::-webkit-scrollbar {
     }
   }
 
+  h5 .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-size:14px;
+    position: absolute;
+    bottom: 50%; /* Position above the h5 element */
+    left: 80%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+  
+  /* Show tooltip on hover */
+  h5:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
   .home-teksti {
     animation-duration: 5s;
     animation-name: slidein;
