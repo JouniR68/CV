@@ -675,7 +675,23 @@ body::-webkit-scrollbar {
     overflow: scroll;
   }
 
+  
+  @keyframes slidein {
+    from {
+      translate: 150vw 0;
+      scale: 200% 1;
+    }
+  
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }
+
   .home-teksti {
+    animation-duration: 5s;
+    animation-name: slidein;
+    
     font-family: "Lucida Console", "Courier New", cursive;
     font-size: 1rem;
     font-weight: 600;    
