@@ -7,6 +7,7 @@ import { useAuth } from './LoginContext';
 import { Button, Typography } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Feedback';
+import CollectionCounts from './News';
 
 export default function Home() {
   const [isMobile, setMobile] = useState(false);
@@ -110,7 +111,7 @@ export default function Home() {
 
   return (
     <div className="home">
-
+      <CollectionCounts />
       <div className="home-teksti">{t('Cando1')}<p />{t('Cando2')}<p />{t('Cando3')}</div>      
       <div className="home-kollaasi">
         <Typography variant="h5">
@@ -120,7 +121,7 @@ export default function Home() {
         </Typography>
         <Typography variant="h5">
           <h5>{t('Support')}</h5>
-          <span className = "tooltip-text">Apua järjestelmien käyttöön.</span>
+          <span className = "tooltip-text">Apua järjestelmien käyttöön / käyttöapua.</span>
           <img alt="Käyttötukea" src="/Images/jrsoft/help.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5" id = "project">
@@ -130,7 +131,7 @@ export default function Home() {
         </Typography>
         <Typography variant="h5">
           <h5>{t('Webdev')}</h5>
-          <span className = "tooltip-text">Web- koodausta (javascript, react, node, css, material ui, html jne) </span>
+          <span className = "tooltip-text">Web- koodausta (javascript, react, node, css, material ui, html jne). GIT- ongelmia / koodikatselmointia yms </span>
           <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5">

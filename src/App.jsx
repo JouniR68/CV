@@ -22,6 +22,7 @@ import Tech from "./components/Tech";
 import CV from "./components/Output"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
+import CollectionCounts from "./components/News"
 import ThankYouPage from "./components/ThankYou";
 import ContractForm from "./components/AddContract";
 import '../i18n'; // Import the i18n configuration
@@ -57,6 +58,7 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />              
+              <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
               <Route path='/letter' element={<CoverLetter />} />
