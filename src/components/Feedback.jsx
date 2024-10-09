@@ -21,6 +21,7 @@ const FeedbackDialog = ({ open, handleClose }) => {
         message: message,
         name: name || 'Anonymous',  // If no name provided, default to 'Anonymous'
         timestamp: Timestamp.now(), // Store the current date and time
+        checked:false
       });
 
       // Clear fields
@@ -37,35 +38,53 @@ const FeedbackDialog = ({ open, handleClose }) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-      <DialogTitle>Bugi, Idea / nopea viesti</DialogTitle>
-      <DialogContent>
-        {/* Text area for the feedback */}
-        <TextField
-          label="Anna viestisi"
-          multiline
-          rows={4}
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        {/* Optional TextField for name/alias */}
-        <TextField
-          label="Nimesi / Nimimerkkisi (valinnainen)"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="secondary">Peruuta</Button>
-        <Button onClick={handleSubmit} color="primary" variant="contained">Lähetä teksti</Button>
-      </DialogActions>
-    </Dialog>
+    <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth
+        maxWidth="sm"        
+        sx={{
+          '& .MuiDialogContent-root': {
+            padding: '20px'
+          },
+          '& .MuiDialogTitle-root': {
+            paddingBottom: 0
+          }          
+        }}
+      >
+        <DialogTitle>Bugi, Idea / nopea viesti</DialogTitle>
+        <DialogContent>
+          {/* Text area for the feedback */}
+          <TextField
+            label="Anna viestisi"
+            multiline
+            rows={4}
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            sx={{
+              marginBottom: '16px'
+            }}
+          />
+          {/* Optional TextField for name/alias */}
+          <TextField
+            label="Nimesi / Nimimerkkisi (valinnainen)"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">Peruuta</Button>
+          <Button onClick={handleSubmit} color="primary" variant="contained">Lähetä teksti</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 

@@ -64,12 +64,12 @@ const Calendar = () => {
     return (
         <Grid container justifyContent="center" sx={{ padding: { xs: 2, sm: 4 } }}>
             <Grid item xs={12} md={8} lg={6}>
-                <div className="calendar" style={{ padding: '1rem', zoom: '1.2' }}>
+                <div className="calendar">
                     <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
                         {t('Calendar-title')}
                     </Typography>
 
-                    <Grid container spacing={2} className="calendar-form" sx={{ mt: 2 }}>
+                    <Grid container spacing={1} className="calendar-form" sx={{ mt: 2 }}>
                         <Grid item xs={12}>
                             <TextField
                                 placeholder="Tapahtuma"
@@ -83,19 +83,18 @@ const Calendar = () => {
                             <TextField
                                 type="date"
                                 value={newEvent.date}
-                                fullWidth
                                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                                inputProps={{ style: { fontSize: '1rem' } }}
+                                inputProps={{ style: { fontSize: '1rem', marginBottom:'1rem' } }}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Button onClick={addEvent} fullWidth variant="contained">
+                            <Button onClick={addEvent} variant="contained" sx={{ mb: 4 }}>
                                 {t('addEvent')}
                             </Button>
                         </Grid>
                     </Grid>
 
-                    <Grid container spacing={2} className="calendar-task-row" sx={{ mt: 4 }}>
+                    <Grid container spacing={2} className="calendar-task-row" sx={{ mt: 3 }}>
                         {events.map(event => (
                             <Grid item xs={12} key={counter++} className="calendar-task" sx={{ p: 2, border: '1px solid #ccc', borderRadius: 2 }}>
                                 <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem' } }}>
@@ -104,12 +103,12 @@ const Calendar = () => {
                                 <Button
                                     variant="contained"
                                     color="secondary"
-                                    fullWidth
                                     onClick={() => deletor(event.id)}
                                     sx={{ mt: 1 }}
                                 >
                                     {t('Poista')}
                                 </Button>
+
                             </Grid>
                         ))}
                     </Grid>

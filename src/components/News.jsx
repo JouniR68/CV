@@ -10,9 +10,9 @@ export default function CollectionCounts() {
   useEffect(() => {
     const fetchCounts = async () => {
       const contactsCount = (await getDocs(collection(db, 'contacts'))).size;
-      const bugiCount = (await getDocs(collection(db, 'bugi'))).size;
+      const querySnapshot = await (getDocs(collection(db, 'bugi')))
+      const bugiCount = querySnapshot.docs.filter(doc => doc.data().checked === false).length;
       const eventsCount = (await getDocs(collection(db, 'events'))).size;
-
       setCounts({ contacts: contactsCount, bugi: bugiCount, events: eventsCount });
       setOpen(true)
     };
@@ -26,12 +26,13 @@ export default function CollectionCounts() {
     setOpen(false);
   };
 
+  console.log("counts: ", counts)
   return sessionStorage.getItem('email') === 'jr@softa-apu.fi' ? (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Data yhteenveto</DialogTitle>
       <DialogContent dividers>
-        <Typography variant="body1">Tunnareita: {counts.contacts}</Typography>
-        <Typography variant="body1">Viestejä: {counts.bugi}</Typography>
+        {counts.contacts > 2 && <Typography variant="body1">Tunnareita: {counts.contacts}</Typography>}
+        {counts.bugi > 0 && <Typography variant="body1">Kuittaamattomia viestejä: {counts.bugi}</Typography>}
         <Typography variant="body1">Tapahtumia: {counts.events}</Typography>
       </DialogContent>
       <DialogActions>
