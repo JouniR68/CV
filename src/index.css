@@ -13,22 +13,9 @@
   --main-content-background-text-color: #333333;
 }
 
-html,
-
-body {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+.unsupported-message {
+  display: none; /* Hidden by default */
 }
-
-body::-webkit-scrollbar {
-  display: true;
-}
-
 
 /* Media Query for Small Screens */
 @media (max-width: 350px) {
@@ -36,7 +23,6 @@ body::-webkit-scrollbar {
     flex-direction: row;
   }
 }
-
 
 @media only screen and (min-width: 380px) and (max-width: 1023px) {
 
@@ -633,7 +619,46 @@ body::-webkit-scrollbar {
 
 }
 
-@media only screen and (min-width: 1280px) {
+@media (min-width: 3000px) {
+  .unsupported-message {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 1000;
+  }
+}
+
+@media only screen and (min-width: 1921px) and (max-width:2400px) {
+  .footer{
+    display:none;
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1920) {
+
+  html,
+  body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  body::-webkit-scrollbar {
+    display: true;
+  }
+
   .app-container {
     position: fixed;
     top: 2%;
@@ -734,6 +759,8 @@ body::-webkit-scrollbar {
     grid-template-rows: auto;
     gap: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding:1rem;
+    overflow: scroll;
   }
 
   .home-kollaasi h5 {

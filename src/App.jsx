@@ -49,6 +49,7 @@ import Learnings from "./components/Learnings"
 import Budjetti from "./components/Budjetti"
 import CoverLetter from "./components/Letter";
 import FeedbackDialog from "./components/Feedback";
+import Letter from "./components/WebLetter";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
               <Route path='/letter' element={<CoverLetter />} />
+              <Route path='/webletter' element={<Letter />} />
               <Route path='/opit' element={<Learnings />} />
               <Route path='/home' element={<Home />} />
               <Route path='/checkLocation' element={<CheckLocation />} />
