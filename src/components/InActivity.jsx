@@ -3,31 +3,23 @@ import { useAuth } from './LoginContext';
 import { useNavigate } from 'react-router-dom';
 
 const InactivityTimer = () => {
-  console.log("InactivityTimer function")
-  const {setIsLoggedIn} = useAuth();
+  const { setIsLoggedIn } = useAuth();
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const navigate = useNavigate();
 
   // Function to reset the timer
-  
   const resetTimer = () => {
-    console.log("timer resetted")
     setLastActivityTime(Date.now());
   };
 
-  
-
   useEffect(() => {
     const checkInactivity = () => {
-      console.log("Timer started")
-      if (Date.now() - lastActivityTime > 15 * 60 * 1000) {
-        setIsLoggedIn(false)
-        console.log("timer expired")
-        navigate('/logout')
-                
+      if (Date.now() - lastActivityTime > 15 * 60 * 1000) { // 15 minutes
+        setIsLoggedIn(false);
+        navigate('/logout');
       }
     };
-  
+
     // Set up the inactivity check
     const intervalId = setInterval(checkInactivity, 1000); // Check every second
 
@@ -39,12 +31,9 @@ const InactivityTimer = () => {
       clearInterval(intervalId);
       events.forEach(event => window.removeEventListener(event, resetTimer));
     };
-  }, [lastActivityTime, setIsLoggedIn, navigate]);
+  }, [setIsLoggedIn, navigate]); // removed lastActivityTime from dependency array
 
   return null;
-
-
-
 };
 
 export default InactivityTimer;

@@ -123,7 +123,7 @@
   "Method": "Ketterät menetelmät",
   "RegAddress": "Osoite",
   "DisclaimerTittle":"Vastuuvapauslauseke",
-  "Disclaimer": "Sivustojen toissijainen tarkoitus on myös toimia koodaus platformina itselleni, jonka takia outouksia (bugeja / käyttöliittymä virheitä) voi silloin tällöin esiintyä... Pääosin sivustot toimivat englanniksi ja suomeksi, mutta muutamia puutteita on. Toivottavasti kuitenkaan ei vaikuta käyttöön.",
+  "Disclaimer": "Sivustojen toissijainen tarkoitus on myös toimia koodaus platformina itselleni, jonka takia outouksia (bugeja / käyttöliittymä virheitä) voi silloin tällöin esiintyä... Pääosin sivustot toimivat englanniksi ja suomeksi, pääsivun Viesti- ikonin kautta voit antaa palautetta.",
   "DisclaimerTitle": "Vastuuvapaus",
   "Offer": "Tarjouspyyntö",
   "LogoutWarning": "Uloskirjautuminen automaattisesti 10 min toimettomuuden jälkeen",
@@ -134,5 +134,6 @@
   "PM": "Tuotehallintaa",
   "Cando1": "Alla esimerkkejä missä voin auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
   "Cando2": "Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
-  "Cando3": "CV - löytyy painamalla yllä olevaa henkilö ikonia."
+  "Cando3": "CV - löytyy painamalla yllä olevaa henkilö ikonia.",
+  "Tip": "Mikäli teksit/kuvat eivät näy kunnolla zoomaus voisi auttaa / näytön leveyden säätäminen."
 }

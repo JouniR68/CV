@@ -26,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     const checkScreenWidth = () => {
       if (window.innerWidth > 3000) {
-        setIsUnsupported(true);
+        setIsUnsupported(true);                
       } else {
         setIsUnsupported(false);
       }
@@ -38,10 +38,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkScreenWidth); // Clean up
   }, []);
 
-  if (!isUnsupported) {
-    return null;
-  }
-
+  
   const { state } = location;
   if (state) {
     const { locationError } = state;
@@ -51,24 +48,8 @@ export default function Home() {
     }
   }
 
-  /*
-  useEffect(() => {
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-      setViewportHeight(window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-*/
-
   const handleOpen = () => setDialogOpen(true);
   const handleClose = () => setDialogOpen(false);
-
-
   const { t, i18n } = useTranslation();
 
   let reloadCount = 0
@@ -132,6 +113,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      {isUnsupported && <div className = "unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
       <div className="home-teksti">{t('Cando1')}<p />{t('Cando2')}<p />{t('Cando3')}</div>
       <div className="home-kollaasi">
@@ -168,8 +150,7 @@ export default function Home() {
       </div>
 
       {isLoggedIn && <InactivityTimer />}
-
-      {viewportWidth} {viewportHeight}
+ 
       {disclaimer && navigate('/done', { state: { description: "disclaimer" } })}
       {/* Feedback Dialog */}
       <FeedbackDialog open={dialogOpen} handleClose={handleClose} />
