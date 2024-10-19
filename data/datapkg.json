@@ -3,30 +3,31 @@
     {
       "id": 1,
       "Programming": [
-        "JS",
-        "React",
-        "Node",
-        "CSS",
-        "Material UI",
-        "PHP"
+        "JS (*)",
+        "React (*)",
+        "Node (*)",
+        "CSS (*)",
+        "Material UI (*)",
+        "PHP (basic)",
+        "Java (basic)"
       ],
       "Database": [
-        "Postgress",
+        "Postgress (*)",
         "Sqlite",
         "Mysql"
       ],
       "Tools": [
-        "Admin level with the Atlassian products (JIRA, Confluense, Bitbucket)",
-        "Git",
-        "SVN",
-        "Virtual envs",
-        "CD/CD pipelines",
+        "Atlassian products (JIRA, Confluense, Bitbucket), (*)",
+        "Git (*)",
+        "SVN (*)",
+        "Virtual envs (*)",
+        "CD/CD pipelines (*)",
         "Firebase (Google's mobile and web app development platform)"
       ],
       "Methods": [
-        "Waterfall",
-        "Kanban",
-        "Scrum"
+        "Waterfall (*)",
+        "Kanban (*)",
+        "Scrum (*)"
       ]      
     }
   ],

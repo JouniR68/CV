@@ -16,7 +16,7 @@ const InactivityTimer = () => {
     const checkInactivity = () => {
       if (Date.now() - lastActivityTime > 15 * 60 * 1000) { // 15 minutes
         setIsLoggedIn(false);
-        navigate('/logout');
+        navigate('/');
       }
     };
 

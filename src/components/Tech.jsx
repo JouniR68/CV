@@ -17,11 +17,11 @@ export default function Tech() {
       <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', md: 'visible' }}}>
         <Table className="cv-table" stickyHeader aria-label="technology table">
           <TableHead>
-          <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Output-techs')}</TableCell></TableRow>
+          <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Techs-info')}</TableCell></TableRow>
             <TableRow>
               <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Techs-header')}</TableCell>
-              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}}align="left"></TableCell>
-              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}}align="left"></TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}}align="left">DB</TableCell>
+              <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}}align="left">{t('Tools')}</TableCell>
               <TableCell sx={{fontWeight:600, backgroundColor:'lightgray'}} align="left">{t('Method')}</TableCell>
             </TableRow>
           </TableHead>
