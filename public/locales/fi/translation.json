@@ -137,5 +137,6 @@
   "Cando1": "Alla esimerkkejä missä voin auttaa, näiden lisäksi esim asennukset / päivitykset / konfiguroinnit yms onnistuvat.Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
   "Cando2": "Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
   "Cando3": "CV - löytyy painamalla yllä olevaa henkilö ikonia.",
-  "Tip": "Mikäli teksit/kuvat eivät näy kunnolla zoomaus voisi auttaa / näytön leveyden säätäminen."
+  "Tip": "Mikäli teksit/kuvat eivät näy kunnolla zoomaus voisi auttaa / näytön leveyden säätäminen.",
+  "LoadCV": "Lataa CV"
 }

@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import "../css/output.css"
 import Looking from "./Looking";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { generatePDF } from "./services/CVPdf" 
 
 const CV = () => {
     const { t } = useTranslation()
@@ -13,6 +15,7 @@ const CV = () => {
     const [showHistoria, setShowHistoria] = useState(false)
     const [showTechs, setShowTechs] = useState(false)
     const [showEtsin, setShowEtsin] = useState(false)
+    const navigate = useNavigate()
     //const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     //const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
@@ -59,6 +62,8 @@ const CV = () => {
     return (
         <div className="output">
             <div className="output-sections">
+            
+                <Button variant = "contained" onClick = {generatePDF}>{t('LoadCV')}</Button>
 
                 <Button onClick={() => showContent('koulutus')}><h3>{t('Output-education')}</h3></Button>
                 {showKoulutus && <Education />}

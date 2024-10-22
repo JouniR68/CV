@@ -2,6 +2,7 @@ import JsonData from "../../data/datapkg.json";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
+
 import {
   Table,
   TableBody,
@@ -44,7 +45,7 @@ export default function Profile({ hideButton }) {
               </TableBody>
             </Table>
           </TableContainer>
-          {!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>}
+          {!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>}          
         </div>
       ))}
 
