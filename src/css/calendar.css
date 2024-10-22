@@ -1,14 +1,17 @@
 @media only screen and (min-width: 1024px) {
         
     .calendar {
+        position: fixed;
+        top:3rem;
+        left:0rem;
+        bottom: 3rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        max-height: 70vh;
-        padding-top: 10vh;
-        max-width: 80%;
-        zoom:1.5;
+        max-height: 80vh;
+        padding-top: 1vh;
+        max-width: 80vw;
     }
 
     #deletor {
@@ -28,7 +31,7 @@
     /* Optional: Styling for items inside calendar-task-row */
     .calendar-task {
         padding: 1rem;
-        background-color: #f4f4f4;
+        background-color: red;
         border: 1px solid #ccc;
         border-radius: 8px;
         margin-top: 1rem;
@@ -70,7 +73,7 @@
     .calendar-task {
         padding: 1rem;
         width: 100%;
-        background-color: #f4f4f4;
+        background-color:yellow;
         border: 1px solid #ccc;
         border-radius: 8px;
         margin-top: 1rem;

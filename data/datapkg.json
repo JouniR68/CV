@@ -28,7 +28,7 @@
         "Waterfall (*)",
         "Kanban (*)",
         "Scrum (*)"
-      ]      
+      ]
     }
   ],
   "intrests": [
@@ -49,132 +49,140 @@
       "why 5": "Good attitude and allways willing to learn new and develop."
     }
   ],
+  "summary": ["I am a highly skilled Technical Project Manager with a strong grasp of software development methodologies, tools, and agile processes. With a deep understanding of software engineering practices, I have experience leading cross-functional teams, managing end-to-end project lifecycles, and ensuring timely delivery of high-quality products"],
+
   "workhistory": [
-    {
-      "id": 1,
-      "Company": "Vivago",
-      "Duration": "1.3.2022 - 15.6.2024",
-      "Roles": [
-        "R&D - dev. manager"
-      ],
-      "Locations": [
-        "Espoo"
-      ],
-      "Info": "Managed & contributed to the License system devepment and deployment. Was laid out due to company economical situation (yt)."
-    },
-    {
-      "id": 2,
-      "Company": "KavoKerr",
-      "Duration": "2012-2020",
-      "Roles": [
-        "Project manager",
-        "Tech specialist"
-      ],
-      "Locations": [
-        "Tuusula"
-      ],
-      "Info": "Driver project manager, dev-ops"
-    },
-    {
-      "id": 3,
-      "Company": "Nokia Mobile Phones",
-      "Duration": "1997-2012",
-      "Roles": [
-        "SW Trainee",
-        "SW Developer",
-        "Project manager",
-        "Test manager",
-        "R&D-manager"
-      ],
-      "Locations": [
-        "Oulu, ",
-        "Helsinki, ",
-        "Copenhagen"
-      ],
-      "Info": "Developer, UI-cheaf, project manager, Test lead.."
-    }
-  ],
-  "education": [
-    {
-      "id": 5,
-      "Item": "Hands on",
-      "When": "2022-24",
-      "Topics": "On work web based coding (js, react, node) with senior level subcontractor developers.",
-      "Degree": "-"
-    },
-    {
-      "id": 4,
-      "Item": "Self training (Scrimba advancded React course)",
-      "When": "2023",
-      "Topics": "Advanced react training",
-      "Degree": "-"
-    },
-    {
-      "id": 1,
-      "Item": "Aalto Pro - SoftwarePoint & Vivago Web - Developper Training Program",
-      "When": "9/2021 - 3/2022",
-      "Topics": "Six month program with Helsinki Aalto University PRO - progaram where key was to learn web -technologies and Java programming. University level training consisted from 17 face to face learning days and from 19 remote days. Java training with Helsinki University Mooc courses and on work training",
-      "Degree": "Web-developer"
-    },
-    {
-      "id": 2,
-      "Item": "Saranen - Integrata",
-      "When": "2020",
-      "Topics": "Six month program where key was to learn Uipath. Within program used also Robot Framework, Python and C-sharp.",
-      "Degree": "-"
-    },
-    {
-      "id": 3,
-      "Item": "Kemi-Tornio University of Applied Sciences Bachelor of Engineering Automatic Data Processing",
-      "When": "1994-1997",
-      "Topics": "ADP -tradenomi schooling",
-      "Degree": "Tradenomi (ADP- line)"
-    }
-  ],
-  "profile": [
-    {
-      "id": 1,
-      "Photo": "../JouniRiimala.jpg",
-      "Name": "Jouni Riimala",
-      "BirthPlace": "Rovaniemi, Lapland, Finland",
-      "Location": "Tuusula, Uusimaa, Finland",
-      "Profession": "ADP- professional",
-      "Familly": "Wife, two kids and three cats"
-    }
-  ],
-  "services": [
-    {
-      "id": 4,      
-      "serv1": "Coding (web (react, node, js ...)",
-      "serv1-prize": "60 euros / hour. Minimum full day (7.5 h) => 450 euros.",
-      "serv2": "Testing (test plan, report, cases, test executions ..",
-      "serv2-prize": "50 euros / hour. Minimum full day (7.5 h) => 350 euros.",      
-      "serv3": "Sw installations and configurations.",
-      "serv3-prize": "60 euros hour / 3 hour minimum => 180 euros.",
-      "serv4": "Admin work (Atlassian etc), jira - confluence admin, jql etc",      
-      "serv4-prize": "60 euros hour / 3 hour minimum => 180 euros",
-      "serv5": "Product Management / requirement & roadmapping work.",
-      "serv5-prize": "60 euros hour, minimum full day (7.5 h) => 400 euros.",
-      "serv6": "Custom work and prize based on needs.",
-      "serv6-prize": "60 euros / hour. Minimum two days (15 h) => 900 euros"
-    }
-  ],
-  "rent": [
-    {
-      "kuvaus": "Tämä on testi",
-      "name": "jriimala@gmail.com",
-      "id": 1
-    },
-    {
-      "kuvaus": "test",
-      "name": "jriimala@gmail.com",
-      "id": 2
-    },
-    {
-      "yhtotto": "henkilo",
-      "name": "jriimala@gmail.com",
-      "kuvaus": "test",
-      "id": 3
-    }
-  ]
-}
+      {
+        "id": 1,
+        "Company": "Vivago",
+        "Duration": "1.3.2022 - 15.6.2024",
+        "Roles": [
+          "R&D - dev. manager"
+        ],
+        "Locations": [
+          "Espoo"
+        ],
+        "Info": "Managed & contributed to the License system devepment and deployment. Was laid out due to company economical situation (yt)."
+      },
+      {
+        "id": 2,
+        "Company": "KavoKerr",
+        "Duration": "2012-2020",
+        "Roles": [
+          "Project manager",
+          "Tech specialist"
+        ],
+        "Locations": [
+          "Tuusula"
+        ],
+        "Info": "Driver project manager, dev-ops"
+      },
+      {
+        "id": 3,
+        "Company": "Nokia Mobile Phones",
+        "Duration": "1997-2012",
+        "Roles": [
+          "SW Trainee",
+          "SW Developer",
+          "Project manager",
+          "Test manager",
+          "R&D-manager"
+        ],
+        "Locations": [
+          "Oulu, ",
+          "Helsinki, ",
+          "Copenhagen"
+        ],
+        "Info": "Developer, UI-cheaf, project manager, Test lead.."
+      }
+    ],
+    "education": [
+      {
+        "id": 5,
+        "Item": "Hands on",
+        "When": "2022-24",
+        "Topics": "On work web based coding (js, react, node) with senior level subcontractor developers.",
+        "Degree": "-"
+      },
+      {
+        "id": 4,
+        "Item": "Self training (Scrimba advancded React course)",
+        "When": "2023",
+        "Topics": "Advanced react training",
+        "Degree": "-"
+      },
+      {
+        "id": 1,
+        "Item": "Aalto Pro - SoftwarePoint & Vivago Web - Developper Training Program",
+        "When": "9/2021 - 3/2022",
+        "Topics": "Six month program with Helsinki Aalto University PRO - progaram where key was to learn web -technologies and Java programming. University level training consisted from 17 face to face learning days and from 19 remote days. Java training with Helsinki University Mooc courses and on work training",
+        "Degree": "Web-developer"
+      },
+      {
+        "id": 2,
+        "Item": "Saranen - Integrata",
+        "When": "2020",
+        "Topics": "Six month program where key was to learn Uipath. Within program used also Robot Framework, Python and C-sharp.",
+        "Degree": "-"
+      },
+      {
+        "id": 3,
+        "Item": "Kemi-Tornio University of Applied Sciences Bachelor of Engineering Automatic Data Processing",
+        "When": "1994-1997",
+        "Topics": "ADP -tradenomi schooling",
+        "Degree": "Tradenomi (ADP- line)"
+      }
+    ],
+    "profile": [
+      {
+        "id": 1,
+        "Photo": "../public/Images/JouniRiimala.jpg",
+        "Name": "Jouni Riimala",
+        "Email": "jr@softa-apu.fi",
+        "Phone": "+358 452385888",
+        "BirthPlace": "Rovaniemi, Lapland, Finland",
+        "Location": "Tuusula, Uusimaa, Finland",
+        "Profession": "ADP- professional",
+        "Familly": "Wife, two kids and three cats",
+        "Description": "I am a highly skilled Technical Project Manager with a strong grasp of software development methodologies, tools, and agile processes. With a deep understanding of software engineering practices, I have experience leading cross-functional teams, managing end-to-end project lifecycles, and ensuring timely delivery of high-quality products. I'm flexiple so feel free to suggest also other roles and even from freelancer angle."
+      }
+    ],
+    "services": [
+      {
+        "id": 4,
+        "serv1": "Coding (web (react, node, js ...)",
+        "serv1-prize": "60 euros / hour. Minimum full day (7.5 h) => 450 euros.",
+        "serv2": "Testing (test plan, report, cases, test executions ..",
+        "serv2-prize": "50 euros / hour. Minimum full day (7.5 h) => 350 euros.",
+        "serv3": "Sw installations and configurations.",
+        "serv3-prize": "60 euros hour / 3 hour minimum => 180 euros.",
+        "serv4": "Admin work (Atlassian etc), jira - confluence admin, jql etc",
+        "serv4-prize": "60 euros hour / 3 hour minimum => 180 euros",
+        "serv5": "Product Management / requirement & roadmapping work.",
+        "serv5-prize": "60 euros hour, minimum full day (7.5 h) => 400 euros.",
+        "serv6": "Custom work and prize based on needs.",
+        "serv6-prize": "60 euros / hour. Minimum two days (15 h) => 900 euros"
+      }
+    ],
+
+    "looking":["Project Manager", "Development Manager", "Junior Developer"],
+
+    "rent": [
+      {
+        "kuvaus": "Tämä on testi",
+        "name": "jriimala@gmail.com",
+        "id": 1
+      },
+      {
+        "kuvaus": "test",
+        "name": "jriimala@gmail.com",
+        "id": 2
+      },
+      {
+        "yhtotto": "henkilo",
+        "name": "jriimala@gmail.com",
+        "kuvaus": "test",
+        "id": 3
+      }
+    ]
+  }

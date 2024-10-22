@@ -5,7 +5,7 @@ import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid, Typography } from '@mui/material';
-
+import "../css/calendar.css"
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -109,7 +109,7 @@ const Calendar = () => {
                                     {t('Poista')}
                                 </Button>
 
-                            </Grid>
+                              </Grid>
                         ))}
                     </Grid>
                 </div>

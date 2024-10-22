@@ -51,6 +51,7 @@ import CoverLetter from "./components/Letter";
 import FeedbackDialog from "./components/Feedback";
 import Letter from "./components/WebLetter";
 import Exceller from "./components/Exceller";
+import CVPdf from "./components/services/CVPdf"
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
               <Route path='palaute' element={<ShowFeedback/>} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
+                <Route path="cv" element={<CVPdf />} />
                 <Route path="output" element={<CV />} />
                 <Route path='intrests' element={<Intrests />} />
                 <Route path='looking' element={<Looking />} />
