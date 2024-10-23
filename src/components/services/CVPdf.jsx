@@ -123,7 +123,7 @@ export const generatePDF = () => {
     */
     // Add Footer
     doc.setFontSize(11);
-    doc.text('Contact: jr@softa-apu.com | Phone: +358452385888', 14, 285);
+    doc.text('Contact: jr@softa-apu.fi | Phone: +358452385888', 14, 285);
 
     // Save the PDF
     doc.save('CurriculumVitae.pdf');

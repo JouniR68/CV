@@ -136,7 +136,7 @@
     "profile": [
       {
         "id": 1,
-        "Photo": "../public/Images/JouniRiimala.jpg",
+        "Photo": "/Images/JouniRiimala.jpg",
         "Name": "Jouni Riimala",
         "Email": "jr@softa-apu.fi",
         "Phone": "+358 452385888",
