@@ -203,17 +203,6 @@
     padding: 1rem;
   }
 
-  .calendar {
-    position: fixed;
-    top: 10%;
-    left: 25%;
-    max-width: 40%;
-    ;
-    overflow-y: auto;
-    padding: 1rem;
-  }
-
-
   .hamburger-menu {
     display: none !important;
   }

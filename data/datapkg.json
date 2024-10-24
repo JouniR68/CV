@@ -17,7 +17,7 @@
         "Mysql"
       ],
       "Tools": [
-        "Atlassian products (JIRA, Confluense, Bitbucket), (*)",
+        "Atlassian products (JIRA, Confluense, Bitbucket), (*, admin level)",
         "Git (*)",
         "SVN (*)",
         "Virtual envs (*)",
@@ -62,7 +62,7 @@
         "Locations": [
           "Espoo"
         ],
-        "Info": "Managed & contributed to the License system devepment and deployment. Was laid out due to company economical situation (yt)."
+        "Info": "Managed & contributed to the License system development and eventually to the Cloud deployment.\n\nManagement relates to the requirement and product backlog management. I personally constructed Vivago JIRA and Confluense system to support projects backlogs and content overall. \n\nThe development was done by using React, Node and sequealize with Postgress. Local development was firstly pushed to the Git and via pipeline (after automated tests) it was deployed to the Cloud stages environments in order to ensure quality for the customers.\n\nAs there were only few people involved Kanban- process was used in daily meetings."
       },
       {
         "id": 2,
@@ -75,7 +75,7 @@
         "Locations": [
           "Tuusula"
         ],
-        "Info": "Driver project manager, dev-ops"
+        "Info": "Driver project manager, dev-ops. Target was to release driver releases for the image applications and dental scanners. Scrum and Safe- processes were used as customer release included also global teams from the Europe and U.S"
       },
       {
         "id": 3,
@@ -93,7 +93,7 @@
           "Helsinki, ",
           "Copenhagen"
         ],
-        "Info": "Developer, UI-cheaf, project manager, Test lead.."
+        "Info": "Developer, UI-cheaf, project manager, Test lead..\n\nI started as a developer with C-language and headed after 2-3 years to the user interface chief and to the project manager etc roles."
       }
     ],
     "education": [

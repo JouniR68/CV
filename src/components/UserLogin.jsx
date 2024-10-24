@@ -67,21 +67,15 @@ export const UserLogin = () => {
             sessionStorage.setItem("loggedIn", "true")
         }
 
-        else if (user.active === false){
-            setTimeout(() => navigate('/error', {state: {locationError:'Tilissä ongelmia, ottakaa yhteyttä jr@softa-apu.fi'}}),[2000])
+        else if (user.active === false) {
+            setTimeout(() => navigate('/error', { state: { locationError: 'Tilissä ongelmia, ottakaa yhteyttä jr@softa-apu.fi' } }), [2000])
         }
-
 
         if (!user) { return false }
 
-        console.log("userPwd: ", userPwd)
-        console.log("hasedPwd: ", user.password)
-        console.log("userPwd length:", userPwd.length);
-        console.log("hashedPwd length:", user.password.length);
         const isSoftaApu = user.email.split("@")[1]?.includes("softa-apu");
         const isPwdValid = await bcrypt.compare(userPwd, user.password)
         if (isPwdValid) {
-            console.log("pwd validated")
             if (isSoftaApu) {
                 sessionStorage.setItem("adminLevel", "valid")
                 setStartIActivityTimer(true)
@@ -89,7 +83,6 @@ export const UserLogin = () => {
             return true
         }
         else {
-            console.log("pwd invalid")
             navigate("/error", { state: { locationError: 'Invalid pwd' } })
             setUserPwd("")
             return false
@@ -107,7 +100,6 @@ export const UserLogin = () => {
                     navigate('/home')
                 }, [1000])
             } else {
-                console.log("Ivalid account")
                 setIsLoggedIn(false)
             }
         } catch (error) {
@@ -117,7 +109,7 @@ export const UserLogin = () => {
     };
 
     return (
-        <div>            
+        <div>
             <Box
                 component="form"
                 onSubmit={handleLogin}
@@ -125,9 +117,9 @@ export const UserLogin = () => {
             >
 
                 <Typography mt={-15} variant="h4" gutterBottom>
-                    {t("Login")}<br/>                    
+                    {t("Login")}<br />
                 </Typography>
-                {t("LogoutWarning")}<br/>
+                {t("LogoutWarning")}<br />
                 <TextField
                     label={t('username')}
                     variant="outlined"

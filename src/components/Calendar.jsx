@@ -47,7 +47,6 @@ const Calendar = () => {
         const collectionRef = collection(db, "events");
         const docRef = doc(collectionRef, id);
 
-        console.log("docRef: ", docRef)
         deleteDoc(docRef)
             .then(() => {
                 console.log("The document successfully deleted")
@@ -58,6 +57,7 @@ const Calendar = () => {
                 navigate('/error', { state: { locationError: `${id} deleting failed.` } })
             }))
 
+        setEvents((events) => events.filter(item => item.id != id))
     }
 
     let counter = 0;
@@ -69,7 +69,7 @@ const Calendar = () => {
                         {t('Calendar-title')}
                     </Typography>
 
-                    <Grid container spacing={1} className="calendar-form" sx={{ mt: 2 }}>
+                    <Grid spacing={1} container className="calendar-form" sx={{ mt: 2 }}>
                         <Grid item xs={12}>
                             <TextField
                                 placeholder="Tapahtuma"
@@ -78,23 +78,21 @@ const Calendar = () => {
                                 onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                                 inputProps={{ style: { fontSize: '1rem' } }}
                             />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
+                    
                             <TextField
                                 type="date"
                                 value={newEvent.date}
                                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                                inputProps={{ style: { fontSize: '1rem', marginBottom:'1rem' } }}
+                                inputProps={{ style: { fontSize: '1rem' } }}
                             />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Button onClick={addEvent} variant="contained" sx={{ mb: 4 }}>
+                    
+                            <Button onClick={addEvent} variant="contained" sx={{ mt: 1, ml:1 }}>
                                 {t('addEvent')}
                             </Button>
                         </Grid>
                     </Grid>
 
-                    <Grid container spacing={2} className="calendar-task-row" sx={{ mt: 3 }}>
+                    <Grid container spacing={1} className="calendar-task-row" >
                         {events.map(event => (
                             <Grid item xs={12} key={counter++} className="calendar-task" sx={{ p: 2, border: '1px solid #ccc', borderRadius: 2 }}>
                                 <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem' } }}>
@@ -103,13 +101,11 @@ const Calendar = () => {
                                 <Button
                                     variant="contained"
                                     color="secondary"
-                                    onClick={() => deletor(event.id)}
-                                    sx={{ mt: 1 }}
+                                    onClick={() => deletor(event.id)}                                    
                                 >
                                     {t('Poista')}
                                 </Button>
-
-                              </Grid>
+                            </Grid>
                         ))}
                     </Grid>
                 </div>

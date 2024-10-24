@@ -12,7 +12,8 @@ export const generatePDF = () => {
     doc.setFontSize(18);
     doc.text('Jouni Riimala, CV', 14, 20);
     doc.setFontSize(11);
-    doc.text(`Date: ${currentDate}`, 160, 20);
+    //doc.text(`Date: ${currentDate}`, 160, 20);
+    doc.text(`Hands on project manager / sw development mgr`, 14, 25);
 
     doc.setFontSize(16);
     doc.text('Profile', 14, 40);
@@ -40,16 +41,18 @@ export const generatePDF = () => {
     ];
 
     // Now render the table, skipping the photo since it's already shown
+    /*
     doc.autoTable({
         startY: 80,
         body: personDetails, // Use the flattened array for the body
-        columnStyles: { 0: { cellWidth: 50 }, 1: { cellWidth: 50 }, 2: { cellWidth: 50 } }, // Adjust column widths if needed
-    });
+        columnStyles: { 0: { cellWidth: 50 }, 1: { cellWidth: 50 }, 2: { cellWidth: 50 } },
+        */ // Adjust column widths if needed
+    //});
 
 
     // Add Work History section
     doc.setFontSize(16);
-    doc.text('Work History', 14, 125);
+    doc.text('Work History', 14, 90);
     const workhistory = data.workhistory.map((w) => [
         w.Company,
         w.Duration,
@@ -59,12 +62,14 @@ export const generatePDF = () => {
     ]);
 
     doc.autoTable({
-        startY: 130,
+        startY: 95,
         head: [['Company', 'Duration', 'Roles', 'Locations', 'Info']],
         body: workhistory,
     });
 
-    doc.text('Competencies', 14, 200);
+    doc.addPage()
+
+    doc.text('Competencies', 14, 30);
 
     // Mapping data from JSON file for each category
     const programming = data.tech[0].Programming.map(p => [p]); // Assuming each competency is a string
@@ -76,7 +81,7 @@ export const generatePDF = () => {
     const combinedBody = [];
 
     // Add Programming section
-    combinedBody.push([{ content: 'Programming (* = used in work)', colSpan: 1, styles: { halign: 'left', fillColor: [220, 220, 220] } }]);
+    combinedBody.push([{ content: 'Programming (* = used in the Vivago License System development, self assesment: average, but passionate coder).', colSpan: 1, styles: { halign: 'left', fillColor: [220, 220, 220] } }]);
     combinedBody.push(...programming);
 
     // Add Database section
@@ -96,18 +101,19 @@ export const generatePDF = () => {
 
     // Render the autoTable with the combined body
     doc.autoTable({
-        startY: doc.autoTable.previous.finalY + 20,
+        startY: 40,
         body: combinedBody,
     });
 
+    doc.addPage()
     // Add Education section
     const education = data.education.map((e) => [e.Item, e.When, e.Topics, e.Degree])
 
     doc.setFontSize(16);
-    doc.text('Education', 14, doc.autoTable.previous.finalY + 10);
+    doc.text('Education', 14, 30);
 
     doc.autoTable({
-        startY: doc.autoTable.previous.finalY + 20,
+        startY: 40,
         head: [['Training', 'When', 'Topics', 'Degree / Certification']],
         body: education,
     });
@@ -122,8 +128,8 @@ export const generatePDF = () => {
     });
     */
     // Add Footer
-    doc.setFontSize(11);
-    doc.text('Contact: jr@softa-apu.fi | Phone: +358452385888', 14, 285);
+    //doc.setFontSize(11);
+    //doc.text('Contact: jr@softa-apu.fi | Phone: +358452385888', 14, 285);
 
     // Save the PDF
     doc.save('CurriculumVitae.pdf');
