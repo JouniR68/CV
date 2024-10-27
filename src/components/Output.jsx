@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 import "../css/output.css"
 import Looking from "./Looking";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { generatePDF } from "./services/CVPdf" 
+
 
 const CV = () => {
     const { t } = useTranslation()

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Dialog, DialogTitle, DialogContent, Typography, DialogActions, Button } from '@mui/material';
 import { db } from '../firebase'; // Adjust the path based on your Firebase setup
+import { Link } from 'react-router-dom';
 
 export default function CollectionCounts() {
   const [open, setOpen] = useState(false);
@@ -32,8 +33,8 @@ export default function CollectionCounts() {
       <DialogTitle>Data yhteenveto</DialogTitle>
       <DialogContent dividers>
         {counts.contacts > 2 && <Typography variant="body1">Tunnareita: {counts.contacts}</Typography>}
-        {counts.bugi > 0 && <Typography variant="body1">Kuittaamattomia viestejä: {counts.bugi}</Typography>}
-        <Typography variant="body1">Tapahtumia: {counts.events}</Typography>
+        {counts.bugi > 0 && <Typography variant="body1">Kuittaamattomia viestejä: <Link to = "/palaute">{counts.bugi}</Link></Typography>}
+        <Typography variant="body1">Tapahtumia: <Link to="/calendar">{counts.events}</Link></Typography>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">

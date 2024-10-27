@@ -49,7 +49,7 @@
       "why 5": "Good attitude and allways willing to learn new and develop."
     }
   ],
-  "summary": ["I am a highly skilled Technical Project Manager with a strong grasp of software development methodologies, tools, and agile processes. With a deep understanding of software engineering practices, I have experience leading cross-functional teams, managing end-to-end project lifecycles, and ensuring timely delivery of high-quality products"],
+  "summary": "I am a skilled hands-on Project Manager with a strong grasp of software development,\ntools, and agile processes. With a deep understanding of software engineering practices,\nI have experience leading cross-functional teams, managing end-to-end project lifecycles,\nand ensuring timely delivery of high-quality products.\n\nMain competencies project management, subcontractor interface,\nproduct backlog (Atlassian tools) and web - development.",
 
   "workhistory": [
       {
@@ -144,7 +144,7 @@
         "Location": "Tuusula, Uusimaa, Finland",
         "Profession": "ADP- professional",
         "Familly": "Wife, two kids and three cats",
-        "Description": "I am a highly skilled Technical Project Manager with a strong grasp of software development methodologies, tools, and agile processes. With a deep understanding of software engineering practices, I have experience leading cross-functional teams, managing end-to-end project lifecycles, and ensuring timely delivery of high-quality products. I'm flexiple so feel free to suggest also other roles and even from freelancer angle."
+        "Description": "I am a highly skilled Technical Project Manager with a strong grasp of software development methodologies,\ntools, and agile processes. With a deep understanding of software engineering practices, I have experience leading cross-functional teams, managing end-to-end project lifecycles, and ensuring timely delivery of high-quality products. I'm flexiple so feel free to suggest also other roles and even from freelancer angle."
       }
     ],
     "services": [
@@ -185,4 +185,5 @@
         "id": 3
       }
     ]
+    
   }

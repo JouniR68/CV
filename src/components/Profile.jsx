@@ -2,6 +2,7 @@ import JsonData from "../../data/datapkg.json";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
+import { generatePDF } from "./services/CVPdf" 
 
 import {
   Table,
@@ -28,8 +29,6 @@ export default function Profile({ hideButton }) {
     <>
       {profileData.map((profile) => (
         <div key={i++} className="profile">
-
-
           <Link to="kohde"><img key={i++} src={profile.Photo} alt='Jouni Riimala' /></Link>
 
           {console.log("hideButton: ", hideButton)}
@@ -46,6 +45,7 @@ export default function Profile({ hideButton }) {
             </Table>
           </TableContainer>
           {!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>}          
+          <Button variant = "contained" onClick = {generatePDF}>{t('LoadCV')}</Button>
         </div>
       ))}
 

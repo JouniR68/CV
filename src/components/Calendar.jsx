@@ -95,12 +95,13 @@ const Calendar = () => {
                     <Grid container spacing={1} className="calendar-task-row" >
                         {events.map(event => (
                             <Grid item xs={12} key={counter++} className="calendar-task" sx={{ p: 2, border: '1px solid #ccc', borderRadius: 2 }}>
-                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem' } }}>
+                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem', padding:'1rem' } }}>
                                     {event.title}, {event.date}
                                 </Typography>
                                 <Button
                                     variant="contained"
                                     color="secondary"
+                                    sx={{ marginLeft:'1rem'}}
                                     onClick={() => deletor(event.id)}                                    
                                 >
                                     {t('Poista')}

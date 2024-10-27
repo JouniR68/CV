@@ -35,6 +35,11 @@ export const generatePDF = () => {
         doc.addImage(imageData, 'JPEG', marginX, startY, 30, 30); // X, Y, width, height
     }
 
+    //"summary": "Yli 20 vuoden kokemus ohjelmistokehityksestä, järjestelmien käyttöönotosta ja projektinhallinnasta. \nTyöskennellyt monipuolisissa rooleissa, kuten tutkimus- ja kehityspäällikkönä, projektipäällikkönä ja DevOps-insinöörinä. Viimeisimpänä toiminut Research and Development Managerina.\n\nOlen Tekninen projektipäällikkö, jolla on vahva käsitys ohjelmistokehityksen menetelmistä, työkaluista ja ketteristä prosesseista. Syvällinen ymmärrys ohjelmistosuunnittelun käytännöistä ja kokemusta monialaisten tiimien johtamisesta, projektien elinkaaren hallinnasta ja korkealaatuisten tuotteiden oikea-aikaisen toimituksen varmistamisesta.\n\nOsaamiset: Projektinhallinta, Tuoteomistajan tehtävät (työkaluina JIRA, Confluence) ja Web-kehitys"
+
+    doc.setFontSize(11);
+    doc.text(data.summary, 14, 85);
+
     const personDetails = [
         [data.profile[0].Name, data.profile[0].Phone, data.profile[0].Email, data.profile[0].Location],
         [{ content: 'Description: ' + data.profile[0].Description, colSpan: 3 }]
@@ -52,7 +57,7 @@ export const generatePDF = () => {
 
     // Add Work History section
     doc.setFontSize(16);
-    doc.text('Work History', 14, 90);
+    doc.text('Work History', 14, 125);
     const workhistory = data.workhistory.map((w) => [
         w.Company,
         w.Duration,
@@ -62,7 +67,7 @@ export const generatePDF = () => {
     ]);
 
     doc.autoTable({
-        startY: 95,
+        startY: 130,
         head: [['Company', 'Duration', 'Roles', 'Locations', 'Info']],
         body: workhistory,
     });
