@@ -52,6 +52,7 @@ import FeedbackDialog from "./components/Feedback";
 import Letter from "./components/WebLetter";
 import Exceller from "./components/Exceller";
 import CVPdf from "./components/services/CVPdf"
+import Vehicles from "./components/Huolto/Vehicles";
 
 function App() {
   return (
@@ -60,8 +61,8 @@ function App() {
         <BrowserRouter>        
           <Routes>
             <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />              
-              <Route path="/exceller" elements={<Exceller />} />
+              <Route path='/' element={<Home />} />                         
+              <Route path="/huoltorekisteri" element={<Vehicles />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />

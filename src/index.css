@@ -237,7 +237,7 @@
 
   .tarjouspyynto {
     position: fixed;
-    top: 45%;
+    top: 40%;
     left: 20%;
     width: 70%;
     display: flex;
@@ -260,12 +260,16 @@
     background-color: rgba(214, 214, 187, 0.72);
     padding: 1rem;
     overflow-y: auto;
-    width: 100%;
+    width: 100%;    
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     border: 1px solid;
     gap: 1rem;
   }
+
+.tarjouspyynto-message{
+  width:100%;
+}
 
   .tarjouspyynto-napit {
     display: flex;
@@ -284,6 +288,24 @@
 
     box-sizing: border-box;
 
+  }
+
+  .huoltorekisteri-preview{
+    display:flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width:90vw;
+    height:75vh;
+    margin-left:-21em;
+  }
+
+  .huoltorekisteri-preview Button{
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    
+    margin-bottom: 1rem;
+    width:6rem;
+    font-size: 14px;
   }
 
   .profile {

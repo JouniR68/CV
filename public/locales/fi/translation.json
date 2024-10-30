@@ -138,5 +138,6 @@
   "Cando2": "Klikkaa kuvaa antaaksesi tarjouspyynnön, kiitokset jo etukäteen.",
   "Cando3": "CV - löytyy painamalla yllä olevaa henkilö ikonia.",
   "Tip": "Mikäli teksit/kuvat eivät näy kunnolla zoomaus voisi auttaa / näytön leveyden säätäminen.",
-  "LoadCV": "Lataa CV"
+  "LoadCV": "Lataa CV",
+  "guide": "Alla palveluitani, klikkaamalla pääset pyytämään tarjousta, ei muuta kuin klikkaamaan."
 }

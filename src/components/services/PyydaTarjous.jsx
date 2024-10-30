@@ -267,7 +267,7 @@ function TarjouspyyntoForm() {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} className="tarjouspyynto-message">
             <Controller
               name="message"
               control={control}
@@ -275,6 +275,7 @@ function TarjouspyyntoForm() {
                 <TextareaAutosize
                   {...field}
                   minRows={5}
+                  minCols={280}
                   inputProps={{
                     style: {
                       fontWeight: 'bold'

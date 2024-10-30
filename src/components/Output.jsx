@@ -62,9 +62,7 @@ const CV = () => {
     return (
         <div className="output">
             <div className="output-sections">
-            
-                <Button variant = "contained" onClick = {generatePDF}>{t('LoadCV')}</Button>
-
+                        
                 <Button onClick={() => showContent('koulutus')}><h3>{t('Output-education')}</h3></Button>
                 {showKoulutus && <Education />}
 
