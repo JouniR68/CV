@@ -73,9 +73,9 @@ export default function Footer() {
               </IconButton>
             </Tooltip>
             <IconButton onClick={() => changeLanguage('en')}>
-              <Button><img src="/Images/eng-flag.png" /></Button></IconButton>
+              <img src="/Images/eng-flag.png" /></IconButton>
             <IconButton onClick={() => changeLanguage('fi')}>
-              <Button ><img src="/Images/fin-flag.png" /></Button>
+              <img src="/Images/fin-flag.png" />
             </IconButton>
         </ButtonGroup>
         </div>
