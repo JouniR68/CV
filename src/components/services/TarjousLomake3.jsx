@@ -1,18 +1,17 @@
 import { TextField, Typography, Box } from '@mui/material';
 import TehtavatForm from './Tehtavat';
 
-const TarjousLomake3 = ({ tehtava, setTehtava, kuvaus, setKuvaus, tuntiarvio, setTuntiarvio, tuntihinta, lisaaTehtava, valinekustannus, setValineKustannus, sisaltyy, setSisaltyy, muutHuomiot, setMuutHuomiot, suositukset, setSuositukset }) => {
+const TarjousLomake3 = ({ tehtava, setTehtava, kuvaus, setKuvaus, tuntiarvio, setTuntiarvio, lisaaTehtava, tuntihinta, setTuntihinta, sisaltyy, setSisaltyy, muutHuomiot, setMuutHuomiot, suositukset, setSuositukset }) => {
 
-
+    tuntihinta
     return (
         <div>
             <Box mt={2}>
-                <Typography variant="h6">Työväline kustannukset</Typography>
+                <Typography variant="h6">Tuntihinta</Typography>
                 <TextField
                     type="number"
-                    style={{ width: '5rem' }}
-                    value={valinekustannus}
-                    onChange={(e) => setValineKustannus(e.target.value === '' ? '' : Number(e.target.value))}
+                    style={{ width: '5rem' }}                    
+                    onChange={(e) => setTuntihinta(e.target.value === '' ? '' : Number(e.target.value))}
                     variant="outlined"
                 />
             </Box>
@@ -24,6 +23,7 @@ const TarjousLomake3 = ({ tehtava, setTehtava, kuvaus, setKuvaus, tuntiarvio, se
                 setKuvaus={setKuvaus}
                 tuntiarvio={tuntiarvio}
                 setTuntiarvio={setTuntiarvio}
+                setTuntihinta={setTuntihinta}
                 tuntihinta={tuntihinta}
                 lisaaTehtava={lisaaTehtava}
             />

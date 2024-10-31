@@ -100,8 +100,8 @@ const LearningForm = () => {
                     <Table className="opit-taulu">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Aihe</TableCell>
-                                <TableCell>Oppi</TableCell>
+                                <TableCell className="opit-taulu-header" sx={{fontWeight:'bold'}}>Aihe</TableCell>
+                                <TableCell className="opit-taulu-header" sx={{fontWeight:'bold'}}>Oppi</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

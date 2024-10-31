@@ -15,28 +15,6 @@ function Vehicle() {
   const [progress, setProgress] = useState(0);
   const [fileToUpload, setFileToUpload] = useState(null)  
 
-  /*
-    const fetchVehicleData = async () => {
-      try {
-        const learningsRef = collection(db, "huoltorekisteri")
-        const querySnapshot = await getDocs(learningsRef)
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        console.log("Learnings data: ", data)
-  
-        setData(data);  // Store the fetched learnings
-      }
-      catch (error) {
-        console.error("Error in fetching: ", error)
-      }
-    }
-  
-    useEffect(() => {
-      fetchVehicleData();
-    }, [])
-  */
 
   // Function to handle file upload
   const handleFileUpload = (event) => {

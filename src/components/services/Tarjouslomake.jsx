@@ -48,7 +48,6 @@ const Tarjouslomake = () => {
     const KILOMETRIKUSTANNUS = 0.57
     //const tarjouslomake_VOIMASSA = twoweeksLaters.setDate(today.getDate() + 14).toString()
 
-    const [valinekustannus, setValineKustannus] = useState(30)
     const [tuntihinta, setTuntihinta] = useState(49)
     const [tarjoaja, setTarjoaja] = useState({ nimi: 'Jouni Riimala', osoite: 'Vuohennokantie 7, 04330 Lahela', puhelin: '045-2385 888', sahkoposti: 'jr@softa-apu.fi', ytunnus: '3210413-8' });
     const [saaja, setSaaja] = useState({ nimi: '', osoite: '', puhelin: '', sahkoposti: '', ytunnus: '' });
@@ -86,7 +85,7 @@ const Tarjouslomake = () => {
         const yhteiskulut = tehtavat.reduce((summa, item) => summa + parseFloat(item.kuluarvio), 0);
         console.log("yhteiskulut: ", yhteiskulut)
         const alv = yhteiskulut * (ALV_PERCENTAGE / 100);
-        const kokonaissumma = yhteiskulut + alv + valinekustannus;
+        const kokonaissumma = yhteiskulut + alv;
         const kotitalousvahennys = Math.min(
             yhteiskulut * (KOTITALOUSVAHENNYS_PERCENTAGE / 100),
             MAX_KOTITALOUSVAHENNYS
@@ -152,13 +151,11 @@ const Tarjouslomake = () => {
             head: [['Nimi', 'Osoite', 'Puhelin', 'Sähköposti', 'Y-tunnus']],
             body: [[saaja.nimi, saaja.osoite, saaja.puhelin, saaja.sahkoposti, saaja.ytunnus]],
         });
-
-        doc.text(`Työvälinekustannusarvio: ${valinekustannus} €`, 14, 120)
-
+        
         // Tehtävät
         doc.text('Tehtävät:', 14, 130);
         doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 27,
+            startY: doc.lastAutoTable.finalY + 25,
             head: [['Tehtävä', 'Kuvaus', 'Tuntiarvio', 'Tuntiarvio * tuntihinta', 'Alv 25.5%', 'Alvillinen summa']],
             body: tehtavat.map(item => [item.tehtava, item.kuvaus, item.tuntiarvio, `${item.kuluarvio.toFixed(2)} €`, `${(item.kuluarvio * 0.255).toFixed(2)} €`, `${(Number(item.kuluarvio) + Number(item.kuluarvio) * 0.255).toFixed(2)} €`]),
         });
@@ -166,14 +163,16 @@ const Tarjouslomake = () => {
         // Yhteenveto
         doc.text('Yhteenveto:', 14, 187);
         doc.autoTable({
-            startY: doc.lastAutoTable.finalY + 15,
+            startY: doc.lastAutoTable.finalY + 25,
             head: [['Kokonaissumma', 'ALV (25.5%)', 'Kotitalousvähennys (40%)', 'Vähennyksen jälkeen']],
             body: [[`${Number(yhteenveto.kokonaissumma)} €`, `${Number(yhteenveto.alv)} €`, `${yhteenveto.kotitalousvahennys} €`, `${yhteenveto.maksettava} €`]],
         });
-
-        doc.text('Lopullinen lasku perustuu käytettyihin tunteihin ja kuluihin +/- 25% välillä.', 14, 220)
-        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 10% jota ei palauteta', 14, 230)
-        doc.text('mikäli asiakas peruuttaa tilauksen.', 14, 235)
+        
+        doc.text('Tarjouksen kokonaisummasta maksettava ennen työnaloitusta 15%\njoka tulkitaan tarjouksen hyväksynnäksi.', 14, 220)        
+        doc.text('Mikäli asiakas peruuttaa tilauksen maksettua 15% ei palauteta.', 14, 230)        
+        doc.text('Ennakkomaksu tiedot: Mobile Pay (045 2385 888) / tilille FI71 1470 3500 2922 74,', 14, 240)
+        doc.text('lisätkää viestiosuuteen yrityksenne tai Teidän nimi.', 14, 245)
+        doc.text('Asiakkaan tulee myös ilmoittaa tarjouksen hyväksynnästä osoitteeseen jr@softa-apu.fi', 14, 260)
 
         // PDF:n tallennus
         doc.save(`tarjouslomake_${uuid}.pdf`);
@@ -215,7 +214,7 @@ const Tarjouslomake = () => {
                 {/* Step 2 of the form */}
                 {currentStep === 2 && (
                     <div>
-                        <TarjousLomake2 matkakulut={matkakulut} setMatkakulut={setMatkakulut} valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} />
+                        <TarjousLomake2 matkakulut={matkakulut} setMatkakulut={setMatkakulut} />
                         <div className="tarjouslomake-nappi">
                             <Button variant="contained" onClick={handlePreviousStep}>Takaisin</Button>
                             <Button variant="contained" onClick={() => handleNextStep()}>
@@ -227,7 +226,7 @@ const Tarjouslomake = () => {
 
                 {currentStep === 3 && (
                     <div>
-                        <TarjousLomake3 tehtava={tehtava} setTehtava={setTehtava} kuvaus={kuvaus} setKuvaus={setKuvaus} tuntiarvio={tuntiarvio} setTuntiarvio = {setTuntiarvio} tuntihinta = {tuntihinta} lisaaTehtava={lisaaTehtava} valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} />
+                        <TarjousLomake3 tehtava={tehtava} setTehtava={setTehtava} kuvaus={kuvaus} setKuvaus={setKuvaus} tuntiarvio={tuntiarvio} setTuntiarvio = {setTuntiarvio} tuntihinta = {tuntihinta} setTuntihinta={setTuntihinta} lisaaTehtava={lisaaTehtava} />
                         <div className="tarjouslomake-nappi">
                             <Button variant="contained" onClick={handlePreviousStep}>Takaisin</Button>
                             <Button variant="contained" onClick={() => handleNextStep()}>
@@ -240,7 +239,7 @@ const Tarjouslomake = () => {
 
                 {currentStep === 4 && (
                     <div>
-                        <TarjousLomake4 valinekustannus={valinekustannus} setValineKustannus={setValineKustannus} sisaltyy={sisaltyy} setSisaltyy={setSisaltyy} eiKuulu={eiKuulu} setEiKuulu={setEiKuulu} suositukset={suositukset} setSuositukset={setSuositukset} />
+                        <TarjousLomake4 sisaltyy={sisaltyy} setSisaltyy={setSisaltyy} eiKuulu={eiKuulu} setEiKuulu={setEiKuulu} suositukset={suositukset} setSuositukset={setSuositukset} />
                         <div className="tarjouslomake-nappi">
                             <Button variant="contained" onClick={handlePreviousStep}>Takaisin</Button>
                         </div>
