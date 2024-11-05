@@ -1,10 +1,9 @@
-@media only screen and (min-width: 1024px) {
-        
+@media only screen and (min-width: 1024px) {        
     .calendar {
         position: fixed;
-        top:3rem;
-        left:0rem;
-        bottom: 3rem;
+        top:4rem;
+        left:-12rem;
+        bottom: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -19,18 +18,26 @@
     }
 
     .calendar-form {
-        margin-top: 2rem;
+        margin-top: 1rem;
         flex: 1;
         margin: 0rem;
     }
 
-    .calendar-task-row {
-        margin-top: 2rem;
+
+    .calendar-task-row{
+        margin-top:1rem;        
     }
 
     /* Optional: Styling for items inside calendar-task-row */
-    .calendar-task {
-        padding: 1rem;
+    .calendar-task {    
+        padding:1rem;            
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-top: 1rem;
+        width: 80vw
+    }
+
+    .calendar-task-delayed {        
         background-color: red;
         border: 1px solid #ccc;
         border-radius: 8px;

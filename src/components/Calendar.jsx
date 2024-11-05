@@ -60,11 +60,16 @@ const Calendar = () => {
         setEvents((events) => events.filter(item => item.id != id))
     }
 
+    const today = new Date().toISOString().split('T')[0];
+
+
+
     let counter = 0;
     return (
+        <div className="calendar">
         <Grid container justifyContent="center" sx={{ padding: { xs: 2, sm: 4 } }}>
             <Grid item xs={12} md={8} lg={6}>
-                <div className="calendar">
+                
                     <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
                         {t('Calendar-title')}
                     </Typography>
@@ -92,12 +97,11 @@ const Calendar = () => {
                         </Grid>
                     </Grid>
 
-                    <Grid container spacing={1} className="calendar-task-row" >
+                    <Grid container className="calendar-task-row" >
                         {events.map(event => (
-                            <Grid item xs={12} key={counter++} className="calendar-task" sx={{ p: 2, border: '1px solid #ccc', borderRadius: 2 }}>
-                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem', padding:'1rem' } }}>
-                                    {event.title}, {event.date}
-                                </Typography>
+                            <Grid item xs={12} key={counter++} className="calendar-task" sx = {{backgroundColor: event.date <= today ? 'red' : 'green'}}>
+                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem' }, paddingLeft: '1rem' }}>
+                                    {event.title}, {event.date}                                
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -106,12 +110,16 @@ const Calendar = () => {
                                 >
                                     {t('Poista')}
                                 </Button>
+                                </Typography>
                             </Grid>
                         ))}
                     </Grid>
-                </div>
+                
             </Grid>
+            
         </Grid>
+        </div>
+        
     );
 };
 
