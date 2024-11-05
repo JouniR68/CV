@@ -6,15 +6,16 @@ import { Link } from 'react-router-dom';
 
 export default function CollectionCounts() {
   const [open, setOpen] = useState(false);
-  const [counts, setCounts] = useState({ contacts: 0, bugi: 0, events: 0 });
+  const [counts, setCounts] = useState({ contacts: 0, bugi: 0, events: 0, tarjouspyynto: 0});
 
   useEffect(() => {
     const fetchCounts = async () => {
       const contactsCount = (await getDocs(collection(db, 'contacts'))).size;
+      const tarjouspyyntoCount = (await getDocs(collection(db, 'tarjouspyynto'))).size;
       const querySnapshot = await (getDocs(collection(db, 'bugi')))
       const bugiCount = querySnapshot.docs.filter(doc => doc.data().checked === false).length;
       const eventsCount = (await getDocs(collection(db, 'events'))).size;
-      setCounts({ contacts: contactsCount, bugi: bugiCount, events: eventsCount });
+      setCounts({ contacts: contactsCount, bugi: bugiCount, events: eventsCount, tarjouspyynto: tarjouspyyntoCount });
       setOpen(true)
     };
 
@@ -33,8 +34,14 @@ export default function CollectionCounts() {
       <DialogTitle>Data yhteenveto</DialogTitle>
       <DialogContent dividers>
         {counts.contacts > 2 && <Typography variant="body1">Tunnareita: {counts.contacts}</Typography>}
-        {counts.bugi > 0 && <Typography variant="body1">Kuittaamattomia viestejä: <Link to = "/palaute">{counts.bugi}</Link></Typography>}
-        <Typography variant="body1">Tapahtumia: <Link to="/calendar">{counts.events}</Link></Typography>
+      
+        {counts.bugi > 0 &&
+          <Typography variant="body1">Kuittaamattomia viestejä: <Link to="/palaute">{counts.bugi}</Link></Typography>
+        }
+        {counts.events > 0 && <Typography variant="body1">Tapahtumia: <Link to="/calendar">{counts.events}</Link></Typography>}
+      
+        {counts.tarjouspyynto > 0 && <Typography variant="body1">Tarjouspyyntö: <Link to="/admin/naytaPyynnot">{counts.tarjouspyynto}</Link></Typography>}
+      
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
@@ -42,5 +49,5 @@ export default function CollectionCounts() {
         </Button>
       </DialogActions>
     </Dialog>
-  ): ''
+  ) : ''
 }

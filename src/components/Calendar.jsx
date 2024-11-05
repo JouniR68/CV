@@ -100,12 +100,18 @@ const Calendar = () => {
                     <Grid container className="calendar-task-row" >
                         {events.map(event => (
                             <Grid item xs={12} key={counter++} className="calendar-task" sx = {{backgroundColor: event.date <= today ? 'red' : 'green'}}>
-                                <Typography variant="body1" sx={{ fontSize: { xs: '1rem', sm: '1.1rem' }, paddingLeft: '1rem' }}>
+                                <Typography variant="body1" 
+                                    sx={{
+                                        fontSize: { xs: '1rem', sm: '1.1rem' },
+                                        paddingLeft: '1rem',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center',
+                                      }}>
                                     {event.title}, {event.date}                                
                                 <Button
                                     variant="contained"
                                     color="secondary"
-                                    sx={{ marginLeft:'1rem'}}
                                     onClick={() => deletor(event.id)}                                    
                                 >
                                     {t('Poista')}
