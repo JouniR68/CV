@@ -18,7 +18,7 @@ import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Tooltip } from "@mui/material";
 import Hamburger from './Hamburger';
-import FeedbackDialog from "./Feedback";
+import FeedbackDialog from "./Messages";
 
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)

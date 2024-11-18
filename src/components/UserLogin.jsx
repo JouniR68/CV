@@ -85,7 +85,8 @@ export const UserLogin = () => {
         else {
             navigate("/error", { state: { locationError: 'Invalid pwd' } })
             setUserPwd("")
-            return false
+            setIsLoggedIn(false)
+            return
         }
     }
 

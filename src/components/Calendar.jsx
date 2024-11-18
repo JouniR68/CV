@@ -4,13 +4,13 @@ import { db } from '../firebase';
 import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { TextField, Button, Grid, Typography } from '@mui/material';
+import { TextField, Button, Grid, Typography, FormControlLabel, Checkbox } from '@mui/material';
 import "../css/calendar.css"
 
 const Calendar = () => {
     const { t } = useTranslation();
     const [events, setEvents] = useState([]);
-    const [newEvent, setNewEvent] = useState({ title: '', date: new Date().toISOString().split('T')[0] });
+    const [newEvent, setNewEvent] = useState({ title: '', date: new Date().toISOString().split('T')[0], read: false });
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -38,7 +38,12 @@ const Calendar = () => {
     const addEvent = async () => {
         await addDoc(collection(db, 'events'), newEvent);
         setEvents([...events, newEvent]);
-        setNewEvent({ title: '', date: Date() });
+        setNewEvent({ title: '', date: new Date().toISOString().split('T')[0], read: false });
+        window.location.reload()
+    };
+
+    const handleReadOnly = () => {
+        setNewEvent({ ...newEvent, read: !newEvent.read });
     };
 
     const deletor = async (id) => {
@@ -66,10 +71,10 @@ const Calendar = () => {
 
     let counter = 0;
     return (
-        <div className="calendar">
-        <Grid container justifyContent="center" sx={{ padding: { xs: 2, sm: 4 } }}>
-            <Grid item xs={12} md={8} lg={6}>
-                
+        <div>
+            <Grid className="calendar">
+                <Grid item xs={12} md={8} lg={6}>
+
                     <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
                         {t('Calendar-title')}
                     </Typography>
@@ -83,15 +88,28 @@ const Calendar = () => {
                                 onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                                 inputProps={{ style: { fontSize: '1rem' } }}
                             />
-                    
+
                             <TextField
                                 type="date"
                                 value={newEvent.date}
                                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
                                 inputProps={{ style: { fontSize: '1rem' } }}
                             />
-                    
-                            <Button onClick={addEvent} variant="contained" sx={{ mt: 1, ml:1 }}>
+
+                            <FormControlLabel
+
+                                control={
+                                    <Checkbox
+                                        checked={newEvent.read}
+                                        onChange={handleReadOnly}
+                                        color="primary" // Options: "default", "primary", "secondary"
+                                        sx={{ mt: 1, ml: 1 }}
+                                    />
+                                }
+                                label="Luku!"
+                            />
+
+                            <Button onClick={addEvent} variant="contained" sx={{ mt: 1, ml: 1 }}>
                                 {t('addEvent')}
                             </Button>
                         </Grid>
@@ -99,33 +117,33 @@ const Calendar = () => {
 
                     <Grid container className="calendar-task-row" >
                         {events.map(event => (
-                            <Grid item xs={12} key={counter++} className="calendar-task" sx = {{backgroundColor: event.date <= today ? 'red' : 'green'}}>
-                                <Typography variant="body1" 
+                            <Grid item xs={12} key={counter++} className="calendar-task" sx={{ backgroundColor: event.date < today ? 'red' : 'green' }}>
+                                <Typography variant="body1"
                                     sx={{
                                         fontSize: { xs: '1rem', sm: '1.1rem' },
                                         paddingLeft: '1rem',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
-                                      }}>
-                                    {event.title}, {event.date}                                
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    onClick={() => deletor(event.id)}                                    
-                                >
-                                    {t('Poista')}
-                                </Button>
+                                    }}>
+                                    {event.title}, hoida viim. {event.date}
+                                    {!event.read && <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={() => deletor(event.id)}
+                                    >
+                                        {t('Poista')}
+                                    </Button>}
                                 </Typography>
                             </Grid>
                         ))}
                     </Grid>
-                
+
+                </Grid>
+
             </Grid>
-            
-        </Grid>
         </div>
-        
+
     );
 };
 

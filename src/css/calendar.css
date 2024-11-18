@@ -1,12 +1,11 @@
 @media only screen and (min-width: 1024px) {        
     .calendar {
         position: fixed;
-        top:4rem;
-        left:-12rem;
+        top:4rem;        
         bottom: 1rem;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: flex-start;
         max-height: 80vh;
         padding-top: 1vh;
@@ -34,7 +33,7 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         margin-top: 1rem;
-        width: 80vw
+        width: 20vw
     }
 
     .calendar-task-delayed {        

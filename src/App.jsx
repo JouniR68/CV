@@ -8,8 +8,8 @@ import Profile from "./components/Profile";
 import Rent from "./components/Services";
 import Customer from "./components/AddCustomer";
 import CustomerData from "./components/services/NaytaPyynnot";
-import Feedback from "./components/Feedback"
-import ShowFeedback from "./components/ShowFeedback";
+import Messages from "./components/Messages"
+import ShowMessages from "./components/ShowMessages";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
 import Admin from "./components/AdminLogin";
@@ -48,16 +48,19 @@ import InactivityTimer from "./components/InActivity";
 import Learnings from "./components/Learnings"
 import Budjetti from "./components/Budjetti"
 import CoverLetter from "./components/Letter";
-import FeedbackDialog from "./components/Feedback";
+//import FeedbackDialog from "./components/Messages";
 import Letter from "./components/WebLetter";
 import Exceller from "./components/Exceller";
 import CVPdf from "./components/services/CVPdf"
 import Vehicles from "./components/Huolto/Vehicles";
+import Feedback from "./components/Feedback";
+import ShowFeedback from "./components/ShowFeedback";
+
 
 function App() {
   return (
     <div className="app-container">
-      <AuthProvider>
+      <AuthProvider>        
         <BrowserRouter>        
           <Routes>
             <Route element={<Layout />}>
@@ -79,8 +82,10 @@ function App() {
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
               <Route path='lasku' element={<Report />} />
-              <Route path='feedback' element={<Feedback/>} />
-              <Route path='palaute' element={<ShowFeedback/>} />
+              <Route path='messages' element={<Messages/>} />
+              <Route path='showMessages' element={<ShowMessages/>} />
+              <Route path='palaute' element={<Feedback/>} />
+              <Route path='naytapalaute' element={<ShowFeedback/>} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="cv" element={<CVPdf />} />

@@ -175,7 +175,7 @@ function CheckLocation() {
   }
 
   return (
-    <div className="places">
+    <div className="places">      
       <h3 style={{ marginLeft: '0rem', fontSize:'1rem' }}>{t('Address')}: {homebase} </h3>
       {locatedPlaces.length > 0 && <><h3>{t('Places')}</h3> {locatedPlaces.slice(0, 4)}</>}
       

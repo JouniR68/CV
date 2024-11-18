@@ -6,7 +6,7 @@ import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserNam
 import { useAuth } from './LoginContext';
 import { Button, Typography } from '@mui/material';
 import InactivityTimer from './InActivity';
-import FeedbackDialog from './Feedback';
+import FeedbackDialog from './Messages';
 import CollectionCounts from './News';
 
 export default function Home() {
@@ -113,6 +113,7 @@ export default function Home() {
 
   return (
     <div className="home">
+      
       {isUnsupported && <div className = "unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
       <div className="home-teksti">{t('Cando1')}<p />{t('Cando2')}<p />{t('Cando3')}</div>

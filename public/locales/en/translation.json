@@ -136,10 +136,13 @@
   "Support": "Support (any)",
   "PM": "Product Management",
   "Cando1": "Below areas where I can help, additionally installations/updates/configurations are in can do area. ",
-  "Cando2": "Click any images for the request offer form (same form..)",
+  "Cando2": "Click any images for the request offer form (same form..) or click send message via message icon",
   "Cando3": "CV / data from me via clicking human icon above.",
   "Tip": "If challenges with text / images, pls use zoom (ctrl+/ ctrl-).",
   "LoadCV": "Load CV",
-  "guide": "Below my services, click an image and let me work for you."
+  "guide": "Below my services, click an image and let me work for you.",
+  "Name": "Name",
+  "Subject": "Subject",
+  "Feedback": "Feedback"
 
 }
