@@ -38,7 +38,7 @@ const BudgetManager = () => {
   const saveToFirebase = async (id, field, value) => {
     try {
       const expensesDocRef = doc(db, 'budjetti', id)
-      await updateDoc(expensesDocRef, { [field]: value });  
+      await updateDoc(expensesDocRef, { [field]: value });
       console.log('Document with ID: ${id} updated')
     } catch (error) {
       console.error('Error updating document:', error);
@@ -58,8 +58,9 @@ const BudgetManager = () => {
   // Handle delete
   const handleDelete = async (id) => {
     try {
-    await deleteDoc(doc(db, 'budjetti', id));
-    window.location.reload()    } catch (error) {
+      await deleteDoc(doc(db, 'budjetti', id));
+      window.location.reload()
+    } catch (error) {
       console.error('Error deleting document:', error);
     }
   };
@@ -102,7 +103,7 @@ const BudgetManager = () => {
       </Dialog>
 
       {/* Budget Summary Table */}
-      <Table className = "budget-form--summary">
+      <Table className="budget-form--summary">
         <TableHead>
           <TableRow>
             <TableCell>Aika</TableCell>
@@ -116,50 +117,58 @@ const BudgetManager = () => {
             <TableCell>Lainat/Luotot</TableCell>
             <TableCell>Muut Menot</TableCell>
             <TableCell>Velat</TableCell>
+            <TableCell>Säästöprosentti</TableCell>
             <TableCell>Actions</TableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
           {summary.map((expense) => {
             let prossa = 0;
-             const totalExpenses =
-             parseFloat(expense.sahkovesi) +
-             parseFloat(expense.vakuutukset) +
-             parseFloat(expense.ruokajuoma) +
-             parseFloat(expense.liikenne) +
-             parseFloat(expense.harrastukset) +
-             parseFloat(expense.ostokset) +
-             parseFloat(expense.lainatLuotot) +
-             parseFloat(expense.muutMenot) +
-             parseFloat(expense.velat);
-            
-           if (expense.tulot > 0) {
-             prossa =  ((expense.tulot - totalExpenses) / expense.tulot) * 100;
-             console.log("prossa: ", prossa + ', tulot: ' + expense.tulot + ', total: ' + totalExpenses);             
-           }
-            
+            const totalExpenses =
+              parseFloat(expense.sahkovesi) +
+              parseFloat(expense.vakuutukset) +
+              parseFloat(expense.ruokajuoma) +
+              parseFloat(expense.liikenne) +
+              parseFloat(expense.harrastukset) +
+              parseFloat(expense.ostokset) +
+              parseFloat(expense.lainatLuotot) +
+              parseFloat(expense.muutMenot) +
+              parseFloat(expense.velat);
+
+            if (expense.tulot > 0) {
+              prossa = ((expense.tulot - totalExpenses) / expense.tulot) * 100;
+              console.log("prossa: ", prossa + ', tulot: ' + expense.tulot + ', total: ' + totalExpenses);
+            }
+
             return (
-            <TableRow key={expense.id}>
-              {['aika', 'tulot', 'sahkovesi', 'vakuutukset', 'ruokajuoma', 'liikenne', 'harrastukset', 'ostokset', 'lainatLuotot', 'muutMenot', 'velat'].map((field) => (
-                <TableCell key={field} style = {{backgroundColor: prossa < 10 ? 'red' : 'transparent' }}>
-                  <TextField
-                    value={expense[field] || ''}
-                    onChange={(e) => handleEdit(expense.id, field, e.target.value)}
-                    onBlur={(e) => saveToFirebase(expense.id, field, e.target.value)}
-                  />
+              <TableRow key={expense.id}>
+                {['aika', 'tulot', 'sahkovesi', 'vakuutukset', 'ruokajuoma', 'liikenne', 'harrastukset', 'ostokset', 'lainatLuotot', 'muutMenot', 'velat'].map((field) => (
+                  <TableCell key={field} style={{ backgroundColor: prossa < 10 ? 'red' : 'transparent' }}>
+                    <TextField
+                      value={expense[field] || ''}
+                      onChange={(e) => handleEdit(expense.id, field, e.target.value)}
+                      onBlur={(e) => saveToFirebase(expense.id, field, e.target.value)}
+                    />
+                  </TableCell>
+                ))}
+                {/* Add new column for sprossa */}
+                <TableCell style={{ backgroundColor: prossa < 10 ? 'red' : 'green' }}>
+                  {prossa.toFixed(2)}%
                 </TableCell>
-              ))}
-              <TableCell>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => handleDelete(expense.id)}
-                >
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
-          )})}
+
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleDelete(expense.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            )
+          })}
         </TableBody>
       </Table>
     </div>
