@@ -1,198 +1,169 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebase'; // Firebase setup
-import { collection, addDoc, doc, deleteDoc, getDocs, updateDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
-import { CoPresentOutlined } from '@mui/icons-material';
+import {
+  Table, TableHead, TableBody, TableRow, TableCell,
+  TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle
+} from '@mui/material';
+import { db } from '../firebase';
+import { updateDoc, addDoc, getDocs, doc, collection, deleteDoc } from 'firebase/firestore';
+import 'firebase/firestore';
 
-const BudgetForm = () => {
-
-  const [expenses, setExpenses] = useState({
-    tulot: 0,
-    asumiskulut: 0,
-    ruokakulut: 0,
-    kulkemiskulut: 0,
-    saastot: 0,
-    muutMenot: 0,
-    velat: 0,
-    aika: new Date().getMonth() + 1,
-  });
+const BudgetManager = () => {
   const [summary, setSummary] = useState([]);
-  const navigate = useNavigate();
-  const month = new Date().getMonth()
-  const year = new Date().getFullYear();
-  let counter = 0;
-
-  // Fetch data from Firebase on component load
-  const readData = async () => {
-    const expenseCollection = collection(db, 'budjetti');
-    const expenseSnapshot = await getDocs(expenseCollection);
-    const expenseList = expenseSnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    setSummary(expenseList);
-  };
-
-
+  const [newData, setNewData] = useState({});
+  const [openDialog, setOpenDialog] = useState(false);
+  const expenseCollection = collection(db, 'budjetti');
+  // Fetch data from Firebase
   useEffect(() => {
-    readData();
+    const fetchData = async () => {
+      const expenseSnapshot = await getDocs(expenseCollection);
+      const expenseList = expenseSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setSummary(expenseList);
+    };
+    fetchData();
   }, []);
 
-  // Handle form inputs
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setExpenses((prevExpenses) => ({
-      ...prevExpenses,
-      [name]: parseFloat(value),
-    }));
-
+  // Handle editing data locally
+  const handleEdit = (id, field, value) => {
+    setSummary(prevSummary =>
+      prevSummary.map(expense =>
+        expense.id === id ? { ...expense, [field]: value } : expense
+      )
+    );
   };
 
-  // Save new expense to Firebase
-  const handleSave = async () => {
-    const kulut = expenses.asumiskulut + expenses.kulkemiskulut + expenses.ruokakulut + expenses.muutMenot + expenses.saastot + expenses.velat
-    const tulot = expenses.tulot
-    let saastoProsentti = ((tulot - kulut) / tulot) * 100;
-    expenses.saastoProsentti = parseFloat(saastoProsentti.toFixed(2))
-    await addDoc(collection(db, 'budjetti'), expenses);
-  };
-
-
-  // Show summary of expenses
-  const handleSummary = () => {
-    if (!expenses) {
-      return
-    } else {
-      //säästö prosentti
-      const kulut = expenses.asumiskulut + expenses.kulkemiskulut + expenses.ruokakulut + expenses.muutMenot + expenses.saastot + expenses.velat
-      const tulot = expenses.tulot
-      console.log("kulut: ", kulut + ", tulot: ", tulot)
-      let saastoProsentti = ((tulot - kulut) / tulot) * 100;
-      console.log("Säästö%:", saastoProsentti)
-      alert("Säästöprosentti: " + saastoProsentti.toFixed(2) + '%')
+  // Save updates to Firebase
+  const saveToFirebase = async (id, field, value) => {
+    try {
+      const expensesDocRef = doc(db, 'budjetti', id)
+      await updateDoc(expensesDocRef, { [field]: value });  
+      console.log('Document with ID: ${id} updated')
+    } catch (error) {
+      console.error('Error updating document:', error);
     }
-
   };
 
-  // Delete an expense from Firebase
+  // Add new data
+  const addNewData = async () => {
+    try {
+      await addDoc(collection(db, 'budjetti'), newData);
+      setOpenDialog(false);
+    } catch (error) {
+      console.error('Error adding new document:', error);
+    }
+  };
+
+  // Handle delete
   const handleDelete = async (id) => {
+    try {
     await deleteDoc(doc(db, 'budjetti', id));
-    window.location.reload()
+    window.location.reload()    } catch (error) {
+      console.error('Error deleting document:', error);
+    }
   };
+
 
   return (
-    <div className="budget-form">
-      <h2>Budjetti lomake ({month + 1}/{year})</h2>
-      <label>Nettotulot
-        <input
-          type="number"
-          name="tulot"
-          placeholder="Nettotulot"
-          value={expenses.tulot}
-          onChange={handleInputChange}
-        /></label>
+    <div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setOpenDialog(true)}
+        style={{ marginBottom: '20px' }}
+      >
+        Add New Entry
+      </Button>
 
-      <label>Asumiskulut
-        <input
-          type="number"
-          name="asumiskulut"
-          placeholder="Asumiskulut"
-          value={expenses.asumiskulut}
-          onChange={handleInputChange}
-        /></label>
+      {/* Add New Data Dialog */}
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+        <DialogTitle>Add New Budget Entry</DialogTitle>
+        <DialogContent>
+          {['aika', 'tulot', 'sahkovesi', 'vakuutukset', 'ruokajuoma', 'liikenne', 'harrastukset', 'ostokset', 'lainatLuotot', 'muutMenot', 'velat'].map((field) => (
+            <TextField
+              key={field}
+              label={field}
+              fullWidth
+              margin="normal"
+              value={newData[field] || ''}
+              onChange={(e) => setNewData({ ...newData, [field]: e.target.value })}
+            />
+          ))}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDialog(false)} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={addNewData} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-      <label>Ruokakulut
-        <input
-          type="number"
-          name="ruokakulut"
-          placeholder="Ruokakulut"
-          value={expenses.ruokakulut}
-          onChange={handleInputChange}
-        />
-      </label>
-
-      <label>Kulkemiskulut
-        <input
-          type="number"
-          name="kulkemiskulut"
-          placeholder="Kulkemiskulut"
-          value={expenses.kulkemiskulut}
-          onChange={handleInputChange}
-        />
-      </label>
-
-      <label>Säästöt
-        <input
-          type="number"
-          name="saastot"
-          placeholder="Säästöt"
-          value={expenses.saastot}
-          onChange={handleInputChange}
-        />
-      </label>
-
-      <label>Muut menot
-        <input
-          type="number"
-          name="muutMenot"
-          placeholder="Muut menot"
-          value={expenses.muutMenot}
-          onChange={handleInputChange}
-        />
-      </label>
-
-      <label>Velat
-        <input
-          type="number"
-          name="velat"
-          placeholder="Velat"
-          value={expenses.velat}
-          onChange={handleInputChange}
-        />
-      </label>
-
-      <button onClick={handleSave}>Pilveen</button>
-      <button onClick={handleSummary}>Yhteenveto</button>
-      <button onClick={readData}>Lue</button>
-
-      {summary.length > 0 && (
-        <div className="summary">
-          <h3>Yhteenveto</h3>
-
-          <div key={counter++}>
-            <table>
-              <thead>
-                <th>Kk</th>
-                <th>Asumiskulut</th>
-                <th>Ruokakulut</th>
-                <th>Kulkeminen</th>
-                <th>Muut menot</th>
-                <th>Säästöt</th>
-                <th>Velat</th>
-                <th>Säästöprosentti</th>
-              </thead>
-              {summary.map((expense) => (
-                <tbody key="expense.id">
-                  <td>{expense.aika}</td>
-                  <td>{expense.tulot}</td>
-                  <td>{expense.asumiskulut}</td>
-                  <td>{expense.ruokakulut}</td>
-                  <td>{expense.kulkemiskulut}</td>
-                  <td>{expense.muutMenot}</td>
-                  <td>{expense.saastot}</td>
-                  <td>{expense.velat}</td>
-                  <td style={{ backgroundColor: expense.saastoProsentti < 10 ? 'red' : 'green' }}>
-                    {expense.saastoProsentti.toFixed(2)}%
-                  </td>
-                  <button onClick={() => handleDelete(expense.id)}>Poista</button>
-                </tbody>
+      {/* Budget Summary Table */}
+      <Table className = "budget-form--summary">
+        <TableHead>
+          <TableRow>
+            <TableCell>Aika</TableCell>
+            <TableCell>Tulot</TableCell>
+            <TableCell>Sähkö/vesi</TableCell>
+            <TableCell>Vakuutukset</TableCell>
+            <TableCell>Ruoka/juoma</TableCell>
+            <TableCell>Liikenne</TableCell>
+            <TableCell>Harrastukset</TableCell>
+            <TableCell>Ostokset</TableCell>
+            <TableCell>Lainat/Luotot</TableCell>
+            <TableCell>Muut Menot</TableCell>
+            <TableCell>Velat</TableCell>
+            <TableCell>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {summary.map((expense) => {
+            let prossa = 0;
+             const totalExpenses =
+             parseFloat(expense.sahkovesi) +
+             parseFloat(expense.vakuutukset) +
+             parseFloat(expense.ruokajuoma) +
+             parseFloat(expense.liikenne) +
+             parseFloat(expense.harrastukset) +
+             parseFloat(expense.ostokset) +
+             parseFloat(expense.lainatLuotot) +
+             parseFloat(expense.muutMenot) +
+             parseFloat(expense.velat);
+            
+           if (expense.tulot > 0) {
+             prossa =  ((expense.tulot - totalExpenses) / expense.tulot) * 100;
+             console.log("prossa: ", prossa + ', tulot: ' + expense.tulot + ', total: ' + totalExpenses);             
+           }
+            
+            return (
+            <TableRow key={expense.id}>
+              {['aika', 'tulot', 'sahkovesi', 'vakuutukset', 'ruokajuoma', 'liikenne', 'harrastukset', 'ostokset', 'lainatLuotot', 'muutMenot', 'velat'].map((field) => (
+                <TableCell key={field} style = {{backgroundColor: prossa < 10 ? 'red' : 'transparent' }}>
+                  <TextField
+                    value={expense[field] || ''}
+                    onChange={(e) => handleEdit(expense.id, field, e.target.value)}
+                    onBlur={(e) => saveToFirebase(expense.id, field, e.target.value)}
+                  />
+                </TableCell>
               ))}
-            </table>
-          </div>
-        </div>
-      )}
+              <TableCell>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleDelete(expense.id)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          )})}
+        </TableBody>
+      </Table>
     </div>
   );
 };
 
-export default BudgetForm;
+export default BudgetManager;

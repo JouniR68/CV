@@ -33,11 +33,13 @@
     justify-content: center;
     align-items: center;
     max-width: 80%;
+    max-height: 60%;
     padding: 1rem;
     height: 60vh;
     gap: 1rem;
     z-index: 1;
     background-color: rgba(238, 185, 125, 0.72);
+    overflow-y: auto;
   }
 
   .userLogin Button {
@@ -115,13 +117,13 @@
   .budget-form {
     position: fixed;
     top: 10%;
-    left: 20%;
+    left: 5%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
-    width: 80%;
+    max-width: 80%;    
   }
 
   .budget-form label {
@@ -130,8 +132,27 @@
 
   .budget-form input {
     display:flex;
-    justify-content: flex-end;
-    
+    justify-content: flex-end;    
+  }
+
+  .budget-form--napit{
+    position:fixed;
+    top:9%;
+    left:1%;
+  }
+
+  .budget-form--summary{
+    margin-top: 1rem;
+    position:fixed;
+    top:20%;
+    left:0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: small;
+    gap: 8px;        
+    width: 40%;
+    overflow:auto;
   }
 
   .home {
