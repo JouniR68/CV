@@ -1,0 +1,69 @@
+
+@media (max-width: 360px) {
+.budget-form {
+    position: relative;
+    top: 5%;
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .budget-form input {
+    width: 100%; /* Ensure inputs are fully responsive */
+  }
+
+  .budget-form--summary {
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px)
+{
+    .budget-form {
+        position: fixed;
+        top: 10%;
+        left: 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        max-width: 80%;    
+      }
+    
+      .budget-form label {
+        margin-right: 1rem;
+      }
+    
+      .budget-form input {
+        display:flex;
+        justify-content: flex-end;    
+      }
+    
+      .budget-form--napit{
+        position:fixed;
+        top:9%;
+        left:1%;
+      }
+    
+      .budget-form--summary{
+        margin-top: 1rem;
+        position:fixed;
+        top:20%;
+        left:0%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: small;
+        gap: 8px;        
+        width: 40%;
+        overflow:auto;
+      }    
+}

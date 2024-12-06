@@ -30,6 +30,7 @@ export default function CollectionCounts() {
 
   const handleClose = () => {
     setOpen(false);
+
   };
 
   console.log("counts: ", counts)
@@ -40,7 +41,7 @@ export default function CollectionCounts() {
         {counts.contacts > 1 && <Typography variant="body1">Tunnareita: {counts.contacts}</Typography>}
 
         {counts.bugi > 0 &&
-          <Typography variant="body1">Kuittaamattomia viestejä: <Link to="/palaute">{counts.bugi}</Link></Typography>
+          <Typography variant="body1">Kuittaamattomia viestejä: <Link to="/showMessages">{counts.bugi}</Link></Typography>
         }
         {counts.events > 0 && <Typography variant="body1">Tapahtumia: <Link to="/calendar">{counts.events}</Link></Typography>}
 

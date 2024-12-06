@@ -12,7 +12,7 @@ import Messages from "./components/Messages"
 import ShowMessages from "./components/ShowMessages";
 import Intrests from "./components/Intrest"
 import Looking from './components/Looking';
-import Admin from "./components/AdminLogin";
+import AdminLogin from "./components/AdminLogin";
 import Logout from "./components/Logout";
 import CVLayout from "./Layouts/CVLayout";
 import ProfileLayout from "./Layouts/ProfileLayout";
@@ -79,6 +79,7 @@ function App() {
               <Route path='tarjousPyynto' element={<TarjouspyyntoForm />} />
               <Route path='logout' element={<Logout />} />
               <Route path="userLogin" element={<UserLogin />} />
+              <Route path="adminLogin" element={<AdminLogin />} />
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
               <Route path='lasku' element={<Report />} />
@@ -104,14 +105,11 @@ function App() {
                 <Route path="tarjouslomake" element={<TarjousLomake />} />
               </Route>
 
-
               <Route path='rent' index element={<Rent />} />
               <Route path='addCustomerData' element={<Customer />} />
               <Route path='calendar' element={<Calendar />} />
               <Route path='thanks' element={<ThankYouPage />} />
               <Route path='contract' element={<ContractForm />} />
-
-
 
               <Route element={<ShopLayout />}>
                 <Route path='catalog' index element={<Catalog />} />

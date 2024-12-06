@@ -13,736 +13,88 @@
   --main-content-background-text-color: #333333;
 }
 
-html,
-
-body {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+.unsupported-message {
+  display: none;
+  /* Hidden by default */
 }
-
-body::-webkit-scrollbar {
-  display: true;
-}
-
 
 /* Media Query for Small Screens */
-@media (max-width: 350px) {
+/*@media (max-width: 980px) and (min-width: 768px) */
+@media (max-width: 360px) and (min-device-pixel-ratio: 3)
+{
   .navbar {
     flex-direction: row;
+    background-color: yellow;
   }
+
+  .userLogin {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 25%;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    max-height: 60%;
+    padding: 1rem;
+    height: 60vh;
+    gap: 1rem;
+    z-index: 1;
+    /*background-color: rgba(238, 185, 125, 0.72);*/
+    background-color: green;
+    overflow-y: auto;
+  }
+
+  .userLogin Button {
+    justify-content: center;
+  }
+
 }
 
-
-@media only screen and (min-width: 380px) and (max-width: 1023px) {
-
-  #disclaimer {
-    width: 100%;
-    margin-top: 2rem;
-  }
-
-  #disclaimer h4 {
-    flex: 1 1 auto;
-    text-align: justify;
-    color: #2c3e50;
-    width: 100%;
-    margin-bottom: 1rem;
-    margin-left: 0rem;
-  }
-
-  .hamburger-menu-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .hamburger-popup-menu {
-    min-width: 100px;
-    width: 100%;
-    max-width: 14%;
-    background-color: #fff;
-    box-shadow: -2px 0 2px rgba(15, 15, 1, 0.3);
-    z-index: 99;
-    position: fixed;
-    top: 1rem;
-    left: 2rem;
-    height: auto;
-    user-select: none;
-    padding: 0.5em 1em;
-    gap: 1rem;
-    zoom: 2;
-  }
-
-  /* Optional: Style for List Items */
-  .ListItem {
-    width: 100px;
-    /* Adjust as needed */
-    text-align: center;
-    /* Center text within the item */
-  }
-
-  .navbar.hidden {
-    display: none;
-    /* Hide navbar by default */
-  }
-
-  .hamburger-menu {
+/*
+@media (min-width: 3000px) {
+  .unsupported-message {
     display: block;
-    z-index: 1001;
-  }
-
-  .home-header,
-  .profile-header,
-  .nearby-header,
-  .register-header,
-  .login-header {
-    display: none;
-  }
-
-  ::-webkit-scrollbar {
-    background-color: rgba(238, 232, 232, 0.5);
-    border-radius: 10px;
-    border: 3px solid #fff;
-    width: 10px;
-  }
-
-  html,
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    /*background-color: var(--background-color);*/
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  body::-webkit-scrollbar {
-    display: none;
-  }
-
-  #disclaimer h4 {
-    zoom: 1.5;
-  }
-
-  h1 {
-    margin-top: 2rem;
-    font-size: 28px;
-    font-weight: 700;
-  }
-
-  h3 {
-    margin-bottom: 2rem;
-    text-align: left;
-  }
-
-  .app-container {
-    max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(194, 146, 57, 0.228);
-    color: #2C3E50;
-    border: 1rem solid;
-    border-color: black;
-  }
-
-  .home {
-    margin-top: 2rem;
-    display: flex;
-    /* Add flex to the home component */
-    flex-direction: column;
-    /* Stack elements vertically */
-    justify-content: center;
-    /* Center content vertically */
-    align-items: center;
-    /* Center content horizontally */
-    width: 90%;
-    /* Adjust width for mobile devices */
-    max-width: 98%;
-    /* Set a maximum width for larger screens */
-    height: auto;
-    overflow-y: auto;
-    font-size: 14px;
-    padding: 1rem;
-    box-sizing: border-box;
-    /* Ensure padding doesn’t affect width */
-  }
-
-  .home h1 {
-    font-size: 2.25rem;
-    /* Adjust font size for mobile screens */
-  }
-
-  #home-nappi {
-    justify-content: flex-start;
-    background-color: #0c0c0c;
-    color: white;
-    width: fit-content;
-    font-size: 1.1rem;
-    /* Adjust button text size for mobile */
-    font-weight: 600;
-    margin-left: -33rem;
-    margin-top: 3rem;
-    padding: 1rem;
-    /* Adjust padding for better spacing */
-  }
-
-  .host-nav {
-    position: fixed;
-    top: 10%;
-    left: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .add-customer-textFieldGroup {
-    margin: 0.5rem;
-    font-weight: 700;
-    color: "red";
-  }
-
-  #profile-button {
-    font-size: large;
-    font-weight: 700;
-    margin-top: 3rem;
-  }
-
-  .profile img {
-    margin-bottom: 1rem;
-  }
-
-
-  .logout-text {
-    width: 50%;
-    height: 50%;
-  }
-
-  .footer {
-    display: flex;
-    position: fixed;
-    z-index: 10;
-    bottom: 0rem;
-    width: 100%;
-    left: 49.6%;
-    transform: translateX(-50%);
-    width: 100%;
-    background-color: orange;
-    justify-content: space-between;
-    align-items: center;
-    zoom: 2;
-  }
-
-  .footer-items {
-    height: auto;
-  }
-
-  .footer-items img {
-    width: 48px;
-    height: 48px;
-  }
-
-  .header {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    height: 2rem;
-    color: var(--header-text-color) !important;
-    background-color: orange;
-    zoom: 2;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-  }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 2rem;
-  }
-
-  header a {
-    text-decoration: none;
-    color: #4d4d4d;
-    font-weight: 600;
-    padding: 5px 10px;
-  }
-
-  header a:hover {
-    color: #161616;
-    text-decoration: underline;
-  }
-
-  .host-nav {
-    display: flex;
-    /* Align items horizontally */
-    justify-content: center;
-    /* Space out the links */
-    align-items: center;
-    /* Center links vertically */
-    padding: 10px;
-    /* Add padding around the nav */
-    font-weight: 700;
-    margin-bottom: 20rem;
-  }
-
-  .host-nav a {
-    text-decoration: none;
-    /* Remove underline from links */
-    color: #333;
-    /* Dark text color */
-    font-size: 16px;
-    /* Adjust the font size */
-    padding: 8px 16px;
-    /* Space inside each link */
-    transition: color 0.3s ease;
-    /* Smooth color transition on hover */
-  }
-
-  .host-nav a:hover {
-    color: #007bff;
-    /* Change link color on hover */
-  }
-
-  .link-button {
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    padding: 0.75rem 1.375rem;
-    color: initial;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.1s ease-in-out;
-  }
-
-  .link-button:hover {
-    transform: translate(1px, 1px);
-  }
-
-  .register {
-    position: fixed;
-    top: 6%;
-    left: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 2rem;
-    width: 70%;
-    height: 90%;
-    zoom: 1.5;
-    overflow-y: auto;
-  }
-
-  .register Button {
-    margin-top: 0.5rem;
-    font-size: large;
-  }
-
-  .profile,
-  .userLogin {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* This centers the element */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 50vh;
-    gap: 2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
     font-size: 1.5rem;
-    zoom: 2;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* Optional: Add a shadow for visual appeal */
+    text-align: center;
     border-radius: 10px;
-    /* Optional: Add rounded corners */
+    z-index: 1000;
   }
+}
+*/
 
-  .userLogin Button {
-    margin-top: 2rem;
-    font-size: large;
+
+/*Desktop
+@media only screen and (min-width: 1921px) and (max-width:2400px) {
+  .footer {
+    display: none;
   }
+}*/
 
-  .userLogin TextField {
-    size: 2rem;
-  }
-
-  textArea {
-    width: 400px;
-    height: 200px;
-    padding: 10px;
-    font-size: larger;
-  }
-
-  .taulu {
-    display: table;
-    margin-top: 1rem;
-    margin-left: 2rem;
-    text-align: left;
-    justify-content: left;
-  }
-
-  .taulu>td {
-    white-space: pre-line;
-    margin-left: 2rem;
-  }
-
-  .row {
-    display: table-row;
-    border-bottom: #161616;
-    border: 1px solid;
-  }
-
-  .cell {
-    display: table-cell;
-    padding: 1px;
-    margin-left: 2rem;
-  }
-
-  .confirmation-container {
-    /* Semi-transparent background covering the entire viewport */
+@media only screen and (min-width: 1024px)
+{
+  html,
+  body {
     position: fixed;
-    /* Fix it in the viewport */
     top: 0;
     left: 0;
+    bottom: 0;
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    /* Full height to cover the screen */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Center horizontally and vertically */
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    /* Ensure it sits above all other content */
   }
 
-  .confirmation-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    max-width: 50%;
-    max-height: 60%;
-    padding: 1rem;
-    border-radius: 8px;
-    line-height: 30px;
-    ;
-    gap: 1rem;
-    text-align: justify;
-    zoom: 1.7
+  body::-webkit-scrollbar {
+    display: true;
   }
 
-  #ok {
-    margin-top: 0rem;
-    padding: 0.5rem;
-    width: 100%;
-    background-color: green;
-    font-weight: bold;
-  }
-
-  #nok {
-    padding: 0.5rem;
-    background-color: red;
-    font-weight: bold;
-  }
-
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    margin-top: 2rem;
-    margin-left: 1rem;
-    width: 200px;
-  }
-
-  .photo-grid img {
-    width: 50%;
-    height: auto;
-    display: block;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  #softaapu-logo {
-    width: "15rem";
-    height: "15rem";
-  }
-
-  #saveButton {
-    margin-top: 4.5rem;
-  }
-
-  .login--form {
-    display: grid;
-    grid-template-columns: auto;
-    margin-left: 0rem;
-    gap: 3px;
-    text-align: left;
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 3px;
-    background-color: rgb(182, 207, 219);
-    font-size: 14px;
-    font-weight: bold;
-  }
-
-  .login--form input {
-    margin: 0.5rem;
-    padding: 0.5rem;
-    width: 6rem;
-  }
-
-  .login--form label {
-    margin: 0.5rem;
-  }
-
-  .login--form button {
-    margin: 0.5rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.5rem;
-    width: fit-content;
-  }
-
-  .places {
-    position: fixed;
-    top: 15%;
-    left: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background-color: rgba(214, 214, 187, 0.72);
-    margin: 2rem;
-    padding: 1rem;
-    border-radius: 1rem;
-    zoom: 1.5
-  }
-
-  .tarjous {
-    display: flex;
-    flex: wrap;
-    margin-top: 1rem;
-    gap: 2rem;
-    justify-content: flex-start;
-  }
-
-  .tuntikirjaus {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0.5rem;
-    width: fit-content;
-  }
-
-
-  .tarjouspyynto {
-    position: fixed;
-    top: 6%;
-    left: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 80%;
-    font-weight: 550;
-    /* Full width for responsiveness */
-    padding: 1rem;
-    overflow-y: auto;
-    /* Add some padding for mobile */
-    zoom: 1.5;
-  }
-
-  .tarjouspyynto-header {
-    text-align: center;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-  }
-
-  .tarjouspyynto-content {
-    width: 90%;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: rgba(214, 214, 187, 0.72);
-    padding: 0.5rem;
-    gap: 1rem;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    border: 1px solid;
-
-  }
-
-  .tarjouspyynto-napit {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 2rem;
-
-  }
-
-  .tarjouspyynto-content .MuiGrid-container {
-    /* Set a max width for the form */
-    width: 90%;
-    height: 20%;
-    line-height: 1.4rem;
-    background-color: lightcyan;
-    /* Set a white background for the form */
-    padding: 2rem;
-    /* Add padding inside the form */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Add a subtle shadow for depth */
-    border-radius: 8px;
-    /* Round the corners slightly */
-    gap: 2rem;
-  }
-
-  .tarjouspyynto .MuiGrid-container .MuiTextField-root {
-    width: 100%;
-    /* Make input fields take the full width */
-    font-size: 2rem;
-    /* Increase font size */
-    padding: 1rem;
-    /* Increase padding inside the input fields */
-    line-height: 2rem;
-    /* Adjust line height */
-    border-radius: px;
-    /* Round the corners of the input fields */
-    box-sizing: border-box;
-    /* Ensure padding is included in the width */
-  }
-
-}
-
-
-@media only screen and (min-width: 1920px) {
-  .home {
-    position: fixed;
-    top: 2%;
-    left: 0%;
-    margin: 1rem;
-    padding: 3rem;
-    font-weight: 550;
-    font-size: 1rem;
-    width: 90%;
-    height: 90%;
-    gap: 0.5rem;
-    z-index: 1;
-    background-color: rgba(250, 250, 247, 0.72);
-    border-radius: 1rem;
-    text-align: justify;
-    margin-bottom: 2rem;
-    overflow: scroll;
-  }
-
-  .home-teksti {
-    font-family: "Lucida Console", "Courier New", cursive;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    border-radius: 10px;
-    padding: 1rem;
-    width: fit-content;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .MuiPopover-paper {
-    pointer-events: auto;
-    /* Allow pointer events on the popover */
-    /* Additional styles */
-  }
-
-  .home-kollaasi {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: auto;
-    gap: 10px;
-    object-fit: scale-down;
-    /* Adjusted gap */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .home-kollaasi img {
-    border-radius: 5px;
-    padding: 0.5rem;
-    width: 90%;
-    height: 20%;
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-
-  .home-kollaasi img:nth-child(1) {
-    grid-column: span 2;
-    /* This image spans all 4 columns */
-  }
-
-  .home-kollaasi img:nth-child(2) {
-    grid-column: span 1;
-    /* Spans across 2 columns */
-  }
-
-  .home-kollaasi img:nth-child(3) {
-    grid-column: span 2;
-    /* Spans across 2 columns */
-  }
-
-  .home-kollaasi img:nth-child(4) {
-    grid-column: span 1;
-    /* Spans across 1 column */
-  }
-
-  .home-kollaasi img:nth-child(5) {
-    grid-column: span 1;
-    /* Spans across 1 column */
-    max-height: 40px;
-    /* Set a fixed height */
-  }
-
-  .home-kollaasi img:nth-child(6) {
-    grid-column: span 1;
-    /* Spans across 1 column */
-    max-height: 40px;
-    /* Set a fixed height */
-  }
-}
-
-@media only screen and (min-width: 1280px) and (max-width:1920px) {
   .app-container {
     position: fixed;
     top: 2%;
@@ -755,10 +107,6 @@ body::-webkit-scrollbar {
     /* Sets max height within viewport height */
     overflow: hidden;
     /* Clips any content that goes outside */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     transform: translateX(-50%);
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -770,6 +118,47 @@ body::-webkit-scrollbar {
     z-index: 1;
   }
 
+  .budget-form {
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 80%;    
+  }
+
+  .budget-form label {
+    margin-right: 1rem;
+  }
+
+  .budget-form input {
+    display:flex;
+    justify-content: flex-end;    
+  }
+
+  .budget-form--napit{
+    position:fixed;
+    top:9%;
+    left:1%;
+  }
+
+  .budget-form--summary{
+    margin-top: 1rem;
+    position:fixed;
+    top:20%;
+    left:0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: small;
+    gap: 8px;        
+    width: 40%;
+    overflow:auto;
+  }
+
   .home {
     position: fixed;
     top: 2%;
@@ -778,19 +167,56 @@ body::-webkit-scrollbar {
     padding: 3rem;
     font-weight: 550;
     font-size: 1rem;
-    width: 90%;
-    height: 90%;
+    width: 90%;    
     gap: 0.5rem;
     z-index: 1;
     background-color: rgba(250, 250, 247, 0.72);
     border-radius: 1rem;
-    text-align: justify;
     margin-bottom: 2rem;
-    overflow: scroll;
+    overflow: auto;
   }
 
 
+  @keyframes slidein {
+    from {
+      translate: 150vw 0;
+      scale: 200% 1;
+    }
+
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }
+
+  h5 .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 50%;
+    /* Position above the h5 element */
+    left: 80%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  /* Show tooltip on hover */
+  h5:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
   .home-teksti {
+    animation-duration: 5s;
+    animation-name: slidein;
     font-family: "Lucida Console", "Courier New", cursive;
     font-size: 1rem;
     font-weight: 600;
@@ -803,10 +229,17 @@ body::-webkit-scrollbar {
 
   .home-kollaasi {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 15rem);
+    /* Adjusted to better suit six items */
+    grid-template-rows: auto;    
     gap: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;    
+    overflow: auto;
+  }
+
+  .home-kollaasi h5 {
+    text-align: center;
   }
 
   .home-kollaasi img {
@@ -819,42 +252,6 @@ body::-webkit-scrollbar {
     max-height: 100%;
   }
 
-
-  .home-kollaasi img:nth-child(1) {
-    grid-column: span 1;
-    /* This image spans all 4 columns */
-  }
-
-  .home-kollaasi img:nth-child(2) {
-    grid-column: span 1;
-    /* Spans across 2 columns */
-  }
-
-  .home-kollaasi img:nth-child(3) {
-    grid-column: span 2;
-    /* Spans across 2 columns */
-  }
-
-  .home-kollaasi img:nth-child(4) {
-    grid-column: span 1;
-    /* Spans across 1 column */
-  }
-
-  .home-kollaasi img:nth-child(5) {
-    grid-column: span 1;
-    /* Spans across 1 column */
-    max-height: 40px;
-    /* Set a fixed height */
-  }
-
-  .home-kollaasi img:nth-child(6) {
-    grid-column: span 1;
-    /* Spans across 1 column */
-    max-height: 40px;
-    /* Set a fixed height */
-
-  }
-
   #home-nappi {
     color: white;
     font-weight: 700;
@@ -863,42 +260,76 @@ body::-webkit-scrollbar {
     background-color: #304253;
   }
 
+  .feedback {
+    position: fixed;
+    top: 10%;
+    left: 15%;
+    max-width: 10%;
+    overflow-y: auto;
+    padding: 1rem;
+  }
 
   .hamburger-menu {
     display: none !important;
   }
 
+
+  .feedback {
+    position: fixed;
+    top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+    height: 80%;
+    max-width: 60%;
+    max-height: 90%;
+  }
+
+  .feedback Button {
+    bottom: -3rem;
+  }
+
   .opit {
     position: fixed;
     top: 10%;
-    left: 6%;
+    left: 3%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    width: 20%;
-    height: 50%;
+    width: 23%;
+    height: 50vh;
     padding: 1rem;
     gap: 1rem;
     background-color: rgba(214, 214, 187, 0.72);
     z-index: 101
   }
 
+
+  .opit-taulu-header {
+    background-color: #ecb07e;
+    font-weight: 900;
+
+  }
+
   .opit-taulu {
     position: fixed;
     top: 10%;
     left: 30%;
-    height: 20%;
-    max-width: 30%;
+    height: 20vh;
+    max-width: 69%;
     background-color: rgba(214, 214, 187, 0.72);
     z-index: 102;
-    overflow: auto;
+    overflow: scroll;
   }
 
   .tarjouspyynto {
     position: fixed;
-    top: 45%;
+    top: 40%;
     left: 20%;
     width: 70%;
     display: flex;
@@ -928,6 +359,10 @@ body::-webkit-scrollbar {
     gap: 1rem;
   }
 
+  .tarjouspyynto-message {
+    width: 100%;
+  }
+
   .tarjouspyynto-napit {
     display: flex;
     flex-direction: row;
@@ -945,6 +380,24 @@ body::-webkit-scrollbar {
 
     box-sizing: border-box;
 
+  }
+
+  .huoltorekisteri-preview {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    max-width: 100%;
+    height: 70vh;
+    margin-left: -15rem;
+  }
+
+  .huoltorekisteri-preview Button {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+
+    margin-bottom: 1rem;
+    width: 6rem;
+    font-size: 14px;
   }
 
   .profile {
@@ -987,24 +440,24 @@ body::-webkit-scrollbar {
   }
 
   .userLogin {
+    position: fixed;
+    top: 25%;
+    left: 25%;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 14%;
-    left: 30%;
     justify-content: center;
     align-items: center;
-    width: 30%;
-    margin: 0 auto;
+    max-width: 80%;
+    max-height: 30%;
     padding: 1rem;
-    height: 60vh;
     gap: 1rem;
+    background-color: #555;
     z-index: 1;
-    background-color: rgba(214, 214, 187, 0.72);
   }
 
   .userLogin Button {
-    margin-left: -16rem;
+    margin-top: 2rem;
+    margin-left: 0rem;
   }
 
   h1 {

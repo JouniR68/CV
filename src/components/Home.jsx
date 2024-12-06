@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import "../index.css"
+import "../css/home.css"
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { isMobile, isTablet, isBrowser, isAndroid, isIOS, isWinPhone, browserName, mobileModel } from 'react-device-detect';
@@ -111,13 +111,7 @@ export default function Home() {
     setShowDisclaimer(!disclaimer)
   }
 
-  return (
-    <div className="home">
-      
-      {isUnsupported && <div className = "unsupported-message">Most readable with screen width around 2500px</div>}
-      <CollectionCounts />
-      <div className="home-teksti">{t('Cando1')}<p />{t('Cando2')}<p />{t('Cando3')}</div>
-      <div className="home-kollaasi">
+  /*
         <Typography variant="h5">
           <span className="tooltip-text">Backlogien hallintaa JIRA ja Confluensen kautta.</span>
           <h5>{t('PM')}</h5>
@@ -133,20 +127,30 @@ export default function Home() {
           <span className="tooltip-text">Esim. projektin suunnittelu, kokoukset.</span>
           <img alt="Projekti suunnitelmaa" src="/Images/jrsoft/gantt.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
+                <Typography variant="h5">
+          <h5>{t('GoodToKnow')}</h5>
+          <span className="tooltip-text">Primary ja secondary sivustojen tarkoitus</span>
+          <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
+        </Typography>
+
+  */
+
+  return (
+    <div className="home">
+      
+      {isUnsupported && <div className = "unsupported-message">Most readable with screen width around 2500px</div>}
+      <CollectionCounts />
+      <div className="home-teksti">{t('Cando')}</div>
+      <div className="home-kollaasi">
         <Typography variant="h5">
-          <h5>{t('Webdev')}</h5>
-          <span className="tooltip-text">Web- koodausta (javascript, react, node, css, material ui, html jne). GIT- ongelmia / koodikatselmointia yms </span>
-          <img alt="Web-koodausta, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
+          <h5>{t('services')}</h5>
+          <span className="tooltip-text">Luo toiveestasi tarjouspyyntö ? Tarjolla esim käyttötukea, web-kehitystä, tuote/projekti hallintaa, ylläpitoa & tukea.</span>
+          <img alt="Palvelut, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
         </Typography>
         <Typography variant="h5">
           <h5>{t('Message')}</h5>
           <span className="tooltip-text">Laita viestiä yhteydenottoa varten tai anna vinkki havaitsemastasi bugista..</span>
           <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
-        </Typography>
-        <Typography variant="h5">
-          <h5>{t('GoodToKnow')}</h5>
-          <span className="tooltip-text">Primary ja secondary sivustojen tarkoitus</span>
-          <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
         </Typography>
       </div>
 

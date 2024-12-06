@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { useAuth } from './LoginContext';
 import { useNavigate } from 'react-router-dom';
+import Logout from './Logout';
 
 const InactivityTimer = () => {
   const { setIsLoggedIn } = useAuth();
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
   const navigate = useNavigate();
+  const {t} = useTransition()
 
   // Function to reset the timer
   const resetTimer = () => {
@@ -14,9 +16,11 @@ const InactivityTimer = () => {
 
   useEffect(() => {
     const checkInactivity = () => {
-      if (Date.now() - lastActivityTime > 15 * 60 * 1000) { // 15 minutes
-        setIsLoggedIn(false);
-        navigate('/');
+      if (Date.now() - lastActivityTime > 3 * 60 * 1000) { // 3 minutes        
+        navigate('/logout');
+        setTimeout(() => {
+          navigate('/done', {state: {description:'logout'}});
+        }, 1000); // Adjust delay as needed
       }
     };
 

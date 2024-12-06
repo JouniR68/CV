@@ -6,6 +6,7 @@ import {
 import { db } from '../firebase';
 import { updateDoc, addDoc, getDocs, doc, collection, deleteDoc } from 'firebase/firestore';
 import 'firebase/firestore';
+import '../css/budget.css'
 
 const BudgetManager = () => {
   const [summary, setSummary] = useState([]);

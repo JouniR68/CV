@@ -117,7 +117,7 @@ export const UserLogin = () => {
                 className="userLogin"
             >
 
-                <Typography mt={-15} variant="h4" gutterBottom>
+                <Typography  variant="h4" gutterBottom>
                     {t("Login")}<br />
                 </Typography>
                 {t("LogoutWarning")}<br />

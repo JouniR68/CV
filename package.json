@@ -27,7 +27,7 @@
     "express": "^4.19.2",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.3.1",
-    "firebase-functions": "^5.1.0",
+    "firebase-functions": "^6.1.1",
     "gloud": "^0.0.0",
     "i18next": "^23.12.1",
     "i18next-browser-languagedetector": "^8.0.0",

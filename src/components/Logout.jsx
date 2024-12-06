@@ -9,7 +9,7 @@ export default function Logout() {
   const {setIsLoggedIn} = useAuth();
   const {t} = useTranslation()
   const navigate = useNavigate()
-  useEffect(() => {navigate('/done', { state: { description: t('LogoutText') }})},[])
+  
   setIsLoggedIn(false)
   sessionStorage.removeItem("adminLevel")
   sessionStorage.removeItem("firstName")
@@ -18,7 +18,5 @@ export default function Logout() {
   sessionStorage.removeItem("address")
   sessionStorage.removeItem("phoneNumber")
   sessionStorage.removeItem("loggedIn")
-  window.location.reload()
-  
   
 }

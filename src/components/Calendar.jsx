@@ -6,12 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid, Typography, FormControlLabel, Checkbox } from '@mui/material';
 import "../css/calendar.css"
+import { useAuth } from "./LoginContext";
 
 const Calendar = () => {
     const { t } = useTranslation();
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState({ title: '', date: new Date().toISOString().split('T')[0], read: false });
     const navigate = useNavigate()
+    const { isLoggedIn } = useAuth()
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -20,6 +22,7 @@ const Calendar = () => {
                 event.preventDefault();
                 console.log('Refresh is disabled!');
             }
+
         };
 
         // Attach the event listener to the window
@@ -36,6 +39,10 @@ const Calendar = () => {
     }, []);
 
     const addEvent = async () => {
+        if (newEvent.read) {
+            newEvent.date = ""
+        }
+
         await addDoc(collection(db, 'events'), newEvent);
         setEvents([...events, newEvent]);
         setNewEvent({ title: '', date: new Date().toISOString().split('T')[0], read: false });
@@ -66,13 +73,11 @@ const Calendar = () => {
     }
 
     const today = new Date().toISOString().split('T')[0];
-
-
-
     let counter = 0;
+
     return (
         <div>
-            <Grid className="calendar">
+            {isLoggedIn ? <Grid className="calendar">
                 <Grid item xs={12} md={8} lg={6}>
 
                     <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
@@ -91,7 +96,7 @@ const Calendar = () => {
 
                             <TextField
                                 type="date"
-                                value={newEvent.date}
+                                value={newEvent.read ? newEvent.date : ""}
                                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
                                 inputProps={{ style: { fontSize: '1rem' } }}
                             />
@@ -116,8 +121,10 @@ const Calendar = () => {
                     </Grid>
 
                     <Grid container className="calendar-task-row" >
-                        {events.map(event => (
-                            <Grid item xs={12} key={counter++} className="calendar-task" sx={{ backgroundColor: event.date < today ? 'red' : 'green' }}>
+                        {events.map(event =>
+                        (
+                            <Grid item xs={12} key={counter++} className="calendar-task" 
+                            sx={{ backgroundColor: event.read ? 'transparent' : event.date < today ? 'red' : 'green' }}>
                                 <Typography variant="body1"
                                     sx={{
                                         fontSize: { xs: '1rem', sm: '1.1rem' },
@@ -126,7 +133,7 @@ const Calendar = () => {
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
                                     }}>
-                                    {event.title}, hoida viim. {event.date}
+                                    {event.date != "" ? event.title + ", " + event.date : event.title}
                                     {!event.read && <Button
                                         variant="contained"
                                         color="secondary"
@@ -142,6 +149,7 @@ const Calendar = () => {
                 </Grid>
 
             </Grid>
+                : <h1 style={{ position: 'fixed', top: '25%', left: '50%' }}>Forbidden</h1>}
         </div>
 
     );

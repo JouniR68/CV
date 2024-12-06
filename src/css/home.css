@@ -1,0 +1,204 @@
+
+@media (max-width: 360px) {
+  .home {
+    position: static;
+    top: 1%;
+    left: 0%;
+    margin: -2rem;
+    padding: 1rem;
+    font-weight: 550;
+    font-size: 1rem;
+    width: 100%;    
+    gap: 0.5rem;
+    z-index: 1;
+    background-color: rgba(250, 250, 247, 0.72);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    overflow: auto;
+  }
+
+
+  @keyframes slidein {
+    from {
+      translate: 150vw 0;
+      scale: 100% 1;
+    }
+
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }
+
+  h5 .tooltip-text {
+    visibility: hidden;
+    width: 10rem;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 50%;
+    /* Position above the h5 element */
+    left: 70%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  /* Show tooltip on hover */
+  h5:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .home-teksti {
+    animation-duration: 5s;
+    animation-name: slidein;
+    font-family: "Lucida Console", "Courier New", cursive;
+    font-size: 1rem;
+    font-weight: 600;    
+    border-radius: 10px;
+    padding: 1rem;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .home-kollaasi {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;    
+    overflow: auto;
+  }
+
+  .home-kollaasi h5 {
+    text-align: center;
+  }
+
+  .home-kollaasi img {
+    object-fit: scale-down;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 70%;
+    height: 20%;
+    max-width: 30%;
+    max-height: 30%;
+  }
+
+  #home-nappi {
+    color: white;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 12px;
+    background-color: #304253;
+  }}
+
+@media only screen and (min-width: 1024px)
+{
+  .home {
+    position: fixed;
+    top: 2%;
+    left: 0%;
+    margin: 1rem;
+    padding: 3rem;
+    font-weight: 550;
+    font-size: 1rem;
+    width: 90%;    
+    gap: 0.5rem;
+    z-index: 1;
+    background-color: rgba(250, 250, 247, 0.72);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    overflow: auto;
+  }
+
+
+  @keyframes slidein {
+    from {
+      translate: 150vw 0;
+      scale: 200% 1;
+    }
+
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }
+
+  h5 .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 50%;
+    /* Position above the h5 element */
+    left: 80%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  /* Show tooltip on hover */
+  h5:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .home-teksti {
+    animation-duration: 5s;
+    animation-name: slidein;
+    font-family: "Lucida Console", "Courier New", cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .home-kollaasi {
+    display: grid;
+    grid-template-columns: repeat(3, 15rem);
+    /* Adjusted to better suit six items */
+    grid-template-rows: auto;    
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;    
+    overflow: auto;
+  }
+
+  .home-kollaasi h5 {
+    text-align: center;
+  }
+
+  .home-kollaasi img {
+    object-fit: scale-down;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 90%;
+    height: 20%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  #home-nappi {
+    color: white;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 12px;
+    background-color: #304253;
+  }
+}
