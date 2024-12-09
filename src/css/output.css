@@ -1,8 +1,7 @@
 @media only screen and (min-width: 1024px) {
-
-h3{
-    color:red;
-}
+    h3 {
+        color: red;
+    }
 
     .output {
         position: fixed;
@@ -11,15 +10,15 @@ h3{
         transform: translate(-50%, -50%);
         width: 90%;
         height: 10%;
-        gap: 2rem;  
-        /* Optional: Add a shadow for visual appeal */        
+        gap: 2rem;
+        /* Optional: Add a shadow for visual appeal */
     }
 
     .output-sections {
         position: fixed;
         top: -10rem;
-        left:0;
-        width:100%;        
+        left: 0;
+        width: 100%;
     }
 
     thead {
@@ -40,22 +39,27 @@ h3{
         top: 2%;
         max-width: 1000px;
         height: 30%;
-        max-height: 100px;        
+        max-height: 100px;
         overflow-y: auto;
+    }
+
+    .profile-napit{
+        display:flex;
+        flex-direction: row;        
     }
 }
 
-@media only screen and (min-width: 380px) and (max-width: 1023px) {
+@media only screen and (min-width: 980px) and (max-width: 1023px) {
     .output {
         position: fixed;
-        top:50%;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); 
+        transform: translate(-50%, -50%);
         width: 80%;
         height: vh;
-        background-color: rgb(238, 238, 238);    
-        color:black;        
-        font-size: 1.5rem;                
+        background-color: rgb(238, 238, 238);
+        color: black;
+        font-size: 1.5rem;
     }
 
     .cv-table {

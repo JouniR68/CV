@@ -6,6 +6,7 @@ import { db } from "../firebase"
 import { useTranslation } from 'react-i18next';
 import { hashPassword } from './Password';
 import { useNavigate } from 'react-router-dom';
+import "../css/signing.css"
 
 const RegistrationForm = () => {
   const { t } = useTranslation()

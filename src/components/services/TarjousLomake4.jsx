@@ -1,5 +1,5 @@
 import { TextField, Typography, Box } from '@mui/material';
-
+import "../../css/tarjous.css"
 
 const TarjousLomake4 = ({sisaltyy, setSisaltyy, eiKuulu, setEiKuulu, suositukset, setSuositukset }) => {
 

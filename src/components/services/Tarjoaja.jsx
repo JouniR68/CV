@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, Typography, Box } from '@mui/material';
+import "../../css/tarjous.css"
 
 const TarjoajaForm = ({ tarjoaja, setTarjoaja }) => {
     return (

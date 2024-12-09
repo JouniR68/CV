@@ -1,34 +1,7 @@
 @media only screen and (min-width: 1024px) {    
-    .pyynnot {
-        display:flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        position:fixed;
-        top:20%;
-        left:1%;
-        width:fit-content;                
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: auto;        
-        /* Ensure horizontal scroll for smaller screens */
-    }
+   
 }
 
-@media only screen and (min-width: 380px) and (max-width: 1020) {
-    .pyynnot {
-        display:flex;
-        flex-direction: row;
-        position: fixed;
-        top: 10%;
-        left: 1%;        
-        padding: 1rem;        
-        margin: 0 auto;
-        width: fit-content;
-        background-color: gray;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: auto;
-        /* Ensure horizontal scroll for smaller screens */
-    }
+@media only screen and (min-width: 980px) and (max-width: 1023) {
+   
 }

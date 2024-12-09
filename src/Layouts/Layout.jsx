@@ -7,7 +7,7 @@ export default function Layout() {
   const currentPath = location.pathname
 
   return (    
-      <div className='host-nav'>
+      <div className=''>
         <Header />
         {currentPath != '/tarjouspyynto' && currentPath != '/profile/output' && <Footer />}
 

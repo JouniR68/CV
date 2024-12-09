@@ -135,12 +135,14 @@
   "Project": "Projektityötä",
   "Support": "Tukea",
   "PM": "Tuotehallintaa",
-  "Cando": "Klikkaa kuvaa tarjouspyyntöön tai laita vaan viestiä viesti kuvasta, kiitokset jo etukäteen.",
+  "Cando": "Tästä apuja atk - domainiin joko väliaikaisesti tai pysyvämmin. Klikkaa tietokoneen ikonia tarjouspyyntöön tai laita viestisi niin otan yhteyttä.",
   "Tip": "Mikäli teksit/kuvat eivät näy kunnolla zoomaus voisi auttaa / näytön leveyden säätäminen.",
   "LoadCV": "Lataa CV",
   "guide": "Alla palveluitani, klikkaamalla pääset pyytämään tarjousta, ei muuta kuin klikkaamaan.",
   "Name": "Nimi",
   "Subject": "Aihe",
   "Feedback": "Palaute",
-  "services":"Palveluni" 
+  "services":"Palveluni",
+  "EveryDay": "Päivittäin",
+  "Deadline": "Ajoitetut taskit" 
 }

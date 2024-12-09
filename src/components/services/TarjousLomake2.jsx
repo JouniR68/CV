@@ -1,6 +1,7 @@
 import { TextField, Typography, Box } from '@mui/material';
 import TehtavatForm from './Tehtavat';
 import MatkakulutForm from './Matkakulut';
+import "../../css/tarjous.css"
 
 const TarjousLomake2 = ({matkakulut, setMatkakulut }) => {
 

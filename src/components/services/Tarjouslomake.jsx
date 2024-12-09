@@ -13,6 +13,7 @@ import MatkakulutForm from './Matkakulut';
 import TarjousLomake2 from './TarjousLomake2';
 import TarjousLomake3 from './TarjousLomake3';
 import TarjousLomake4 from './TarjousLomake4';
+import "../../css/tarjous.css"
 
 
 // Main component for generating the offer

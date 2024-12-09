@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, Typography, Grid, Button } from '@mui/material';
+import "../../css/tarjous.css"
 
 const TehtavatForm = ({ tehtava, setTehtava, kuvaus, setKuvaus, tuntiarvio, setTuntiarvio, tuntihinta, lisaaTehtava }) => {
     return (

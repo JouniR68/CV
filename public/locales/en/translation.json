@@ -137,11 +137,13 @@
   "Project": "Project management etc",
   "Support": "Support (any)",
   "PM": "Product Management",  
-  "Cando": "Click the laptop image to make a request or send me a message by clicking the message icon (or just say hello).",
+  "Cando": "Offering adp - services, click the laptop image to make a request or send me a message by clicking the message icon (or just say hello).",
   "Tip": "If challenges with text / images, pls use zoom (ctrl+/ ctrl-).",
   "LoadCV": "Load CV",
   "guide": "Below my services, click an image and let me work for you.",
   "Name": "Name",
   "Subject": "Subject",
-  "Feedback": "Feedback"
+  "Feedback": "Feedback",
+  "EveryDay": "Every Day",
+  "Deadline": "Deadline tasks"
 }

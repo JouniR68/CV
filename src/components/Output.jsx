@@ -16,8 +16,8 @@ const CV = () => {
     const [showTechs, setShowTechs] = useState(false)
     const [showEtsin, setShowEtsin] = useState(false)
     const navigate = useNavigate()
-    //const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-    //const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
 
     /*
@@ -62,7 +62,7 @@ const CV = () => {
     return (
         <div className="output">
             <div className="output-sections">
-                        
+                {viewportWidth} x {viewportHeight}        
                 <Button onClick={() => showContent('koulutus')}><h3>{t('Output-education')}</h3></Button>
                 {showKoulutus && <Education />}
 

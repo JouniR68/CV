@@ -5,6 +5,7 @@ import { db, storage } from '../../firebase'; // Make sure this path is correct
 import { collection, addDoc } from 'firebase/firestore'; // Import Firestore methods
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
+import "../../css/huolot.css"
 
 //https://firebasestorage.googleapis.com/v0/b/firma-ed35a.appspot.com/o/huoltoexcelit%2FRenault-Black.xls?alt=media&token=6d1381ef-ec22-4030-9abc-08ca23c2b6c7
 const PreviewVehicles = ({ data, details, fileToUpload }) => {

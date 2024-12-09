@@ -3,7 +3,7 @@ import { TextField, Button, Table, TableBody, TableCell, TableContainer, TableHe
 import { db } from '../firebase'; // Oletus, että olet konfiguroinut Firebasen
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import "../index.css"
+import "../css/opit.css"
 import { Label } from '@mui/icons-material';
 
 const LearningForm = () => {

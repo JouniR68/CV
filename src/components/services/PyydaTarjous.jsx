@@ -10,8 +10,7 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from "@mui/icons-material/CloudUpload"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import "../../index.css"
-
+import "../../css/tarjous.css"
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -131,16 +130,13 @@ function TarjouspyyntoForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="tarjouspyynto">
+    <div className="tarjouspyynto">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={0.1}>
-
-        <div className="tarjouspyynto-header">
-          <Typography variant="h5">Tarjouspyyntö</Typography>
-        </div>
 
         {/* Scrollable content */}
         <div className="tarjouspyynto-content">
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="isCompany"
               control={control}
@@ -154,7 +150,7 @@ function TarjouspyyntoForm() {
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="ala"
               control={control}
@@ -162,7 +158,7 @@ function TarjouspyyntoForm() {
               render={({ field }) => (
                 <FormControl>
                   <Select
-                    sx={{ width: 300, fontWeight: 'bold', fontSize: '1rem', marginLeft: 'rem' }}
+                    sx={{ width: 300, fontWeight: 'bold', fontSize: '2rem', marginLeft: 'rem' }}
                     labelId="ala-label"
                     {...field}
                     label="Aihe"
@@ -181,7 +177,7 @@ function TarjouspyyntoForm() {
           </Grid>
 
           {isCompany && (
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="yTunnus"
                 control={control}
@@ -191,11 +187,9 @@ function TarjouspyyntoForm() {
                     fullWidth
                     label="Y-tunnus"
                     required={isCompany}
-                    size="small"
-                    inputProps={{
-                      style: {
-                        fontWeight: 'bold'
-                      },
+                    size="large"
+                    InputLabelProps={{
+                      className: 'input-bold', // Apply the custom class
                     }}
                   />
                 )}
@@ -203,71 +197,67 @@ function TarjouspyyntoForm() {
             </Grid>
           )}
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="firstName"
               control={control}
               render={({ field }) => (
-                <TextField {...field} fullWidth label="Etunimi" required size="small" defaultValue={fNameRef.current} inputProps={{
-                  style: {
-                    fontWeight: 'bold'
-                  },
+                <TextField {...field} fullWidth label="Etunimi" required size="large" defaultValue={fNameRef.current} InputLabelProps={{
+                  className: 'input-bold', // Apply the custom class
                 }}                  
                 />
               )}
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="lastName"
               control={control}
               render={({ field }) => (
-                <TextField {...field} fullWidth label="Sukunimi" required size="small" defaultValue={lNameRef.current} inputProps={{
-                  style: {
-                    fontWeight: 'bold'
-                  },
+                <TextField {...field} fullWidth label="Sukunimi" required size="large" defaultValue={lNameRef.current} InputLabelProps={{
+                  className: 'input-bold', // Apply the custom class                  
                 }} />
               )}
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="address"
               control={control}
               render={({ field }) => (
-                <TextField {...field} fullWidth label="Osoite" defaultValue = {addressRef.current} required size="small" inputProps={{
-                  style: {
-                    fontWeight: 'bold'
-                  },
+                <TextField {...field} fullWidth label="Osoite" defaultValue = {addressRef.current} required size="large" InputLabelProps={{
+                  className: 'input-bold', // Apply the custom class
                 }} />
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="phoneNumber"
               control={control}
               render={({ field }) => (
-                <TextField {...field} fullWidth label="Puhelinnumero" defaultValue={phoneRef.current} required inputProps={{
-                  style: {
-                    fontWeight: 'bold'
-                  },
+                <TextField {...field} fullWidth label="Puhelinnumero" defaultValue={phoneRef.current} required 
+                  InputLabelProps={{
+                    className: 'input-bold', // Apply the custom class
                 }} />
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="email"
               control={control}
               render={({ field }) => (
-                <TextField {...field} fullWidth defaultValue={emailRef.current} label="Sähköposti" />
+                <TextField {...field} fullWidth defaultValue={emailRef.current} label="Sähköposti" size="medium" InputLabelProps={{
+                  className: 'input-bold', // Apply the custom class
+                }}/>
               )}
             />
           </Grid>
-          <Grid item xs={12} className="tarjouspyynto-message">
+          <div className="tarjouspyynto-message">
+          <Grid item xs={12} sm={6} lg={4}>
             <Controller
               name="message"
               control={control}
@@ -275,20 +265,21 @@ function TarjouspyyntoForm() {
                 <TextareaAutosize
                   {...field}
                   minRows={5}
-                  minCols={280}
+                  minCols={200}
                   inputProps={{
                     style: {
-                      fontWeight: 'bold'
+                      fontWeight: 'bold', fontSize: '2rem', fortSize: '1.5rem'
                     },
                   }}
                   placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                  style={{ marginTop: "0.5rem", width: "80%", padding: "1rem" }}
+                  style={{ marginTop: "0.5rem", width: "300px", padding: "1rem" }}
                 />
               )}
             />
           </Grid>
+          </div>
           <div className="tarjouspyynto-napit">
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Button
                 component="label"
                 role={undefined}
@@ -297,7 +288,7 @@ function TarjouspyyntoForm() {
                 startIcon={<CloudUploadIcon />}
                 color={success ? "success" : "primary"} // Change to success color when upload completes
                 disabled={progress > 0 && progress < 100} // Disable button during upload
-                size="small"
+                size="large"
               >
                 {t('files')}
                 <VisuallyHiddenInput
@@ -308,8 +299,8 @@ function TarjouspyyntoForm() {
               </Button>
             </Grid>
 
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary" size="medium">
+            <Grid item xs={12} sm={6} lg={4}>
+              <Button type="submit" variant="contained" color="primary" size="large">
                 {t('lahetaTarjous')}
               </Button>
             </Grid>
@@ -317,6 +308,7 @@ function TarjouspyyntoForm() {
         </div>
       </Grid>
     </form>
+    </div>
   );
 }
 

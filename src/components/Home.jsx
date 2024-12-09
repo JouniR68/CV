@@ -111,47 +111,15 @@ export default function Home() {
     setShowDisclaimer(!disclaimer)
   }
 
-  /*
-        <Typography variant="h5">
-          <span className="tooltip-text">Backlogien hallintaa JIRA ja Confluensen kautta.</span>
-          <h5>{t('PM')}</h5>
-          <img alt="Tuotehallintaa" src="/Images/jrsoft/backlog.png" onClick={() => tarjouspyyntoon()} />
-        </Typography>
-        <Typography variant="h5">
-          <h5>{t('Support')}</h5>
-          <span className="tooltip-text">Apua järjestelmien käyttöön / käyttöapua.</span>
-          <img alt="Käyttötukea" src="/Images/jrsoft/help.jpg" onClick={() => tarjouspyyntoon()} />
-        </Typography>
-        <Typography variant="h5" id="project">
-          <h5>{t('Project')}</h5>
-          <span className="tooltip-text">Esim. projektin suunnittelu, kokoukset.</span>
-          <img alt="Projekti suunnitelmaa" src="/Images/jrsoft/gantt.jpg" onClick={() => tarjouspyyntoon()} />
-        </Typography>
-                <Typography variant="h5">
-          <h5>{t('GoodToKnow')}</h5>
-          <span className="tooltip-text">Primary ja secondary sivustojen tarkoitus</span>
-          <img alt="Vastuuvapaus / disclaimer" src="/Images/jrsoft/disclaimer.png" onClick={showDisclaimer}></img>
-        </Typography>
-
-  */
-
   return (
     <div className="home">
       
       {isUnsupported && <div className = "unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
       <div className="home-teksti">{t('Cando')}</div>
-      <div className="home-kollaasi">
-        <Typography variant="h5">
-          <h5>{t('services')}</h5>
-          <span className="tooltip-text">Luo toiveestasi tarjouspyyntö ? Tarjolla esim käyttötukea, web-kehitystä, tuote/projekti hallintaa, ylläpitoa & tukea.</span>
-          <img alt="Palvelut, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />
-        </Typography>
-        <Typography variant="h5">
-          <h5>{t('Message')}</h5>
-          <span className="tooltip-text">Laita viestiä yhteydenottoa varten tai anna vinkki havaitsemastasi bugista..</span>
-          <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
-        </Typography>
+      <div className="home-kollaasi">                  
+          <img alt="Palvelut, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />          
+          <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />        
       </div>
 
       {isLoggedIn && <InactivityTimer />}

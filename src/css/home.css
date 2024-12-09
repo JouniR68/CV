@@ -1,22 +1,23 @@
-
-@media (max-width: 360px) {
+@media screen and (min-width: 361px) and (max-width: 1023px){
   .home {
-    position: static;
-    top: 1%;
-    left: 0%;
-    margin: -2rem;
-    padding: 1rem;
-    font-weight: 550;
-    font-size: 1rem;
-    width: 100%;    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    grid-area: home;
+    width: 90%;
+    height: 40%;
     gap: 0.5rem;
+    font-weight: 550;
+    font-size: 1.5rem;
     z-index: 1;
-    background-color: rgba(250, 250, 247, 0.72);
+    /*background-color: rgba(250, 250, 247, 0.72);*/
+    
     border-radius: 1rem;
-    margin-bottom: 1rem;
-    overflow: auto;
+    padding: 5rem;
+    overflow:auto;
+    margin: 0 auto
   }
-
 
   @keyframes slidein {
     from {
@@ -30,65 +31,53 @@
     }
   }
 
-  h5 .tooltip-text {
-    visibility: hidden;
-    width: 10rem;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    font-size: 14px;
-    position: absolute;
-    bottom: 50%;
-    /* Position above the h5 element */
-    left: 70%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1;
+  .tooltip-text {
+    display: none;
   }
 
-  /* Show tooltip on hover */
-  h5:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
+  .home-kollaasi:hover .tooltip-text {
+    display: block;
+    /* Show on hover */
   }
 
   .home-teksti {
+    margin: 50px auto ;
+    grid-area: home-teksti;
     animation-duration: 5s;
     animation-name: slidein;
     font-family: "Lucida Console", "Courier New", cursive;
-    font-size: 1rem;
-    font-weight: 600;    
+    font-size: 4rem;
+    font-weight: 600;
     border-radius: 10px;
     padding: 1rem;
-    width: fit-content;
+    
+    width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .home-kollaasi {
-    display:flex;
-    flex-direction: column;
+  .home-kollaasi {          
+    display:flex;    
+    grid-area: home-kollaasi;
     justify-content: center;
-    align-items: center;
+    align-items: center;        
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 1rem;    
-    overflow: auto;
+    gap:2rem;
+
   }
 
-  .home-kollaasi h5 {
-    text-align: center;
-  }
-
-  .home-kollaasi img {
-    object-fit: scale-down;
+  .home-kollaasi img {        
+    object-fit: contain;
+    /* Adjust for scaling without distortion */
     border-radius: 5px;
-    padding: 0.5rem;
-    width: 70%;
-    height: 20%;
-    max-width: 30%;
-    max-height: 30%;
+    border:1px solid;
+    border-color: red;
+    padding: 0.1rem;    
+    /* Scale to parent container */
+    width: 40%;
+    /* Limit maximum size */
+    height: auto;
+    /* Maintain aspect ratio */    
   }
 
   #home-nappi {
@@ -97,27 +86,29 @@
     margin-top: 1rem;
     font-size: 12px;
     background-color: #304253;
-  }}
+  }
+}
 
-@media only screen and (min-width: 1024px)
-{
+
+
+@media screen and (min-width: 1024px) {
   .home {
-    position: fixed;
-    top: 2%;
-    left: 0%;
-    margin: 1rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    margin-top:5%;
+    height: 100%;    
     padding: 3rem;
     font-weight: 550;
-    font-size: 1rem;
-    width: 90%;    
+    font-size: 1rem;    
     gap: 0.5rem;
     z-index: 1;
     background-color: rgba(250, 250, 247, 0.72);
     border-radius: 1rem;
-    margin-bottom: 2rem;
-    overflow: auto;
+    margin-bottom: 2rem;    
   }
-
 
   @keyframes slidein {
     from {
@@ -169,29 +160,21 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .home-kollaasi {
-    display: grid;
-    grid-template-columns: repeat(3, 15rem);
-    /* Adjusted to better suit six items */
-    grid-template-rows: auto;    
-    gap: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;    
-    overflow: auto;
-  }
-
-  .home-kollaasi h5 {
-    text-align: center;
+  .home-kollaasi {    
+    display: flex;
+    justify-content: center;
+    align-items: center;        
+    flex-direction: row;
+    gap: 5rem;        
+    padding: 1rem;        
   }
 
   .home-kollaasi img {
-    object-fit: scale-down;
+    object-fit: contain;
     border-radius: 5px;
     padding: 0.5rem;
-    width: 90%;
-    height: 20%;
-    max-width: 100%;
-    max-height: 100%;
+    width: 10%;
+    height: auto;    
   }
 
   #home-nappi {

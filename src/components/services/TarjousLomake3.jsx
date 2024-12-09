@@ -1,5 +1,6 @@
 import { TextField, Typography, Box } from '@mui/material';
 import TehtavatForm from './Tehtavat';
+import "../../css/tarjous.css"
 
 const TarjousLomake3 = ({ tehtava, setTehtava, kuvaus, setKuvaus, tuntiarvio, setTuntiarvio, lisaaTehtava, tuntihinta, setTuntihinta, sisaltyy, setSisaltyy, muutHuomiot, setMuutHuomiot, suositukset, setSuositukset }) => {
 

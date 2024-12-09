@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from "../LoginContext";
-import "../../css/pyynnot.css"
+import "../../css/tuntikirjaus.css"
+
 
 function Tunterointi() {
   const [day, setDay] = useState(new Date().toISOString().substr(0, 10));
