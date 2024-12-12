@@ -19,7 +19,10 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { Tooltip } from "@mui/material";
 import Hamburger from './Hamburger';
 import FeedbackDialog from "./Messages";
+import LoginIcon from '@mui/icons-material/Login';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
+//<Link to="/checkLocation"><LocationOnIcon/></Link>
 export default function Header() {
   //const [unreadMessages, setUnreadMessages] = useState(false)
   const { t } = useTranslation();
@@ -48,11 +51,11 @@ export default function Header() {
           <Link to="/"><HomeWorkIcon /></Link>
           
           <Link to="/profile"><img src="/Images/profile.png" alt="CV"/></Link>
-          <Link to="/checkLocation"><LocationOnIcon/></Link>
+          
         </div>
         <div className="header-right">
-          {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin">{t('Login')}</Link>}
-          {!isLoggedIn && currentPath != '/register' && <Link to="/register">{t('Register')}</Link>}
+          {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin"><LoginIcon/></Link>}
+          {!isLoggedIn && currentPath != '/register' && <Link to="/register"><HowToRegIcon/></Link>}
 
           {isLoggedIn &&
             <>

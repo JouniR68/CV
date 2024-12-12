@@ -55,6 +55,7 @@ import CVPdf from "./components/services/CVPdf"
 import Vehicles from "./components/Huolto/Vehicles";
 import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
+import MindMap from "./components/MindMap";
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
           <Routes>
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />                         
+              <Route path="/mm" element={<MindMap />} />
               <Route path="/huoltorekisteri" element={<Vehicles />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />

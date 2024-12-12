@@ -17,34 +17,34 @@ const Hamburger = () => {
     };
 
     return (
-        <div className="hamburger-menu-container">            
-            <IconButton className="hamburger-menu" edge="start" color="inherit" aria-label="menu" size= "large" onClick={toggleDrawer(true)}>
+        <div className="hamburger-menu">            
+            <IconButton edge="start" color="inherit" aria-label="menu" size= "large" onClick={toggleDrawer(true)}>
                 <MenuIcon sx={{ marginLeft: '16px',marginTop:'-0.4rem;' }} />
             </IconButton>
 
-          <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)}>
+          <Drawer anchor="top" open={isOpen} onClose={toggleDrawer(false)}>
                 <div className="hamburger-popup-menu">
-                    <List>
-                        <ListItem button component={Link} to="/">
-                            <ListItemText primary="Koti" />
+                    <List className="hamburger-menu-list">
+                        <ListItem className="hamburger-menu-listItem" button component={Link} to="/">
+                            <ListItemText primaryTypographyProps={{ fontSize: "2rem" }} primary="Koti" />
                         </ListItem>
-                        <ListItem button component={Link} to="/profile">
-                            <ListItemText primary="CV / myself" />
+                        <ListItem className="hamburger-menu-listItem" button component={Link} to="/profile">
+                            <ListItemText primaryTypographyProps={{ fontSize: "2rem" }} primary="CV / myself" />
                         </ListItem>
+                        {isLoggedIn && <ListItem className="hamburger-menu-listItem" button component={Link} to="/logout">
+                                    <ListItemText primaryTypographyProps={{ fontSize: "2rem" }} primary="Logout" />
+                                </ListItem>}
 
                         {!isLoggedIn && (
                             <div>
-                                <ListItem button component={Link} to="/userLogin">
-                                    <ListItemText primary="Login" />
+                                <ListItem className="hamburger-menu-listItem" button component={Link} to="/userLogin">
+                                    <ListItemText primaryTypographyProps={{ fontSize: "2rem" }} primary="Login" />
                                 </ListItem>
-                                <ListItem button component={Link} to="/register">
-                                    <ListItemText primary="Register" />
+                                <ListItem className="hamburger-menu-listItem" button component={Link} to="/register">
+                                    <ListItemText primaryTypographyProps={{ fontSize: "2rem" }} primary="Register" />
                                 </ListItem>
                             </div>
                         )}
-                        <ListItem button component={Link} to="/checkLocation">
-                            <ListItemText primary="Nearby.." />
-                        </ListItem>
                     </List>
                 </div>
             </Drawer>

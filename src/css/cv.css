@@ -1,0 +1,40 @@
+
+.footer {
+    display: none;
+}
+
+.skills {
+    grid-area: skills;    
+}
+
+.education {
+    grid-area: education;        
+}
+
+.profile {
+    grid-area: profile; 
+    
+}
+
+.work-history {
+    grid-area: work-history;                    
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns:  auto, auto, auto, auto, auto, auto, auto, auto, auto auto;
+    grid-template-rows: auto;
+    grid-template-areas:      
+        "education .. skills .. work-history"; 
+    gap: 0.1rem;
+}
+
+.cv-table {
+    max-height: 10% !important;
+    max-width: 90% !important;    
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: red !important;
+    border: 1px solid;
+    overflow: scroll;
+}

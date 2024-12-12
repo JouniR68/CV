@@ -11,7 +11,6 @@
         width: 90%;
         height: 10%;
         gap: 2rem;
-        /* Optional: Add a shadow for visual appeal */
     }
 
     .output-sections {
@@ -37,7 +36,7 @@
     .cv-table {
         position: fixed;
         top: 2%;
-        max-width: 1000px;
+        max-width: 50%;
         height: 30%;
         max-height: 100px;
         overflow-y: auto;
@@ -51,9 +50,9 @@
 
 @media only screen and (min-width: 980px) and (max-width: 1023px) {
     .output {
-        position: fixed;
-        top: 50%;
-        left: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transform: translate(-50%, -50%);
         width: 80%;
         height: vh;
@@ -64,7 +63,7 @@
 
     .cv-table {
         height: 10%;
-        max-height: 20rem;
+        max-height: 30%;
         font-size: 1.5rem;
         font-weight: 600;
         color: red !important;

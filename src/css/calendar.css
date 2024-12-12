@@ -5,7 +5,7 @@
         align-items: flex-start;
         max-height: 80vh;
         padding-top: 1vh;
-        max-width: 100vw;
+        max-width: 100vw;        
     }
 
     #deletor {
@@ -14,9 +14,9 @@
 
     .calendar-form {
         margin-top: 1rem;
-        flex: 1;
-        margin: 0rem;
-        background-color: #fff;
+        padding:1rem;
+        max-width:50%;
+        background-color: rgba(250, 250, 247, 0.72) !important; 
     }
 
 
@@ -38,7 +38,7 @@
     .calendar-readonly {
         position: fixed;
         top: 25%;
-        left: 0%;
+        left: 1%;
         background-color: #3b2121;
         color: #fff;
         border: 1px solid #000;
@@ -71,25 +71,21 @@
 
 @media only screen and (min-width: 980px) and (max-width: 1023) {
     .calendar {
-        position: fixed;
-        top: 10%;
-        left: 4%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        list-style: none;
-        gap: 1rem;
-        margin: 0;
-        zoom: 1.6;
+        list-style: none;        
+        margin: 0;  
+        border: 8px solid black;        
     }
 
     .calendar-form {
         margin-top: 2rem;
         max-width: 80%;
-        margin: 0rem;
-        gap: 1rem;
+        margin: 0rem;        
         height: 60%;
+        background-color: rgba(250, 250, 247, 0.72) !important;         
     }
 
     .calendar-form Button {
@@ -108,6 +104,26 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         margin-top: 1rem;
+    }
+
+    .calendar-readonly {
+        background-color: #3b2121;
+        color: #fff;
+        border: 1px solid #000;
+        border-radius: 8px;
+        margin-top: 1rem;
+        padding: 1rem;
+        max-width: 25%;
+    }
+
+    .calendar-standard {
+        background-color: #3b2121;
+        color: #fff;
+        border: 1px solid #000;
+        border-radius: 8px;
+        margin-top: 1rem;
+        padding: 1rem;
+        max-width: 25%;
     }
 
     #deletor {

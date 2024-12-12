@@ -83,9 +83,9 @@ const Calendar = () => {
         const unreadEvents = events.filter(event => !event.read);
     
         return (
-            <div>
+            <div className="calendar"  style={{ margin: '1rem auto', padding:'1rem' }}>
                 {isLoggedIn ? (
-                    <Grid className="calendar">
+                    <Grid >
                         <Grid item xs={12} md={8} lg={6}>
                             <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color:'red', fontWeight:'bold' }}>
                                 {t('Calendar-title')}
@@ -98,13 +98,14 @@ const Calendar = () => {
                                         value={newEvent.title}
                                         fullWidth
                                         onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                                        inputProps={{ style: { fontSize: '1rem' } }}
+                                        inputProps={{ style: { fontSize: '1rem' } }}                                        
                                     />
+                                    
                                     <TextField
                                         type="date"
                                         value={newEvent.date}
                                         onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                                        inputProps={{ style: { fontSize: '1rem' } }}
+                                        inputProps={{ style: { fontSize: '1rem'} }}
                                     />
                                     <FormControlLabel
                                         control={
@@ -127,7 +128,7 @@ const Calendar = () => {
                             <Grid container className="calendar-readonly">
                                 <h3 style={{paddingLeft:'1rem'}}>{t('EveryDay')}</h3>
                                 {readEvents.map(event => (
-                                    <Grid item xs={12} key={event.id} sx={{ padding: '0.5rem' }}>
+                                    <Grid item xs={12} key={event.id} sx={{ padding: '0.2rem' }}>
                                         <Typography
                                             variant="body1"
                                             sx={{
@@ -151,14 +152,16 @@ const Calendar = () => {
                                         xs={12}
                                         key={event.id}
                                         sx={{
-                                            padding: '0.5rem',
+                                            padding: '0.3rem',
                                             backgroundColor: event.date < today ? 'red' : 'green',
+                                            marginBottom: '0.5rem'
                                         }}
                                     >
                                         <Typography
                                             variant="body1"
                                             sx={{
                                                 fontSize: { xs: '1rem', sm: '1.1rem' },
+                                                paddingLeft: { xs: '0.5rem', sm: '0.5rem' },
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
                                                 alignItems: 'center',

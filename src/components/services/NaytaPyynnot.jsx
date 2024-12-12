@@ -105,8 +105,8 @@ const ShowOrders = () => {
 							<TableBody key={counter++}>
 								<TableRow>
 									<TableCell>{o.arrived}</TableCell>
-									<TableCell>{o.alue}</TableCell>
-									<TableCell>{o.name}</TableCell>
+									<TableCell>{o.area}</TableCell>
+									<TableCell>{o.firstname} {o.lastname}</TableCell>
 									<TableCell>{o.address}</TableCell>
 									<TableCell>{o.email}</TableCell>
 									<TableCell>{o.phone}</TableCell>

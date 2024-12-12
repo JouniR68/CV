@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { generatePDF } from "./services/CVPdf"
 
+
 import {
   Table,
   TableBody,
