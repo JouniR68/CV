@@ -109,7 +109,7 @@ function App() {
 
               <Route path='rent' index element={<Rent />} />
               <Route path='addCustomerData' element={<Customer />} />
-              <Route path='calendar' element={<Calendar />} />
+              <Route path='dashboard' element={<Calendar />} />
               <Route path='thanks' element={<ThankYouPage />} />
               <Route path='contract' element={<ContractForm />} />
 

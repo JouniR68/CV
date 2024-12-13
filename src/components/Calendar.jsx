@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid, Typography, FormControlLabel, Checkbox } from '@mui/material';
 import "../css/calendar.css"
 import { useAuth } from "./LoginContext";
+import NaytaPyynnot from "../components/services/NaytaPyynnot"
+import ShowMessages from "./ShowMessages"
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -76,8 +78,6 @@ const Calendar = () => {
 
 
     const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard" );
-
-    
         // Separate events into read and unread groups
         const readEvents = events.filter(event => event.read);
         const unreadEvents = events.filter(event => !event.read);
@@ -85,9 +85,10 @@ const Calendar = () => {
         return (
             <div className="calendar"  style={{ margin: '1rem auto', padding:'1rem' }}>
                 {isLoggedIn ? (
+                    <>
                     <Grid >
                         <Grid item xs={12} md={8} lg={6}>
-                            <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color:'red', fontWeight:'bold' }}>
+                            <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color:'red', fontWeight:'bold', marginTop:'7rem', marginLeft:'-10rem;' }}>
                                 {t('Calendar-title')}
                             </Typography>
     
@@ -182,6 +183,9 @@ const Calendar = () => {
                             </Grid>}
                         </Grid>
                     </Grid>
+                    <NaytaPyynnot />
+                    <ShowMessages />
+                    </>
                 ) : (
                     <h1 style={{ position: 'fixed', top: '25%', left: '50%' }}>Forbidden</h1>
                 )}

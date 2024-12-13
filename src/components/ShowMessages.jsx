@@ -46,7 +46,7 @@ const FeedbackTable = () => {
   }
 
   return (
-    <TableContainer component={Paper} style={{ marginTop: '20px', marginLeft: '0rem' }}>
+    <TableContainer component={Paper} style={{ position:'fixed', top:'42rem', left: '2rem', width:'fit-content' }}>
       <Typography variant="h6" align="center" gutterBottom>
         Viestit / bugit / ideat
       </Typography>

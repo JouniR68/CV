@@ -1,8 +1,22 @@
-.admin{
-    width:100%;
-    margin-left:50%;
-    margin-right:50%;
-    margin-top: 5rem;
-    border-radius: 8px;
-    /* Ensure horizontal scroll for smaller screens */
+@media only screen and (min-width: 1024px) {
+    .admin {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        /* Ensure horizontal scroll for smaller screens */
+    }
+
+}
+
+@media only screen and (min-width: 980px) {
+    .admin {
+        display: flex;
+        justify-content: center;
+        margin-top:1rem;
+        align-items: center;
+        font-weight: bold;
+        background-color: gray;
+        color:red;
+    }
+
 }
