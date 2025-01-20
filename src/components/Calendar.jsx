@@ -152,13 +152,14 @@ const Calendar = () => {
                                 onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                                 sx={{ marginBottom: '1rem' }}
                             />
-                            <TextField
+                            {!newEvent.read && <TextField
                                 type="date"
                                 value={newEvent.date}
                                 fullWidth
                                 onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
                                 sx={{ marginBottom: '1rem' }}
                             />
+                            }
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -257,7 +258,7 @@ const Calendar = () => {
 
                     </Grid>
 
-                    {(reqs.length>0 || messages.length>0) && <Grid
+                    {(reqs.length > 0 || messages.length > 0) && <Grid
                         container
                         sx={{
                             display: 'grid',
