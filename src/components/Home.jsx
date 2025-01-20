@@ -8,6 +8,7 @@ import { Button, Typography } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Messages';
 import CollectionCounts from './News';
+import data from '../../data/datapkg.json'
 
 export default function Home() {
   const [isMobile, setMobile] = useState(false);
@@ -26,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const checkScreenWidth = () => {
       if (window.innerWidth > 3000) {
-        setIsUnsupported(true);                
+        setIsUnsupported(true);
       } else {
         setIsUnsupported(false);
       }
@@ -38,7 +39,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkScreenWidth); // Clean up
   }, []);
 
-  
+
   const { state } = location;
   if (state) {
     const { locationError } = state;
@@ -111,19 +112,32 @@ export default function Home() {
     setShowDisclaimer(!disclaimer)
   }
 
+
+  /*
+  const tArray = data.intrests;
+
+  tArray.forEach(item => {
+    Object.entries(item).forEach((key, value)=>{
+      console.log("key :" + key + ", value : " + value)
+    } 
+  )})
+*/
+
+
+
   return (
     <div className="home">
-      
-      {isUnsupported && <div className = "unsupported-message">Most readable with screen width around 2500px</div>}
+
+      {isUnsupported && <div className="unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
       <div className="home-teksti">{t('Cando')}</div>
-      <div className="home-kollaasi">                  
-          <img alt="Palvelut, apuja yms" src="/Images/jrsoft/web.jpg" onClick={() => tarjouspyyntoon()} />          
-          <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />        
+      <div className="home-kollaasi">
+        <img alt="Palvelut, apuja yms" src="/Images/laptop.png" onClick={() => tarjouspyyntoon()} />
+        <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
       </div>
 
       {isLoggedIn && <InactivityTimer />}
- 
+
       {disclaimer && navigate('/done', { state: { description: "disclaimer" } })}
       {/* Feedback Dialog */}
       <FeedbackDialog open={dialogOpen} handleClose={handleClose} />

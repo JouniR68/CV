@@ -1,8 +1,8 @@
 @media only screen and (min-width: 1024px) {
     .pyynnot {
         position: fixed;
-        top:75%;
-        left:55%;
+        top: 75%;
+        left: 25%;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -13,40 +13,41 @@
         width: fit-content;
         /* Ensure horizontal scroll for smaller screens */
     }
-    
-    .tarjouspyynto {        
-        display:flex
+
+    .tarjouspyynto {
+        display: flex
     }
 
     .tarjouspyynto-header {
         padding-bottom: 0.1rem;
     }
 
-    .tarjouspyynto-content {         
-        display:flex;  
-        flex-direction: column;           
-        justify-content:flex-start;
-        align-items: flex-start;  
-        padding: 0.5rem;        
-        height:auto;;
+    .tarjouspyynto-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0.5rem;
+        height: auto;
+        ;
         background-color: rgba(214, 214, 187, 0.72);
         padding: 1rem;
-        font-size:2rem;        
-        margin: 1rem auto;                
+        font-size: 2rem;
+        margin: 1rem auto;
         border-radius: 8px;
         border: 1px solid;
-        width:100%;
+        width: 100%;
         gap: 1rem;
     }
 
     .tarjouspyynto-message {
         width: 100%;
-        
+
     }
 
     .tarjouspyynto-napit {
         display: flex;
-        flex-direction: row;        
+        flex-direction: row;
         font-size: 1.5rem;
         gap: 4rem;
         margin-bottom: 1rem;
@@ -71,7 +72,7 @@
 
     .tarjouslomake-nappi {
         display: flex;
-        flex-direction: row;        
+        flex-direction: row;
         gap: 1rem;
     }
 
@@ -174,23 +175,40 @@
         background-color: #1976d2;
     }
 
+    .messages {
+        position: relative;
+        top: 25%;
+        left: -7%;
+        max-width: 45%;
+        max-height: 20%;
+    }
 }
 
 @media screen and (max-width: 980px) {
-      
     .pyynnot {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;;
+        position: fixed;
+        top: 50%;
+        left: 8%;
+        max-width: 85%;
+        max-height: 10%;
         padding: 1rem;
         margin: 0 auto;
-        width: fit-content;
-        background-color: gray;
+        background-color: lightgray;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         overflow: auto;
         /* Ensure horizontal scroll for smaller screens */
+    }
+
+    .messages {
+        position: relative;
+        top: 10%;
+        left: -12%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        max-width: 85%;
+        max-height: 20%;
     }
 
     .feedback,
@@ -222,54 +240,51 @@
 
 
     .hamburger.menu-container {
-        display:none;
+        display: none;
     }
 
+    
     .tarjouspyynto {
-        display:flex;
+        display: flex;
         justify-content: center;
-        align-items: center;
-        margin: 1rem auto;
-        padding: 2rem;
-        color:#000;
-        width: 80vw;
-        height: 80vh;
+        align-items: center;        
+        padding: 1rem;
+        color: #000;
+        height: 90vh;                
         overflow: hidden;
         border-radius: 0.5rem;
-        background-color: #fff;        
+        background-color: #fff;
+        
     }
 
     .tarjouspyynto-header {
         padding-bottom: 0.1rem;
     }
 
-    .tarjouspyynto-content {
-        display: flex;
+    .tarjouspyynto-content {        
+        display:flex;
         flex-direction: column;        
-        justify-content: center;        
-        background-color: rgba(214, 214, 187, 0.72);
-        padding: 1rem;
-        font-size: 3rem;
+        background-color: rgba(226, 226, 218, 0.72);
+        padding: 1rem;        
         overflow-y: auto;
-        width: 50vw;
-        height: 60vh;
-        margin: 0 auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 80vw;
+        height: 80vh;
+        gap:4rem;        
+        margin-top: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+        font-size:3rem;
         border-radius: 8px;
-        border: 1px solid;        
+        border: 1px solid;
     }
 
-    .tarjouspyynto-message {
-        width: 100%;
-        font-size: 2rem;
-    }
 
     .tarjouspyynto-napit {
         display: flex;
         flex-direction: row;
         margin-top: 1rem;
         font-size: 3rem;
-        font-weight: bold;        
+        font-weight: bold;
         gap: 1rem;
         margin-left: auto;
         margin-right: auto;
@@ -278,16 +293,18 @@
     .input-bold {
         font-weight: bold;
         font-size: 2rem;        
-      }
+    }
 
-      .custom-textfield .MuiInputBase-input {
+    .custom-textfield .MuiInputBase-input {
         font-weight: bold;
-        font-size: 2rem; /* Adjust size */
-        
-      }
-      
-      .custom-textfield .MuiInputLabel-root {
+        font-size: 2rem;
+        /* Adjust size */
+
+    }
+
+    .custom-textfield .MuiInputLabel-root {
         font-weight: bold;
-        font-size: 2rem; /* Adjust size */
-      }
+        font-size: 2rem;
+        /* Adjust size */
+    }
 }

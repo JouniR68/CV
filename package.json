@@ -29,6 +29,7 @@
     "firebase-admin": "^12.3.1",
     "firebase-functions": "^6.1.1",
     "gloud": "^0.0.0",
+    "html-entities": "^2.5.2",
     "i18next": "^23.12.1",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.5.2",

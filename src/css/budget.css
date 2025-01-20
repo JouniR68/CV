@@ -49,15 +49,11 @@
     
       .budget-form--napit{
         position:fixed;
-        top:9%;
+        top:10%;
         left:1%;
       }
     
-      .budget-form--summary{
-        margin-top: 1rem;
-        position:fixed;
-        top:20%;
-        left:0%;
+      .budget-form--summary{               
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -66,4 +62,13 @@
         width: 40%;
         overflow:auto;
       }    
+
+      .budget-rows{
+        display: table;        
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        width: 100%;
+        
+      }
 }

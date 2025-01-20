@@ -36,7 +36,9 @@
   }
 
   .home-teksti {
-    margin: 50px auto ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     grid-area: home-teksti;
     animation-duration: 5s;
     animation-name: slidein;
@@ -140,6 +142,7 @@
   }
 
   .home-teksti {
+    margin:0 auto;
     animation-duration: 5s;
     animation-name: slidein;
     font-family: "Lucida Console", "Courier New", cursive;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';  // Assuming Firebase is configured
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button } from '@mui/material';
-
+import "../css/tarjous.css"
 const FeedbackTable = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [refresh, setRefresh] = useState(false)
@@ -46,7 +46,7 @@ const FeedbackTable = () => {
   }
 
   return (
-    <TableContainer component={Paper} style={{ position:'fixed', top:'42rem', left: '2rem', width:'fit-content' }}>
+    <TableContainer component={Paper} >
       <Typography variant="h6" align="center" gutterBottom>
         Viestit / bugit / ideat
       </Typography>

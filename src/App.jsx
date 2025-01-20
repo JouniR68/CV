@@ -56,6 +56,7 @@ import Vehicles from "./components/Huolto/Vehicles";
 import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
 import MindMap from "./components/MindMap";
+import Sali from "./components/Sali";
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
               <Route path='/' element={<Home />} />                         
               <Route path="/mm" element={<MindMap />} />
               <Route path="/huoltorekisteri" element={<Vehicles />} />
+              <Route path ="/sali" element={<Sali/>} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />

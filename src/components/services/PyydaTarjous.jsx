@@ -41,7 +41,7 @@ function TarjouspyyntoForm() {
   const emailRef = useRef(sessionStorage.getItem("email") || "");
   const addressRef = useRef(sessionStorage.getItem("address") || "");
 
-  console.log("fn: ", fNameRef.current)
+
 
   const getSessionStorageValues = () => {
     const filteredData = {}
@@ -130,230 +130,212 @@ function TarjouspyyntoForm() {
   }
 
   return (
-    <div className="tarjouspyynto">
+    
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={0}>
 
-          {/* Scrollable content */}
-          <div className="tarjouspyynto-content">
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="isCompany"
-                control={control}
-                defaultValue={false}
-                render={({ field }) => (
-                  <FormControlLabel
-                    control={<Checkbox {...field} />}
-                    label="Yritys"
-                  />
-                )}
+        <div className="tarjouspyynto-content">
+          <Controller
+            name="isCompany"
+            control={control}
+            defaultValue={false}
+            render={({ field }) => (
+              <FormControlLabel
+                control={<Checkbox {...field} />}
+                label="Yritys"                
               />
-            </Grid>
-
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="ala"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <FormControl>
-                    <Select
-                      sx={{  fontWeight: 'bold', fontSize: '1.5rem', marginLeft: '1rem', marginBottom: "1rem;" }}
-                      labelId="ala-label"
-                      {...field}
-                      label="Aihe"
-                      InputLabelProps={{
-                        style: { fontSize: '1rem', fontWeight:'bold' }, // Adjust the font size of the label
-                      }}
-
-                    >
-                      <MenuItem value="koodausta">Koodausta</MenuItem>
-                      <MenuItem value="testausta">Testausta</MenuItem>
-                      <MenuItem value="jarjestelma">Asennuksia/ylläpitoja/konfigurointeja</MenuItem>
-                      <MenuItem value="kayttoapua">Käyttöapua</MenuItem>
-                      <MenuItem value="projektimanageraus">Projektin hallintaa</MenuItem>
-                      <MenuItem value="tuotehallintaa">Tuotehallintaa/backlogs</MenuItem>
-                      <MenuItem value="muuta">Määrittele alimmassa laatikossa</MenuItem>
-                    </Select><InputLabel id="ala-label">Aihe</InputLabel>
-                  </FormControl>
-                )}
-              />
-            </Grid>
-
-            {isCompany && (
-              <Grid item xs={12} sm={6} lg={4}>
-                <Controller
-                  name="yTunnus"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Y-tunnus"
-                      required={isCompany}
-                      size="large"
-                      InputLabelProps={{
-                        className: 'input-bold', // Apply the custom class
-                      }}
-                    />
-                  )}
-                />
-              </Grid>
             )}
+          />
 
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="firstName"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Etunimi" required 
-                    InputLabelProps={{
-                      style: { fontSize: '1.5rem', fontWeight:'bold' }, // Adjust the font size of the label
-                    }}
-                    sx={{                      
-                      fontWeight: 'bold',
-                      fontSize: '1.5rem',
-                      marginLeft: '1rem'
-                    }}
-                  />
-                )}
-              />
-            </Grid>
+          <Controller
+            name="ala"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <FormControl>
+                <Select
+                  sx={{ width: '50%', fontWeight: 'bold', fontSize: '2rem', marginLeft: '1rem', marginBottom: "1rem" }}
+                  labelId="ala-label"
+                  {...field}
+                  label="Aihe"
 
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="lastName"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Sukunimi" required size="large" defaultValue={lNameRef.current}
-                    InputLabelProps={{
-                      style: { fontSize: '1.5rem', fontWeight:'bold' }, // Adjust the font size of the label
-                    }}
-                    sx={{                      
-                      fontWeight: 'bold',
-                      fontSize: '1.5rem',
-                      marginLeft: '1rem'
-                    }}
+                  InputLabelProps={{
+                    style: { fontSize: '2rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                  }}
+                >
+                  <MenuItem value="koodausta">Koodausta</MenuItem>
+                  <MenuItem value="testausta">Testausta</MenuItem>
+                  <MenuItem value="jarjestelma">Asennuksia/ylläpitoja/konfigurointeja</MenuItem>
+                  <MenuItem value="kayttoapua">Käyttöapua</MenuItem>
+                  <MenuItem value="projektimanageraus">Projektin hallintaa</MenuItem>
+                  <MenuItem value="tuotehallintaa">Tuotehallintaa/backlogs</MenuItem>
+                  <MenuItem value="muuta">Määrittele alimmassa laatikossa</MenuItem>
+                </Select><InputLabel id="ala-label">Aihe</InputLabel>
+              </FormControl>
+            )}
+          />
 
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="address"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Osoite" defaultValue={addressRef.current} required size="large"
-                    InputLabelProps={{
-                      style: { fontSize: '1.5rem', fontWeight:'bold' }, // Adjust the font size of the label
-                    }}
-                    sx={{                      
-                      fontWeight: 'bold',
-                      fontSize: '1.5rem',
-                      marginLeft: '1rem'
-                    }}
-
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="phoneNumber"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth label="Puhelinnumero" defaultValue={phoneRef.current} required
-                    InputLabelProps={{
-                      style: { fontSize: '1.5rem', fontWeight:'bold' }, // Adjust the font size of the label
-                    }}
-                    sx={{                      
-                      fontWeight: 'bold',
-                      fontSize: '1.5rem',
-                      marginLeft: '1rem'
-                    }}
-
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} lg={4}>
-              <Controller
-                name="email"
-                control={control}
-                render={({ field }) => (
-                  <TextField {...field} fullWidth defaultValue={emailRef.current} label="Sähköposti" size="medium"
-                    InputLabelProps={{
-                      style: { fontSize: '1.5rem', fontWeight:'bold' }, // Adjust the font size of the label
-                    }}
-                    sx={{                      
-                      fontWeight: 'bold',
-                      fontSize: '1.5rem',
-                      marginLeft: '1rem'
-                    }}
-
-                  />
-                )}
-              />
-            </Grid>
-            <div className="tarjouspyynto-message">
-              <Grid item xs={12} sm={6} lg={4}>
-                <Controller
-                  name="message"
-                  control={control}
-                  render={({ field }) => (
-                    <TextareaAutosize
-                      {...field}
-                      minRows={5}
-                      minCols={200}
-                      inputProps={{
-                        style: {
-                          fontWeight: 'bold', fontSize: '2rem'
-                        },
-                      }}
-                      InputLabelProps={{
-                        className: 'input-bold',
-                      }}
-                      placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                      style={{ marginLeft: '1rem', marginTop: "0.5rem", width: "400px", padding: "1rem", fontSize: '2rem' }}
-                    />
-                  )}
+          {isCompany && (
+            <Controller
+              name="yTunnus"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  size="medium"
+                  label="Y-tunnus"
+                  required={isCompany}                                    
+                  InputLabelProps={{
+                    sx: {
+                      fontSize: '18px', // Adjust the label font size
+                    },
+                  }}    
                 />
-              </Grid>
-            </div>
+              )}
+            />
+
+          )}
+
+
+          <Controller
+            name="firstName"
+            control={control}
+            render={({ field }) => (
+              <TextField {...field} fullWidth label="Etunimi" required
+                InputLabelProps={{
+                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                }}
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem',
+                  marginLeft: '1rem'
+                }}
+              />
+            )}
+          />
+
+          <Controller
+            name="lastName"
+            control={control}
+            render={({ field }) => (
+              <TextField {...field} fullWidth label="Sukunimi" required size="large" defaultValue={lNameRef.current}
+                InputLabelProps={{
+                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                }}
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem',
+                  marginLeft: '1rem'
+                }}
+
+              />
+            )}
+          />
+
+          <Controller
+            name="address"
+            control={control}
+            render={({ field }) => (
+              <TextField {...field} fullWidth label="Osoite" defaultValue={addressRef.current} required size="large"
+                InputLabelProps={{
+                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                }}
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem',
+                  marginLeft: '1rem'
+                }}
+
+              />
+            )}
+          />
+
+          <Controller
+            name="phoneNumber"
+            control={control}
+            render={({ field }) => (
+              <TextField {...field} fullWidth label="Puhelinnumero" defaultValue={phoneRef.current} required
+                InputLabelProps={{
+                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                }}
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem',
+                  marginLeft: '1rem'
+                }}
+
+              />
+            )}
+          />
+
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <TextField {...field} fullWidth defaultValue={emailRef.current} label="Sähköposti" size="medium"
+                InputLabelProps={{
+                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                }}
+                sx={{
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem',
+                  marginLeft: '1rem'
+                }}
+
+              />
+            )}
+          />
+
+          <div>
+            <Controller
+              name="message"
+              control={control}
+              render={({ field }) => (
+                <TextareaAutosize
+                  {...field}
+                  minRows={5}
+                  minCols={200}
+                  inputProps={{
+                    style: {
+                      fontWeight: 'bold', fontSize: '2rem'
+                    },
+                  }}
+                  InputLabelProps={{
+                    className: 'input-bold',
+                  }}
+                  placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
+                  style={{ marginLeft: '1rem', marginTop: "0.5rem", width: "400px", padding: "1rem", fontSize: '2rem' }}
+                />
+              )}
+            />
           </div>
+
+
           <div className="tarjouspyynto-napit">
-            <Grid item xs={12} sm={6} lg={4}>
-              <Button
-                component="label"
-                role={undefined}
-                variant="contained"
-                tabIndex={-1}
-                startIcon={<CloudUploadIcon />}
-                color={success ? "success" : "primary"} // Change to success color when upload completes
-                disabled={progress > 0 && progress < 100} // Disable button during upload
-                size="large"
-              >
-                {t('files')}
-                <VisuallyHiddenInput
-                  type="file"
-                  onChange={handleFileUpload}
-                  multiple
-                />
-              </Button>
-            </Grid>
+            <Button
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+              startIcon={<CloudUploadIcon />}
+              color={success ? "success" : "primary"} // Change to success color when upload completes
+              disabled={progress > 0 && progress < 100} // Disable button during upload
+              size="large"
+            >
+              {t('files')}
+              <VisuallyHiddenInput
+                type="file"
+                onChange={handleFileUpload}
+                multiple
+              />
+            </Button>
 
-            <Grid item xs={12} sm={6} lg={4}>
-              <Button type="submit" variant="contained" color="primary" size="large">
-                {t('lahetaTarjous')}
-              </Button>
-            </Grid>
+            <Button type="submit" variant="contained" color="primary" size="large">
+              {t('lahetaTarjous')}
+            </Button>
           </div>
-
-        </Grid>
+        </div>
       </form>
-    </div>
+    
   );
 }
 

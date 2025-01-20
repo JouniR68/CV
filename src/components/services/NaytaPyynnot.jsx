@@ -81,10 +81,10 @@ const ShowOrders = () => {
 	console.log("reqs: ", orderReqs)
 
 	return (
-		<div className="pyynnot">
+		<div >
 			<TableContainer component={Paper}>
 				{error.length > 1 && <h3>{error}</h3>}	
-					<Table sx={{ minWidth: 650 }} aria-label="simple table" key={counter++}>
+					<Table aria-label="simple table" key={counter++}>
 
 						<TableHead>
 							<TableRow>

@@ -9,11 +9,16 @@ import "../css/calendar.css"
 import { useAuth } from "./LoginContext";
 import NaytaPyynnot from "../components/services/NaytaPyynnot"
 import ShowMessages from "./ShowMessages"
+import { ThemeProvider } from '@mui/material';
+import theme from './Theme';
+import DayCounter from './DayCounter';
 
 const Calendar = () => {
     const { t } = useTranslation();
     const [events, setEvents] = useState([]);
     const [newEvent, setNewEvent] = useState({ title: '', date: new Date().toISOString().split('T')[0], read: false });
+    const [reqs, setReqs] = useState([]);
+    const [messages, setMessage] = useState([]);
     const navigate = useNavigate()
     const { isLoggedIn } = useAuth()
 
@@ -38,6 +43,26 @@ const Calendar = () => {
         };
         fetchEvents();
     }, []);
+
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const eventsCollection = await getDocs(collection(db, 'pyynnot'));
+            setReqs(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        };
+        fetchEvents();
+    }, []);
+
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            const eventsCollection = await getDocs(collection(db, 'messages'));
+            setMessage(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        };
+        fetchEvents();
+    }, []);
+
+
 
     const addEvent = async () => {
         if (newEvent.read) {
@@ -77,121 +102,191 @@ const Calendar = () => {
     let counter = 0;
 
 
-    const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard" );
-        // Separate events into read and unread groups
-        const readEvents = events.filter(event => event.read);
-        const unreadEvents = events.filter(event => !event.read);
-    
-        return (
-            <div className="calendar"  style={{ margin: '1rem auto', padding:'1rem' }}>
-                {isLoggedIn ? (
-                    <>
-                    <Grid >
-                        <Grid item xs={12} md={8} lg={6}>
-                            <Typography variant="h5" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, color:'red', fontWeight:'bold', marginTop:'7rem', marginLeft:'-10rem;' }}>
-                                {t('Calendar-title')}
+    const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard");
+    // Separate events into read and unread groups
+    const readEvents = events.filter(event => event.read);
+    const unreadEvents = events.filter(event => !event.read);
+
+
+    return (
+
+        <ThemeProvider theme={theme}>
+            {isLoggedIn ? (
+                <>
+                    <Grid
+                        container
+                        sx={{
+                            display: 'grid',
+                            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, // 3 columns on larger screens
+                            gap: '2rem',
+                            height: '50vh',
+                            alignItems: 'center', // Centers items vertically
+                            justifyContent: 'center', // Centers items horizontally                            
+                            padding: '1rem',
+                            marginLeft: '10rem'
+                        }}
+                    >
+
+
+
+                        {/* Form */}
+                        <Grid
+                            item
+                            sx={{
+                                gridColumn: { xs: '1', sm: '1', md: '1', lg: '1' }, // Center column on larger screens
+                                backgroundColor: 'white',
+                                borderRadius: '5px',
+                                padding: '2rem',
+                                justifySelf: 'center',
+                                alignSelf: 'center',
+                                width: 'fit-content',
+                            }}
+                        >
+                            <Typography variant="h5" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
+                                {t('Add Event')}
                             </Typography>
-    
-                            <Grid spacing={1} container className="calendar-form" sx={{ mt: 2 }}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        placeholder="Tapahtuma"
-                                        value={newEvent.title}
-                                        fullWidth
-                                        onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                                        inputProps={{ style: { fontSize: '1rem' } }}                                        
+                            <TextField
+                                placeholder="Tapahtuma"
+                                value={newEvent.title}
+                                fullWidth
+                                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                                sx={{ marginBottom: '1rem' }}
+                            />
+                            <TextField
+                                type="date"
+                                value={newEvent.date}
+                                fullWidth
+                                onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                                sx={{ marginBottom: '1rem' }}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={newEvent.read}
+                                        onChange={handleReadOnly}
+                                        color="primary"
                                     />
-                                    
-                                    <TextField
-                                        type="date"
-                                        value={newEvent.date}
-                                        onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                                        inputProps={{ style: { fontSize: '1rem'} }}
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={newEvent.read}
-                                                onChange={handleReadOnly}
-                                                color="primary"
-                                                sx={{ mt: 1, ml: 1 }}
-                                            />
-                                        }
-                                        label="Luku!"
-                                    />
-                                    <Button onClick={addEvent} variant="contained" sx={{ mt: 1, ml: 1 }}>
-                                        {t('addEvent')}
-                                    </Button>
-                                </Grid>
-                            </Grid>
-    
-                            {/* Read Events */}
-                            <Grid container className="calendar-readonly">
-                                <h3 style={{paddingLeft:'1rem'}}>{t('EveryDay')}</h3>
-                                {readEvents.map(event => (
-                                    <Grid item xs={12} key={event.id} sx={{ padding: '0.2rem' }}>
-                                        <Typography
-                                            variant="body1"
-                                            sx={{
-                                                fontSize: { xs: '1rem', sm: '1.1rem' },
-                                                padding: '0.5rem',
-                                                border: '1px solid',
-                                            }}
-                                        >
-                                            {event.date ? `${event.title}, ${event.date}` : event.title}
-                                        </Typography>
-                                    </Grid>
-                                ))}
-                            </Grid>
-    
-                            {/* Unread Events */}
-                            {unreadEvents.length > 0 && <Grid container className="calendar-standard">
-                            <h3 style={{paddingLeft:'1rem'}}>{t('Deadline')}</h3>
-                                {unreadEvents.map(event => (
-                                    <Grid
-                                        item
-                                        xs={12}
-                                        key={event.id}
+                                }
+                                label="Luku!"
+                            />
+                            <Button
+                                onClick={addEvent}
+                                variant="contained"
+                                sx={{ marginTop: '1rem', display: 'block', marginLeft: 'auto' }}
+                            >
+                                {t('addEvent')}
+                            </Button>
+                        </Grid>
+
+
+                        {/* Read Events */}
+                        <Grid
+                            item
+                            sx={{
+                                gridColumn: { xs: '1', sm: '1', md: '1', lg: '2' }, // Always first column
+                                backgroundColor: '#f9f9f9',
+                                borderRadius: '5px',
+                                padding: '1rem',
+
+                            }}
+                        >
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
+                                <DayCounter /> {t('EveryDay')}
+                            </Typography>
+                            {readEvents.map((event) => (
+                                <Typography
+                                    key={event.id}
+                                    sx={{
+                                        padding: '0.5rem',
+                                        marginBottom: '0.5rem',
+                                        backgroundColor: '#e0f7fa',
+                                        borderRadius: '5px',
+                                    }}
+                                >
+                                    {event.date ? `${event.title}, ${event.date}` : event.title}
+                                </Typography>
+                            ))}
+                        </Grid>
+
+
+                        {/* Unread Events */}
+                        <Grid
+                            item
+                            sx={{
+                                gridColumn: { xs: '1', sm: '2', md: '3' }, // Last column on larger screens
+                                backgroundColor: '#f9f9f9',
+                                borderRadius: '5px',
+                                padding: '1rem',
+                                marginRight: '20rem',
+                                marginLeft: '1rem'
+                            }}
+                        >
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
+                                {t('Deadline')}
+                            </Typography>
+                            {unreadEvents.map((event) => (
+                                <Grid
+                                    key={event.id}
+                                    sx={{
+                                        marginBottom: '0.5rem',
+                                        padding: '0.5rem',
+                                        backgroundColor: event.date < today ? 'red' : 'green',
+                                        color: 'white',
+                                        borderRadius: '5px',
+                                    }}
+                                >
+                                    <Typography
                                         sx={{
-                                            padding: '0.3rem',
-                                            backgroundColor: event.date < today ? 'red' : 'green',
-                                            marginBottom: '0.5rem'
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
                                         }}
                                     >
-                                        <Typography
-                                            variant="body1"
-                                            sx={{
-                                                fontSize: { xs: '1rem', sm: '1.1rem' },
-                                                paddingLeft: { xs: '0.5rem', sm: '0.5rem' },
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center',
-                                                border: '1px solid',
-                                            }}
+                                        {event.date ? `${event.title}, ${event.date}` : event.title}
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() => deletor(event.id)}
                                         >
-                                            {event.date ? `${event.title}, ${event.date}` : event.title}
-                                            <Button
-                                                variant="contained"
-                                                color="secondary"
-                                                onClick={() => deletor(event.id)}
-                                            >
-                                                {t('Poista')}
-                                            </Button>
-                                        </Typography>
-                                    </Grid>
-                                ))}
-                            </Grid>}
+                                            {t('Poista')}
+                                        </Button>
+                                    </Typography>
+                                </Grid>
+                            ))}
+                        </Grid>
+
+                    </Grid>
+
+                    {(reqs.length>0 || messages.length>0) && <Grid
+                        container
+                        sx={{
+                            display: 'grid',
+                            gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr', lg: '1fr' },
+                            gap: '1rem',
+                            justifyContent: 'center', // Centers items horizontally                            
+                            alignItems: 'center',
+                            padding: '1rem',
+                        }}
+                    >
+
+
+                        <Grid sx={{ gridColumn: '1' }}>
+                            <NaytaPyynnot />
+
+                        </Grid>
+
+                        <Grid sx={{ gridColumn: '1' }}>
+                            <ShowMessages />
                         </Grid>
                     </Grid>
-                    <NaytaPyynnot />
-                    <ShowMessages />
-                    </>
-                ) : (
-                    <h1 style={{ position: 'fixed', top: '25%', left: '50%' }}>Forbidden</h1>
-                )}
-            </div>
-        );    
-                
+                    }
+                </>
+            ) : (
+                <h1 style={{ position: 'fixed', top: '25%', left: '50%' }}>Forbidden</h1>
+            )}
+        </ThemeProvider>
+    );
+
 }
 
 export default Calendar;

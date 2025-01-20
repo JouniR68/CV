@@ -100,7 +100,7 @@
   "Confirmation":"Vahvistus",
   "check": "Tarkista",
   "password":"Salasana",
-  "Calendar-title":"Dahsbord",
+  "Calendar-title":"Dashbord",
   "Remove": "Poista",
   "Show":"Näytä / Piilota",
   "Places":"Läheiset palvelut ..",
@@ -143,6 +143,6 @@
   "Subject": "Aihe",
   "Feedback": "Palaute",
   "services":"Palveluni",
-  "EveryDay": "Päivittäin",
+  "EveryDay": "Päivittäin / huomionarvoista",
   "Deadline": "Ajoitetut taskit" 
 }

@@ -115,39 +115,52 @@ export const UserLogin = () => {
             <Box
                 component="form"
                 onSubmit={handleLogin}
-                className="userLogin"
+                sx={{ 
+                    margin: 'auto',
+                    display: 'flex', 
+                    flexDirection:'column', 
+                    justifyContent: 'center',
+                    height:'50vh',
+                    width:'30%',                     
+                    alignItems: 'center',
+                    fontSize:'large',
+                    backgroundColor: '#fff'    
+                }}
             >
 
-                <Typography  variant="h4" gutterBottom>
+                <Typography  variant="h4" gutterBottom >
                     {t("Login")}<br />
                 </Typography>
                 {t("LogoutWarning")}<br />
                 <TextField
                     label={t('username')}
-                    variant="outlined"
-                    fullWidth
+                    variant="outlined"                    
+                    sx={{margin:'2rem'}}
                     inputProps={{
                         style: {
                             fontWeight: 'bold',
+                            fontSize:'1rem'
                         },
                     }}
+                    InputLabelProps={{ style: { fontSize:'1rem'}}}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
                 <TextField
                     label={t('password')}
                     variant="outlined"
-                    type="password"
-                    fullWidth
+                    type="password"                    
                     inputProps={{
                         style: {
                             fontWeight: 'bold',
+                            fontSize:'1rem'
                         },
                     }}
+                    InputLabelProps={{ style: { fontSize:'1rem'}}}
                     onChange={(e) => setUserPwd(e.target.value)}
                     required
                 />
-                <Button variant="contained" color="primary" type="submit" size="small">
+                <Button variant="contained" color="primary" type="submit" size="large" sx = {{marginTop:'4rem'}}>
                     {t('Login')}
                 </Button>
 

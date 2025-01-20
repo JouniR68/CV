@@ -7,12 +7,16 @@ import { db } from '../firebase';
 import { updateDoc, addDoc, getDocs, doc, collection, deleteDoc } from 'firebase/firestore';
 import 'firebase/firestore';
 import '../css/budget.css'
+import { decodeEntity } from 'html-entities';
 
 const BudgetManager = () => {
   const [summary, setSummary] = useState([]);
+  const [latestGoal, setLatestGoal] = useState([]);
   const [newData, setNewData] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+  const [openDialogGoal, setOpenDialogGoal] = useState(false);
   const expenseCollection = collection(db, 'budjetti');
+  const [goal, setGoal] = useState({});
   // Fetch data from Firebase
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +29,20 @@ const BudgetManager = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchGoal = async () => {
+      const goalCollection = collection(db, 'goals');
+      const expenseSnapshot = await getDocs(goalCollection);
+      const goalRef = expenseSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setLatestGoal(goalRef);
+    };
+    fetchGoal();
+  }, []);
+
 
   // Handle editing data locally
   const handleEdit = (id, field, value) => {
@@ -46,6 +64,17 @@ const BudgetManager = () => {
     }
   };
 
+// Add new goal
+const addNewGoal = async () => {
+  try {
+    await addDoc(collection(db, 'goals'), goal);
+    setOpenDialogGoal(false);
+  } catch (error) {
+    console.error('Error adding new goal:', error);
+  }
+};
+
+
   // Add new data
   const addNewData = async () => {
     try {
@@ -66,17 +95,34 @@ const BudgetManager = () => {
     }
   };
 
+  let count = 1;
+  const lGoal = latestGoal.map(f => `${count++}. ${f.tavoite}, ${f.aika}`).join('<br>')
 
+  const monkeyFace = "&#128053;"
   return (
     <div>
+      <br></br>
+      <h3>Tavoiteet:</h3>
+      <span style = {{color: 'white'}} dangerouslySetInnerHTML={{ __html: `${lGoal}`}}></span>      
+<p></p>
       <Button
         variant="contained"
         color="primary"
         onClick={() => setOpenDialog(true)}
+        style={{ marginBottom: '20px', marginTop: '5px',  }}
+      >
+        {decodeEntity(monkeyFace)}
+      </Button>
+      <br></br>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => setOpenDialogGoal(true)}
         style={{ marginBottom: '20px' }}
       >
-        Add New Entry
+        Uusi Tavoite
       </Button>
+
 
       {/* Add New Data Dialog */}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
@@ -102,6 +148,31 @@ const BudgetManager = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Dialog open={openDialogGoal} onClose={() => setOpenDialogGoal(false)}>
+        <DialogTitle>Tavoite entry</DialogTitle>
+        <DialogContent>
+          {['aika', 'tavoite'].map((field) => (
+            <TextField
+              key={field}
+              label={field}
+              fullWidth
+              margin="normal"
+              value={goal[field] || ''}
+              onChange={(e) => setGoal({ ...goal, [field]: e.target.value })}
+            />
+          ))}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenDialogGoal(false)} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={addNewGoal} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
 
       {/* Budget Summary Table */}
       <Table className="budget-form--summary">
@@ -141,9 +212,12 @@ const BudgetManager = () => {
               prossa = ((expense.tulot - totalExpenses) / expense.tulot) * 100;
               console.log("prossa: ", prossa + ', tulot: ' + expense.tulot + ', total: ' + totalExpenses);
             }
+            //let counter = 0;
 
+            
             return (
-              <TableRow key={expense.id}>
+              <>            
+              <TableRow key={expense.id}>                              
                 {['aika', 'tulot', 'sahkovesi', 'vakuutukset', 'ruokajuoma', 'liikenne', 'harrastukset', 'ostokset', 'lainatLuotot', 'muutMenot', 'velat'].map((field) => (
                   <TableCell key={field} style={{ backgroundColor: prossa < 10 ? 'red' : 'transparent' }}>
                     <TextField
@@ -167,7 +241,8 @@ const BudgetManager = () => {
                     Delete
                   </Button>
                 </TableCell>
-              </TableRow>
+              </TableRow>              
+            </>
             )
           })}
         </TableBody>

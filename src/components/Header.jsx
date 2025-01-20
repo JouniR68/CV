@@ -48,14 +48,14 @@ export default function Header() {
       <Hamburger />
       <div className="header">        
         <div className="header-left">
-          <Link to="/"><HomeWorkIcon /></Link>
-          
-          <Link to="/profile"><img src="/Images/profile.png" alt="CV"/></Link>
+          <Link to="/"><HomeWorkIcon sx={{width:'3rem', height: '3rem', marginLeft:'1rem'}}/></Link>          
+          <Link to="/profile"><img style={{width:'3rem', height: '3rem'}} src="/Images/profile.png" alt="CV"/></Link>
+          <Link to="https://memory-c1718.web.app/"><img style={{width:'3rem', height: '3rem'}} src="/Images/memoryGame.jpg" alt="The Game"/></Link>        
           
         </div>
         <div className="header-right">
-          {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin"><LoginIcon/></Link>}
-          {!isLoggedIn && currentPath != '/register' && <Link to="/register"><HowToRegIcon/></Link>}
+          {!isLoggedIn && currentPath != '/userLogin' && <Link to="/userLogin"><LoginIcon sx={{width:'3rem', height: '3rem'}}/></Link>}
+          {!isLoggedIn && currentPath != '/register' && <Link to="/register"><HowToRegIcon sx={{width:'3rem', height: '3rem'}}/></Link>}
 
           {isLoggedIn &&
             <>
