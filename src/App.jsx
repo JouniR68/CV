@@ -57,6 +57,7 @@ import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
 import MindMap from "./components/MindMap";
 import Sali from "./components/Sali";
+import Harjoittelut from "./components/Harjoittelut";
 
 
 function App() {
@@ -91,6 +92,7 @@ function App() {
               <Route path='showMessages' element={<ShowMessages/>} />
               <Route path='palaute' element={<Feedback/>} />
               <Route path='naytapalaute' element={<ShowFeedback/>} />
+              <Route path='treenit' element={<Harjoittelut />} />
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="cv" element={<CVPdf />} />
