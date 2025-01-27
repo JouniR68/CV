@@ -8,9 +8,7 @@ export default function AdminLayout() {
 
   accessValid = useRef(sessionStorage.getItem("adminLevel"))
 
-  useEffect(() => { accessValid ? setAccess(true) : setAccess(false) }, [
-
-  ])
+  useEffect(() => { accessValid ? setAccess(true) : setAccess(false) }, [])
 
 
   return (

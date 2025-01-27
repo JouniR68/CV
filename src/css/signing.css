@@ -64,7 +64,7 @@
     
 }
 
-@media only screen and (min-width: 980px) {
+@media only screen and (device-width: 390px) and (device-height: 844px) {
   .register {
     display: flex;
     flex-direction: column;
@@ -99,11 +99,128 @@
     margin-left: 0rem;
   }
   .tunnus {
+    display: flex;    
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    row-gap: 1rem;
+  }
+
+  .tunnus-tili {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  .tunnus List {
+    width: 12rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 40%;
+    height: 80%;
+    margin: 1rem;
+    padding: 1rem;
+    z-index: 2;
+    background-color: rgba(214, 214, 187, 0.72);
+    overflow-y: auto;
+  }
+
+  .register Button {
+    margin-top: 1rem;
+  }
+
+  .userLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    max-height: 30%;
+    padding: 1rem;
+    gap: 1rem;
+    background-color: #555;
+    z-index: 1;
+  }
+
+  .userLogin Button {
+    margin-top: 2rem;
+    margin-left: 0rem;
+  }
+  .tunnus {
     display: flex;
     position: fixed;
     flex-direction: column;
     top: 14%;
     left: 23%;
+    max-width: 80%;
+    padding: 3rem;
+    box-sizing: border-box;
+    row-gap: 1rem;
+  }
+
+  .tunnus-tili {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12rem;
+  }
+
+  .tunnus List {
+    width: 12rem;
+  }
+}
+
+/* Landscape Orientation */
+@media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  .register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 40%;
+    height: 80%;
+    margin: 1rem;
+    padding: 1rem;
+    z-index: 2;
+    background-color: rgba(214, 214, 187, 0.72);
+    overflow-y: auto;
+  }
+
+  .register Button {
+    margin-top: 1rem;
+  }
+
+  .userLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    height: 30vh;
+    padding: 1rem;
+    gap: 1rem;
+    background-color: #555;
+    z-index: 1;
+  }
+
+  .userLogin Button {
+    margin-top: 2rem;
+    margin-left: 0rem;
+  }
+  .tunnus {
+    display: flex;
+    flex-direction: column;
     max-width: 80%;
     padding: 3rem;
     box-sizing: border-box;

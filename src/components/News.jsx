@@ -35,7 +35,7 @@ export default function CollectionCounts() {
 
   console.log("counts: ", counts)
   return sessionStorage.getItem('email') === 'jr@softa-apu.fi' ? (
-    <Dialog open={open} onClose={handleClose} sx={{height:'30%', width:'30%', fontSize:'2rem'}}>
+    <Dialog open={open} onClose={handleClose} sx={{height:'40%', width:'100%', fontSize:'1rem'}}>
       <DialogTitle>Data yhteenveto</DialogTitle>
       <DialogContent dividers>
         {counts.contacts > 1 && <Typography variant="body1">Tunnareita: {counts.contacts}</Typography>}

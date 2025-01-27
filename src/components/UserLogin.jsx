@@ -116,12 +116,13 @@ export const UserLogin = () => {
                 component="form"
                 onSubmit={handleLogin}
                 sx={{ 
-                    margin: 'auto',
+                    margin: '0.2rem',
+                    padding: '1rem',
                     display: 'flex', 
                     flexDirection:'column', 
                     justifyContent: 'center',
                     height:'50vh',
-                    width:'30%',                     
+                    width:'100%',                     
                     alignItems: 'center',
                     fontSize:'large',
                     backgroundColor: '#fff'    

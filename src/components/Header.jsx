@@ -61,7 +61,7 @@ export default function Header() {
             <>
               {isAuthenticated === "valid" &&
                 <>
-                  <Link to="/calendar"><CalendarMonthSharpIcon /></Link>
+                  <Link to="/dashboard"><CalendarMonthSharpIcon /></Link>
                   <Link to="/admin"><SettingsIcon /> </Link>                  
                 </>}
               {isLoggedIn && <Link to="/logout"><LogoutSharpIcon /></Link>}

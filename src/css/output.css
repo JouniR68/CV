@@ -48,7 +48,7 @@
     }
 }
 
-@media only screen and (min-width: 980px) and (max-width: 1023px) {
+@media only screen and (device-width: 390px) and (device-height: 844px) {
     .output {
         display: flex;
         justify-content: center;

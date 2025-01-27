@@ -12,6 +12,7 @@ import ShowMessages from "./ShowMessages"
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme';
 import DayCounter from './DayCounter';
+import { CoPresentOutlined } from '@mui/icons-material';
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -40,7 +41,7 @@ const Calendar = () => {
         const fetchEvents = async () => {
             const eventsCollection = await getDocs(collection(db, 'events'));
             setEvents(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        };
+        }
         fetchEvents();
     }, []);
 
@@ -49,7 +50,7 @@ const Calendar = () => {
         const fetchEvents = async () => {
             const eventsCollection = await getDocs(collection(db, 'pyynnot'));
             setReqs(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        };
+        }
         fetchEvents();
     }, []);
 
@@ -58,7 +59,7 @@ const Calendar = () => {
         const fetchEvents = async () => {
             const eventsCollection = await getDocs(collection(db, 'messages'));
             setMessage(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        };
+        }
         fetchEvents();
     }, []);
 
@@ -99,14 +100,23 @@ const Calendar = () => {
     }
 
     const today = new Date().toISOString().split('T')[0];
-    let counter = 0;
+    //let counter = 0;
 
 
     const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard");
     // Separate events into read and unread groups
-    const readEvents = events.filter(event => event.read);
-    const unreadEvents = events.filter(event => !event.read);
+    const readEvents = eventClass.filter(event => event.read);
+    //const unreadEvents = eventClass.filter(event => !event.read);
 
+    
+    function addNewLines(str, maxChars = 40) {
+        return str
+          .match(new RegExp(`.{1,${maxChars}}`, 'g')) // Split string into chunks of maxChars
+          .join('\n'); // Join chunks with a newline
+      }
+
+
+      let formattedString = ""
 
     return (
 
@@ -117,29 +127,22 @@ const Calendar = () => {
                         container
                         sx={{
                             display: 'grid',
-                            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' }, // 3 columns on larger screens
-                            gap: '2rem',
-                            height: '50vh',
-                            alignItems: 'center', // Centers items vertically
-                            justifyContent: 'center', // Centers items horizontally                            
-                            padding: '1rem',
-                            marginLeft: '10rem'
-                        }}
-                    >
-
-
-
+                            gap: { xs: '0.5rem', sm: '2rem' },
+                            padding: { xs: '0.5rem', sm: '1rem' },
+                            marginBottom: { xs: '1rem', sm: '2rem' },
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            backgroundColor: 'gray'
+                        }}>
                         {/* Form */}
                         <Grid
                             item
                             sx={{
-                                gridColumn: { xs: '1', sm: '1', md: '1', lg: '1' }, // Center column on larger screens
-                                backgroundColor: 'white',
+                                gridColumn: { xs: '1', sm: '2', md: '3', lg: '2' }, // Proper column
+                                backgroundColor: 'gray',
                                 borderRadius: '5px',
                                 padding: '2rem',
-                                justifySelf: 'center',
-                                alignSelf: 'center',
-                                width: 'fit-content',
+                                width: '100%'
                             }}
                         >
                             <Typography variant="h5" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
@@ -179,83 +182,90 @@ const Calendar = () => {
                             </Button>
                         </Grid>
 
+                        {/* Unread Events */}
+                        <Grid
+                            item
+                            sx={{
+                                gridColumn: { xs: '1', sm: '2', md: '3', lg: '3' }, // Proper column
+                                backgroundColor: 'gray',
+                                borderRadius: '5px',
+                                padding: '1rem',
+                            }}
+                        >
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
+                                {t('Deadline')}
+                            </Typography>
+                            {events
+                                .filter(event => !event.read) // Unread events only
+                                .map(event => {
+                                    
+                                    /*if (event.title.length > 40){
+                                        console.log("title: ", event.title)
+                                        formattedString = addNewLines(event.title, 20)
+                                    }*/
+                                    const isPastDue = event.date < today;
+                                    return (
+                                        <Grid
+                                            key={event.id}
+                                            sx={{
+                                                marginBottom: '0.5rem',
+                                                padding: '0.5rem',
+                                                backgroundColor: isPastDue ? 'red' : 'green',
+                                                color: isPastDue ? 'white' : 'black', // Adjust text color dynamically
+                                                borderRadius: '5px',
+                                            }}
+                                        >
+                                            <Typography
+                                                sx={{
+                                                    display: 'flex',
+                                                    justifyContent: 'space-between',
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                {event.date ? `${event.title}, ${event.date}` : event.title}
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => deletor(event.id)}
+                                                >
+                                                    {t('Poista')}
+                                                </Button>
+                                            </Typography>
+                                        </Grid>
+                                    );
+                                })}
+                        </Grid>
 
                         {/* Read Events */}
                         <Grid
                             item
                             sx={{
-                                gridColumn: { xs: '1', sm: '1', md: '1', lg: '2' }, // Always first column
-                                backgroundColor: '#f9f9f9',
+                                backgroundColor: 'gray',
                                 borderRadius: '5px',
                                 padding: '1rem',
-
+                                gridColumn: { xs: '1', sm: '2', md: '2', lg: '2' }, // Proper column
+                                
                             }}
                         >
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
-                                <DayCounter /> {t('EveryDay')}
+                            
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', border:'solid 3px black', padding:'1rem'}}>
+                            {t('EveryDay')}<DayCounter />
                             </Typography>
+
                             {readEvents.map((event) => (
                                 <Typography
                                     key={event.id}
                                     sx={{
+                                        display: 'flex',
                                         padding: '0.5rem',
                                         marginBottom: '0.5rem',
-                                        backgroundColor: '#e0f7fa',
-                                        borderRadius: '5px',
+                                        backgroundColor: 'gray',                                        
                                     }}
                                 >
                                     {event.date ? `${event.title}, ${event.date}` : event.title}
                                 </Typography>
                             ))}
                         </Grid>
-
-
-                        {/* Unread Events */}
-                        <Grid
-                            item
-                            sx={{
-                                gridColumn: { xs: '1', sm: '2', md: '3' }, // Last column on larger screens
-                                backgroundColor: '#f9f9f9',
-                                borderRadius: '5px',
-                                padding: '1rem',
-                                marginRight: '20rem',
-                                marginLeft: '1rem'
-                            }}
-                        >
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
-                                {t('Deadline')}
-                            </Typography>
-                            {unreadEvents.map((event) => (
-                                <Grid
-                                    key={event.id}
-                                    sx={{
-                                        marginBottom: '0.5rem',
-                                        padding: '0.5rem',
-                                        backgroundColor: event.date < today ? 'red' : 'green',
-                                        color: 'white',
-                                        borderRadius: '5px',
-                                    }}
-                                >
-                                    <Typography
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                        }}
-                                    >
-                                        {event.date ? `${event.title}, ${event.date}` : event.title}
-                                        <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            onClick={() => deletor(event.id)}
-                                        >
-                                            {t('Poista')}
-                                        </Button>
-                                    </Typography>
-                                </Grid>
-                            ))}
-                        </Grid>
-
                     </Grid>
 
                     {(reqs.length > 0 || messages.length > 0) && <Grid
@@ -283,7 +293,7 @@ const Calendar = () => {
                     }
                 </>
             ) : (
-                <h1 style={{ position: 'fixed', top: '25%', left: '50%' }}>Forbidden</h1>
+                <h5 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Forbidden</h5>
             )}
         </ThemeProvider>
     );

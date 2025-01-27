@@ -1,4 +1,5 @@
-@media screen and (min-width: 361px) and (max-width: 1023px){
+
+@media only screen and (device-width: 390px) and (device-height: 844px){
   .home {
     flex-direction: column;
     grid-area: home;
@@ -6,10 +7,10 @@
     height: 40%;
     gap: 0.5rem;
     font-weight: 550;
-    font-size: 1.5rem;
+    font-size: 1rem;
     z-index: 1;
     border-radius: 1rem;
-    padding: 5rem;
+    padding: 1rem;
     overflow:auto;
     margin: 0 auto
   }
@@ -43,12 +44,11 @@
     animation-duration: 5s;
     animation-name: slidein;
     font-family: "Lucida Console", "Courier New", cursive;
-    font-size: 4rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
     border-radius: 10px;
-    padding: 1rem;
-    
+    padding: 1rem;    
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }

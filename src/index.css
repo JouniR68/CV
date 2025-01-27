@@ -22,9 +22,8 @@
   box-sizing: border-box;
 }
 
-
-@media screen and (max-width: 390px) and (max-height:844px) {
-
+/*iphone 12*/
+@media only screen and (device-width: 390px) and (device-height: 844px) {
   html,
   body {
     max-width: 90vw;
@@ -39,7 +38,7 @@
   }
 
   .app-container {
-    height: 90vh;
+    
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /*background-image: url('./assets/aita.jpg');*/
@@ -50,16 +49,18 @@
     background-position: center;
     background-repeat: no-repeat;
     padding: 1rem;
-    overflow: hidden;
+    overflow: 'auto';
     margin: 2rem auto;
     font-size: 1.5rem;
   }
 
   .sali {
+    display:flex;
+    flex-direction: column;
     padding-left: 1rem;
     background-color: #fff;        
-    height: 40rem;
-    width: 20rem;
+    height: 60%;
+    width: 50%;
     font-size:16px;
     overflow: auto;
   }
@@ -70,22 +71,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width:'100%';
     z-index: 1000;
-
-    /* Ensure it sits above all other content */
   }
 
   .confirmation-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 15vh;
+    justify-content: center;
+    align-items: center;    
     background: lightgray;
     color: red;
     font-weight: bold;
     font-size: '2rem';
-    margin-top: 10rem;
-    padding: 1rem;
+    margin-top: 0.5rem;    
+    padding: 0.5rem;
     border-radius: 8px;
     line-height: 10px;
     gap: 1rem;
@@ -96,7 +96,7 @@
     font-weight: bold;
     padding: 1rem;
     font-size: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 
   .hamburger-menu {
@@ -214,7 +214,7 @@
 
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
 
   html,
   body {
@@ -229,8 +229,349 @@
     display: true;
   }
 
-  .app-container {
-    overflow: hidden;
+  .app-container {    
+    border-radius: 2rem;
+    padding: 1rem;
+    z-index: 1;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)),
+      url(https://picsum.photos/1600/900) no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    width: 95vw;
+    height: 90vh;
+  }
+
+  .sali {
+    display:flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    background-color: #fff;            
+    height: 40rem;
+    width: 100%;
+    font-size:16px;
+    overflow: auto;
+  }
+
+
+  .hamburger-menu {
+    display: none !important;
+  }
+
+  .profile {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    height: 70%;
+    gap: 1rem;
+  }
+
+
+  .profile img {
+    border-radius: 1rem;
+    margin-left: 0rem;
+  }
+
+  .cleanpage {
+    background-color: white;
+  }
+
+
+  h1 {
+    margin-top: 2rem;
+  }
+
+  h3 {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .accessrequest {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 4 rem;
+  }
+
+  #shoppingCart {
+    margin-left: auto;
+    color: red
+  }
+
+  #kpl {
+    margin-left: 1rem;
+  }
+
+  .confirmation-container {
+    background: rgba(0, 0, 0, 0.8);
+    margin: 0;
+    /* Semi-transparent background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    z-index: 1000;
+
+    /* Ensure it sits above all other content */
+  }
+
+  .confirmation-content {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    max-width: 50%;
+    max-height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    line-height: 30px;
+    ;
+    gap: 1rem;
+    text-align: justify;
+  }
+
+  #ok {
+    margin-top: rem;
+    padding: 0.5rem;
+    width: 100%;
+    background-color: green;
+    font-weight: bold;
+  }
+
+  #nok {
+    padding: 0.5rem;
+    background-color: red;
+    font-weight: bold;
+  }
+
+  .mail {
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+    gap: 1rem;
+  }
+
+  #saveButton {
+    margin-top: 4rem;
+  }
+
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+
+  #softaapu-logo {
+    width: "34rem";
+    height: "34rem";
+  }
+
+  .header {
+    display: flex;
+    z-index: 10;
+    color: var(--header-text-color) !important;
+    border-radius: 0.2rem;
+    background-color: rgba(242, 183, 88, 0.604);
+    padding: 0.5rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 2rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .header-left Link {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  header a {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-weight: 600;
+    padding: 5px 10px;
+  }
+
+  header a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(242, 183, 88, 0.604);
+    padding: 0.5rem;
+  }
+
+  .footer-items {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .footer-items img {
+    margin-right: 20px;
+    width: 3rem;
+  }
+
+  .link-button {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    padding: 0.75rem 1.375rem;
+    color: initial;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  .link-button:hover {
+    transform: translate(1px, 1px);
+  }
+
+
+  .host-nav {
+    display: inline;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .host-nav a {
+
+    justify-content: center;
+    text-decoration: none;
+    /* Remove underline from links */
+    color: #b21313;
+    /* Dark text color */
+    font-size: 16px;
+    /* Adjust the font size */
+    padding: 8px 16px;
+    /* Space inside each link */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+  }
+
+  .host-nav a:hover {
+    color: #f67214;
+    /* Change link color on hover */
+  }
+
+  h3.cv-contact-title {
+    margin-top: 40px;
+    margin-left: 0px;
+  }
+
+  #mailIcon {
+    margin-top: 120px;
+  }
+
+  .row {
+    display: table-row;
+
+    font-size: 14px;
+    text-align: left;
+    justify-content: left;
+    border-bottom: 1px solid;
+    margin-left: 2%;
+  }
+
+  .cell {
+    display: table-cell;
+    padding: 2rem
+  }
+
+  .logout-text {
+    width: 50%;
+    height: 50%;
+  }
+
+  tr:nth-child(even) {
+    background-color: lightblue;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #e6e6e6;
+  }
+
+  .hire--whys {
+    margin-top: 10px;
+  }
+
+  .places {
+    position: fixed;
+    top: 15%;
+    left: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: rgba(214, 214, 187, 0.72);
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+
+  }
+}
+
+
+/*All iPad tablets*/
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  html,
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  body::-webkit-scrollbar {
+    display: true;
+  }
+
+  .app-container {    
     border-radius: 2rem;
     padding: 1rem;
     z-index: 1;
@@ -533,21 +874,4 @@
     margin-top: 10px;
   }
 
-  .places {
-    position: fixed;
-    top: 15%;
-    left: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: rgba(214, 214, 187, 0.72);
-    margin: 2rem;
-    padding: 1rem;
-    border-radius: 1rem;
-
-  }
 }
