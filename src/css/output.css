@@ -1,23 +1,17 @@
 @media only screen and (min-width: 1024px) {
-    h3 {
-        color: red;
-    }
-
     .output {
-        position: fixed;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        height: 10%;
-        gap: 2rem;
+        display:flex;
+        flex-direction: row;        
+        justify-content: start;
+        align-items: center;   
+        width:fit-content;     
     }
 
-    .output-sections {
-        position: fixed;
-        top: -10rem;
-        left: 0;
-        width: 100%;
+    .output-sections {                                        
+        background-color: gray;
+        max-width:100%;
+        color:black;
+        font-weight:bold;        
     }
 
     thead {
@@ -35,7 +29,7 @@
 
     .cv-table {
         position: fixed;
-        top: 2%;
+        top: 32%;
         max-width: 50%;
         height: 30%;
         max-height: 100px;
@@ -66,7 +60,6 @@
         max-height: 30%;
         font-size: 1.5rem;
         font-weight: 600;
-        color: red !important;
         border: 1px solid;
         overflow-y: scroll;
     }

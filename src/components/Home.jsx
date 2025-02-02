@@ -130,7 +130,7 @@ export default function Home() {
 
       {isUnsupported && <div className="unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
-      <div className="home-teksti">{t('Cando')}</div>
+      <div className="home-teksti">{t('Cando')}<br/> <span>Lisää minusta klikkaamalla yllä olevaa CV-nappia!</span></div>
       <div className="home-kollaasi">
         <img alt="Palvelut, apuja yms" src="/Images/laptop.png" onClick={() => tarjouspyyntoon()} />
         <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />

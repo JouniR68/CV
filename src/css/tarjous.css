@@ -29,15 +29,14 @@
         align-items: flex-start;
         padding: 0.5rem;
         height: auto;
-        ;
         background-color: rgba(214, 214, 187, 0.72);
         padding: 1rem;
         font-size: 2rem;
         margin: 1rem auto;
         border-radius: 8px;
         border: 1px solid;
-        width: 100%;
-        gap: 1rem;
+        width: 30%;
+        gap: 0.5rem;
     }
 
     .tarjouspyynto-message {
@@ -184,7 +183,7 @@
     }
 }
 
-@media screen and (max-width: 980px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
     .pyynnot {
         position: fixed;
         top: 50%;
@@ -308,3 +307,190 @@
         /* Adjust size */
     }
 }
+
+
+@media only screen and (device-width: 390px) and (device-height: 844px) {
+    .pyynnot {
+        position: fixed;
+        top: 75%;
+        left: 25%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: auto;
+        width: fit-content;
+        /* Ensure horizontal scroll for smaller screens */
+    }
+
+    .tarjouspyynto {
+        display: flex
+    }
+
+    .tarjouspyynto-header {
+        padding-bottom: 0.1rem;
+    }
+
+    .tarjouspyynto-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0.5rem;
+        height: auto;
+        background-color: rgba(214, 214, 187, 0.72);
+        padding: 1rem;
+        font-size: 2rem;
+        margin: 1rem auto;
+        border-radius: 8px;
+        border: 1px solid;
+        width: 30%;
+        gap: 0.5rem;
+    }
+
+    .tarjouspyynto-message {
+        width: 100%;
+
+    }
+
+    .tarjouspyynto-napit {
+        display: flex;
+        flex-direction: row;
+        font-size: 1.5rem;
+        gap: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    .tarjouspyynto .MuiGrid-container .MuiTextField-root {
+        width: 100%;
+        height: 45px;
+        box-sizing: border-box;
+    }
+
+    .tarjouslomake h1,
+    .tarjouslomake {
+        display: flex;
+        position: fixed;
+        top: 16%;
+        width: 90%;
+        left: 10%;
+        justify-content: center;
+        margin: rem;
+    }
+
+    .tarjouslomake-nappi {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .tarjouslomake .MuiContainer-root {
+        padding: 1rem;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .tarjouslomake .MuiTypography-h4,
+    .tarjouslomake .MuiTypography-h6 {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .tarjouslomake-asiakas,
+    .tarjouslomake-tarjoaja {
+        display: flex;
+        flex-wrap: wrap;
+        /* Allows items to wrap to the next row */
+        width: 50rem;
+        gap: 1rem;
+        /* This will now apply both row and column gaps */
+    }
+
+
+    .tarjouslomake-osapuolet {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        /* Sets gap between both columns and rows */
+    }
+
+
+    .tarjouslomake .MuiGrid-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .tarjouslomake-matkakulut {
+        margin-top: -3rem;
+    }
+
+    .tarjouslomake .MuiGrid-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tarjouslomake .MuiButton-contained {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: #1976d2;
+        color: white;
+    }
+
+    .tarjouslomake .MuiButton-contained:hover {
+        background-color: #1565c0;
+    }
+
+    .tarjouslomake .MuiTextField-root {
+        margin-bottom: 1rem;
+    }
+
+    .tarjouslomake .MuiTextField-root input {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+        align-items: flex-start;
+    }
+
+    .tarjouslomake .MuiBox-root {
+        margin-bottom: 1rem;
+    }
+
+    .tarjouslomake .MuiTypography-body1 {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #333;
+    }
+
+    .tarjouslomake .MuiTypography-subtitle1 {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .tarjouslomake .MuiButton-root {
+        display: flex;
+        margin-top: 0.1rem;
+        height: 10px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .tarjouslomake .MuiButton-root {
+        background-color: #2196f3;
+    }
+
+    .tarjouslomake .MuiButton-root:hover {
+        background-color: #1976d2;
+    }
+
+    .messages {
+        position: relative;
+        top: 25%;
+        left: -7%;
+        max-width: 45%;
+        max-height: 20%;
+    }  
+}
+

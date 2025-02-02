@@ -137,7 +137,7 @@ function TarjouspyyntoForm() {
           <Controller
             name="isCompany"
             control={control}
-            defaultValue={false}
+            defaultValue={false}            
             render={({ field }) => (
               <FormControlLabel
                 control={<Checkbox {...field} />}
@@ -149,11 +149,12 @@ function TarjouspyyntoForm() {
           <Controller
             name="ala"
             control={control}
-            defaultValue=""
+            defaultValue="kayttoapua"
+            fullWidth={true}
             render={({ field }) => (
               <FormControl>
                 <Select
-                  sx={{ width: '50%', fontWeight: 'bold', fontSize: '2rem', marginLeft: '1rem', marginBottom: "1rem" }}
+                  sx={{ width: '100%', fontWeight: 'bold', fontSize: '1rem', marginLeft: '1rem', marginBottom: "1rem" }}
                   labelId="ala-label"
                   {...field}
                   label="Aihe"
@@ -182,7 +183,7 @@ function TarjouspyyntoForm() {
                 <TextField
                   {...field}
                   size="medium"
-                  label="Y-tunnus"
+                  label="Y-tunnus"                  
                   required={isCompany}                                    
                   InputLabelProps={{
                     sx: {
@@ -200,13 +201,13 @@ function TarjouspyyntoForm() {
             name="firstName"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Etunimi" required
+              <TextField {...field}  label="Etunimi" required
                 InputLabelProps={{
-                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                  style: { fontSize: '1rem', fontWeight: 'bold' }, // Adjust the font size of the label
                 }}
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '1.5rem',
+                  fontSize: '1rem',
                   marginLeft: '1rem'
                 }}
               />
@@ -217,13 +218,13 @@ function TarjouspyyntoForm() {
             name="lastName"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Sukunimi" required size="large" defaultValue={lNameRef.current}
+              <TextField {...field} label="Sukunimi" required size="large" defaultValue={lNameRef.current}
                 InputLabelProps={{
-                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                  style: { fontSize: '1rem', fontWeight: 'bold' }, // Adjust the font size of the label
                 }}
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '1.5rem',
+                  fontSize: '1rem',
                   marginLeft: '1rem'
                 }}
 
@@ -235,13 +236,13 @@ function TarjouspyyntoForm() {
             name="address"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Osoite" defaultValue={addressRef.current} required size="large"
+              <TextField {...field} label="Osoite" defaultValue={addressRef.current} required size="large"
                 InputLabelProps={{
-                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                  style: { fontSize: '1rem', fontWeight: 'bold' }, // Adjust the font size of the label
                 }}
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '1.5rem',
+                  fontSize: '1rem',
                   marginLeft: '1rem'
                 }}
 
@@ -253,13 +254,13 @@ function TarjouspyyntoForm() {
             name="phoneNumber"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth label="Puhelinnumero" defaultValue={phoneRef.current} required
+              <TextField {...field} label="Puhelinnumero" defaultValue={phoneRef.current} required
                 InputLabelProps={{
-                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                  style: { fontSize: '1rem', fontWeight: 'bold' }, // Adjust the font size of the label
                 }}
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '1.5rem',
+                  fontSize: '1rem',
                   marginLeft: '1rem'
                 }}
 
@@ -271,13 +272,13 @@ function TarjouspyyntoForm() {
             name="email"
             control={control}
             render={({ field }) => (
-              <TextField {...field} fullWidth defaultValue={emailRef.current} label="Sähköposti" size="medium"
+              <TextField {...field} defaultValue={emailRef.current} label="Sähköposti" size="medium"
                 InputLabelProps={{
-                  style: { fontSize: '1.5rem', fontWeight: 'bold' }, // Adjust the font size of the label
+                  style: { fontSize: '1rem', fontWeight: 'bold' }, // Adjust the font size of the label
                 }}
                 sx={{
                   fontWeight: 'bold',
-                  fontSize: '1.5rem',
+                  fontSize: '1rem',
                   marginLeft: '1rem'
                 }}
 
@@ -296,14 +297,14 @@ function TarjouspyyntoForm() {
                   minCols={200}
                   inputProps={{
                     style: {
-                      fontWeight: 'bold', fontSize: '2rem'
+                      fontWeight: 'bold', fontSize: '1rem'
                     },
                   }}
                   InputLabelProps={{
                     className: 'input-bold',
                   }}
                   placeholder="Määrittele tähän mahdollisimman tarkasti työ, aikataulutoiveesi, materiaalitarve jne"
-                  style={{ marginLeft: '1rem', marginTop: "0.5rem", width: "400px", padding: "1rem", fontSize: '2rem' }}
+                  style={{ marginLeft: '1rem', marginTop: "0.5rem", width: "400px", padding: "1rem", fontSize: '1rem' }}
                 />
               )}
             />

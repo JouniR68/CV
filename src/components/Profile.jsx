@@ -26,6 +26,8 @@ export default function Profile({ hideButton }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+//<TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
+
   return (
     <>
       {profileData.map((profile) => (
@@ -36,8 +38,7 @@ export default function Profile({ hideButton }) {
           <TableContainer component={Paper}>
             <Table aria-label="simple table" key={i++}>
               <TableBody>
-                <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>
-                <TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
+                <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>                
                 <TableRow><TableCell className='row'>{t('ProfileLocation')}: {profile.Location}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileProfession')}: {t('profession')}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileMail')}: jr@softa-apu.fi</TableCell></TableRow>

@@ -17,6 +17,8 @@ export default function ProfileLayout() {
       <nav className='host-nav'>
         <Link to="output">{t('cv')}</Link>
         <Link to='looking'>{t('Open-header')}</Link>
+        <Link to='work'>{t('work')}</Link>
+        <Link to='education'>{t('education')}</Link>
       </nav>}
       <Outlet />
     </>

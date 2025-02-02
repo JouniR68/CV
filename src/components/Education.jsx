@@ -13,13 +13,13 @@ export default function Education() {
   let counter = 0;
 
   return (
-    <div>
     <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', md: 'visible' } }}>
         <Table className="cv-table" aria-label="education table">
             <TableHead>
               <TableRow><TableCell sx={{fontWeight:900, backgroundColor:'gray'}}>{t('Output-education')}</TableCell></TableRow>
                 <TableRow>
                     <TableCell align="left">{t('Education-course-header')}</TableCell>
+             
                     <TableCell align="left">{t('Education-schedule-header')}</TableCell>
                     <TableCell align="left">{t('Education-topics-header')}</TableCell>
                     <TableCell align="left">{t('Education-degree-header')}</TableCell>
@@ -33,7 +33,7 @@ export default function Education() {
                         display: { xs: 'block', md: 'table-row' },  // Card style on mobile
                         borderBottom: { xs: '1px solid #ddd', md: 'none' },
                         marginBottom: { xs: '1rem', md: 0 },
-                        padding: { xs: '1rem', md: 0 },
+                        padding: { xs: '1rem', md: 0 },                        
                     }}>
                         <TableCell align="left" className="cell" sx={{ display: { xs: 'block', md: 'table-cell' } }}>
                             <Typography variant="subtitle2" sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -67,6 +67,6 @@ export default function Education() {
             </TableBody>
         </Table>
     </TableContainer>
-</div>
+
   );
 }

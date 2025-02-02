@@ -18,6 +18,8 @@ const CV = () => {
     const navigate = useNavigate()
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+    const navigation = useNavigate();
+
 
 
     /*
@@ -61,18 +63,17 @@ const CV = () => {
 
     return (
         <div className="output">
-            <div className="output-sections">
-                {viewportWidth} x {viewportHeight}        
-                <Button onClick={() => showContent('koulutus')}><h3>{t('Output-education')}</h3></Button>
+            <div className="output-sections">                       
+                <Button onClick={() => showContent('koulutus')}>{t('Output-education')}</Button>
                 {showKoulutus && <Education />}
 
-                <Button onClick={() => showContent('taidot')}><h3>{t('Output-techs')}</h3></Button>
+                <Button onClick={() => showContent('taidot')}>{t('Output-techs')}</Button>
                 {showTechs && <Tech />}
 
-                <Button onClick={() => showContent('historia')}><h3>{t('Output-work')}</h3></Button>
+                <Button onClick={() => showContent('historia')}>{t('Output-work')}</Button>
                 {showHistoria && <Work />}
 
-                <Button onClick={() => showContent('etsin')}><h3>{t('Looking')}</h3></Button>
+                <Button onClick={() => showContent('etsin')}>{t('Looking')}</Button>
                 {showEtsin && <Looking />}
             </div>
         </div>

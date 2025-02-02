@@ -244,7 +244,7 @@
 
   .sali {
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     padding-left: 1rem;
     background-color: #fff;            
     height: 40rem;
@@ -253,6 +253,9 @@
     overflow: auto;
   }
 
+  .day-details{
+    background-color: transparent;
+  }
 
   .hamburger-menu {
     display: none !important;

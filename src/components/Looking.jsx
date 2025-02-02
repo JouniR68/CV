@@ -17,8 +17,8 @@ export default function Looking() {
   let i = 0;
   return (
     <div key={i++} className="responsive-table-container">
-      <TableContainer component={Paper} sx={{ padding: { xs: 1, md: 2 } }}>
-        <Table aria-label="simple table" key={i++}>
+      <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', md: 'visible' } }}>
+        <Table className="cv-table" aria-label="simple table" key={i++}>
           <TableHead>
             <TableRow><TableCell sx={{ fontWeight: 900, backgroundColor: 'gray' }}>{t('Looking')}</TableCell></TableRow>
           </TableHead>

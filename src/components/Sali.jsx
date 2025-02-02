@@ -1,10 +1,10 @@
 import data from "../../data/treeniplan.json";
 
-const Sali = () => {
+const Sali = () => {    
     return (
-        <div className="sali">
+        <div>
             {data.plan.map((day, dayIndex) => (
-                <div key={dayIndex} className="day">
+                <div key={dayIndex} className="sali">
                     {/* Loop through each day's data */}
                     {Object.entries(day).map(([dayName, dayDetails]) => (
                         <div key={dayName} className="day-details">

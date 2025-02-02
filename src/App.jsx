@@ -93,15 +93,16 @@ function App() {
               <Route path='palaute' element={<Feedback/>} />
               <Route path='naytapalaute' element={<ShowFeedback/>} />
               <Route path='treenit' element={<Harjoittelut />} />
+
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="cv" element={<CVPdf />} />
-                <Route path="output" element={<CV />} />
+                <Route path="output" element={<CV />} />                
                 <Route path='intrests' element={<Intrests />} />
-                <Route path='looking' element={<Looking />} />
-                
+                <Route path='looking' element={<Looking />} />                
                 <Route path="kohde" element={<KohteenKuvat />} />
               </Route>
+
 
               <Route path='admin' element={<AdminLayout />}>
                 <Route path="tunterointi" element={<Tunterointi />} />
