@@ -39,7 +39,7 @@ const DayCounter = () => {
 
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px", backgroundColor:'gray', width:'fit-content', paddingLeft:'1rem', paddingRight:'1rem' }}>
+    <div style={{ textAlign: "left", marginTop: "50px", backgroundColor:'gray', width:'fit-content', paddingLeft:'1rem', paddingRight:'1rem' }}>
       <h5>Mandatum eläkemaksujen<br></br>alkuun <span style={{color:'red'}}>{freePensionStart} päivää (1.1.2029-31.12.2035).</span><br></br>
       Alkosta vapaa <span style={{color:'red'}}>{alcoOffDays} päivää (1.1.2024)</span><br></br>
       Eläkkeeseen <span style={{color:'red'}}>{parseInt(daysRemaining)} päivää (15.6.2034, {parseFloat(daysRemaining/365).toFixed(2)} vuosissa.)</span></h5>

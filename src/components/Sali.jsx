@@ -7,7 +7,7 @@ const Sali = () => {
                 <div key={dayIndex} className="sali">
                     {/* Loop through each day's data */}
                     {Object.entries(day).map(([dayName, dayDetails]) => (
-                        <div key={dayName} className="day-details">
+                        <div key={dayName} style={{paddingLeft:'1rem'}} >
                             <h2>{dayName}</h2>
                             <p><strong>Tavoite:</strong> {dayDetails.Tavoite}</p>
                             <p><strong>Lämmittely (10 min):</strong> {dayDetails["Lammittely (10 min)"]}</p>

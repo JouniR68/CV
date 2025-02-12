@@ -72,8 +72,7 @@ const Calendar = () => {
 
         await addDoc(collection(db, 'events'), newEvent);
         setEvents([...events, newEvent]);
-        setNewEvent({ title: '', date: new Date().toISOString().split('T')[0], read: false });
-        window.location.reload()
+        setNewEvent({ title: '', date: new Date().toISOString().split('T')[0], read: false });        
     };
 
     const handleReadOnly = () => {
@@ -103,9 +102,9 @@ const Calendar = () => {
     //let counter = 0;
 
 
-    const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard");
+    //const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard");
     // Separate events into read and unread groups
-    const readEvents = eventClass.filter(event => event.read);
+    const readEvents = events.filter(event => event.read);
     //const unreadEvents = eventClass.filter(event => !event.read);
 
     
@@ -227,6 +226,7 @@ const Calendar = () => {
                                                     variant="contained"
                                                     color="secondary"
                                                     onClick={() => deletor(event.id)}
+                                                    style={{marginLeft:'0.5rem'}}
                                                 >
                                                     {t('Poista')}
                                                 </Button>
@@ -239,27 +239,27 @@ const Calendar = () => {
                         {/* Read Events */}
                         <Grid
                             item
-                            sx={{
-                                backgroundColor: 'gray',
+                            sx={{                                
+                                border:'1px solid black',
                                 borderRadius: '5px',
                                 padding: '1rem',
-                                gridColumn: { xs: '1', sm: '2', md: '2', lg: '2' }, // Proper column
-                                
+                                gridColumn: { xs: '1', sm: '2', md: '2', lg: '1' }, // Proper column                                
+                                marginTop:'-25rem'
                             }}
                         >
                             
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', border:'solid 3px black', padding:'1rem'}}>
-                            {t('EveryDay')}<DayCounter />
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', border:'solid 3px black', padding:'0.5rem'}}>
+                            Tärkeät<DayCounter />
                             </Typography>
 
-                            {readEvents.map((event) => (
+                            {readEvents.length > 0 && readEvents.map((event) => (
                                 <Typography
                                     key={event.id}
                                     sx={{
                                         display: 'flex',
                                         padding: '0.5rem',
                                         marginBottom: '0.5rem',
-                                        backgroundColor: 'gray',                                        
+                                        backgroundColor: 'gray',                                                                                
                                     }}
                                 >
                                     {event.date ? `${event.title}, ${event.date}` : event.title}
