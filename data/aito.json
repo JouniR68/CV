@@ -1,0 +1,70 @@
+{
+    "plan": [
+        {
+            "Päivä 1": {
+                "Tavoite": "Leg",
+                "Lammittely (10 min)": "Soutulaite tai kuntopyöra (keskiraskas intensiteetti)",
+                "Voimaharjoittelu": [
+                    "Takakyykky: 4 x 7 toistoa",
+                    "Maastaveto: 3 x 6 toistoa",
+                    "Yhden jalan jalkaprässi: 3 x 10 toistoa",
+                    "Polven koukistus istuen: 3 x 10-13",
+                    "Pohjenousut: 3 x 12-14"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 30 sek työta (esim. kuntopyöra/hiit-juoksumatto) ja 30 sek lepoa. Tee 8–10 kierrosta."
+            },
+            "Päivä 2": {
+                "Tavoite": "Yläkroppa",
+                "Lammittely (10 min)": "Askelkyykky kevyella painolla tai soutulaite",
+                "Voimaharjoittelu": [
+                    "Penkkipunnerrus tangolla: 3 x 8 toistoa",
+                    "Alatalja V-kahvalla: 4 x 10-14 toistoa",
+                    "Penkkipunnerrus käsipainoilla 1.5: 3 x 7-11",
+                    "Pullover taljassa, suora kahva: 3 x 10-12",
+                    "Vipunostot käsipainoilla: 3 x 12-16",
+                    "Hauiskääntö vinopenkissä käsipainoilla 3 x 12-16",
+                    "Ranskalainen punnerrus vinopenkissä käsipainoilla 3 x 12-16"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 20 sek sprintti (juoksumatto/kuntopyöra) ja 40 sek lepoa. Tee 8–12 kierrosta."
+            },
+            "Päivä 3": {
+                "Tavoite": "Alaselkä  & legs",
+                "Lammittely (10 min)": "Soutulaite tai taljavetoliikkeet kevyella painolla.",
+                "Voimaharjoittelu": [
+                    "Romanialainen maastaveto: 3 x 7 toistoa",
+                    "Hack-kyykky (prässissä..): 3 x 10 toistoa",
+                    "Polven ojennus: 3 x 12-15 toistoa",
+                    "Polven koukistus maaten: 3 x 12-15 toistoa",
+                    "Pohjenousut jalkaprässissä: 3 x 12 toistoa",
+                    "Vatsarutistus taljassa: 3 x 10-14 toistoa"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 30 sek burpeet ja 30 sek lepo. Tee 6–8 kierrosta."
+            },
+            "Päivä 4": {
+                "Tavoite": "Ojentajat ja olkapäät",
+                "Lammittely (10 min)": "Juoksumatto (kevytta juoksua tai kavelya ylamakeen)",
+                "Voimaharjoittelu": [
+                    "Penkkipunnerrus kapealla otteella: 4 x 8 toistoa",
+                    "Pystypunnerrus tangolla: 3 x 8-10 toistoa",
+                    "Flyes vinopenkissä: 3 x 12-16 toistoa",
+                    "Ojentaja niskan takaa taljassa, suora kahva: 3 x 10-14 toistoa",
+                    "Vipunostot taljassa yhdellä kädellä: 4 x 12-16 toistoa",
+                    "Pushdown suoralla kahvalla: 3 x 10-14 toistoa"                    
+                ],
+                "HIIT (10-15 min)": "Vuorottele 20 sek hyppynaruhyppyja ja 40 sek lepoa. Tee 8–12 kierrosta."
+            },
+            "Päivä 5": {
+                "Tavoite": "Selkä, hauis",
+                "Kavely": "5-8 km:n kavely (kahvitauolla)",
+                "Voimaharjoittelu": [
+                    "Ylätalja myötäotteella: 3 x 10-13 toistoa",
+                    "Yhden käden kulmasoutu käsipainoilla: 3 x 8-12 toistoa",
+                    "Hauiskääntö Scott penkissä: 4 x 10-14 toistoa",
+                    "Face pull: 3 x 12-16 toistoa",
+                    "Vatsarutistus laitteessa: 3 x 10-14 toistoa",
+                    "Hammer-kääntö käsipainoilla: 3 x 10-14 toistoa"                    
+                ]
+            }
+        }
+    ]
+}

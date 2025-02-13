@@ -1,4 +1,4 @@
-import data from "../../data/treeniplan.json";
+import data from "../../data/aito.json";
 
 const Sali = () => {    
     return (

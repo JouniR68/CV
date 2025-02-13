@@ -58,6 +58,7 @@ import ShowFeedback from "./components/ShowFeedback";
 import MindMap from "./components/MindMap";
 import Sali from "./components/Sali";
 import Harjoittelut from "./components/Harjoittelut";
+import StockFetcher from "./components/Finance";
 
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
               <Route path='palaute' element={<Feedback/>} />
               <Route path='naytapalaute' element={<ShowFeedback/>} />
               <Route path='treenit' element={<Harjoittelut />} />
+              <Route path='stock' element={<StockFetcher />} />
 
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
