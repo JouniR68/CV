@@ -18,6 +18,5 @@ export default function Logout() {
   sessionStorage.removeItem("address")
   sessionStorage.removeItem("phoneNumber")
   sessionStorage.removeItem("loggedIn")
-  navigate('/')
-  
+  navigate('/')  
 }

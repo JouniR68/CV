@@ -2,6 +2,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../firebase';
 
+
 // Create a Context for the login state
 export const AuthContext = createContext();
 
@@ -12,7 +13,7 @@ export function useAuth() {
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
+  const [timerCounting, setTimerCounting] = useState(false)
   const [name, setName] = useState(() => {
     const firstName = sessionStorage.getItem('firstName') || '';
     const lastName = sessionStorage.getItem('lastName') || '';
@@ -49,6 +50,8 @@ export const AuthProvider = ({ children }) => {
     name,
     setIsLoggedIn,
     setCurrentUser,
+    timerCounting,
+    setTimerCounting, 
     isLoggedIn,
     loading,
   };

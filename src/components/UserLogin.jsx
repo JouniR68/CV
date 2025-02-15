@@ -18,7 +18,7 @@ export const UserLogin = () => {
     const [message, setMessage] = useState('');
     const [data, setData] = useState([])
     const [error, setError] = useState("")
-    const { setIsLoggedIn } = useAuth();
+    const { setIsLoggedIn, setTimerCounting } = useAuth();
     const { t } = useTranslation();
 
     const navigate = useNavigate()
@@ -80,6 +80,7 @@ export const UserLogin = () => {
             if (isSoftaApu) {
                 sessionStorage.setItem("adminLevel", "valid")
                 setStartIActivityTimer(true)
+                setTimerCounting(true)
             }
             return true
         }
@@ -87,6 +88,7 @@ export const UserLogin = () => {
             navigate("/error", { state: { locationError: 'Invalid pwd' } })
             setUserPwd("")
             setIsLoggedIn(false)
+            setTimerCounting(false)
             return
         }
     }
@@ -115,53 +117,53 @@ export const UserLogin = () => {
             <Box
                 component="form"
                 onSubmit={handleLogin}
-                sx={{ 
+                sx={{
                     margin: '0.2rem',
                     padding: '1rem',
-                    display: 'flex', 
-                    flexDirection:'column', 
+                    display: 'flex',
+                    flexDirection: 'column',
                     justifyContent: 'center',
-                    height:'50vh',
-                    width:'100%',                     
+                    height: '50vh',
+                    width: '100%',
                     alignItems: 'center',
-                    fontSize:'large',
-                    backgroundColor: '#fff'    
+                    fontSize: 'large',
+                    backgroundColor: '#fff'
                 }}
             >
 
-                <Typography  variant="h4" gutterBottom >
+                <Typography variant="h4" gutterBottom >
                     {t("Login")}<br />
                 </Typography>
                 {t("LogoutWarning")}<br />
                 <TextField
                     label={t('username')}
-                    variant="outlined"                    
-                    sx={{margin:'2rem'}}
+                    variant="outlined"
+                    sx={{ margin: '2rem' }}
                     inputProps={{
                         style: {
                             fontWeight: 'bold',
-                            fontSize:'1rem'
+                            fontSize: '1rem'
                         },
                     }}
-                    InputLabelProps={{ style: { fontSize:'1rem'}}}
+                    InputLabelProps={{ style: { fontSize: '1rem' } }}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
                 <TextField
                     label={t('password')}
                     variant="outlined"
-                    type="password"                    
+                    type="password"
                     inputProps={{
                         style: {
                             fontWeight: 'bold',
-                            fontSize:'1rem'
+                            fontSize: '1rem'
                         },
                     }}
-                    InputLabelProps={{ style: { fontSize:'1rem'}}}
+                    InputLabelProps={{ style: { fontSize: '1rem' } }}
                     onChange={(e) => setUserPwd(e.target.value)}
                     required
                 />
-                <Button variant="contained" color="primary" type="submit" size="large" sx = {{marginTop:'4rem'}}>
+                <Button variant="contained" color="primary" type="submit" size="large" sx={{ marginTop: '4rem' }}>
                     {t('Login')}
                 </Button>
 

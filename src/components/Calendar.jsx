@@ -12,7 +12,7 @@ import ShowMessages from "./ShowMessages"
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme';
 import DayCounter from './DayCounter';
-import { CoPresentOutlined } from '@mui/icons-material';
+import Logout from './Logout';
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -21,7 +21,9 @@ const Calendar = () => {
     const [reqs, setReqs] = useState([]);
     const [messages, setMessage] = useState([]);
     const navigate = useNavigate()
-    const { isLoggedIn } = useAuth()
+    const { isLoggedIn, timerCounting } = useAuth()
+
+    timerCounting ? '' : Logout()
 
     useEffect(() => {
         const handleKeyDown = (event) => {
