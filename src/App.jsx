@@ -59,7 +59,9 @@ import MindMap from "./components/MindMap";
 import Sali from "./components/Sali";
 import Harjoittelut from "./components/Harjoittelut";
 import StockFetcher from "./components/Finance";
-
+import Suberb from "./components/Huolto/UploadSuberb";
+import ReadSuberb from "./components/Huolto/ReadSuberb";
+import CreateSuberb from "./components/Huolto/CreateSuberbRow";
 
 function App() {
   return (
@@ -95,6 +97,10 @@ function App() {
               <Route path='naytapalaute' element={<ShowFeedback/>} />
               <Route path='treenit' element={<Harjoittelut />} />
               <Route path='stock' element={<StockFetcher />} />
+
+              <Route path = 'suberb' element={<Suberb />} />
+              <Route path = 'showsuberb' element={<ReadSuberb />} />
+              <Route path = 'createsuberb' element={<CreateSuberb />} />
 
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />

@@ -258,6 +258,10 @@
     overflow: auto;
   }
 
+  .huolto{
+    height:60%;
+    overflow-y:auto;
+  }
   .day-details{
     background-color: transparent;
   }
