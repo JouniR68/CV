@@ -3,6 +3,7 @@ import "./index.css";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
 import ShopLayout from "./Layouts/ShopLayout";
+import HuoltoLayout from "./Layouts/HuoltoLayout";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Rent from "./components/Services";
@@ -66,14 +67,14 @@ import CreateSuberb from "./components/Huolto/CreateSuberbRow";
 function App() {
   return (
     <div className="app-container">
-      <AuthProvider>        
-        <BrowserRouter>        
+      <AuthProvider>
+        <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />                         
+              <Route path='/' element={<Home />} />
               <Route path="/mm" element={<MindMap />} />
               <Route path="/huoltorekisteri" element={<Vehicles />} />
-              <Route path ="/sali" element={<Sali/>} />
+              <Route path="/sali" element={<Sali />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
@@ -91,23 +92,25 @@ function App() {
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
               <Route path='lasku' element={<Report />} />
-              <Route path='messages' element={<Messages/>} />
-              <Route path='showMessages' element={<ShowMessages/>} />
-              <Route path='palaute' element={<Feedback/>} />
-              <Route path='naytapalaute' element={<ShowFeedback/>} />
+              <Route path='messages' element={<Messages />} />
+              <Route path='showMessages' element={<ShowMessages />} />
+              <Route path='palaute' element={<Feedback />} />
+              <Route path='naytapalaute' element={<ShowFeedback />} />
               <Route path='treenit' element={<Harjoittelut />} />
               <Route path='stock' element={<StockFetcher />} />
 
-              <Route path = 'suberb' element={<Suberb />} />
-              <Route path = 'showsuberb' element={<ReadSuberb />} />
-              <Route path = 'createsuberb' element={<CreateSuberb />} />
+              <Route path='huollot' element={<HuoltoLayout />} >
+                <Route path='uploadsuberb' element={<Suberb />} />
+                <Route path='showsuberb' element={<ReadSuberb />} />
+                <Route path='createsuberb' element={<CreateSuberb />} />
+              </Route>
 
               <Route path='profile' element={<ProfileLayout />}>
                 <Route index element={<Profile />} />
                 <Route path="cv" element={<CVPdf />} />
-                <Route path="output" element={<CV />} />                
+                <Route path="output" element={<CV />} />
                 <Route path='intrests' element={<Intrests />} />
-                <Route path='looking' element={<Looking />} />                
+                <Route path='looking' element={<Looking />} />
                 <Route path="kohde" element={<KohteenKuvat />} />
               </Route>
 

@@ -482,8 +482,10 @@
 
 
   .host-nav {
-    display: inline;
+    margin-top: 2rem;
+    display: inline-block;    
     justify-content: center;
+    background-color: gray;
     font-weight: 700;
   }
 
