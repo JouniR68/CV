@@ -1,8 +1,8 @@
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
     .pyynnot {
         position: fixed;
-        top: 75%;
-        left: 25%;
+        top: 30%;
+        left: 3%;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -10,7 +10,7 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         overflow: auto;
-        width: fit-content;
+        max-width: 90%;
         /* Ensure horizontal scroll for smaller screens */
     }
 

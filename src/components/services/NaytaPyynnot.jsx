@@ -82,7 +82,7 @@ const ShowOrders = () => {
 
 	return (
 		<div >
-			<TableContainer component={Paper}>
+			<TableContainer component={Paper} className="pyynnot">
 				{error.length > 1 && <h3>{error}</h3>}	
 					<Table aria-label="simple table" key={counter++}>
 
