@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import { db } from "../../firebase"; // Adjust the path to your Firebase config
+import { db } from "../../../firebase"; // Adjust the path to your Firebase config
 import { collection, addDoc } from "firebase/firestore";
 import { Button, TextField } from "@mui/material";
 

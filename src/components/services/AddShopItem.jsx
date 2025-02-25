@@ -72,8 +72,7 @@ const AddShopItem = () => {
                     <AddShoppingCart sx={{width:'80px', height:'60px'}} />
                 </Badge>
             </IconButton>
-            <h1>Tervetuloa verkkokauppaan</h1>
-            <span>Mikäli tarvitset enemmän kuin esim päivän niin soita niin katsotaan sopiva paketti.</span>
+            <h1>Verkkokaupan tuotteiden lisäys</h1>            
             <div className="catalog">
 
                 {products.map((item) => (

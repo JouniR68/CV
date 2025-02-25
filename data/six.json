@@ -1,0 +1,98 @@
+{
+  "ohjelma": {
+      "kesto": "6 kuukautta",
+      "tavoite": "Rakentaa lihaksia, vähentää rasvaa, pudottaa 10 kg",
+      "pituus": 175,
+      "paino": {
+          "alku": 87,
+          "tavoite": 77
+      },
+      "treenipäivät": 6,
+      "aikataulu": [
+          {
+              "päivä": 1,
+              "painotus": "Rinta & ojentajat",
+              "lämmittely": "10 min juoksumatto tai pyörä",
+              "liikkeet": [
+                  {"nimi": "Penkkipunnerrus", "sarjat": 3, "toistot": "8-12"},
+                  {"nimi": "Vinopenkki käsipainoilla", "sarjat": 3, "toistot": "10-12"},
+                  {"nimi": "Dippipunnerrus", "sarjat": 3, "toistot": "10-12"},
+                  {"nimi": "Ranskalainen punnerrus", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Kapea penkkipunnerrus", "sarjat": 3, "toistot": "8-12"},
+                  {"nimi": "Vatsarutistukset koneessa", "sarjat": 3, "toistot": 15}
+              ]
+          },
+          {
+              "päivä": 2,
+              "painotus": "Selkä & hauikset",
+              "lämmittely": "10 min juoksumatto tai pyörä",
+              "liikkeet": [
+                  {"nimi": "Leuanveto", "sarjat": 3, "toistot": "maksimi"},
+                  {"nimi": "Kulmasoutu", "sarjat": 3, "toistot": "8-12"},
+                  {"nimi": "Ylätalja", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Hauiskääntö tangolla", "sarjat": 3, "toistot": "10-12"},
+                  {"nimi": "Hauiskääntö käsipainoilla", "sarjat": 3, "toistot": "10-12"},
+                  {"nimi": "Venäläiset kierrot", "sarjat": 3, "toistot": "15 per puoli"}
+              ]
+          },
+          {
+              "päivä": 3,
+              "painotus": "Jalat & keskivartalo",
+              "lämmittely": "10 min juoksumatto tai pyörä",
+              "liikkeet": [
+                  {"nimi": "Kyykky", "sarjat": 3, "toistot": "8-12"},
+                  {"nimi": "Jalkaprässi", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Maastaveto", "sarjat": 3, "toistot": "8-10"},
+                  {"nimi": "Pohjenousut", "sarjat": 3, "toistot": 15},
+                  {"nimi": "Lankku", "sarjat": 3, "kesto": "45s"},
+                  {"nimi": "Jalkojen nostot", "sarjat": 3, "toistot": 12}
+              ]
+          },
+          {
+              "päivä": 4,
+              "painotus": "Hartiat & ojentajat",
+              "lämmittely": "10 min juoksumatto tai pyörä",
+              "liikkeet": [
+                  {"nimi": "Pystypunnerrus", "sarjat": 3, "toistot": "8-12"},
+                  {"nimi": "Arnold-punnerrus", "sarjat": 3, "toistot": "10-12"},
+                  {"nimi": "Vipunostot sivulle", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Pystysoutu", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Ojentajapunnerrus taljassa", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Rutistukset", "sarjat": 3, "toistot": 15}
+              ]
+          },
+          {
+              "päivä": 5,
+              "painotus": "Jalat & keskivartalo",
+              "lämmittely": "10 min juoksumatto tai pyörä",
+              "liikkeet": [
+                  {"nimi": "Etukyykky", "sarjat": 3, "toistot": "8-12"},
+                  {"nimi": "Romanialainen maastaveto", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Askelkyykky", "sarjat": 3, "toistot": 12},
+                  {"nimi": "Istuva pohjenousu", "sarjat": 3, "toistot": 15},
+                  {"nimi": "Lankku", "sarjat": 3, "kesto": "45s"},
+                  {"nimi": "Vatsarullaukset", "sarjat": 3, "toistot": 12}
+              ]
+          },
+          {
+              "päivä": 6,
+              "painotus": "Kävely",
+              "aktiviteetti": "60 min hidas kävely"
+          },
+          {
+              "päivä": 7,
+              "painotus": "Lepo & palautuminen"
+          }
+      ],
+      "ruokavalio": {
+          "ajoittainen_paasto": true,
+          "syömisikkuna": "12:00 - 20:00",
+          "vältettävät_ruoat": ["Parsakaali", "Anjovikset", "Avokado", "Rahka", "Pähkinät", "Maapähkinävoi", "Jogurtti"],
+          "esimerkkiateriat": {
+              "aamiainen": ["Kaurapuuro marjoilla ja proteiinijauheella", "Munat täysjyväleivän ja juuston kanssa"],
+              "lounas": ["Kana riisin ja salaatin kanssa", "Jauheliha bataatin ja vihannesten kanssa"],
+              "päivällinen": ["Lohi perunamuusin ja vihannesten kanssa", "Tonnikalasalaatti (ilman avokadoa ja pähkinöitä)"]
+          }
+      }
+  }
+}

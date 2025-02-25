@@ -58,11 +58,17 @@ import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
 import MindMap from "./components/MindMap";
 import Sali from "./components/Sali";
+import Sali2 from "./components/sali/Sali";
 import Harjoittelut from "./components/Harjoittelut";
 import StockFetcher from "./components/Finance";
-import Suberb from "./components/Huolto/UploadSuberb";
-import ReadSuberb from "./components/Huolto/ReadSuberb";
-import CreateSuberb from "./components/Huolto/CreateSuberbRow";
+
+import Suberb from "./components/Huolto/suberb/UploadSuberb";
+import ReadSuberb from "./components/Huolto/suberb/ReadSuberb";
+import CreateSuberb from "./components/Huolto/suberb/CreateSuberbRow";
+
+import WRellu from "./components/Huolto/WRellu/UploadWRellu";
+import ReadWRellu from "./components/Huolto/WRellu/ReadWRellu";
+import CreateWRellu from "./components/Huolto/WRellu/CreateWRelluRow";
 
 function App() {
   return (
@@ -75,6 +81,7 @@ function App() {
               <Route path="/mm" element={<MindMap />} />
               <Route path="/huoltorekisteri" element={<Vehicles />} />
               <Route path="/sali" element={<Sali />} />
+              <Route path="/sali2" element={<Sali2 />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
@@ -103,6 +110,11 @@ function App() {
                 <Route path='uploadsuberb' element={<Suberb />} />
                 <Route path='showsuberb' element={<ReadSuberb />} />
                 <Route path='createsuberb' element={<CreateSuberb />} />
+              
+                <Route path='uploadwRellu' element={<WRellu />} />
+                <Route path='showWRellu' element={<ReadWRellu />} />
+                <Route path='createWRellu' element={<CreateWRellu />} />
+              
               </Route>
 
               <Route path='profile' element={<ProfileLayout />}>

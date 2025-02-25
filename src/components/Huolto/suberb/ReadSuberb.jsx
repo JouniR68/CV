@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase"; // Adjust the path to your Firebase config
+import { db } from "../../../firebase"; // Adjust the path to your Firebase config
 import { collection, getDocs } from "firebase/firestore";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
@@ -35,9 +35,7 @@ const DataTable = () => {
           <TableRow>
             <TableCell sx = {{backgroundColor:'gray', fontWeight:'bold'}}>Selitys</TableCell>
             <TableCell sx = {{backgroundColor:'gray', fontWeight:'bold'}}>Päivä</TableCell>
-            <TableCell sx = {{backgroundColor:'gray', fontWeight:'bold'}}>Km</TableCell>
-            <TableCell sx = {{backgroundColor:'gray', fontWeight:'bold'}}>€</TableCell>
-            <TableCell sx = {{backgroundColor:'gray', fontWeight:'bold'}}>Ostopaikka</TableCell>
+            <TableCell sx = {{backgroundColor:'gray', fontWeight:'bold'}}>Km</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,8 +44,6 @@ const DataTable = () => {
               <TableCell>{row.selitys}</TableCell>
               <TableCell>{row.päivä}</TableCell>
               <TableCell>{row.km}</TableCell>
-              <TableCell>{row["€"]}</TableCell>
-              <TableCell>{row.ostopaikka}</TableCell>
             </TableRow>
           ))}
         </TableBody>

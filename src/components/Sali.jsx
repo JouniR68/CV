@@ -1,4 +1,4 @@
-import data from "../../data/aito.json";
+import data from "../../data/six.json";
 
 const Sali = () => {    
     return (

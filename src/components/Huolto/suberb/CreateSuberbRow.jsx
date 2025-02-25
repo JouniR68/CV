@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { db } from '../../firebase'; // Adjust if needed
+import { db } from '../../../firebase'; // Adjust if needed
 import { collection, addDoc } from 'firebase/firestore';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
