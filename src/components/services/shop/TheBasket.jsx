@@ -10,9 +10,9 @@ import Paper from '@mui/material/Paper';
 import { nanoid } from 'nanoid'
 import { useEffect, useState } from "react";
 import { Save } from "@mui/icons-material";
-import { db } from "../../firebase.js";
+import { db } from "../../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
-import Contact from "./Contact.jsx";
+import Contact from "../Contact.jsx";
 import { v4 as uuidv4 } from 'uuid';
 
 const TheBasket = () => {
@@ -20,27 +20,45 @@ const TheBasket = () => {
     const location = useLocation();
     const { state } = location
     let { data } = state;
+    console.log("data: " + data);
     const [filteredData, setFilteredData] = useState(data.filter(row => Object.keys(row).length !== 0));
     const [contactDetails, setContactDetails] = useState({})
     const uuid = uuidv4()
     console.log("tilausnro: ", uuid)
     const SaveOrder = async () => {
         try {
-            if (Array.isArray(filteredData) && filteredData.length > 0) {
-                filteredData.push({tilausnro: uuid})
-                console.log("contactDetails: ", contactDetails)
-                filteredData.push(contactDetails)
-                // Firestore expects a single document object, not an array
-                const orderData = { items: filteredData };
-                const itemRef = await addDoc(collection(db, "orders"), orderData);
-                console.log("Document written with ID: ", itemRef.id);                
-                navigate('/thanks');
+            if (!contactDetails.Etunimi || !contactDetails.Sukunimi) {
+                navigate('/errorNote', { state: { title: "Yhteystiedot", description: 'Yhteystiedot puuttuvat / puutteelliset' } })
+                return;                
             }
 
+            if (Array.isArray(filteredData) && filteredData.length > 0) {
+                // Combine product data and contact details into one object
+                const combinedOrder = {
+                    tilausnro: uuid,
+                    timestamp: new Date(),
+                    items: filteredData.map(item => ({
+                        id: item.id,
+                        title: item.title,
+                        kpl: item.kpl,
+                        price: item.priceh
+                    })),
+                    tila: 'uusi',
+                    ...contactDetails, // Spread contact details into the same object
+                };
+
+                // Save combinedOrder as the first array index
+                const orderData = { orders: [combinedOrder] };
+
+                // Save to Firebase
+                const itemRef = await addDoc(collection(db, "orders"), orderData);
+                console.log("Document written with ID: ", itemRef.id);
+                navigate('/thanks');
+            }
         } catch (e) {
-            console.error("Error adding document ", e.message);
+            console.error("Error adding document: ", e.message);
         }
-    }
+    };
 
     const removeFromTheBasket = (id) => {
         console.log("Row id to be removed: ", id)
@@ -50,8 +68,8 @@ const TheBasket = () => {
 
     const handleContactChange = (newContactDetails) => {
         setContactDetails(newContactDetails);
-      };
-    
+    };
+
 
     //Purchase sum
     const totalsum = filteredData.reduce((accumulator, item) => {
@@ -60,10 +78,9 @@ const TheBasket = () => {
 
 
     return (
-        <>
-            <h1>Tilauskorisi </h1>            
+        <div className="theBasket">
+            <h1>Ostoskori </h1>
             <h4>Maksu työn valmistuttua, laskulla</h4>
-
 
             <Table sx={{ minWidTableCell: 650 }} size="small" aria-label="a dense table">
                 <TableHead sx={{ fontSize: 'bold' }}>
@@ -87,18 +104,18 @@ const TheBasket = () => {
                         </TableRow>
                     )}
                     <TableRow>
-                        <TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}>Yhteissumma</TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}></TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}></TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}>{totalsum}</TableCell>
+                        <TableCell sx={{ mt: 1, backgroundColor: '#d13529', fontWeight: 'bold' }}>Yhteissumma</TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}></TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}></TableCell><TableCell sx={{ mt: 2, backgroundColor: '#d13529', fontWeight: 'bold' }}>{totalsum}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
-            <p></p>
-            <Contact contactDetails={contactDetails} onContactChange={handleContactChange}/>
-            <p></p>
-            <Button variant="contained" onClick={() => SaveOrder()} sx={{ mt: 2, mb: 1 }}>Vahvista</Button>
-            <Button variant="contained" onClick={() => navigate(-1)}>Ostoksille</Button>
-                               
-                    
-        </>
+
+            <Contact contactDetails={contactDetails} onContactChange={handleContactChange} />
+
+            <div className="theBasket--buttons">
+                <Button variant="contained" onClick={() => SaveOrder()}>Vahvista tilauksesi</Button>
+                <Button variant="contained" onClick={() => navigate(-1)}>Jatka ostoksia</Button>
+            </div>
+        </div>
     );
 
 }

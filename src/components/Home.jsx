@@ -133,6 +133,8 @@ export default function Home() {
       <div className="home-teksti">{t('Cando')}<br/> <span>{t('MoreFromMe')}</span></div>
       <div className="home-kollaasi">
         <img alt="Palvelut, apuja yms" src="/Images/laptop.png" onClick={() => tarjouspyyntoon()} />
+        
+        <img alt="Jounin Verkkokauppa" src="/Images/online-shop.png" onClick={() => navigate('/shop')} />
         <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
       </div>
 

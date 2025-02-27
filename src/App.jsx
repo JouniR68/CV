@@ -32,9 +32,8 @@ import Address from "./components/Address";
 import CheckLocation from "./components/CheckLocation";
 import { AuthProvider } from "./components/LoginContext";
 import Done from "./components/Done";
+import ErrorNote from "./components/ErrorNote";
 import Calendar from "./components/Calendar";
-import Catalog from "./components/services/AddShopItem"
-import Basket from "./components/services/TheBasket";
 import TarjousLomake from "./components/services/Tarjouslomake";
 import Register from "./components/Register";
 import Contacts from "./components/services/Contact";
@@ -57,7 +56,7 @@ import Vehicles from "./components/Huolto/Vehicles";
 import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
 import MindMap from "./components/MindMap";
-import Sali from "./components/Sali";
+
 import Sali2 from "./components/sali/Sali";
 import Harjoittelut from "./components/Harjoittelut";
 import StockFetcher from "./components/Finance";
@@ -70,6 +69,10 @@ import WRellu from "./components/Huolto/WRellu/UploadWRellu";
 import ReadWRellu from "./components/Huolto/WRellu/ReadWRellu";
 import CreateWRellu from "./components/Huolto/WRellu/CreateWRelluRow";
 
+import Catalog from "./components/services/shop/AddShopItem"
+import Basket from "./components/services/shop/TheBasket";
+import Orders from "./components/services/shop/ShowOrders";
+
 function App() {
   return (
     <div className="app-container">
@@ -79,9 +82,8 @@ function App() {
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />
               <Route path="/mm" element={<MindMap />} />
-              <Route path="/huoltorekisteri" element={<Vehicles />} />
-              <Route path="/sali" element={<Sali />} />
-              <Route path="/sali2" element={<Sali2 />} />
+              <Route path="/huoltorekisteri" element={<Vehicles />} />              
+              <Route path="/sali" element={<Sali2 />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
@@ -98,6 +100,7 @@ function App() {
               <Route path="adminLogin" element={<AdminLogin />} />
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
+              <Route path="errorNote" element={<ErrorNote />} />
               <Route path='lasku' element={<Report />} />
               <Route path='messages' element={<Messages />} />
               <Route path='showMessages' element={<ShowMessages />} />
@@ -142,9 +145,10 @@ function App() {
               <Route path='contract' element={<ContractForm />} />
 
               <Route element={<ShopLayout />}>
-                <Route path='catalog' index element={<Catalog />} />
+                <Route path='shop' index element={<Catalog />} />
                 <Route path='basket' element={<Basket />} />
                 <Route path='customers' element={<Contacts />} />
+                <Route path='orders' element={<Orders />} />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Route>

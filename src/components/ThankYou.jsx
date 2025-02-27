@@ -7,6 +7,7 @@ const ThankYouPage = () => {
   };
 
   const {t} = useTranslation()
+  
 
   return (
     <Container maxWidth="sm">

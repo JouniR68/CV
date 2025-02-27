@@ -5,9 +5,11 @@
         flex-wrap: wrap;
         gap: 0.5rem;
         margin-top: 1rem;
+        background-color: gray;
       }
     
       .catalog--card {
+        background-color: aliceblue;
         flex: 1 1 20%;
         border: 1px solid;
         padding: 1rem;
@@ -34,6 +36,22 @@
         margin-top: 1rem;
       }
     
+      .theBasket {
+        display:flex;
+        flex-direction: column;
+        background-color: gray;
+        max-height: 45rem;
+        padding:1rem;
+        overflow: auto;
+        border-radius: 0.5rem;      
+      }
+
+      .theBasket--buttons {
+        display: flex;
+        width:fit-content;
+        margin-top:1rem;
+        gap:1rem;
+      }
 }
 
 @media only screen and (min-width: 980px) and (max-height: 800px) {
