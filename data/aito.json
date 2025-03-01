@@ -1,9 +1,9 @@
 {
     "plan": [
         {
-            "Päivä 1": {
-                "Tavoite": "Leg",
-                "Lammittely (10 min)": "Soutulaite tai kuntopyöra (keskiraskas intensiteetti)",
+            "maanantai": {
+                "Tavoite": "Jalat",
+                "Lämmittely (10 min)": "Soutulaite tai kuntopyörä (keskiraskas intensiteetti)",
                 "Voimaharjoittelu": [
                     "Takakyykky: 4 x 7 toistoa",
                     "Maastaveto: 3 x 6 toistoa",
@@ -11,11 +11,19 @@
                     "Polven koukistus istuen: 3 x 10-13",
                     "Pohjenousut: 3 x 12-14"
                 ],
-                "HIIT (10-15 min)": "Vuorottele 30 sek työta (esim. kuntopyöra/hiit-juoksumatto) ja 30 sek lepoa. Tee 8–10 kierrosta."
+                "HIIT (10-15 min)": "Vuorottele 30 sek työta (esim. kuntopyörä/hiit-juoksumatto) ja 30 sek lepoa. Tee 8–10 kierrosta.",
+                "Aerobinen liikunta": "20-30 min juoksu tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Kaurapuuro marjoilla ja kananmunilla",
+                    "Lounas": "Kanaa ja riisiä kasvissekoituksen kera",
+                    "Välipala": "Omena ja kova keitetty muna",
+                    "Päivällinen": "Naudanlihaa tai kanaa perunamuusin ja vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja marjoja"
+                }
             },
-            "Päivä 2": {
+            "tiistai": {
                 "Tavoite": "Yläkroppa",
-                "Lammittely (10 min)": "Askelkyykky kevyella painolla tai soutulaite",
+                "Lämmittely (10 min)": "Askelkyykky kevyellä painolla tai soutulaite",
                 "Voimaharjoittelu": [
                     "Penkkipunnerrus tangolla: 3 x 8 toistoa",
                     "Alatalja V-kahvalla: 4 x 10-14 toistoa",
@@ -25,11 +33,19 @@
                     "Hauiskääntö vinopenkissä käsipainoilla 3 x 12-16",
                     "Ranskalainen punnerrus vinopenkissä käsipainoilla 3 x 12-16"
                 ],
-                "HIIT (10-15 min)": "Vuorottele 20 sek sprintti (juoksumatto/kuntopyöra) ja 40 sek lepoa. Tee 8–12 kierrosta."
+                "HIIT (10-15 min)": "Vuorottele 20 sek sprintti (juoksumatto/kuntopyörä) ja 40 sek lepoa. Tee 8–12 kierrosta.",
+                "Aerobinen liikunta": "20-30 min juoksu tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Munakas täysjyväleivän kanssa",
+                    "Lounas": "Kalkkunaa ja täysjyväpasta kasviskastikkeella",
+                    "Välipala": "Porkkana- ja kurkkupalat hummuksen kanssa",
+                    "Päivällinen": "Kalaa (esim. lohta) ja quinoa vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja mustikoita"
+                }
             },
-            "Päivä 3": {
-                "Tavoite": "Alaselkä  & legs",
-                "Lammittely (10 min)": "Soutulaite tai taljavetoliikkeet kevyella painolla.",
+            "keskiviikko": {
+                "Tavoite": "Alaselkä & jalat",
+                "Lämmittely (10 min)": "Soutulaite tai taljavetoliikkeet kevyellä painolla.",
                 "Voimaharjoittelu": [
                     "Romanialainen maastaveto: 3 x 7 toistoa",
                     "Hack-kyykky (prässissä..): 3 x 10 toistoa",
@@ -38,32 +54,55 @@
                     "Pohjenousut jalkaprässissä: 3 x 12 toistoa",
                     "Vatsarutistus taljassa: 3 x 10-14 toistoa"
                 ],
-                "HIIT (10-15 min)": "Vuorottele 30 sek burpeet ja 30 sek lepo. Tee 6–8 kierrosta."
+                "HIIT (10-15 min)": "Vuorottele 30 sek burpeet ja 30 sek lepo. Tee 6–8 kierrosta.",
+                "Aerobinen liikunta": "20-30 min juoksu tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Täysjyväleipä kananmunalla ja tomaatilla",
+                    "Lounas": "Jauhelihaa ja bataattia kasvissekoituksen kera",
+                    "Välipala": "Banaani ja proteiinijuoma",
+                    "Päivällinen": "Kanaa ja riisiä kasvissekoituksen kanssa",
+                    "Iltapala": "Raejuustoa ja vähärasvaista juustoa"
+                }
             },
-            "Päivä 4": {
+            "torstai": {
                 "Tavoite": "Ojentajat ja olkapäät",
-                "Lammittely (10 min)": "Juoksumatto (kevytta juoksua tai kavelya ylamakeen)",
+                "Lämmittely (10 min)": "Juoksumatto (kevyttä juoksua tai kävelyä ylämäkeen)",
                 "Voimaharjoittelu": [
                     "Penkkipunnerrus kapealla otteella: 4 x 8 toistoa",
                     "Pystypunnerrus tangolla: 3 x 8-10 toistoa",
                     "Flyes vinopenkissä: 3 x 12-16 toistoa",
                     "Ojentaja niskan takaa taljassa, suora kahva: 3 x 10-14 toistoa",
                     "Vipunostot taljassa yhdellä kädellä: 4 x 12-16 toistoa",
-                    "Pushdown suoralla kahvalla: 3 x 10-14 toistoa"                    
+                    "Pushdown suoralla kahvalla: 3 x 10-14 toistoa"
                 ],
-                "HIIT (10-15 min)": "Vuorottele 20 sek hyppynaruhyppyja ja 40 sek lepoa. Tee 8–12 kierrosta."
+                "HIIT (10-15 min)": "Vuorottele 20 sek hyppynaruhyppyjä ja 40 sek lepoa. Tee 8–12 kierrosta.",
+                "Aerobinen liikunta": "20-30 min juoksu tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Kaurapuuro marjoilla ja proteiinijauheella",
+                    "Lounas": "Kanaa ja riisiä kasvissekoituksen kanssa",
+                    "Välipala": "Kova keitetty muna ja kurkku",
+                    "Päivällinen": "Kalkkunaa ja täysjyväpasta kasviskastikkeella",
+                    "Iltapala": "Raejuustoa ja marjoja"
+                }
             },
-            "Päivä 5": {
+            "perjantai": {
                 "Tavoite": "Selkä, hauis",
-                "Kavely": "5-8 km:n kavely (kahvitauolla)",
+                "Kävely": "5-8 km:n kävely (kahvitauolla)",
                 "Voimaharjoittelu": [
                     "Ylätalja myötäotteella: 3 x 10-13 toistoa",
                     "Yhden käden kulmasoutu käsipainoilla: 3 x 8-12 toistoa",
                     "Hauiskääntö Scott penkissä: 4 x 10-14 toistoa",
                     "Face pull: 3 x 12-16 toistoa",
                     "Vatsarutistus laitteessa: 3 x 10-14 toistoa",
-                    "Hammer-kääntö käsipainoilla: 3 x 10-14 toistoa"                    
-                ]
+                    "Hammer-kääntö käsipainoilla: 3 x 10-14 toistoa"
+                ],
+                "Ravintosuositus": {
+                    "Aamiainen": "Munakas täysjyväleivän kanssa",
+                    "Lounas": "Kalaa (esim. lohta) ja quinoa vihannesten kanssa",
+                    "Välipala": "Omena ja proteiinijuoma",
+                    "Päivällinen": "Naudanlihaa tai kanaa perunamuusin ja vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja mustikoita"
+                }
             }
         }
     ]

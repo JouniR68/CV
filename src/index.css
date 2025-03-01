@@ -42,15 +42,16 @@
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     /*background-image: url('./assets/aita.jpg');*/
-    background:
+    /*background:
       linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)),
       url(https://picsum.photos/1600/900) no-repeat center center;
+      */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: 1rem;
     overflow: 'auto';
-    margin: 2rem auto;
+    margin: 1rem auto;
     font-size: 1.5rem;
   }
 
@@ -239,7 +240,7 @@
     z-index: 1;
     background:
       linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)),
-      url(https://picsum.photos/1600/900) no-repeat center center;
+       no-repeat center center;
     background-size: cover;
     background-position: center;
     width: 95vw;
