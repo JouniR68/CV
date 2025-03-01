@@ -97,8 +97,8 @@ const TheBasket = () => {
                             <TableCell>{item.kpl}</TableCell>
                             <TableCell>{item.priceh}</TableCell>
                             <TableCell>{item.priceh * item.kpl}</TableCell>
-                            <TableCell>{(item.priceh * item.kpl) * 25.5 / 100}</TableCell>
-                            <TableCell>{(item.priceh * item.kpl) - ((item.priceh * item.kpl) * 25.5 / 100)}</TableCell>
+                            <TableCell>{(item.priceh * item.kpl) - (item.priceh * item.kpl) * (25.5 / 100)}</TableCell>
+                            <TableCell>{((item.priceh * item.kpl) * (25.5 / 100))}</TableCell>
                             <TableCell>{item.priceh * item.kpl}</TableCell>
                             <TableCell><Button onClick={() => removeFromTheBasket(item.id)}>X</Button></TableCell>
                         </TableRow>

@@ -228,6 +228,9 @@
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    
   }
 
   body::-webkit-scrollbar {
@@ -243,8 +246,7 @@
        no-repeat center center;
     background-size: cover;
     background-position: center;
-    width: 95vw;
-    height: 90vh;
+    overflow-y:auto;
   }
 
   .sali {
