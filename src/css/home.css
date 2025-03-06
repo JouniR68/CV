@@ -88,7 +88,7 @@
 
 
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
   .home {
     align-items: center;
     width:100%;
@@ -139,6 +139,32 @@
   h5:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+  }
+
+
+  .image-container {
+    display: flex; 
+    justify-content: center; 
+    gap: 20px;        /* Add space between images */
+    text-align: center; /* Center text under images */
+  }
+  
+  .image-wrapper {
+    display: flex;
+    flex-direction: column; /* Places text under the image */
+    align-items: center;    /* Aligns content in center */
+    cursor: pointer;        /* Make clickable */
+  }
+  
+  .image-wrapper img {
+    width: 100px;      /* Set image size */
+    height: auto;      
+    margin-bottom: 10px; /* Add spacing between image and text */
+  }
+  
+  .image-wrapper span {
+    font-size: 16px;  /* Adjust text size */
+    color: black;     
   }
 
   .home-teksti {

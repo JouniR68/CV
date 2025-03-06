@@ -130,12 +130,22 @@ export default function Home() {
 
       {isUnsupported && <div className="unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
-      <div className="home-teksti">{t('Cando')}<br/> <span>{t('MoreFromMe')}</span></div>
-      <div className="home-kollaasi">
-        <img alt="Palvelut, apuja yms" src="/Images/laptop.png" onClick={() => tarjouspyyntoon()} />
-        
-        <img alt="Jounin Verkkokauppa" src="/Images/online-shop.png" onClick={() => navigate('/shop')} />
-        <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
+      <div className="home-teksti">{t('Cando')}<br /> <span>{t('MoreFromMe')}</span></div>
+      <div className="image-container">
+        <div className="image-wrapper">
+          <img alt="Palvelut, apuja yms" src="/Images/laptop.png" onClick={() => tarjouspyyntoon()} />
+          <span>{t('Offer')}</span>
+        </div>
+
+        <div className="image-wrapper">
+          <img alt="Jounin Verkkokauppa" src="/Images/online-shop.png" onClick={() => navigate('/shop')} />
+          <span>{t('Shop')}</span>
+        </div>
+
+        <div className="image-wrapper">
+          <img alt="Palaute/Feedback" src="/Images/jrsoft/feedback.png" onClick={() => handleOpen()} />
+          <span>{t('Message')}</span>
+        </div>
       </div>
 
       {isLoggedIn && <InactivityTimer />}
