@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import trainingData from "../../../data/aito.json";
+import { Button } from '@mui/material';
 
 const TrainingPlan = () => {
+  const [nutriation, showNutriation] = useState(false);
+  const [done, setDone] = useState([])
   const [showWholeWeek, setShowWholeWeek] = useState(false); // State to manage toggle
 
   // Get today's day of the week as a number (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
@@ -31,18 +34,45 @@ const TrainingPlan = () => {
     setShowWholeWeek(!showWholeWeek);
   };
 
+
+  const markDone = (i) => {
+
+    setDone(prev => {
+      const newDone = [...prev];
+      newDone[i] = !newDone[i];
+      return newDone;
+    });
+  }
+
+
+  const openNutrientation = () => {
+    showNutriation(!nutriation);
+  }
+
+  const getButtonStyle = (i) => {
+    return {
+      backgroundColor: done[i] ? "green" : "red",
+      border: done[i] ? "1px solid #ccc" : "none",
+      color: done[i] ? "white" : "black",
+      textDecoration: done[i] ? "line-through" : "none",
+    }
+  }
+
+  //backgroundColor: getButtonStyle(i).backgroundColor,
+  //color: getButtonStyle(i).color,
+
   return (
     <div>
       {/* Toggle Button */}
-      <button onClick={toggleView} style={{ marginBottom: '20px', padding: '10px', fontSize: '16px' }}>
-        {showWholeWeek ? "Näytä vain tänään" : "Näytä koko viikko"}
+      <button onClick={toggleView} style={{ marginTop: '1rem', padding: '10px', fontSize: '16px' }}>
+        {showWholeWeek ? "Päivän treeni" : "Viikon pläni"}
       </button>
 
       {/* Render today's training or the whole week based on the toggle state */}
       {showWholeWeek ? (
         // Render the whole week
         trainingData.plan.map((week, index) => (
-          <div key={index}>
+          <div key={index} className="showWk">
             {Object.entries(week).map(([day, details]) => (
               <div key={day} style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
                 <h2>{day.charAt(0).toUpperCase() + day.slice(1)}</h2>
@@ -54,10 +84,7 @@ const TrainingPlan = () => {
                   {details.Voimaharjoittelu.map((exercise, i) => (
                     <li key={i}>{exercise}</li>
                   ))}
-                </ul>
-
-                <p><strong>HIIT (10-15 min):</strong> {details['HIIT (10-15 min)']}</p>
-                <p><strong>Aerobinen liikunta:</strong> {details['Aerobinen liikunta']}</p>
+                </ul>                
 
                 <h3>Ravintosuositus</h3>
                 <ul>
@@ -81,22 +108,56 @@ const TrainingPlan = () => {
 
             <h3>Voimaharjoittelu</h3>
             <ul>
+
+
               {todayTraining[1].Voimaharjoittelu.map((exercise, i) => (
-                <li key={i}>{exercise}</li>
+
+<div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+<Button
+  style={{
+    display: 'flex',
+    justifyContent: 'start',
+    textAlign: 'left',
+    width: '100%',
+    
+  }}
+  onClick={() => markDone(i)}
+>
+  {exercise}
+</Button>
+
+<Button
+  style={{
+    backgroundColor: done[i] ? 'green' : 'red',
+    color: 'white',
+    padding: '5px 10px',
+    marginBottom:'10px'
+  }}
+  onClick={() => markDone(i)} // Optional, if you want both buttons to toggle the same value
+>
+  {done[i] ? 'Ok' : '?'}
+</Button>
+</div>
+
+
+
               ))}
+
             </ul>
 
-            <p><strong>HIIT (10-15 min):</strong> {todayTraining[1]['HIIT (10-15 min)']}</p>
-            <p><strong>Aerobinen liikunta:</strong> {todayTraining[1]['Aerobinen liikunta']}</p>
+            <Button onClick={openNutrientation}>{nutriation ? 'Piilota' : 'Ravintoinfo'}</Button>
+            {nutriation &&
+              <>
+                <h3>Ravintosuositus</h3>
+                <ul>
+                  {Object.entries(todayTraining[1].Ravintosuositus).map(([meal, food]) => (
+                    <li key={meal}>
+                      <strong>{meal}:</strong> {food}
+                    </li>
+                  ))}
+                </ul>
+              </>}
 
-            <h3>Ravintosuositus</h3>
-            <ul>
-              {Object.entries(todayTraining[1].Ravintosuositus).map(([meal, food]) => (
-                <li key={meal}>
-                  <strong>{meal}:</strong> {food}
-                </li>
-              ))}
-            </ul>
           </div>
         ) : (
           <div>Ei treeniohjelmaa tälle päivälle.</div>
