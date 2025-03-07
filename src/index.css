@@ -344,11 +344,6 @@
   }
 
   .confirmation-content {
-    position: fixed;
-    top: 30%;
-    left: 30%;
-    max-width: 50%;
-    max-height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -357,7 +352,8 @@
     padding: 1rem;
     border-radius: 8px;
     line-height: 30px;
-    ;
+    color:red;
+    font-weight: 700;
     gap: 1rem;
     text-align: justify;
   }

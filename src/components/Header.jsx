@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react"
 import { Link, useLocation } from "react-router-dom";
 
-import Login from "./AdminLogin"
+import Login from "./User/AdminLogin"
 import { useTranslation } from 'react-i18next';
 import IconButton from '@mui/material/IconButton';
 import LocationOnIcon from '@mui/icons-material/LocationOn';

@@ -8,8 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailIcon from '@mui/icons-material/Mail';
-//import Sos from '@mui/icons-material/GitHub';
-import '../index.css';
+
 import { FullscreenExit, GitHub } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';

@@ -5,61 +5,58 @@ import AdminLayout from "./Layouts/AdminLayout";
 import ShopLayout from "./Layouts/ShopLayout";
 import HuoltoLayout from "./Layouts/HuoltoLayout";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
+import Profile from "./components/CV/Profile";
 import Rent from "./components/Services";
-import Customer from "./components/AddCustomer";
-import CustomerData from "./components/services/NaytaPyynnot";
+import Customer from "./components/services/tarjous/AddCustomer";
+import CustomerData from "./components/services/tarjous/NaytaPyynnot";
 import Messages from "./components/Messages"
 import ShowMessages from "./components/ShowMessages";
 import Intrests from "./components/Intrest"
-import Looking from './components/Looking';
-import AdminLogin from "./components/AdminLogin";
-import Logout from "./components/Logout";
+import Looking from './components/CV/Looking';
+import AdminLogin from "./components/User/AdminLogin";
+import Logout from "./components/User/Logout";
 import CVLayout from "./Layouts/CVLayout";
 import ProfileLayout from "./Layouts/ProfileLayout";
-import Work from "./components/Work";
-import Education from "./components/Education";
-import Tech from "./components/Tech";
-import CV from "./components/Output"
+import Work from "./components/CV/Work";
+import Education from "./components/CV/Education";
+import Tech from "./components/CV/Tech";
+import CV from "./components/CV/Output"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import CollectionCounts from "./components/News"
-import ThankYouPage from "./components/ThankYou";
-import ContractForm from "./components/AddContract";
+import CollectionCounts from "./components/services/dashboard/News"
+import ThankYouPage from "./components/Dialogs/ThankYou";
+import ContractForm from "./components/services/tarjous/AddContract";
 import '../i18n'; // Import the i18n configuration
-import ErrorMessage from "./components/ErrorMessage";
+import ErrorMessage from "./components/Dialogs/ErrorMessage";
 import Address from "./components/Address";
 import CheckLocation from "./components/CheckLocation";
 import { AuthProvider } from "./components/LoginContext";
-import Done from "./components/Done";
-import ErrorNote from "./components/ErrorNote";
-import Calendar from "./components/Calendar";
-import TarjousLomake from "./components/services/Tarjouslomake";
-import Register from "./components/Register";
-import Contacts from "./components/services/Contact";
-import { UserLogin } from "./components/UserLogin"
-import Tunterointi from "./components/services/Tunterointi"
-import Report from "./components/services/Report"
-import TarjouspyyntoForm from "./components/services/PyydaTarjous";
-import NotFound from "./components/NotFound";
+import Done from "./components/Dialogs/Done";
+import ErrorNote from "./components/Dialogs/ErrorNote";
+import Calendar from "./components/services/dashboard/Calendar";
+import TarjousLomake from "./components/services/tarjous/Tarjouslomake";
+import Register from "./components/User/Register";
+import Contacts from "./components/Contact";
+import { UserLogin } from "./components/User/UserLogin"
+import Tunterointi from "./components/services/tarjous/Tunterointi"
+import Report from "./components/services/tarjous/Report"
+import TarjouspyyntoForm from "./components/services/tarjous/PyydaTarjous";
+import NotFound from "./components/Dialogs/NotFound";
 import KohteenKuvat from "./components/KohteenKuvat"
-import Poistatunnus from "./components/Poistatunnus"
+import Poistatunnus from "./components/User/Poistatunnus"
 import InactivityTimer from "./components/InActivity";
-import Learnings from "./components/Learnings"
-import Budjetti from "./components/Budjetti"
-import CoverLetter from "./components/Letter";
-//import FeedbackDialog from "./components/Messages";
-import Letter from "./components/WebLetter";
-import Exceller from "./components/Exceller";
-import CVPdf from "./components/services/CVPdf"
+import Learnings from "./components/CV/Learnings"
+import Budjetti from "./components/Talous/Budjetti"
+import CoverLetter from "./components/CV/Letter";
+import Letter from "./components/CV/WebLetter";
+import CVPdf from "./components/CV/CVPdf"
 import Vehicles from "./components/Huolto/Vehicles";
 import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
-import MindMap from "./components/MindMap";
+import MindMap from "./components/CV/MindMap";
 
 import Sali2 from "./components/sali/Sali";
-import Harjoittelut from "./components/Harjoittelut";
-import StockFetcher from "./components/Finance";
+import StockFetcher from "./components/Talous/Finance";
 
 import Suberb from "./components/Huolto/suberb/UploadSuberb";
 import ReadSuberb from "./components/Huolto/suberb/ReadSuberb";
@@ -105,8 +102,7 @@ function App() {
               <Route path='messages' element={<Messages />} />
               <Route path='showMessages' element={<ShowMessages />} />
               <Route path='palaute' element={<Feedback />} />
-              <Route path='naytapalaute' element={<ShowFeedback />} />
-              <Route path='treenit' element={<Harjoittelut />} />
+              <Route path='naytapalaute' element={<ShowFeedback />} />              
               <Route path='stock' element={<StockFetcher />} />
 
               <Route path='huollot' element={<HuoltoLayout />} >

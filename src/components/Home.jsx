@@ -7,7 +7,7 @@ import { useAuth } from './LoginContext';
 import { Button, Typography } from '@mui/material';
 import InactivityTimer from './InActivity';
 import FeedbackDialog from './Messages';
-import CollectionCounts from './News';
+import CollectionCounts from './services/dashboard/News';
 import data from '../../data/datapkg.json'
 
 export default function Home() {
@@ -112,24 +112,12 @@ export default function Home() {
     setShowDisclaimer(!disclaimer)
   }
 
-
-  /*
-  const tArray = data.intrests;
-
-  tArray.forEach(item => {
-    Object.entries(item).forEach((key, value)=>{
-      console.log("key :" + key + ", value : " + value)
-    } 
-  )})
-*/
-
-
-
   return (
     <div className="home">
 
       {isUnsupported && <div className="unsupported-message">Most readable with screen width around 2500px</div>}
       <CollectionCounts />
+      <div className="home-teksti">{t('UnderRefactoring')}</div>
       <div className="home-teksti">{t('Cando')}<br /> <span>{t('MoreFromMe')}</span></div>
       <div className="image-container">
         <div className="image-wrapper">

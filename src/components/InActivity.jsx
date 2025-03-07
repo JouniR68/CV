@@ -1,7 +1,7 @@
 import { useEffect, useState, useTransition } from 'react';
 import { useAuth } from './LoginContext';
 import { useNavigate } from 'react-router-dom';
-import Logout from './Logout';
+import Logout from './User/Logout';
 
 const InactivityTimer = () => {
   const { setIsLoggedIn } = useAuth();

@@ -146,5 +146,6 @@
   "services":"Palveluni",
   "EveryDay": "Päivittäin / huomionarvoista",
   "Deadline": "Ajoitetut taskit",
-  "Shop": "Kauppa"
+  "Shop": "Kauppa",
+  "UnderRefactoring": "Sivuston parannusprojekti käynnissä, ota yhteyttä jriimala@gmail.com jos voin auttaa"
 }

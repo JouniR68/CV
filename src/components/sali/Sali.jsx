@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { db } from "../../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import { Description } from '@mui/icons-material';
 
 const TrainingPlan = () => {
   const [data, setData] = useState([]); // Data should be an array since you're dealing with a list of records
@@ -43,14 +44,12 @@ const TrainingPlan = () => {
             date: new Date().toLocaleDateString(), // Format date to ensure consistency
             hour: new Date().getHours()
           };
-          setData(prevData => [...prevData, newEntry]); // Append new training data
-          setDayCompleted(true);          
-        } else{
-          setError("Päivän treeni on jo syötetty");
-          setDayCompleted(false);
+          setData(prevData => [...prevData, newEntry]); // Append new training data          
+        } else {
+          navigate('/errorNote', { state: { title: 'Error', description: 'Päivän treeni on jo syötetty' } })
           setDone([]); // Clear undone tasks
-        }                
-      } 
+        }
+      }
     }
   }, [done, data]); // Runs whenever `done` or `data` changes
 
@@ -76,8 +75,8 @@ const TrainingPlan = () => {
         await addDoc(collection(db, "trainings"), data[data.length - 1]); // Add the most recent data
         setDayCompleted(false);
         setDone([]); // Clear the 'done' array after submitting
-        setError("Recordi talletettu, siirytään kotisivulle")
-        setTimeout(() => {                      
+        navigate('/errorNote', {state: {title:'Talletus', description:'Treeni talletettu'}})
+        setTimeout(() => {
           navigate('/')
         }, 4000);
 
@@ -154,7 +153,7 @@ const TrainingPlan = () => {
           <div style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
             <h2>Viikko {getWeekNumber()}, {todayTraining[0].charAt(0).toUpperCase() + todayTraining[0].slice(1)} {new Date().toLocaleDateString()}</h2>
             <Button style={{ backgroundColor: dayCompleted ? 'green' : 'red' }} onClick={submit}>
-              {dayCompleted ? "Tallenna" : "? "}              
+              {dayCompleted ? "Tallenna" : "? "}
             </Button>{error && <h3>{error}</h3>}
             <p><strong>Tavoite:</strong> {todayTraining[1].Tavoite}</p>
             <p><strong>Lämmittely (10 min):</strong> {todayTraining[1]['Lämmittely (10 min)']}</p>
@@ -162,8 +161,13 @@ const TrainingPlan = () => {
             <h3>Voimaharjoittelu</h3>
             <ul>
               {todayTraining[1].Voimaharjoittelu.map((exercise, i) => (
-                <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                  <Button style={{ width: '100%' }} onClick={() => markDone(i)}>{exercise}</Button>
+                <div key={i} style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-start', alignItems: 'center' }}>
+                  <Button style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'start',
+                    textAlign: 'left' // Optional, for extra safety
+                  }} onClick={() => markDone(i)}><span style={{ flex: 1 }}>{exercise}</span></Button>
                   <Button style={getButtonStyle(i)} onClick={() => markDone(i)}>
                     {done[i] ? 'Ok' : '?'}
                   </Button>

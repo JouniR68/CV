@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { Save } from "@mui/icons-material";
 import { db } from "../../../firebase.js";
 import { collection, addDoc } from "firebase/firestore";
-import Contact from "../Contact.jsx";
+import Contact from "../../Contact.jsx";
 import { v4 as uuidv4 } from 'uuid';
 
 const TheBasket = () => {
