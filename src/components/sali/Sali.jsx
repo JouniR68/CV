@@ -81,7 +81,9 @@ const TrainingPlan = () => {
   const submit = async () => {
     if (dayCompleted) {
       try {
+        data.push(todayTraining.Voimaharjoittelu)
         console.log("DATA:", data)
+
         await addDoc(collection(db, "trainings"), data[data.length - 1]);
         setDayCompleted(false);
         setDone([]);
@@ -110,13 +112,12 @@ const TrainingPlan = () => {
           console.log("No elements in data array, nothing to update.");
           return prev; // Prevents modifying an empty array
         }
-
+        console.log("today: ", todayTraining.Voimaharjoittelu)
         const updatedData = [...prev];
         updatedData[updatedData.length - 1] = {
           ...updatedData[updatedData.length - 1],
           heavy: answer
-        };
-  
+        };        
         console.log("Updated data:", updatedData);
         return updatedData;
     })
