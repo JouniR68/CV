@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import trainingData from "../../../data/aito.json";
+import trainingData from "../../../data/aito.json"; // Replace with the correct path to your JSON data
 import { Button } from '@mui/material';
 import { db } from "../../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
-import { Description } from '@mui/icons-material';
+import Heavy from '../Dialogs/Heavy';
 
 const TrainingPlan = () => {
-  const [data, setData] = useState([]); // Data should be an array since you're dealing with a list of records
+  const [data, setData] = useState([]);
   const [dayCompleted, setDayCompleted] = useState(false);
-  const [nutriation, showNutriation] = useState(false);
+  const [nutrition, showNutrition] = useState(false);
   const [showWholeWeek, setShowWholeWeek] = useState(false);
   const [done, setDone] = useState([]);
   const [error, setError] = useState("");
@@ -31,29 +31,36 @@ const TrainingPlan = () => {
     fetchData();
   }, []); // Run only once after initial render
 
+
+  useEffect(() => {
+    console.log("Data state updated:", data);
+  }, [data]);
+
   // Check if all tasks for today are completed
   useEffect(() => {
-    if (done.length === todayTraining[1]?.Voimaharjoittelu?.length) {
+    if (done.length === todayTraining?.Voimaharjoittelu?.liike?.length) {
       const hasEmpty = done.some(u => u === undefined || u === "");
       if (!hasEmpty) {
         const dateFound = data.some(f => f.date === new Date().toLocaleDateString());
         if (!dateFound) {
           const newEntry = {
             week: getWeekNumber(),
-            training: todayTraining[1].Tavoite,
-            date: new Date().toLocaleDateString(), // Format date to ensure consistency
+            training: todayTraining.Tavoite,
+            date: new Date().toLocaleDateString(),
             hour: new Date().getHours()
           };
-          setData(prevData => [...prevData, newEntry]); // Append new training data          
-        } else {
-          navigate('/errorNote', { state: { title: 'Error', description: 'Päivän treeni on jo syötetty' } })
+          setData(prevData => [...prevData, newEntry]);
+          setDayCompleted(true);
+        } else if (!dayCompleted) {
+          navigate('/errorNote', { state: { title: 'Error', description: 'Päivän treeni on jo syötetty' } });
           setDone([]); // Clear undone tasks
         }
+      } else {
+        setDone([]); // Clear
       }
     }
-  }, [done, data]); // Runs whenever `done` or `data` changes
+  }, [done, data]);
 
-  // Format date consistently (YYYY-MM-DD)
   const formatDate = (date) => {
     return date.toISOString().split('T')[0];
   };
@@ -62,25 +69,28 @@ const TrainingPlan = () => {
   const viikonpaivat = [
     "Sunnuntai", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai"
   ];
-  const viikonpaiva = viikonpaivat[today];
+  let viikonpaiva = viikonpaivat[today];
+  viikonpaiva = "Perjantai"
+
 
   // Find today's training data
-  const todayTraining = trainingData.plan
-    .flatMap((week) => Object.entries(week)) // Flatten the array of objects into an array of [day, details] pairs
-    .find(([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()); // Find today's training based on the day
+  const todayTraining = trainingData.plan[0]
+    ? Object.entries(trainingData.plan[0]).find(([day]) => day.toLowerCase() === viikonpaiva.toLowerCase())?.[1]
+    : {};
 
   const submit = async () => {
     if (dayCompleted) {
       try {
-        await addDoc(collection(db, "trainings"), data[data.length - 1]); // Add the most recent data
+        console.log("DATA:", data)
+        await addDoc(collection(db, "trainings"), data[data.length - 1]);
         setDayCompleted(false);
-        setDone([]); // Clear the 'done' array after submitting
-        navigate('/errorNote', {state: {title:'Talletus', description:'Treeni talletettu'}})
+        setDone([]);
+        navigate('/errorNote', { state: { title: 'Talletus', description: 'Treeni talletettu' } });
         setTimeout(() => {
-          navigate('/')
+          navigate('/');
         }, 4000);
 
-        setError("")
+        setError("");
       } catch (err) {
         console.error("Error adding document: ", err);
       }
@@ -91,6 +101,33 @@ const TrainingPlan = () => {
     setShowWholeWeek(prevState => !prevState);
   };
 
+
+  const handleAnswer = (answer) => {
+    console.log("Before update:", data);
+    if (answer === "Kyllä") {
+      setData(prev =>{
+        if (prev.length === 0) {
+          console.log("No elements in data array, nothing to update.");
+          return prev; // Prevents modifying an empty array
+        }
+
+        const updatedData = [...prev];
+        updatedData[updatedData.length - 1] = {
+          ...updatedData[updatedData.length - 1],
+          heavy: answer
+        };
+  
+        console.log("Updated data:", updatedData);
+        return updatedData;
+    })
+    submit()
+  } else {
+      console.log(`Vastaus dialogissa ongelma`);
+      return
+    }
+    
+  };
+
   const markDone = (i) => {
     setDone(prev => {
       const newDone = [...prev];
@@ -99,96 +136,125 @@ const TrainingPlan = () => {
     });
   };
 
-  const openNutrientation = () => {
-    showNutriation(prev => !prev);
+  const openNutrition = () => {
+    showNutrition(prev => !prev);
   };
 
   const getButtonStyle = (i) => ({
     backgroundColor: done[i] ? "green" : "red",
     border: done[i] ? "1px solid #ccc" : "none",
     color: done[i] ? "white" : "black",
-    textDecoration: done[i] ? "line-through" : "none",
+    /*textDecoration: done[i] ? "line-through" : "none",*/
   });
+
+  const makeColumnsPretty = (i) => ({
+    padding: '1rem'
+  })
 
   const getWeekNumber = (date = new Date()) => {
     const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
     const pastDays = (date - firstDayOfYear) / (1000 * 60 * 60 * 24); // Days passed
-    return Math.ceil((pastDays + firstDayOfYear.getDay() + 1) / 7);
+    return Math.ceil((pastDays + firstDayOfYear.getDay()) / 7); // Week number calculation
   };
 
   return (
     <div>
-      <button onClick={toggleView} style={{ marginTop: '1rem', padding: '10px', fontSize: '16px' }}>
-        {showWholeWeek ? "Päivän treeni" : "Viikon pläni"}
-      </button>
+      <h1>{viikonpaiva} - {todayTraining?.Tavoite}</h1>
+      <Button style={{ backgroundColor: dayCompleted ? 'green' : 'white', color: dayCompleted ? 'white' : 'black', fontWeight: 700 }}>
+        {dayCompleted ? "Valmis" : "-"}
+      </Button>{error && <h3>{error}</h3>}
 
-      {showWholeWeek ? (
-        trainingData.plan.map((week, index) => (
-          <div key={index} className="showWk">
-            {Object.entries(week).map(([day, details]) => (
-              <div key={day} style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
-                <h2>{day.charAt(0).toUpperCase() + day.slice(1)}</h2>
-                <p><strong>Tavoite:</strong> {details.Tavoite}</p>
-                <p><strong>Lämmittely (10 min):</strong> {details['Lämmittely (10 min)']}</p>
+      {/* Show the training exercises for the day */}
+      {todayTraining?.Voimaharjoittelu?.liike && (
+        <div>
+          <h2>Voimaharjoittelu</h2>
 
-                <h3>Voimaharjoittelu</h3>
-                <ul>
-                  {details.Voimaharjoittelu.map((exercise, i) => (
-                    <li key={i}>{exercise}</li>
-                  ))}
-                </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Treeni</th>
+                <th>Sarja</th>
+                <th>Toistot</th>
+                <th>Done</th>
+              </tr>
+            </thead>
 
-                <h3>Ravintosuositus</h3>
-                <ul>
-                  {Object.entries(details.Ravintosuositus).map(([meal, food]) => (
-                    <li key={meal}><strong>{meal}:</strong> {food}</li>
-                  ))}
-                </ul>
-              </div>
+            {todayTraining.Voimaharjoittelu?.liike?.map((exercise, index) => (
+              <tbody key={index}>
+                <tr>
+                  <>
+                    <td style={makeColumnsPretty(index)}>
+                      {exercise}
+                    </td>
+                    <td style={makeColumnsPretty(index)}>{todayTraining.Voimaharjoittelu.sarja[index]}</td>
+                    <td style={makeColumnsPretty(index)}>{todayTraining.Voimaharjoittelu.toisto[index]}</td>
+                    <td>
+                      <div key={index} style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <Button style={getButtonStyle(index)} onClick={() => markDone(index)}>
+                          {done[index] ? 'Ok' : '?'}
+                        </Button>
+                      </div>
+                    </td>
+                  </>
+                </tr>
+              </tbody>
             ))}
-          </div>
-        ))
-      ) : (
-        todayTraining ? (
-          <div style={{ marginBottom: '20px', border: '1px solid #ccc', padding: '10px' }}>
-            <h2>Viikko {getWeekNumber()}, {todayTraining[0].charAt(0).toUpperCase() + todayTraining[0].slice(1)} {new Date().toLocaleDateString()}</h2>
-            <Button style={{ backgroundColor: dayCompleted ? 'green' : 'red' }} onClick={submit}>
-              {dayCompleted ? "Tallenna" : "? "}
-            </Button>{error && <h3>{error}</h3>}
-            <p><strong>Tavoite:</strong> {todayTraining[1].Tavoite}</p>
-            <p><strong>Lämmittely (10 min):</strong> {todayTraining[1]['Lämmittely (10 min)']}</p>
-
-            <h3>Voimaharjoittelu</h3>
-            <ul>
-              {todayTraining[1].Voimaharjoittelu.map((exercise, i) => (
-                <div key={i} style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-start', alignItems: 'center' }}>
-                  <Button style={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'start',
-                    textAlign: 'left' // Optional, for extra safety
-                  }} onClick={() => markDone(i)}><span style={{ flex: 1 }}>{exercise}</span></Button>
-                  <Button style={getButtonStyle(i)} onClick={() => markDone(i)}>
-                    {done[i] ? 'Ok' : '?'}
-                  </Button>
-                </div>
-              ))}
-            </ul>
-
-            <Button onClick={openNutrientation}>{nutriation ? 'Piilota' : 'Ravintoinfo'}</Button>
-            {nutriation && (
-              <div>
-                <h3>Ravintosuositus</h3>
-                <ul>
-                  {Object.entries(todayTraining[1].Ravintosuositus).map(([meal, food]) => (
-                    <li key={meal}><strong>{meal}:</strong> {food}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ) : <div>Ei treeniohjelmaa tälle päivälle.</div>
+          </table>
+          {dayCompleted && <Heavy onAnswer={handleAnswer} />}
+        </div>
       )}
+
+      {/* Show HIIT if available */}
+      {todayTraining?.HIIT && (
+        <div>
+          <h2>HIIT</h2>
+          <p>{todayTraining.HIIT}</p>
+        </div>
+      )}
+
+      {/* Show Aerobinen liikunta if available */}
+      {todayTraining?.Aerobinen_liikunta && (
+        <div>
+          <h2>Aerobinen liikunta</h2>
+          <p>{todayTraining.Aerobinen_liikunta}</p>
+        </div>
+      )}
+
+      {/* Show Nutrition if available */}
+      {todayTraining?.Ravintosuositus && (
+        <div>
+          <h2>Ravintosuositus</h2>
+          <ul>
+            {Object.entries(todayTraining.Ravintosuositus).map(([meal, description], index) => (
+              <li key={index}>
+                <strong>{meal}</strong>: {description}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Show whole week if toggle is on */}
+      {showWholeWeek && (
+        <div>
+          {Object.entries(trainingData.plan[0]).map(([day, details], index) => (
+            <div key={index}>
+              <h3>{day}</h3>
+              <p>{details.Tavoite}</p>
+              {/* Add other details for the day here */}
+            </div>
+          ))}
+        </div>
+      )}
+
+      <Button onClick={toggleView}>
+        {showWholeWeek ? "Päivän treeni" : "Viikon pläni"}
+      </Button>
+
+      <Button onClick={submit} disabled={!dayCompleted}>
+        Execute
+      </Button>
+
     </div>
   );
 };

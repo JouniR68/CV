@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import "./index.css";
+import Heavy from "./components/Dialogs/Heavy";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
 import ShopLayout from "./Layouts/ShopLayout";
@@ -55,7 +56,7 @@ import Feedback from "./components/Feedback";
 import ShowFeedback from "./components/ShowFeedback";
 import MindMap from "./components/CV/MindMap";
 
-import Sali2 from "./components/sali/Sali";
+import Sali from "./components/sali/Sali";
 import StockFetcher from "./components/Talous/Finance";
 
 import Suberb from "./components/Huolto/suberb/UploadSuberb";
@@ -80,7 +81,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path="/mm" element={<MindMap />} />
               <Route path="/huoltorekisteri" element={<Vehicles />} />              
-              <Route path="/sali" element={<Sali2 />} />
+              <Route path="/sali" element={<Sali />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
               <Route path='/budjetti' element={<Budjetti />} />
@@ -104,6 +105,7 @@ function App() {
               <Route path='palaute' element={<Feedback />} />
               <Route path='naytapalaute' element={<ShowFeedback />} />              
               <Route path='stock' element={<StockFetcher />} />
+              <Route path='heavyCheck' element={<Heavy />}/>
 
               <Route path='huollot' element={<HuoltoLayout />} >
                 <Route path='uploadsuberb' element={<Suberb />} />
