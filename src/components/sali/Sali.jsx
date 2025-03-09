@@ -81,10 +81,14 @@ const TrainingPlan = () => {
   const submit = async () => {
     if (dayCompleted) {
       try {
-        data.push(todayTraining.Voimaharjoittelu)
-        console.log("DATA:", data)
 
-        await addDoc(collection(db, "trainings"), data[data.length - 1]);
+
+        console.log("DATA:", data)
+        setData(prevData => {
+          console.log("Submitting prevData: ", prevData)
+          addDoc(collection(db, "trainings"), prevData[prevData.length - 1]);
+          return prevData
+        })
         setDayCompleted(false);
         setDone([]);
         navigate('/errorNote', { state: { title: 'Talletus', description: 'Treeni talletettu' } });
@@ -107,7 +111,7 @@ const TrainingPlan = () => {
   const handleAnswer = (answer) => {
     console.log("Before update:", data);
     if (answer === "Kyllä") {
-      setData(prev =>{
+      setData(prev => {
         if (prev.length === 0) {
           console.log("No elements in data array, nothing to update.");
           return prev; // Prevents modifying an empty array
@@ -116,17 +120,22 @@ const TrainingPlan = () => {
         const updatedData = [...prev];
         updatedData[updatedData.length - 1] = {
           ...updatedData[updatedData.length - 1],
-          heavy: answer
-        };        
+          heavy: answer,
+          treeni: todayTraining.Voimaharjoittelu?.liike ?? "Ei treeni dataa"
+        };
         console.log("Updated data:", updatedData);
         return updatedData;
-    })
-    submit()
-  } else {
+      })
+
+      setTimeout(() => {
+        console.log("Submitting after data update: ", data)
+        submit()
+      }, 300);  // Delay submit to prevent focus issues
+
+    } else {
       console.log(`Vastaus dialogissa ongelma`);
-      return
     }
-    
+
   };
 
   const markDone = (i) => {
