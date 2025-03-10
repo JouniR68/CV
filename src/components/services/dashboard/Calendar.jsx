@@ -5,10 +5,10 @@ import { collection, addDoc, getDocs, doc, deleteDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid, Typography, FormControlLabel, Checkbox } from '@mui/material';
-import "../../../css/calendar.css"
+import "../../../css/calendar.css";
 import { useAuth } from "../../LoginContext";
-import NaytaPyynnot from "../../Services/tarjous/NaytaPyynnot"
-import ShowMessages from "../../ShowMessages"
+import NaytaPyynnot from "../../Services/tarjous/NaytaPyynnot";
+import ShowMessages from "../../ShowMessages";
 import { ThemeProvider } from '@mui/material';
 import theme from '../../Theme';
 import DayCounter from './DayCounter';
@@ -20,10 +20,14 @@ const Calendar = () => {
     const [newEvent, setNewEvent] = useState({ title: '', date: new Date().toISOString().split('T')[0], read: false });
     const [reqs, setReqs] = useState([]);
     const [messages, setMessage] = useState([]);
-    const navigate = useNavigate()
-    const { isLoggedIn, timerCounting } = useAuth()
+    const navigate = useNavigate();
+    const { isLoggedIn, timerCounting } = useAuth();
 
-    timerCounting ? '' : Logout()
+    useEffect(() => {
+        if (!timerCounting) {
+            Logout();
+        }
+    }, [timerCounting]);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -36,45 +40,45 @@ const Calendar = () => {
 
         // Attach the event listener to the window
         window.addEventListener('keydown', handleKeyDown);
-    }, [])
 
+        // Cleanup the event listener
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
 
     useEffect(() => {
         const fetchEvents = async () => {
             const eventsCollection = await getDocs(collection(db, 'events'));
             setEvents(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        }
+        };
         fetchEvents();
     }, []);
-
 
     useEffect(() => {
         const fetchEvents = async () => {
             const eventsCollection = await getDocs(collection(db, 'pyynnot'));
             setReqs(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        }
+        };
         fetchEvents();
     }, []);
-
 
     useEffect(() => {
         const fetchEvents = async () => {
             const eventsCollection = await getDocs(collection(db, 'messages'));
             setMessage(eventsCollection.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        }
+        };
         fetchEvents();
     }, []);
 
-
-
     const addEvent = async () => {
         if (newEvent.read) {
-            newEvent.date = ""
+            newEvent.date = "";
         }
 
         await addDoc(collection(db, 'events'), newEvent);
         setEvents([...events, newEvent]);
-        setNewEvent({ title: '', date: new Date().toISOString().split('T')[0], read: false });        
+        setNewEvent({ title: '', date: new Date().toISOString().split('T')[0], read: false });
     };
 
     const handleReadOnly = () => {
@@ -82,45 +86,35 @@ const Calendar = () => {
     };
 
     const deletor = async (id) => {
-        // Get a reference to the document		
+        // Get a reference to the document
         console.log("Deletor with id:", id);
         const collectionRef = collection(db, "events");
         const docRef = doc(collectionRef, id);
 
         deleteDoc(docRef)
             .then(() => {
-                console.log("The document successfully deleted")
-                navigate(0)
+                console.log("The document successfully deleted");
+                navigate(0);
             })
-            .catch(((error) => {
-                console.error("Error removing document: ", error)
-                navigate('/error', { state: { locationError: `${id} deleting failed.` } })
-            }))
+            .catch((error) => {
+                console.error("Error removing document: ", error);
+                navigate('/error', { state: { locationError: `${id} deleting failed.` } });
+            });
 
-        setEvents((events) => events.filter(item => item.id != id))
-    }
+        setEvents((events) => events.filter(item => item.id !== id));
+    };
 
     const today = new Date().toISOString().split('T')[0];
-    //let counter = 0;
 
-
-    //const eventClass = events.map((event) => event.read ? "calendar-readonly" : "calendar-standard");
-    // Separate events into read and unread groups
     const readEvents = events.filter(event => event.read);
-    //const unreadEvents = eventClass.filter(event => !event.read);
 
-    
     function addNewLines(str, maxChars = 40) {
         return str
-          .match(new RegExp(`.{1,${maxChars}}`, 'g')) // Split string into chunks of maxChars
-          .join('\n'); // Join chunks with a newline
-      }
-
-
-      let formattedString = ""
+            .match(new RegExp(`.{1,${maxChars}}`, 'g')) // Split string into chunks of maxChars
+            .join('\n'); // Join chunks with a newline
+    }
 
     return (
-
         <ThemeProvider theme={theme}>
             {isLoggedIn ? (
                 <>
@@ -128,18 +122,19 @@ const Calendar = () => {
                         container
                         sx={{
                             display: 'grid',
-                            gap: { xs: '0.5rem', sm: '2rem' },
-                            padding: { xs: '0.5rem', sm: '1rem' },
+                            gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr' },
+                            gap: { xs: '0.5rem', sm: '1rem', md: '2rem' },
+                            padding: { xs: '0.5rem', sm: '1rem', md: '2rem' },
                             marginBottom: { xs: '1rem', sm: '2rem' },
                             justifyContent: 'center',
                             alignItems: 'flex-start',
                             backgroundColor: 'gray'
-                        }}>
+                        }}
+                    >
                         {/* Form */}
                         <Grid
                             item
                             sx={{
-                                gridColumn: { xs: '1', sm: '2', md: '3', lg: '2' }, // Proper column
                                 backgroundColor: 'gray',
                                 borderRadius: '5px',
                                 padding: '2rem',
@@ -156,14 +151,15 @@ const Calendar = () => {
                                 onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                                 sx={{ marginBottom: '1rem' }}
                             />
-                            {!newEvent.read && <TextField
-                                type="date"
-                                value={newEvent.date}
-                                fullWidth
-                                onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-                                sx={{ marginBottom: '1rem' }}
-                            />
-                            }
+                            {!newEvent.read && (
+                                <TextField
+                                    type="date"
+                                    value={newEvent.date}
+                                    fullWidth
+                                    onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                                    sx={{ marginBottom: '1rem' }}
+                                />
+                            )}
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -187,7 +183,6 @@ const Calendar = () => {
                         <Grid
                             item
                             sx={{
-                                gridColumn: { xs: '1', sm: '2', md: '3', lg: '3' }, // Proper column
                                 backgroundColor: 'gray',
                                 borderRadius: '5px',
                                 padding: '1rem',
@@ -199,11 +194,6 @@ const Calendar = () => {
                             {events
                                 .filter(event => !event.read) // Unread events only
                                 .map(event => {
-                                    
-                                    /*if (event.title.length > 40){
-                                        console.log("title: ", event.title)
-                                        formattedString = addNewLines(event.title, 20)
-                                    }*/
                                     const isPastDue = event.date < today;
                                     return (
                                         <Grid
@@ -228,7 +218,7 @@ const Calendar = () => {
                                                     variant="contained"
                                                     color="secondary"
                                                     onClick={() => deletor(event.id)}
-                                                    style={{marginLeft:'0.5rem'}}
+                                                    style={{ marginLeft: '0.5rem' }}
                                                 >
                                                     {t('Poista')}
                                                 </Button>
@@ -241,19 +231,12 @@ const Calendar = () => {
                         {/* Read Events */}
                         <Grid
                             item
-                            sx={{                                
-                                border:'1px solid black',
+                            sx={{
+                                border: '1px solid black',
                                 borderRadius: '5px',
                                 padding: '1rem',
-                                gridColumn: { xs: '1', sm: '2', md: '2', lg: '1' }, // Proper column                                
-                                marginTop:'-25rem'
                             }}
                         >
-                            
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', border:'solid 3px black', padding:'0.5rem'}}>
-                            Tärkeät<DayCounter />
-                            </Typography>
-
                             {readEvents.length > 0 && readEvents.map((event) => (
                                 <Typography
                                     key={event.id}
@@ -261,7 +244,7 @@ const Calendar = () => {
                                         display: 'flex',
                                         padding: '0.5rem',
                                         marginBottom: '0.5rem',
-                                        backgroundColor: 'gray',                                                                                
+                                        backgroundColor: 'gray',
                                     }}
                                 >
                                     {event.date ? `${event.title}, ${event.date}` : event.title}
@@ -270,36 +253,33 @@ const Calendar = () => {
                         </Grid>
                     </Grid>
 
-                    {(reqs.length > 0 || messages.length > 0) && <Grid
-                        container
-                        sx={{
-                            display: 'grid',
-                            gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr', lg: '1fr' },
-                            gap: '1rem',
-                            justifyContent: 'center', // Centers items horizontally                            
-                            alignItems: 'center',
-                            padding: '1rem',
-                        }}
-                    >
+                    {(reqs.length > 0 || messages.length > 0) && (
+                        <Grid
+                            container
+                            sx={{
+                                display: 'grid',
+                                gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr', lg: '1fr' },
+                                gap: '1rem',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: '1rem',
+                            }}
+                        >
+                            <Grid sx={{ gridColumn: '1' }}>
+                                <NaytaPyynnot />
+                            </Grid>
 
-
-                        <Grid sx={{ gridColumn: '1' }}>
-                            <NaytaPyynnot />
-
+                            <Grid sx={{ gridColumn: '1' }}>
+                                <ShowMessages />
+                            </Grid>
                         </Grid>
-
-                        <Grid sx={{ gridColumn: '1' }}>
-                            <ShowMessages />
-                        </Grid>
-                    </Grid>
-                    }
+                    )}
                 </>
             ) : (
                 <h5 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Forbidden</h5>
             )}
         </ThemeProvider>
     );
-
-}
+};
 
 export default Calendar;

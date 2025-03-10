@@ -116,8 +116,7 @@ export default function Home() {
     <div className="home">
 
       {isUnsupported && <div className="unsupported-message">Most readable with screen width around 2500px</div>}
-      <CollectionCounts />
-      <div className="home-teksti">{t('UnderRefactoring')}</div>
+      <CollectionCounts />      
       <div className="home-teksti">{t('Cando')}<br /> <span>{t('MoreFromMe')}</span></div>
       <div className="image-container">
         <div className="image-wrapper">

@@ -70,7 +70,7 @@ const TrainingPlan = () => {
     "Sunnuntai", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai"
   ];
   let viikonpaiva = viikonpaivat[today];
-  viikonpaiva = "Perjantai"
+  
 
 
   // Find today's training data
@@ -158,7 +158,7 @@ const TrainingPlan = () => {
   });
 
   const makeColumnsPretty = (i) => ({
-    padding: '1rem'
+    padding: '0.5rem'
   })
 
   const getWeekNumber = (date = new Date()) => {
@@ -169,7 +169,7 @@ const TrainingPlan = () => {
 
   return (
     <div>
-      <h1>{viikonpaiva} - {todayTraining?.Tavoite}</h1>
+      <h3>{viikonpaiva} - {todayTraining?.Tavoite}</h3>
       <Button style={{ backgroundColor: dayCompleted ? 'green' : 'white', color: dayCompleted ? 'white' : 'black', fontWeight: 700 }}>
         {dayCompleted ? "Valmis" : "-"}
       </Button>{error && <h3>{error}</h3>}
