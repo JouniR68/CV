@@ -200,8 +200,7 @@ const TrainingPlan = () => {
             <thead>
               <tr>
                 <th>Treeni</th>
-                <th>Sarja</th>
-                <th>Toistot</th>
+                <th>S&T</th>                
                 <th>Status</th>
               </tr>
             </thead>
@@ -213,8 +212,8 @@ const TrainingPlan = () => {
                     <td style={makeColumnsPretty(index)}>
                       {exercise}
                     </td>
-                    <td style={makeColumnsPretty(index)}>{todayTraining.Voimaharjoittelu.sarja[index]}</td>
-                    <td style={makeColumnsPretty(index)}>{todayTraining.Voimaharjoittelu.toisto[index]}</td>
+                    <td style={makeColumnsPretty(index)}>{todayTraining.Voimaharjoittelu.sarja[index]}/
+                    {todayTraining.Voimaharjoittelu.toisto[index]}</td>
                     <td>
                       <div key={index} style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-start', alignItems: 'center' }}>
 
