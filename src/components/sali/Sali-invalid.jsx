@@ -32,24 +32,17 @@ const TrainingPlan = () => {
     fetchData();
   }, []); // Run only once after initial render
 
+
   useEffect(() => {
     console.log("Data state updated:", data);
   }, [data]);
 
   // Check if all tasks for today are completed
   useEffect(() => {
-    if (todayTraining?.Voimaharjoittelu?.liike?.length > 0) {
-      const allExercisesCompleted = todayTraining.Voimaharjoittelu.liike.every((_, index) => {
-        const requiredClicks = todayTraining.Voimaharjoittelu.sarja[index];
-        const actualClicks = done[index] || 0;
-        return actualClicks >= requiredClicks;
-      });
-
-      if (allExercisesCompleted) {
-        const dateFound = data.some(f => {
-          console.log("f date:", f.date)
-          return f.date === new Date().toLocaleDateString()
-        });
+    if (done.length === todayTraining?.Voimaharjoittelu?.liike?.length) {
+      const hasEmpty = done.some(u => u === undefined || u === "");
+      if (!hasEmpty) {
+        const dateFound = data.some(f => f.date === new Date().toLocaleDateString());
         if (!dateFound) {
           const newEntry = {
             week: getWeekNumber(),
@@ -57,29 +50,41 @@ const TrainingPlan = () => {
             date: new Date().toLocaleDateString(),
             hour: new Date().getHours()
           };
-          setData(prevData => [...prevData, newEntry]);          
+          setData(prevData => [...prevData, newEntry]);
           setDayCompleted(true);
-          return
-        } 
-      } else {
-        console.log("Joku treenikerta vielä klikkaamatta");
+        } else {
+          navigate('/errorNote', { state: { title: 'Error', description: 'Päivän treeni on jo syötetty' } });
+          setDone([]); // Clear undone tasks
+        }
+      }
+      else {
+        console.log("Joku treenikerta vielä klikkaamatta")
       }
     }
   }, [done, data]);
 
+
   const handleClick = (i) => {
-    if (clicks[i] < todayTraining?.Voimaharjoittelu.sarja[i]) {
+    if (clicks < todayTraining?.Voimaharjoittelu.sarja[i]) {
       console.log("handleClick", clicks);
       setClicks(prev => {
         const newClicks = [...prev];
         newClicks[i] = (newClicks[i] || 0) + 1;
         return newClicks;
       });
-      markDone(i);
-    } else {
-      setError("HandleClick else branch activated, clicks:" + clicks);
+      markDone(i)
+    }
+
+    else if (clicks === todayTraining?.Voimaharjoittelu.sarja[i] && data[length - 1]) {
+      console.log("setting handleClick setDayCompleted to true")
+      setDayCompleted(true);
+      setClicks([])
+    }
+    else {
+      setError("HandleClick else branch activated, clicks:" + clicks)
     }
   };
+
 
   const formatDate = (date) => {
     return date.toISOString().split('T')[0];
@@ -91,6 +96,8 @@ const TrainingPlan = () => {
   ];
   let viikonpaiva = viikonpaivat[today];
 
+
+
   // Find today's training data
   const todayTraining = trainingData.plan[0]
     ? Object.entries(trainingData.plan[0]).find(([day]) => day.toLowerCase() === viikonpaiva.toLowerCase())?.[1]
@@ -100,9 +107,9 @@ const TrainingPlan = () => {
     if (dayCompleted) {
       try {
         const latestEntry = data[data.length - 1];
-        console.log("Submit data:", latestEntry);
+        console.log("Submit data:", latestEntry)
         if (latestEntry) {
-          await addDoc(collection(db, "trainings"), latestEntry);
+          addDoc(collection(db, "trainings"), latestEntry);
           setDayCompleted(false);
           setDone([]);
         } else {
@@ -123,6 +130,7 @@ const TrainingPlan = () => {
     setShowWholeWeek(prevState => !prevState);
   };
 
+
   const handleAnswer = (answer) => {
     console.log("Before update:", data);
     if (answer === "Kyllä") {
@@ -131,7 +139,7 @@ const TrainingPlan = () => {
           console.log("No elements in data array, nothing to update.");
           return prev; // Prevents modifying an empty array
         }
-        console.log("today: ", todayTraining.Voimaharjoittelu);
+        console.log("today: ", todayTraining.Voimaharjoittelu)
         const updatedData = [...prev];
         updatedData[updatedData.length - 1] = {
           ...updatedData[updatedData.length - 1],
@@ -140,15 +148,17 @@ const TrainingPlan = () => {
         };
         console.log("Updated data:", updatedData);
         return updatedData;
-      });
+      })
 
       setTimeout(() => {
-        console.log("Submitting after data update: ", data);
-        submit();
-      }, 300); // Delay submit to prevent focus issues
+        console.log("Submitting after data update: ", data)
+        submit()
+      }, 300);  // Delay submit to prevent focus issues
+
     } else {
       console.log(`Vastaus dialogissa ongelma`);
     }
+
   };
 
   const markDone = (i) => {
@@ -176,7 +186,7 @@ const TrainingPlan = () => {
 
   const makeColumnsPretty = (i) => ({
     padding: '0.5rem'
-  });
+  })
 
   const getWeekNumber = (date = new Date()) => {
     const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
@@ -218,9 +228,9 @@ const TrainingPlan = () => {
                     <td>
                       <div key={index} style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-start', alignItems: 'center' }}>
 
-                        <Button style={getButtonStyle(index)} onClick={() => markDone(index)}>
+                        {clicks <= todayTraining?.Voimaharjoittelu.sarja[index] && <Button style={getButtonStyle(index)} onClick={() => markDone(index)}>
                           <span style={{ fontWeight: 'bold' }}>{done[index]}</span>
-                        </Button>
+                        </Button>}
                         {console.log("clicks: ", clicks[index])}
                       </div>
                     </td>
