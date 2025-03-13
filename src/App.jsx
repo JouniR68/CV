@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
+import Header from "./components/header"
 import Heavy from "./components/Dialogs/Heavy";
 import Layout from "./Layouts/Layout";
 import AdminLayout from "./Layouts/AdminLayout";
@@ -22,7 +24,6 @@ import Work from "./components/CV/Work";
 import Education from "./components/CV/Education";
 import Tech from "./components/CV/Tech";
 import CV from "./components/CV/Output"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "./components/Contact";
 import CollectionCounts from "./components/services/dashboard/News"
 import ThankYouPage from "./components/Dialogs/ThankYou";
@@ -71,16 +72,31 @@ import Catalog from "./components/services/shop/AddShopItem"
 import Basket from "./components/services/shop/TheBasket";
 import Orders from "./components/services/shop/ShowOrders";
 
+import Lista from "./components/Reissu/Lista";
+
+/*
+function HideHeader() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+  // Hide Header in NotHeader route
+  return !currentPath.includes('reissulista') ? <Header /> : null;
+}
+  {window.location.pathname !== "/reissulista" ? <Header />: null}
+  */
+
 function App() {
+  //<Route path='hider' element={<HideHeader />} />
   return (
     <div className="app-container">
       <AuthProvider>
+      
         <BrowserRouter>
-          <Routes>
+        
+          <Routes>          
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />
               <Route path="/mm" element={<MindMap />} />
-              <Route path="/huoltorekisteri" element={<Vehicles />} />              
+              <Route path="/huoltorekisteri" element={<Vehicles />} />
               <Route path="/sali" element={<Sali />} />
               <Route path="/news" elements={<CollectionCounts />} />
               <Route path='/inActivity' element={<InactivityTimer />} />
@@ -103,19 +119,21 @@ function App() {
               <Route path='messages' element={<Messages />} />
               <Route path='showMessages' element={<ShowMessages />} />
               <Route path='palaute' element={<Feedback />} />
-              <Route path='naytapalaute' element={<ShowFeedback />} />              
+              <Route path='naytapalaute' element={<ShowFeedback />} />
               <Route path='stock' element={<StockFetcher />} />
-              <Route path='heavyCheck' element={<Heavy />}/>
+              <Route path='heavyCheck' element={<Heavy />} />
+              <Route path='reissulista' element={<Lista />} />
+
 
               <Route path='huollot' element={<HuoltoLayout />} >
                 <Route path='uploadsuberb' element={<Suberb />} />
                 <Route path='showsuberb' element={<ReadSuberb />} />
                 <Route path='createsuberb' element={<CreateSuberb />} />
-              
+
                 <Route path='uploadwRellu' element={<WRellu />} />
                 <Route path='showWRellu' element={<ReadWRellu />} />
                 <Route path='createWRellu' element={<CreateWRellu />} />
-              
+
               </Route>
 
               <Route path='profile' element={<ProfileLayout />}>

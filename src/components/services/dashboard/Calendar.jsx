@@ -12,7 +12,6 @@ import ShowMessages from "../../ShowMessages";
 import { ThemeProvider } from '@mui/material';
 import theme from '../../Theme';
 import DayCounter from './DayCounter';
-import Logout from '../../User/Logout';
 
 const Calendar = () => {
     const { t } = useTranslation();
@@ -25,7 +24,7 @@ const Calendar = () => {
 
     useEffect(() => {
         if (!timerCounting) {
-            Logout();
+            navigate('/logout');
         }
     }, [timerCounting]);
 

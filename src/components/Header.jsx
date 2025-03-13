@@ -21,6 +21,7 @@ import Hamburger from './Hamburger';
 import FeedbackDialog from "./Messages";
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import Lista from "./Reissu/Lista";
 
 //<Link to="/checkLocation"><LocationOnIcon/></Link>
 export default function Header() {
@@ -32,6 +33,9 @@ export default function Header() {
 
   const location = useLocation();
   const currentPath = location.pathname;
+  
+  
+
 
   useEffect(() => {
     const storedLoggedIn = sessionStorage.getItem("loggedIn")

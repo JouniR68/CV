@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import trainingData from "../../../data/aito.json"; // Replace with the correct path to your JSON data
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { db } from "../../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ const TrainingPlan = () => {
   const [done, setDone] = useState([]);
   const [error, setError] = useState("");
   const [clicks, setClicks] = useState([]);
-
+  const [viikonpaiva, setViikonpaiva] = useState(""); //  
   const navigate = useNavigate();
 
   // Fetch training data from Firestore
@@ -31,6 +31,17 @@ const TrainingPlan = () => {
   useEffect(() => {
     fetchData();
   }, []); // Run only once after initial render
+
+  const today = new Date().getDay();
+  const viikonpaivat = [
+    "Sunnuntai", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai"
+  ];
+
+
+  const changeDay = (value) => {
+    console.log("value: " + value);
+    setViikonpaiva(value);
+  }
 
   useEffect(() => {
     console.log("Data state updated:", data);
@@ -57,10 +68,10 @@ const TrainingPlan = () => {
             date: new Date().toLocaleDateString(),
             hour: new Date().getHours()
           };
-          setData(prevData => [...prevData, newEntry]);          
+          setData(prevData => [...prevData, newEntry]);
           setDayCompleted(true);
           return
-        } 
+        }
       } else {
         console.log("Joku treenikerta vielä klikkaamatta");
       }
@@ -85,11 +96,6 @@ const TrainingPlan = () => {
     return date.toISOString().split('T')[0];
   };
 
-  const today = new Date().getDay();
-  const viikonpaivat = [
-    "Sunnuntai", "Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai"
-  ];
-  let viikonpaiva = viikonpaivat[today];
 
   // Find today's training data
   const todayTraining = trainingData.plan[0]
@@ -184,12 +190,17 @@ const TrainingPlan = () => {
     return Math.ceil((pastDays + firstDayOfYear.getDay()) / 7); // Week number calculation
   };
 
+
+
+
   return (
     <div>
       <h3>{viikonpaiva} - {todayTraining?.Tavoite}</h3>
       <Button style={{ backgroundColor: dayCompleted ? 'green' : 'white', color: dayCompleted ? 'white' : 'black', fontWeight: 700 }}>
         {dayCompleted ? "Valmis" : "-"}
       </Button>{error && <h3>{error}</h3>}
+      <TextField style={{marginLeft:'1rem'}} onChange={(event) => changeDay(event.target.value)}></TextField>
+
 
       {/* Show the training exercises for the day */}
       {todayTraining?.Voimaharjoittelu?.liike && (
@@ -200,7 +211,7 @@ const TrainingPlan = () => {
             <thead>
               <tr>
                 <th>Treeni</th>
-                <th>S&T</th>                
+                <th>S&T</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -213,7 +224,7 @@ const TrainingPlan = () => {
                       {exercise}
                     </td>
                     <td style={makeColumnsPretty(index)}>{todayTraining.Voimaharjoittelu.sarja[index]}/
-                    {todayTraining.Voimaharjoittelu.toisto[index]}</td>
+                      {todayTraining.Voimaharjoittelu.toisto[index]}</td>
                     <td>
                       <div key={index} style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-start', alignItems: 'center' }}>
 
