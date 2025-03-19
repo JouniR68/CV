@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Checkbox, FormControlLabel, Typography, Grid, Paper, Box } from '@mui/material';
 
 // Tarkistuslistan osat
@@ -9,17 +9,16 @@ const checklistData = [
             "Kunnossapito ja huolto",
             "Renkaat",
             "Jarrut",
-            "Ketjut ja hihnat",
-            "Moottoripyörän varaosat",            
+            "Ketjut (jatkuva rasvaus)",
+            "Akun lataus",
         ]
     },
     {
-        category: "Dokumentit ja luvat",
+        category: "Dokumentit ja luvat (minicrip)",
         items: [
             "Ajokortti",
-            "Moottoripyörän rekisteröintitodistus",
-            "Vakuutukset",
-            "Passi ja viisumit",
+            "Vakuutuspapru",
+            "Passi ja viisumit (voimassaolo)",
             "Eurooppalainen sairausvakuutuskortti (EHIC)"
         ]
     },
@@ -30,60 +29,67 @@ const checklistData = [
             "Ajovarusteet",
             "Sadetakit ja vedenpitävät vaatteet",
             "Lämpimät vaatteet",
-            "Auringon suojatuotteet",
-            "Varahanskat ja -kengät"
+            "Varahanskat ja -kengät",
+            "Vedenkestävä puhelinpussi tankoon"
         ]
     },
     {
         category: "Matkavarusteet",
         items: [
-            "Puhelin",
+            "Puhelin (navi)",
             "Laukut ja repput",
-            "Työkalupakki",
+            "Hygienia pussukka",
+            "Työkalupakki (renkaan pultit)",
             "Rengaskorjaussetti",
-            "GPS tai kartat",
             "Laturi ja virtapankki",
-            "Matkaopas ja/tai reittisuunnitelma"
+            "GoPro + akut",
+            "Salmiakki"
         ]
     },
     {
         category: "Rahoitus ja maksaminen",
         items: [
-            "Käteinen ja luottokortit",
-            "Pankkikortti ja/ tai matkakortti",
-            "Bensiinikortti tai prepaid-kortit"
+            "Ennakkomaksut soveltuvilta osin",
+            "Käteinen, pankki & luottokortit (hajautettava)",
         ]
     },
     {
         category: "Turvallisuus ja hätätilanteet",
         items: [
-            "Ensiapupakkaus",
-            "Hätätilanteiden varalta",
-            "Varavalo ja taskulamppu",
+            "Ensiapupakkaus (min buranat)",
+        ]
+    },
+    {
+        category: "Sovellukset (päivitä apit)",
+        items: [
+            "Google Maps", "Trip Advisor", "Direct Ferries", "Booking", "Trivago", "Omio", "Tallink SiljaLine", "KTM Connect", "VR", "AirBnB",
+            "Pankkisovellukset",
+            "SOME",
+            "AI",
+            "Connect (lenkillä..)",
         ]
     },
     {
         category: "Majoitus ja reitit",
         items: [
-            "Varaukset ja yöpymispaikat",
-            "Reittisuunnitelma",
-            "Ravintolat ja huoltoasemat",
-            "Lautat"
+            "Varaukset ja yöpymispaikat sovellukset",
+            "Reittisuunnitelma (dynaaminen)",
+            "Ravintolat ja huoltoasemat (navi)",
+            "Lauttojen varaukset isommalla ennakolla"
         ]
     },
     {
         category: "Muuta",
         items: [
-            "Sääennusteet ja sääolosuhteet",
-            "Tieliikennesäännöt ja nopeusrajoitukset",
-            "Paikalliset säännöt ja määräykset"
+            "Läppäri",
+            "Johtosetti",
+            "Minigrip pusseja"
         ]
     },
     {
         category: "Matkan aikana",
         items: [
-            "Hyvinvointi ja jaksaminen",
-            "Matkustajien turvallisuus",
+            "Tarpeeksi pitstoppeja",
             "Äänikirjoja"
         ]
     }

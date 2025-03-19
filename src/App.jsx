@@ -73,6 +73,7 @@ import Basket from "./components/services/shop/TheBasket";
 import Orders from "./components/services/shop/ShowOrders";
 
 import Lista from "./components/Reissu/Lista";
+import DayCounter from "./components/Reissu/DayCounter";
 
 /*
 function HideHeader() {
@@ -123,7 +124,7 @@ function App() {
               <Route path='stock' element={<StockFetcher />} />
               <Route path='heavyCheck' element={<Heavy />} />
               <Route path='reissulista' element={<Lista />} />
-
+              <Route path='reissupaivat' element={<DayCounter />} />
 
               <Route path='huollot' element={<HuoltoLayout />} >
                 <Route path='uploadsuberb' element={<Suberb />} />

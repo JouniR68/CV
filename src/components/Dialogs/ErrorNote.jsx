@@ -22,6 +22,7 @@ function Note() {
     <div className="confirmation-container">
       <div className="confirmation-content">
         <h2>{title}</h2>
+        <br></br>
         {description}
         <button id="ok" onClick={ok}>{t('Ok')}</button>
       </div>

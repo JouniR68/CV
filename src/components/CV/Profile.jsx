@@ -27,6 +27,7 @@ export default function Profile({ hideButton }) {
   const navigate = useNavigate();
 
 //<TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
+//{!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>} 
 
   return (
     <>
@@ -46,8 +47,7 @@ export default function Profile({ hideButton }) {
               </TableBody>
             </Table>
           </TableContainer>
-          <div className="profilerNapit">
-            {!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>} 
+          <div className="profilerNapit">            
             <Button style={{marginLeft:'1rem'}}variant="contained" onClick={generatePDF}>{t('LoadCV')}</Button>
           </div>
         </div>

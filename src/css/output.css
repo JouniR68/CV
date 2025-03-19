@@ -1,7 +1,7 @@
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1025px) {
     .output {
         display:flex;
-        flex-direction: row;        
+        flex-direction: column;        
         justify-content: start;
         align-items: center;   
         width:fit-content;     

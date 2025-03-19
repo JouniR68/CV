@@ -23,7 +23,7 @@
 }
 
 /*iphone 12*/
-@media only screen and (device-width: 390px) and (device-height: 844px) {
+@media only screen and (device-width: 390px) and (device-height: 844px) and (orientation: portrait){
 
   html,
   body {
@@ -56,22 +56,7 @@
     font-size: 1.5rem;
   }
 
-  .sali {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0.2rem;
-    background-color: lightgray;
-    height: 60%;
-    width: 100%;
-    font-size: 16px;
-    overflow: auto;
-    padding: 1rem;
-  }
-
-  .day-details {
-    background-color: yellow;
-  }
-
+  
   .confirmation-container {
     display: flex;
     flex-direction: column;
@@ -153,25 +138,25 @@
     cursor: pointer;
   }
 
+  /*mobile*/
   .header {
     display: flex;
     z-index: 10;
     color: #000;
     border-radius: 0.2rem;
     background-color: rgb(139, 134, 134);
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .header-left>Link {
     align-items: center;
     justify-content: flex-start;
-    font-size: 1rem;
+    font-size: 0.5rem;
   }
 
   .header-right {
     margin-left: auto;
-    margin-right: 2rem;
-    padding-right: 1rem;
+    margin-right: 1rem;
   }
 
   .header-left Link {
@@ -250,33 +235,10 @@
     overflow-y: auto;
   }
 
-  .sali {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    padding-left: 1rem;
-    background-color: #fff;
-    height: fit-content;
-    width: 100%;
-    font-size: 16px;
-    overflow: auto;
-  }
-
-  .showWk {  
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;  
-    max-height: 50%;
-    overflow-y:auto;
-  }
-
+  
   .huolto {
     height: 60%;
     overflow-y: auto;
-  }
-
-  .day-details {
-    background-color: transparent;
   }
 
   .hamburger-menu {
@@ -359,6 +321,8 @@
   }
 
   #ok {
+    display:flex;
+    flex-direction: column;
     margin-top: rem;
     padding: 0.5rem;
     width: 100%;
