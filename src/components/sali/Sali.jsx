@@ -5,6 +5,7 @@ import { db } from "../../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import Heavy from '../Dialogs/Heavy';
+import VapaaTreeniCheckbox from './Free';
 import "../../css/sali.css"
 
 const TrainingPlan = () => {
@@ -17,6 +18,7 @@ const TrainingPlan = () => {
   const [clicks, setClicks] = useState([]);
   const [newDate, setNewDate] = useState("")
   const [viikonpaiva, setViikonpaiva] = useState(""); //  
+  const [aero, setAero] = useState(false)
   const navigate = useNavigate();
 
   // Fetch training data from Firestore
@@ -208,13 +210,20 @@ const TrainingPlan = () => {
     setNewDate(event);
   }
 
+
+const handleVapaaTreeni = () =>{
+  setAero(!aero)
+}
+
   return (
     <div>
       <div className="changeDate">
-        <TextField style={{ width: '7rem', border: '1px solid', textAlign: 'center' }} onChange={(event) => setDate(event.target.value)}></TextField>
+        <TextField style={{ marginTop:'1rem', width: '7rem', border: '1px solid', textAlign: 'center' }} onChange={(event) => setDate(event.target.value)}></TextField>
         <Button style={{ width: 'fit-content', padding: '0.5rem' }} onClick={haePaiva}>Hae</Button>
+        <VapaaTreeniCheckbox onChange={handleVapaaTreeni}/>
       </div>
-      {
+
+      { !aero && 
         ({ viikonpaiva } != "Lauantai" && { viikonpaiva } != "Sunnuntai")
         && <h3>{viikonpaiva} - {todayTraining?.Tavoite}</h3>
       }
@@ -222,7 +231,8 @@ const TrainingPlan = () => {
       <Button style={{
         backgroundColor: dayCompleted ? 'green' : 'lightblue',
         color: dayCompleted ? 'white' : 'black',
-        fontWeight: 700, border: '1px solid'
+        fontWeight: 700, border: '1px solid',
+        marginTop: '1rem'
       }}
         onClick={submit}
       >
@@ -231,7 +241,7 @@ const TrainingPlan = () => {
 
       
       {/* Show the training exercises for the day */}
-      {
+      { !aero && 
         todayTraining?.Voimaharjoittelu?.liike && (
           <div>
             <h2>Voimaharjoittelu</h2>
