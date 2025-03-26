@@ -93,14 +93,15 @@ const Calendar = () => {
         deleteDoc(docRef)
             .then(() => {
                 console.log("The document successfully deleted");
-                navigate(0);
+                /*navigate(0);*/
+                setEvents((events) => events.filter(item => item.id !== id));
             })
             .catch((error) => {
                 console.error("Error removing document: ", error);
                 navigate('/error', { state: { locationError: `${id} deleting failed.` } });
             });
 
-        setEvents((events) => events.filter(item => item.id !== id));
+
     };
 
     const today = new Date().toISOString().split('T')[0];

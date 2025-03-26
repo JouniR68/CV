@@ -83,6 +83,7 @@ function HideHeader() {
   return !currentPath.includes('reissulista') ? <Header /> : null;
 }
   {window.location.pathname !== "/reissulista" ? <Header />: null}
+
   */
 
 function App() {
@@ -90,10 +91,10 @@ function App() {
   return (
     <div className="app-container">
       <AuthProvider>
-      
+
         <BrowserRouter>
-        
-          <Routes>          
+
+          <Routes>
             <Route element={<Layout />}>
               <Route path='/' element={<Home />} />
               <Route path="/mm" element={<MindMap />} />

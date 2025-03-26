@@ -130,18 +130,18 @@ function TarjouspyyntoForm() {
   }
 
   return (
-    
+
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="tarjouspyynto-content">
           <Controller
             name="isCompany"
             control={control}
-            defaultValue={false}            
+            defaultValue={false}
             render={({ field }) => (
               <FormControlLabel
                 control={<Checkbox {...field} />}
-                label="Yritys"                
+                label="Yritys"
               />
             )}
           />
@@ -183,13 +183,13 @@ function TarjouspyyntoForm() {
                 <TextField
                   {...field}
                   size="medium"
-                  label="Y-tunnus"                  
-                  required={isCompany}                                    
+                  label="Y-tunnus"
+                  required={isCompany}
                   InputLabelProps={{
                     sx: {
                       fontSize: '18px', // Adjust the label font size
                     },
-                  }}    
+                  }}
                 />
               )}
             />
@@ -336,7 +336,7 @@ function TarjouspyyntoForm() {
           </div>
         </div>
       </form>
-    
+
   );
 }
 
