@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import trainingData from '../../../data/aito.json'; // Replace with the correct path to your JSON data
 import { Button, TextField } from '@mui/material';
 import { db } from '../../firebase';
@@ -20,9 +20,7 @@ const TrainingPlan = () => {
     const [viikonpaiva, setViikonpaiva] = useState(''); //
     const [aero, setAero] = useState(false);
     const navigate = useNavigate();
-    //const [lock, setLock] = useState(false);
-    const addedEntryRef = useRef(false); // Prevent infinite loop
-    const newDataRef = useRef(null);
+    const [lock, setLock] = useState(false);
 
     // Fetch training data from Firestore
     const fetchData = async () => {
@@ -53,7 +51,6 @@ const TrainingPlan = () => {
         'Lauantai',
     ];
 
-    //If user  types date to the form, it will be stored to newDate variable.
     useEffect(() => {
         if (newDate != '' && newDate != viikonpaivat[today]) {
             setViikonpaiva(newDate);
@@ -69,14 +66,13 @@ const TrainingPlan = () => {
         : {};
 
     useEffect(() => {
-        if (addedEntryRef.current) return; // Prevent multiple entries
         if (todayTraining?.Voimaharjoittelu?.liike?.length > 0) {
             const allExercisesCompleted =
                 todayTraining.Voimaharjoittelu.liike.every((_, index) => {
                     const requiredClicks =
                         todayTraining.Voimaharjoittelu.sarja[index];
-                    let actualClicks = done[index] || 0;
-                    return actualClicks >= requiredClicks;
+                    const actualClicks = done[index] || 0;
+                    return actualClicks === requiredClicks;
                 });
 
             if (allExercisesCompleted) {
@@ -86,18 +82,15 @@ const TrainingPlan = () => {
                     return f.date === today;
                 });
 
-                if (!newDataRef.current && !dateFound) {
+                if (!dateFound) {
                     const newEntry = {
                         week: getWeekNumber(),
                         training: todayTraining.Tavoite,
                         date: new Date().toLocaleDateString(),
                         hour: new Date().getHours(),
                     };
-                    newDataRef.current = newEntry;
                     //setData((prevData) => [...prevData, newEntry]);
                     setDayCompleted(true);
-                    addedEntryRef.current = true; // Mark as added
-                    submit();
                     return;
                 } else {
                     setDayCompleted(false);
@@ -113,7 +106,7 @@ const TrainingPlan = () => {
                 console.log('Joku treenikerta vielä klikkaamatta');
             }
         }
-    }, [clicks, done, todayTraining]);
+    }, [clicks, done, data]);
 
     const handleClick = (i) => {
         if (clicks[i] < todayTraining?.Voimaharjoittelu.sarja[i]) {
@@ -143,19 +136,11 @@ const TrainingPlan = () => {
     const submit = async () => {
         //if (dayCompleted) {
         try {
-            console.log('Entered data:', newDataRef.current);
-            console.log('today: ', new Date().toLocaleDateString());
-            /*const latestEntryIndex = data.findIndex(
-                (entry) => entry.date === new Date().toLocaleDateString()
-            );*/
-            //console.log('Submit data index:', latestEntryIndex);
-
-            if (newDataRef.current.date === new Date().toLocaleDateString()) {
-                await addDoc(
-                    collection(db, 'trainings'),
-                    newDataRef.current
-                ); //push data to the firebase
-                setDayCompleted(false); //Initialize dayCompleted and done
+            const latestEntry = data[data.length - 1];
+            console.log('Submit data:', latestEntry);
+            if (latestEntry) {
+                await addDoc(collection(db, 'trainings'), latestEntry);
+                setDayCompleted(false);
                 setDone([]);
             } else {
                 navigate('/errorNote', {
@@ -167,6 +152,7 @@ const TrainingPlan = () => {
                 setTimeout(() => {
                     navigate('/');
                 }, 4000);
+
                 setError('');
             }
         } catch (err) {
@@ -262,7 +248,7 @@ const TrainingPlan = () => {
     const handleVapaaTreeni = () => {
         setAero(!aero);
     };
-    // {dayCompleted && <Heavy onAnswer={handleAnswer} />}
+
     return (
         <div>
             <div className='changeDate'>
@@ -392,6 +378,7 @@ const TrainingPlan = () => {
                             )
                         )}
                     </table>
+                    {dayCompleted && <Heavy onAnswer={handleAnswer} />}
                 </div>
             )}
 
