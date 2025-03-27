@@ -89,15 +89,15 @@ const TrainingPlan = () => {
                 if (!newDataRef.current && !dateFound) {
                     const newEntry = {
                         week: getWeekNumber(),
-                        training: todayTraining.Tavoite,
                         date: new Date().toLocaleDateString(),
                         hour: new Date().getHours(),
+                        training: todayTraining.Tavoite,
+                        details: todayTraining.Voimaharjoittelu.liike,
                     };
                     newDataRef.current = newEntry;
                     //setData((prevData) => [...prevData, newEntry]);
                     setDayCompleted(true);
                     addedEntryRef.current = true; // Mark as added
-                    submit();
                     return;
                 } else {
                     setDayCompleted(false);
@@ -151,10 +151,7 @@ const TrainingPlan = () => {
             //console.log('Submit data index:', latestEntryIndex);
 
             if (newDataRef.current.date === new Date().toLocaleDateString()) {
-                await addDoc(
-                    collection(db, 'trainings'),
-                    newDataRef.current
-                ); //push data to the firebase
+                await addDoc(collection(db, 'trainings'), newDataRef.current); //push data to the firebase
                 setDayCompleted(false); //Initialize dayCompleted and done
                 setDone([]);
             } else {
@@ -180,35 +177,8 @@ const TrainingPlan = () => {
     };
 
     const handleAnswer = (answer) => {
-        console.log('Before update:', data);
-        if (answer === 'Kyllä') {
-            setData((prev) => {
-                if (prev.length === 0) {
-                    console.log(
-                        'No elements in data array, nothing to update.'
-                    );
-                    return prev; // Prevents modifying an empty array
-                }
-                console.log('today: ', todayTraining.Voimaharjoittelu);
-                const updatedData = [...prev];
-                updatedData[updatedData.length - 1] = {
-                    ...updatedData[updatedData.length - 1],
-                    heavy: answer,
-                    treeni:
-                        todayTraining.Voimaharjoittelu?.liike ??
-                        'Ei treeni dataa',
-                };
-                console.log('Updated data:', updatedData);
-                return updatedData;
-            });
-
-            setTimeout(() => {
-                console.log('Submitting after data update: ', data);
-                submit();
-            }, 300); // Delay submit to prevent focus issues
-        } else {
-            console.log(`Vastaus dialogissa ongelma`);
-        }
+        newDataRef.current = { ...newDataRef.current, raskas: answer };
+        submit();
     };
 
     const markDone = (i) => {
@@ -262,7 +232,7 @@ const TrainingPlan = () => {
     const handleVapaaTreeni = () => {
         setAero(!aero);
     };
-    // {dayCompleted && <Heavy onAnswer={handleAnswer} />}
+
     return (
         <div>
             <div className='changeDate'>
@@ -394,6 +364,7 @@ const TrainingPlan = () => {
                     </table>
                 </div>
             )}
+            {dayCompleted && <Heavy onAnswer={handleAnswer} />}
 
             {/* Show HIIT if available */}
             {todayTraining?.HIIT && (
