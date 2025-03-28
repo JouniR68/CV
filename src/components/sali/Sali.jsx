@@ -154,8 +154,7 @@ const TrainingPlan = () => {
                 await addDoc(collection(db, 'trainings'), newDataRef.current); //push data to the firebase
                 setDayCompleted(false); //Initialize dayCompleted and done
                 setDone([]);
-            } else {
-                navigate('/errorNote', {
+                navigate('/note', {
                     state: {
                         title: 'Talletus',
                         description: 'Treeni talletettu',
@@ -177,7 +176,7 @@ const TrainingPlan = () => {
     };
 
     const handleAnswer = (answer) => {
-        newDataRef.current = { ...newDataRef.current, raskas: answer };
+        newDataRef.current = { ...newDataRef.current, details_analyysi: answer };
         submit();
     };
 

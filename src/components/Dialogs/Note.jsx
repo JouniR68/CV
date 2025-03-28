@@ -4,15 +4,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../LoginContext";
 
 function Note() {
-  console.log("Note");  
+  console.log("Note");
   const { t } = useTranslation()
   const location = useLocation()
-  const [close, setClose] = useState(false)
   const navigate = useNavigate();
+
+
 
   const { state } = location;
   let { title, description } = state;
-  
+
   const ok = () => {
     navigate(-1);
   }

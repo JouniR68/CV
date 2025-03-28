@@ -34,7 +34,7 @@ import Address from "./components/Address";
 import CheckLocation from "./components/CheckLocation";
 import { AuthProvider } from "./components/LoginContext";
 import Done from "./components/Dialogs/Done";
-import ErrorNote from "./components/Dialogs/ErrorNote";
+import Note from "./components/Dialogs/Note";
 import Calendar from "./components/services/dashboard/Calendar";
 import TarjousLomake from "./components/services/tarjous/Tarjouslomake";
 import Register from "./components/User/Register";
@@ -116,7 +116,7 @@ function App() {
               <Route path="adminLogin" element={<AdminLogin />} />
               <Route path="register" element={<Register />} />
               <Route path="done" element={<Done />} />
-              <Route path="errorNote" element={<ErrorNote />} />
+              <Route path="note" element={<Note />} />
               <Route path='lasku' element={<Report />} />
               <Route path='messages' element={<Messages />} />
               <Route path='showMessages' element={<ShowMessages />} />
