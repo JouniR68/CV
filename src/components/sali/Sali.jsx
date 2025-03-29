@@ -176,7 +176,11 @@ const TrainingPlan = () => {
     };
 
     const handleAnswer = (answer) => {
+        if (!newDataRef.current?.date){
+            newDataRef.current = {...newDataRef.current, details_analyysi: answer, date: new Date().toLocaleDateString()}
+        } else{
         newDataRef.current = { ...newDataRef.current, details_analyysi: answer };
+    }
         submit();
     };
 
@@ -230,6 +234,7 @@ const TrainingPlan = () => {
 
     const handleVapaaTreeni = () => {
         setAero(!aero);
+
     };
 
     return (
@@ -363,7 +368,7 @@ const TrainingPlan = () => {
                     </table>
                 </div>
             )}
-            {dayCompleted && <Heavy onAnswer={handleAnswer} />}
+            {dayCompleted || aero && <Heavy onAnswer={handleAnswer} />}
 
             {/* Show HIIT if available */}
             {todayTraining?.HIIT && (
