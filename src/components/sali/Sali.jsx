@@ -177,7 +177,7 @@ const TrainingPlan = () => {
 
     const handleAnswer = (answer) => {
         if (!newDataRef.current?.date){
-            newDataRef.current = {...newDataRef.current, details_analyysi: answer, date: new Date().toLocaleDateString()}
+            newDataRef.current = {...newDataRef.current, details_analyysi: answer, date: new Date().toLocaleDateString(), hour: new Date().getHours()}
         } else{
         newDataRef.current = { ...newDataRef.current, details_analyysi: answer };
     }
