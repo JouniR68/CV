@@ -22,11 +22,10 @@ const TrainingPlan = () => {
     const navigate = useNavigate();
     //const [lock, setLock] = useState(false);
     const addedEntryRef = useRef(false); // Prevent infinite loop
-    const newDataRef = useRef([]);
+    const newDataRef = useRef(null);
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
     const [showHeavy, setShowHeavy] = useState(false);
-    const [exerciseCompleted, setExerciseCompleted] = useState(false);
-    const [response, setResponse] = useState([]);
+
 
     // Fetch training data from Firestore
     const fetchData = async () => {
@@ -90,7 +89,7 @@ const TrainingPlan = () => {
                     return f.date === today;
                 });
 
-                if (!dateFound) {
+                if (!newDataRef.current && !dateFound) {
                     const newEntry = {
                         week: getWeekNumber(),
                         date: new Date().toLocaleDateString(),
@@ -99,10 +98,9 @@ const TrainingPlan = () => {
                         details: todayTraining.Voimaharjoittelu.liike,
                     };
                     newDataRef.current = newEntry;
-                    newDataRef.current.data_analyysi = response;
+                    //setData((prevData) => [...prevData, newEntry]);
                     setDayCompleted(true);
                     addedEntryRef.current = true; // Mark as added
-                    submit()
                     return;
                 } else {
                     setDayCompleted(false);
@@ -121,29 +119,16 @@ const TrainingPlan = () => {
     }, [clicks, done, todayTraining]);
 
     const handleClick = (i) => {
-        console.log('clicks[i]: ', clicks[i]);
-        console.log(
-            'todayTraining?.Voimaharjoittelu.sarja[i]:',
-            todayTraining?.Voimaharjoittelu.sarja[i]
-        );
-
-        const currentClicks = clicks[i] || 0; // Default to 0 if undefined
-
-        if (currentClicks < todayTraining?.Voimaharjoittelu.sarja[i]) {
+        if (clicks[i] < todayTraining?.Voimaharjoittelu.sarja[i]) {
+            console.log('handleClick', clicks);
             setClicks((prev) => {
                 const newClicks = [...prev];
-                newClicks[i] = currentClicks + 1;
+                newClicks[i] = (newClicks[i] || 0) + 1;
                 return newClicks;
             });
-
             markDone(i);
-
-            const requiredClicks = todayTraining?.Voimaharjoittelu.sarja[i];
-            if (currentClicks + 1 === requiredClicks) {
-                setShowHeavy(true); // Show Heavy component after completing an exercise
-            }
         } else {
-            console.error('handleClick error branch');
+            setError('HandleClick else branch activated, clicks:' + clicks);
         }
     };
 
@@ -161,22 +146,28 @@ const TrainingPlan = () => {
     const submit = async () => {
         //if (dayCompleted) {
         try {
+            console.log('Entered data:', newDataRef.current);
             console.log('today: ', new Date().toLocaleDateString());
-            console.log('Data to be pushed:', newDataRef.current);
+            /*const latestEntryIndex = data.findIndex(
+                (entry) => entry.date === new Date().toLocaleDateString()
+            );*/
+            //console.log('Submit data index:', latestEntryIndex);
 
-            await addDoc(collection(db, 'trainings'), newDataRef.current); //push data to the firebase
-            setDayCompleted(false); //Initialize dayCompleted and done
-            setDone([]);
-            navigate('/note', {
-                state: {
-                    title: 'Talletus',
-                    description: 'Treeni talletettu',
-                },
-            });
-            setTimeout(() => {
-                navigate('/');
-            }, 4000);
-            setError('');
+            if (newDataRef.current.date === new Date().toLocaleDateString()) {
+                await addDoc(collection(db, 'trainings'), newDataRef.current); //push data to the firebase
+                setDayCompleted(false); //Initialize dayCompleted and done
+                setDone([]);
+                navigate('/note', {
+                    state: {
+                        title: 'Talletus',
+                        description: 'Treeni talletettu',
+                    },
+                });
+                setTimeout(() => {
+                    navigate('/');
+                }, 4000);
+                setError('');
+            }
         } catch (err) {
             console.error('Error adding document: ', err);
         }
@@ -187,41 +178,13 @@ const TrainingPlan = () => {
         setShowWholeWeek((prevState) => !prevState);
     };
 
-    useEffect(() => {
-        console.log('Current response length:', response.length);
-        console.log('response data: ', Object.entries(response));
-    }, [response]); // Runs whenever response changes
-
-    /*if (
-            value &&
-            currentExerciseIndex ===
-                todayTraining.Voimaharjoittelu.liike.length - 1
-        ) {
-            console.log('currentExerciseIndex: ', currentExerciseIndex + ", voimaliike:", todayTraining.Voimaharjoittelu.liike.length - 1);*/
-
-    const handleAnswer = (value) => {
-        if (!value) {
-            console.log('No value');
-            return;
-        }
-        setClicks([]);
-        setShowHeavy(false); // Hide Heavy after response
-        console.log('Value:', value);
-
-        // Update state correctly
-        setResponse((prev) => {
-            const updatedResponse = [...prev, { analyysi: value }];
-            console.log('Updated response:', updatedResponse);
-            return updatedResponse; // Return the new state
-        });
-
-        // Move to the next exercise or submit if it's the last one
-        if (
-            currentExerciseIndex <
-            todayTraining.Voimaharjoittelu.liike.length - 1
-        ) {
-            setCurrentExerciseIndex((prev) => prev + 1);
-        }
+    const handleAnswer = (answer) => {
+        if (!newDataRef.current?.date){
+            newDataRef.current = {...newDataRef.current, details_analyysi: answer, date: new Date().toLocaleDateString(), hour: new Date().getHours()}
+        } else{
+        newDataRef.current = { ...newDataRef.current, details_analyysi: answer };
+    }
+        submit();
     };
 
     const markDone = (i) => {
@@ -274,6 +237,7 @@ const TrainingPlan = () => {
 
     const handleVapaaTreeni = () => {
         setAero(!aero);
+
     };
 
     return (
@@ -319,18 +283,11 @@ const TrainingPlan = () => {
             </Button>
             {error && <h3>{error}</h3>}
 
-            {/* Show the training exercises for the day
+            {/* Show the training exercises for the day */}
             {!aero && todayTraining?.Voimaharjoittelu?.liike && (
-            )}
+                <div>
+                    <h2>Voimaharjoittelu</h2>
 
-            */}
-
-            <div>
-                <h2>Voimaharjoittelu</h2>
-
-                {showHeavy ? (
-                    <Heavy onSubmit={handleAnswer} />
-                ) : (
                     <table>
                         <thead>
                             <tr>
@@ -339,13 +296,20 @@ const TrainingPlan = () => {
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {todayTraining?.Voimaharjoittelu?.liike?.map(
-                                (exercise, index) =>
-                                    index === currentExerciseIndex ? ( // Only show the current exercise
-                                        <tr key={index}>
-                                            <td>{exercise}</td>
-                                            <td>
+
+                        {todayTraining.Voimaharjoittelu?.liike?.map(
+                            (exercise, index) => (
+                                <tbody key={index}>
+                                    <tr>
+                                        <>
+                                            <td
+                                                style={makeColumnsPretty(index)}
+                                            >
+                                                {exercise}
+                                            </td>
+                                            <td
+                                                style={makeColumnsPretty(index)}
+                                            >
                                                 {
                                                     todayTraining
                                                         .Voimaharjoittelu.sarja[
@@ -360,26 +324,54 @@ const TrainingPlan = () => {
                                                 }
                                             </td>
                                             <td>
-                                                <Button
-                                                    style={getButtonStyle(
-                                                        index
-                                                    )}
-                                                    onClick={() =>
-                                                        handleClick(index)
-                                                    }
+                                                <div
+                                                    key={index}
+                                                    style={{
+                                                        display: 'flex',
+                                                        gap: '0.5rem',
+                                                        justifyContent:
+                                                            'flex-start',
+                                                        alignItems: 'center',
+                                                    }}
                                                 >
-                                                    {clicks}
-                                                </Button>
+                                                    <Button
+                                                        style={getButtonStyle(
+                                                            index
+                                                        )}
+                                                        onClick={() =>
+                                                            markDone(index)
+                                                        }
+                                                        disabled={
+                                                            done[index] >=
+                                                            todayTraining
+                                                                ?.Voimaharjoittelu
+                                                                ?.sarja[index]
+                                                        }
+                                                    >
+                                                        <span
+                                                            style={{
+                                                                fontWeight:
+                                                                    'bold',
+                                                            }}
+                                                        >
+                                                            {done[index]}
+                                                        </span>
+                                                    </Button>
+                                                    {console.log(
+                                                        'clicks: ',
+                                                        clicks[index]
+                                                    )}
+                                                </div>
                                             </td>
-                                        </tr>
-                                    ) : null
-                            )}
-                        </tbody>
+                                        </>
+                                    </tr>
+                                </tbody>
+                            )
+                        )}
                     </table>
-                )}
-            </div>
-
-            {showHeavy && <Heavy onAnswer={handleAnswer} />}
+                </div>
+            )}
+            {dayCompleted || aero && <Heavy onAnswer={handleAnswer} />}
 
             {/* Show HIIT if available */}
             {todayTraining?.HIIT && (

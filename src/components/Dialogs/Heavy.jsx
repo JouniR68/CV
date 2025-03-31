@@ -40,7 +40,8 @@ const ConfirmationDialog = ({ open, onClose, onConfirm, index }) => {
     );
 };
 
-const Heavy = ({ onAnswer }) => {
+// eslint-disable-next-line react/prop-types
+const Heavy = ({ onAnswer = () => {}  }) => {
     const [openDialog, setOpenDialog] = useState(true);
 
     const handleConfirm = (index, value) => {
