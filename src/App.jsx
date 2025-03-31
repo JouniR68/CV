@@ -74,7 +74,6 @@ import Orders from "./components/services/shop/ShowOrders";
 
 import Lista from "./components/Reissu/Lista";
 import DayCounter from "./components/Reissu/DayCounter";
-import Sali2 from "./components/sali/Sali2";
 
 /*
 function HideHeader() {
@@ -127,7 +126,6 @@ function App() {
               <Route path='heavyCheck' element={<Heavy />} />
               <Route path='reissulista' element={<Lista />} />
               <Route path='reissupaivat' element={<DayCounter />} />
-              <Route path='treeni' element={<Sali2 />} />
 
               <Route path='huollot' element={<HuoltoLayout />} >
                 <Route path='uploadsuberb' element={<Suberb />} />

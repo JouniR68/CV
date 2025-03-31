@@ -11,13 +11,11 @@ import {
 
 const ConfirmationDialog = ({ open, onClose, onConfirm, index }) => {
     const [feedback, setFeedback] = useState();
+    const [weight, setWeight] = useState(0);
 
     return (
-        <Dialog open={open} onClose={() => onClose(null)}>
-            <DialogTitle>Vaikutus</DialogTitle>
-            <DialogContent>
-                <Typography>Analyysi</Typography>
-            </DialogContent>
+        <Dialog style = {{display:'flex', flexDirection:'column'}} open={open} onClose={() => onClose(null)}>
+            <DialogTitle>Treeni detalit</DialogTitle>
             <DialogActions>
                 <TextField
                     fullWidth
@@ -27,9 +25,16 @@ const ConfirmationDialog = ({ open, onClose, onConfirm, index }) => {
                     onChange={(e) => setFeedback(e.target.value)}
                     placeholder='Kirjoita palautteesi...'
                 />
+                <TextField
+                    type='number'
+                    rows={1}
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    placeholder='Paino'
+                />
 
                 <Button
-                    onClick={() => onConfirm(index, feedback)}
+                    onClick={() => onConfirm(feedback, weight)}
                     color='primary'
                     variant='contained'
                 >
@@ -41,12 +46,12 @@ const ConfirmationDialog = ({ open, onClose, onConfirm, index }) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Heavy = ({ onAnswer = () => {}  }) => {
+const Heavy = ({ onAnswer = () => {} }) => {
     const [openDialog, setOpenDialog] = useState(true);
 
-    const handleConfirm = (index, value) => {
-        console.log('answer: ' + value);
-        onAnswer(value); // ✅ Send answer back to parent
+    const handleConfirm = (feedback, weight) => {
+        console.log('answer: ' + feedback + ', weight: ', weight);
+        onAnswer(feedback, weight); // ✅ Send answer back to parent
         setOpenDialog(false);
     };
 

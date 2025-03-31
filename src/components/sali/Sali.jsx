@@ -97,9 +97,10 @@ const TrainingPlan = () => {
                         hour: new Date().getHours(),
                         training: todayTraining.Tavoite,
                         details: todayTraining.Voimaharjoittelu.liike,
+                        details_analyysi: response
                     };
                     newDataRef.current = newEntry;
-                    newDataRef.current.data_analyysi = response;
+                    //newDataRef.current.details_analyysi = response;
                     setDayCompleted(true);
                     addedEntryRef.current = true; // Mark as added
                     submit()
@@ -199,19 +200,19 @@ const TrainingPlan = () => {
         ) {
             console.log('currentExerciseIndex: ', currentExerciseIndex + ", voimaliike:", todayTraining.Voimaharjoittelu.liike.length - 1);*/
 
-    const handleAnswer = (value) => {
-        if (!value) {
-            console.log('No value');
+    const handleAnswer = (feedback, weight) => {
+        if (!feedback) {
+            console.log('No msg');
             return;
         }
-        setClicks([]);
-        setShowHeavy(false); // Hide Heavy after response
-        console.log('Value:', value);
+        console.log('analyse:', feedback + ', ' + weight);
 
         // Update state correctly
         setResponse((prev) => {
-            const updatedResponse = [...prev, { analyysi: value }];
+            const updatedResponse = [...prev, { analyysi: feedback, paino: weight }];
             console.log('Updated response:', updatedResponse);
+            setClicks([]);
+            setShowHeavy(false); // Hide Heavy after response
             return updatedResponse; // Return the new state
         });
 
@@ -222,6 +223,8 @@ const TrainingPlan = () => {
         ) {
             setCurrentExerciseIndex((prev) => prev + 1);
         }
+
+
     };
 
     const markDone = (i) => {
