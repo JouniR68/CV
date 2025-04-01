@@ -57,7 +57,7 @@ const Heavy = ({ onAnswer = () => {} }) => {
 
     return (
         <ConfirmationDialog
-            open={openDialog}
+            open={true}
             onClose={setOpenDialog}
             onConfirm={handleConfirm}
         />

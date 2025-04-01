@@ -97,13 +97,11 @@ const TrainingPlan = () => {
                         hour: new Date().getHours(),
                         training: todayTraining.Tavoite,
                         details: todayTraining.Voimaharjoittelu.liike,
-                        details_analyysi: response
                     };
                     newDataRef.current = newEntry;
                     //newDataRef.current.details_analyysi = response;
                     setDayCompleted(true);
                     addedEntryRef.current = true; // Mark as added
-                    submit()
                     return;
                 } else {
                     setDayCompleted(false);
@@ -193,13 +191,6 @@ const TrainingPlan = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    /*if (
-            value &&
-            currentExerciseIndex ===
-                todayTraining.Voimaharjoittelu.liike.length - 1
-        ) {
-            console.log('currentExerciseIndex: ', currentExerciseIndex + ", voimaliike:", todayTraining.Voimaharjoittelu.liike.length - 1);*/
-
     const handleAnswer = (feedback, weight) => {
         if (!feedback) {
             console.log('No msg');
@@ -209,22 +200,45 @@ const TrainingPlan = () => {
 
         // Update state correctly
         setResponse((prev) => {
-            const updatedResponse = [...prev, { analyysi: feedback, paino: weight }];
+            const updatedResponse = [
+                ...prev,
+                { analyysi: feedback, paino: weight },
+            ];
             console.log('Updated response:', updatedResponse);
             setClicks([]);
             setShowHeavy(false); // Hide Heavy after response
+
+            // Update newDataRef after response updates
+            newDataRef.current = {
+                ...newDataRef.current,
+                details_analyysi: updatedResponse,
+            };
+
             return updatedResponse; // Return the new state
         });
 
-        // Move to the next exercise or submit if it's the last one
+        console.log('currentExerciseIndex: ', currentExerciseIndex);
+        console.log(
+            'todayTraining.Voimaharjoittelu.liike.length - 1: ',
+            todayTraining.Voimaharjoittelu.liike.length - 1
+        );
+        // Move to the next exercise or submit if it's the last one-1
         if (
             currentExerciseIndex <
             todayTraining.Voimaharjoittelu.liike.length - 1
         ) {
             setCurrentExerciseIndex((prev) => prev + 1);
+        } else if (
+            currentExerciseIndex ===
+            todayTraining.Voimaharjoittelu.liike.length - 1
+        ) {
+            console.log(
+                'handleAnswer, currentExerciseIndex === todayTraining.Voimaharjoittelu.liike.length -1'
+            );
+            submit();
+        } else {
+            console.error('Jotain meni pieleen handleAnswerissa');
         }
-
-
     };
 
     const markDone = (i) => {
