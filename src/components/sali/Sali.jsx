@@ -25,8 +25,8 @@ const TrainingPlan = () => {
     const newDataRef = useRef([]);
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
     const [showHeavy, setShowHeavy] = useState(false);
-    const [exerciseCompleted, setExerciseCompleted] = useState(false);
     const [response, setResponse] = useState([]);
+    const currentExerciseRef = useRef('');
 
     // Fetch training data from Firestore
     const fetchData = async () => {
@@ -191,18 +191,18 @@ const TrainingPlan = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    const handleAnswer = (feedback, weight) => {
+    const handleAnswer = (liike, feedback, weight) => {
         if (!feedback) {
             console.log('No msg');
             return;
         }
-        console.log('analyse:', feedback + ', ' + weight);
+        console.log('liike: ', liike + 'analyse:', feedback + ', ' + weight);
 
         // Update state correctly
         setResponse((prev) => {
             const updatedResponse = [
                 ...prev,
-                { analyysi: feedback, paino: weight },
+                { liike: liike, analyysi: feedback, paino: weight },
             ];
             console.log('Updated response:', updatedResponse);
             setClicks([]);
@@ -293,6 +293,17 @@ const TrainingPlan = () => {
         setAero(!aero);
     };
 
+    useEffect(() => {
+        if (todayTraining?.Voimaharjoittelu?.liike?.[currentExerciseIndex]) {
+            currentExerciseRef.current =
+                todayTraining.Voimaharjoittelu.liike[currentExerciseIndex];
+            console.log(
+                'currentExerciseRef.current on useEffect: ',
+                currentExerciseRef.current
+            );
+        }
+    }, [currentExerciseIndex, todayTraining]);
+
     return (
         <div>
             <div className='changeDate'>
@@ -362,6 +373,7 @@ const TrainingPlan = () => {
                                     index === currentExerciseIndex ? ( // Only show the current exercise
                                         <tr key={index}>
                                             <td>{exercise}</td>
+
                                             <td>
                                                 {
                                                     todayTraining
@@ -396,7 +408,12 @@ const TrainingPlan = () => {
                 )}
             </div>
 
-            {showHeavy && <Heavy onAnswer={handleAnswer} />}
+            {showHeavy && (
+                <Heavy
+                    onAnswer={handleAnswer}
+                    liike={currentExerciseRef.current}
+                />
+            )}
 
             {/* Show HIIT if available */}
             {todayTraining?.HIIT && (

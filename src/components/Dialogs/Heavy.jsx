@@ -9,13 +9,17 @@ import {
     TextField,
 } from '@mui/material';
 
-const ConfirmationDialog = ({ open, onClose, onConfirm, index }) => {
+const ConfirmationDialog = ({ exercise, open, onClose, onConfirm, index }) => {
     const [feedback, setFeedback] = useState();
     const [weight, setWeight] = useState(0);
 
     return (
-        <Dialog style = {{display:'flex', flexDirection:'column'}} open={open} onClose={() => onClose(null)}>
-            <DialogTitle>Treeni detalit</DialogTitle>
+        <Dialog
+            style={{ display: 'flex', flexDirection: 'column' }}
+            open={open}
+            onClose={() => onClose(null)}
+        >
+            <DialogTitle>{exercise} detalit</DialogTitle>
             <DialogActions>
                 <TextField
                     fullWidth
@@ -46,17 +50,19 @@ const ConfirmationDialog = ({ open, onClose, onConfirm, index }) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Heavy = ({ onAnswer = () => {} }) => {
+const Heavy = ({ onAnswer = () => {}, liike}) => {
     const [openDialog, setOpenDialog] = useState(true);
+    console.log('liike on Heavy dialog: ', liike);
 
     const handleConfirm = (feedback, weight) => {
-        console.log('answer: ' + feedback + ', weight: ', weight);
-        onAnswer(feedback, weight); // ✅ Send answer back to parent
+        console.log('answer: ', liike + feedback + ', weight: ', weight);
+        onAnswer(liike, feedback, weight); // ✅ Send answer back to parent
         setOpenDialog(false);
     };
 
     return (
         <ConfirmationDialog
+            exercise ={liike}
             open={true}
             onClose={setOpenDialog}
             onConfirm={handleConfirm}
