@@ -27,6 +27,8 @@ const TrainingPlan = () => {
     const [showHeavy, setShowHeavy] = useState(false);
     const [response, setResponse] = useState([]);
     const currentExerciseRef = useRef('');
+    const sarjaRef = useRef([]);
+    const toistotRef = useRef([]);
 
     // Fetch training data from Firestore
     const fetchData = async () => {
@@ -80,6 +82,7 @@ const TrainingPlan = () => {
                     const requiredClicks =
                         todayTraining.Voimaharjoittelu.sarja[index];
                     let actualClicks = done[index] || 0;
+
                     return actualClicks >= requiredClicks;
                 });
 
@@ -121,11 +124,6 @@ const TrainingPlan = () => {
 
     const handleClick = (i) => {
         console.log('clicks[i]: ', clicks[i]);
-        console.log(
-            'todayTraining?.Voimaharjoittelu.sarja[i]:',
-            todayTraining?.Voimaharjoittelu.sarja[i]
-        );
-
         const currentClicks = clicks[i] || 0; // Default to 0 if undefined
 
         if (currentClicks < todayTraining?.Voimaharjoittelu.sarja[i]) {
@@ -136,6 +134,9 @@ const TrainingPlan = () => {
             });
 
             markDone(i);
+            // Store sarjat and toistot
+            sarjaRef.current[i] = todayTraining?.Voimaharjoittelu.sarja[i];
+            toistotRef.current[i] = todayTraining?.Voimaharjoittelu.toisto[i];
 
             const requiredClicks = todayTraining?.Voimaharjoittelu.sarja[i];
             if (currentClicks + 1 === requiredClicks) {
@@ -212,7 +213,12 @@ const TrainingPlan = () => {
             newDataRef.current = {
                 ...newDataRef.current,
                 details_analyysi: updatedResponse,
+                sarjat: [...sarjaRef.current], // Store updated sets
+                toistot: [...toistotRef.current], // Store updated reps
             };
+
+
+
 
             return updatedResponse; // Return the new state
         });
