@@ -192,59 +192,92 @@ const TrainingPlan = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    const handleAnswer = (liike, feedback, weight) => {
+    /*
+    const handleJuoksuAnswer = (liike, feedback) => {
         if (!feedback) {
             console.log('No msg');
             return;
         }
-        console.log('liike: ', liike + 'analyse:', feedback + ', ' + weight);
+        console.log('liike: ', liike + 'analyse:', feedback);
 
         // Update state correctly
         setResponse((prev) => {
             const updatedResponse = [
                 ...prev,
-                { liike: liike, analyysi: feedback, paino: weight },
+                { liike: liike, analyysi: feedback },
+            ];
+            console.log('Updated response:', updatedResponse);
+            setClicks([]);
+            setShowHeavy(false); // Hide Heavy after response
+
+            newDataRef.current = {
+                ...newDataRef.current,
+                details_analyysi: updatedResponse,
+                date: new Date().toLocaleDateString(),
+                hour: new Date().getHours(),
+                week: getWeekNumber(new Date()),
+            };
+            return updatedResponse; // Return the new state
+        });
+        submit();
+    };
+*/
+    const handleAnswer = (liike, feedback, unit) => {
+        if (!feedback) {
+            console.log('Teksti unohtui');
+            return;
+        }
+        console.log('liike: ', liike + 'analyse:', feedback + ', ' + unit);
+
+        // Update state correctly
+        setResponse((prev) => {
+            const updatedResponse = [
+                ...prev,
+                { liike: liike, analyysi: feedback, unit: unit },
             ];
             console.log('Updated response:', updatedResponse);
             setClicks([]);
             setShowHeavy(false); // Hide Heavy after response
 
             // Update newDataRef after response updates
-            newDataRef.current = {
-                ...newDataRef.current,
-                details_analyysi: updatedResponse,
-                sarjat: [...sarjaRef.current], // Store updated sets
-                toistot: [...toistotRef.current], // Store updated reps
-            };
-
-
-
+            if (liike != 'Juoksu') {
+                newDataRef.current = {
+                    ...newDataRef.current,
+                    details_analyysi: updatedResponse,
+                    sarjat: [...sarjaRef.current], // Store updated sets
+                    toistot: [...toistotRef.current], // Store updated reps
+                };
+            } else if (liike === 'Juoksu') {
+                newDataRef.current = {
+                    ...newDataRef.current,
+                    details_analyysi: updatedResponse,
+                    date: new Date().toLocaleDateString(),
+                    hour: new Date().getHours(),
+                    week: getWeekNumber(new Date()),
+                };
+            }
 
             return updatedResponse; // Return the new state
         });
 
         console.log('currentExerciseIndex: ', currentExerciseIndex);
-        console.log(
-            'todayTraining.Voimaharjoittelu.liike.length - 1: ',
-            todayTraining.Voimaharjoittelu.liike.length - 1
-        );
-        // Move to the next exercise or submit if it's the last one-1
-        if (
-            currentExerciseIndex <
-            todayTraining.Voimaharjoittelu.liike.length - 1
-        ) {
-            setCurrentExerciseIndex((prev) => prev + 1);
-        } else if (
-            currentExerciseIndex ===
-            todayTraining.Voimaharjoittelu.liike.length - 1
-        ) {
-            console.log(
-                'handleAnswer, currentExerciseIndex === todayTraining.Voimaharjoittelu.liike.length -1'
-            );
-            submit();
-        } else {
-            console.error('Jotain meni pieleen handleAnswerissa');
+
+        if (liike != 'Juoksu') {
+            if (
+                currentExerciseIndex <
+                todayTraining.Voimaharjoittelu.liike.length - 1
+            ) {
+                setCurrentExerciseIndex((prev) => prev + 1);
+            } else if (
+                currentExerciseIndex ===
+                todayTraining.Voimaharjoittelu.liike.length - 1
+            ) {
+                console.log(
+                    'handleAnswer, currentExerciseIndex === todayTraining.Voimaharjoittelu.liike.length -1'
+                );
+            }
         }
+        submit();
     };
 
     const markDone = (i) => {
@@ -297,6 +330,7 @@ const TrainingPlan = () => {
 
     const handleVapaaTreeni = () => {
         setAero(!aero);
+        console.log('handleVapaaTreeni, aero: ', aero);
     };
 
     useEffect(() => {
@@ -328,7 +362,10 @@ const TrainingPlan = () => {
                 >
                     Hae
                 </Button>
-                <VapaaTreeniCheckbox onChange={handleVapaaTreeni} />
+                <VapaaTreeniCheckbox
+                    onChange={handleVapaaTreeni}
+                    checked={aero}
+                />
             </div>
 
             {!aero &&
@@ -343,7 +380,7 @@ const TrainingPlan = () => {
                 style={{
                     backgroundColor: dayCompleted ? 'green' : 'lightblue',
                     color: dayCompleted ? 'white' : 'black',
-                    fontWeight: 700,
+                    fontunit: 700,
                     border: '1px solid',
                     marginTop: '1rem',
                 }}
@@ -353,13 +390,8 @@ const TrainingPlan = () => {
             </Button>
             {error && <h3>{error}</h3>}
 
-            {/* Show the training exercises for the day
-            {!aero && todayTraining?.Voimaharjoittelu?.liike && (
-            )}
-
-            */}
-
             <div>
+                {aero && <Heavy liike='Juoksu' onAnswer={handleAnswer} />}
                 <h2>Voimaharjoittelu</h2>
 
                 {showHeavy ? (

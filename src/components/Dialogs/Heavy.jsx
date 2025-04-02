@@ -11,7 +11,7 @@ import {
 
 const ConfirmationDialog = ({ exercise, open, onClose, onConfirm, index }) => {
     const [feedback, setFeedback] = useState();
-    const [weight, setWeight] = useState(0);
+    let [unit, setUnit] = useState(0);
 
     return (
         <Dialog
@@ -29,16 +29,17 @@ const ConfirmationDialog = ({ exercise, open, onClose, onConfirm, index }) => {
                     onChange={(e) => setFeedback(e.target.value)}
                     placeholder='Kirjoita palautteesi...'
                 />
+
                 <TextField
                     type='number'
                     rows={1}
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
+                    value={unit}
+                    onChange={(e) => setUnit(e.target.value)}
                     placeholder='Paino'
                 />
 
                 <Button
-                    onClick={() => onConfirm(feedback, weight)}
+                    onClick={() => onConfirm(feedback, unit)}
                     color='primary'
                     variant='contained'
                 >
@@ -50,19 +51,19 @@ const ConfirmationDialog = ({ exercise, open, onClose, onConfirm, index }) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Heavy = ({ onAnswer = () => {}, liike}) => {
+const Heavy = ({ onAnswer = () => {}, liike }) => {
     const [openDialog, setOpenDialog] = useState(true);
     console.log('liike on Heavy dialog: ', liike);
 
-    const handleConfirm = (feedback, weight) => {
-        console.log('answer: ', liike + feedback + ', weight: ', weight);
-        onAnswer(liike, feedback, weight); // ✅ Send answer back to parent
+    const handleConfirm = (feedback, unit) => {
+        console.log('answer: ', liike + feedback + ', unit: ', unit);
+        onAnswer(liike, feedback, parseInt(unit)); // ✅ Send answer back to parent
         setOpenDialog(false);
     };
 
     return (
         <ConfirmationDialog
-            exercise ={liike}
+            exercise={liike}
             open={true}
             onClose={setOpenDialog}
             onConfirm={handleConfirm}
