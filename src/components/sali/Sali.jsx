@@ -192,62 +192,32 @@ const TrainingPlan = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    /*
-    const handleJuoksuAnswer = (liike, feedback) => {
-        if (!feedback) {
-            console.log('No msg');
-            return;
-        }
-        console.log('liike: ', liike + 'analyse:', feedback);
-
-        // Update state correctly
-        setResponse((prev) => {
-            const updatedResponse = [
-                ...prev,
-                { liike: liike, analyysi: feedback },
-            ];
-            console.log('Updated response:', updatedResponse);
-            setClicks([]);
-            setShowHeavy(false); // Hide Heavy after response
-
-            newDataRef.current = {
-                ...newDataRef.current,
-                details_analyysi: updatedResponse,
-                date: new Date().toLocaleDateString(),
-                hour: new Date().getHours(),
-                week: getWeekNumber(new Date()),
-            };
-            return updatedResponse; // Return the new state
-        });
-        submit();
-    };
-*/
-    const handleAnswer = (liike, feedback, unit) => {
+    const handleAnswer = (liike, feedback, unit1, unit2, unit3, unit4) => {
         if (!feedback) {
             console.log('Teksti unohtui');
             return;
         }
-        console.log('liike: ', liike + 'analyse:', feedback + ', ' + unit);
+        console.log('handleAswer, liike: ', liike + 'analyse:', feedback + ', ' + unit1 + ', ' + unit2 + ', ' + unit3 + ', ' + unit4);
 
         // Update state correctly
         setResponse((prev) => {
             const updatedResponse = [
                 ...prev,
-                { liike: liike, analyysi: feedback, unit: unit },
+                { liike: liike, analyysi: feedback, unit1: unit1, unit2: unit2, unit3: unit3, unit4: unit4 },
             ];
             console.log('Updated response:', updatedResponse);
             setClicks([]);
             setShowHeavy(false); // Hide Heavy after response
 
             // Update newDataRef after response updates
-            if (liike != 'Juoksu') {
+            if (liike != 'Vapaa') {
                 newDataRef.current = {
                     ...newDataRef.current,
                     details_analyysi: updatedResponse,
                     sarjat: [...sarjaRef.current], // Store updated sets
                     toistot: [...toistotRef.current], // Store updated reps
                 };
-            } else if (liike === 'Juoksu') {
+            } else if (liike === 'Vapaa') {
                 newDataRef.current = {
                     ...newDataRef.current,
                     details_analyysi: updatedResponse,
@@ -262,7 +232,7 @@ const TrainingPlan = () => {
 
         console.log('currentExerciseIndex: ', currentExerciseIndex);
 
-        if (liike != 'Juoksu') {
+        if (liike != 'Vapaa') {
             if (
                 currentExerciseIndex <
                 todayTraining.Voimaharjoittelu.liike.length - 1
@@ -272,12 +242,12 @@ const TrainingPlan = () => {
                 currentExerciseIndex ===
                 todayTraining.Voimaharjoittelu.liike.length - 1
             ) {
-                console.log(
-                    'handleAnswer, currentExerciseIndex === todayTraining.Voimaharjoittelu.liike.length -1'
-                );
+                console.log('Liikkeet suoritettu, submit');
+                submit();
             }
+        } else {
+            submit();
         }
-        submit();
     };
 
     const markDone = (i) => {
@@ -367,7 +337,6 @@ const TrainingPlan = () => {
                     checked={aero}
                 />
             </div>
-
             {!aero &&
                 viikonpaiva !== 'Lauantai' &&
                 viikonpaiva !== 'Sunnuntai' && (
@@ -375,7 +344,6 @@ const TrainingPlan = () => {
                         {viikonpaiva} - {todayTraining?.Tavoite}
                     </h3>
                 )}
-
             <Button
                 style={{
                     backgroundColor: dayCompleted ? 'green' : 'lightblue',
@@ -386,12 +354,13 @@ const TrainingPlan = () => {
                 }}
                 //onClick={submit}
             >
-                {dayCompleted ? 'Tikissä' : 'Ei suoritettu'}
+                {(new Date().getDay() != 6 && new Date().getDay() != 7)
+                    ? 'Tikissä'
+                    : '-'}
             </Button>
             {error && <h3>{error}</h3>}
-
             <div>
-                {aero && <Heavy liike='Juoksu' onAnswer={handleAnswer} />}
+                {aero && <Heavy liike='Vapaa' onAnswer={handleAnswer} />}
                 <h2>Voimaharjoittelu</h2>
 
                 {showHeavy ? (
@@ -445,14 +414,13 @@ const TrainingPlan = () => {
                     </table>
                 )}
             </div>
-
             {showHeavy && (
                 <Heavy
                     onAnswer={handleAnswer}
                     liike={currentExerciseRef.current}
+                    sarja={sarjaRef.current}
                 />
             )}
-
             {/* Show HIIT if available */}
             {todayTraining?.HIIT && (
                 <div>
@@ -460,7 +428,6 @@ const TrainingPlan = () => {
                     <p>{todayTraining.HIIT}</p>
                 </div>
             )}
-
             {/* Show Aerobinen liikunta if available */}
             {todayTraining?.Aerobinen_liikunta && (
                 <div>
@@ -468,7 +435,6 @@ const TrainingPlan = () => {
                     <p>{todayTraining.Aerobinen_liikunta}</p>
                 </div>
             )}
-
             {/* Show Nutrition if available */}
             {todayTraining?.Ravintosuositus && (
                 <div>
@@ -484,7 +450,6 @@ const TrainingPlan = () => {
                     </ul>
                 </div>
             )}
-
             {/* Show whole week if toggle is on */}
             {showWholeWeek && (
                 <div>
@@ -499,13 +464,8 @@ const TrainingPlan = () => {
                     )}
                 </div>
             )}
-
             <Button onClick={toggleView}>
                 {showWholeWeek ? 'Päivän treeni' : 'Viikon pläni'}
-            </Button>
-
-            <Button onClick={submit} disabled={!dayCompleted}>
-                Execute
             </Button>
         </div>
     );

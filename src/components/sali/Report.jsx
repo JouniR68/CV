@@ -42,33 +42,23 @@ const TrainingsTable = () => {
     if (trainings.length === 0) {
         return <p>Ladataan treenejä...</p>;
     }
-    /*
-                                            training.sarjat.map(
-                                                (sarja, index) => (
-                                                    <TableRow key={index}>
-                                                        <TableCell>{sarja}</TableCell>
-                                                    </TableRow>
-                                                )
-                                            )
-    */
 
     return (
         <div>
             {Object.entries(groupedByWeek).map(([week, trainingList]) => (
-                <div
-                    key={week}
-                    style={{
-                        marginTop: '1rem',
-                        marginBottom: '20px',
-                        display: 'flex',
-                        overflowY: 'auto',
-                    }}
-                >
+                <div key={week} style={{ overflowX: 'auto', width: '100%' }}>
                     <Typography variant='h6' gutterBottom>
                         Viikko {week}
                     </Typography>
-                    <TableContainer component={Paper}>
-                        <Table>
+                    <TableContainer
+                        component={Paper}
+                        sx={{
+                            width: '100%',
+                            overflowX: 'auto', // Enables horizontal scrolling if needed
+                        }}
+                    >
+                        <Table sx={{ width: '100%', tableLayout: 'auto' }}>
+                            {' '}
                             <TableHead>
                                 <TableRow
                                     style={{ backgroundColor: 'lightskyblue' }}
@@ -77,8 +67,8 @@ const TrainingsTable = () => {
                                     <TableCell>Klo</TableCell>
                                     <TableCell>Liike</TableCell>
                                     <TableCell>Analyysi</TableCell>
+                                    <TableCell>Painot</TableCell>
                                     <TableCell>S&T</TableCell>
-                                    <TableCell>Paino (kg)</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -112,8 +102,38 @@ const TrainingsTable = () => {
                                                         <TableCell>
                                                             {analysis.liike}
                                                         </TableCell>
-                                                        <TableCell>
+                                                        <TableCell
+                                                            sx={{
+                                                                minWidth:
+                                                                    '20px',
+                                                                maxWidth:
+                                                                    '150px',
+                                                                whiteSpace:
+                                                                    'normal',
+                                                            }}
+                                                        >
                                                             {analysis.analyysi}
+                                                        </TableCell>
+                                                        <TableCell
+                                                            sx={{
+                                                                minWidth:
+                                                                    '150px', // Ensure enough space
+                                                                maxWidth:
+                                                                    '250px', // Prevent excessive stretching
+                                                                whiteSpace:
+                                                                    'normal', // Allow text wrapping
+                                                                wordBreak:
+                                                                    'break-word', // Ensure words break correctly
+                                                                overflow:
+                                                                    'visible', // Ensure text is fully visible
+                                                                textOverflow:
+                                                                    'clip', // Disable ellipsis
+                                                            }}
+                                                        >
+                                                            {analysis.unit1},{' '}
+                                                            {analysis.unit2},{' '}
+                                                            {analysis.unit3},{' '}
+                                                            {analysis.unit4}
                                                         </TableCell>
                                                         <TableCell>
                                                             {Array.isArray(
@@ -128,9 +148,7 @@ const TrainingsTable = () => {
                                                                 ? `${training.sarjat[index]} / ${training.toistot[index]}`
                                                                 : ''}
                                                         </TableCell>{' '}
-                                                        <TableCell>
-                                                            {analysis.paino}
-                                                        </TableCell>
+
                                                     </TableRow>
                                                 )
                                             )

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Button,
     Dialog,
@@ -9,37 +9,103 @@ import {
     TextField,
 } from '@mui/material';
 
-const ConfirmationDialog = ({ exercise, open, onClose, onConfirm, index }) => {
+const ConfirmationDialog = ({
+    exercise,
+    open,
+    onClose,
+    onConfirm,
+    index,
+    sarja,
+}) => {
     const [feedback, setFeedback] = useState();
-    let [unit, setUnit] = useState(0);
+    const [unit1, setUnit1] = useState();
+    const [unit2, setUnit2] = useState();
+    const [unit3, setUnit3] = useState();
+    const [unit4, setUnit4] = useState();
+    const [vapaa, setVapaa] = useState(false);
+
+    const handleUnitChange = (index, target) => {
+        const name = target.name;
+        console.log(
+            'handleUnitChange, name: ',
+            name + ', value: ',
+            target.value
+        );
+        name === 'tfUnit1' ? setUnit1(target.value) : '';
+        name === 'tfUnit2' ? setUnit2(target.value) : '';
+        name === 'tfUnit3' ? setUnit3(target.value) : '';
+        name === 'tfUnit4' ? setUnit4(target.value) : '';
+    };
 
     return (
-        <Dialog
-            style={{ display: 'flex', flexDirection: 'column' }}
-            open={open}
-            onClose={() => onClose(null)}
-        >
+        <Dialog open={open} onClose={() => onClose(null)}>
             <DialogTitle>{exercise} detalit</DialogTitle>
-            <DialogActions>
+            <DialogActions
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignContent: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                }}
+            >
                 <TextField
                     fullWidth
                     multiline
                     rows={3}
-                    value={feedback}
+                    value={feedback ||"Ok"}
                     onChange={(e) => setFeedback(e.target.value)}
-                    placeholder='Kirjoita palautteesi...'
+                    label='Miten treeni meni?'
+                />
+
+                {/* Render a TextField for each unit */}
+
+                <TextField
+                    key={index}
+                    name='tfUnit1'
+                    type='number'
+                    label='1. sarjan painot'
+                    value={unit1}
+                    onChange={(e) => handleUnitChange(index, e.target)}
                 />
 
                 <TextField
+                    key={index}
+                    name='tfUnit2'
                     type='number'
-                    rows={1}
-                    value={unit}
-                    onChange={(e) => setUnit(e.target.value)}
-                    placeholder='Paino'
+                    label='2. sarjan painot'
+                    value={unit2}
+                    onChange={(e) => handleUnitChange(index, e.target)}
+                />
+
+                <TextField
+                    key={index}
+                    name='tfUnit3'
+                    type='number'
+                    label='3. sarjan painot'
+                    value={unit3}
+                    onChange={(e) => handleUnitChange(index, e.target)}
+                />
+
+                <TextField
+                    key={index}
+                    name='tfUnit4'
+                    label='4. sarjan painot'
+                    type='number'
+                    value={unit4}
+                    onChange={(e) => handleUnitChange(index, e.target)}
                 />
 
                 <Button
-                    onClick={() => onConfirm(feedback, unit)}
+                    onClick={() =>
+                        onConfirm(
+                            feedback,
+                            unit1,
+                            unit2 || null,
+                            unit3 || null,
+                            unit4 || null
+                        )
+                    }
                     color='primary'
                     variant='contained'
                 >
@@ -51,13 +117,20 @@ const ConfirmationDialog = ({ exercise, open, onClose, onConfirm, index }) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Heavy = ({ onAnswer = () => {}, liike }) => {
+const Heavy = ({ onAnswer = () => {}, liike, sarja }) => {
     const [openDialog, setOpenDialog] = useState(true);
-    console.log('liike on Heavy dialog: ', liike);
+    console.log('liike and sarja on Heavy dialog: ', liike + ', ' + sarja);
 
-    const handleConfirm = (feedback, unit) => {
-        console.log('answer: ', liike + feedback + ', unit: ', unit);
-        onAnswer(liike, feedback, parseInt(unit)); // ✅ Send answer back to parent
+    const handleConfirm = (feedback, unit1, unit2, unit3, unit4) => {
+        console.log(
+            'Heavy answer: ',
+            liike + feedback + ', unit: ',
+            unit1,
+            unit2,
+            unit3,
+            unit4
+        );
+        onAnswer(liike, feedback, unit1, unit2, unit3, unit4); // ✅ Send answer back to parent
         setOpenDialog(false);
     };
 
@@ -67,6 +140,7 @@ const Heavy = ({ onAnswer = () => {}, liike }) => {
             open={true}
             onClose={setOpenDialog}
             onConfirm={handleConfirm}
+            sarja={sarja}
         />
     );
 };
