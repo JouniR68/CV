@@ -15,7 +15,7 @@ const ConfirmationDialog = ({
     onClose,
     onConfirm,
     index,
-    sarja,
+    series,
 }) => {
     const [feedback, setFeedback] = useState();
     const [unit1, setUnit1] = useState();
@@ -49,26 +49,24 @@ const ConfirmationDialog = ({
                     gap: '1rem',
                 }}
             >
+Dialog series: {series}
                 <TextField
                     fullWidth
                     multiline
                     rows={3}
-                    value={feedback ||"Ok"}
+                    value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
                     label='Miten treeni meni?'
                 />
-
                 {/* Render a TextField for each unit */}
-
                 <TextField
                     key={index}
                     name='tfUnit1'
                     type='number'
-                    label='1. sarjan painot'
+                    label='1. sarjan kg/km'
                     value={unit1}
                     onChange={(e) => handleUnitChange(index, e.target)}
                 />
-
                 <TextField
                     key={index}
                     name='tfUnit2'
@@ -77,7 +75,6 @@ const ConfirmationDialog = ({
                     value={unit2}
                     onChange={(e) => handleUnitChange(index, e.target)}
                 />
-
                 <TextField
                     key={index}
                     name='tfUnit3'
@@ -86,16 +83,16 @@ const ConfirmationDialog = ({
                     value={unit3}
                     onChange={(e) => handleUnitChange(index, e.target)}
                 />
-
-                <TextField
-                    key={index}
-                    name='tfUnit4'
-                    label='4. sarjan painot'
-                    type='number'
-                    value={unit4}
-                    onChange={(e) => handleUnitChange(index, e.target)}
-                />
-
+                {series > 3 && (
+                    <TextField
+                        key={index}
+                        name='tfUnit4'
+                        label='4. sarjan painot'
+                        type='number'
+                        value={unit4}
+                        onChange={(e) => handleUnitChange(index, e.target)}
+                    />
+                )}
                 <Button
                     onClick={() =>
                         onConfirm(
@@ -119,7 +116,17 @@ const ConfirmationDialog = ({
 // eslint-disable-next-line react/prop-types
 const Heavy = ({ onAnswer = () => {}, liike, sarja }) => {
     const [openDialog, setOpenDialog] = useState(true);
-    console.log('liike and sarja on Heavy dialog: ', liike + ', ' + sarja);
+    const [series, setSeries] = useState(null);
+    console.log('liike on Heavy dialog: ', liike);
+
+    useEffect(() => {
+        if (Array.isArray(sarja)) {
+            console.log('sarja on Heavy dialog: ', sarja[sarja.length - 1]);
+            setSeries(sarja[sarja.length - 1]);
+        }
+    }, [sarja]);
+
+    //console.log("Onko sarja array?", Array.isArray(sarja))
 
     const handleConfirm = (feedback, unit1, unit2, unit3, unit4) => {
         console.log(
@@ -131,16 +138,18 @@ const Heavy = ({ onAnswer = () => {}, liike, sarja }) => {
             unit4
         );
         onAnswer(liike, feedback, unit1, unit2, unit3, unit4); // ✅ Send answer back to parent
+        sarja = [];
         setOpenDialog(false);
     };
 
     return (
+
         <ConfirmationDialog
             exercise={liike}
             open={true}
             onClose={setOpenDialog}
             onConfirm={handleConfirm}
-            sarja={sarja}
+            series={series}
         />
     );
 };

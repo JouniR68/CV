@@ -151,7 +151,7 @@ const TrainingsTable = () => {
                                                             {training.hour}
                                                         </TableCell>
                                                         <TableCell
-                                                            colSpan={3}
+                                                            colSpan={4}
                                                         ></TableCell>
                                                     </TableRow>
 
