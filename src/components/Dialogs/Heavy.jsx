@@ -49,7 +49,7 @@ const ConfirmationDialog = ({
                     gap: '1rem',
                 }}
             >
-Dialog series: {series}
+                Dialog series: {series}
                 <TextField
                     fullWidth
                     multiline
@@ -67,22 +67,26 @@ Dialog series: {series}
                     value={unit1}
                     onChange={(e) => handleUnitChange(index, e.target)}
                 />
-                <TextField
-                    key={index}
-                    name='tfUnit2'
-                    type='number'
-                    label='2. sarjan painot'
-                    value={unit2}
-                    onChange={(e) => handleUnitChange(index, e.target)}
-                />
-                <TextField
-                    key={index}
-                    name='tfUnit3'
-                    type='number'
-                    label='3. sarjan painot'
-                    value={unit3}
-                    onChange={(e) => handleUnitChange(index, e.target)}
-                />
+                {exercise != 'Vapaa' && (
+                    <>
+                        <TextField
+                            key={index}
+                            name='tfUnit2'
+                            type='number'
+                            label='2. sarjan painot'
+                            value={unit2}
+                            onChange={(e) => handleUnitChange(index, e.target)}
+                        />
+                        <TextField
+                            key={index}
+                            name='tfUnit3'
+                            type='number'
+                            label='3. sarjan painot'
+                            value={unit3}
+                            onChange={(e) => handleUnitChange(index, e.target)}
+                        />
+                    </>
+                )}
                 {series > 3 && (
                     <TextField
                         key={index}
@@ -143,7 +147,6 @@ const Heavy = ({ onAnswer = () => {}, liike, sarja }) => {
     };
 
     return (
-
         <ConfirmationDialog
             exercise={liike}
             open={true}

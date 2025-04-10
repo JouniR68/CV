@@ -197,14 +197,26 @@ const TrainingPlan = () => {
             console.log('Teksti unohtui');
             return;
         }
-        console.log('handleAswer, liike: ', liike + 'analyse:', feedback + ', ' + unit1 + ', ' + unit2 + ', ' + unit3 + ', ' + unit4);
+        console.log(
+            'handleAswer, liike: ',
+            liike + 'analyse:',
+            feedback + ', ' + unit1 + ', ' + unit2 + ', ' + unit3 + ', ' + unit4
+        );
 
         // Update state correctly
         setResponse((prev) => {
-            const updatedResponse = [
+            let updatedResponse = [
                 ...prev,
-                { liike: liike, analyysi: feedback, unit1: unit1, unit2: unit2, unit3: unit3, unit4: unit4 },
+                {
+                    liike: liike,
+                    analyysi: feedback,
+                    unit1: unit1,
+                    unit2: unit2,
+                    unit3: unit3,
+                    unit4: unit4,
+                },
             ];
+
             console.log('Updated response:', updatedResponse);
             setClicks([]);
             setShowHeavy(false); // Hide Heavy after response
@@ -218,6 +230,16 @@ const TrainingPlan = () => {
                     toistot: [...toistotRef.current], // Store updated reps
                 };
             } else if (liike === 'Vapaa') {
+                updatedResponse = [];
+                updatedResponse = [
+                    ...prev,
+                    {
+                        liike: liike,
+                        analyysi: feedback,
+                        unit1: unit1,
+                    },
+                ];
+
                 newDataRef.current = {
                     ...newDataRef.current,
                     details_analyysi: updatedResponse,
@@ -354,7 +376,7 @@ const TrainingPlan = () => {
                 }}
                 //onClick={submit}
             >
-                {(new Date().getDay() != 6 && new Date().getDay() != 7)
+                {new Date().getDay() != 6 && new Date().getDay() != 7
                     ? 'Tikissä'
                     : '-'}
             </Button>
