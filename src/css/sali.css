@@ -1,4 +1,12 @@
 @media only screen and (device-width: 390px) and (device-height: 844px) and (orientation: portrait) {
+    .salirapsa {
+        width: 100%;
+        max-height: 90vh;
+        /* Ensures table is visible */
+        overflow-y: auto;
+        margin-top: 0rem;
+        /* Adds spacing to prevent cutting */
+    }
     .sali {
         display: flex;
         flex-direction: column;
@@ -10,11 +18,9 @@
         overflow: auto;
         padding: 1rem;
     }
-
     .day-details {
         background-color: yellow;
     }
-
     .confirmation-container {
         display: flex;
         flex-direction: column;
@@ -22,9 +28,8 @@
         align-items: center;
         width: '100%';
         z-index: 1000;
-      }
-    
-      .confirmation-content {
+    }
+    .confirmation-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -39,19 +44,24 @@
         line-height: 10px;
         gap: 1rem;
         text-align: justify;
-      }
-    
-      .confirmation-content button {
+    }
+    .confirmation-content button {
         font-weight: bold;
         padding: 1rem;
         font-size: 2rem;
         margin-top: 1rem;
-      }
-    
-
+    }
 }
 
 @media screen and (min-width: 1025px) {
+    .salirapsa {
+        width: 100%;
+        max-height: 90vh;
+        /* Ensures table is visible */
+        overflow-y: auto;
+        margin-top: 0rem;
+        /* Adds spacing to prevent cutting */
+    }
     .sali {
         margin-top: 1rem;
         display: flex;
@@ -63,7 +73,6 @@
         font-size: 16px;
         overflow: auto;
     }
-
     .showWk {
         display: flex;
         flex-direction: row;
@@ -71,11 +80,9 @@
         max-height: 50%;
         overflow-y: auto;
     }
-
     .day-details {
         background-color: yellow;
     }
-
     .confirmation-container {
         background: rgba(0, 0, 0, 0.8);
         margin: 0;
@@ -87,11 +94,9 @@
         width: 100%;
         height: 90%;
         z-index: 1000;
-    
         /* Ensure it sits above all other content */
-      }
-    
-      .confirmation-content {
+    }
+    .confirmation-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -100,35 +105,31 @@
         padding: 1rem;
         border-radius: 8px;
         line-height: 30px;
-        color:red;
+        color: red;
         font-weight: 700;
         gap: 1rem;
         text-align: justify;
-      }
-
-      .confirmation-content button {
+    }
+    .confirmation-content button {
         display: flex;
-        flex-direction: column;        
+        flex-direction: column;
         font-weight: bold;
         padding: 1rem;
         font-size: 2rem;
         margin-top: 1rem;
-      }
-    
-      #ok {
+    }
+    #ok {
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;
         margin-top: rem;
         padding: 0.5rem;
         width: 100%;
         background-color: green;
         font-weight: bold;
-      }
-    
-      #nok {
+    }
+    #nok {
         padding: 0.5rem;
         background-color: red;
         font-weight: bold;
-      }
-    
+    }
 }
