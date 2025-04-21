@@ -259,10 +259,10 @@ const TrainingPlan = () => {
                 {
                     liike: liike,
                     analyysi: feedback,
-                    unit1: unit1,
-                    unit2: unit2,
-                    unit3: unit3,
-                    unit4: unit4,
+                    unit1: parseInt(unit1),
+                    unit2: parseInt(unit2),
+                    unit3: parseInt(unit3),
+                    unit4: parseInt(unit4),
                 },
             ];
 
@@ -285,7 +285,7 @@ const TrainingPlan = () => {
                     {
                         liike: liike,
                         analyysi: feedback,
-                        unit1: unit1,
+                        unit1: parseInt(unit1),
                     },
                 ];
 
@@ -372,7 +372,7 @@ const TrainingPlan = () => {
                     <thead>
                         <tr style={{ backgroundColor: 'orange' }}>
                             <th>Treeni</th>
-                            <th>Edellinen</th>
+                            <th>Prev kg's</th>
                             <th>S&T</th>
                             <th style={{ padding: '1rem' }}>Suoritukset</th>
                         </tr>
