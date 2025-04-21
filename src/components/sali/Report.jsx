@@ -103,7 +103,7 @@ const TrainingsTable = () => {
                     <TableCell>Klo</TableCell>
                     <TableCell>Liike</TableCell>
                     <TableCell>Analyysi</TableCell>
-                    <TableCell>Painot</TableCell>
+                    <TableCell>Painot/kilsat</TableCell>
                     <TableCell>S&T</TableCell>
                   </TableRow>
                 </TableHead>

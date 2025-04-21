@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Heavy from '../Dialogs/Heavy';
 import VapaaTreeniCheckbox from './Free';
 import '../../css/sali.css';
-//sali.jsx
+//sali copy.jsx
 const TrainingPlan = () => {
     const [data, setData] = useState([]);
     const [dayCompleted, setDayCompleted] = useState(false);
@@ -28,16 +28,6 @@ const TrainingPlan = () => {
     const currentExerciseRef = useRef('');
     const sarjaRef = useRef([]);
     const toistotRef = useRef([]);
-
-    function getWeekNumber(date) {
-        const tempDate = new Date(
-            Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
-        );
-        const dayNum = tempDate.getUTCDay() || 7;
-        tempDate.setUTCDate(tempDate.getUTCDate() + 4 - dayNum);
-        const yearStart = new Date(Date.UTC(tempDate.getUTCFullYear(), 0, 1));
-        return Math.ceil(((tempDate - yearStart) / 86400000 + 1) / 7);
-    }
     const fetchData = async () => {
         try {
             const querySnapshot = await getDocs(collection(db, 'trainings'));
@@ -66,6 +56,7 @@ const TrainingPlan = () => {
         'Lauantai',
     ];
 
+    //If user  types date to the form, it will be stored to newDate variable.
     useEffect(() => {
         if (newDate != '' && newDate != viikonpaivat[today]) {
             setViikonpaiva(newDate);
@@ -101,7 +92,7 @@ const TrainingPlan = () => {
 
                 if (!dateFound) {
                     const newEntry = {
-                        week: getWeekNumber(new Date()),
+                        week: getWeekNumber(),
                         date: new Date().toLocaleDateString(),
                         hour: new Date().getHours(),
                         training: todayTraining.Tavoite,
@@ -128,69 +119,9 @@ const TrainingPlan = () => {
         }
     }, [clicks, done, todayTraining]);
 
-    const handleVapaaTreeni = () => {
-        setAero(!aero);
-        console.log('handleVapaaTreeni, aero: ', aero);
-    };
-
-    useEffect(() => {
-        if (todayTraining?.Voimaharjoittelu?.liike?.[currentExerciseIndex]) {
-            currentExerciseRef.current =
-                todayTraining.Voimaharjoittelu.liike[currentExerciseIndex];
-            console.log(
-                'currentExerciseRef.current on useEffect: ',
-                currentExerciseRef.current
-            );
-        }
-    }, [currentExerciseIndex, todayTraining]);
-
-    const getPreviousWeekData = (currentDate) => {
-        const currentWeekNumber = getWeekNumber(currentDate);
-        console.log('Current Week Number:', currentWeekNumber); // Debugging log
-
-        // Filter for the previous week's data
-        const previousWeekData = data.filter((entry) => {
-            console.log('Checking entry:', entry); // Log to inspect the structure
-            return entry.week === currentWeekNumber - 1; // Ensure 'week' field exists
-        });
-
-        console.log('Previous Week Data:', previousWeekData); // Debugging log
-
-        return previousWeekData || {}; // Return the first entry or empty object
-    };
-
-    const previousWeekData = getPreviousWeekData(new Date());
-
-    // Debugging the structure of `previousWeekData` to see if it's correct
-    console.log('Previous Week Data (Structure):', previousWeekData);
-
-    const markDone = (i) => {
-        setDone((prev) => {
-            const newDone = [...prev];
-            newDone[i] = (newDone[i] || 0) + 1; // Increment the count
-            return newDone;
-        });
-    };
-
-    const getButtonStyle = (i) => {
-        //const currentClicks = clicks[i] || 0;
-        const clicks = done[i] || 0;
-        const requiredClicks = todayTraining?.Voimaharjoittelu?.sarja[i] || 1;
-
-        return {
-            backgroundColor:
-                clicks >= requiredClicks
-                    ? 'green'
-                    : clicks > 0
-                    ? 'orange'
-                    : 'red',
-            border: '1px solid #ccc',
-            color: 'black',
-        };
-    };
-
     const handleClick = (i) => {
-        const currentClicks = clicks[i] || 0;
+        console.log('clicks[i]: ', clicks[i]);
+        const currentClicks = clicks[i] || 0; // Default to 0 if undefined
 
         if (currentClicks < todayTraining?.Voimaharjoittelu.sarja[i]) {
             setClicks((prev) => {
@@ -212,7 +143,19 @@ const TrainingPlan = () => {
         }
     };
 
+    const formatDate = (date) => {
+        return date.toISOString().split('T')[0];
+    };
+
+    // Find today's training data
+    todayTraining
+        ? Object.entries(trainingData.plan[0]).find(
+              ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
+          )?.[1]
+        : {};
+
     const submit = async () => {
+
         try {
             await addDoc(collection(db, 'trainings'), newDataRef.current);
             setDayCompleted(false);
@@ -321,9 +264,73 @@ const TrainingPlan = () => {
         }
     };
 
-    console.log(
-        JSON.stringify('previousWeekData struct:', previousWeekData, null, 2)
-    );
+    const markDone = (i) => {
+        setDone((prev) => {
+            const newDone = [...prev];
+            newDone[i] = (newDone[i] || 0) + 1; // Increment the count
+            return newDone;
+        });
+    };
+
+    const openNutrition = () => {
+        showNutrition((prev) => !prev);
+    };
+
+    const getButtonStyle = (i) => {
+        const clicks = done[i] || 0;
+        const requiredClicks = todayTraining?.Voimaharjoittelu?.sarja[i] || 1;
+
+        return {
+            backgroundColor:
+                clicks >= requiredClicks
+                    ? 'green'
+                    : clicks > 0
+                    ? 'orange'
+                    : 'red',
+            border: '1px solid #ccc',
+            color: 'black',
+        };
+    };
+
+    const makeColumnsPretty = (i) => ({
+        padding: '0.5rem',
+    });
+
+    const getWeekNumber = (date = new Date()) => {
+        const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+        const pastDays = (date - firstDayOfYear) / (1000 * 60 * 60 * 24); // Days passed
+        return Math.ceil((pastDays + firstDayOfYear.getDay()) / 7); // Week number calculation
+    };
+
+    const haePaiva = () => {
+        console.log('viikonpaiva: ', viikonpaiva);
+        setViikonpaiva(viikonpaiva);
+    };
+
+    const setDate = (event) => {
+        console.log('new date: ', event);
+        setNewDate(event);
+    };
+
+    const handleVapaaTreeni = () => {
+        setAero(!aero);
+        console.log('handleVapaaTreeni, aero: ', aero);
+    };
+
+    useEffect(() => {
+        if (todayTraining?.Voimaharjoittelu?.liike?.[currentExerciseIndex]) {
+            currentExerciseRef.current =
+                todayTraining.Voimaharjoittelu.liike[currentExerciseIndex];
+            console.log(
+                'currentExerciseRef.current on useEffect: ',
+                currentExerciseRef.current
+            );
+        }
+    }, [currentExerciseIndex, todayTraining]);
+
+    const showNutrition = () => {
+        setShowNutrition(!nutrition);
+    };
 
     return (
         <div>
@@ -335,11 +342,11 @@ const TrainingPlan = () => {
                         border: '1px solid',
                         textAlign: 'center',
                     }}
-                    onChange={(event) => setNewDate(event.target.value)}
+                    onChange={(event) => setDate(event.target.value)}
                 ></TextField>
                 <Button
                     style={{ width: 'fit-content', padding: '0.5rem' }}
-                    onClick={() => setViikonpaiva(newDate)}
+                    onClick={haePaiva}
                 >
                     Hae
                 </Button>
@@ -348,9 +355,13 @@ const TrainingPlan = () => {
                     checked={aero}
                 />
             </div>
-            <h3>
-                {viikonpaiva} - {todayTraining?.Tavoite}
-            </h3>
+            {!aero &&
+                viikonpaiva !== 'Lauantai' &&
+                viikonpaiva !== 'Sunnuntai' && (
+                    <h3>
+                        {viikonpaiva} - {todayTraining?.Tavoite}
+                    </h3>
+                )}
             <Button
                 style={{
                     backgroundColor: dayCompleted ? 'green' : 'lightblue',
@@ -359,6 +370,7 @@ const TrainingPlan = () => {
                     border: '1px solid',
                     marginTop: '1rem',
                 }}
+                //onClick={submit}
             >
                 {new Date().getDay() != 6 && new Date().getDay() != 7
                     ? 'Tikissä'
@@ -368,95 +380,58 @@ const TrainingPlan = () => {
             <div>
                 {aero && <Heavy liike='Vapaa' onAnswer={handleAnswer} />}
                 <h2>Voimaharjoittelu</h2>
-                <table>
-                    <thead>
-                        <tr style={{ backgroundColor: 'orange' }}>
-                            <th>Treeni</th>
-                            <th>Edellinen</th>
-                            <th>S&T</th>
-                            <th style={{ padding: '1rem' }}>Suoritukset</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {todayTraining?.Voimaharjoittelu?.liike?.map(
-                            (exercise, index) => {
-                                // Debugging the exercise and the data
-                                console.log('Exercise:', exercise);
 
-                                const previousExercise = previousWeekData
-                                    .flatMap(
-                                        (obj) => obj.details_analyysi || []
-                                    )
-                                    .find((item) => item.liike === exercise);
+                {showHeavy ? (
+                    <Heavy onSubmit={handleAnswer} />
+                ) : (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Treeni</th>
+                                <th>Edellinen</th>
+                                <th>S&T</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {todayTraining?.Voimaharjoittelu?.liike?.map(
+                                (exercise, index) =>
+                                    index === currentExerciseIndex ? ( // Only show the current exercise
+                                        <tr key={index}>
+                                            <td>{exercise}</td>
 
-                                // Log to see if previousExercise is actually found
-                                console.log(
-                                    'Previous Exercise for ',
-                                    exercise,
-                                    ':',
-                                    previousExercise
-                                );
-
-                                // Log the previousExercise object
-                                console.log(
-                                    'Previous Exercise:',
-                                    previousExercise
-                                );
-
-                                if (previousExercise) {
-                                    console.log(
-                                        'Previous Exercise Date:',
-                                        previousWeekData.date
-                                    );
-                                }
-
-                                return (
-                                    <tr key={index}>
-                                        <td>{exercise}</td>
-                                        <td>
-                                            {/* If previousExercise is undefined, show '-' */}
-                                            {previousExercise
-                                                ? `${
-                                                      previousExercise.unit1 ||
-                                                      '-'
-                                                  }, ${
-                                                      previousExercise.unit2 ||
-                                                      '-'
-                                                  },
-                                                  ${
-                                                      previousExercise.unit3 ||
-                                                      '-'
-                                                  }
-                                                ${previousExercise.unit4 || ''}`
-                                                : '-'}
-                                        </td>{' '}
-                                        <td style={{ paddingLeft: '2rem' }}>
-                                            {
-                                                todayTraining.Voimaharjoittelu
-                                                    .sarja[index]
-                                            }
-                                            /
-                                            {
-                                                todayTraining.Voimaharjoittelu
-                                                    .toisto[index]
-                                            }
-                                        </td>
-                                        <td style={{ paddingLeft: '1rem' }}>
-                                            <Button
-                                                style={getButtonStyle(index)}
-                                                onClick={() =>
-                                                    handleClick(index)
+                                            <td>
+                                                {
+                                                    todayTraining
+                                                        .Voimaharjoittelu.sarja[
+                                                        index
+                                                    ]
                                                 }
-                                            >
-                                                {clicks[index] || 0}
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                );
-                            }
-                        )}
-                    </tbody>
-                </table>
+                                                /
+                                                {
+                                                    todayTraining
+                                                        .Voimaharjoittelu
+                                                        .toisto[index]
+                                                }
+                                            </td>
+                                            <td>
+                                                <Button
+                                                    style={getButtonStyle(
+                                                        index
+                                                    )}
+                                                    onClick={() =>
+                                                        handleClick(index)
+                                                    }
+                                                >
+                                                    {clicks}
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ) : null
+                            )}
+                        </tbody>
+                    </table>
+                )}
             </div>
             {showHeavy && (
                 <Heavy
@@ -465,7 +440,63 @@ const TrainingPlan = () => {
                     sarja={sarjaRef.current}
                 />
             )}
-            <Button onClick={() => setShowWholeWeek(!showWholeWeek)}>
+            {/* Show HIIT if available */}
+            {todayTraining?.HIIT && (
+                <div>
+                    <h2>HIIT</h2>
+                    <p>{todayTraining.HIIT}</p>
+                </div>
+            )}
+            {/* Show Aerobinen liikunta if available */}
+            {todayTraining?.Aerobinen_liikunta && (
+                <div>
+                    <h2>Aerobinen liikunta</h2>
+                    <p>{todayTraining.Aerobinen_liikunta}</p>
+                </div>
+            )}
+            {/* Show Nutrition if available */}
+
+            <Button onClick={showNutrition}>
+                +/- ravintosuositus
+                {nutrition && todayTraining?.Ravintosuositus && (
+                    <div>
+                        <h3>Ravintosuositus</h3>
+                        <ul>
+                            {Object.entries(todayTraining.Ravintosuositus).map(
+                                ([meal, description], index) => (
+                                    <li
+                                        key={index}
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'start',
+                                        }}
+                                    >
+                                        <strong>{meal}</strong>: {description}
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    </div>
+                )}
+            </Button>
+
+            {/* Show whole week if toggle is on */}
+            {showWholeWeek && (
+                <div>
+                    {Object.entries(trainingData.plan[0]).map(
+                        ([day, details], index) => (
+                            <div key={index}>
+                                <h3>{day}</h3>
+                                <p>{details.Tavoite}</p>
+                                {/* Add other details for the day here */}
+                            </div>
+                        )
+                    )}
+                </div>
+            )}
+            <Button onClick={toggleView}>
                 {showWholeWeek ? 'Päivän treeni' : 'Viikon pläni'}
             </Button>
         </div>
