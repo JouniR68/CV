@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import {
     Button,
@@ -31,15 +32,15 @@ const ConfirmationDialog = ({
             name + ', value: ',
             target.value
         );
-        name === 'tfUnit1' ? setUnit1(target.value) : '';
-        name === 'tfUnit2' ? setUnit2(target.value) : '';
-        name === 'tfUnit3' ? setUnit3(target.value) : '';
-        name === 'tfUnit4' ? setUnit4(target.value) : '';
+        name === 'tfUnit1' ? setUnit1(parseInt(target.value)) : 0;
+        name === 'tfUnit2' ? setUnit2(parseInt(target.value)) : 0;
+        name === 'tfUnit3' ? setUnit3(parseInt(target.value)) : 0;
+        name === 'tfUnit4' ? setUnit4(parseInt(target.value)) : 0;
     };
 
     return (
         <Dialog open={open} onClose={() => onClose(null)}>
-            <DialogTitle>{exercise} detalit</DialogTitle>
+            <DialogTitle>{exercise} Detalit</DialogTitle>
             <DialogActions
                 style={{
                     display: 'flex',
@@ -49,7 +50,7 @@ const ConfirmationDialog = ({
                     gap: '1rem',
                 }}
             >
-                Dialog series: {series}
+
                 <TextField
                     fullWidth
                     multiline
