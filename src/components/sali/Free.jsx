@@ -13,7 +13,7 @@ const [vast, setVast] = useState(false)
     return (
         <FormControlLabel
             control={<Checkbox checked={checked} onChange={onChange} />}
-            label='Vapaa treeni'
+            label='Vapaa treeni (Juoksu, pyöräily, kävely)'
 
         />
     );

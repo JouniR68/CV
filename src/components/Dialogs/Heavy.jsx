@@ -51,6 +51,7 @@ const ConfirmationDialog = ({
                 }}
             >
 
+
                 <TextField
                     fullWidth
                     multiline
@@ -122,7 +123,8 @@ const ConfirmationDialog = ({
 const Heavy = ({ onAnswer = () => {}, liike, sarja }) => {
     const [openDialog, setOpenDialog] = useState(true);
     const [series, setSeries] = useState(null);
-    console.log('liike on Heavy dialog: ', liike);
+
+    console.log('liike on Heavy dialog: ', liike + ", sarja:", sarja);
 
     useEffect(() => {
         if (Array.isArray(sarja)) {

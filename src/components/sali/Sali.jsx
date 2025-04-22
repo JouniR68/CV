@@ -22,12 +22,21 @@ const TrainingPlan = () => {
     const navigate = useNavigate();
     const addedEntryRef = useRef(false);
     const newDataRef = useRef([]);
-    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState();
     const [showHeavy, setShowHeavy] = useState(false);
     const [response, setResponse] = useState([]);
     const currentExerciseRef = useRef('');
     const sarjaRef = useRef([]);
     const toistotRef = useRef([]);
+
+    /*
+                <Button
+                    style={{ width: 'fit-content', padding: '0.5rem' }}
+                    onClick={() => setViikonpaiva(newDate)}
+                >
+                    Hae
+                </Button>
+*/
 
     function getWeekNumber(date) {
         const tempDate = new Date(
@@ -326,44 +335,31 @@ const TrainingPlan = () => {
     );
 
     return (
-        <div>
-            <div className='changeDate'>
-                <TextField
-                    style={{
-                        marginTop: '1rem',
-                        width: '7rem',
-                        border: '1px solid',
-                        textAlign: 'center',
-                    }}
-                    onChange={(event) => setNewDate(event.target.value)}
-                ></TextField>
-                <Button
-                    style={{ width: 'fit-content', padding: '0.5rem' }}
-                    onClick={() => setViikonpaiva(newDate)}
-                >
-                    Hae
-                </Button>
-                <VapaaTreeniCheckbox
-                    onChange={handleVapaaTreeni}
-                    checked={aero}
-                />
-            </div>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: '1rem',
+            }}
+        >
+            Päivitetty {new Date().toLocaleDateString()}
+            <TextField
+                style={{
+                    marginTop: '1rem',
+                    marginRight: '1rem',
+                    width: '7rem',
+                    border: '1px solid',
+                    textAlign: 'center',
+                }}
+                onChange={(event) => setNewDate(event.target.value)}
+                placeholder='päivä?'
+            ></TextField>
+            <VapaaTreeniCheckbox onChange={handleVapaaTreeni} checked={aero} />
             <h3>
                 {viikonpaiva} - {todayTraining?.Tavoite}
             </h3>
-            <Button
-                style={{
-                    backgroundColor: dayCompleted ? 'green' : 'lightblue',
-                    color: dayCompleted ? 'white' : 'black',
-                    fontunit: 700,
-                    border: '1px solid',
-                    marginTop: '1rem',
-                }}
-            >
-                {new Date().getDay() != 6 && new Date().getDay() != 7
-                    ? 'Tikissä'
-                    : '-'}
-            </Button>
             {error && <h3>{error}</h3>}
             <div>
                 {aero && <Heavy liike='Vapaa' onAnswer={handleAnswer} />}
