@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import trainingData from '../../../data/aito.json'; // Replace with the correct path to your JSON data
 import { Button, TextField } from '@mui/material';
 import { db } from '../../firebase';
@@ -22,21 +22,12 @@ const TrainingPlan = () => {
     const navigate = useNavigate();
     const addedEntryRef = useRef(false);
     const newDataRef = useRef([]);
-    const [currentExerciseIndex, setCurrentExerciseIndex] = useState();
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
     const [showHeavy, setShowHeavy] = useState(false);
     const [response, setResponse] = useState([]);
     const currentExerciseRef = useRef('');
     const sarjaRef = useRef([]);
     const toistotRef = useRef([]);
-
-    /*
-                <Button
-                    style={{ width: 'fit-content', padding: '0.5rem' }}
-                    onClick={() => setViikonpaiva(newDate)}
-                >
-                    Hae
-                </Button>
-*/
 
     function getWeekNumber(date) {
         const tempDate = new Date(
@@ -243,6 +234,7 @@ const TrainingPlan = () => {
 
     const toggleView = () => {
         setShowWholeWeek((prevState) => !prevState);
+        console.log('päivä / week:', showWholeWeek);
     };
 
     useEffect(() => {
@@ -268,10 +260,10 @@ const TrainingPlan = () => {
                 {
                     liike: liike,
                     analyysi: feedback,
-                    unit1: parseInt(unit1),
-                    unit2: parseInt(unit2),
-                    unit3: parseInt(unit3),
-                    unit4: parseInt(unit4),
+                    unit1: parseFloat(unit1),
+                    unit2: parseFloat(unit2),
+                    unit3: parseFloat(unit3),
+                    unit4: parseFloat(unit4),
                 },
             ];
 
@@ -294,7 +286,7 @@ const TrainingPlan = () => {
                     {
                         liike: liike,
                         analyysi: feedback,
-                        unit1: parseInt(unit1),
+                        unit1: parseFloat(unit1),
                     },
                 ];
 
@@ -313,6 +305,7 @@ const TrainingPlan = () => {
         console.log('currentExerciseIndex: ', currentExerciseIndex);
 
         if (liike != 'Vapaa') {
+            console.log('currentExerciseIndex:', currentExerciseIndex);
             if (
                 currentExerciseIndex <
                 todayTraining.Voimaharjoittelu.liike.length - 1
@@ -335,15 +328,7 @@ const TrainingPlan = () => {
     );
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: '1rem',
-            }}
-        >
+        <div className='sali'>
             Päivitetty {new Date().toLocaleDateString()}
             <TextField
                 style={{
@@ -357,103 +342,116 @@ const TrainingPlan = () => {
                 placeholder='päivä?'
             ></TextField>
             <VapaaTreeniCheckbox onChange={handleVapaaTreeni} checked={aero} />
-            <h3>
-                {viikonpaiva} - {todayTraining?.Tavoite}
-            </h3>
             {error && <h3>{error}</h3>}
-            <div>
-                {aero && <Heavy liike='Vapaa' onAnswer={handleAnswer} />}
-                <h2>Voimaharjoittelu</h2>
-                <table>
-                    <thead>
-                        <tr style={{ backgroundColor: 'orange' }}>
-                            <th>Treeni</th>
-                            <th>Prev kg's</th>
-                            <th>S&T</th>
-                            <th style={{ padding: '1rem' }}>Suoritukset</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {todayTraining?.Voimaharjoittelu?.liike?.map(
-                            (exercise, index) => {
-                                // Debugging the exercise and the data
-                                console.log('Exercise:', exercise);
+            {!showWholeWeek && (
+                <div>
+                    {aero && <Heavy liike='Vapaa' onAnswer={handleAnswer} />}
+                    <h2>
+                        {viikonpaiva} - {todayTraining?.Tavoite}
+                    </h2>
+                    <table>
+                        <thead>
+                            <tr style={{ backgroundColor: 'orange' }}>
+                                <th style={{ textAlign: 'center' }}>Treeni</th>
+                                <th style={{ textAlign: 'center' }}>
+                                    Prev kg's
+                                </th>
+                                <th style={{ textAlign: 'center' }}>S&T</th>
+                                <th style={{ textAlign: 'center' }}>Donet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {todayTraining?.Voimaharjoittelu?.liike?.map(
+                                (exercise, index) => {
+                                    index === currentExerciseIndex
+                                    // Debugging the exercise and the data
+                                    console.log('Exercise:', exercise);
 
-                                const previousExercise = previousWeekData
-                                    .flatMap(
-                                        (obj) => obj.details_analyysi || []
-                                    )
-                                    .find((item) => item.liike === exercise);
+                                    const previousExercise = previousWeekData
+                                        .flatMap(
+                                            (obj) => obj.details_analyysi || []
+                                        )
+                                        .find(
+                                            (item) => item.liike === exercise
+                                        );
 
-                                // Log to see if previousExercise is actually found
-                                console.log(
-                                    'Previous Exercise for ',
-                                    exercise,
-                                    ':',
-                                    previousExercise
-                                );
-
-                                // Log the previousExercise object
-                                console.log(
-                                    'Previous Exercise:',
-                                    previousExercise
-                                );
-
-                                if (previousExercise) {
+                                    // Log to see if previousExercise is actually found
                                     console.log(
-                                        'Previous Exercise Date:',
-                                        previousWeekData.date
+                                        'Previous Exercise for ',
+                                        exercise,
+                                        ':',
+                                        previousExercise
                                     );
-                                }
 
-                                return (
-                                    <tr key={index}>
-                                        <td>{exercise}</td>
-                                        <td>
-                                            {/* If previousExercise is undefined, show '-' */}
-                                            {previousExercise
-                                                ? `${
-                                                      previousExercise.unit1 ||
-                                                      '-'
-                                                  }, ${
-                                                      previousExercise.unit2 ||
-                                                      '-'
-                                                  },
+                                    // Log the previousExercise object
+                                    console.log(
+                                        'Previous Exercise:',
+                                        previousExercise
+                                    );
+
+                                    if (previousExercise) {
+                                        console.log(
+                                            'Previous Exercise Date:',
+                                            previousWeekData.date
+                                        );
+                                    }
+
+                                    return (
+                                        <tr key={index}>
+                                            <td style={{ marginLeft: '2rem' }}>
+                                                {exercise}
+                                            </td>
+                                            <td>
+                                                {/* If previousExercise is undefined, show '-' */}
+                                                {previousExercise
+                                                    ? `${
+                                                          previousExercise.unit1 ||
+                                                          '-'
+                                                      }, ${
+                                                          previousExercise.unit2 ||
+                                                          '-'
+                                                      },
                                                   ${
                                                       previousExercise.unit3 ||
                                                       '-'
                                                   }
                                                 ${previousExercise.unit4 || ''}`
-                                                : '-'}
-                                        </td>{' '}
-                                        <td style={{ paddingLeft: '2rem' }}>
-                                            {
-                                                todayTraining.Voimaharjoittelu
-                                                    .sarja[index]
-                                            }
-                                            /
-                                            {
-                                                todayTraining.Voimaharjoittelu
-                                                    .toisto[index]
-                                            }
-                                        </td>
-                                        <td style={{ paddingLeft: '1rem' }}>
-                                            <Button
-                                                style={getButtonStyle(index)}
-                                                onClick={() =>
-                                                    handleClick(index)
+                                                    : '-'}
+                                            </td>{' '}
+                                            <td style={{ paddingLeft: '2rem' }}>
+                                                {
+                                                    todayTraining
+                                                        .Voimaharjoittelu.sarja[
+                                                        index
+                                                    ]
                                                 }
-                                            >
-                                                {clicks[index] || 0}
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                );
-                            }
-                        )}
-                    </tbody>
-                </table>
-            </div>
+                                                /
+                                                {
+                                                    todayTraining
+                                                        .Voimaharjoittelu
+                                                        .toisto[index]
+                                                }
+                                            </td>
+                                            <td style={{ paddingLeft: '1rem' }}>
+                                                <Button
+                                                    style={getButtonStyle(
+                                                        index
+                                                    )}
+                                                    onClick={() =>
+                                                        handleClick(index)
+                                                    }
+                                                >
+                                                    {clicks[index] ||  "Do it"}
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    );
+                                }
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            )}
             {showHeavy && (
                 <Heavy
                     onAnswer={handleAnswer}
@@ -461,7 +459,21 @@ const TrainingPlan = () => {
                     sarja={sarjaRef.current}
                 />
             )}
-            <Button onClick={() => setShowWholeWeek(!showWholeWeek)}>
+            {/* Show whole week if toggle is on */}
+            {showWholeWeek && (
+                <div>
+                    {Object.entries(trainingData.plan[0]).map(
+                        ([day, details], index) => (
+                            <div key={index}>
+                                <h3>{day}</h3>
+                                <p>{details.Tavoite}</p>
+                                {/* Add other details for the day here */}
+                            </div>
+                        )
+                    )}
+                </div>
+            )}
+            <Button onClick={() => toggleView()}>
                 {showWholeWeek ? 'Päivän treeni' : 'Viikon pläni'}
             </Button>
         </div>

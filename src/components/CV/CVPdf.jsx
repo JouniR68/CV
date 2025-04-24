@@ -45,19 +45,23 @@ export const generatePDF = () => {
         [{ content: 'Description: ' + data.profile[0].Description, colSpan: 3 }]
     ];
 
-    // Now render the table, skipping the photo since it's already shown
-    /*
+    const reasons = data.hire.map(e => [
+        `${e.why}\n\n${e.why1}\n\n${e.why2}\n\n${e.why3}\n\n${e.why4}\n\n${e.why5}`
+      ]);
+    doc.setFontSize(16);
+    doc.text('Reasons to get in touch', 14, 135);
+
     doc.autoTable({
-        startY: 80,
-        body: personDetails, // Use the flattened array for the body
-        columnStyles: { 0: { cellWidth: 50 }, 1: { cellWidth: 50 }, 2: { cellWidth: 50 } },
-        */ // Adjust column widths if needed
-    //});
+        startY: 145,
+        head: [['Main reasons']],
+        body: reasons,
+    });
 
 
+    doc.addPage()
     // Add Work History section
     doc.setFontSize(16);
-    doc.text('Work History', 14, 125);
+    doc.text('Work History', 14, 40);
     const workhistory = data.workhistory.map((w) => [
         w.Company,
         w.Duration,
@@ -67,49 +71,55 @@ export const generatePDF = () => {
     ]);
 
     doc.autoTable({
-        startY: 130,
+        startY: 50,
         head: [['Company', 'Duration', 'Roles', 'Locations', 'Info']],
         body: workhistory,
     });
 
     doc.addPage()
 
-    doc.text('Competencies', 14, 30);
+    doc.text('Tech Competencies', 14, 30);
 
     // Mapping data from JSON file for each category
-    const programming = data.tech[0].Programming.map(p => [p]); // Assuming each competency is a string
-    const database = data.tech[0].Database.map(d => [d]);
-    const tools = data.tech[0].Tools.map(t => [t]);
-    const methods = data.tech[0].Methods.map(m => [m]);
+    const programming = data.tech[0].Programming;
+    const database = data.tech[0].Database;
+    const tools = data.tech[0].Tools;
+    const methods = data.tech[0].Methods;
 
-    // Preparing the final body by combining arrays and adding section titles
+    // Determine the maximum number of rows needed
+    const maxLength = Math.max(programming.length, database.length, tools.length, methods.length);
+
+    // Pad arrays to same length with empty strings
+    const padArray = (arr, length) => {
+      const padded = [...arr];
+      while (padded.length < length) {
+        padded.push('');
+      }
+      return padded;
+    };
+
+    const progPad = padArray(programming, maxLength);
+    const dbPad = padArray(database, maxLength);
+    const toolsPad = padArray(tools, maxLength);
+    const methodsPad = padArray(methods, maxLength);
+
+    // Combine into rows
     const combinedBody = [];
+    for (let i = 0; i < maxLength; i++) {
+      combinedBody.push([
+        progPad[i],
+        dbPad[i],
+        toolsPad[i],
+        methodsPad[i]
+      ]);
+    }
 
-    // Add Programming section
-    combinedBody.push([{ content: 'Programming (* = used in the Vivago License System development, self assesment: average, but passionate coder).', colSpan: 1, styles: { halign: 'left', fillColor: [220, 220, 220] } }]);
-    combinedBody.push(...programming);
-
-    // Add Database section
-    combinedBody.push([])
-    combinedBody.push([{ content: 'Databases', colSpan: 1, styles: { halign: 'left', fillColor: [220, 220, 220] } }]);
-    combinedBody.push(...database);
-
-    // Add Tools section
-    combinedBody.push([])
-    combinedBody.push([{ content: 'Tools', colSpan: 1, styles: { halign: 'left', fillColor: [220, 220, 220] } }]);
-    combinedBody.push(...tools);
-
-    // Add Methods section
-    combinedBody.push([])
-    combinedBody.push([{ content: 'Methods', colSpan: 1, styles: { halign: 'left', fillColor: [220, 220, 220] } }]);
-    combinedBody.push(...methods);
-
-    // Render the autoTable with the combined body
+    // Render the autoTable with headers
     doc.autoTable({
-        startY: 40,
-        body: combinedBody,
+      startY: 40,
+      head: [['Programming', 'Database', 'Tools', 'Methods']],
+      body: combinedBody,
     });
-
     doc.addPage()
     // Add Education section
     const education = data.education.map((e) => [e.Item, e.When, e.Topics, e.Degree])
@@ -123,18 +133,9 @@ export const generatePDF = () => {
         body: education,
     });
 
-    /* Add Roles that Appeal to You
-    doc.setFontSize(16);
-    const appealingRoles = data.looking.map(l => [l])
-    doc.text('Appealing roles', 14, 320);
-    doc.autoTable({
-        startY: doc.autoTable.previous.finalY + 40,            
-        body: appealingRoles,
-    });
-    */
     // Add Footer
-    //doc.setFontSize(11);
-    //doc.text('Contact: jr@softa-apu.fi | Phone: +358452385888', 14, 285);
+    doc.setFontSize(11);
+    doc.text('Contact: jriimala@gmail.com | Phone: +358 45 23 85 888', 14, 285);
 
     // Save the PDF
     doc.save('CurriculumVitae.pdf');

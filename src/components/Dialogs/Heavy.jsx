@@ -32,10 +32,10 @@ const ConfirmationDialog = ({
             name + ', value: ',
             target.value
         );
-        name === 'tfUnit1' ? setUnit1(parseInt(target.value)) : 0;
-        name === 'tfUnit2' ? setUnit2(parseInt(target.value)) : 0;
-        name === 'tfUnit3' ? setUnit3(parseInt(target.value)) : 0;
-        name === 'tfUnit4' ? setUnit4(parseInt(target.value)) : 0;
+        name === 'tfUnit1' ? setUnit1(parseFloat(target.value)) : 0;
+        name === 'tfUnit2' ? setUnit2(parseFloat(target.value)) : 0;
+        name === 'tfUnit3' ? setUnit3(parseFloat(target.value)) : 0;
+        name === 'tfUnit4' ? setUnit4(parseFloat(target.value)) : 0;
     };
 
     return (
