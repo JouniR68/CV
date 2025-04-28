@@ -29,6 +29,16 @@ const TrainingPlan = () => {
     const sarjaRef = useRef([]);
     const toistotRef = useRef([]);
 
+    const todayTraining = trainingData.plan[0]
+        ? Object.entries(trainingData.plan[0]).find(
+              ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
+          )?.[1]
+        : {};
+
+    const [doneLabel, setDoneLabel] = useState(
+        () => todayTraining?.Voimaharjoittelu?.liike?.map(() => false) || []
+    );
+
     function getWeekNumber(date) {
         const tempDate = new Date(
             Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
@@ -73,12 +83,6 @@ const TrainingPlan = () => {
             setViikonpaiva(viikonpaivat[today]);
         }
     }, [newDate]);
-
-    const todayTraining = trainingData.plan[0]
-        ? Object.entries(trainingData.plan[0]).find(
-              ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
-          )?.[1]
-        : {};
 
     useEffect(() => {
         if (addedEntryRef.current) return; // Prevent multiple entries
@@ -162,7 +166,7 @@ const TrainingPlan = () => {
     const previousWeekData = getPreviousWeekData(new Date());
 
     // Debugging the structure of `previousWeekData` to see if it's correct
-    console.log('Previous Week Data (Structure):', previousWeekData);
+    console.log('', previousWeekData);
 
     const markDone = (i) => {
         setDone((prev) => {
@@ -212,6 +216,7 @@ const TrainingPlan = () => {
         }
     };
 
+    //console.log("toistot: ", toistotRef.current)
     const submit = async () => {
         try {
             await addDoc(collection(db, 'trainings'), newDataRef.current);
@@ -242,7 +247,15 @@ const TrainingPlan = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    const handleAnswer = (liike, feedback, unit1, unit2, unit3, unit4) => {
+    const handleAnswer = (
+        liike,
+        feedback,
+        unit1,
+        unit2,
+        unit3,
+        unit4,
+        reps
+    ) => {
         if (!feedback) {
             console.log('Teksti unohtui');
             return;
@@ -250,7 +263,17 @@ const TrainingPlan = () => {
         console.log(
             'handleAswer, liike: ',
             liike + 'analyse:',
-            feedback + ', ' + unit1 + ', ' + unit2 + ', ' + unit3 + ', ' + unit4
+            feedback +
+                ', ' +
+                unit1 +
+                ', ' +
+                unit2 +
+                ', ' +
+                unit3 +
+                ', ' +
+                unit4 +
+                ', toistot:',
+            reps
         );
 
         // Update state correctly
@@ -264,6 +287,7 @@ const TrainingPlan = () => {
                     unit2: parseFloat(unit2),
                     unit3: parseFloat(unit3),
                     unit4: parseFloat(unit4),
+                    toistot: reps,
                 },
             ];
 
@@ -304,8 +328,17 @@ const TrainingPlan = () => {
 
         console.log('currentExerciseIndex: ', currentExerciseIndex);
 
-        if (liike != 'Vapaa') {
+        if (liike !== 'Vapaa') {
             console.log('currentExerciseIndex:', currentExerciseIndex);
+            const liikeIndex = todayTraining.Voimaharjoittelu.liike.findIndex(
+                (exercise) => exercise === liike
+            );
+            setDoneLabel((prev) => {
+                const updated = [...prev];
+                updated[liikeIndex] = true; // ✅ Mark the exercise that matches 'liike'
+                return updated;
+            });
+
             if (
                 currentExerciseIndex <
                 todayTraining.Voimaharjoittelu.liike.length - 1
@@ -315,7 +348,6 @@ const TrainingPlan = () => {
                 currentExerciseIndex ===
                 todayTraining.Voimaharjoittelu.liike.length - 1
             ) {
-                console.log('Liikkeet suoritettu, submit');
                 submit();
             }
         } else {
@@ -329,7 +361,6 @@ const TrainingPlan = () => {
 
     return (
         <div className='sali'>
-            Päivitetty {new Date().toLocaleDateString()}
             <TextField
                 style={{
                     marginTop: '1rem',
@@ -363,7 +394,6 @@ const TrainingPlan = () => {
                         <tbody>
                             {todayTraining?.Voimaharjoittelu?.liike?.map(
                                 (exercise, index) => {
-                                    index === currentExerciseIndex
                                     // Debugging the exercise and the data
                                     console.log('Exercise:', exercise);
 
@@ -441,7 +471,10 @@ const TrainingPlan = () => {
                                                         handleClick(index)
                                                     }
                                                 >
-                                                    {clicks[index] ||  "Do it"}
+                                                    {doneLabel[index]
+                                                        ? 'Done'
+                                                        : clicks[index] ||
+                                                          'Do it'}
                                                 </Button>
                                             </td>
                                         </tr>
@@ -455,10 +488,13 @@ const TrainingPlan = () => {
             {showHeavy && (
                 <Heavy
                     onAnswer={handleAnswer}
+
                     liike={currentExerciseRef.current}
                     sarja={sarjaRef.current}
+                    toisto={toistotRef.current[currentExerciseIndex] || []}
                 />
             )}
+            {console.log('sali, toisto - > Heavylle: ', toistotRef.current)}
             {/* Show whole week if toggle is on */}
             {showWholeWeek && (
                 <div>

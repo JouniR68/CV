@@ -1,10 +1,11 @@
 {
   "name": "tracker",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node ./src/generate_version.js",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

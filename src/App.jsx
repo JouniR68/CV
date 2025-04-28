@@ -76,22 +76,62 @@ import Orders from './components/services/shop/ShowOrders';
 
 import Lista from './components/Reissu/Lista';
 import DayCounter from './components/Reissu/DayCounter';
-
-/*
-function HideHeader() {
-  const location = useLocation();
-  const currentPath = location.pathname;
-  // Hide Header in NotHeader route
-  return !currentPath.includes('reissulista') ? <Header /> : null;
-}
-  {window.location.pathname !== "/reissulista" ? <Header />: null}
-
-  */
+import { useEffect, useState } from 'react';
+import { Button } from '@mui/material';
 
 function App() {
+    const [appVersion, setAppVersion] = useState('1.0.0'); // Current deployed version
+    const [showVersio, setShowVersio] = useState(false);
+
+    const [version, setVersion] = useState(null);
+
+    useEffect(() => {
+        fetch('/version.json', { cache: 'no-store' })
+            .then((res) => res.json())
+            .then((data) => {
+                setVersion(data);
+            })
+            .catch((err) => {
+                console.error('Failed to fetch version.json:', err);
+            });
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetch('/version.json', { cache: 'no-store' }) // no-store to bypass cache
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.version !== appVersion) {
+                        console.log('data.version = ', data.version);
+                        console.log('appversion = ', appVersion);
+
+                        alert('A new version is available. Please refresh!');
+                        // Optionally auto-refresh:
+                        // window.location.reload(true);
+                    }
+                });
+        }, 86400000); // Check once per a day
+
+        return () => clearInterval(interval);
+    }, [appVersion]);
     //<Route path='hider' element={<HideHeader />} />
+
+    const showVersion = () => {
+        setShowVersio(!showVersio);
+    };
+
     return (
         <div className='app-container'>
+            <Button onClick={showVersion}>Versio info</Button>
+            {showVersio ? (
+                <p>
+                    App version: <strong>{version.version}</strong> <br />{' '}
+                    Updated: <em>{version.updated}</em>
+                </p>
+            ) : (
+                ''
+            )}
+
             <AuthProvider>
                 <BrowserRouter>
                     <Routes>

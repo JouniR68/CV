@@ -27,7 +27,7 @@ export default function Profile({ hideButton }) {
   const navigate = useNavigate();
 
 //<TableRow><TableCell className='row'>{t('ProfileBirth')}: {t('birthPlace')}</TableCell></TableRow>
-//{!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>} 
+//{!hideButton && <Button variant="contained" id="profile-button" onClick={() => navigate('/profile/output')} size="large">{t('cv')}</Button>}
 
   return (
     <>
@@ -39,7 +39,7 @@ export default function Profile({ hideButton }) {
           <TableContainer component={Paper}>
             <Table aria-label="simple table" key={i++}>
               <TableBody>
-                <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>                
+                <TableRow><TableCell className='row'>{profile.Name}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileLocation')}: {profile.Location}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileProfession')}: {t('profession')}</TableCell></TableRow>
                 <TableRow><TableCell className='row'>{t('ProfileMail')}: jr@softa-apu.fi</TableCell></TableRow>
@@ -47,7 +47,7 @@ export default function Profile({ hideButton }) {
               </TableBody>
             </Table>
           </TableContainer>
-          <div className="profilerNapit">            
+          <div className="profilerNapit">
             <Button style={{marginLeft:'1rem'}}variant="contained" onClick={generatePDF}>{t('LoadCV')}</Button>
           </div>
         </div>
