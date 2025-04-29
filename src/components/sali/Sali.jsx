@@ -28,6 +28,7 @@ const TrainingPlan = () => {
     const currentExerciseRef = useRef('');
     const sarjaRef = useRef([]);
     const toistotRef = useRef([]);
+    const [selectedExerciseIndex, setSelectedExerciseIndex] = useState(null);
 
     const todayTraining = trainingData.plan[0]
         ? Object.entries(trainingData.plan[0]).find(
@@ -209,6 +210,7 @@ const TrainingPlan = () => {
 
             const requiredClicks = todayTraining?.Voimaharjoittelu.sarja[i];
             if (currentClicks + 1 === requiredClicks) {
+                setSelectedExerciseIndex(i);
                 setShowHeavy(true);
             }
         } else {
@@ -349,9 +351,11 @@ const TrainingPlan = () => {
                 todayTraining.Voimaharjoittelu.liike.length - 1
             ) {
                 submit();
+                setSelectedExerciseIndex(null);
             }
         } else {
             submit();
+            setSelectedExerciseIndex(null);
         }
     };
 
@@ -488,10 +492,13 @@ const TrainingPlan = () => {
             {showHeavy && (
                 <Heavy
                     onAnswer={handleAnswer}
-
-                    liike={currentExerciseRef.current}
+                    liike={
+                        todayTraining.Voimaharjoittelu.liike[
+                            selectedExerciseIndex
+                        ]
+                    }
                     sarja={sarjaRef.current}
-                    toisto={toistotRef.current[currentExerciseIndex] || []}
+                    toisto={toistotRef?.current[selectedExerciseIndex] || []}
                 />
             )}
             {console.log('sali, toisto - > Heavylle: ', toistotRef.current)}

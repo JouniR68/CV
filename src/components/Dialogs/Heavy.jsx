@@ -25,21 +25,28 @@ const ConfirmationDialog = ({
     const [reps, setReps] = useState([]);
 
     useEffect(() => {
-        if (Array.isArray(toistot)) {
-            setReps([...toistot]);
-        } else {
-            setReps(toistot);
+        if (toistot) {
+            if (Array.isArray(toistot)) {
+                setReps([...toistot]); // clone parent toisto array
+            } else if (series > 1) {
+                setReps(new Array(series).fill(toistot));
+            } else {
+                setReps([toistot]); // if single number, wrap it to array
+            }
         }
     }, [toistot]);
 
-    const handleUnitChange = (index, target) => {
+    const handleUnitChange = (idx, target) => {
         const name = target.name;
         const value = target.value;
 
         if (name.startsWith('reps')) {
-            const newReps = [...reps];
-            newReps[index] = parseInt(value, 10);
-            setReps(newReps);
+            const repsValue = parseInt(value, 10);
+            setReps((prevReps) => {
+                const newReps = [...prevReps];
+                newReps[idx] = repsValue;
+                return newReps;
+            });
         } else if (name === 'tfUnit1') {
             setUnit1(parseFloat(value));
         } else if (name === 'tfUnit2') {
@@ -80,10 +87,11 @@ const ConfirmationDialog = ({
                         }}
                     >
                         <TextField
+                            key={`reps-${idx}`}
                             name={`reps${idx}`}
                             type='number'
                             label={`${idx + 1}. sarjan toistot`}
-                            value={reps || ''}
+                            value={reps[idx] || ''}
                             onChange={(e) => handleUnitChange(idx, e.target)}
                         />
                         <TextField
@@ -124,11 +132,19 @@ const ConfirmationDialog = ({
 const Heavy = ({ onAnswer = () => {}, liike, sarja, toisto }) => {
     const [openDialog, setOpenDialog] = useState(true);
     const [series, setSeries] = useState(null);
+    const [localToisto, setLocalToisto] = useState('');
+
+    useEffect(() => {
+        // Initialize when component mounts or props change
+        setLocalToisto(toisto || '');
+    }, [toisto]);
 
     console.log('liike on Heavy dialog: ', liike, ', sarja:', sarja);
     if (Array.isArray(toisto)) {
         console.log('Toisto array: ', toisto);
-    } else {console.log("toisto: ", toisto)}
+    } else {
+        console.log('toisto: ', toisto);
+    }
 
     useEffect(() => {
         setOpenDialog(true); // open dialog when new exercise comes
@@ -164,7 +180,7 @@ const Heavy = ({ onAnswer = () => {}, liike, sarja, toisto }) => {
             onClose={() => setOpenDialog(false)}
             onConfirm={handleConfirm}
             series={series || 1}
-            toistot={toisto}
+            toistot={localToisto}
         />
     );
 };
