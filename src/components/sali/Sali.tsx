@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import trainingData from '../../../data/aito.json'; // Replace with the correct path to your JSON data
+import React, { useEffect, useRef, useState } from 'react';
+import trainingData from '../../../data/aito.json';
 import { Button, TextField } from '@mui/material';
 import { db } from '../../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
@@ -7,34 +7,43 @@ import { useNavigate } from 'react-router-dom';
 import Heavy from '../Dialogs/Heavy';
 import VapaaTreeniCheckbox from './Free';
 import '../../css/sali.css';
-//sali.jsx
-const TrainingPlan = () => {
-    const [data, setData] = useState([]);
-    const [dayCompleted, setDayCompleted] = useState(false);
-    const [nutrition, setShowNutrition] = useState(false);
-    const [showWholeWeek, setShowWholeWeek] = useState(false);
-    const [done, setDone] = useState([]);
-    const [error, setError] = useState('');
-    const [clicks, setClicks] = useState([]);
-    const [newDate, setNewDate] = useState('');
-    const [viikonpaiva, setViikonpaiva] = useState('');
-    const [aero, setAero] = useState(false);
-    const navigate = useNavigate();
-    const addedEntryRef = useRef(false);
-    const newDataRef = useRef([]);
-    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-    const [showHeavy, setShowHeavy] = useState(false);
-    const [response, setResponse] = useState([]);
-    const currentExerciseRef = useRef('');
-    const sarjaRef = useRef([]);
-    const toistotRef = useRef([]);
-    const [selectedExerciseIndex, setSelectedExerciseIndex] = useState(null);
+import {
+    Training,
+    TrainingPlanData,
+    TrainingEntry,
+    Analysis,
+    HeavyProps,
+} from './types';
 
-    const todayTraining = trainingData.plan[0]
-        ? Object.entries(trainingData.plan[0]).find(
-              ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
-          )?.[1]
-        : {};
+const TrainingPlan: React.FC = () => {
+    const [data, setData] = useState<TrainingEntry[]>([]);
+    const [dayCompleted, setDayCompleted] = useState<boolean>(false);
+    const [nutrition, setShowNutrition] = useState<boolean>(false);
+    const [showWholeWeek, setShowWholeWeek] = useState<boolean>(false);
+    const [done, setDone] = useState<number[]>([]);
+    const [error, setError] = useState<string>('');
+    const [clicks, setClicks] = useState<number[]>([]);
+    const [newDate, setNewDate] = useState<string>('');
+    const [viikonpaiva, setViikonpaiva] = useState<string>('');
+    const [aero, setAero] = useState<boolean>(false);
+    const navigate = useNavigate();
+    const addedEntryRef = useRef<boolean>(false);
+    const newDataRef = useRef<Partial<TrainingEntry>>({});
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState<number>(0);
+    const [showHeavy, setShowHeavy] = useState<boolean>(false);
+    const [response, setResponse] = useState<Analysis[]>([]);
+    const currentExerciseRef = useRef<string>('');
+    const sarjaRef = useRef<number[]>([]);
+    const toistotRef = useRef<number[]>([]);
+    const [selectedExerciseIndex, setSelectedExerciseIndex] = useState<
+        number | null
+    >(null);
+
+    const todayTraining: Training | undefined = trainingData.plan[0]
+  ? Object.entries(trainingData.plan[0]).find(
+        ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
+    )?.[1] as Training
+  : undefined;
 
     const [doneLabel, setDoneLabel] = useState(
         () => todayTraining?.Voimaharjoittelu?.liike?.map(() => false) || []
@@ -99,25 +108,25 @@ const TrainingPlan = () => {
 
             if (allExercisesCompleted) {
                 const today = new Date().toISOString().split('T')[0]; // Format date to 'YYYY-MM-DD'
-                const dateFound = data.some((f) => {
+                /*const dateFound = data.some((f) => {
                     console.log('f date:', f.date);
                     return f.date === today;
                 });
-
-                if (!dateFound) {
-                    const newEntry = {
-                        week: getWeekNumber(new Date()),
-                        date: new Date().toLocaleDateString(),
-                        hour: new Date().getHours(),
-                        training: todayTraining.Tavoite,
-                        details: todayTraining.Voimaharjoittelu.liike,
-                    };
-                    newDataRef.current = newEntry;
-                    //newDataRef.current.details_analyysi = response;
-                    setDayCompleted(true);
-                    addedEntryRef.current = true; // Mark as added
-                    return;
-                } else {
+                */
+                //if (!dateFound) {
+                const newEntry = {
+                    week: getWeekNumber(new Date()),
+                    date: new Date().toLocaleDateString(),
+                    hour: new Date().getHours(),
+                    training: todayTraining.Tavoite,
+                    details: todayTraining.Voimaharjoittelu.liike,
+                };
+                newDataRef.current = newEntry;
+                //newDataRef.current.details_analyysi = response;
+                setDayCompleted(true);
+                addedEntryRef.current = true; // Mark as added
+                return;
+                /*} else {
                     setDayCompleted(false);
                     setDone([]);
                     navigate('/errorNote', {
@@ -126,7 +135,7 @@ const TrainingPlan = () => {
                             description: 'Päivän treeni on jo talletettu',
                         },
                     });
-                }
+                }*/
             } else {
                 console.log('Joku treenikerta vielä klikkaamatta');
             }
@@ -249,15 +258,7 @@ const TrainingPlan = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    const handleAnswer = (
-        liike,
-        feedback,
-        unit1,
-        unit2,
-        unit3,
-        unit4,
-        reps
-    ) => {
+    const handleAnswer = (liike: string, feedback: string, weights: number[], reps: number[]) => {
         if (!feedback) {
             console.log('Teksti unohtui');
             return;
@@ -265,19 +266,14 @@ const TrainingPlan = () => {
         console.log(
             'handleAswer, liike: ',
             liike + 'analyse:',
-            feedback +
-                ', ' +
-                unit1 +
-                ', ' +
-                unit2 +
-                ', ' +
-                unit3 +
-                ', ' +
-                unit4 +
-                ', toistot:',
+            feedback + ', weights: ' + weights + ', toistot:',
             reps
         );
 
+        const unit1 = weights[0];
+        const unit2 = weights[1] || 0;
+        const unit3 = weights[2] || 0;
+        const unit4 = weights[3] || 0;
         // Update state correctly
         setResponse((prev) => {
             let updatedResponse = [
@@ -285,10 +281,10 @@ const TrainingPlan = () => {
                 {
                     liike: liike,
                     analyysi: feedback,
-                    unit1: parseFloat(unit1),
-                    unit2: parseFloat(unit2),
-                    unit3: parseFloat(unit3),
-                    unit4: parseFloat(unit4),
+                    unit1: unit1,
+                    unit2: unit2,
+                    unit3: unit3,
+                    unit4: unit4,
                     toistot: reps,
                 },
             ];
@@ -312,7 +308,7 @@ const TrainingPlan = () => {
                     {
                         liike: liike,
                         analyysi: feedback,
-                        unit1: parseFloat(unit1),
+                        unit1: unit1,
                     },
                 ];
 
@@ -450,8 +446,8 @@ const TrainingPlan = () => {
                                                       '-'
                                                   }
                                                 ${previousExercise.unit4 || ''}`
-                                                    : '-'}
-                                            </td>{' '}
+                                                    : '-'}{' '}
+                                            </td>
                                             <td style={{ paddingLeft: '2rem' }}>
                                                 {
                                                     todayTraining

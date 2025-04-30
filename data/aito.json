@@ -178,6 +178,31 @@
                     "Päivällinen": "Naudanlihaa tai kanaa perunamuusin ja vihannesten kanssa",
                     "Iltapala": "Raejuustoa ja mustikoita"
                 }
+            },
+            "test": {
+                "Tavoite": "test",
+                "Kävely": "test",
+                "Voimaharjoittelu": {
+                    "liike": [
+                        "test1",
+                        "test2"
+                    ],
+                    "sarja": [
+                        3,
+                        3
+                    ],
+                    "toisto": [
+                        "10-13",
+                        "8-12"
+                    ]
+                },
+                "Ravintosuositus": {
+                    "Aamiainen": "Munakas täysjyväleivän kanssa",
+                    "Lounas": "Kalaa (esim. lohta) ja quinoa vihannesten kanssa",
+                    "Välipala": "Omena ja proteiinijuoma",
+                    "Päivällinen": "Naudanlihaa tai kanaa perunamuusin ja vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja mustikoita"
+                }
             }
         }
     ]
