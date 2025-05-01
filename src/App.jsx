@@ -57,7 +57,7 @@ import Feedback from './components/Feedback';
 import ShowFeedback from './components/ShowFeedback';
 import MindMap from './components/CV/MindMap';
 
-import Sali from './components/sali/Sali';
+import Sali from './components/sali/TrainingPlan';
 import SaliRapsa from './components/sali/Report';
 
 import StockFetcher from './components/Talous/Finance';

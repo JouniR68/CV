@@ -38,7 +38,7 @@ export interface Analysis {
 export interface HeavyProps {
     liike: string;
     sarja?: number[];
-    toisto?: number[];
+    toisto: number | string | number[] | undefined;
     onAnswer: (
         liike: string,
         feedback: string,

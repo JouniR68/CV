@@ -40,10 +40,10 @@ const TrainingPlan: React.FC = () => {
     >(null);
 
     const todayTraining: Training | undefined = trainingData.plan[0]
-  ? Object.entries(trainingData.plan[0]).find(
-        ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
-    )?.[1] as Training
-  : undefined;
+        ? (Object.entries(trainingData.plan[0]).find(
+              ([day]) => day.toLowerCase() === viikonpaiva.toLowerCase()
+          )?.[1] as Training)
+        : undefined;
 
     const [doneLabel, setDoneLabel] = useState(
         () => todayTraining?.Voimaharjoittelu?.liike?.map(() => false) || []
@@ -108,12 +108,7 @@ const TrainingPlan: React.FC = () => {
 
             if (allExercisesCompleted) {
                 const today = new Date().toISOString().split('T')[0]; // Format date to 'YYYY-MM-DD'
-                /*const dateFound = data.some((f) => {
-                    console.log('f date:', f.date);
-                    return f.date === today;
-                });
-                */
-                //if (!dateFound) {
+
                 const newEntry = {
                     week: getWeekNumber(new Date()),
                     date: new Date().toLocaleDateString(),
@@ -122,20 +117,10 @@ const TrainingPlan: React.FC = () => {
                     details: todayTraining.Voimaharjoittelu.liike,
                 };
                 newDataRef.current = newEntry;
-                //newDataRef.current.details_analyysi = response;
+                newDataRef.current.details_analyysi = response;
                 setDayCompleted(true);
                 addedEntryRef.current = true; // Mark as added
                 return;
-                /*} else {
-                    setDayCompleted(false);
-                    setDone([]);
-                    navigate('/errorNote', {
-                        state: {
-                            title: '',
-                            description: 'Päivän treeni on jo talletettu',
-                        },
-                    });
-                }*/
             } else {
                 console.log('Joku treenikerta vielä klikkaamatta');
             }
@@ -187,7 +172,6 @@ const TrainingPlan: React.FC = () => {
     };
 
     const getButtonStyle = (i) => {
-        //const currentClicks = clicks[i] || 0;
         const clicks = done[i] || 0;
         const requiredClicks = todayTraining?.Voimaharjoittelu?.sarja[i] || 1;
 
@@ -258,7 +242,12 @@ const TrainingPlan: React.FC = () => {
         console.log('response data: ', Object.entries(response));
     }, [response]); // Runs whenever response changes
 
-    const handleAnswer = (liike: string, feedback: string, weights: number[], reps: number[]) => {
+    const handleAnswer = (
+        liike: string,
+        feedback: string,
+        weights: number[],
+        reps: number[]
+    ) => {
         if (!feedback) {
             console.log('Teksti unohtui');
             return;

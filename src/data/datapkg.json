@@ -1,0 +1,190 @@
+{
+  "tech": [
+    {
+      "id": 1,
+      "Programming": [
+        "JS",
+        "React",
+        "Node",
+        "CSS",
+        "Material UI",
+        "PHP (basic)",
+        "Java (basic)"
+      ],
+      "Database": [
+        "Postgress",
+        "Sqlite",
+        "Mysql"
+      ],
+      "Tools": [
+        "Atlassian products (JIRA, Confluense, Bitbucket)",
+        "Git",
+        "SVN",
+        "Virtual envs",
+        "CD/CD pipelines",
+        "Firebase (Google's mobile and web app development platform)"
+      ],
+      "Methods": [
+        "Waterfall",
+        "Kanban",
+        "Scrum"
+      ]
+    }
+  ],
+
+  "intrests": [
+    {
+      "id": 1,
+      "photo": "./src/assets/ktm-lattis.jpg",
+      "text": "Like most people I like to do sport (in the low - medium level), ride motorcycle (this likely is not for all), hang out with friends, travel and do occsionally other extreme stuff like ice - swimming. Additionally, I also like to improve my coding skills (likely second thing what is not common for all)."
+    }
+  ],
+  "hire": [
+    {
+      "id": 1,
+      "why": "I'm excellent technical project manager / sw development mgr and have web development competence.",
+      "why1": "Usable for multiple roles (coding, testing, system expert, project management).",
+      "why2": "I'm experienced, proactive and competences are up to date. Especially good within subcontractor interface.",
+      "why3": "Pure intrest to sw development and can work also within product management tasks.",
+      "why4": "Open for different contract types (permanent, freelancer, remote, part time (3 days in a wk).",
+      "why5": "Good attitude and allways willing to learn new and develop."
+    }
+  ],
+  "summary": "I am a skilled hands-on Project Manager with a strong grasp of software development,\ntools, and agile processes. With a deep understanding of software engineering practices,\nI have experience leading cross-functional teams, managing end-to-end project lifecycles,\nand ensuring timely delivery of high-quality products.\n\nMain competencies project management, subcontractor interface,\nproduct backlog (Atlassian tools) and web - development.",
+
+  "workhistory": [
+      {
+        "id": 1,
+        "Company": "Vivago",
+        "Duration": "1.3.2022 - 15.6.2024",
+        "Roles": [
+          "R&D - dev. manager"
+        ],
+        "Locations": [
+          "Espoo"
+        ],
+        "Info": "Managed & contributed to the License system development and eventually to the Cloud deployment.\n\nManagement relates to the requirement and product backlog management. I personally constructed Vivago JIRA and Confluense system to support projects backlogs and content overall. \n\nThe development was done by using React, Node and sequealize with Postgress. Local development was firstly pushed to the Git and via pipeline (after automated tests) it was deployed to the Cloud stages environments in order to ensure quality for the customers.\n\nAs there were only few people involved Kanban- process was used in daily meetings."
+      },
+      {
+        "id": 2,
+        "Company": "KavoKerr",
+        "Duration": "2012-2020",
+        "Roles": [
+          "Project manager",
+          "Tech specialist"
+        ],
+        "Locations": [
+          "Tuusula"
+        ],
+        "Info": "Driver project manager, dev-ops. Target was to release driver releases for the image applications and dental scanners. Scrum and Safe- processes were used as customer release included also global teams from the Europe and U.S"
+      },
+      {
+        "id": 3,
+        "Company": "Nokia Mobile Phones",
+        "Duration": "1997-2012",
+        "Roles": [
+          "SW Trainee",
+          "SW Developer",
+          "Project manager",
+          "Test manager",
+          "R&D-manager"
+        ],
+        "Locations": [
+          "Oulu, ",
+          "Helsinki, ",
+          "Copenhagen"
+        ],
+        "Info": "Developer, UI-cheaf, project manager, Test lead..\n\nI started as a developer with C-language and headed after 2-3 years to the user interface chief and to the project manager etc roles."
+      }
+    ],
+    "education": [
+      {
+        "id": 5,
+        "Item": "Hands on",
+        "When": "2022-24",
+        "Topics": "On work web based coding (js, react, node) with senior level subcontractor developers.",
+        "Degree": "-"
+      },
+      {
+        "id": 4,
+        "Item": "Self training (Scrimba advancded React course)",
+        "When": "2023",
+        "Topics": "Advanced react training",
+        "Degree": "-"
+      },
+      {
+        "id": 1,
+        "Item": "Aalto Pro - SoftwarePoint & Vivago Web - Developper Training Program",
+        "When": "9/2021 - 3/2022",
+        "Topics": "Six month program with Helsinki Aalto University PRO - progaram where key was to learn web -technologies and Java programming. University level training consisted from 17 face to face learning days and from 19 remote days. Java training with Helsinki University Mooc courses and on work training",
+        "Degree": "Web-developer"
+      },
+      {
+        "id": 2,
+        "Item": "Saranen - Integrata",
+        "When": "2020",
+        "Topics": "Six month program where key was to learn Uipath. Within program used also Robot Framework, Python and C-sharp.",
+        "Degree": "-"
+      },
+      {
+        "id": 3,
+        "Item": "Kemi-Tornio University of Applied Sciences Bachelor of Engineering Automatic Data Processing",
+        "When": "1994-1997",
+        "Topics": "ADP -tradenomi schooling",
+        "Degree": "Tradenomi (ADP- line)"
+      }
+    ],
+    "profile": [
+      {
+        "id": 1,
+        "Photo": "/Images/JouniRiimala.jpg",
+        "Name": "Jouni Riimala",
+        "Email": "jr@softa-apu.fi",
+        "Phone": "+358 452385888",
+        "BirthPlace": "Rovaniemi, Lapland, Finland",
+        "Location": "Tuusula, Uusimaa, Finland",
+        "Profession": "ADP- professional",
+        "Familly": "Wife, two kids and three cats",
+        "Description": "I am a highly skilled Technical Project Manager with a strong grasp of software development methodologies,\ntools, and agile processes. With a deep understanding of software engineering practices, I have experience leading cross-functional teams, managing end-to-end project lifecycles, and ensuring timely delivery of high-quality products. I'm flexiple so feel free to suggest also other roles and even from freelancer angle."
+      }
+    ],
+    "services": [
+      {
+        "id": 4,
+        "serv1": "Coding (web (react, node, js ...)",
+        "serv1-prize": "60 euros / hour. Minimum full day (7.5 h) => 450 euros.",
+        "serv2": "Testing (test plan, report, cases, test executions ..",
+        "serv2-prize": "50 euros / hour. Minimum full day (7.5 h) => 350 euros.",
+        "serv3": "Sw installations and configurations.",
+        "serv3-prize": "60 euros hour / 3 hour minimum => 180 euros.",
+        "serv4": "Admin work (Atlassian etc), jira - confluence admin, jql etc",
+        "serv4-prize": "60 euros hour / 3 hour minimum => 180 euros",
+        "serv5": "Product Management / requirement & roadmapping work.",
+        "serv5-prize": "60 euros hour, minimum full day (7.5 h) => 400 euros.",
+        "serv6": "Custom work and prize based on needs.",
+        "serv6-prize": "60 euros / hour. Minimum two days (15 h) => 900 euros"
+      }
+    ],
+
+    "looking":["Project Manager", "Development Manager", "Junior Developer"],
+
+    "rent": [
+      {
+        "kuvaus": "Tämä on testi",
+        "name": "jriimala@gmail.com",
+        "id": 1
+      },
+      {
+        "kuvaus": "test",
+        "name": "jriimala@gmail.com",
+        "id": 2
+      },
+      {
+        "yhtotto": "henkilo",
+        "name": "jriimala@gmail.com",
+        "kuvaus": "test",
+        "id": 3
+      }
+    ]
+
+  }

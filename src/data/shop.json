@@ -1,0 +1,52 @@
+{
+    "catalog": [
+        {
+            "id": 1,
+            "title": "Web-ohjelmointia",
+            "description": [
+                "Web - koodausta, katselmointeineen",
+                "Konsultaatiota / tukea ongelmanratkaisuihin"
+            ],
+            "price-h": 70,
+            "price-d": 450
+        },
+        {
+            "id": 2,
+            "title": "Ohjelmisto testaus",
+            "description": ["Automaatio / manual testausta", "Testisuunnitelmia, testien tekemistä ja suorittamiseta."],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 3,
+            "title": "Järjestelmien / työkalujen konfigurointia.",
+            "description": ["Esim JIRA & Confluense konfiguroinnit", "Ohjelmistojen asennukset ja päivitykset"],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 4,
+            "title": "Tuotehallinta",
+            "description": ["Vaatimusten, epic, storien hallintaa"],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 5,
+            "title": "Yleis atk, koodauksen perusteita jne",
+            "description": ["Apuja ohjelmistojen käyttöön", "Koodaus perusteiden opettamista"],
+            "price-h": 60,
+            "price-d": 400
+        },
+        {
+            "id": 6,
+            "title": "IT Help Desk / ATK-ihimisten sijaistamista",
+            "description": ["Sijaistamaan ATK-ihmistä", "Etätukea IT-asioihin"],
+            "price-h": 60,
+            "price-d": 400
+        }
+
+
+
+    ]
+}

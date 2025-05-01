@@ -1,0 +1,60 @@
+{
+    "plan": [
+        {
+            "Päivä 1": {
+                "Tavoite": "Ylavartalo (Push/Pull)",
+                "Lammittely (10 min)": "Soutulaite tai kuntopyöra (keskiraskas intensiteetti)",
+                "Voimaharjoittelu": [
+                    "Penkkipunnerrus: 4 x 8-10",
+                    "Ylatalja (leuanvetoliike tai vedot taljassa): 4 x 8-10",
+                    "Vipunostot sivulle: 3 x 12-15",
+                    "Hauiskaantö kasipainoilla: 3 x 10-12",
+                    "Ojentajat taljassa (köysi/ojennus): 3 x 10-12"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 30 sek työta (esim. kuntopyöra/hiit-juoksumatto) ja 30 sek lepoa. Tee 8–10 kierrosta."
+            },
+            "Päivä 2": {
+                "Tavoite": "Alavartalo",
+                "Lammittely (10 min)": "Askelkyykky kevyella painolla tai soutulaite",
+                "Voimaharjoittelu": [
+                    "Kyykky (levytanko tai hack-kyykky): 4 x 8-10",
+                    "Maastaveto: 4 x 8-10",
+                    "Jalkaprassi: 3 x 10-12",
+                    "Reiden koukistus laitteessa: 3 x 12-15",
+                    "Pohjenousut laitteessa: 3 x 15-20"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 20 sek sprintti (juoksumatto/kuntopyöra) ja 40 sek lepoa. Tee 8–12 kierrosta."
+            },
+            "Päivä 3": {
+                "Tavoite": "Ylavartalo ja keskivartalo (Push/Pull + Core)",
+                "Lammittely (10 min)": "Soutulaite tai taljavetoliikkeet kevyella painolla.",
+                "Voimaharjoittelu": [
+                    "Pystypunnerrus kasipainoilla: 4 x 8-10",
+                    "Kulmasoutu tangolla: 4 x 8-10",
+                    "Vipunostot eteen: 3 x 12-15",
+                    "Kapea penkkipunnerrus: 3 x 8-10",
+                    "Kylkitaivutukset kasipainolla: 3 x 15 per puoli",
+                    "Plank (lankku): 3 x 45-60 sek"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 30 sek burpeet ja 30 sek lepo. Tee 6–8 kierrosta."
+            },
+            "Päivä 4": {
+                "Tavoite": "Alavartalo + Keskivartalo (Kyykyt ja kierto)",
+                "Lammittely (10 min)": "Juoksumatto (kevytta juoksua tai kavelya ylamakeen)",
+                "Voimaharjoittelu": [
+                    "Etukyykky (levytanko tai kahvakuula): 4 x 8-10",
+                    "Romanian maastaveto: 4 x 8-10",
+                    "Askelkyykyt kavelylla (kasipainot): 3 x 12 per jalka",
+                    "Reiden loitontajat (laite tai talja): 3 x 12-15",
+                    "Venytetty vatsalihasliike pallolla: 3 x 12-15",
+                    "Pyörivä liike taljassa (rotation pull): 3 x 15 per puoli"
+                ],
+                "HIIT (10-15 min)": "Vuorottele 20 sek hyppynaruhyppyja ja 40 sek lepoa. Tee 8–12 kierrosta."
+            },
+            "Päivä 5": {
+                "Tavoite": "Palautuminen",
+                "Kavely": "5-8 km:n kavely (kahvitauolla)"
+            }
+        }
+    ]
+}

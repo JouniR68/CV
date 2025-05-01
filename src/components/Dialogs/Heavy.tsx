@@ -15,7 +15,7 @@ interface ConfirmationDialogProps {
     onClose: () => void;
     onConfirm: (feedback: string, weights: number[], reps: number[]) => void;
     series: number;
-    toistot?: number[] | number;
+    toisto: number | string | number[] | undefined;
 }
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
@@ -38,23 +38,15 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     });
 
     useEffect(() => {
-        if (toistot) {
-            if (Array.isArray(toistot)) {
-                setReps([...toistot]);
-            } else if (series > 1) {
-                setReps(Array(series).fill(toistot));
-            } else {
-                setReps([toistot]);
-            }
-        } else {
-            setReps(Array(series).fill(0));
-        }
-        setWeights(Array(series).fill(0));
+        if (!open) return; // avoid running on close
+
+        //setWeights(Array(series).fill());
         setErrors({
             reps: Array(series).fill(false),
             weights: Array(series).fill(false),
         });
-    }, [toistot, series]);
+        setFeedback('');
+    }, [series, open]);
 
     const handleChange = (
         idx: number,
@@ -103,9 +95,18 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     };
 
     //label={`${idx + 1}. sarjan painot (kg)`}
-
+    console.log('reps: ', reps);
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog
+            open={open}
+            onClose={(event, reason) => {
+                if (reason !== 'backdropClick' && reason !== 'escapeKeyDown') {
+                    onClose();
+                }
+            }}
+            aria-labelledby='heavy-dialog-title'
+            disableEscapeKeyDown
+        >
             <DialogTitle>{exercise} Detaljit</DialogTitle>
             <DialogContent>
                 <TextField
@@ -130,55 +131,46 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
                             marginBottom: '1rem',
                         }}
                     >
-
-                            <>
-                                <TextField
-                                    name={`reps${idx}`}
-                                    type='number'
-                                    label={
-                                        exercise !== 'Vapaa'
-                                            ? `${idx + 1}. sarjan toistot`
-                                            : 'Intervallit'
-                                    }
-                                    value={reps[idx] ?? ''}
-                                    error={errors.reps[idx]}
-                                    helperText={
-                                        errors.reps[idx]
-                                            ? 'Anna kokonaisluku ≥ 1'
-                                            : ''
-                                    }
-                                    onChange={(e) =>
-                                        handleChange(
-                                            idx,
-                                            'reps',
-                                            e.target.value
-                                        )
-                                    }
-                                />
-                                <TextField
-                                    name={`weight${idx}`}
-                                    type='number'
-                                    label={
-                                        exercise !== 'Vapaa'
-                                            ? `${idx + 1}. sarjan toistot`
-                                            : 'Matka'
-                                    }
-                                    value={weights[idx] ?? ''}
-                                    error={errors.weights[idx]}
-                                    helperText={
-                                        errors.weights[idx]
-                                            ? 'Arvon oltava ≥ 0'
-                                            : ''
-                                    }
-                                    onChange={(e) =>
-                                        handleChange(
-                                            idx,
-                                            'weights',
-                                            e.target.value
-                                        )
-                                    }
-                                />
-                            </>
+                        <>
+                            <TextField
+                                name={`reps${idx}`}
+                                type='number'
+                                label={
+                                    exercise !== 'Vapaa'
+                                        ? `${idx + 1}. sarjan toistot`
+                                        : 'Intervallit'
+                                }
+                                value={reps[idx] ?? ''}
+                                error={errors.reps[idx]}
+                                helperText={
+                                    errors.reps[idx]
+                                        ? 'Anna kokonaisluku ≥ 1'
+                                        : ''
+                                }
+                                onChange={(e) =>
+                                    handleChange(idx, 'reps', e.target.value)
+                                }
+                            />
+                            <TextField
+                                name={`weight${idx}`}
+                                type='number'
+                                label={
+                                    exercise !== 'Vapaa'
+                                        ? `${idx + 1}. sarjan kilot`
+                                        : 'Matka'
+                                }
+                                value={weights[idx] ?? ''}
+                                error={errors.weights[idx]}
+                                helperText={
+                                    errors.weights[idx]
+                                        ? 'Arvon oltava ≥ 0'
+                                        : ''
+                                }
+                                onChange={(e) =>
+                                    handleChange(idx, 'weights', e.target.value)
+                                }
+                            />
+                        </>
                     </div>
                 ))}
             </DialogContent>
@@ -231,11 +223,12 @@ const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
         weights: number[],
         reps: number[]
     ) => {
+        console.log('heavy onAnwer params: ', liike, feedback, weights, reps);
         onAnswer(liike, feedback, weights, reps);
         setOpenDialog(false);
     };
 
-console.log("liike: ", liike)
+    console.log('liike: ', liike);
     return (
         <ConfirmationDialog
             exercise={liike}
