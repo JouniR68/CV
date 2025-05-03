@@ -57,7 +57,7 @@ const TrainingPlan: React.FC = () => {
         fetchData();
     }, []); // Run only once after initial render
 
-    //---
+    /*
     // Get index of current day
     const weekdays = [
         'maanantai',
@@ -85,14 +85,14 @@ const TrainingPlan: React.FC = () => {
               ([day]) => day.toLowerCase() === previousDayName.toLowerCase()
           )?.[1] as Training)
         : undefined;
-    //--
-    /*
+*/
+
     const todayTraining: Training | undefined = trainingData.plan[0]
         ? (Object.entries(trainingData.plan[0]).find(
               ([day]) => day.toLowerCase() === dayName?.toLowerCase()
           )?.[1] as Training)
         : undefined;
-*/
+
     const getPreviousWeekData = (currentDate) => {
         const currentWeekNumber = getWeekNumber(currentDate);
         console.log('Current Week Number:', currentWeekNumber); // Debugging log
