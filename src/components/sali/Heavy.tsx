@@ -236,7 +236,7 @@ const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
     ) => {
         const result = reps.map((rep, idx) => {
             const baseline = initialReps[idx] ?? 0; // fallback to 0 if undefined
-            return rep < baseline ? 'Vähenna painoa' : 'Hyväksytty';
+            return rep < baseline ? 'Vähennä painoa' : 'Hyväksytty';
         });
 
         onAnswer(liike, feedback, weights, reps, result);

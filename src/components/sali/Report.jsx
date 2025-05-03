@@ -115,6 +115,7 @@ const TrainingsTable = () => {
                                         <TableCell>Analyysi</TableCell>
                                         <TableCell>Painot/kilsat</TableCell>
                                         <TableCell>S&T</TableCell>
+                                        <TableCell>Tulos</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -207,6 +208,13 @@ const TrainingsTable = () => {
                                                                     ? `${analysis.sarja} / ${analysis.toistot[index]}`
                                                                     : ''}
                                                             </TableCell>
+                                                            <TableCell>
+                                                                {analysis.
+                                                                    tulos?.some(s => s === "Vähennä painoa")
+                                                                    ? `Vähennä painoa`
+                                                                    : 'Ok tai'}
+                                                            </TableCell>
+
                                                         </TableRow>
                                                     )
                                                 )}
