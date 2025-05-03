@@ -1,3 +1,24 @@
+export interface ConfirmationDialogProps {
+    exercise: string;
+    open: boolean;
+    onClose: () => void;
+    onConfirm: (feedback: string, weights: number[], reps: number[], result: string[]) => void;
+    series: number;
+    toistot: number[] | undefined;
+}
+
+export interface HeavyProps {
+    onAnswer: (
+        liike: string,
+        palaute: string,
+        weights: number[],
+        reps: number[],
+        result: string[]
+    ) => void;
+    liike: string;
+    sarja: number[];
+    toisto?: string;
+}
 // types.ts
 export interface Training {
     Tavoite: string;
@@ -33,16 +54,4 @@ export interface Analysis {
     unit3?: number;
     unit4?: number;
     toistot?: number[];
-}
-
-export interface HeavyProps {
-    liike: string;
-    sarja?: number[];
-    toisto: number | string | number[] | undefined;
-    onAnswer: (
-        liike: string,
-        feedback: string,
-        weights: number[],
-        reps: number
-    ) => void;
 }

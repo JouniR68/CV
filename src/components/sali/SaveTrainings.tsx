@@ -16,37 +16,39 @@ function getWeekNumber(date) {
 const SaveTrainingData = async (
     training: Training,
     weights: number[][], // 2D array: weights[exerciseIndex][setIndex]
-    reps: number[][] // 2D array: reps[exerciseIndex][setIndex]
-): Promise<void> => {
+    reps: number[][], // 2D array: reps[exerciseIndex][setIndex]
+    feedbacks: string[],    // <-- array of strings
+    results: string[][])=>{     // <-- array of arrays (results per set per exercise)): Promise<void> => {
     try {
-        console.log('saveTrainingData, weights: ', weights);
-        console.log('saveTrainingData, reps: ', reps);
 
         const trainingDoc = {
             date: new Date().toLocaleDateString(),
             hour: new Date().getHours(),
             week: getWeekNumber(new Date()),
             exercises: training.Voimaharjoittelu.liike.map((liike, i) => {
-                const weightSet = weights[i] || [];
-                const repSet = reps[i] || [];
+                const weightSet = Array.isArray(weights[i]) ? weights[i] : [];
+                const repSet = Array.isArray(reps[i]) ? reps[i] : [];
+                const resultSet = Array.isArray(results[i]) ? results[i] : [];
                 return {
                     liike,
+                    analyysi: feedbacks[i] || '',
                     sarja: training.Voimaharjoittelu.sarja[i],
                     unit1: weightSet[0] || 0,
                     unit2: weightSet[1] || 0,
                     unit3: weightSet[2] || 0,
                     unit4: weightSet[3] || 0,
                     toistot: reps[i] ?? 0,
+                    tulos: resultSet,
                 };
             }),
         };
 
         console.log('TrainingDoc:', trainingDoc);
-        await addDoc(collection(db, 'test'), trainingDoc);
+        await addDoc(collection(db, 'trainings1H'), trainingDoc);
     } catch (error) {
         console.error('Firebase saving error: ', error);
         throw error;
     }
 };
 
-export default SaveTrainingData
+export default SaveTrainingData;

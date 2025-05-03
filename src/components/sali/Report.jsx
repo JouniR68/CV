@@ -21,7 +21,7 @@ const TrainingsTable = () => {
 
     useEffect(() => {
         const fetchTrainings = async () => {
-            const querySnapshot = await getDocs(collection(db, 'trainings'));
+            const querySnapshot = await getDocs(collection(db, 'trainings1H'));
             const data = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
@@ -152,9 +152,9 @@ const TrainingsTable = () => {
                                             {/* Expandable Analysis Rows */}
                                             {expandedTrainings[training.id] &&
                                                 Array.isArray(
-                                                    training.details_analyysi
+                                                    training.exercises
                                                 ) &&
-                                                training.details_analyysi.map(
+                                                training.exercises.map(
                                                     (analysis, index) => (
                                                         <TableRow
                                                             key={`${training.id}-analysis-${index}`}
@@ -202,16 +202,9 @@ const TrainingsTable = () => {
                                                                     .join(', ')}
                                                             </TableCell>
                                                             <TableCell>
-                                                                {Array.isArray(
-                                                                    training.sarjat
-                                                                ) &&
-                                                                Array.isArray(
-                                                                    training.toistot
-                                                                ) &&
-                                                                training.sarjat[
-                                                                    index
-                                                                ] !== undefined
-                                                                    ? `${training.sarjat[index]} / ${training.toistot[index]}`
+                                                                {analysis.
+                                                                    sarja !== undefined
+                                                                    ? `${analysis.sarja} / ${analysis.toistot[index]}`
                                                                     : ''}
                                                             </TableCell>
                                                         </TableRow>

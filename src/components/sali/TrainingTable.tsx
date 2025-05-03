@@ -4,56 +4,69 @@ import ExerciseRow from './ExerciseRow';
 import { Training } from './types';
 
 interface Props {
-  todayTraining: Training;
-  previousWeekData: any[];
-  clicks: number[];
-  doneLabel: boolean[];
-  handleClick: (i: number) => void;
-  getButtonStyle: (i: number) => React.CSSProperties;
+    todayTraining: Training;
+    previousWeekData: any[];
+    clicks: number[];
+    doneLabel: boolean[];
+    handleClick: (i: number) => void;
+    getButtonStyle: (i: number) => React.CSSProperties;
 }
 
 const TrainingTable: React.FC<Props> = ({
-  todayTraining,
-  previousWeekData,
-  clicks,
-  doneLabel,
-  handleClick,
-  getButtonStyle,
+    todayTraining,
+    previousWeekData,
+    clicks,
+    doneLabel,
+    handleClick,
+    getButtonStyle,
 }) => {
-  return (
-    <table>
-      <thead>
-        <tr style={{ backgroundColor: 'orange' }}>
-          <th>Treeni</th>
-          <th>Prev kg's</th>
-          <th>S&T</th>
-          <th>Done</th>
-        </tr>
-      </thead>
-      <tbody>
-        {todayTraining.Voimaharjoittelu.liike.map((exercise, index) => {
-          const previousExercise = previousWeekData
-            .flatMap((obj) => obj.details_analyysi || [])
-            .find((item) => item.liike === exercise);
+    //<th>Prev kg's</th>
+    return (
+        <table>
+            <thead>
+                <tr style={{ backgroundColor: 'orange' }}>
+                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
+                        Treeni
+                    </th>
+                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
+                        Prev kg's
+                    </th>
+                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>S&T</th>
+                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
+                        Done
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {todayTraining.Voimaharjoittelu.liike.map((exercise, index) => {
+                    const previousExercise = previousWeekData
+                        .flatMap((obj) => obj.details_analyysi || []) //Eventually, this needs to be changed as object structure has been now changed || exercices need to be renamed to details_analyysi...
+                        .find((item) => item.liike === exercise);
 
-          return (
-            <ExerciseRow
-              key={index}
-              index={index}
-              exercise={exercise}
-              previousExercise={previousExercise}
-              sarja={todayTraining.Voimaharjoittelu.sarja[index]}
-              toisto={todayTraining.Voimaharjoittelu.toisto[index]}
-              clickValue={clicks[index]}
-              isDone={doneLabel[index]}
-              onClick={handleClick}
-              getButtonStyle={getButtonStyle}
-            />
-          );
-        })}
-      </tbody>
-    </table>
-  );
+                    console.log(
+                        'TrainingTable, previous wk exercise:',
+                        previousWeekData
+                    );
+                    return (
+                        <ExerciseRow
+                            key={index}
+                            index={index}
+                            exercise={exercise}
+                            previousExercise={previousExercise}
+                            sarja={todayTraining.Voimaharjoittelu.sarja[index]}
+                            toisto={
+                                todayTraining.Voimaharjoittelu.toisto[index]
+                            }
+                            clickValue={clicks[index]}
+                            isDone={doneLabel[index]}
+                            onClick={handleClick}
+                            getButtonStyle={getButtonStyle}
+                        />
+                    );
+                })}
+            </tbody>
+        </table>
+    );
 };
 
 export default TrainingTable;

@@ -4,7 +4,7 @@ import { Button, TextField } from '@mui/material';
 import { db } from '../../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import Heavy from '../Dialogs/Heavy';
+import Heavy from './Heavy';
 import VapaaTreeniCheckbox from './Free';
 import '../../css/sali.css';
 import {

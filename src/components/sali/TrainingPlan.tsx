@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import HeavyDialog from '../Dialogs/Heavy';
+import HeavyDialog from './Heavy';
 import TrainingTable from './TrainingTable';
 import trainingData from '../../data/aito.json';
 import { Training } from './types';
 import saveTrainingData from './SaveTrainings'; // must be default or use named import correctly
+import { getWeekNumber } from './utils';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const getFinnishWeekday = (date: Date): string => {
     const weekdays = [
@@ -31,15 +34,79 @@ const TrainingPlan: React.FC = () => {
     const [saveStatus, setSaveStatus] = useState<string | null>(null);
     const [weightsData, setWeightsData] = useState<number[][]>([]);
     const [repsData, setRepsData] = useState<number[][]>([]);
+    const [feedback, setFeedback] = useState<string[]>([]);
     const [clickLocked, setClickLocked] = useState(false);
+    const [data, setData] = useState<[]>([]);
+    const [resultData, setResultData] = useState<string[][]>([]);
 
     const dayName = selectedDate ? getFinnishWeekday(selectedDate) : null;
 
+    const fetchData = async () => {
+        try {
+            const querySnapshot = await getDocs(collection(db, 'trainings'));
+            const fetchedData = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setData(fetchedData);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []); // Run only once after initial render
+
+    //---
+    // Get index of current day
+    const weekdays = [
+        'maanantai',
+        'tiistai',
+        'keskiviikko',
+        'torstai',
+        'perjantai',
+        'lauantai',
+        'sunnuntai',
+        'test',
+    ];
+
+    const dayNames = weekdays;
+    const currentDayIndex = dayNames.findIndex(
+        (d) => d.toLowerCase() === dayName?.toLowerCase()
+    );
+
+    // Calculate previous day index
+    const previousDayIndex = (currentDayIndex + 2) % 8; // Wrap around to Sunday if it's Monday
+
+    const previousDayName = dayNames[previousDayIndex];
+
+    const todayTraining: Training | undefined = trainingData.plan[0]
+        ? (Object.entries(trainingData.plan[0]).find(
+              ([day]) => day.toLowerCase() === previousDayName.toLowerCase()
+          )?.[1] as Training)
+        : undefined;
+    //--
+    /*
     const todayTraining: Training | undefined = trainingData.plan[0]
         ? (Object.entries(trainingData.plan[0]).find(
               ([day]) => day.toLowerCase() === dayName?.toLowerCase()
           )?.[1] as Training)
         : undefined;
+*/
+    const getPreviousWeekData = (currentDate) => {
+        const currentWeekNumber = getWeekNumber(currentDate);
+        console.log('Current Week Number:', currentWeekNumber); // Debugging log
+
+        // Filter for the previous week's data
+        const previousWeekData = data.filter((entry) => {
+            console.log('Checking entry:', entry); // Log to inspect the structure
+            return entry?.week === currentWeekNumber - 1; // Ensure 'week' field exists
+        });
+
+        console.log('Previous Week Data:', previousWeekData); // Debugging log
+
+        return previousWeekData || {}; // Return the first entry or empty object
+    };
 
     useEffect(() => {
         if (todayTraining?.Voimaharjoittelu) {
@@ -82,7 +149,8 @@ const TrainingPlan: React.FC = () => {
         liike: string,
         palaute: string,
         weights: number[],
-        reps: number[]
+        reps: number[],
+        result: string[]
     ) => {
         if (selectedExerciseIndex === null) return;
 
@@ -93,10 +161,18 @@ const TrainingPlan: React.FC = () => {
         // Store weights and reps for the completed exercise
         const updatedWeights = [...weightsData];
         const updatedReps = [...repsData];
+        const updatedFeedback = [...feedback];
+
         updatedWeights[selectedExerciseIndex] = weights;
         updatedReps[selectedExerciseIndex] = reps;
+        updatedFeedback[selectedExerciseIndex] = palaute;
+
         setWeightsData(updatedWeights);
         setRepsData(updatedReps);
+        setFeedback(updatedFeedback);
+        const updatedResults = [...resultData]; // <- manage this state like others
+        updatedResults[selectedExerciseIndex] = result;
+        setResultData(updatedResults); // state for all results
 
         handleDialogClose();
 
@@ -109,7 +185,9 @@ const TrainingPlan: React.FC = () => {
                 await saveTrainingData(
                     todayTraining,
                     updatedWeights,
-                    updatedReps
+                    updatedReps,
+                    feedback, // ✅ array of strings
+                    updatedResults
                 );
                 setSaveStatus('Training saved successfully!');
             } catch (err) {
@@ -134,7 +212,7 @@ const TrainingPlan: React.FC = () => {
             {todayTraining?.Voimaharjoittelu ? (
                 <TrainingTable
                     todayTraining={todayTraining}
-                    previousWeekData={[]}
+                    previousWeekData={getPreviousWeekData(new Date())}
                     clicks={clicks}
                     doneLabel={doneLabel}
                     handleClick={handleClick}
@@ -156,7 +234,12 @@ const TrainingPlan: React.FC = () => {
                             selectedExerciseIndex
                         ],
                     ]}
-                    toisto={currentToisto !== null ? currentToisto : undefined}
+                    //toisto={currentToisto !== null ? currentToisto : undefined}
+                    toisto={
+                        todayTraining.Voimaharjoittelu.toisto[
+                            selectedExerciseIndex
+                        ]
+                    }
                     onAnswer={handleAnswer}
                 />
             )}

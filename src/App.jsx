@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 import Header from './components/header';
-import Heavy from './components/Dialogs/Heavy';
+import Heavy from './components/sali/Heavy';
 import Layout from './Layouts/Layout';
 import AdminLayout from './Layouts/AdminLayout';
 import ShopLayout from './Layouts/ShopLayout';
