@@ -87,6 +87,13 @@ const TrainingsTable = () => {
         return <p>Ladataan treenejä...</p>;
     }
 
+    const tulos = trainings.map((t) =>
+        t.exercises?.map((e) => {
+            const hasBadResult = e?.tulos?.some((s) => s === 'Vähennä painoa');
+            return hasBadResult ? 'Vähennä painoa' : 'Ok';
+        })
+    );
+
     return (
         <div>
             {groupedByWeek.map(([week, { trainings }]) => (
@@ -176,7 +183,7 @@ const TrainingsTable = () => {
                                                                 }}
                                                             >
                                                                 {
-                                                                    analysis.analyysi
+                                                                    analysis.analyysi?.map(fiilis => fiilis)
                                                                 }
                                                             </TableCell>
                                                             <TableCell
@@ -192,10 +199,7 @@ const TrainingsTable = () => {
                                                                 }}
                                                             >
                                                                 {[
-                                                                    analysis.unit1,
-                                                                    analysis.unit2,
-                                                                    analysis.unit3,
-                                                                    analysis.unit4,
+                                                                    analysis.painot.map(paino => paino)
                                                                 ]
                                                                     .filter(
                                                                         Boolean
@@ -203,18 +207,28 @@ const TrainingsTable = () => {
                                                                     .join(', ')}
                                                             </TableCell>
                                                             <TableCell>
-                                                                {analysis.
-                                                                    sarja !== undefined
+                                                                {analysis.sarja !==
+                                                                undefined
                                                                     ? `${analysis.sarja} / ${analysis.toistot[index]}`
                                                                     : ''}
                                                             </TableCell>
-                                                            <TableCell>
-                                                                {analysis.
-                                                                    tulos?.some(s => s === "Vähennä painoa")
-                                                                    ? `Vähennä painoa`
-                                                                    : 'Ok tai'}
-                                                            </TableCell>
+                                                            <TableCell
+                                                                style={{
+                                                                    backgroundColor:
+                                                                        analysis.tulos?.some(res => (res === 'Hyväksytty' || res === 'Ok'))
+                                                                            ? 'green'
+                                                                            : 'red',
 
+                                                }}
+                                                            >
+                                                                {analysis.tulos?.some(
+                                                                    (s) =>
+                                                                        s ===
+                                                                        'Vähennä painoa'
+                                                                )
+                                                                    ? `Vähennä painoa`
+                                                                    : 'Ok'}
+                                                            </TableCell>
                                                         </TableRow>
                                                     )
                                                 )}

@@ -38,39 +38,8 @@ const TrainingPlan: React.FC = () => {
     const [clickLocked, setClickLocked] = useState(false);
     const [data, setData] = useState<[]>([]);
     const [resultData, setResultData] = useState<string[][]>([]);
-    const [viikonpaiva, setViikonpaiva] = useState<string>('');
+
     const dayName = selectedDate ? getFinnishWeekday(selectedDate) : null;
-    const [newDate, setNewDate] = useState<string>('');
-
-    const viikonpaivat = [
-        'Sunnuntai',
-        'Maanantai',
-        'Tiistai',
-        'Keskiviikko',
-        'Torstai',
-        'Perjantai',
-        'Lauantai',
-        "Test"
-    ];
-
-    const today = new Date().getDay();
-
-    useEffect(() => {
-        if (newDate != '' && newDate != viikonpaivat[today]) {
-            setViikonpaiva(newDate);
-        } else if (newDate === '') {
-            setViikonpaiva(viikonpaivat[today]);
-        }
-    }, [newDate]);
-
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const dateParam = params.get('date'); // e.g. ?date=Maanantai
-        console.log('dateParam: ', dateParam);
-        if (dateParam) {
-            setNewDate(dateParam);
-        }
-    }, []);
 
     const fetchData = async () => {
         try {
@@ -88,12 +57,42 @@ const TrainingPlan: React.FC = () => {
         fetchData();
     }, []); // Run only once after initial render
 
+
+    // Get index of current day
+    const weekdays = [
+        'maanantai',
+        'tiistai',
+        'keskiviikko',
+        'torstai',
+        'perjantai',
+        'lauantai',
+        'sunnuntai',
+        'test',
+    ];
+
+    const dayNames = weekdays;
+    const currentDayIndex = dayNames.findIndex(
+        (d) => d.toLowerCase() === dayName?.toLowerCase()
+    );
+
+    // Calculate previous day index
+    const previousDayIndex = (currentDayIndex + 2) % 8; // Wrap around to Sunday if it's Monday
+
+    const previousDayName = dayNames[previousDayIndex];
+
     const todayTraining: Training | undefined = trainingData.plan[0]
         ? (Object.entries(trainingData.plan[0]).find(
-              ([day]) => day.toLowerCase() === viikonpaiva?.toLowerCase()
+              ([day]) => day.toLowerCase() === previousDayName.toLowerCase()
           )?.[1] as Training)
         : undefined;
 
+/*
+    const todayTraining: Training | undefined = trainingData.plan[0]
+        ? (Object.entries(trainingData.plan[0]).find(
+              ([day]) => day.toLowerCase() === dayName?.toLowerCase()
+          )?.[1] as Training)
+        : undefined;
+*/
     const getPreviousWeekData = (currentDate) => {
         const currentWeekNumber = getWeekNumber(currentDate);
         console.log('Current Week Number:', currentWeekNumber); // Debugging log
@@ -198,10 +197,11 @@ const TrainingPlan: React.FC = () => {
     };
 
     const getButtonStyle = (i: number): React.CSSProperties => ({
-        backgroundColor: doneLabel[i]
+
+        backgroundColor: doneLabel[i] && resultData[i]
             ? 'lightgreen'
-            : clicks[i] > 0
-            ? '#ffd580'
+            : clicks[i] > 0 && !resultData[i]
+            ? 'red'
             : '',
         cursor: 'pointer',
     });

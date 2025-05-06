@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import HeavyDialog from './Heavy';
 import TrainingTable from './TrainingTable';
+import { Button, TextField } from '@mui/material';
 import trainingData from '../../data/aito.json';
 import { Training } from './types';
 import saveTrainingData from './SaveTrainings'; // must be default or use named import correctly
 import { getWeekNumber } from './utils';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import VapaaTreeniCheckbox from './Free';
 
 const getFinnishWeekday = (date: Date): string => {
     const weekdays = [
@@ -22,7 +25,9 @@ const getFinnishWeekday = (date: Date): string => {
 };
 
 const TrainingPlan: React.FC = () => {
+    const navigate = useNavigate();
     const [selectedDate] = useState<Date | null>(new Date());
+    const [viikonpaiva, setViikonpaiva] = useState<string>('');
     const [selectedExerciseIndex, setSelectedExerciseIndex] = useState<
         number | null
     >(null);
@@ -31,46 +36,19 @@ const TrainingPlan: React.FC = () => {
     const [currentToisto, setCurrentToisto] = useState<
         number | number[] | null
     >(null);
-    const [saveStatus, setSaveStatus] = useState<string | null>(null);
     const [weightsData, setWeightsData] = useState<number[][]>([]);
     const [repsData, setRepsData] = useState<number[][]>([]);
     const [feedback, setFeedback] = useState<string[]>([]);
     const [clickLocked, setClickLocked] = useState(false);
     const [data, setData] = useState<[]>([]);
     const [resultData, setResultData] = useState<string[][]>([]);
-    const [viikonpaiva, setViikonpaiva] = useState<string>('');
-    const dayName = selectedDate ? getFinnishWeekday(selectedDate) : null;
     const [newDate, setNewDate] = useState<string>('');
-
-    const viikonpaivat = [
-        'Sunnuntai',
-        'Maanantai',
-        'Tiistai',
-        'Keskiviikko',
-        'Torstai',
-        'Perjantai',
-        'Lauantai',
-        "Test"
-    ];
-
-    const today = new Date().getDay();
-
-    useEffect(() => {
-        if (newDate != '' && newDate != viikonpaivat[today]) {
-            setViikonpaiva(newDate);
-        } else if (newDate === '') {
-            setViikonpaiva(viikonpaivat[today]);
-        }
-    }, [newDate]);
-
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const dateParam = params.get('date'); // e.g. ?date=Maanantai
-        console.log('dateParam: ', dateParam);
-        if (dateParam) {
-            setNewDate(dateParam);
-        }
-    }, []);
+    const [aero, setAero] = useState<boolean>(false);
+    const dayName = selectedDate ? getFinnishWeekday(selectedDate) : null;
+    let allCompleted = false;
+    const handleVapaaTreeni = () => {
+        setAero(!aero);
+    };
 
     const fetchData = async () => {
         try {
@@ -84,9 +62,30 @@ const TrainingPlan: React.FC = () => {
             console.error('Error fetching data: ', error);
         }
     };
+
+    const viikonpaivat = [
+        'Sunnuntai',
+        'Maanantai',
+        'Tiistai',
+        'Keskiviikko',
+        'Torstai',
+        'Perjantai',
+        'Lauantai',
+    ];
+
+    useEffect(() => {
+        if (newDate != '' && newDate != viikonpaivat[today]) {
+            setViikonpaiva(newDate);
+        } else if (newDate === '') {
+            setViikonpaiva(viikonpaivat[today]);
+        }
+    }, [newDate]);
+
     useEffect(() => {
         fetchData();
     }, []); // Run only once after initial render
+
+    const today = new Date().getDay();
 
     const todayTraining: Training | undefined = trainingData.plan[0]
         ? (Object.entries(trainingData.plan[0]).find(
@@ -100,11 +99,11 @@ const TrainingPlan: React.FC = () => {
 
         // Filter for the previous week's data
         const previousWeekData = data.filter((entry) => {
-            console.log('Checking entry:', entry); // Log to inspect the structure
+            //console.log('Checking entry:', entry); // Log to inspect the structure
             return entry?.week === currentWeekNumber - 1; // Ensure 'week' field exists
         });
 
-        console.log('Previous Week Data:', previousWeekData); // Debugging log
+        //console.log('Previous Week Data:', previousWeekData); // Debugging log
 
         return previousWeekData || {}; // Return the first entry or empty object
     };
@@ -153,62 +152,95 @@ const TrainingPlan: React.FC = () => {
         reps: number[],
         result: string[]
     ) => {
-        if (selectedExerciseIndex === null) return;
 
-        const updatedDone = [...doneLabel];
-        updatedDone[selectedExerciseIndex] = true;
-        setDoneLabel(updatedDone);
 
-        // Store weights and reps for the completed exercise
-        const updatedWeights = [...weightsData];
-        const updatedReps = [...repsData];
-        const updatedFeedback = [...feedback];
+        if (liike !== 'Vapaa') {
+            //if (selectedExerciseIndex === null) return;
 
-        updatedWeights[selectedExerciseIndex] = weights;
-        updatedReps[selectedExerciseIndex] = reps;
-        updatedFeedback[selectedExerciseIndex] = palaute;
+            const updatedDone = [...doneLabel];
+            updatedDone[selectedExerciseIndex] = true;
+            setDoneLabel(updatedDone);
+            allCompleted = updatedDone.every(Boolean);
 
-        setWeightsData(updatedWeights);
-        setRepsData(updatedReps);
-        setFeedback(updatedFeedback);
-        const updatedResults = [...resultData]; // <- manage this state like others
-        updatedResults[selectedExerciseIndex] = result;
-        setResultData(updatedResults); // state for all results
+            const updatedWeights = [...weightsData];
+            const updatedReps = [...repsData];
+            const updatedFeedback = [...feedback];
+            const updatedResults = [...resultData];
 
-        handleDialogClose();
+            updatedWeights[selectedExerciseIndex] = weights;
+            updatedReps[selectedExerciseIndex] = reps;
+            updatedFeedback[selectedExerciseIndex] = palaute;
+            updatedResults[selectedExerciseIndex] = result;
 
-        // Check if all exercises are marked done
-        const allCompleted = updatedDone.every(Boolean);
+            setWeightsData(updatedWeights);
+            setRepsData(updatedReps);
+            setFeedback(updatedFeedback);
+            setResultData(updatedResults);
 
-        if (allCompleted && todayTraining) {
+        }
+
+        handleDialogClose(); // Always close the dialog
+
+
+
+        if (
+            (allCompleted && todayTraining)
+        ) {
             try {
-                setSaveStatus('Saving...');
                 await saveTrainingData(
-                    todayTraining,
-                    updatedWeights,
-                    updatedReps,
-                    feedback, // ✅ array of strings
-                    updatedResults
+                    liike,
+                    liike !== 'Vapaa' ? todayTraining : undefined,
+                    liike !== 'Vapaa' ? weightsData : [weights],
+                    liike !== 'Vapaa' ? repsData : [reps],
+                    liike !== 'Vapaa' ? feedback : [palaute],
+                    liike !== 'Vapaa' ? resultData : [result]
                 );
-                setSaveStatus('Training saved successfully!');
+                navigate('/note', {
+                    state: {
+                        title: 'Talletus',
+                        description: 'Treeni talletettu',
+                    },
+                });
+                setTimeout(() => navigate('/'), 4000);
             } catch (err) {
-                setSaveStatus('Saving training failed!');
+                navigate('/note', {
+                    state: {
+                        title: 'Talletus',
+                        description: 'Talletus ei onnistunut',
+                    },
+                });
+                setTimeout(() => navigate('/'), 4000);
             }
         }
     };
 
     const getButtonStyle = (i: number): React.CSSProperties => ({
-        backgroundColor: doneLabel[i]
-            ? 'lightgreen'
-            : clicks[i] > 0
-            ? '#ffd580'
-            : '',
+        backgroundColor:
+            doneLabel[i] && resultData[i]
+                ? 'lightgreen'
+                : clicks[i] > 0 && !resultData[i]
+                ? 'red'
+                : '',
         cursor: 'pointer',
     });
 
     return (
         <div>
-            <h2>Treeni: {dayName}</h2>
+            <VapaaTreeniCheckbox onChange={handleVapaaTreeni} checked={aero} />
+            {aero && <HeavyDialog liike='Vapaa' onAnswer={handleAnswer} />}
+            <TextField
+                style={{
+                    marginTop: '1rem',
+                    marginRight: '1rem',
+                    width: '7rem',
+                    border: '1px solid',
+                    textAlign: 'center',
+                }}
+                onChange={(event) => setNewDate(event.target.value)}
+                placeholder='päivä?'
+            ></TextField>
+
+            <h2>Treeni: {viikonpaiva}</h2>
 
             {todayTraining?.Voimaharjoittelu ? (
                 <TrainingTable
@@ -244,8 +276,6 @@ const TrainingPlan: React.FC = () => {
                     onAnswer={handleAnswer}
                 />
             )}
-
-            {saveStatus && <div>{saveStatus}</div>}
         </div>
     );
 };

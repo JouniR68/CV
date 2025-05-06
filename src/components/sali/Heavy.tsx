@@ -18,7 +18,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     series,
     toistot,
 }) => {
-    const [feedback, setFeedback] = useState<string>([]);
+    const [feedback, setFeedback] = useState<string>();
     const [reps, setReps] = useState<number[]>([]);
     const [weights, setWeights] = useState<number[]>([]);
     const [initialReps, setInitialReps] = useState<number[]>([]);
@@ -41,8 +41,8 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
 
         setInitialReps(initReps); // <- store them
         setReps(initReps);
-        setWeights(Array(series).fill(undefined));
-        setFeedback('');
+        setWeights(Array(series).fill(1));
+        setFeedback('Ok');
         setErrors({
             reps: Array(series).fill(false),
             weights: Array(series).fill(false),
@@ -115,21 +115,19 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
         >
             <DialogTitle>{exercise} Detaljit</DialogTitle>
             <DialogContent>
-                    <TextField
-                        fullWidth
-                        multiline
-                        rows={3}
-                        value={feedback}
-                        onChange={(e) =>
-                            setFeedback(e.target.value)
-                        }
-                        label={
-                            exercise !== 'Vapaa'
-                                ? `Miten treeni meni`
-                                : 'Lenkin profiili, fiilis yms'
-                        }
-                        sx={{ mb: 2 }}
-                    />
+                <TextField
+                    fullWidth
+                    multiline
+                    rows={3}
+                    value={feedback}
+                    onChange={(e) => setFeedback(e.target.value)}
+                    label={
+                        exercise !== 'Vapaa'
+                            ? `Miten treeni meni`
+                            : 'Lenkin profiili, fiilis yms'
+                    }
+                    sx={{ mb: 2 }}
+                />
 
                 {Array.from({ length: series }, (_, idx) => (
                     <div
@@ -202,6 +200,7 @@ const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
     const [initialReps, setInitialReps] = useState<number[]>([]);
     const [localToisto, setLocalToisto] = useState<number[] | ''>([]);
 
+
     useEffect(() => {
         if (typeof toisto === 'string') {
             const base = parseInt(toisto.split('-')[0], 10);
@@ -210,10 +209,12 @@ const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
 
                 setLocalToisto(Array(series).fill(base));
             } else {
-                setLocalToisto(Array(series).fill(0));
+                setLocalToisto(Array(series).fill(null));
             }
-        } else {
-            setLocalToisto(Array(series).fill(0));
+        }
+        else {
+            setInitialReps(Array(series).fill(toisto));
+            setLocalToisto(Array(series).fill(toisto));
         }
     }, [toisto, series]);
 

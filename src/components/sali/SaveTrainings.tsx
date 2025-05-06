@@ -17,10 +17,12 @@ const SaveTrainingData = async (
     training: Training,
     weights: number[][], // 2D array: weights[exerciseIndex][setIndex]
     reps: number[][], // 2D array: reps[exerciseIndex][setIndex]
-    feedbacks: string[],    // <-- array of strings
-    results: string[][])=>{     // <-- array of arrays (results per set per exercise)): Promise<void> => {
+    feedbacks: string[], // <-- array of strings
+    results: string[][]
+) => {
+    // <-- array of arrays (results per set per exercise)): Promise<void> => {
     try {
-
+        console.log('training.Voimaharjoittelu: ', training.Voimaharjoittelu);
         const trainingDoc = {
             date: new Date().toLocaleDateString(),
             hour: new Date().getHours(),
@@ -29,15 +31,13 @@ const SaveTrainingData = async (
                 const weightSet = Array.isArray(weights[i]) ? weights[i] : [];
                 const repSet = Array.isArray(reps[i]) ? reps[i] : [];
                 const resultSet = Array.isArray(results[i]) ? results[i] : [];
+
                 return {
                     liike,
-                    analyysi: feedbacks[i] || '',
+                    analyysi: feedbacks?.[i] ? [feedbacks[i]] : [],
                     sarja: training.Voimaharjoittelu.sarja[i],
-                    unit1: weightSet[0] || 0,
-                    unit2: weightSet[1] || 0,
-                    unit3: weightSet[2] || 0,
-                    unit4: weightSet[3] || 0,
-                    toistot: reps[i] ?? 0,
+                    painot: weightSet ?? 0,
+                    toistot: repSet ?? 0,
                     tulos: resultSet,
                 };
             }),
