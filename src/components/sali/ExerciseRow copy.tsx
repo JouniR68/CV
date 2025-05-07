@@ -42,9 +42,7 @@ const ExerciseRow: React.FC<Props> = ({
     onClick,
     getButtonStyle,
 }) => {
-    return (
-        <tr key={index}>
-            <td style={{ display:'flex', justifyContent:'left', padding:'1rem' }}>{exercise}</td>
+/*
             <td style={{padding:'1rem'}}>
                 {previousExercise
                     ? `${previousExercise.unit1 || '-'}, ${
@@ -55,6 +53,10 @@ const ExerciseRow: React.FC<Props> = ({
                     : '-'}
             </td>
 
+*/
+    return (
+        <tr key={index}>
+            <td style={{ display:'flex', justifyContent:'left', padding:'1rem' }}>{exercise}</td>
             <td style={{padding:'1rem'}}>
                 {sarja}/{toisto}
             </td>

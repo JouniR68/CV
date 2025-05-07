@@ -50,7 +50,7 @@ const TrainingPlan: React.FC = () => {
         'Torstai',
         'Perjantai',
         'Lauantai',
-        "Test"
+        'Test',
     ];
 
     const today = new Date().getDay();
@@ -116,8 +116,9 @@ const TrainingPlan: React.FC = () => {
             setDoneLabel(Array(len).fill(false));
             setWeightsData(Array(len).fill([]));
             setRepsData(Array(len).fill([]));
+            setFeedback(Array(len).fill(''));
         }
-    }, [selectedDate]);
+    }, [todayTraining]);
 
     const handleClick = (i: number) => {
         if (clickLocked) return;
@@ -166,7 +167,12 @@ const TrainingPlan: React.FC = () => {
 
         updatedWeights[selectedExerciseIndex] = weights;
         updatedReps[selectedExerciseIndex] = reps;
-        updatedFeedback[selectedExerciseIndex] = palaute;
+
+        // Ensure the array is long enough
+        while (updatedFeedback.length <= selectedExerciseIndex) {
+            updatedFeedback.push('');
+        }
+        updatedFeedback[selectedExerciseIndex] = palaute || 'Ok';
 
         setWeightsData(updatedWeights);
         setRepsData(updatedReps);
@@ -187,7 +193,7 @@ const TrainingPlan: React.FC = () => {
                     todayTraining,
                     updatedWeights,
                     updatedReps,
-                    feedback, // ✅ array of strings
+                    updatedFeedback, // ✅ array of strings
                     updatedResults
                 );
                 setSaveStatus('Training saved successfully!');

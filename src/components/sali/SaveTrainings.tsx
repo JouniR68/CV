@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'; // Import Firebase
 import { db } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
 import { Training } from './types';
 
 function getWeekNumber(date) {
@@ -34,7 +34,7 @@ const SaveTrainingData = async (
 
                 return {
                     liike,
-                    analyysi: feedbacks?.[i] ? [feedbacks[i]] : [],
+                    analyysi: feedbacks[i] !== undefined ? [feedbacks[i]] : [''],
                     sarja: training.Voimaharjoittelu.sarja[i],
                     painot: weightSet ?? 0,
                     toistot: repSet ?? 0,
@@ -44,7 +44,12 @@ const SaveTrainingData = async (
         };
 
         console.log('TrainingDoc:', trainingDoc);
-        await addDoc(collection(db, 'trainings1H'), trainingDoc);
+        const timestampId = new Date().toISOString().replace(/:/g, '-'); // e.g., "2025-05-07T14-30-12.123Z"
+        await setDoc(doc(db, 'trainings1H', timestampId), {
+            ...trainingDoc,
+            name: 'Training',
+            createdAt: new Date(),
+        });
     } catch (error) {
         console.error('Firebase saving error: ', error);
         throw error;
