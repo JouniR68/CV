@@ -183,9 +183,9 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 100vh;
         margin-left: 10%;
         margin-right: 10%;
+height: 80vh;
     }
     body::-webkit-scrollbar {
         display: true;
@@ -201,8 +201,9 @@
         background: lightgray;
         background-size: cover;
         background-position: center;
-        overflow-y: auto;
-        width: 1400px;
+
+        width: 60vw;
+        max-height: 80vh;
     }
     .huolto {
         height: 60%;

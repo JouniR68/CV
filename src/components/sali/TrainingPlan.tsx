@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import HeavyDialog from './Heavy';
-import Aero from './Aero'
+import Aero from './Aero';
 import TrainingTable from './TrainingTable';
 import { Button, TextField } from '@mui/material';
 import trainingData from '../../data/aito.json';
@@ -10,7 +10,7 @@ import saveTrainingData from './SaveTrainings'; // must be default or use named 
 import { getWeekNumber } from './utils';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
-
+import { useNavigate } from 'react-router-dom';
 
 const getFinnishWeekday = (date: Date): string => {
     const weekdays = [
@@ -46,6 +46,7 @@ const TrainingPlan: React.FC = () => {
     const dayName = selectedDate ? getFinnishWeekday(selectedDate) : null;
     const [newDate, setNewDate] = useState<string>('');
     const [aero, setAero] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const viikonpaivat = [
         'Sunnuntai',
@@ -152,27 +153,27 @@ const TrainingPlan: React.FC = () => {
         setSelectedExerciseIndex(null);
     };
 
-const handleVapaaAnswer = async (
-    liike: string,
-    fiilis: string,
-    intervals: number,
-    timeUsed: number,
-    distance: number
-) => {
-    try {
-        setSaveStatus('Saving...');
-        await saveVapaaTraining(
-            liike,
-            fiilis,
-            intervals,
-            timeUsed, // ✅ array of strings
-            distance
-        );
-        setSaveStatus('Training saved successfully!');
-    } catch (err) {
-        setSaveStatus('Saving training failed!');
-    }
-}
+    const handleVapaaAnswer = async (
+        liike: string,
+        fiilis: string,
+        intervals: number,
+        timeUsed: number,
+        distance: number
+    ) => {
+        try {
+            setSaveStatus('Saving...');
+            await saveVapaaTraining(
+                liike,
+                fiilis,
+                intervals,
+                timeUsed, // ✅ array of strings
+                distance
+            );
+            setSaveStatus('Training saved successfully!');
+        } catch (err) {
+            setSaveStatus('Saving training failed!');
+        }
+    };
     const handleAnswer = async (
         liike: string,
         palaute: string,
@@ -242,8 +243,19 @@ const handleVapaaAnswer = async (
         setAero(!aero);
     };
 
+    const openSaliRapsa = () => {
+        navigate('/salirapsa');
+    };
+
+    const openAero = () => {
+        navigate('/aero');
+    };
+
+
     return (
         <div>
+            <Button onClick={openSaliRapsa}>Sali rapsa</Button>
+            <Button onClick={openAero}>Juoksut</Button>
             <h2>Treeni: {dayName}</h2>
 
             {todayTraining?.Voimaharjoittelu ? (
@@ -287,7 +299,7 @@ const handleVapaaAnswer = async (
             )}
 
             {saveStatus && <div>{saveStatus}</div>}
-            {aero && <Aero onVapaaAnswer={handleVapaaAnswer}/>}
+            {aero && <Aero onVapaaAnswer={handleVapaaAnswer} />}
         </div>
     );
 };

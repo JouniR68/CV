@@ -4,7 +4,7 @@
     flex-direction: column;
     grid-area: home;
     width: 90%;
-    height: 40%;
+    height: 80%;
     gap: 0.5rem;
     font-weight: 550;
     font-size: 1rem;
@@ -40,7 +40,7 @@
     display:flex;
     flex-direction:column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     animation-duration: 5s;
     animation-name: slidein;
     font-family: "Lucida Console", "Courier New", cursive;
@@ -48,33 +48,33 @@
     font-weight: 600;
     color: black;
     border-radius: 10px;
-    padding: 1rem;    
+    padding: 1rem;
     width: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .home-kollaasi {          
-    display:flex;        
+  .home-kollaasi {
+    display:flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;    
+    padding: 1rem;
     gap:2rem;
 
   }
 
-  .home-kollaasi img {        
+  .home-kollaasi img {
     object-fit: contain;
     /* Adjust for scaling without distortion */
     border-radius: 5px;
     border:1px solid;
     border-color: red;
-    padding: 0.1rem;    
+    padding: 0.1rem;
     /* Scale to parent container */
     width: 40%;
     /* Limit maximum size */
     height: auto;
-    /* Maintain aspect ratio */    
+    /* Maintain aspect ratio */
   }
 
   #home-nappi {
@@ -86,49 +86,46 @@
   }
 
   .image-container {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     gap: 1rem;        /* Add space between images */
-    text-align: center; /* Center text under images */    
+    text-align: center; /* Center text under images */
     padding-top: 2rem;
   }
-  
+
   .image-wrapper {
     display: flex;
     flex-direction: column; /* Places text under the image */
     align-items: center;    /* Aligns content in center */
     cursor: pointer;        /* Make clickable */
   }
-  
+
   .image-wrapper img {
     width: 64px;      /* Set image size */
-    height: auto;      
+    height: auto;
     margin-bottom: 10px; /* Add spacing between image and text */
   }
-  
+
   .image-wrapper span {
     font-size: 16px;  /* Adjust text size */
-    color: black;     
+    color: black;
   }
-
 }
 
-
-
-@media screen and (min-width: 1025px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .home {
     align-items: center;
     width:100%;
     margin-top:5%;
-    height: 100%;    
+    height: 100vw;
     padding: 3rem;
     font-weight: 550;
-    font-size: 1rem;    
+    font-size: 1rem;
     gap: 0.5rem;
     z-index: 1;
     background-color: rgba(250, 250, 247, 0.72);
     border-radius: 1rem;
-    margin-bottom: 2rem;    
+    margin-bottom: 2rem;
   }
 
   @keyframes slidein {
@@ -170,28 +167,28 @@
 
 
   .image-container {
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     gap: 20px;        /* Add space between images */
     text-align: center; /* Center text under images */
   }
-  
+
   .image-wrapper {
     display: flex;
     flex-direction: column; /* Places text under the image */
     align-items: center;    /* Aligns content in center */
     cursor: pointer;        /* Make clickable */
   }
-  
+
   .image-wrapper img {
     width: 100px;      /* Set image size */
-    height: auto;      
+    height: auto;
     margin-bottom: 10px; /* Add spacing between image and text */
   }
-  
+
   .image-wrapper span {
     font-size: 16px;  /* Adjust text size */
-    color: black;     
+    color: black;
   }
 
   .home-teksti {
@@ -208,13 +205,13 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .home-kollaasi {    
+  .home-kollaasi {
     display: flex;
     justify-content: center;
-    align-items: center;        
+    align-items: center;
     flex-direction: row;
-    gap: 5rem;        
-    padding: 1rem;        
+    gap: 5rem;
+    padding: 1rem;
   }
 
   .home-kollaasi img {
@@ -222,7 +219,127 @@
     border-radius: 5px;
     padding: 0.5rem;
     width: 6%;
-    height: auto;    
+    height: auto;
+  }
+
+  #home-nappi {
+    color: white;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 12px;
+    background-color: #304253;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .home {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5%;
+    height: 40%;
+    padding: 3rem;
+    font-weight: 550;
+    font-size: 1rem;
+    gap: 0.5rem;
+    z-index: 1;
+    background-color: rgba(250, 250, 247, 0.72);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @keyframes slidein {
+    from {
+      translate: 150vw 0;
+      scale: 200% 1;
+    }
+
+    to {
+      translate: 0 0;
+      scale: 100% 1;
+    }
+  }
+
+  h5 .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 50%;
+    /* Position above the h5 element */
+    left: 80%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  /* Show tooltip on hover */
+  h5:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;        /* Add space between images */
+    text-align: center; /* Center text under images */
+  }
+
+  .image-wrapper {
+    display: flex;
+    flex-direction: column; /* Places text under the image */
+    align-items: center;    /* Aligns content in center */
+    cursor: pointer;        /* Make clickable */
+  }
+
+  .image-wrapper img {
+    width: 100px;      /* Set image size */
+    height: auto;
+    margin-bottom: 10px; /* Add spacing between image and text */
+  }
+
+  .image-wrapper span {
+    font-size: 16px;  /* Adjust text size */
+    color: black;
+  }
+
+  .home-teksti {
+    margin:0 auto;
+    animation-duration: 5s;
+    animation-name: slidein;
+    font-family: "Lucida Console", "Courier New", cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .home-kollaasi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5rem;
+    padding: 1rem;
+  }
+
+  .home-kollaasi img {
+    object-fit: contain;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 6%;
+    height: auto;
   }
 
   #home-nappi {
