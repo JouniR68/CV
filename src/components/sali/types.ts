@@ -2,9 +2,54 @@ export interface ConfirmationDialogProps {
     exercise: string;
     open: boolean;
     onClose: () => void;
-    onConfirm: (feedback: string, weights: number[], reps: number[], result: string[]) => void;
+    onConfirm: (
+        feedback: string,
+        weights: number[],
+        reps: number[],
+        result: string[]
+    ) => void;
     series: number;
     toistot: number[] | undefined;
+}
+
+export interface AeroProps {
+    handleConfirm?: (
+        fiilis: string,
+        intervals: number,
+        timeUsed: number,
+        distance: number
+    ) => void;
+    onVapaaAnswer: (
+        liike: string,
+        fiilis: string,
+        intervals: number,
+        timeUsed: number,
+        distance: number
+    ) => void;
+}
+export interface VapaaConfirmationDialogProps {
+    open: boolean;
+    onClose: () => void;
+    onConfirm: (
+        liike: string,
+        fiilis: string,
+        intervals: number,
+        timeUsed: number,
+        distance: number
+    ) => void;
+    handleConfirm: (
+        fiilis: string,
+        intervals: number,
+        timeUsed: number,
+        distance: number
+    ) => void;
+    onVapaaAnswer: (
+        liike: string,
+        fiilis: string,
+        intervals: number,
+        timeUsed: number,
+        distance: number
+    ) => void;
 }
 
 export interface HeavyProps {

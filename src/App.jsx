@@ -56,7 +56,7 @@ import Vehicles from './components/Huolto/Vehicles';
 import Feedback from './components/Feedback';
 import ShowFeedback from './components/ShowFeedback';
 import MindMap from './components/CV/MindMap';
-
+import AeroReport from './components/sali/AeroReport';
 import Sali from './components/sali/TrainingPlan';
 import SaliRapsa from './components/sali/Report';
 
@@ -144,6 +144,7 @@ function App() {
                             />
                             <Route path='/sali' element={<Sali />} />
                             <Route path='/salirapsa' element={<SaliRapsa />} />
+                            <Route path='/aero' element={<AeroReport />} />
                             <Route
                                 path='/news'
                                 elements={<CollectionCounts />}

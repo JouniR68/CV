@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import HeavyDialog from './Heavy';
+import Aero from './Aero'
 import TrainingTable from './TrainingTable';
+import { Button, TextField } from '@mui/material';
 import trainingData from '../../data/aito.json';
 import { Training } from './types';
+import saveVapaaTraining from './SaveVapaaTraining';
 import saveTrainingData from './SaveTrainings'; // must be default or use named import correctly
 import { getWeekNumber } from './utils';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
+
 
 const getFinnishWeekday = (date: Date): string => {
     const weekdays = [
@@ -41,6 +45,7 @@ const TrainingPlan: React.FC = () => {
     const [viikonpaiva, setViikonpaiva] = useState<string>('');
     const dayName = selectedDate ? getFinnishWeekday(selectedDate) : null;
     const [newDate, setNewDate] = useState<string>('');
+    const [aero, setAero] = useState<boolean>(false);
 
     const viikonpaivat = [
         'Sunnuntai',
@@ -147,6 +152,27 @@ const TrainingPlan: React.FC = () => {
         setSelectedExerciseIndex(null);
     };
 
+const handleVapaaAnswer = async (
+    liike: string,
+    fiilis: string,
+    intervals: number,
+    timeUsed: number,
+    distance: number
+) => {
+    try {
+        setSaveStatus('Saving...');
+        await saveVapaaTraining(
+            liike,
+            fiilis,
+            intervals,
+            timeUsed, // ✅ array of strings
+            distance
+        );
+        setSaveStatus('Training saved successfully!');
+    } catch (err) {
+        setSaveStatus('Saving training failed!');
+    }
+}
     const handleAnswer = async (
         liike: string,
         palaute: string,
@@ -212,6 +238,10 @@ const TrainingPlan: React.FC = () => {
         cursor: 'pointer',
     });
 
+    const vapaaTreeni = () => {
+        setAero(!aero);
+    };
+
     return (
         <div>
             <h2>Treeni: {dayName}</h2>
@@ -226,7 +256,12 @@ const TrainingPlan: React.FC = () => {
                     getButtonStyle={getButtonStyle}
                 />
             ) : (
-                <p>Ei voimaharjoittelua tälle päivälle.</p>
+                <>
+                    <p>Ei voimaharjoittelua tälle päivälle.</p>
+                    <Button onClick={vapaaTreeni}>
+                        Recordaa juoksu/vapaa treeni
+                    </Button>
+                </>
             )}
 
             {selectedExerciseIndex !== null && todayTraining && (
@@ -252,6 +287,7 @@ const TrainingPlan: React.FC = () => {
             )}
 
             {saveStatus && <div>{saveStatus}</div>}
+            {aero && <Aero onVapaaAnswer={handleVapaaAnswer}/>}
         </div>
     );
 };
