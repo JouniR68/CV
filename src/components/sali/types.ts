@@ -66,6 +66,14 @@ export interface HeavyProps {
 }
 // types.ts
 export interface Training {
+    week: number;
+    date: string;
+    hour: string;
+    liike: string;
+    fiilis: string;
+    timeUsed: number;
+    intervals: number;
+    distance: number;
     Tavoite: string;
     Voimaharjoittelu: {
         liike: string[];

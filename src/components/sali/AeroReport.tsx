@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
+import { Training } from './types';
 import { db } from '../../firebase';
 import {
     Table,
@@ -61,7 +62,7 @@ const AeroReport = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {trainings.map((training) => (
+                            {trainings.map((training: Training) => (
                                 <React.Fragment key={training.id}>
                                     {/* Training Header Row with Toggle Button */}
                                     <TableRow>
