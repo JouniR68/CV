@@ -373,9 +373,6 @@ const TrainingPlan: React.FC = () => {
                         <thead>
                             <tr style={{ backgroundColor: 'orange' }}>
                                 <th style={{ textAlign: 'center' }}>Treeni</th>
-                                <th style={{ textAlign: 'center' }}>
-                                    Prev kg's
-                                </th>
                                 <th style={{ textAlign: 'center' }}>S&T</th>
                                 <th style={{ textAlign: 'center' }}>Donet</th>
                             </tr>
@@ -386,56 +383,10 @@ const TrainingPlan: React.FC = () => {
                                     // Debugging the exercise and the data
                                     console.log('Exercise:', exercise);
 
-                                    const previousExercise = previousWeekData
-                                        .flatMap(
-                                            (obj) => obj.details_analyysi || []
-                                        )
-                                        .find(
-                                            (item) => item.liike === exercise
-                                        );
-
-                                    // Log to see if previousExercise is actually found
-                                    console.log(
-                                        'Previous Exercise for ',
-                                        exercise,
-                                        ':',
-                                        previousExercise
-                                    );
-
-                                    // Log the previousExercise object
-                                    console.log(
-                                        'Previous Exercise:',
-                                        previousExercise
-                                    );
-
-                                    if (previousExercise) {
-                                        console.log(
-                                            'Previous Exercise Date:',
-                                            previousWeekData.date
-                                        );
-                                    }
-
                                     return (
                                         <tr key={index}>
                                             <td style={{ marginLeft: '2rem' }}>
                                                 {exercise}
-                                            </td>
-                                            <td>
-                                                {/* If previousExercise is undefined, show '-' */}
-                                                {previousExercise
-                                                    ? `${
-                                                          previousExercise.unit1 ||
-                                                          '-'
-                                                      }, ${
-                                                          previousExercise.unit2 ||
-                                                          '-'
-                                                      },
-                                                  ${
-                                                      previousExercise.unit3 ||
-                                                      '-'
-                                                  }
-                                                ${previousExercise.unit4 || ''}`
-                                                    : '-'}{' '}
                                             </td>
                                             <td style={{ paddingLeft: '2rem' }}>
                                                 {

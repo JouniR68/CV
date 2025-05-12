@@ -55,8 +55,9 @@
 
 @media screen and (min-width: 1025px) {
     .salirapsa {
-        width: 100%;
-        max-height: 90vh;
+        display:flex;
+        width: 100vw;
+        height: 40vh;
         /* Ensures table is visible */
         overflow-y: auto;
         margin-top: 0rem;

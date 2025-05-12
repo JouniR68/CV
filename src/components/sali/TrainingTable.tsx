@@ -20,6 +20,14 @@ const TrainingTable: React.FC<Props> = ({
     handleClick,
     getButtonStyle,
 }) => {
+
+/*
+                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
+                        Prev kg's
+                    </th>
+
+*/
+
     //<th>Prev kg's</th>
     return (
         <table>
@@ -27,9 +35,6 @@ const TrainingTable: React.FC<Props> = ({
                 <tr style={{ backgroundColor: 'orange' }}>
                     <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
                         Treeni
-                    </th>
-                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
-                        Prev kg's
                     </th>
                     <th style={{ padding: '1rem', fontSize: '1.2rem' }}>S&T</th>
                     <th style={{ padding: '1rem', fontSize: '1.2rem' }}>

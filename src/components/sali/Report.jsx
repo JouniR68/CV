@@ -97,7 +97,7 @@ const TrainingsTable = () => {
     return (
         <div>
             {groupedByWeek.map(([week, { trainings }]) => (
-                <div key={week} style={{ overflowX: 'auto', width: '100%' }}>
+                <div key={week} style={{ overflowX: 'auto', width: '100%'}}>
                     <Typography variant='h6' gutterBottom>
                         Viikko {week}{' '}
                         <Button
@@ -155,6 +155,7 @@ const TrainingsTable = () => {
                                                             : '+'}
                                                     </Button>
                                                 </TableCell>
+                                                <TableCell></TableCell>
                                             </TableRow>
 
                                             {/* Expandable Analysis Rows */}
@@ -164,7 +165,7 @@ const TrainingsTable = () => {
                                                 ) &&
                                                 training.exercises.map(
                                                     (analysis, index) => (
-                                                        <TableRow
+                                                        <TableRow className="salirapsa"
                                                             key={`${training.id}-analysis-${index}`}
                                                         >
                                                             <TableCell></TableCell>
@@ -179,11 +180,12 @@ const TrainingsTable = () => {
                                                                     maxWidth:
                                                                         '150px',
                                                                     whiteSpace:
+
                                                                         'normal',
                                                                 }}
                                                             >
                                                                 {
-                                                                    analysis.analyysi?.map(fiilis => fiilis)
+                                                                    analysis?.analyysi.map(fiilis => fiilis)
                                                                 }
                                                             </TableCell>
                                                             <TableCell
@@ -199,7 +201,7 @@ const TrainingsTable = () => {
                                                                 }}
                                                             >
                                                                 {[
-                                                                    analysis.painot.map(paino => paino)
+                                                                    analysis?.painot.map(paino => paino)
                                                                 ]
                                                                     .filter(
                                                                         Boolean
@@ -215,9 +217,9 @@ const TrainingsTable = () => {
                                                             <TableCell
                                                                 style={{
                                                                     backgroundColor:
-                                                                        analysis.tulos?.some(res => (res === 'Hyväksytty' || res === 'Ok'))
-                                                                            ? 'green'
-                                                                            : 'red',
+                                                                        analysis.tulos?.some(res => (res === 'Vähennä painoa'))
+                                                                            ? 'red'
+                                                                            : 'green',
 
                                                 }}
                                                             >

@@ -31,6 +31,20 @@ interface Props {
     getButtonStyle: (index: number) => React.CSSProperties;
 }
 
+/*
+            <td style={{padding:'1rem'}}>
+                {previousExercise
+                    ? `${previousExercise.unit1 || '-'}, ${
+                          previousExercise.unit2 || '-'
+                      }, ${previousExercise.unit3 || '-'} ${
+                          previousExercise.unit4 || ''
+                      }`
+                    : '-'}
+            </td>
+
+*/
+
+
 const ExerciseRow: React.FC<Props> = ({
     index,
     exercise,
@@ -45,15 +59,6 @@ const ExerciseRow: React.FC<Props> = ({
     return (
         <tr key={index}>
             <td style={{ display:'flex', justifyContent:'left', padding:'1rem' }}>{exercise}</td>
-            <td style={{padding:'1rem'}}>
-                {previousExercise
-                    ? `${previousExercise.unit1 || '-'}, ${
-                          previousExercise.unit2 || '-'
-                      }, ${previousExercise.unit3 || '-'} ${
-                          previousExercise.unit4 || ''
-                      }`
-                    : '-'}
-            </td>
 
             <td style={{padding:'1rem'}}>
                 {sarja}/{toisto}
