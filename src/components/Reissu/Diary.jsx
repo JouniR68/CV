@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Card, CardContent, Typography, Button, TextField, Table, TableBody,
+  ToggleButtonGroup, ToggleButton, Card, CardContent, Typography, Button, TextField, Table, TableBody,
   TableCell, TableContainer, TableHead, TableRow, Paper, Grid
 } from '@mui/material';
 import { doc, deleteDoc,  collection, addDoc, getDocs, Timestamp } from 'firebase/firestore';
@@ -12,6 +12,14 @@ import { styled } from '@mui/material/styles';
 const Input = styled('input')({
   display: 'none',
 });
+
+function getWeekNumber(date) {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
 
 const DiaryForm = ({ onEntryAdded }) => {
   const [text, setText] = useState('');
@@ -43,6 +51,7 @@ const DiaryForm = ({ onEntryAdded }) => {
     const imageUrls = [];
     const now = new Date();
     const docName = `note_${now.toISOString()}`;
+    const week = getWeekNumber(now);
 
     for (let img of images) {
       const imageRef = ref(storage, `images/${img.name}`);
@@ -56,7 +65,8 @@ const DiaryForm = ({ onEntryAdded }) => {
       imageUrls,
       location,
       timestamp: now.toISOString(),
-      name: docName
+      name: docName,
+      week
     });
 
     setText('');
@@ -103,7 +113,6 @@ const DiaryForm = ({ onEntryAdded }) => {
                 Location: {location || 'Fetching location...'}
               </Typography>
             </Grid>
-
             <Grid item xs={12}>
               <Button variant="contained" type="submit">Submit</Button>
             </Grid>
@@ -116,6 +125,7 @@ const DiaryForm = ({ onEntryAdded }) => {
 
 const DiaryTable = () => {
   const [entries, setEntries] = useState([]);
+  const [filteredWeek, setFilteredWeek] = useState(null);
 
   const fetchEntries = async () => {
     const querySnapshot = await getDocs(collection(db, 'notes'));
@@ -128,47 +138,60 @@ const DiaryTable = () => {
     fetchEntries();
   };
 
+  const weeks = [...new Set(entries.map(entry => entry.week))];
+
   useEffect(() => {
     fetchEntries();
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Entry</TableCell>
-            <TableCell>Location</TableCell>
-            <TableCell>Timestamp</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {entries.map((entry) => (
-            <TableRow key={entry.id}>
-              <TableCell>
-                <Typography>{entry.text}</Typography>
-                {entry.imageUrls && entry.imageUrls.map((url, idx) => (
-                  <img
-                    key={idx}
-                    src={url}
-                    alt={`uploaded-${idx}`}
-                    width="200"
-                    height="150"
-                    style={{ objectFit: 'cover', marginTop: '8px', marginRight: '8px' }}
-                  />
-                ))}
-              </TableCell>
-              <TableCell>{entry.location}</TableCell>
-              <TableCell>{new Date(entry.timestamp).toLocaleString()}</TableCell>
-              <TableCell>
-                <Button variant="outlined" color="error" onClick={() => handleDelete(entry.id)}>X</Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <ToggleButtonGroup exclusive value={filteredWeek} onChange={(e, newWeek) => setFilteredWeek(newWeek)} sx={{ mb: 2 }}>
+        {weeks.map(week => (
+          <ToggleButton key={week} value={week}>{`Week ${week}`}</ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+      {filteredWeek && (
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Timestamp</TableCell>
+                <TableCell>Entry</TableCell>
+                <TableCell>Location</TableCell>
+                <TableCell>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {entries
+                .filter(entry => entry.week === filteredWeek)
+                .map((entry) => (
+                <TableRow key={entry.id}>
+                  <TableCell>{new Date(entry.timestamp).toLocaleString()}</TableCell>
+                  <TableCell>
+                    <Typography>{entry.text}</Typography>
+                    {entry.imageUrls && entry.imageUrls.map((url, idx) => (
+                      <img
+                        key={idx}
+                        src={url}
+                        alt={`uploaded-${idx}`}
+                        width="200"
+                        height="150"
+                        style={{ objectFit: 'cover', marginTop: '8px', marginRight: '8px' }}
+                      />
+                    ))}
+                  </TableCell>
+                  <TableCell>{entry.location}</TableCell>
+                  <TableCell>
+                    <Button variant="outlined" color="error" onClick={() => handleDelete(entry.id)}>X</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+    </>
   );
 };
 
