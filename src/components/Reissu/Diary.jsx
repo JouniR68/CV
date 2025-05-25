@@ -22,35 +22,44 @@ const Input = styled('input')({
 
 const DiaryForm = ({ onEntryAdded }) => {
   const [text, setText] = useState('');
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
   const [location, setLocation] = useState('');
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
-      setLocation(`Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
+
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+        const data = await res.json();
+        setLocation(data.display_name || `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
+      } catch (err) {
+        console.error('Reverse geocoding failed:', err);
+        setLocation(`Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
+      }
     });
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let imageUrl = '';
+    const imageUrls = [];
 
-    if (image) {
-      const imageRef = ref(storage, `images/${image.name}`);
-      await uploadBytes(imageRef, image);
-      imageUrl = await getDownloadURL(imageRef);
+    for (let img of images) {
+      const imageRef = ref(storage, `images/${img.name}`);
+      await uploadBytes(imageRef, img);
+      const url = await getDownloadURL(imageRef);
+      imageUrls.push(url);
     }
 
     await addDoc(collection(db, 'notes'), {
       text,
-      imageUrl,
+      imageUrls,
       location,
       timestamp: new Date().toISOString(),
     });
 
     setText('');
-    setImage(null);
+    setImages([]);
     onEntryAdded();
   };
 
@@ -76,10 +85,15 @@ const DiaryForm = ({ onEntryAdded }) => {
                   accept="image/*"
                   id="upload-image"
                   type="file"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  multiple
+                  onChange={(e) => setImages(Array.from(e.target.files))}
                 />
-                <Button variant="outlined" component="span">
-                  Upload Image
+                <Button
+                  variant="outlined"
+                  component="span"
+                  sx={{ bgcolor: images.length > 0 ? 'green' : 'inherit', color: images.length > 0 ? 'white' : 'inherit' }}
+                >
+                  {images.length > 0 ? 'Loaded' : 'Upload Images'}
                 </Button>
               </label>
             </Grid>
@@ -121,21 +135,27 @@ const DiaryTable = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Text</TableCell>
-            <TableCell>Image</TableCell>
+            <TableCell>Entry</TableCell>
             <TableCell>Location</TableCell>
             <TableCell>Timestamp</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {entries.map((entry, idx) => (
+          {entries.map((entry) => (
             <TableRow key={entry.id}>
-              <TableCell>{entry.text}</TableCell>
               <TableCell>
-                {entry.imageUrl && (
-                  <img src={entry.imageUrl} alt="uploaded" width="400" height="300" style={{ objectFit: 'cover' }} />
-                )}
+                <Typography>{entry.text}</Typography>
+                {entry.imageUrls && entry.imageUrls.map((url, idx) => (
+                  <img
+                    key={idx}
+                    src={url}
+                    alt={`uploaded-${idx}`}
+                    width="200"
+                    height="150"
+                    style={{ objectFit: 'cover', marginTop: '8px', marginRight: '8px' }}
+                  />
+                ))}
               </TableCell>
               <TableCell>{entry.location}</TableCell>
               <TableCell>{new Date(entry.timestamp).toLocaleString()}</TableCell>
