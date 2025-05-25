@@ -6,7 +6,9 @@ export interface ConfirmationDialogProps {
         feedback: string,
         weights: number[],
         reps: number[],
-        result: string[]
+        result: string[],
+        toistot: number[],
+        paino: number
     ) => void;
     series: number;
     toistot: number[] | undefined;
@@ -58,7 +60,8 @@ export interface HeavyProps {
         palaute: string,
         weights: number[],
         reps: number[],
-        result: string[]
+        result: string[],
+        painot: number[]
     ) => void;
     liike: string;
     sarja: number[];
@@ -81,6 +84,7 @@ export interface Training {
         toisto: number[];
     };
 }
+
 
 export interface TrainingPlanData {
     plan: Training[];

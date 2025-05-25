@@ -76,8 +76,14 @@ import Orders from './components/services/shop/ShowOrders';
 
 import Lista from './components/Reissu/Lista';
 import DayCounter from './components/Reissu/DayCounter';
+import Velkalista from './components/Reissu/Velkalista';
+import Velka from './components/Reissu/Velka';
+import Diary from './components/Reissu/Diary'
+
 import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
+
+import EnglishStudySchedule from './components/Opiskelu/English';
 
 function App() {
     const [appVersion, setAppVersion] = useState('1.0.0'); // Current deployed version
@@ -149,6 +155,12 @@ function App() {
                                 path='/news'
                                 elements={<CollectionCounts />}
                             />
+
+                            <Route
+                                path='/english'
+                                element={<EnglishStudySchedule />}
+                            />
+
                             <Route
                                 path='/inActivity'
                                 element={<InactivityTimer />}
@@ -188,6 +200,9 @@ function App() {
                             <Route path='stock' element={<StockFetcher />} />
                             <Route path='heavyCheck' element={<Heavy />} />
                             <Route path='reissulista' element={<Lista />} />
+                            <Route path='vlista' element={<Velkalista />} />
+                            <Route path='uVelka' element={<Velka />} />
+<Route path='diary' element={<Diary />} />
                             <Route
                                 path='reissupaivat'
                                 element={<DayCounter />}

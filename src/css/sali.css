@@ -18,6 +18,13 @@
         font-size: 16px;
         overflow: auto;
     }
+    .sali--extrat {
+        flex-direction: row;
+        gap: 1rem;
+        padding-left: 1rem;
+        background-color: lightgray;
+        font-size: 16px;
+    }
     .day-details {
         background-color: yellow;
     }
@@ -55,9 +62,9 @@
 
 @media screen and (min-width: 1025px) {
     .salirapsa {
-        display:flex;
+        display: flex;
         width: 100vw;
-        height: 40vh;
+        height: 70vh;
         /* Ensures table is visible */
         overflow-y: auto;
         margin-top: 0rem;
@@ -70,11 +77,17 @@
         justify-content: center;
         align-items: center;
         padding-left: 1rem;
-        background-color: #fff;
-        height: fit-content;
-        width: 100%;
+        background-color: lightgray;
         font-size: 16px;
-        overflow: auto;
+        height: 75vh;
+        overflow-y: auto;
+    }
+    .sali--extrat {
+        flex-direction: row;
+        gap: 1rem;
+        padding-left: 1rem;
+        background-color: lightgray;
+        font-size: 16px;
     }
     .showWk {
         display: flex;

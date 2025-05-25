@@ -1,0 +1,183 @@
+
+
+{
+    "plan": [
+        {
+            "maanantai": {
+                "Tavoite": "Jalat",
+                "Lämmittely (10 min)": "Hyppykyykyt tai paikallaan juoksu (keskiraskas intensiteetti)",
+                "Voimaharjoittelu": {
+                    "liike": [
+                        "40 min kuntoporras harjoitus"
+                    ],
+                    "sarja": [
+                        1
+                    ],
+                    "toisto": [
+                        1
+                    ]
+                },
+                "HIIT (10-15 min)": "30 sek burpee + 30 sek lepo, tee 8–10 kierrosta",
+                "Aerobinen liikunta": "20-30 min hölkkä tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Kaurapuuro marjoilla ja kananmunilla",
+                    "Lounas": "Kanaa ja riisiä kasvissekoituksen kera",
+                    "Välipala": "Omena ja keitetty muna",
+                    "Päivällinen": "Naudanlihaa tai kanaa perunamuusin ja vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja marjoja"
+                }
+            },
+            "tiistai": {
+                "Tavoite": "Yläkroppa",
+                "Lämmittely (10 min)": "Hyppynaru tai kehonpainosoutu",
+                "Voimaharjoittelu": {
+                    "liike": [
+                        "10 min hölkkä",
+                        "Punnerrus",
+                        "Pystypunnerrus käsipainoilla",
+                        "Hauiskääntö käsipainoilla",
+                        "Dippi korokkeella",
+                        "Vipunosto käsipainoilla sivulle",
+                        "Kulmasoutu levytangolla",
+                        "Leuanveto myötäotteella"
+                    ],
+                    "sarja": [
+                        1,
+                        3,
+                        4,
+                        3,
+                        3,
+                        3,
+                        3,
+                        3
+                    ],
+                    "toisto": [
+                        1,
+                        12,
+                        10,
+                        10,
+                        10,
+                        12,
+                        10,
+                        5
+                    ]
+                },
+                "HIIT (10-15 min)": "20 sek vuorikiipeilijä + 40 sek lepoa, tee 8–12 kierrosta",
+                "Aerobinen liikunta": "20-30 min hölkkä tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Munakas täysjyväleivän kanssa",
+                    "Lounas": "Kalkkunaa ja täysjyväpasta kasviskastikkeella",
+                    "Välipala": "Porkkana- ja kurkkupalat hummuksen kanssa",
+                    "Päivällinen": "Kalaa ja quinoa vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja mustikoita"
+                }
+            },
+            "keskiviikko": {
+                "Tavoite": "Lepo ja kehonhuolto",
+                "Lämmittely (10 min)": "Kevyt venyttely tai jooga",
+                "Kehonhuolto": {
+                    "liike": [
+                        "Foam rolling",
+                        "Joogaliikkeet",
+                        "Kevyt venyttely"
+                    ],
+                    "kesto": [
+                        10,
+                        20,
+                        15
+                    ]
+                },
+                "Aerobinen liikunta": "30-60 min juoksu",
+                "Ravintosuositus": {
+                    "Aamiainen": "Kaurapuuro banaanilla ja maapähkinävoilla",
+                    "Lounas": "Kasviskeitto ja täysjyväleipä",
+                    "Välipala": "Pähkinät ja hedelmä",
+                    "Päivällinen": "Kalkkunan filee, täysjyväriisi ja salaatti",
+                    "Iltapala": "Jogurtti ja marjat"
+                }
+            },
+            "torstai": {
+                "Tavoite": "Ojentajat ja olkapäät",
+                "Lämmittely (10 min)": "Kevyt hyppynaru tai käsien pyörittely",
+                "Voimaharjoittelu": {
+                    "liike": [
+                        "10 min hölkkä",
+                        "Punnerrus kapealla otteella",
+                        "Pystypunnerrus käsipainoilla",
+                        "Flyes käsipainoilla vinopenkillä",
+                        "Ranskalainen punnerrus levytangolla",
+                        "Vipunostot käsipainoilla yhdellä kädellä",
+                        "Ojentajapunnerrus käsipainolla pään takaa"
+                    ],
+                    "sarja": [
+                        1,
+                        4,
+                        3,
+                        3,
+                        3,
+                        4,
+                        3
+                    ],
+                    "toisto": [
+                        1,
+                        10,
+                        8,
+                        12,
+                        10,
+                        12,
+                        10
+                    ]
+                },
+                "HIIT (10-15 min)": "20 sek hyppynaruhyppyjä ja 40 sek lepoa, tee 8–12 kierrosta",
+                "Aerobinen liikunta": "20-30 min juoksu tai 40-60 min kävely",
+                "Ravintosuositus": {
+                    "Aamiainen": "Kaurapuuro marjoilla ja proteiinijauheella",
+                    "Lounas": "Kanaa ja riisiä kasvissekoituksen kanssa",
+                    "Välipala": "Kova keitetty muna ja kurkku",
+                    "Päivällinen": "Kalkkunaa ja täysjyväpasta kasviskastikkeella",
+                    "Iltapala": "Raejuustoa ja marjoja"
+                }
+            },
+            "perjantai": {
+                "Tavoite": "Selkä, hauis",
+                "Kävely": "5-8 km kävely (kahvitauolla)",
+                "Voimaharjoittelu": {
+                    "liike": [
+                        "10 min hölkkä",
+                        "Leuanveto vastaotteella",
+                        "Kulmasoutu käsipainoilla",
+                        "Hauiskääntö käsipainoilla istuen",
+                        "Face pull kuminauhalla",
+                        "Vatsarutistus kehonpainolla",
+                        "Hammer-kääntö käsipainoilla"
+                    ],
+                    "sarja": [
+                        1,
+                        3,
+                        3,
+                        4,
+                        3,
+                        3,
+                        3
+                    ],
+                    "toisto": [
+                        1,
+                        8,
+                        10,
+                        10,
+                        15,
+                        15,
+                        10
+                    ]
+                },
+                "Ravintosuositus": {
+                    "Aamiainen": "Munakas täysjyväleivän kanssa",
+                    "Lounas": "Kalaa ja quinoa vihannesten kanssa",
+                    "Välipala": "Omena ja proteiinijuoma",
+                    "Päivällinen": "Naudanlihaa tai kanaa perunamuusin ja vihannesten kanssa",
+                    "Iltapala": "Raejuustoa ja mustikoita"
+                }
+            }
+        }
+    ]
+}

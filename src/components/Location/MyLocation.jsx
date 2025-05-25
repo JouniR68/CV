@@ -20,8 +20,10 @@ function MyLocation({ message }) {
   const reach = 300
   const navigate = useNavigate()
   let filteredLocations = []
+
+
   const { t } = useTranslation()
-  
+
   const removeLocationDocs = async () => {
     const locationRef = collection(db, "locations")
     try {

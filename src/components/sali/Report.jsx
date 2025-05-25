@@ -97,7 +97,7 @@ const TrainingsTable = () => {
     return (
         <div>
             {groupedByWeek.map(([week, { trainings }]) => (
-                <div key={week} style={{ overflowX: 'auto', width: '100%'}}>
+                <div key={week} style={{ overflowX: 'auto', width: '100%' }}>
                     <Typography variant='h6' gutterBottom>
                         Viikko {week}{' '}
                         <Button
@@ -165,7 +165,8 @@ const TrainingsTable = () => {
                                                 ) &&
                                                 training.exercises.map(
                                                     (analysis, index) => (
-                                                        <TableRow className="salirapsa"
+                                                        <TableRow
+                                                            className='salirapsa'
                                                             key={`${training.id}-analysis-${index}`}
                                                         >
                                                             <TableCell></TableCell>
@@ -180,13 +181,13 @@ const TrainingsTable = () => {
                                                                     maxWidth:
                                                                         '150px',
                                                                     whiteSpace:
-
                                                                         'normal',
                                                                 }}
                                                             >
-                                                                {
-                                                                    analysis?.analyysi.map(fiilis => fiilis)
-                                                                }
+                                                                {analysis?.analyysi.map(
+                                                                    (fiilis) =>
+                                                                        fiilis
+                                                                )}
                                                             </TableCell>
                                                             <TableCell
                                                                 sx={{
@@ -201,7 +202,12 @@ const TrainingsTable = () => {
                                                                 }}
                                                             >
                                                                 {[
-                                                                    analysis?.painot.map(paino => paino)
+                                                                    analysis?.painot.map(
+                                                                        (
+                                                                            paino
+                                                                        ) =>
+                                                                            paino
+                                                                    ),
                                                                 ]
                                                                     .filter(
                                                                         Boolean
@@ -210,18 +216,27 @@ const TrainingsTable = () => {
                                                             </TableCell>
                                                             <TableCell>
                                                                 {analysis.sarja !==
-                                                                undefined
-                                                                    ? `${analysis.sarja} / ${analysis.toistot[index]}`
+                                                                    undefined &&
+                                                                Array.isArray(
+                                                                    analysis.toistot
+                                                                )
+                                                                    ? analysis.toistot.join(' / ')
+
                                                                     : ''}
                                                             </TableCell>
                                                             <TableCell
                                                                 style={{
                                                                     backgroundColor:
-                                                                        analysis.tulos?.some(res => (res === 'Vähennä painoa'))
+                                                                        analysis.tulos?.some(
+                                                                            (
+                                                                                res
+                                                                            ) =>
+                                                                                res ===
+                                                                                'Vähennä painoa'
+                                                                        )
                                                                             ? 'red'
                                                                             : 'green',
-
-                                                }}
+                                                                }}
                                                             >
                                                                 {analysis.tulos?.some(
                                                                     (s) =>

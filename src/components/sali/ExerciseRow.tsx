@@ -12,17 +12,19 @@ Show the dynamic button (Do it, click count, or Done).
 import React from 'react';
 import { Button } from '@mui/material';
 
+/*
 interface PreviousExercise {
     unit1?: number;
     unit2?: number;
     unit3?: number;
     unit4?: number;
 }
+*/
 
 interface Props {
     index: number;
     exercise: string;
-    previousExercise?: PreviousExercise;
+    //previousExercise?: PreviousExercise;
     sarja: number;
     toisto: number;
     clickValue: number;
@@ -48,7 +50,7 @@ interface Props {
 const ExerciseRow: React.FC<Props> = ({
     index,
     exercise,
-    previousExercise,
+    //previousExercise,
     sarja,
     toisto,
     clickValue,
@@ -58,7 +60,7 @@ const ExerciseRow: React.FC<Props> = ({
 }) => {
     return (
         <tr key={index}>
-            <td style={{ display:'flex', justifyContent:'left', padding:'1rem' }}>{exercise}</td>
+            <td style={{ justifyContent:'left', padding:'1rem' }}>{exercise}</td>
 
             <td style={{padding:'1rem'}}>
                 {sarja}/{toisto}

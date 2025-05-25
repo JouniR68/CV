@@ -17,6 +17,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     onConfirm,
     series,
     toistot,
+    paino,
 }) => {
     const [feedback, setFeedback] = useState<string>();
     const [reps, setReps] = useState<number[]>([]);
@@ -41,7 +42,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
 
         setInitialReps(initReps); // <- store them
         setReps(initReps);
-        setWeights(Array(series).fill(1));
+        setWeights(Array(series).fill(paino[0]));
         setFeedback('Ok');
         setErrors({
             reps: Array(series).fill(false),
@@ -194,12 +195,27 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
     );
 };
 
-const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
+const Heavy: React.FC<HeavyProps> = ({
+    onAnswer,
+    liike,
+    sarja,
+    toisto,
+    preWeek,
+}) => {
     const [openDialog, setOpenDialog] = useState(true);
     const [series, setSeries] = useState<number>(1);
     const [initialReps, setInitialReps] = useState<number[]>([]);
     const [localToisto, setLocalToisto] = useState<number[] | ''>([]);
+    const [previousWeekData, setPreviousWeekData] = useState<any[]>([]);
 
+    console.log('Heavy preWk: ', preWeek);
+
+    useEffect(() => {
+        if (preWeek != undefined) {
+            console.log('Heavy, preWk data: ', preWeek);
+            setPreviousWeekData(preWeek);
+        }
+    }, [preWeek]);
 
     useEffect(() => {
         if (typeof toisto === 'string') {
@@ -211,8 +227,7 @@ const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
             } else {
                 setLocalToisto(Array(series).fill(null));
             }
-        }
-        else {
+        } else {
             setInitialReps(Array(series).fill(toisto));
             setLocalToisto(Array(series).fill(toisto));
         }
@@ -252,6 +267,7 @@ const Heavy: React.FC<HeavyProps> = ({ onAnswer, liike, sarja, toisto }) => {
             onConfirm={handleConfirm}
             series={series}
             toistot={localToisto}
+            paino={previousWeekData}
         />
     );
 };

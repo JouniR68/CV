@@ -185,7 +185,6 @@
         flex-direction: column;
         margin-left: 10%;
         margin-right: 10%;
-height: 80vh;
     }
     body::-webkit-scrollbar {
         display: true;
@@ -201,9 +200,8 @@ height: 80vh;
         background: lightgray;
         background-size: cover;
         background-position: center;
-
         width: 60vw;
-        max-height: 80vh;
+        height: 100vh;
     }
     .huolto {
         height: 60%;

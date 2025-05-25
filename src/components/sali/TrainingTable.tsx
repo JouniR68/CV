@@ -12,6 +12,22 @@ interface Props {
     getButtonStyle: (i: number) => React.CSSProperties;
 }
 
+/*
+const previousExercise = previousWeekData
+                        .flatMap((obj) => obj.details_analyysi || []) //Eventually, this needs to be changed as object structure has been now changed || exercices need to be renamed to details_analyysi...
+                        .find((item) => item.liike === exercise);
+
+                    console.log(
+                        'TrainingTable, previous wk exercise:',
+                        previousWeekData
+                    );
+
+previousExercise={previousExercise}
+
+
+*/
+
+
 const TrainingTable: React.FC<Props> = ({
     todayTraining,
     previousWeekData,
@@ -21,43 +37,28 @@ const TrainingTable: React.FC<Props> = ({
     getButtonStyle,
 }) => {
 
-/*
-                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
-                        Prev kg's
-                    </th>
 
-*/
-
-    //<th>Prev kg's</th>
     return (
         <table>
             <thead>
                 <tr style={{ backgroundColor: 'orange' }}>
-                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
+                    <th style={{ width: '200px', padding: '1rem', fontSize: '1.2rem' }}>
                         Treeni
                     </th>
-                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>S&T</th>
-                    <th style={{ padding: '1rem', fontSize: '1.2rem' }}>
+                    <th style={{ width: '200px', padding: '1rem', fontSize: '1.2rem' }}>S&T</th>
+                    <th style={{ width: '200px', padding: '1rem', fontSize: '1.2rem' }}>
                         Done
                     </th>
                 </tr>
             </thead>
             <tbody>
                 {todayTraining.Voimaharjoittelu.liike.map((exercise, index) => {
-                    const previousExercise = previousWeekData
-                        .flatMap((obj) => obj.details_analyysi || []) //Eventually, this needs to be changed as object structure has been now changed || exercices need to be renamed to details_analyysi...
-                        .find((item) => item.liike === exercise);
 
-                    console.log(
-                        'TrainingTable, previous wk exercise:',
-                        previousWeekData
-                    );
                     return (
                         <ExerciseRow
                             key={index}
                             index={index}
                             exercise={exercise}
-                            previousExercise={previousExercise}
                             sarja={todayTraining.Voimaharjoittelu.sarja[index]}
                             toisto={
                                 todayTraining.Voimaharjoittelu.toisto[index]
