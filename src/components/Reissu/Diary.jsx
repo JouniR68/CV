@@ -5,16 +5,9 @@ import {
 } from '@mui/material';
 import { doc, deleteDoc,  collection, addDoc, getDocs, Timestamp } from 'firebase/firestore';
 import { db, storage } from '../../firebase'; // Muokkaa polku oikeaksi
-
-//import { initializeApp } from 'firebase/app';
-import { /*getStorage,*/ ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { styled } from '@mui/material/styles';
 
-/*
-const app = initializeApp(db);
-getFirestore(app);
-const storage = getStorage(app);
-*/
 
 const Input = styled('input')({
   display: 'none',
@@ -25,24 +18,31 @@ const DiaryForm = ({ onEntryAdded }) => {
   const [images, setImages] = useState([]);
   const [location, setLocation] = useState('');
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const { latitude, longitude } = position.coords;
-
-      try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
-        const data = await res.json();
-        setLocation(data.display_name || `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
-      } catch (err) {
-        console.error('Reverse geocoding failed:', err);
-        setLocation(`Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
-      }
+  const fetchLocation = async () => {
+    return new Promise((resolve) => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+          const data = await res.json();
+          resolve(data.display_name || `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
+        } catch (err) {
+          console.error('Reverse geocoding failed:', err);
+          resolve(`Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
+        }
+      });
     });
+  };
+
+  useEffect(() => {
+    fetchLocation().then(loc => setLocation(loc));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imageUrls = [];
+    const now = new Date();
+    const docName = `note_${now.toISOString()}`;
 
     for (let img of images) {
       const imageRef = ref(storage, `images/${img.name}`);
@@ -55,7 +55,8 @@ const DiaryForm = ({ onEntryAdded }) => {
       text,
       imageUrls,
       location,
-      timestamp: new Date().toISOString(),
+      timestamp: now.toISOString(),
+      name: docName
     });
 
     setText('');
@@ -102,6 +103,7 @@ const DiaryForm = ({ onEntryAdded }) => {
                 Location: {location || 'Fetching location...'}
               </Typography>
             </Grid>
+
             <Grid item xs={12}>
               <Button variant="contained" type="submit">Submit</Button>
             </Grid>
