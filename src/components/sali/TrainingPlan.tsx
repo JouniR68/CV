@@ -48,6 +48,7 @@ const TrainingPlan: React.FC = () => {
     const [newDate, setNewDate] = useState<string>('');
     const [aero, setAero] = useState<boolean>(false);
     const [previousWeekData, setPreviousWeekData] = useState<Data[]>([]);
+    const [visible, setVisible] = useState(false);
     const navigate = useNavigate();
 
     const viikonpaivat = [
@@ -68,6 +69,19 @@ const TrainingPlan: React.FC = () => {
               ([day]) => day.toLowerCase() === viikonpaiva?.toLowerCase()
           )?.[1] as Training)
         : undefined;
+
+useEffect(() => {
+    if (saveStatus) {
+        setVisible(true);
+        const timeout = setTimeout(() => {
+            setVisible(false);
+            setSaveStatus(null); // Optional: clear the message too
+        }, 6000);
+
+        return () => clearTimeout(timeout);
+    }
+}, [saveStatus]);
+
 
     useEffect(() => {
         if (newDate != '' && newDate != viikonpaivat[today]) {
@@ -379,7 +393,7 @@ const TrainingPlan: React.FC = () => {
                 />
             )}
 
-            {saveStatus && <div>{saveStatus}</div>}
+            {visible && <div style = {{marginBottom:'1rem'}}>{saveStatus}</div>}
             {aero && <Aero onVapaaAnswer={handleVapaaAnswer} />}
         </div>
     );

@@ -17,6 +17,7 @@
         width: 100%;
         font-size: 16px;
         overflow: auto;
+        margin-bottom: 1rem;
     }
     .sali--extrat {
         flex-direction: row;
@@ -81,6 +82,7 @@
         font-size: 16px;
         height: 75vh;
         overflow-y: auto;
+        margin-bottom: 1rem;
     }
     .sali--extrat {
         flex-direction: row;
