@@ -47,6 +47,7 @@ const DiaryForm = ({ onEntryAdded }) => {
     const [text, setText] = useState('');
     const [images, setImages] = useState([]);
     const [location, setLocation] = useState('');
+    const [isSaved, setIsSaved] = useState(false);
 
     const fetchLocation = async () => {
         return new Promise((resolve) => {
@@ -81,6 +82,7 @@ const DiaryForm = ({ onEntryAdded }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const imageUrls = [];
         const now = new Date();
         const docName = `note_${now.toISOString()}`;
@@ -104,7 +106,10 @@ const DiaryForm = ({ onEntryAdded }) => {
 
         setText('');
         setImages([]);
+        setIsSaved(true); // ✅ Trigger success feedback
         onEntryAdded();
+
+        setTimeout(() => setIsSaved(false), 3000); // ✅ Reset after 3 seconds
     };
 
     return (
@@ -162,8 +167,19 @@ const DiaryForm = ({ onEntryAdded }) => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button variant='contained' type='submit'>
-                                Submit
+                            <Button
+                                variant='contained'
+                                type='submit'
+                                sx={{
+                                    bgcolor: isSaved ? 'green' : undefined,
+                                    '&:hover': {
+                                        bgcolor: isSaved
+                                            ? 'darkgreen'
+                                            : undefined,
+                                    },
+                                }}
+                            >
+                                {isSaved ? 'Saved' : 'Submit'}
                             </Button>
                         </Grid>
                     </Grid>
@@ -180,7 +196,7 @@ const DiaryTable = () => {
     const [editedText, setEditedText] = useState('');
     const [editedImages, setEditedImages] = useState([]);
     const [newImages, setNewImages] = useState([]);
-
+    const [imagesJustAdded, setImagesJustAdded] = useState(false);
     const fetchEntries = async () => {
         const querySnapshot = await getDocs(collection(db, 'notes'));
         const data = querySnapshot.docs.map((doc) => ({
@@ -211,7 +227,11 @@ const DiaryTable = () => {
     };
 
     const handleNewImagesChange = (e) => {
-        setNewImages(Array.from(e.target.files));
+        const files = Array.from(e.target.files);
+        if (files.length > 0) {
+            setImagesJustAdded(true);
+        }
+        setNewImages(files);
     };
 
     const handleSave = async (entry) => {
@@ -253,7 +273,7 @@ const DiaryTable = () => {
             </ToggleButtonGroup>
 
             {filteredWeek && (
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} style={{display:'flex', height:'16rem',overflowY:'auto'}}>
                     <Table>
                         <TableHead>
                             <TableRow>
@@ -355,9 +375,31 @@ const DiaryTable = () => {
                                                         <Button
                                                             variant='outlined'
                                                             component='span'
-                                                            sx={{ mt: 1 }}
+                                                            sx={{
+                                                                mt: 1,
+                                                                bgcolor:
+                                                                    imagesJustAdded
+                                                                        ? 'green'
+                                                                        : 'transparent',
+                                                                color: imagesJustAdded
+                                                                    ? 'white'
+                                                                    : 'inherit',
+                                                                '&:hover': {
+                                                                    bgcolor:
+                                                                        imagesJustAdded
+                                                                            ? 'darkgreen'
+                                                                            : 'rgba(0,0,0,0.04)',
+                                                                },
+                                                            }}
+                                                            onClick={() =>
+                                                                setImagesJustAdded(
+                                                                    false
+                                                                )
+                                                            } // reset after button click
                                                         >
-                                                            Add Images
+                                                            {imagesJustAdded
+                                                                ? 'Images Added'
+                                                                : 'Add Images'}
                                                         </Button>
                                                     </label>
                                                 </>
@@ -386,8 +428,6 @@ const DiaryTable = () => {
                                                                 />
                                                             )
                                                         )}
-
-
                                                 </>
                                             )}
                                         </TableCell>
