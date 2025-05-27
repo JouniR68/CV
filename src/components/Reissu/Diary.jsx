@@ -48,6 +48,7 @@ const DiaryForm = ({ onEntryAdded }) => {
     const [images, setImages] = useState([]);
     const [location, setLocation] = useState('');
     const [isSaved, setIsSaved] = useState(false);
+    const [cooldownActive, setCooldownActive] = useState(false);
 
     const fetchLocation = async () => {
         return new Promise((resolve) => {
@@ -83,6 +84,11 @@ const DiaryForm = ({ onEntryAdded }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // ✅ Prevent submission if cooldown is active
+        if (cooldownActive) return;
+
+        setCooldownActive(true); // ✅ Start cooldown
+
         const imageUrls = [];
         const now = new Date();
         const docName = `note_${now.toISOString()}`;
@@ -106,10 +112,17 @@ const DiaryForm = ({ onEntryAdded }) => {
 
         setText('');
         setImages([]);
-        setIsSaved(true); // ✅ Trigger success feedback
+        setIsSaved(true);
         onEntryAdded();
 
-        setTimeout(() => setIsSaved(false), 3000); // ✅ Reset after 3 seconds
+        setTimeout(() => {
+            setIsSaved(false);
+        }, 3000);
+
+        // ✅ Reset cooldown after 30 seconds
+        setTimeout(() => {
+            setCooldownActive(false);
+        }, 30000);
     };
 
     return (
@@ -170,6 +183,7 @@ const DiaryForm = ({ onEntryAdded }) => {
                             <Button
                                 variant='contained'
                                 type='submit'
+                                disabled={cooldownActive}
                                 sx={{
                                     bgcolor: isSaved ? 'green' : undefined,
                                     '&:hover': {
@@ -179,7 +193,11 @@ const DiaryForm = ({ onEntryAdded }) => {
                                     },
                                 }}
                             >
-                                {isSaved ? 'Saved' : 'Submit'}
+                                {isSaved
+                                    ? 'Saved'
+                                    : cooldownActive
+                                    ? 'Wait...'
+                                    : 'Submit'}
                             </Button>
                         </Grid>
                     </Grid>
@@ -273,7 +291,14 @@ const DiaryTable = () => {
             </ToggleButtonGroup>
 
             {filteredWeek && (
-                <TableContainer component={Paper} style={{display:'flex', height:'16rem',overflowY:'auto'}}>
+                <TableContainer
+                    component={Paper}
+                    style={{
+                        display: 'flex',
+                        height: '16rem',
+                        overflowY: 'auto',
+                    }}
+                >
                     <Table>
                         <TableHead>
                             <TableRow>
