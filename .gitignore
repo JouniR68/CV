@@ -13,6 +13,8 @@ dist-ssr
 *.local
 .env
 
+src/components/users/userData.js
+
 #firebase
 .firebase
 
