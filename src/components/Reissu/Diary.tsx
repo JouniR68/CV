@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Card,
     CardContent,
@@ -7,110 +7,104 @@ import {
     TextField,
     Grid,
 } from '@mui/material';
-import {
-    collection,
-    addDoc,
-} from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase'; // Muokkaa polku oikeaksi
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { styled } from '@mui/material/styles';
-import DiaryTable from './DiaryTable'
+import DiaryTable from './DiaryTable';
 
+// Styled component
 const Input = styled('input')({
-    display: 'none',
+  display: 'none',
 });
 
-function getWeekNumber(date) {
-    const d = new Date(
-        Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
-    );
-    const dayNum = d.getUTCDay() || 7;
-    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+// Utility: Get ISO week number
+function getWeekNumber(date: Date): number {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((+d - +yearStart) / 86400000 + 1) / 7);
 }
 
-const DiaryForm = ({ onEntryAdded }) => {
-    const [text, setText] = useState('');
-    const [images, setImages] = useState([]);
-    const [location, setLocation] = useState('');
-    const [isSaved, setIsSaved] = useState(false);
-    const [cooldownActive, setCooldownActive] = useState(false);
+// Props interface
+interface DiaryFormProps {
+  onEntryAdded: () => void;
+}
 
-    const fetchLocation = async () => {
-        return new Promise((resolve) => {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const { latitude, longitude } = position.coords;
-                try {
-                    const res = await fetch(
-                        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-                    );
-                    const data = await res.json();
-                    resolve(
-                        data.display_name ||
-                            `Lat: ${latitude.toFixed(
-                                4
-                            )}, Lng: ${longitude.toFixed(4)}`
-                    );
-                } catch (err) {
-                    console.error('Reverse geocoding failed:', err);
-                    resolve(
-                        `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(
-                            4
-                        )}`
-                    );
-                }
-            });
-        });
-    };
+const DiaryForm: React.FC<DiaryFormProps> = ({ onEntryAdded }) => {
+  const [text, setText] = useState<string>('');
+  const [images, setImages] = useState<File[]>([]);
+  const [location, setLocation] = useState<string>('');
+  const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [cooldownActive, setCooldownActive] = useState<boolean>(false);
 
-    useEffect(() => {
-        fetchLocation().then((loc) => setLocation(loc));
-    }, []);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // ✅ Prevent submission if cooldown is active
-        if (cooldownActive) return;
-
-        setCooldownActive(true); // ✅ Start cooldown
-
-        const imageUrls = [];
-        const now = new Date();
-        const docName = `note_${now.toISOString()}`;
-        const week = getWeekNumber(now);
-
-        for (let img of images) {
-            const imageRef = ref(storage, `images/${img.name}`);
-            await uploadBytes(imageRef, img);
-            const url = await getDownloadURL(imageRef);
-            imageUrls.push(url);
+  const fetchLocation = async (): Promise<string> => {
+    return new Promise((resolve) => {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+          );
+          const data = await res.json();
+          resolve(
+            data.display_name ||
+              `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`
+          );
+        } catch (err) {
+          console.error('Reverse geocoding failed:', err);
+          resolve(`Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)}`);
         }
+      });
+    });
+  };
 
-        await addDoc(collection(db, 'notes'), {
-            text,
-            imageUrls,
-            location,
-            timestamp: now.toISOString(),
-            name: docName,
-            week,
-        });
+  useEffect(() => {
+    fetchLocation().then((loc) => setLocation(loc));
+  }, []);
 
-        setText('');
-        setImages([]);
-        setIsSaved(true);
-        onEntryAdded();
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
 
-        setTimeout(() => {
-            setIsSaved(false);
-        }, 3000);
+    if (cooldownActive) return;
+    setCooldownActive(true);
 
-        // ✅ Reset cooldown after 30 seconds
-        setTimeout(() => {
-            setCooldownActive(false);
-        }, 30000);
-    };
+    const imageUrls: string[] = [];
+    const now = new Date();
+    const docName = `note_${now.toISOString()}`;
+    const week = getWeekNumber(now);
+
+    for (const img of images) {
+      const imageRef = ref(storage, `images/${img.name}`);
+      await uploadBytes(imageRef, img);
+      const url = await getDownloadURL(imageRef);
+      imageUrls.push(url);
+    }
+
+    await addDoc(collection(db, 'notes'), {
+      text,
+      imageUrls,
+      location,
+      timestamp: now.toISOString(),
+      name: docName,
+      week,
+    });
+
+    setText('');
+    setImages([]);
+    setIsSaved(true);
+    onEntryAdded();
+
+    setTimeout(() => setIsSaved(false), 3000);
+    setTimeout(() => setCooldownActive(false), 30000);
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImages(Array.from(e.target.files));
+    }
+  };
 
     return (
         <Card sx={{ mb: 4 }}>
@@ -124,7 +118,7 @@ const DiaryForm = ({ onEntryAdded }) => {
                             <TextField
                                 fullWidth
                                 multiline
-                                rows={4}
+                                rows={3}
                                 label='Write your thoughts...'
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
@@ -194,7 +188,7 @@ const DiaryForm = ({ onEntryAdded }) => {
     );
 };
 
-<DiaryTable />
+<DiaryTable />;
 
 const DiaryComponent = () => {
     const [refresh, setRefresh] = useState(false);
