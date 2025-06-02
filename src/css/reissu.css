@@ -7,15 +7,32 @@
         margin-top: 0rem;
         /* Adds spacing to prevent cutting */
     }
+    ,
+    .main {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        align-items: center;
+        font-weight: bold;
+        color: red;
+    }
 }
 
 @media screen and (min-width: 1025px) {
     .lista {
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         margin-bottom: 3px;
         padding: 2px;
         height: 20vh;
         overflow-y: auto,
+    }
+    .main {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+
+        /* Ensure horizontal scroll for smaller screens */
     }
 }

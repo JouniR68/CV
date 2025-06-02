@@ -5,6 +5,7 @@ import Header from './components/header';
 import Heavy from './components/sali/Heavy';
 import Layout from './Layouts/Layout';
 import AdminLayout from './Layouts/AdminLayout';
+import ReissuLayout from './Layouts/ReissuLayout';
 import ShopLayout from './Layouts/ShopLayout';
 import HuoltoLayout from './Layouts/HuoltoLayout';
 import Home from './components/Home';
@@ -78,7 +79,7 @@ import Lista from './components/Reissu/Lista';
 import DayCounter from './components/Reissu/DayCounter';
 import Velkalista from './components/Reissu/Velkalista';
 import Velka from './components/Reissu/Velka';
-import Diary from './components/Reissu/Diary'
+import Diary from './components/Reissu/Diary';
 
 import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
@@ -199,14 +200,17 @@ function App() {
                             />
                             <Route path='stock' element={<StockFetcher />} />
                             <Route path='heavyCheck' element={<Heavy />} />
-                            <Route path='reissulista' element={<Lista />} />
-                            <Route path='vlista' element={<Velkalista />} />
-                            <Route path='uVelka' element={<Velka />} />
-<Route path='diary' element={<Diary />} />
-                            <Route
-                                path='reissupaivat'
-                                element={<DayCounter />}
-                            />
+
+                            <Route path='reissu' element={<ReissuLayout />}>
+                                <Route path='reissulista' element={<Lista />} />
+                                <Route path='vlista' element={<Velkalista />} />
+                                <Route path='uVelka' element={<Velka />} />
+                                <Route path='diary' element={<Diary />} />
+                                <Route
+                                    path='reissupaivat'
+                                    element={<DayCounter />}
+                                />
+                            </Route>
 
                             <Route path='huollot' element={<HuoltoLayout />}>
                                 <Route

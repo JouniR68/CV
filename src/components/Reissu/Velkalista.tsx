@@ -10,7 +10,7 @@ import {
     Checkbox,
     Typography,
 } from '@mui/material';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase'; // Muokkaa polku oikeaksi
 import { Timestamp } from 'firebase/firestore';
 
@@ -45,8 +45,30 @@ const Velkalista: React.FC = () => {
         fetchVelat();
     }, []);
 
+    const updateStatus = async (id: string, currentHoidettu: boolean) => {
+        console.log(`${id} + ', ' + ${currentHoidettu}`);
+
+        const newStatus = !currentHoidettu;
+
+        try {
+            const velkaRef = doc(db, 'velat', id);
+            await updateDoc(velkaRef, { hoidettu: newStatus });
+            setVelat((preVelat) =>
+                preVelat.map((velka) =>
+                    velka.id === id ? { ...velka, hoidettu: newStatus } : velka
+                )
+            );
+            console.log(`Updated status is now ${newStatus}`);
+        } catch (err) {
+            console.log(`Updating status failed ${err}`);
+        }
+    };
+
     return (
-        <Paper sx={{ p: 3, maxWidth: '1000px', margin: 'auto', mt: 5 }}>
+        <Paper
+            sx={{ p: 3, maxWidth: '1000px', margin: 'auto', mt: 5 }}
+            className='reissu'
+        >
             <Typography variant='h5' gutterBottom>
                 Velkalista
             </Typography>
@@ -64,7 +86,7 @@ const Velkalista: React.FC = () => {
                     <TableBody>
                         {velat.map((velka) => (
                             <TableRow key={velka.id}>
-                                <TableCell>{velka.velkoja}</TableCell>
+                                <TableCell>{velka.nimi}</TableCell>
                                 <TableCell>
                                     {typeof velka.summa === 'number'
                                         ? velka.summa.toFixed(2)
@@ -81,7 +103,12 @@ const Velkalista: React.FC = () => {
                                 <TableCell>
                                     <Checkbox
                                         checked={velka.hoidettu}
-                                        disabled
+                                        onChange={(event) =>
+                                            updateStatus(
+                                                velka.id,
+                                                velka.hoidettu
+                                            )
+                                        }
                                     />
                                 </TableCell>
                             </TableRow>
