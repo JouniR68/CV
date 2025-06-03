@@ -15,6 +15,8 @@ import {
     TableRow,
     Paper,
     Grid,
+    Input,
+    InputBase,
 } from '@mui/material';
 import {
     updateDoc,
@@ -219,11 +221,13 @@ const DiaryTable: React.FC = () => {
                                                     <label
                                                         htmlFor={`edit-upload-${entry.id}`}
                                                     >
-                                                        <Input
-                                                            accept='image/*'
+                                                        <InputBase
+                                                            inputProps={{
+                                                                accept: 'image/*',
+                                                                multiple: true,
+                                                            }}
                                                             id={`edit-upload-${entry.id}`}
                                                             type='file'
-                                                            multiple
                                                             onChange={
                                                                 handleNewImagesChange
                                                             }
