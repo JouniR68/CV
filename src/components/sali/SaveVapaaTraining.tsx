@@ -18,7 +18,8 @@ const SaveVapaaTraining = async (
     fiilis: string,
     intervals: number,
     timeUsed: number,
-    distance: number
+    distance: number,
+    location: string
 ) => {
     console.log(
         'Vapaa: ' +
@@ -30,7 +31,9 @@ const SaveVapaaTraining = async (
             ', timeUsed: ' +
             timeUsed +
             ', distance: ' +
-            distance
+            distance +
+            ', location: ' +
+            location
     );
 
     try {
@@ -43,6 +46,7 @@ const SaveVapaaTraining = async (
             intervals,
             timeUsed,
             distance,
+            location,
         };
 
         console.log('TrainingDoc:', trainingDoc);

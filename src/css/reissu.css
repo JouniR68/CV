@@ -15,6 +15,7 @@
         align-items: center;
         font-weight: bold;
         color: red;
+        gap:1rem;
     }
 }
 

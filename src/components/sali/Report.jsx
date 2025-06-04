@@ -21,7 +21,7 @@ const TrainingsTable = () => {
 
     useEffect(() => {
         const fetchTrainings = async () => {
-            const querySnapshot = await getDocs(collection(db, 'trainings1H'));
+            const querySnapshot = await getDocs(collection(db, 'summer'));
             const data = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),

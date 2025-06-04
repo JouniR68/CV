@@ -384,11 +384,13 @@
         transform: translate(1px, 1px);
     }
     .host-nav {
+        display: flex;
         margin-top: 2rem;
         display: inline-block;
         justify-content: center;
         background-color: gray;
         font-weight: 700;
+        gap: 1rem;
     }
     .host-nav a {
         justify-content: center;
@@ -681,10 +683,11 @@
         transform: translate(1px, 1px);
     }
     .host-nav {
-        display: inline;
+        display: flex;
         justify-content: center;
         font-weight: 700;
     }
+
     .host-nav a {
         justify-content: center;
         text-decoration: none;

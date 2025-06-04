@@ -45,7 +45,7 @@ const SaveTrainingData = async (
 
         console.log('TrainingDoc:', trainingDoc);
         const timestampId = new Date().toISOString().replace(/:/g, '-'); // e.g., "2025-05-07T14-30-12.123Z"
-        await setDoc(doc(db, 'trainings1H', timestampId), {
+        await setDoc(doc(db, 'summer', timestampId), {
             ...trainingDoc,
             name: 'Training',
             createdAt: new Date(),

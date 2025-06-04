@@ -124,6 +124,9 @@ const Checklist = () => {
         }));
     };
 
+    console.log('Width:', window.innerWidth);
+    console.log('Height:', window.innerHeight);
+
     return (
         <Box
             sx={{
@@ -134,6 +137,9 @@ const Checklist = () => {
                 overflowY: 'auto',
             }}
         >
+            <h4>
+                {window.innerWidth} x {window.innerHeight}
+            </h4>
             <Typography
                 sx={{ marginBottom: 10 }}
                 variant='h4'

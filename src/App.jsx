@@ -201,6 +201,7 @@ function App() {
                             <Route path='stock' element={<StockFetcher />} />
                             <Route path='heavyCheck' element={<Heavy />} />
 
+                            <Route path='diary' element={<Diary />} />
                             <Route path='reissu' element={<ReissuLayout />}>
                                 <Route path='reissulista' element={<Lista />} />
                                 <Route path='vlista' element={<Velkalista />} />

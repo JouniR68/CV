@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import {
     ToggleButtonGroup,
     ToggleButton,
@@ -14,8 +14,6 @@ import {
     TableHead,
     TableRow,
     Paper,
-    Grid,
-    Input,
     InputBase,
 } from '@mui/material';
 import {
@@ -25,18 +23,17 @@ import {
     collection,
     addDoc,
     getDocs,
-    Timestamp,
 } from 'firebase/firestore';
-import { db, storage } from '../../firebase'; // Muokkaa polku oikeaksi
+import { db, storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { styled } from '@mui/material/styles';
 
 interface DiaryEntry {
     id: string;
     text: string;
     imageUrls?: string[];
     week?: string;
-    [key: string]: any; // to allow additional Firestore fields
+    timestamp?: string;
+    [key: string]: any;
 }
 
 const DiaryTable: React.FC = () => {
@@ -63,7 +60,7 @@ const DiaryTable: React.FC = () => {
 
     const handleDelete = async (id: string) => {
         await deleteDoc(doc(db, 'notes', id));
-        fetchEntries();
+        await fetchEntries();
     };
 
     const handleEdit = (entry: DiaryEntry) => {
@@ -102,8 +99,13 @@ const DiaryTable: React.FC = () => {
             timestamp: new Date().toISOString(),
         });
 
+        // Clear editing state and re-fetch
+        setNewImages([]);
+        setImagesJustAdded(false);
         setEditingId(null);
-        fetchEntries();
+        setEditedText('');
+        setEditedImages([]);
+        await fetchEntries();
     };
 
     const weeks = [...new Set(entries.map((entry) => entry.week))];
@@ -147,9 +149,9 @@ const DiaryTable: React.FC = () => {
                                 .map((entry) => (
                                     <TableRow key={entry.id}>
                                         <TableCell>
-                                            {new Date(
-                                                entry.timestamp
-                                            ).toLocaleString()}
+                                            {entry.timestamp
+                                                ? new Date(entry.timestamp).toLocaleString()
+                                                : ''}
                                         </TableCell>
                                         <TableCell>
                                             {editingId === entry.id ? (
@@ -160,67 +162,45 @@ const DiaryTable: React.FC = () => {
                                                         rows={3}
                                                         value={editedText}
                                                         onChange={(e) =>
-                                                            setEditedText(
-                                                                e.target.value
-                                                            )
+                                                            setEditedText(e.target.value)
                                                         }
                                                     />
-                                                    <div
-                                                        style={{
-                                                            marginTop: '8px',
-                                                        }}
-                                                    >
-                                                        {editedImages.map(
-                                                            (url, i) => (
-                                                                <div
-                                                                    key={`${url}-${i}`}
+                                                    <div style={{ marginTop: '8px' }}>
+                                                        {editedImages.map((url, i) => (
+                                                            <div
+                                                                key={url}
+                                                                style={{
+                                                                    display: 'inline-block',
+                                                                    position: 'relative',
+                                                                    marginRight: 8,
+                                                                }}
+                                                            >
+                                                                <img
+                                                                    src={url}
+                                                                    alt={`edit-${i}`}
+                                                                    width={120}
+                                                                    height={80}
                                                                     style={{
-                                                                        display:
-                                                                            'inline-block',
-                                                                        position:
-                                                                            'relative',
-                                                                        marginRight: 8,
+                                                                        objectFit: 'cover',
+                                                                    }}
+                                                                />
+                                                                <Button
+                                                                    size='small'
+                                                                    onClick={() =>
+                                                                        handleImageRemove(i)
+                                                                    }
+                                                                    style={{
+                                                                        position: 'absolute',
+                                                                        top: 0,
+                                                                        right: 0,
                                                                     }}
                                                                 >
-                                                                    <img
-                                                                        src={
-                                                                            url
-                                                                        }
-                                                                        alt={`edit-${i}`}
-                                                                        width={
-                                                                            120
-                                                                        }
-                                                                        height={
-                                                                            80
-                                                                        }
-                                                                        style={{
-                                                                            objectFit:
-                                                                                'cover',
-                                                                        }}
-                                                                    />
-                                                                    <Button
-                                                                        size='small'
-                                                                        onClick={() =>
-                                                                            handleImageRemove(
-                                                                                i
-                                                                            )
-                                                                        }
-                                                                        style={{
-                                                                            position:
-                                                                                'absolute',
-                                                                            top: 0,
-                                                                            right: 0,
-                                                                        }}
-                                                                    >
-                                                                        ❌
-                                                                    </Button>
-                                                                </div>
-                                                            )
-                                                        )}{' '}
+                                                                    ❌
+                                                                </Button>
+                                                            </div>
+                                                        ))}
                                                     </div>
-                                                    <label
-                                                        htmlFor={`edit-upload-${entry.id}`}
-                                                    >
+                                                    <label htmlFor={`edit-upload-${entry.id}`}>
                                                         <InputBase
                                                             inputProps={{
                                                                 accept: 'image/*',
@@ -228,34 +208,26 @@ const DiaryTable: React.FC = () => {
                                                             }}
                                                             id={`edit-upload-${entry.id}`}
                                                             type='file'
-                                                            onChange={
-                                                                handleNewImagesChange
-                                                            }
+                                                            onChange={handleNewImagesChange}
                                                         />
                                                         <Button
                                                             variant='outlined'
                                                             component='span'
                                                             sx={{
                                                                 mt: 1,
-                                                                bgcolor:
-                                                                    imagesJustAdded
-                                                                        ? 'green'
-                                                                        : 'transparent',
+                                                                bgcolor: imagesJustAdded
+                                                                    ? 'green'
+                                                                    : 'transparent',
                                                                 color: imagesJustAdded
                                                                     ? 'white'
                                                                     : 'inherit',
                                                                 '&:hover': {
-                                                                    bgcolor:
-                                                                        imagesJustAdded
-                                                                            ? 'darkgreen'
-                                                                            : 'rgba(0,0,0,0.04)',
+                                                                    bgcolor: imagesJustAdded
+                                                                        ? 'darkgreen'
+                                                                        : 'rgba(0,0,0,0.04)',
                                                                 },
                                                             }}
-                                                            onClick={() =>
-                                                                setImagesJustAdded(
-                                                                    false
-                                                                )
-                                                            } // reset after button click
+                                                            onClick={() => setImagesJustAdded(false)}
                                                         >
                                                             {imagesJustAdded
                                                                 ? 'Images Added'
@@ -265,29 +237,22 @@ const DiaryTable: React.FC = () => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <Typography>
-                                                        {entry.text}
-                                                    </Typography>
+                                                    <Typography>{entry.text}</Typography>
                                                     {entry.imageUrls &&
-                                                        entry.imageUrls.map(
-                                                            (url, idx) => (
-                                                                <img
-                                                                    key={`${url}-${idx}`}
-                                                                    src={url}
-                                                                    alt={`uploaded-${idx}`}
-                                                                    width='200'
-                                                                    height='150'
-                                                                    style={{
-                                                                        objectFit:
-                                                                            'cover',
-                                                                        marginTop:
-                                                                            '8px',
-                                                                        marginRight:
-                                                                            '8px',
-                                                                    }}
-                                                                />
-                                                            )
-                                                        )}
+                                                        entry.imageUrls.map((url) => (
+                                                            <img
+                                                                key={url}
+                                                                src={url}
+                                                                alt='uploaded'
+                                                                width='200'
+                                                                height='150'
+                                                                style={{
+                                                                    objectFit: 'cover',
+                                                                    marginTop: '8px',
+                                                                    marginRight: '8px',
+                                                                }}
+                                                            />
+                                                        ))}
                                                 </>
                                             )}
                                         </TableCell>
@@ -298,18 +263,14 @@ const DiaryTable: React.FC = () => {
                                                     <Button
                                                         variant='contained'
                                                         color='primary'
-                                                        onClick={() =>
-                                                            handleSave(entry)
-                                                        }
+                                                        onClick={() => handleSave(entry)}
                                                         sx={{ mr: 1 }}
                                                     >
                                                         Save
                                                     </Button>
                                                     <Button
                                                         variant='outlined'
-                                                        onClick={() =>
-                                                            setEditingId(null)
-                                                        }
+                                                        onClick={() => setEditingId(null)}
                                                     >
                                                         Cancel
                                                     </Button>
@@ -318,9 +279,7 @@ const DiaryTable: React.FC = () => {
                                                 <>
                                                     <Button
                                                         variant='outlined'
-                                                        onClick={() =>
-                                                            handleEdit(entry)
-                                                        }
+                                                        onClick={() => handleEdit(entry)}
                                                         sx={{ mr: 1 }}
                                                     >
                                                         Edit
@@ -328,11 +287,7 @@ const DiaryTable: React.FC = () => {
                                                     <Button
                                                         variant='outlined'
                                                         color='error'
-                                                        onClick={() =>
-                                                            handleDelete(
-                                                                entry.id
-                                                            )
-                                                        }
+                                                        onClick={() => handleDelete(entry.id)}
                                                     >
                                                         X
                                                     </Button>

@@ -49,6 +49,7 @@ const TrainingPlan: React.FC = () => {
     const [aero, setAero] = useState<boolean>(false);
     const [previousWeekData, setPreviousWeekData] = useState<Data[]>([]);
     const [visible, setVisible] = useState(false);
+    const [location, setLocation] = useState<string>('');
     const navigate = useNavigate();
 
     const viikonpaivat = [
@@ -70,18 +71,48 @@ const TrainingPlan: React.FC = () => {
           )?.[1] as Training)
         : undefined;
 
-useEffect(() => {
-    if (saveStatus) {
-        setVisible(true);
-        const timeout = setTimeout(() => {
-            setVisible(false);
-            setSaveStatus(null); // Optional: clear the message too
-        }, 6000);
+    const fetchLocation = async (): Promise<string> => {
+        return new Promise((resolve) => {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const { latitude, longitude } = position.coords;
+                try {
+                    const res = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+                    );
+                    const data = await res.json();
+                    resolve(
+                        data.display_name ||
+                            `Lat: ${latitude.toFixed(
+                                4
+                            )}, Lng: ${longitude.toFixed(4)}`
+                    );
+                } catch (err) {
+                    console.error('Reverse geocoding failed:', err);
+                    resolve(
+                        `Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(
+                            4
+                        )}`
+                    );
+                }
+            });
+        });
+    };
 
-        return () => clearTimeout(timeout);
-    }
-}, [saveStatus]);
+    useEffect(() => {
+        fetchLocation().then((loc) => setLocation(loc));
+    }, []);
 
+    useEffect(() => {
+        if (saveStatus) {
+            setVisible(true);
+            const timeout = setTimeout(() => {
+                setVisible(false);
+                setSaveStatus(null); // Optional: clear the message too
+            }, 6000);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [saveStatus]);
 
     useEffect(() => {
         if (newDate != '' && newDate != viikonpaivat[today]) {
@@ -103,7 +134,7 @@ useEffect(() => {
 
     const fetchData = async () => {
         try {
-            const querySnapshot = await getDocs(collection(db, 'trainings1H'));
+            const querySnapshot = await getDocs(collection(db, 'summer'));
             const fetchedData = querySnapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...(doc.data() as Omit<Training, 'id'>),
@@ -186,21 +217,6 @@ useEffect(() => {
     useEffect(() => {
         if (todayTraining?.Voimaharjoittelu && viikonpaiva) {
             const len = todayTraining.Voimaharjoittelu.liike.length;
-            /*const storageKey = getStorageKey(viikonpaiva);
-            const storedClicks = localStorage.getItem(storageKey);
-
-            if (storedClicks) {
-                try {
-                    const parsed = JSON.parse(storedClicks);
-                    if (Array.isArray(parsed) && parsed.length === len) {
-                        setClicks(parsed);
-                        return;
-                    }
-                } catch (e) {
-                    console.error('localStorage parse error:', e);
-                }
-            }
-                */
 
             // Fallback if no valid stored data
             setClicks(Array(len).fill(0));
@@ -242,9 +258,13 @@ useEffect(() => {
                 fiilis,
                 intervals,
                 timeUsed, // ✅ array of strings
-                distance
+                distance,
+                location
             );
             setSaveStatus('Training saved successfully!');
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
         } catch (err) {
             setSaveStatus('Saving training failed!');
         }
@@ -303,6 +323,14 @@ useEffect(() => {
                     updatedResults
                 );
                 setSaveStatus('Training saved successfully!');
+                setClicks([0]);
+                setDoneLabel([false]);
+                setWeightsData([]);
+                setRepsData([]);
+                setFeedback([]);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
             } catch (err) {
                 setSaveStatus('Saving training failed!');
             }
@@ -393,7 +421,9 @@ useEffect(() => {
                 />
             )}
 
-            {visible && <div style = {{marginBottom:'1rem'}}>{saveStatus}</div>}
+            {visible && (
+                <div style={{ marginBottom: '1rem' }}>{saveStatus}</div>
+            )}
             {aero && <Aero onVapaaAnswer={handleVapaaAnswer} />}
         </div>
     );
