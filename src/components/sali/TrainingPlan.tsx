@@ -205,15 +205,6 @@ const TrainingPlan: React.FC = () => {
         return results;
     };
 
-    /*
-    useEffect(() => {
-        if (clicks.length > 0 && viikonpaiva) {
-            const storageKey = getStorageKey(viikonpaiva);
-            localStorage.setItem(storageKey, JSON.stringify(clicks));
-        }
-    }, [clicks, viikonpaiva]);
-*/
-
     useEffect(() => {
         if (todayTraining?.Voimaharjoittelu && viikonpaiva) {
             const len = todayTraining.Voimaharjoittelu.liike.length;
@@ -312,6 +303,7 @@ const TrainingPlan: React.FC = () => {
         // Check if all Voimaharjoittelu are marked done
         const allCompleted = updatedDone.every(Boolean);
 
+        console.log('handleAnswer location: ', location);
         if (allCompleted && todayTraining) {
             try {
                 setSaveStatus('Saving...');
@@ -320,7 +312,8 @@ const TrainingPlan: React.FC = () => {
                     updatedWeights,
                     updatedReps,
                     updatedFeedback, // ✅ array of strings
-                    updatedResults
+                    updatedResults,
+                    location
                 );
                 setSaveStatus('Training saved successfully!');
                 setClicks([0]);

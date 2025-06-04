@@ -18,13 +18,16 @@ const SaveTrainingData = async (
     weights: number[][], // 2D array: weights[exerciseIndex][setIndex]
     reps: number[][], // 2D array: reps[exerciseIndex][setIndex]
     feedbacks: string[], // <-- array of strings
-    results: string[][]
+    results: string[][],
+    location: string
 ) => {
     // <-- array of arrays (results per set per exercise)): Promise<void> => {
     try {
+        console.log('sijainti: ', location);
         console.log('training.Voimaharjoittelu: ', training.Voimaharjoittelu);
         const trainingDoc = {
             date: new Date().toLocaleDateString(),
+            location: location,
             hour: new Date().getHours(),
             week: getWeekNumber(new Date()),
             exercises: training.Voimaharjoittelu.liike.map((liike, i) => {
@@ -34,7 +37,8 @@ const SaveTrainingData = async (
 
                 return {
                     liike,
-                    analyysi: feedbacks[i] !== undefined ? [feedbacks[i]] : [''],
+                    analyysi:
+                        feedbacks[i] !== undefined ? [feedbacks[i]] : [''],
                     sarja: training.Voimaharjoittelu.sarja[i],
                     painot: weightSet ?? 0,
                     toistot: repSet ?? 0,
