@@ -75,6 +75,7 @@ import Catalog from './components/services/shop/AddShopItem';
 import Basket from './components/services/shop/TheBasket';
 import Orders from './components/services/shop/ShowOrders';
 
+import Trip from './components/Reissu/Euro25'
 import Lista from './components/Reissu/Lista';
 import DayCounter from './components/Reissu/DayCounter';
 import Velkalista from './components/Reissu/Velkalista';
@@ -203,6 +204,7 @@ function App() {
 
                             <Route path='diary' element={<Diary />} />
                             <Route path='reissu' element={<ReissuLayout />}>
+                                <Route path='trip' element={<Trip />} />
                                 <Route path='reissulista' element={<Lista />} />
                                 <Route path='vlista' element={<Velkalista />} />
                                 <Route path='uVelka' element={<Velka />} />
