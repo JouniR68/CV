@@ -17,68 +17,66 @@ import Tooltip from '@mui/material/Tooltip';
 import { Button } from '@mui/material';
 
 export default function Footer() {
+    const [phoneNumber, setShowPhoneNumber] = useState(false);
 
-  const [phoneNumber, setShowPhoneNumber] = useState(false)
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    };
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+    function gitHub() {
+        window.open('https://github.com/JouniR68', '_blank');
+    }
 
-  function gitHub() {
-    window.open('https://github.com/JouniR68', '_blank');
-  }
+    function linkedIn() {
+        window.open(
+            'https://www.linkedin.com/in/jouni-riimala-04330',
+            '_blank'
+        );
+    }
 
-  function linkedIn() {
-    window.open('https://www.linkedin.com/in/jouni-riimala-04330', '_blank');
-  }
+    const subject = 'CONTACT REQUEST';
+    const recipient = 'jriimala@gmail.com';
+    const body = 'Hi \n\nContacting you via your web cv.\n\n';
 
-  const subject = 'CONTACT REQUEST';
-  const recipient = 'jr@softa-apu.fi';
-  const body = 'Hi \n\nContacting you via your web cv.\n\n';
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
+        subject
+    )}&body=${encodeURIComponent(body)}`;
 
-  const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(body)}`;
+    const { t } = useTranslation();
 
+    const showPhoneNumber = () => {
+        console.log('Setting phoneNumber visible');
+        setShowPhoneNumber(true);
+    };
 
-  const { t } = useTranslation()
+    return (
+        <div className='footer'>
+            <div className='footer-items'>
+                <ButtonGroup variant='' aria-label='outlined button group'>
+                    <IconButton onClick={linkedIn}>
+                        <LinkedInIcon />
+                    </IconButton>
+                    <Tooltip title='jriimala@gmail.com' placement='bottom'>
+                        <IconButton>
+                            <a href={mailtoLink}>
+                                <MailIcon sx={{ marginLeft: '2px' }} />
+                            </a>
+                        </IconButton>
+                    </Tooltip>
 
-
-  const showPhoneNumber = () => {
-    console.log("Setting phoneNumber visible")
-    setShowPhoneNumber(true)
-  }
-
-  return (
-    <div className = "footer">
-      
-      <div className="footer-items">
-        <ButtonGroup
-          variant=''
-          aria-label='outlined button group'          
-        >          
-            <IconButton onClick={linkedIn}>
-              <LinkedInIcon />
-            </IconButton>
-            <Tooltip title="jr@softa-apu.fi" placement="bottom">
-              <IconButton>
-                <a href={mailtoLink}><MailIcon sx={{ marginLeft: '2px' }} /></a>
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title="+358 2385 888" placement="bottom">
-              <IconButton>
-                <LocalPhoneSharpIcon />
-              </IconButton>
-            </Tooltip>
-            <IconButton onClick={() => changeLanguage('en')}>
-              <img src="/Images/eng-flag.png" /></IconButton>
-            <IconButton onClick={() => changeLanguage('fi')}>
-              <img src="/Images/fin-flag.png" />
-            </IconButton>
-        </ButtonGroup>
+                    <Tooltip title='+358 2385 888' placement='bottom'>
+                        <IconButton>
+                            <LocalPhoneSharpIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <IconButton onClick={() => changeLanguage('en')}>
+                        <img src='/Images/eng-flag.png' />
+                    </IconButton>
+                    <IconButton onClick={() => changeLanguage('fi')}>
+                        <img src='/Images/fin-flag.png' />
+                    </IconButton>
+                </ButtonGroup>
+            </div>
         </div>
-      
-    </div>
-  );
+    );
 }
